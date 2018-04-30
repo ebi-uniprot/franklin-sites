@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const DefaultPageContent = props => (
-  <div className="default-page-conent">
+  <div className="default-page-content">
     {props.children}
   </div>
 );

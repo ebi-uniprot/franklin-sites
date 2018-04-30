@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import DefaultPageContent from './DefaultPageContent';
+import Header from '../app/Header';
 
 const DefaultPageLayout = props => (
-    <div className="default-page-layout">
-        <DefaultPageContent>{props.content}</DefaultPageContent>
-    </div>
+    <Fragment>
+        <Header />
+        <div className="default-page-layout grid-container">
+            <DefaultPageContent>{props.content}</DefaultPageContent>
+        </div>
+    </Fragment>
 );
 
 DefaultPageLayout.propTypes = {
