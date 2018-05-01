@@ -1,0 +1,34 @@
+@import '../settings';
+@import 'foundation';
+@import '../colours';
+
+.header {
+  height: 125px;
+  line-height: 125px;
+  color: $colour-white;
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $colour-white;
+  }
+  background: linear-gradient(45deg, $colour-dark-blue, rgba($colour-dark-blue, 0.7), $colour-dark-blue, $colour-dark-blue);
+  &__logo {
+    //   Replace by an SVG
+    margin: 0 1em;
+    font-size: 2em;
+  }
+  &__navigation {
+    list-style: none;
+    display: inline-block;
+    a:hover {
+      border-bottom: 1px solid $colour-white;
+    }
+    li {
+      display: inline-block;
+      margin: 0 .7em;
+    }
+  }
+}
+

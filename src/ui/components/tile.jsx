@@ -18,7 +18,7 @@ Tile.propTypes = {
 
 Tile.defaultProps = {
     title: 'Tile title',
-    description: 'This is a short description of what the resource is/provide.'
+    description: 'This is a short description of what the resource is/provides.'
 };
 
 Tile.title = 'Tile';

@@ -4,8 +4,8 @@ import components from '../components/components';
 import DefaultPageLayout from '../layout/DefaultPageLayout';
 
 const formatPattern = Component => (
-  <div key="{Component.title}">
-    <h2>{Component.title}</h2>
+  <div key="{Component.name}">
+    <h2>{Component.name}</h2>
     <div className="grid-x">
       <div className="cell small-6">
         <Component.component />
