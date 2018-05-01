@@ -91,42 +91,28 @@
   .box-colour-annotation-systems {
     background: #f8982e; }
 
-.tile {
-  position: relative;
-  background-color: #006e9a;
-  display: inline-block;
-  margin: 0.1em;
-  text-align: center;
+.header {
+  height: 125px;
+  line-height: 125px;
   color: #fefefe;
-  width: 15rem;
-  height: 15rem;
-  padding: 1em 0;
-  cursor: pointer;
-  transition: background-color 0.25s ease-out, color 0.25s ease-out; }
-  .tile:hover {
-    background-color: #005e83;
+  background: linear-gradient(45deg, #004864, rgba(0, 72, 100, 0.7), #004864, #004864); }
+  .header a,
+  .header a:link,
+  .header a:visited,
+  .header a:hover,
+  .header a:active {
     color: #fefefe; }
-  .tile .tile__header {
-    display: block; }
-  .tile .tile__content {
-    padding: .7em;
-    background-color: rgba(254, 254, 254, 0.1);
-    height: 7em;
-    font-size: 80%;
-    position: absolute;
-    bottom: .1em; }
-  .tile.tile-uniref {
-    background-color: #c08c5c !important; }
-    .tile.tile-uniref:hover {
-      background-color: #ae7743 !important; }
-  .tile.tile-uniparc {
-    background-color: #c3878d !important; }
-    .tile.tile-uniparc:hover {
-      background-color: #b3666e !important; }
-  .tile.tile-proteomes {
-    background-color: #990000 !important; }
-    .tile.tile-proteomes:hover {
-      background-color: #820000 !important; }
+  .header__logo {
+    margin: 0 1em;
+    font-size: 2em; }
+  .header__navigation {
+    list-style: none;
+    display: inline-block; }
+    .header__navigation a:hover {
+      border-bottom: 1px solid #fefefe; }
+    .header__navigation li {
+      display: inline-block;
+      margin: 0 .7em; }
 /**
  * Foundation for Sites by ZURB
  * Version 6.4.4-rc1
@@ -187,28 +173,42 @@
   .box-colour-annotation-systems {
     background: #f8982e; }
 
-.header {
-  height: 125px;
-  line-height: 125px;
+.tile {
+  position: relative;
+  background-color: #006e9a;
+  display: inline-block;
+  margin: 0.1em;
+  text-align: center;
   color: #fefefe;
-  background: linear-gradient(45deg, #004864, rgba(0, 72, 100, 0.7), #004864, #004864); }
-  .header a,
-  .header a:link,
-  .header a:visited,
-  .header a:hover,
-  .header a:active {
+  width: 15rem;
+  height: 15rem;
+  padding: 1em 0;
+  cursor: pointer;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out; }
+  .tile:hover {
+    background-color: #005e83;
     color: #fefefe; }
-  .header__logo {
-    margin: 0 1em;
-    font-size: 2em; }
-  .header__navigation {
-    list-style: none;
-    display: inline-block; }
-    .header__navigation a:hover {
-      border-bottom: 1px solid #fefefe; }
-    .header__navigation li {
-      display: inline-block;
-      margin: 0 .7em; }
+  .tile .tile__header {
+    display: block; }
+  .tile .tile__content {
+    padding: .7em;
+    background-color: rgba(254, 254, 254, 0.1);
+    height: 7em;
+    font-size: 80%;
+    position: absolute;
+    bottom: .1em; }
+  .tile.tile-uniref {
+    background-color: #c08c5c !important; }
+    .tile.tile-uniref:hover {
+      background-color: #ae7743 !important; }
+  .tile.tile-uniparc {
+    background-color: #c3878d !important; }
+    .tile.tile-uniparc:hover {
+      background-color: #b3666e !important; }
+  .tile.tile-proteomes {
+    background-color: #990000 !important; }
+    .tile.tile-proteomes:hover {
+      background-color: #820000 !important; }
 @charset "UTF-8";
 /**
  * Foundation for Sites by ZURB
