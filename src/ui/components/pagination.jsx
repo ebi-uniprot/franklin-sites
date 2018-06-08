@@ -102,7 +102,7 @@ class Pagination extends Component {
 
   prepareChildren = () => {
     const { loading } = this.state;
-    const NoItems = this.props.empty || (<h3>No records were found</h3>);
+    const NoItems = this.props.empty || (() => null);
 
     if (loading) {
       this.innerComponents = this.loadingComponent;
