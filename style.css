@@ -31,6 +31,99 @@
 
 .demo-content {
   margin-top: 1.5rem; }
+
+.component-wrapper {
+  padding-right: 2rem; }
+.default-page-content {
+  padding-top: 2em; }
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.4.4-rc1
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
+/* 
+** @name Colours
+** @template  ./app/html/colours.html
+** @text-only
+*/
+.box-colour {
+  vertical-align: top;
+  display: inline-block;
+  width: 9em;
+  height: 9em;
+  margin-bottom: 4em;
+  font-size: 80%; }
+  .box-colour:before {
+    content: attr(data-name);
+    margin-top: 10em;
+    display: block;
+    text-align: center; }
+  .box-colour-dark-blue {
+    background: #004864; }
+  .box-colour-uniprot-blue {
+    background: #006e9a; }
+  .box-colour-medium-blue {
+    background: #3ca3ca; }
+  .box-colour-light-blue {
+    background: #93d4ee; }
+  .box-colour-black {
+    background: #3a343a; }
+  .box-colour-dark-grey {
+    background: #393b42; }
+  .box-colour-cool-grey {
+    background: #4a4d55; }
+  .box-colour-medium-grey {
+    background: #727376; }
+  .box-colour-light-grey {
+    background: #c2c4c4; }
+  .box-colour-seashell-grey {
+    background: #f1f1f1; }
+  .box-colour-reviewed {
+    background: #c39b00; }
+  .box-colour-unreviewed {
+    background: #93cffa; }
+  .box-colour-uniref {
+    background: #c08c5c; }
+  .box-colour-uniparc {
+    background: #c3878d; }
+  .box-colour-proteomes {
+    background: #990000; }
+  .box-colour-supporting-data {
+    background: #aa8ebf; }
+  .box-colour-help {
+    background: #6bad69; }
+  .box-colour-annotation-systems {
+    background: #f8982e; }
+
+.header {
+  color: #fefefe;
+  padding: .5em 1em;
+  background: linear-gradient(45deg, #004864, rgba(0, 72, 100, 0.7), #004864, #004864); }
+  .header a,
+  .header a:link,
+  .header a:visited,
+  .header a:hover,
+  .header a:active {
+    color: #fefefe; }
+  .header__logo {
+    display: inline-block; }
+    .header__logo svg {
+      margin-bottom: -1em;
+      stroke: #fefefe;
+      fill: #fefefe; }
+      .header__logo svg circle {
+        stroke: #fefefe; }
+      .header__logo svg path {
+        fill: #fefefe; }
+  .header__navigation {
+    list-style: none;
+    display: inline-block; }
+    .header__navigation a:hover {
+      border-bottom: 1px solid #fefefe; }
+    .header__navigation li {
+      display: inline-block;
+      margin: 0 .7em; }
 /**
  * Foundation for Sites by ZURB
  * Version 6.4.4-rc1
@@ -127,88 +220,6 @@
     background-color: #990000 !important; }
     .tile.tile-proteomes:hover {
       background-color: #820000 !important; }
-/**
- * Foundation for Sites by ZURB
- * Version 6.4.4-rc1
- * foundation.zurb.com
- * Licensed under MIT Open Source
- */
-/* 
-** @name Colours
-** @template  ./app/html/colours.html
-** @text-only
-*/
-.box-colour {
-  vertical-align: top;
-  display: inline-block;
-  width: 9em;
-  height: 9em;
-  margin-bottom: 4em;
-  font-size: 80%; }
-  .box-colour:before {
-    content: attr(data-name);
-    margin-top: 10em;
-    display: block;
-    text-align: center; }
-  .box-colour-dark-blue {
-    background: #004864; }
-  .box-colour-uniprot-blue {
-    background: #006e9a; }
-  .box-colour-medium-blue {
-    background: #3ca3ca; }
-  .box-colour-light-blue {
-    background: #93d4ee; }
-  .box-colour-black {
-    background: #3a343a; }
-  .box-colour-dark-grey {
-    background: #393b42; }
-  .box-colour-cool-grey {
-    background: #4a4d55; }
-  .box-colour-medium-grey {
-    background: #727376; }
-  .box-colour-light-grey {
-    background: #c2c4c4; }
-  .box-colour-seashell-grey {
-    background: #f1f1f1; }
-  .box-colour-reviewed {
-    background: #c39b00; }
-  .box-colour-unreviewed {
-    background: #93cffa; }
-  .box-colour-uniref {
-    background: #c08c5c; }
-  .box-colour-uniparc {
-    background: #c3878d; }
-  .box-colour-proteomes {
-    background: #990000; }
-  .box-colour-supporting-data {
-    background: #aa8ebf; }
-  .box-colour-help {
-    background: #6bad69; }
-  .box-colour-annotation-systems {
-    background: #f8982e; }
-
-.header {
-  height: 125px;
-  line-height: 125px;
-  color: #fefefe;
-  background: linear-gradient(45deg, #004864, rgba(0, 72, 100, 0.7), #004864, #004864); }
-  .header a,
-  .header a:link,
-  .header a:visited,
-  .header a:hover,
-  .header a:active {
-    color: #fefefe; }
-  .header__logo {
-    margin: 0 1em;
-    font-size: 2em; }
-  .header__navigation {
-    list-style: none;
-    display: inline-block; }
-    .header__navigation a:hover {
-      border-bottom: 1px solid #fefefe; }
-    .header__navigation li {
-      display: inline-block;
-      margin: 0 .7em; }
 @charset "UTF-8";
 /**
  * Foundation for Sites by ZURB
@@ -2917,5 +2928,81 @@ select {
 
 a.button:hover, a.button:focus {
   text-decoration: none; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 0; }
+  thead,
+  tbody,
+  tfoot {
+    border: 1px solid #f1f1f1;
+    background-color: #fefefe; }
+  caption {
+    padding: 0.5rem 0.625rem 0.625rem;
+    font-weight: bold; }
+  thead {
+    background: #f8f8f8;
+    color: #0a0a0a; }
+  tfoot {
+    background: #f1f1f1;
+    color: #0a0a0a; }
+  thead tr,
+  tfoot tr {
+    background: transparent; }
+  thead th,
+  thead td,
+  tfoot th,
+  tfoot td {
+    padding: 0.5rem 0.625rem 0.625rem;
+    font-weight: bold;
+    text-align: left; }
+  tbody th,
+  tbody td {
+    padding: 0.5rem 0.625rem 0.625rem; }
+  tbody tr:nth-child(even) {
+    border-bottom: 0;
+    background-color: #f1f1f1; }
+  table.unstriped tbody {
+    background-color: #fefefe; }
+    table.unstriped tbody tr {
+      border-bottom: 0;
+      border-bottom: 1px solid #f1f1f1;
+      background-color: #fefefe; }
+
+@media screen and (max-width: 63.9375em) {
+  table.stack thead {
+    display: none; }
+  table.stack tfoot {
+    display: none; }
+  table.stack tr,
+  table.stack th,
+  table.stack td {
+    display: block; }
+  table.stack td {
+    border-top: 0; } }
+
+table.scroll {
+  display: block;
+  width: 100%;
+  overflow-x: auto; }
+
+table.hover thead tr:hover {
+  background-color: #f3f3f3; }
+
+table.hover tfoot tr:hover {
+  background-color: #ececec; }
+
+table.hover tbody tr:hover {
+  background-color: #f9f9f9; }
+
+table.hover:not(.unstriped) tr:nth-of-type(even):hover {
+  background-color: #ececec; }
+
+.table-scroll {
+  overflow-x: auto; }
+  .table-scroll table {
+    width: auto; }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
