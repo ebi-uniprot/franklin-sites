@@ -1,9 +1,9 @@
 {
-  "name": "franklin",
-  "description": "UI design system for the UniProt website",
+  "name": "franklin-sites",
+  "description": "React and Zurb Foundation based design system for life sciences web applications",
   "version": "0.0.0",
   "main": "./src/ui/index.jsx",
-  "repository": "git@github.com:ebi-uniprot/react-seed.git",
+  "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
