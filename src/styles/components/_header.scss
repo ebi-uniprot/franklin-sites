@@ -3,9 +3,8 @@
 @import '../colours';
 
 .header {
-  height: 125px;
-  line-height: 125px;
   color: $colour-white;
+  padding: .5em 1em;
   a,
   a:link,
   a:visited,
@@ -15,9 +14,18 @@
   }
   background: linear-gradient(45deg, $colour-dark-blue, rgba($colour-dark-blue, 0.7), $colour-dark-blue, $colour-dark-blue);
   &__logo {
-    //   Replace by an SVG
-    margin: 0 1em;
-    font-size: 2em;
+    display: inline-block;
+    svg {
+      margin-bottom: -1em;
+      stroke: $colour-white;
+      fill: $colour-white;
+      circle {
+        stroke: $colour-white;
+      }
+      path {
+        fill: $colour-white;
+      }
+    }
   }
   &__navigation {
     list-style: none;
@@ -31,4 +39,3 @@
     }
   }
 }
-

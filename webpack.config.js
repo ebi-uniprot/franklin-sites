@@ -52,12 +52,28 @@ module.exports = {
           // use style-loader in development
           fallback: 'style-loader'
         })
+      }, {
+        test: /\.svg$/,
+        use: [{
+            loader: "babel-loader"
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true // true outputs JSX tags
+            }
+          }
+        ]
+      }, {
+        test: /\.(jpe?g|png|gif|ico)$/i,
+        loader: 'file-loader?name=[name].[ext]'
       }
     ]
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: __dirname + '/public/index.html',
+      favicon: __dirname + '/src/ui/favicon.ico',
       filename: 'index.html'
     }),
     new BrowserSyncPlugin({
@@ -77,4 +93,3 @@ module.exports = {
     historyApiFallback: true,
   }
 };
-
