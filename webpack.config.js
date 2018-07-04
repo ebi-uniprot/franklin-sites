@@ -34,17 +34,11 @@ module.exports = {
         }]
       },
       {
-        test: /\.(css|sass|scss)$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-          {
-              loader: 'sass-loader',
-              options: {
-                includePaths: ['node_modules/foundation-sites/scss']
-              }
-            }
-          ],
+        test: /\.(css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       }, {
         test: /\.svg$/,
         use: [{

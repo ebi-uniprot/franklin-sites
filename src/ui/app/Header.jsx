@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../franklin_logo.svg';
-import '../../styles/components/_header.scss';
+import '../../../dist/components/header.css';
 
 const Header = () => (
   <div className="header">

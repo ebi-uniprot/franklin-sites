@@ -8,7 +8,7 @@ const formatPattern = Component => (
     <h2>{Component.name}</h2>
     <div className="grid-x">
       <div className="cell small-6 component-wrapper">
-        <Component.component />
+        <Component.component {...Component.props} />
       </div>
       <div className="cell small-6">
         <h5>Purpose</h5>

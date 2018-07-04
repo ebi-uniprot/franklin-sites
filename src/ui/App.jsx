@@ -6,7 +6,7 @@ import Atoms from './app/Atoms';
 import UIComponents from './app/UIComponents';
 
 const App = () => (
-  <Router basename="/franklin">
+  <Router basename="">
     <Fragment>
       <Route path="/" exact component={HomePage} />
       <Route path="/atoms" component={Atoms} />

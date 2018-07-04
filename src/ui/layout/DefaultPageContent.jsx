@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../../src/styles/layout/_defaultPageContent.scss';
+// import '../../../../dist/_defaultPageContent.scss';
 
 const DefaultPageContent = props => <div className="default-page-content">{props.children}</div>;
 

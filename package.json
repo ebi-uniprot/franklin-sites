@@ -1,22 +1,20 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.0",
-  "main": "./src/index.jsx",
+  "version": "0.0.1",
+  "main": "./index.js",
   "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
+    "build": "node-sass-chokidar --include-path node_modules/foundation-sites/scss src/styles -o dist/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/styles -o src/styles --watch --recursive",
     "dev-server": "webpack --mode development && webpack-dev-server --mode development --open",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
+    "build-site": "webpack --mode production",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src/** __tests__/** __mocks__/**",
-    "csslint": "scss-lint ./src/styles/**/*.scss",
     "test": "jest",
     "update-snapshots": "jest --updateSnapshot",
     "remove-obsolete-snapshots": "yarn test -u",
-    "build-css": "node-sass-chokidar --include-path node_modules/foundation-sites/scss src/styles -o src/styles",
-    "watch-css": "npm run build-css && node-sass-chokidar src/styles -o src/styles --watch --recursive",
     "start-dev": "npm-run-all -p watch-css dev-server"
   },
   "jest": {
