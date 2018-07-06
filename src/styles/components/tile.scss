@@ -15,7 +15,8 @@ $hover-lightness-value: -15%;
   height: 15rem;
   padding: 1em 0;
   cursor: pointer;
-  transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  transition: background-color 0.25s ease-out,
+  color 0.25s ease-out;
   &:hover {
     background-color: scale-color($colour-uniprot-blue, $lightness: $hover-lightness-value);
     color: $colour-white;
@@ -57,9 +58,9 @@ $hover-lightness-value: -15%;
   }
 }
 
-$colour-uniref: #c08c5c;
-$colour-uniparc: #c3878d;
-$colour-proteomes: #990000;
-$colour-supporting-data: #aa8ebf;
-$colour-help: #6bad69;
-$colour-annotation-systems: #f8982e;
+// $colour-uniref: #c08c5c;
+// $colour-uniparc: #c3878d;
+// $colour-proteomes: #990000;
+// $colour-supporting-data: #aa8ebf;
+// $colour-help: #6bad69;
+// $colour-annotation-systems: #f8982e;
