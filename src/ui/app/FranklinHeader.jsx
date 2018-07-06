@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../franklin_logo.svg';
-import '../../../dist/components/header.css';
+import Header from '../components/header';
 
-const Header = () => (
-  <div className="header">
+const FranklinHeader = () => (
+  <Header>
     <a className="header__logo" href="/franklin">
       <Logo width={50} height={50} />
     </a>
@@ -19,7 +19,7 @@ const Header = () => (
         <Link to="/ui-components">UI components</Link>{' '}
       </li>
     </ul>
-  </div>
+  </Header>
 );
 
-export default Header;
+export default FranklinHeader;
