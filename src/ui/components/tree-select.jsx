@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import '../../../dist/components/treeSelect.css';
 
 class TreeSelect extends Component {
@@ -10,13 +10,13 @@ class TreeSelect extends Component {
     };
   }
 
-  getPath(members, id, path = []) {
-    for (const item of members) {
+  getPath(items, id, path = []) {
+    for (const item of items) {
       path.push(item);
       if (item.label === id) {
         return path;
-      } else if (item.members) {
-        const result = this.getPath(item.members, id, path);
+      } else if (item.items) {
+        const result = this.getPath(item.items, id, path);
         if (result) {
           return result;
         }
@@ -26,7 +26,7 @@ class TreeSelect extends Component {
   }
 
   _handleNodeClick(node, e) {
-    if (node.members) {
+    if (node.items) {
       this.toggleNode(node);
     } else {
       const path = this.getPath(this.props.data, node.label);
@@ -51,15 +51,15 @@ class TreeSelect extends Component {
     return (
       <ul className={open ? 'open' : ''}>
         {data.map(node => (
-          <li key={node.label} className={node.members ? 'branch' : ''}>
+          <li key={node.label} className={node.items ? 'branch' : ''}>
             <span
               onClick={e => this._handleNodeClick(node, e)}
               className={this.state.activeNodes.includes(node.label) ? 'active' : ''}
             >
               {node.label}
             </span>
-            {node.members &&
-              this.buildTree(node.members, this.state.openNodes.includes(node.label))}
+            {node.items &&
+              this.buildTree(node.items, this.state.openNodes.includes(node.label))}
           </li>
         ))}
       </ul>
@@ -76,7 +76,7 @@ class TreeSelect extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="tree-select">
         <a className="button dropdown" onClick={e => this.toggleTreeSelect()}>
           {this.state.selectedNode ? this.state.selectedNode.label : 'Select'}
         </a>
@@ -85,7 +85,7 @@ class TreeSelect extends Component {
         >
           {this.buildTree(this.props.data)}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

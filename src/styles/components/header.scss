@@ -1,10 +1,10 @@
-@import '../settings';
-@import 'foundation';
-@import '../colours';
+@import "../settings";
+@import "foundation";
+@import "../colours";
 
 .header {
   color: $colour-white;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   a,
   a:link,
   a:visited,
@@ -12,7 +12,13 @@
   a:active {
     color: $colour-white;
   }
-  background: linear-gradient(45deg, $colour-dark-blue, rgba($colour-dark-blue, 0.7), $colour-dark-blue, $colour-dark-blue);
+  background: linear-gradient(
+    45deg,
+    $colour-dark-blue,
+    rgba($colour-dark-blue, 0.7),
+    $colour-dark-blue,
+    $colour-dark-blue
+  );
   &__logo {
     display: inline-block;
     svg {
@@ -35,7 +41,7 @@
     }
     li {
       display: inline-block;
-      margin: 0 .7em;
+      margin: 0 0.7em;
     }
   }
 }

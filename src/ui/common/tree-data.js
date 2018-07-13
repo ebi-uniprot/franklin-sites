@@ -1,10 +1,10 @@
 const treeData = [{
     label: "Item 1",
-    members: [{
+    items: [{
       label: "Item 1 a",
     }, {
       label: "Item 1 b",
-      members: [{
+      items: [{
         label: "Item 1b A",
       }, {
         label: "Item 1b B",

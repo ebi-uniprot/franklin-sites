@@ -2,8 +2,15 @@
 @import 'foundation';
 @import '../colours';
 
+
+.tree-select {
+  position:relative;
+  display:inline-block;
+}
+
 .tree-select-menu {
   display: none;
+  min-width:15rem;
   position: absolute;
   background: #FFF;
   margin-top: -1rem;
@@ -11,6 +18,7 @@
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   max-height: 33rem;
   overflow-y: auto;
+  z-index: 1;
   ul {
     display: block;
     list-style: none;
