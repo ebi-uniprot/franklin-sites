@@ -9,7 +9,7 @@ The purpose of Franklin is to create a library a re-usable user interface compon
 Build CSS
 
 ```shell
-yarn run build #build css
+yarn run build-css #build css
 yarn run watch-css #indeed
 ```
 
@@ -24,7 +24,7 @@ yarn run test #run JEST tests
 yarn run update-snapshots #update JEST snapshots
 yarn run remove-obsolete-snapshots #what it says on the tin
 yarn run build-site #build Franklin site
-yarn run start-dev #watch CSS and run dev-server
+yarn run start #watch CSS and run dev-server
 ```
 
 ## How to use
