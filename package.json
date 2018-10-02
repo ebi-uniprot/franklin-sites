@@ -7,7 +7,7 @@
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
-    "build": "node-sass-chokidar --include-path node_modules/foundation-sites/scss src/styles -o dist/",
+    "build-css": "node-sass-chokidar --include-path node_modules/foundation-sites/scss src/styles -o dist/",
     "watch-css": "npm run build && node-sass-chokidar src/styles --include-path node_modules/foundation-sites/scss src/styles -o dist --watch --recursive",
     "dev-server": "webpack --mode development && webpack-dev-server --mode development --open",
     "build-site": "webpack --mode production",
@@ -15,8 +15,13 @@
     "test": "jest",
     "update-snapshots": "jest --updateSnapshot",
     "remove-obsolete-snapshots": "yarn test -u",
-    "start-dev": "npm-run-all -p watch-css dev-server"
+    "start": "npm-run-all -p watch-css dev-server"
   },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "IE 11"
+  ],
   "jest": {
     "moduleFileExtensions": [
       "js",
@@ -42,18 +47,16 @@
     "react-svg-loader": "^2.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.24.5",
     "browser-sync-webpack-plugin": "^2.0.1",
     "clean-webpack-plugin": "^0.1.19",

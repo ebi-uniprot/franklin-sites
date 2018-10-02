@@ -1,5 +1,4 @@
 import Tile from '../components/tile';
-import PaginationSnippet from '../app/snippets/PaginationSnippet';
 import TreeSelect from '../components/tree-select';
 import treeData from '../common/tree-data';
 
@@ -11,11 +10,6 @@ const components = [{
   props: {
     namespace: 'uniref'
   }
-}, {
-  name: 'Pagination',
-  component: PaginationSnippet,
-  function: 'Navigate through a paged result set',
-  purpose: 'Provide indication of number of results, allow access to different pages'
 }, {
   name: 'Tree select',
   component: TreeSelect,
