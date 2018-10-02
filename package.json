@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build-css": "node-sass-chokidar --include-path node_modules/foundation-sites/scss src/styles -o dist/",
-    "watch-css": "npm run build && node-sass-chokidar src/styles --include-path node_modules/foundation-sites/scss src/styles -o dist --watch --recursive",
+    "watch-css": "npm run build-css && node-sass-chokidar src/styles --include-path node_modules/foundation-sites/scss src/styles -o dist --watch --recursive",
     "dev-server": "webpack --mode development && webpack-dev-server --mode development --open",
     "build-site": "webpack --mode production",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src/** __tests__/** __mocks__/**",
@@ -52,7 +52,6 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/preset-stage-0": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
