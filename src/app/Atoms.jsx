@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import DefaultPageLayout from '../layout/DefaultPageLayout';
+import DefaultPageLayout from './layout/DefaultPageLayout';
 import Typography from './Typography';
 import Colours from './Colours';
 

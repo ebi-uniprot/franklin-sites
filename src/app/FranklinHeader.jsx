@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../franklin_logo.svg';
+import Logo from './franklin_logo.svg';
 import Header from '../components/header';
 
 const FranklinHeader = () => (
@@ -10,13 +10,16 @@ const FranklinHeader = () => (
     </a>
     <ul className="header__navigation">
       <li>
-        <Link to="/">Home</Link>{' '}
+        <Link to="/">Home</Link>
+        {' '}
       </li>
       <li>
-        <Link to="/atoms">Atoms</Link>{' '}
+        <Link to="/atoms">Atoms</Link>
+        {' '}
       </li>
       <li>
-        <Link to="/ui-components">UI components</Link>{' '}
+        <Link to="/ui-components">UI components</Link>
+        {' '}
       </li>
     </ul>
   </Header>

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import DefaultPageLayout from '../layout/DefaultPageLayout';
-import Logo from '../franklin_logo.svg';
+import DefaultPageLayout from './layout/DefaultPageLayout';
+import Logo from './franklin_logo.svg';
 
 const HomePageContent = () => (
   <Fragment>

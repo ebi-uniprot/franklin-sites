@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../../dist/components/treeSelect.css';
+import '../../dist/components/treeSelect.css';
 
 class TreeSelect extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class TreeSelect extends Component {
       path.push(item);
       if (item.label === id) {
         return path;
-      } else if (item.items) {
+      } if (item.items) {
         const result = this.getPath(item.items, id, path);
         if (result) {
           return result;
@@ -58,8 +58,7 @@ class TreeSelect extends Component {
             >
               {node.label}
             </span>
-            {node.items &&
-              this.buildTree(node.items, this.state.openNodes.includes(node.label))}
+            {node.items && this.buildTree(node.items, this.state.openNodes.includes(node.label))}
           </li>
         ))}
       </ul>

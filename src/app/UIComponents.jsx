@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import components from '../components/components';
 
-import DefaultPageLayout from '../layout/DefaultPageLayout';
+import DefaultPageLayout from './layout/DefaultPageLayout';
 
 const formatPattern = Component => (
   <div key={Component.name}>

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import DefaultPageContent from './DefaultPageContent';
-import FranklinHeader from '../app/FranklinHeader';
+import FranklinHeader from '../FranklinHeader';
 
 const DefaultPageLayout = props => (
   <Fragment>

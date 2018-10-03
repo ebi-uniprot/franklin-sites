@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import HomePage from './app/HomePage';
-import Atoms from './app/Atoms';
-import UIComponents from './app/UIComponents';
+import HomePage from './HomePage';
+import Atoms from './Atoms';
+import UIComponents from './UIComponents';
 
 const App = () => (
   <Router basename="">
