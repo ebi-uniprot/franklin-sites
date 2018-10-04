@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import '../../dist/components/treeSelect.css';
-import { flatTreeData } from '../app/common/tree-data';
-
 
 class AutoComplete extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      data: flatTreeData,
+      data: this.props.data,
       showDropdown: false
     };
     // this.handleChange = this.handleChange.bind(this);
@@ -22,7 +20,7 @@ class AutoComplete extends Component {
 
   handleChange(event) {
     const value = event.target.value;
-    this.setState({ showDropdown: !!value });
+    this.setState({ showDropdown: !!value.trim() });
     this.setState({ value });
   }
 
