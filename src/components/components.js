@@ -1,6 +1,8 @@
 import Tile from './tile';
 import TreeSelect from './tree-select';
-import treeData from '../app/common/tree-data';
+import AutoComplete from './auto-complete';
+import { treeData } from '../app/common/tree-data';
+
 
 const components = [
   {
@@ -22,6 +24,16 @@ const components = [
       onSelect: node => console.log(node),
     },
   },
+  {
+    name: 'Auto complete ',
+    component: AutoComplete,
+    function: 'Search through a tree based on text input',
+    purpose: 'Allow selection of item from nested data set',
+    props: {
+      data: treeData,
+      onSelect: (node) => console.log(node)
+    },
+  }
 ];
 
 export default components;
