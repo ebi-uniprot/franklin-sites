@@ -9,11 +9,14 @@ module.exports = [
   {
     name: 'library',
     mode: 'production',
-    entry: ['@babel/polyfill', `${__dirname}/src/components/index.js`],
+    entry: [`${__dirname}/src/components/index.js`],
     output: {
       path: `${__dirname}/dist`,
       filename: 'franklin-components.js',
       libraryTarget: 'commonjs',
+    },
+    externals: {
+      react: 'React',
     },
     resolve: {
       extensions: ['.jsx', '.js'],
