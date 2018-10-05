@@ -11,6 +11,12 @@
   }
 }
 
+.hover {
+  color: $colour-black;
+  border: none;
+  background: $colour-light-grey;
+}
+
 .dropdown-menu {
   display: none;
   min-width: 15rem;
@@ -42,9 +48,7 @@
         color: $colour-black;
         text-decoration: none;
         &:hover {
-          color: $colour-black;
-          border: none;
-          background: $colour-light-grey;
+          @extend .hover;
         }
         &.active {
           font-weight: bold;
