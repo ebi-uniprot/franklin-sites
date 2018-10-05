@@ -17,7 +17,7 @@ export const treeData = [{
   }]
 }, {
   label: 'Some Item 2',
-  term: 'item_2'
+  term: 'item_2',
 }];
 
 function getPathLabel(path, sep = ' / ') {

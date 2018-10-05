@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../dist/components/treeSelect.css';
+import '../../dist/components/dropdown.css';
 
 class TreeSelect extends Component {
   constructor(props) {
@@ -75,12 +76,12 @@ class TreeSelect extends Component {
 
   render() {
     return (
-      <div className="tree-select">
-        <a className="button dropdown" onClick={e => this.toggleTreeSelect()}>
+      <div className="dropdown">
+        <a className="button" onClick={e => this.toggleTreeSelect()}>
           {this.state.selectedNode ? this.state.selectedNode.label : 'Select'}
         </a>
         <div
-          className={this.state.showMenu ? 'tree-select-menu tree-select-open' : 'tree-select-menu'}
+          className={this.state.showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}
         >
           {this.buildTree(this.props.data)}
         </div>

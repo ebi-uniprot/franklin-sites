@@ -3,7 +3,7 @@
 @import '../colours';
 @import '../common/z-index';
 
-.tree-select {
+.dropdown {
   position: relative;
   display: inline-block;
   &>.button {
@@ -11,7 +11,7 @@
   }
 }
 
-.tree-select-menu {
+.dropdown-menu {
   display: none;
   min-width: 15rem;
   white-space: nowrap;
@@ -92,6 +92,6 @@
 
 }
 
-.tree-select-open {
+.dropdown-menu-open {
   display: block;
 }
