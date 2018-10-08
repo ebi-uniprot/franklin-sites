@@ -19,7 +19,6 @@ const components = [
     purpose: 'Allow selection of item(s) from nested data set',
     props: {
       data: treeData,
-      onSelect: node => console.log(node),
     },
   },
 ];

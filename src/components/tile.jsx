@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import '../../dist/components/tile.css';
 
-const Tile = props => (
-  <div className={props.namespace ? `tile tile-${props.namespace}` : 'tile'}>
-    <h3 className="tile__header">{props.title}</h3>
-    <p className="tile__content">{props.description}</p>
+const Tile = ({ namespace, title, description }) => (
+  <div className={namespace ? `tile tile-${namespace}` : 'tile'}>
+    <h3 className="tile__header">{title}</h3>
+    <p className="tile__content">{description}</p>
   </div>
 );
 

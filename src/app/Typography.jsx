@@ -6,8 +6,9 @@ const Typography = () => (
     <section>
       <p>
         The chosen type is a sans-serif, Lato, designed by Warsaw-based designer
-        <a href="http://www.lukaszdziedzic.eu/">Łukasz Dziedzic</a>. We use 2
-        variants of the font, normal and bold:
+        <a href="http://www.lukaszdziedzic.eu/">Łukasz Dziedzic.</a>
+        <br />
+        We use 2 variants of the font, normal and bold:
       </p>
       <div>
         <span className="font-style font-style-normal">
@@ -20,9 +21,10 @@ const Typography = () => (
         </span>
       </div>
       <div>
-        ‌<p>
-          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
-          a​‌b​‌c​‌d​‌e​‌f​‌g​‌h​‌i​‌j​‌k​‌l​‌m​‌n​‌o​‌p​‌q​‌r​‌s​‌t​‌u​‌v​‌w​‌x​‌y​‌z​‌<br />
+        ‌
+        <p>
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ
+          a​‌b​‌c​‌d​‌e​‌f​‌g​‌h​‌i​‌j​‌k​‌l​‌m​‌n​‌o​‌p​‌q​‌r​‌s​‌t​‌u​‌v​‌w​‌x​‌y​‌z​‌
           1​‌2​‌3​‌4​‌5​‌6​‌7​‌8​‌9​‌0​‌
         </p>
       </div>
@@ -43,13 +45,12 @@ const Typography = () => (
     <section>
       <h1>Paragraphs</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.<a href="www.uniprot.org">Click me</a>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <a href="www.uniprot.org">Click me</a>
       </p>
       <hr />
     </section>

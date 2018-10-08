@@ -13,7 +13,7 @@ const HomePageContent = () => (
     <h2>Introduction</h2>
     <p>
       Franklin provides all user interface components required to build the UniProt website. It is
-      based on the foundation framework, which is used for all "atomic level" components
+      based on the foundation framework, which is used for all &quote;atomic level&quote; components
       (Typography, forms, lists etc...).
     </p>
   </Fragment>
