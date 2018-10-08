@@ -42,4 +42,21 @@ function flattenTreeData(treeData, path = []) {
   return flattened;
 }
 
+function generateRandomFlatData(arrayLength) {
+  let array = [];
+  console.log(arrayLength);
+  
+  for (let i = 0; i<=arrayLength; i++) {
+    console.log(i);
+    let label = Math.random().toString(36);
+    let value = Math.random().toString(36);
+    console.log(label);
+    console.log(value);
+    array.push({label, value});
+  }
+  console.log(array);
+  return array;
+}
+
+export const generatedRandomFlatData = generateRandomFlatData(100);
 export const flatTreeData = flattenTreeData(treeData);
