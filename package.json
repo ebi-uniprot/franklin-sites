@@ -12,7 +12,7 @@
     "dev-server": "webpack --mode development && webpack-dev-server --mode development --open",
     "build-site": "webpack --mode production",
     "build-library": "webpack --config library.config.js",
-    "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src/** __tests__/** __mocks__/**",
+    "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src __tests__ __mocks__",
     "test": "jest",
     "test-watch": "jest --watch",
     "update-snapshots": "jest --updateSnapshot",
