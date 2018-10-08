@@ -14,6 +14,7 @@
     "build-library": "webpack --config library.config.js",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src/** __tests__/** __mocks__/**",
     "test": "jest",
+    "test-watch": "jest --watch",
     "update-snapshots": "jest --updateSnapshot",
     "remove-obsolete-snapshots": "yarn test -u",
     "start": "npm-run-all -p watch-css dev-server"
@@ -53,6 +54,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
@@ -73,6 +75,7 @@
     "node-sass": "^4.9.1",
     "node-sass-chokidar": "^1.1.0",
     "react-test-renderer": "^16.4.1",
+    "regenerator-runtime": "^0.12.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.15.1",

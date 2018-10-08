@@ -10,13 +10,15 @@ class TreeSelect extends Component {
     };
   }
 
-  getPath(items, id, path = []) {
-    for (const item of items) {
-      path.push(item);
-      if (item.label === id) {
+  static getPath(currentItems, id, path = []) {
+    for (const item of currentItems) {
+      const { items, ...thisItem } = item;
+      path.push(thisItem);
+      if (thisItem.label === id) {
         return path;
-      } if (item.items) {
-        const result = this.getPath(item.items, id, path);
+      }
+      if (items) {
+        const result = TreeSelect.getPath(items, id, path);
         if (result) {
           return result;
         }
@@ -29,7 +31,7 @@ class TreeSelect extends Component {
     if (node.items) {
       this.toggleNode(node);
     } else {
-      const path = this.getPath(this.props.data, node.label);
+      const path = TreeSelect.getPath(this.props.data, node.label);
       this.setState({ activeNodes: path.map(d => d.label) });
       this.setState({ selectedNode: node });
       this.toggleTreeSelect();
@@ -38,7 +40,7 @@ class TreeSelect extends Component {
   }
 
   toggleNode(node) {
-    const openNodes = this.state.openNodes;
+    const { openNodes } = this.state;
     if (openNodes.includes(node.label)) {
       openNodes.splice(openNodes.indexOf(node.label));
     } else {

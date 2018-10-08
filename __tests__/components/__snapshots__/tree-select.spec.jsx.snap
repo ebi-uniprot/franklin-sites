@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TreeSelect component should render 1`] = `
+<div
+  className="tree-select"
+>
+  <a
+    className="button dropdown"
+    onClick={[Function]}
+  >
+    Select
+  </a>
+  <div
+    className="tree-select-menu"
+  >
+    <ul
+      className=""
+    >
+      <li
+        className="branch"
+      >
+        <span
+          className=""
+          onClick={[Function]}
+        >
+          Item 1
+        </span>
+        <ul
+          className=""
+        >
+          <li
+            className=""
+          >
+            <span
+              className=""
+              onClick={[Function]}
+            >
+              Item 1 a
+            </span>
+          </li>
+          <li
+            className="branch"
+          >
+            <span
+              className=""
+              onClick={[Function]}
+            >
+              Item 1 b
+            </span>
+            <ul
+              className=""
+            >
+              <li
+                className=""
+              >
+                <span
+                  className=""
+                  onClick={[Function]}
+                >
+                  Item 1b A
+                </span>
+              </li>
+              <li
+                className=""
+              >
+                <span
+                  className=""
+                  onClick={[Function]}
+                >
+                  Item 1b B
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        className=""
+      >
+        <span
+          className=""
+          onClick={[Function]}
+        >
+          Some Item 2
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
