@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../../dist/components/treeSelect.css';
 import '../../dist/components/dropdown.css';
 import '../../dist/components/auto-complete.css';
@@ -96,8 +97,6 @@ class AutoComplete extends Component {
     if (showDropdown && hoverIndex >= 0) {
       const options = AutoComplete.filterOptions(data, textInputValue);
       const chosen = options[hoverIndex];
-      console.log(this.isValidChoice(chosen.label));
-      console.log(chosen);
       this.setState({
         hoverIndex: -1,
         showDropdown: false,
@@ -112,22 +111,32 @@ class AutoComplete extends Component {
 
   render() {
     // console.log(this.state.data);
-    const { textInputValue, showDropdown, data, hoverIndex } = this.state;
+    const {
+      textInputValue,
+      showDropdown,
+      data,
+      hoverIndex,
+    } = this.state;
     return (
       <div className="dropdown">
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={textInputValue} onChange={this.handleChange} onKeyDown={this.handleOnKeyDown} />
         </form>
         <div className={showDropdown ? 'autcomplete-menu dropdown-menu-open' : 'autcomplete-menu'}>
-          {this.buildOptions(AutoComplete.filterOptions(data, textInputValue), textInputValue, hoverIndex)}
+          {this.buildOptions(
+            AutoComplete.filterOptions(data, textInputValue),
+            textInputValue,
+            hoverIndex,
+          )}
         </div>
       </div>
     );
   }
 }
 
-AutoComplete.defaultProps = {
-  data: [],
+AutoComplete.propTypes = {
+  data: PropTypes.instanceOf(Array).isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default AutoComplete;
