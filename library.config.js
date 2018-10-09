@@ -16,7 +16,7 @@ module.exports = [
       libraryTarget: 'commonjs',
     },
     externals: {
-      react: 'React',
+      react: 'react',
     },
     resolve: {
       extensions: ['.jsx', '.js'],
