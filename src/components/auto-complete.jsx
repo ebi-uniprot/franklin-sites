@@ -43,7 +43,7 @@ class AutoComplete extends Component {
   buildOptions(data, substringToHighlight, hoverIndex) {
 
     return (
-      <ul className={open ? 'open' : ''}>
+      <ul>
         {data.map((item, index) => (
           <AutoCompleteItem
             item={item}
@@ -57,8 +57,7 @@ class AutoComplete extends Component {
     );
   }
 
-  handleNodeClick(item, e) {
-    console.log(item, e);
+  handleNodeClick(item) {
     this.setState({
       hoverIndex: -1,
       showDropdown: false,
@@ -94,23 +93,22 @@ class AutoComplete extends Component {
       textInputValue,
       showDropdown,
     } = this.state;
+    const { onSelect } = this.props;
+    let selectedValue = textInputValue;
     if (showDropdown && hoverIndex >= 0) {
       const options = AutoComplete.filterOptions(data, textInputValue);
       const chosen = options[hoverIndex];
+      selectedValue = chosen.label;
       this.setState({
         hoverIndex: -1,
         showDropdown: false,
-        textInputValue: chosen.label,
+        textInputValue: selectedValue,
       });
-    } else {
-      // const chosen = hoverIndex === -1 ? textInputValue : options[hoverIndex];
-      console.log(textInputValue);
-      console.log(this.isValidChoice(textInputValue));
     }
+    onSelect(selectedValue);
   }
 
   render() {
-    // console.log(this.state.data);
     const {
       textInputValue,
       showDropdown,

@@ -32,7 +32,7 @@ const components = [
     props: {
       data: generatedRandomFlatData,
       // data: flatTreeData,
-      onSelect: (node) => console.log(node)
+      onSelect: node => console.log(node),
     },
   }
 ];
