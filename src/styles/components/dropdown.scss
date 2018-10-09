@@ -38,8 +38,10 @@
       float: none !important;
       line-height: 1.6rem;
       background-color: $white !important;
-      span {
+      button {
         cursor: pointer;
+        width: 100%;
+        text-align: left;
         padding: .5rem;
         position: relative;
         display: block;

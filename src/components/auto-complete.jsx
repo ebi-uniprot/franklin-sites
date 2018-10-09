@@ -1,60 +1,18 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import '../../dist/components/treeSelect.css';
 import '../../dist/components/dropdown.css';
 import '../../dist/components/auto-complete.css';
-
-
-function findLastSubstringIgnoreCase(string, substring) {
-  return string.toLowerCase().lastIndexOf(substring.toLowerCase());
-}
-
-function highlightSubstring(string, substring) {
-  const i = findLastSubstringIgnoreCase(string, substring);
-  if (i < 0) return;
-  let prestring = string.slice(0, i);
-  let highlight = string.slice(i, i+substring.length);
-  let poststring = string.slice(i+substring.length);
-  return <Fragment>{prestring}<b>{highlight}</b>{poststring}</Fragment>;
-}
-
-class Item extends Component {
-
-  componentDidMount() {
-    this.ensureVisible();
-  }
-
-  componentDidUpdate() {
-    this.ensureVisible();
-  }
-
-  ensureVisible() {
-    const { active } = this.props;
-    if (active) {
-      const node = ReactDOM.findDOMNode(this);  
-      node.scrollIntoView();
-    }
-  }
-
-  render() {
-    const { node, active, substringToHighlight } = this.props
-    return (
-      <li>
-        <span
-          onClick={e => this._handleNodeClick(node, e)}
-          className={active ? 'hover' : ''}
-        >
-          {!!substringToHighlight ? highlightSubstring(node.label, substringToHighlight) : node.label}
-        </span>
-      </li>
-    )
-  }
-}
+import AutoCompleteItem from './auto-complete-item';
+import findLastSubstringIgnoreCase from '../utils';
 
 class AutoComplete extends Component {
+  static filterOptions(items, query) {
+    return items.filter(item => findLastSubstringIgnoreCase(item.label, query) >= 0);
+  }
+
   constructor(props) {
     super(props);
-    const { data } = this.props
+    const { data } = this.props;
     this.state = {
       textInputValue: '',
       showDropdown: false,
@@ -64,17 +22,11 @@ class AutoComplete extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.ref = React.createRef();
-  }
-
-  filterOptions(items, query) {
-    return items.filter(item => findLastSubstringIgnoreCase(item.label, query) >= 0);
+    this.handleNodeClick = this.handleNodeClick.bind(this);
   }
 
   handleChange(event) {
-    const value = event.target.value;
-    let { hoverIndex } = this.state;
-    // hoverIndex = !!value.trim() ? hoverIndex : -1;
+    const { value } = event.target;
     this.setState({
       showDropdown: !!value.trim(),
       textInputValue: value,
@@ -91,27 +43,25 @@ class AutoComplete extends Component {
 
     return (
       <ul className={open ? 'open' : ''}>
-        {data.map((node, index) => (
-          <Item
-            node={node}
-            active={hoverIndex===index}
+        {data.map((item, index) => (
+          <AutoCompleteItem
+            item={item}
+            active={hoverIndex === index}
             substringToHighlight={substringToHighlight}
-            key={node.label}
+            key={item.label}
+            handleOnClick={this.handleNodeClick}
           />
         ))}
       </ul>
     );
   }
 
-  // handleShow(ref) {
-  //   this.refs[ref].scrollIntoView();
-  // }
-
-  _handleNodeClick(node) {
+  handleNodeClick(item, e) {
+    console.log(item, e);
     this.setState({
       hoverIndex: -1,
       showDropdown: false,
-      textInputValue: node.label,
+      textInputValue: item.label,
     });
   }
 
@@ -128,7 +78,7 @@ class AutoComplete extends Component {
     } else if (event.key === 'ArrowDown') {
       let { hoverIndex } = this.state;
       const { data, textInputValue } = this.state;
-      const options = this.filterOptions(data, textInputValue);
+      const options = AutoComplete.filterOptions(data, textInputValue);
       hoverIndex = Math.min(options.length - 1, hoverIndex + 1);
       this.setState({ hoverIndex });
       // this.handleShow(hoverIndex);
@@ -144,7 +94,7 @@ class AutoComplete extends Component {
       showDropdown,
     } = this.state;
     if (showDropdown && hoverIndex >= 0) {
-      const options = this.filterOptions(data, textInputValue);
+      const options = AutoComplete.filterOptions(data, textInputValue);
       const chosen = options[hoverIndex];
       console.log(this.isValidChoice(chosen.label));
       console.log(chosen);
@@ -169,7 +119,7 @@ class AutoComplete extends Component {
           <input type="text" value={textInputValue} onChange={this.handleChange} onKeyDown={this.handleOnKeyDown} />
         </form>
         <div className={showDropdown ? 'autcomplete-menu dropdown-menu-open' : 'autcomplete-menu'}>
-          {this.buildOptions(this.filterOptions(data, textInputValue), textInputValue, hoverIndex)}
+          {this.buildOptions(AutoComplete.filterOptions(data, textInputValue), textInputValue, hoverIndex)}
         </div>
       </div>
     );
