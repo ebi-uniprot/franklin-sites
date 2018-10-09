@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Hader component should render 1`] = `
+exports[`Header component should render 1`] = `
 <div
   className="header"
-/>
+>
+  <span>
+    Hello
+  </span>
+</div>
 `;

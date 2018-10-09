@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import getFlattenedPaths from '../utils';
 import '../../dist/components/treeSelect.css';
 
 class TreeSelect extends Component {
@@ -10,32 +12,17 @@ class TreeSelect extends Component {
     };
   }
 
-  static getPath(currentItems, id, path = []) {
-    for (const item of currentItems) {
-      const { items, ...thisItem } = item;
-      path.push(thisItem);
-      if (thisItem.label === id) {
-        return path;
-      }
-      if (items) {
-        const result = TreeSelect.getPath(items, id, path);
-        if (result) {
-          return result;
-        }
-      }
-      path.pop();
-    }
-  }
-
-  _handleNodeClick(node, e) {
+  handleNodeClick(node) {
+    const { data, onSelect } = this.props;
     if (node.items) {
       this.toggleNode(node);
     } else {
-      const path = TreeSelect.getPath(this.props.data, node.label);
+      const path = getFlattenedPaths(data, node.label);
+      console.log(path);
       this.setState({ activeNodes: path.map(d => d.label) });
       this.setState({ selectedNode: node });
       this.toggleTreeSelect();
-      this.props.onSelect(node);
+      onSelect(node);
     }
   }
 
@@ -50,17 +37,20 @@ class TreeSelect extends Component {
   }
 
   buildTree(data, open) {
+    const { activeNodes, openNodes } = this.state;
     return (
       <ul className={open ? 'open' : ''}>
         {data.map(node => (
           <li key={node.label} className={node.items ? 'branch' : ''}>
             <span
-              onClick={e => this._handleNodeClick(node, e)}
-              className={this.state.activeNodes.includes(node.label) ? 'active' : ''}
+              role="button"
+              tabIndex="0"
+              onClick={e => this.handleNodeClick(node, e)}
+              className={activeNodes.includes(node.label) ? 'active' : ''}
             >
               {node.label}
             </span>
-            {node.items && this.buildTree(node.items, this.state.openNodes.includes(node.label))}
+            {node.items && this.buildTree(node.items, openNodes.includes(node.label))}
           </li>
         ))}
       </ul>
@@ -68,7 +58,8 @@ class TreeSelect extends Component {
   }
 
   toggleTreeSelect() {
-    if (this.state.showMenu) {
+    const { showMenu } = this.state;
+    if (showMenu) {
       this.setState({ showMenu: false });
     } else {
       this.setState({ showMenu: true });
@@ -76,23 +67,24 @@ class TreeSelect extends Component {
   }
 
   render() {
+    const { selectedNode, showMenu } = this.state;
+    const { data } = this.props;
     return (
       <div className="tree-select">
-        <a className="button dropdown" onClick={e => this.toggleTreeSelect()}>
-          {this.state.selectedNode ? this.state.selectedNode.label : 'Select'}
-        </a>
-        <div
-          className={this.state.showMenu ? 'tree-select-menu tree-select-open' : 'tree-select-menu'}
-        >
-          {this.buildTree(this.props.data)}
+        <button type="button" className="button dropdown" onClick={() => this.toggleTreeSelect()}>
+          {selectedNode ? selectedNode.label : 'Select'}
+        </button>
+        <div className={showMenu ? 'tree-select-menu tree-select-open' : 'tree-select-menu'}>
+          {this.buildTree(data)}
         </div>
       </div>
     );
   }
 }
 
-TreeSelect.defaultProps = {
-  data: [],
+TreeSelect.propTypes = {
+  data: PropTypes.instanceOf(Array).isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default TreeSelect;

@@ -3,9 +3,15 @@ import renderer from 'react-test-renderer';
 
 import Header from '../../src/components/header';
 
-describe('Hader component', () => {
+describe('Header component', () => {
   test('should render', () => {
-    const component = renderer.create(<Header />).toJSON();
+    const component = renderer
+      .create(
+        <Header>
+          <span>Hello</span>
+        </Header>,
+      )
+      .toJSON();
 
     expect(component).toMatchSnapshot();
   });

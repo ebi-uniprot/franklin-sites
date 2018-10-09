@@ -4,12 +4,13 @@ exports[`TreeSelect component should render 1`] = `
 <div
   className="tree-select"
 >
-  <a
+  <button
     className="button dropdown"
     onClick={[Function]}
+    type="button"
   >
     Select
-  </a>
+  </button>
   <div
     className="tree-select-menu"
   >
@@ -22,6 +23,8 @@ exports[`TreeSelect component should render 1`] = `
         <span
           className=""
           onClick={[Function]}
+          role="button"
+          tabIndex="0"
         >
           Item 1
         </span>
@@ -34,6 +37,8 @@ exports[`TreeSelect component should render 1`] = `
             <span
               className=""
               onClick={[Function]}
+              role="button"
+              tabIndex="0"
             >
               Item 1 a
             </span>
@@ -44,6 +49,8 @@ exports[`TreeSelect component should render 1`] = `
             <span
               className=""
               onClick={[Function]}
+              role="button"
+              tabIndex="0"
             >
               Item 1 b
             </span>
@@ -56,6 +63,8 @@ exports[`TreeSelect component should render 1`] = `
                 <span
                   className=""
                   onClick={[Function]}
+                  role="button"
+                  tabIndex="0"
                 >
                   Item 1b A
                 </span>
@@ -66,6 +75,8 @@ exports[`TreeSelect component should render 1`] = `
                 <span
                   className=""
                   onClick={[Function]}
+                  role="button"
+                  tabIndex="0"
                 >
                   Item 1b B
                 </span>
@@ -80,6 +91,8 @@ exports[`TreeSelect component should render 1`] = `
         <span
           className=""
           onClick={[Function]}
+          role="button"
+          tabIndex="0"
         >
           Some Item 2
         </span>
