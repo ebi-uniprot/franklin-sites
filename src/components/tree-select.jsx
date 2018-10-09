@@ -18,7 +18,6 @@ class TreeSelect extends Component {
       this.toggleNode(node);
     } else {
       const path = getFlattenedPaths(data, node.label);
-      console.log(path);
       this.setState({ activeNodes: path.map(d => d.label) });
       this.setState({ selectedNode: node });
       this.toggleTreeSelect();
@@ -42,14 +41,13 @@ class TreeSelect extends Component {
       <ul className={open ? 'open' : ''}>
         {data.map(node => (
           <li key={node.label} className={node.items ? 'branch' : ''}>
-            <span
-              role="button"
-              tabIndex="0"
+            <button
+              type="button"
               onClick={e => this.handleNodeClick(node, e)}
               className={activeNodes.includes(node.label) ? 'active' : ''}
             >
               {node.label}
-            </span>
+            </button>
             {node.items && this.buildTree(node.items, openNodes.includes(node.label))}
           </li>
         ))}
