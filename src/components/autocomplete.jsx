@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import '../../dist/components/treeSelect.css';
 import '../../dist/components/dropdown.css';
 import '../../dist/components/auto-complete.css';
-import AutoCompleteItem from './auto-complete-item';
+import AutocompleteItem from './autocomplete-item';
 import { findLastSubstringIgnoreCase } from '../utils';
 
-class AutoComplete extends Component {
+class Autocomplete extends Component {
   static filterOptions(items, query) {
     return items.filter(item => findLastSubstringIgnoreCase(item.label, query) >= 0);
   }
@@ -44,7 +44,7 @@ class AutoComplete extends Component {
     return (
       <ul>
         {data.map((item, index) => (
-          <AutoCompleteItem
+          <AutocompleteItem
             item={item}
             active={hoverIndex === index}
             substringToHighlight={substringToHighlight}
@@ -78,7 +78,7 @@ class AutoComplete extends Component {
       event.preventDefault();
       let { hoverIndex } = this.state;
       const { data, textInputValue } = this.state;
-      const options = AutoComplete.filterOptions(data, textInputValue);
+      const options = Autocomplete.filterOptions(data, textInputValue);
       hoverIndex = Math.min(options.length - 1, hoverIndex + 1);
       this.setState({ hoverIndex });
     }
@@ -95,7 +95,7 @@ class AutoComplete extends Component {
     const { onSelect } = this.props;
     let selectedValue = textInputValue;
     if (showDropdown && hoverIndex >= 0) {
-      const options = AutoComplete.filterOptions(data, textInputValue);
+      const options = Autocomplete.filterOptions(data, textInputValue);
       const chosen = options[hoverIndex];
       selectedValue = chosen.label;
       this.setState({
@@ -119,9 +119,9 @@ class AutoComplete extends Component {
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={textInputValue} onChange={this.handleChange} onKeyDown={this.handleOnKeyDown} />
         </form>
-        <div className={showDropdown ? 'autcomplete-menu dropdown-menu-open' : 'autcomplete-menu'}>
+        <div className={showDropdown ? 'autocomplete-menu dropdown-menu-open' : 'autocomplete-menu'}>
           {this.buildOptions(
-            AutoComplete.filterOptions(data, textInputValue),
+            Autocomplete.filterOptions(data, textInputValue),
             textInputValue,
             hoverIndex,
           )}
@@ -131,9 +131,9 @@ class AutoComplete extends Component {
   }
 }
 
-AutoComplete.propTypes = {
+Autocomplete.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 
-export default AutoComplete;
+export default Autocomplete;

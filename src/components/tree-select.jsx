@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getFlattenedPaths } from '../utils';
-import '../../dist/components/treeSelect.css';
 import '../../dist/components/dropdown.css';
 
 class TreeSelect extends Component {

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { findLastSubstringIgnoreCase } from '../utils';
 
-class AutoCompleteItem extends Component {
+class AutocompleteItem extends Component {
   static highlightSubstring(string, substring) {
     const i = findLastSubstringIgnoreCase(string, substring);
     if (i < 0) return string;
@@ -51,7 +51,7 @@ class AutoCompleteItem extends Component {
         >
           {
             substringToHighlight
-              ? AutoCompleteItem.highlightSubstring(item.label, substringToHighlight)
+              ? AutocompleteItem.highlightSubstring(item.label, substringToHighlight)
               : item.label
           }
         </button>
@@ -60,7 +60,7 @@ class AutoCompleteItem extends Component {
   }
 }
 
-AutoCompleteItem.propTypes = {
+AutocompleteItem.propTypes = {
   item: PropTypes.shape({
     label: PropTypes.string,
   }).isRequired,
@@ -69,4 +69,4 @@ AutoCompleteItem.propTypes = {
   handleOnClick: PropTypes.func.isRequired,
 };
 
-export default AutoCompleteItem;
+export default AutocompleteItem;
