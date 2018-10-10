@@ -1,6 +1,8 @@
 import Tile from './tile';
 import TreeSelect from './tree-select';
-import treeData from '../app/common/tree-data';
+import AutoComplete from './auto-complete';
+import { treeData, flattenedPaths } from '../app/common/tree-data';
+
 
 const components = [
   {
@@ -19,6 +21,16 @@ const components = [
     purpose: 'Allow selection of item(s) from nested data set',
     props: {
       data: treeData,
+      onSelect: () => {},
+    },
+  },
+  {
+    name: 'Auto complete ',
+    component: AutoComplete,
+    function: 'Search through an array to make a selection',
+    purpose: 'Allow selection of item from flat data set',
+    props: {
+      data: flattenedPaths,
       onSelect: () => {},
     },
   },

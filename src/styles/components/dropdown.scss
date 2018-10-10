@@ -3,15 +3,24 @@
 @import '../colours';
 @import '../common/z-index';
 
-.tree-select {
+.dropdown {
   position: relative;
   display: inline-block;
   &>.button {
     margin: 0;
   }
+  button {
+    outline: 0;
+  }
 }
 
-.tree-select-menu {
+.hover {
+  color: $colour-black;
+  border: none;
+  background: $colour-light-grey;
+}
+
+.dropdown-menu {
   display: none;
   min-width: 15rem;
   white-space: nowrap;
@@ -32,8 +41,10 @@
       float: none !important;
       line-height: 1.6rem;
       background-color: $white !important;
-      span {
+      button {
         cursor: pointer;
+        width: 100%;
+        text-align: left;
         padding: .5rem;
         position: relative;
         display: block;
@@ -42,9 +53,7 @@
         color: $colour-black;
         text-decoration: none;
         &:hover {
-          color: $colour-black;
-          border: none;
-          background: $colour-light-grey;
+          @extend .hover;
         }
         &.active {
           font-weight: bold;
@@ -92,6 +101,6 @@
 
 }
 
-.tree-select-open {
+.dropdown-menu-open {
   display: block;
 }

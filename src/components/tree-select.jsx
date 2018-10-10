@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import getFlattenedPaths from '../utils';
+import { getFlattenedPaths } from '../utils';
 import '../../dist/components/treeSelect.css';
+import '../../dist/components/dropdown.css';
 
 class TreeSelect extends Component {
   constructor(props) {
@@ -68,11 +69,11 @@ class TreeSelect extends Component {
     const { selectedNode, showMenu } = this.state;
     const { data } = this.props;
     return (
-      <div className="tree-select">
-        <button type="button" className="button dropdown" onClick={() => this.toggleTreeSelect()}>
+      <div className="dropdown">
+        <button type="button" className="button" onClick={() => this.toggleTreeSelect()}>
           {selectedNode ? selectedNode.label : 'Select'}
         </button>
-        <div className={showMenu ? 'tree-select-menu tree-select-open' : 'tree-select-menu'}>
+        <div className={showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}>
           {this.buildTree(data)}
         </div>
       </div>
