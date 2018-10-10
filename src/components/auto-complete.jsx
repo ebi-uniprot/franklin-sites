@@ -66,6 +66,7 @@ class AutoComplete extends Component {
 
   handleOnKeyDown(event) {
     if (event.key === 'ArrowUp') {
+      event.preventDefault();
       let { hoverIndex } = this.state;
       if (hoverIndex <= 0) {
         hoverIndex = -1;
@@ -74,6 +75,7 @@ class AutoComplete extends Component {
       }
       this.setState({ hoverIndex });
     } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
       let { hoverIndex } = this.state;
       const { data, textInputValue } = this.state;
       const options = AutoComplete.filterOptions(data, textInputValue);
