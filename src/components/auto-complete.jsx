@@ -4,7 +4,7 @@ import '../../dist/components/treeSelect.css';
 import '../../dist/components/dropdown.css';
 import '../../dist/components/auto-complete.css';
 import AutoCompleteItem from './auto-complete-item';
-import findLastSubstringIgnoreCase from '../utils';
+import { findLastSubstringIgnoreCase } from '../utils';
 
 class AutoComplete extends Component {
   static filterOptions(items, query) {

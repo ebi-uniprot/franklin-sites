@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import findLastSubstringIgnoreCase from '../utils';
+import { findLastSubstringIgnoreCase } from '../utils';
 
 class AutoCompleteItem extends Component {
   static highlightSubstring(string, substring) {

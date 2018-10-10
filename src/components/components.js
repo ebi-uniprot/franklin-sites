@@ -1,7 +1,7 @@
 import Tile from './tile';
 import TreeSelect from './tree-select';
 import AutoComplete from './auto-complete';
-import { treeData, flatTreeData, generatedRandomFlatData } from '../app/common/tree-data';
+import { treeData, flattenedPaths } from '../app/common/tree-data';
 
 
 const components = [
@@ -30,8 +30,7 @@ const components = [
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
     props: {
-      data: generatedRandomFlatData,
-      // data: flatTreeData,
+      data: flattenedPaths,
       onSelect: node => console.log(node),
     },
   }

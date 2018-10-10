@@ -1,3 +1,5 @@
+import { getFlattenedPaths } from '../../utils';
+
 export const treeData = [{
   label: 'Item 1',
   term: 'item_1',
@@ -13,45 +15,24 @@ export const treeData = [{
     }, {
       label: 'Item 1 b B',
       term: 'item_1_b_B',
-    }]
-  }]
+    }],
+  }],
 }, {
   label: 'Some Item 2',
   term: 'item_2',
 }];
 
-function getPathLabel(path, sep = ' / ') {
-  return path.map(item => item.label).join(sep);
+function getSquashedPath(path, sep = ' / ') {
+  const label = path.map(item => item.label).join(sep);
+  const termPath = path.map(item => item.term);
+  return {
+    label,
+    termPath,
+  };
 }
 
-function flattenTreeData(treeData, path = []) {
-  let flattened = [];
-  for (const node of treeData) {
-    let nodePath = [...path, node]
-    flattened = [...flattened, {
-      'label': getPathLabel(nodePath),
-      'value': nodePath
-    }];
-    if (node.items) {
-      const moreFlattened = flattenTreeData(node.items, nodePath);
-      if (moreFlattened.length) {
-        flattened = [...flattened, ...moreFlattened];
-      }
-    }
-  }
-  return flattened;
+function getSquashedArrayOfPaths(paths) {
+  return paths.map(path => getSquashedPath(path));
 }
 
-function generateRandomFlatData(arrayLength) {
-  let array = [];
-  for (let i = 0; i<=arrayLength; i++) {
-    let label = Math.random().toString(36);
-    let value = Math.random().toString(36);
-    array.push({label, value});
-  }
-  console.log(array);
-  return array;
-}
-
-export const generatedRandomFlatData = generateRandomFlatData(100);
-export const flatTreeData = flattenTreeData(treeData);
+export const flattenedPaths = getSquashedArrayOfPaths(getFlattenedPaths(treeData));
