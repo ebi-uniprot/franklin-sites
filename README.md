@@ -1,4 +1,4 @@
-# franklin
+# franklin-sites
 
 React and Zurb Foundation based design system for life sciences web applications.
 
