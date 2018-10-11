@@ -68,8 +68,8 @@ class TreeSelect extends Component {
     const { selectedNode, showMenu } = this.state;
     const { data } = this.props;
     return (
-      <div className="dropdown">
-        <button type="button" className="button" onClick={() => this.toggleTreeSelect()}>
+      <div className="dropdown-container">
+        <button type="button" className="button dropdown" onClick={() => this.toggleTreeSelect()}>
           {selectedNode ? selectedNode.label : 'Select'}
         </button>
         <div className={showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}>

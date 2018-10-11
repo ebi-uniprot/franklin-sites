@@ -2,7 +2,7 @@
 
 exports[`Autocomplete component should render 1`] = `
 <div
-  className="dropdown"
+  className="dropdown-container"
 >
   <form
     onSubmit={[Function]}

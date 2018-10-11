@@ -115,7 +115,7 @@ class Autocomplete extends Component {
       hoverIndex,
     } = this.state;
     return (
-      <div className="dropdown">
+      <div className="dropdown-container">
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={textInputValue} onChange={this.handleChange} onKeyDown={this.handleOnKeyDown} />
         </form>

@@ -2,10 +2,10 @@
 
 exports[`TreeSelect component should render 1`] = `
 <div
-  className="dropdown"
+  className="dropdown-container"
 >
   <button
-    className="button"
+    className="button dropdown"
     onClick={[Function]}
     type="button"
   >
