@@ -4,11 +4,11 @@ import '../../dist/components/treeSelect.css';
 import '../../dist/components/dropdown.css';
 import '../../dist/components/autocomplete.css';
 import AutocompleteItem from './autocomplete-item';
-import { findLastSubstringIgnoreCase } from '../utils';
+import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 
 class Autocomplete extends Component {
   static filterOptions(items, query) {
-    return items.filter(item => findLastSubstringIgnoreCase(item.label, query) >= 0);
+    return items.filter(item => getLastIndexOfSubstringIgnoreCase(item.label, query) >= 0);
   }
 
   constructor(props) {

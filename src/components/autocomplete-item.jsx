@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { findLastSubstringIgnoreCase } from '../utils';
+import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 
 class AutocompleteItem extends Component {
   static highlightSubstring(string, substring) {
-    const i = findLastSubstringIgnoreCase(string, substring);
+    const i = getLastIndexOfSubstringIgnoreCase(string, substring);
     if (i < 0) return string;
     const prestring = string.slice(0, i);
     const highlight = string.slice(i, i + substring.length);

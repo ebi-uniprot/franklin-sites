@@ -1,4 +1,4 @@
-export function findLastSubstringIgnoreCase(string, substring) {
+export function getLastIndexOfSubstringIgnoreCase(string, substring) {
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
 }
 
