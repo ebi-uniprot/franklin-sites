@@ -1,13 +1,53 @@
-import getFlattenedPaths from '../src/utils';
-import treeData from '../src/app/common/tree-data';
+import { getFlattenedPaths } from '../src/utils';
+import { treeData } from '../src/app/common/tree-data';
 
 test('should get all paths', () => {
   const path = getFlattenedPaths(treeData);
   expect(path).toEqual([
-    [{ label: 'Item 1' }, { label: 'Item 1 a' }],
-    [{ label: 'Item 1' }, { label: 'Item 1 b' }, { label: 'Item 1b A' }],
-    [{ label: 'Item 1' }, { label: 'Item 1 b' }, { label: 'Item 1b B' }],
-    [{ label: 'Some Item 2' }],
+    [
+      {
+        label: 'Item 1',
+        term: 'item_1',
+      },
+      {
+        label: 'Item 1a',
+        term: 'item_1a',
+      },
+    ],
+    [
+      {
+        label: 'Item 1',
+        term: 'item_1',
+      },
+      {
+        label: 'Item 1b',
+        term: 'item_1b',
+      },
+      {
+        label: 'Item 1b A',
+        term: 'item_1b_A',
+      },
+    ],
+    [
+      {
+        label: 'Item 1',
+        term: 'item_1',
+      },
+      {
+        label: 'Item 1b',
+        term: 'item_1b',
+      },
+      {
+        label: 'Item 1b B',
+        term: 'item_1b_B',
+      },
+    ],
+    [
+      {
+        label: 'Some Item 2',
+        term: 'item_2',
+      },
+    ],
   ]);
 });
 
@@ -17,12 +57,15 @@ test('should find the correct path', () => {
     [
       {
         label: 'Item 1',
+        term: 'item_1',
       },
       {
-        label: 'Item 1 b',
+        label: 'Item 1b',
+        term: 'item_1b',
       },
       {
         label: 'Item 1b B',
+        term: 'item_1b_B',
       },
     ],
   ]);
