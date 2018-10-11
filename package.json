@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.3-dev.2",
+  "version": "0.0.3-dev.3",
   "main": "./dist/franklin-components.js",
   "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
@@ -11,7 +11,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/styles --include-path node_modules/foundation-sites/scss src/styles -o dist --watch --recursive",
     "dev-server": "webpack --mode development && webpack-dev-server --mode development --open",
     "build-site": "webpack --mode production",
-    "build-library": "webpack --config library.config.js",
+    "build": "webpack --config library.config.js",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src __tests__ __mocks__",
     "test": "jest",
     "test-watch": "jest --watch",

@@ -18,6 +18,7 @@ The css files are compiled into the `dist/` directory.
 Building the Franklin site
 
 ```shell
+yarn run build #build Franklin library
 yarn run dev-server #run a local server and build with development flag
 yarn run jslint #run linter for JS
 yarn run test #run JEST tests
