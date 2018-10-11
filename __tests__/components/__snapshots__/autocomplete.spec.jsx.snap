@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete component should render 1`] = `
+<div
+  className="dropdown-container"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
+  </form>
+  <div
+    className="autocomplete-menu"
+  >
+    <ul>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Item 1 / Item 1a
+        </button>
+      </li>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Item 1 / Item 1b / Item 1b A
+        </button>
+      </li>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Item 1 / Item 1b / Item 1b B
+        </button>
+      </li>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Some Item 2
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

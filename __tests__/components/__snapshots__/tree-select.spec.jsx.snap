@@ -2,7 +2,7 @@
 
 exports[`TreeSelect component should render 1`] = `
 <div
-  className="tree-select"
+  className="dropdown-container"
 >
   <button
     className="button dropdown"
@@ -12,7 +12,7 @@ exports[`TreeSelect component should render 1`] = `
     Select
   </button>
   <div
-    className="tree-select-menu"
+    className="dropdown-menu"
   >
     <ul
       className=""
@@ -20,66 +20,61 @@ exports[`TreeSelect component should render 1`] = `
       <li
         className="branch"
       >
-        <span
+        <button
           className=""
           onClick={[Function]}
-          role="button"
-          tabIndex="0"
+          type="button"
         >
           Item 1
-        </span>
+        </button>
         <ul
           className=""
         >
           <li
             className=""
           >
-            <span
+            <button
               className=""
               onClick={[Function]}
-              role="button"
-              tabIndex="0"
+              type="button"
             >
-              Item 1 a
-            </span>
+              Item 1a
+            </button>
           </li>
           <li
             className="branch"
           >
-            <span
+            <button
               className=""
               onClick={[Function]}
-              role="button"
-              tabIndex="0"
+              type="button"
             >
-              Item 1 b
-            </span>
+              Item 1b
+            </button>
             <ul
               className=""
             >
               <li
                 className=""
               >
-                <span
+                <button
                   className=""
                   onClick={[Function]}
-                  role="button"
-                  tabIndex="0"
+                  type="button"
                 >
                   Item 1b A
-                </span>
+                </button>
               </li>
               <li
                 className=""
               >
-                <span
+                <button
                   className=""
                   onClick={[Function]}
-                  role="button"
-                  tabIndex="0"
+                  type="button"
                 >
                   Item 1b B
-                </span>
+                </button>
               </li>
             </ul>
           </li>
@@ -88,14 +83,13 @@ exports[`TreeSelect component should render 1`] = `
       <li
         className=""
       >
-        <span
+        <button
           className=""
           onClick={[Function]}
-          role="button"
-          tabIndex="0"
+          type="button"
         >
           Some Item 2
-        </span>
+        </button>
       </li>
     </ul>
   </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import getFlattenedPaths from '../utils';
-import '../../dist/components/treeSelect.css';
+import { getFlattenedPaths } from '../utils';
+import '../../dist/components/dropdown.css';
 
 class TreeSelect extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class TreeSelect extends Component {
     if (node.items) {
       this.toggleNode(node);
     } else {
-      const path = getFlattenedPaths(data, node.label);
+      const path = getFlattenedPaths(data, node.label)[0];
       this.setState({ activeNodes: path.map(d => d.label) });
       this.setState({ selectedNode: node });
       this.toggleTreeSelect();
@@ -68,11 +68,11 @@ class TreeSelect extends Component {
     const { selectedNode, showMenu } = this.state;
     const { data } = this.props;
     return (
-      <div className="tree-select">
+      <div className="dropdown-container">
         <button type="button" className="button dropdown" onClick={() => this.toggleTreeSelect()}>
           {selectedNode ? selectedNode.label : 'Select'}
         </button>
-        <div className={showMenu ? 'tree-select-menu tree-select-open' : 'tree-select-menu'}>
+        <div className={showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}>
           {this.buildTree(data)}
         </div>
       </div>

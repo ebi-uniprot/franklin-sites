@@ -1,4 +1,8 @@
-const getFlattenedPaths = (currentItems, id, path = []) => {
+export function getLastIndexOfSubstringIgnoreCase(string, substring) {
+  return string.toLowerCase().lastIndexOf(substring.toLowerCase());
+}
+
+export const getFlattenedPaths = (currentItems, id, path = []) => {
   let flattened = [];
   currentItems.forEach((node) => {
     const { items, ...thisNode } = node;
@@ -14,5 +18,3 @@ const getFlattenedPaths = (currentItems, id, path = []) => {
   });
   return flattened;
 };
-
-export default getFlattenedPaths;

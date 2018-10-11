@@ -1,0 +1,6 @@
+@import './dropdown';
+
+.autocomplete-menu {
+    @extend .dropdown-menu;
+    top: 39px;
+}
