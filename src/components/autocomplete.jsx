@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../../dist/components/treeSelect.css';
 import '../../dist/components/dropdown.css';
 import '../../dist/components/autocomplete.css';
 import AutocompleteItem from './autocomplete-item';

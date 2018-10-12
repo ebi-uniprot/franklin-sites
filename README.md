@@ -29,7 +29,7 @@ yarn run start #watch CSS and run dev-server
 
 ## How to use
 
-Get from yarn:
+Get from npm:
 
 ```shell
 yarn install franklin-sites
