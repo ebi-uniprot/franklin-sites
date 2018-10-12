@@ -15,7 +15,7 @@
     "build": "npm-run-all -p build-css build-library build-site",
     "publish": "npm run build && npm publish",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src __tests__ __mocks__",
-    "test": "jest && npm run jslint",
+    "test": "build-css && jest && npm run jslint",
     "test-watch": "jest --watch",
     "start": "npm-run-all -p watch-css dev-server"
   },
