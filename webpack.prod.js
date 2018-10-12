@@ -14,6 +14,6 @@ module.exports = merge(common, {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
-    new webpack.DefinePlugin({ BASE_URL: JSON.stringify('/franklin') }),
+    new webpack.DefinePlugin({ BASE_URL: JSON.stringify('/franklin-sites') }),
   ],
 });
