@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tile component should render 1`] = `
+<div
+  className="tile tile-uniref"
+>
+  <h3
+    className="tile__header"
+  >
+    Tile title
+  </h3>
+  <p
+    className="tile__content"
+  >
+    This is a short description of what the resource is/provides.
+  </p>
+</div>
+`;

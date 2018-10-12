@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "node"
+notifications:
+  email:
+    - xwatkins@ebi.ac.uk
+    - mmahmoudy@ebi.ac.uk
+    - dlrice@ebi.ac.uk
+  slack: ebi-uniprot:7OMFmmkUp9uxH3SXgyq7OVb3
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master

@@ -1,0 +1,47 @@
+@import "../settings";
+@import "foundation";
+@import "../colours";
+
+.header {
+  color: $colour-white;
+  padding: 0.5em 1em;
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $colour-white;
+  }
+  background: linear-gradient(
+    45deg,
+    $colour-dark-blue,
+    rgba($colour-dark-blue, 0.7),
+    $colour-dark-blue,
+    $colour-dark-blue
+  );
+  &__logo {
+    display: inline-block;
+    svg {
+      margin-bottom: -1em;
+      stroke: $colour-white;
+      fill: $colour-white;
+      circle {
+        stroke: $colour-white;
+      }
+      path {
+        fill: $colour-white;
+      }
+    }
+  }
+  &__navigation {
+    list-style: none;
+    display: inline-block;
+    a:hover {
+      border-bottom: 1px solid $colour-white;
+    }
+    li {
+      display: inline-block;
+      margin: 0 0.7em;
+    }
+  }
+}
