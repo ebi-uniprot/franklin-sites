@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "node"
+after_script:
+  - npm run build
 notifications:
   email:
     - xwatkins@ebi.ac.uk
