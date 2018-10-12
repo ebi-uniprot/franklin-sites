@@ -9,15 +9,14 @@
   "scripts": {
     "build-css": "node-sass-chokidar --include-path node_modules/foundation-sites/scss src/styles -o dist/",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles --include-path node_modules/foundation-sites/scss src/styles -o dist --watch --recursive",
-    "dev-server": "webpack --mode development && webpack-dev-server --mode development --open",
-    "build-site": "webpack --mode production",
-    "build-library": "webpack --config library.config.js",
-    "build": "npm-run-all -p build-css build-library",
+    "dev-server": "webpack-dev-server --mode development --config webpack.dev.js --open",
+    "build-site": "webpack --mode production --config webpack.prod.js",
+    "build-library": "webpack --config webpack.library.js",
+    "build": "npm-run-all -p build-css build-library build-site",
+    "publish": "npm run build && npm publish",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src __tests__ __mocks__",
-    "test": "jest",
+    "test": "jest && npm run jslint",
     "test-watch": "jest --watch",
-    "update-snapshots": "jest --updateSnapshot",
-    "remove-obsolete-snapshots": "yarn test -u",
     "start": "npm-run-all -p watch-css dev-server"
   },
   "browserslist": [
@@ -81,6 +80,7 @@
     "style-loader": "^0.23.0",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.4"
   }
 }

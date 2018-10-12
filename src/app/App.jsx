@@ -1,3 +1,4 @@
+/* global BASE_URL */
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -6,7 +7,7 @@ import Atoms from './Atoms';
 import UIComponents from './UIComponents';
 
 const App = () => (
-  <Router basename="">
+  <Router basename={BASE_URL}>
     <Fragment>
       <Route path="/" exact component={HomePage} />
       <Route path="/atoms" component={Atoms} />
