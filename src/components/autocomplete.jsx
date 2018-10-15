@@ -12,12 +12,10 @@ class Autocomplete extends Component {
 
   constructor(props) {
     super(props);
-    const { data } = this.props;
     this.state = {
       textInputValue: '',
       showDropdown: false,
       hoverIndex: -1,
-      data,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
@@ -35,7 +33,7 @@ class Autocomplete extends Component {
   }
 
   isValidChoice(string) {
-    const { data } = this.state;
+    const { data } = this.props;
     return data.some(x => x.label.toLowerCase() === string.toLowerCase().trim());
   }
 
@@ -76,7 +74,8 @@ class Autocomplete extends Component {
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       let { hoverIndex } = this.state;
-      const { data, textInputValue } = this.state;
+      const { textInputValue } = this.state;
+      const { data } = this.props;
       const options = Autocomplete.filterOptions(data, textInputValue);
       hoverIndex = Math.min(options.length - 1, hoverIndex + 1);
       this.setState({ hoverIndex });
@@ -87,11 +86,13 @@ class Autocomplete extends Component {
     event.preventDefault();
     const {
       hoverIndex,
-      data,
       textInputValue,
       showDropdown,
     } = this.state;
-    const { onSelect } = this.props;
+    const {
+      onSelect,
+      data,
+    } = this.props;
     let selectedValue = textInputValue;
     if (showDropdown && hoverIndex >= 0) {
       const options = Autocomplete.filterOptions(data, textInputValue);
@@ -110,9 +111,9 @@ class Autocomplete extends Component {
     const {
       textInputValue,
       showDropdown,
-      data,
       hoverIndex,
     } = this.state;
+    const { data } = this.props;
     return (
       <div className="dropdown-container">
         <form onSubmit={this.handleSubmit}>
