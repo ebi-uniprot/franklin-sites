@@ -1,4 +1,4 @@
-import { getFlattenedPaths } from '../../utils';
+import { getFlattenedPaths, getSquashedArrayOfPaths } from '../../utils';
 
 export const treeData = [{
   label: 'Item 1',
@@ -21,18 +21,5 @@ export const treeData = [{
   label: 'Some Item 2',
   term: 'item_2',
 }];
-
-function getSquashedPath(path, sep = ' / ') {
-  const label = path.map(item => item.label).join(sep);
-  const termPath = path.map(item => item.term);
-  return {
-    label,
-    termPath,
-  };
-}
-
-function getSquashedArrayOfPaths(paths) {
-  return paths.map(path => getSquashedPath(path));
-}
 
 export const flattenedPaths = getSquashedArrayOfPaths(getFlattenedPaths(treeData));

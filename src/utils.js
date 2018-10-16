@@ -18,3 +18,16 @@ export const getFlattenedPaths = (currentItems, id, path = []) => {
   });
   return flattened;
 };
+
+function getSquashedPath(path, sep = ' / ') {
+  const label = path.map(item => item.label).join(sep);
+  const termPath = path.map(item => item.term);
+  return {
+    label,
+    termPath,
+  };
+}
+
+export function getSquashedArrayOfPaths(paths) {
+  return paths.map(path => getSquashedPath(path));
+}
