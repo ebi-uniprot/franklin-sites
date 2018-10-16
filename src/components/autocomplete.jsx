@@ -58,6 +58,8 @@ class Autocomplete extends Component {
       textInputValue: item.label,
       showDropdown: false,
     });
+    const { onSelect } = this.props;
+    onSelect(item);
   }
 
   resetDropdown({ textInputValue, showDropdown }) {
@@ -105,10 +107,9 @@ class Autocomplete extends Component {
     let selectedValue = textInputValue;
     if (showDropdown && hoverIndex >= 0) {
       const options = Autocomplete.filterOptions(data, textInputValue);
-      const chosen = options[hoverIndex];
-      selectedValue = chosen.label;
+      selectedValue = options[hoverIndex];
       this.resetDropdown({
-        textInputValue: selectedValue,
+        textInputValue: selectedValue.label,
         showDropdown: false,
       });
     }
