@@ -25,6 +25,17 @@ const components = [
     },
   },
   {
+    name: 'Tree select with filter',
+    component: TreeSelect,
+    function: 'Navigate through a tree to make a selection with an autocomplete filter',
+    purpose: 'Allow selection of item(s) from nested data set with an autocomplete filter on the items',
+    props: {
+      data: treeData,
+      onSelect: () => {},
+      autocomplete: true,
+    },
+  },
+  {
     name: 'Autocomplete',
     component: Autocomplete,
     function: 'Search through an array to make a selection',
