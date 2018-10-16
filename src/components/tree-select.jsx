@@ -18,8 +18,10 @@ class TreeSelect extends Component {
       this.toggleNode(node);
     } else {
       const path = getFlattenedPaths(data, node.label)[0];
-      this.setState({ activeNodes: path.map(d => d.label) });
-      this.setState({ selectedNode: node });
+      this.setState({
+        activeNodes: path.map(d => d.label),
+        selectedNode: node,
+      });
       this.toggleTreeSelect();
       onSelect(node);
     }
@@ -57,11 +59,7 @@ class TreeSelect extends Component {
 
   toggleTreeSelect() {
     const { showMenu } = this.state;
-    if (showMenu) {
-      this.setState({ showMenu: false });
-    } else {
-      this.setState({ showMenu: true });
-    }
+    this.setState({ showMenu: !showMenu });
   }
 
   render() {
