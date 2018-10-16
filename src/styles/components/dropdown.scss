@@ -22,6 +22,10 @@
 }
 
 .dropdown-menu {
+  input {
+    margin: 0;
+  }
+
   display: none;
   white-space: nowrap;
   position: absolute;
