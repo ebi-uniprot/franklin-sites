@@ -12,10 +12,11 @@ class Autocomplete extends Component {
 
   constructor(props) {
     super(props);
+    const { showDropdown } = props; 
     this.state = {
       textInputValue: '',
-      showDropdown: false,
       hoverIndex: -1,
+      showDropdown,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
@@ -25,10 +26,9 @@ class Autocomplete extends Component {
 
   handleChange(event) {
     const { value } = event.target;
-    this.setState({
-      showDropdown: !!value.trim(),
+    this.resetDropdown({
       textInputValue: value,
-      hoverIndex: -1,
+      showDropdown: !!value.trim(),
     });
   }
 
@@ -54,11 +54,20 @@ class Autocomplete extends Component {
   }
 
   handleNodeClick(item) {
+    this.resetDropdown({
+      textInputValue: item.label,
+      showDropdown: false,
+    });
+  }
+
+  resetDropdown({ textInputValue, showDropdown }) {
     this.setState({
       hoverIndex: -1,
-      showDropdown: false,
-      textInputValue: item.label,
+      textInputValue,
+      showDropdown,
     });
+    const { showDropwdownUpdated } = this.props;
+    showDropwdownUpdated(showDropdown);
   }
 
   handleOnKeyDown(event) {
@@ -98,10 +107,9 @@ class Autocomplete extends Component {
       const options = Autocomplete.filterOptions(data, textInputValue);
       const chosen = options[hoverIndex];
       selectedValue = chosen.label;
-      this.setState({
-        hoverIndex: -1,
-        showDropdown: false,
+      this.resetDropdown({
         textInputValue: selectedValue,
+        showDropdown: false,
       });
     }
     onSelect(selectedValue);
@@ -131,9 +139,14 @@ class Autocomplete extends Component {
   }
 }
 
+Autocomplete.defaultProps = {
+  showDropwdownUpdated: () => {},
+};
+
 Autocomplete.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
   onSelect: PropTypes.func.isRequired,
+  showDropwdownUpdated: PropTypes.func,
 };
 
 export default Autocomplete;

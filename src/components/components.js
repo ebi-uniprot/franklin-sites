@@ -25,7 +25,7 @@ const components = [
     },
   },
   {
-    name: 'Auto complete ',
+    name: 'Autocomplete',
     component: Autocomplete,
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
