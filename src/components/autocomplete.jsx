@@ -12,11 +12,9 @@ class Autocomplete extends Component {
 
   constructor(props) {
     super(props);
-    const { showDropdown } = props; 
     this.state = {
       textInputValue: '',
       hoverIndex: -1,
-      showDropdown,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
