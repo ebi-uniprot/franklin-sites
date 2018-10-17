@@ -1,5 +1,12 @@
-import { getFlattenedPaths, getLastIndexOfSubstringIgnoreCase } from '../src/utils';
-import { treeData } from '../src/app/common/tree-data';
+import {
+  getFlattenedPaths,
+  getLastIndexOfSubstringIgnoreCase,
+  restructureFlattenedTreeDataForAutocomplete,
+  restructureFlattenedTreeItemsForAutocomplete,
+} from '../src/utils';
+import {
+  treeData,
+} from '../src/app/common/tree-data';
 
 test('should get all paths', () => {
   const path = getFlattenedPaths(treeData);
@@ -84,4 +91,95 @@ test('should find the index of the last substring', () => {
 test('should not find the index of the last string', () => {
   const index = getLastIndexOfSubstringIgnoreCase('StringSTRING', 'unfindable');
   expect(index).toEqual(-1);
+});
+
+test('should prepare all tree data for autocomplete', () => {
+  const flatPaths = getFlattenedPaths(treeData);
+  const data = restructureFlattenedTreeDataForAutocomplete(flatPaths);
+  expect(data).toEqual([
+    {
+      value: 'item_1a',
+      pathLabel: 'Item 1 / Item 1a',
+      itemLabel: 'Item 1a',
+      items: [
+        {
+          label: 'Item 1',
+          value: 'item_1',
+        },
+        {
+          label: 'Item 1a',
+          value: 'item_1a',
+        }],
+    }, {
+      value: 'item_1b_A',
+      pathLabel: 'Item 1 / Item 1b / Item 1b A',
+      itemLabel: 'Item 1b A',
+      items: [
+        {
+          label: 'Item 1',
+          value: 'item_1',
+        },
+        {
+          label: 'Item 1b',
+          value: 'item_1b',
+        },
+        {
+          label: 'Item 1b A',
+          value: 'item_1b_A',
+        }],
+    }, {
+      value: 'item_1b_B',
+      pathLabel: 'Item 1 / Item 1b / Item 1b B',
+      itemLabel: 'Item 1b B',
+      items: [
+        {
+          label: 'Item 1',
+          value: 'item_1',
+        },
+        {
+          label: 'Item 1b',
+          value: 'item_1b',
+        },
+        {
+          label: 'Item 1b B',
+          value: 'item_1b_B',
+        }],
+    },
+    {
+      value: 'item_2',
+      pathLabel: 'Some Item 2',
+      itemLabel: 'Some Item 2',
+      items: [
+        {
+          label: 'Some Item 2',
+          value: 'item_2',
+        }],
+    }]);
+});
+
+test('should prepare flattened tree data items for autocomplete', () => {
+  const items = [
+    {
+      label: 'Item 1',
+      value: 'item_1',
+    },
+    {
+      label: 'Item 1a',
+      value: 'item_1a',
+    }];
+  const data = restructureFlattenedTreeItemsForAutocomplete(items);
+  expect(data).toEqual({
+    value: 'item_1a',
+    pathLabel: 'Item 1 / Item 1a',
+    itemLabel: 'Item 1a',
+    items: [
+      {
+        label: 'Item 1',
+        value: 'item_1',
+      },
+      {
+        label: 'Item 1a',
+        value: 'item_1a',
+      }],
+  });
 });
