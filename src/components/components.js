@@ -33,6 +33,7 @@ const components = [
       data: treeData,
       onSelect: () => {},
       autocomplete: true,
+      autocompletePlaceholder: 'Search for item',
     },
   },
   {
@@ -43,6 +44,7 @@ const components = [
     props: {
       data: flattenedPaths,
       onSelect: () => {},
+      placeholder: 'Placeholder',
     },
   },
 ];

@@ -77,8 +77,16 @@ class TreeSelect extends Component {
   }
 
   render() {
-    const { selectedNode, showMenu, autocompleteShowDropdown } = this.state;
-    const { data, autocomplete } = this.props;
+    const {
+      selectedNode,
+      showMenu,
+      autocompleteShowDropdown,
+    } = this.state;
+    const {
+      data,
+      autocomplete,
+      autocompletePlaceholder,
+    } = this.props;
     let autocompleteNode;
     if (autocomplete) {
       const flattenedPaths = getFlattenedPaths(data);
@@ -91,6 +99,7 @@ class TreeSelect extends Component {
           data={squashedPaths}
           showDropwdownUpdated={this.handleAutocompleteDropwdownUpdated}
           onSelect={this.handleAutocompleteSelect}
+          placeholder={autocompletePlaceholder}
           clearOnSelect
         />
       );
@@ -117,10 +126,12 @@ TreeSelect.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
   onSelect: PropTypes.func.isRequired,
   autocomplete: PropTypes.bool,
+  autocompletePlaceholder: PropTypes.string,
 };
 
 TreeSelect.defaultProps = {
   autocomplete: false,
+  autocompletePlaceholder: '',
 };
 
 export default TreeSelect;
