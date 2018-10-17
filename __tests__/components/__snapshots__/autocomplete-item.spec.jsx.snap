@@ -7,11 +7,11 @@ exports[`AutocompleteItem component should render 1`] = `
     onClick={[Function]}
     type="button"
   >
-    Some 
+    A path to &gt; some 
     <b>
       item
     </b>
-     is here
+    
   </button>
 </li>
 `;

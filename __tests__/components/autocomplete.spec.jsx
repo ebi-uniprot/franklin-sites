@@ -12,34 +12,48 @@ describe('Autocomplete component', () => {
   });
 });
 
+describe('Autocomplete component with props: showDropwdownUpdated & clearOnSelect', () => {
+  test('should render', () => {
+    const component = renderer.create(
+      <Autocomplete
+        data={flattenedPaths}
+        onSelect={d => d}
+        showDropwdownUpdated={d => d}
+        clearOnSelect
+      />,
+    ).toJSON();
+    expect(component).toMatchSnapshot();
+  });
+});
+
 test('should filter options', () => {
   const options = [
     {
-      label: 'Find this',
+      pathLabel: 'Find this',
     },
     {
-      label: 'Also find this',
+      pathLabel: 'Also find this',
     },
     {
-      label: 'You FIND this?!',
+      pathLabel: 'You FIND this?!',
     },
     {
-      label: 'Found nothing',
+      pathLabel: 'Found nothing',
     },
     {
-      label: '',
+      pathLabel: '',
     },
   ];
   const filtered = Autocomplete.filterOptions(options, 'find');
   const expected = [
     {
-      label: 'Find this',
+      pathLabel: 'Find this',
     },
     {
-      label: 'Also find this',
+      pathLabel: 'Also find this',
     },
     {
-      label: 'You FIND this?!',
+      pathLabel: 'You FIND this?!',
     },
   ];
   expect(filtered).toEqual(expected);

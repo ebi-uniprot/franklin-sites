@@ -51,12 +51,10 @@ class Autocomplete extends Component {
       onSelect,
       clearOnSelect,
     } = this.props;
-
     this.resetDropdown({
       textInputValue: clearOnSelect ? '' : item.pathLabel,
       showDropdown: false,
     });
-
     onSelect({
       label: item.itemLabel,
       value: item.value,
