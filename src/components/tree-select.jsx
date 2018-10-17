@@ -91,9 +91,6 @@ class TreeSelect extends Component {
     if (autocomplete) {
       const flattenedPaths = getFlattenedPaths(data);
       const squashedPaths = getSquashedArrayOfPaths(flattenedPaths);
-      // console.log('data', data);
-      // console.log('flattenedPaths', flattenedPaths);
-      // console.log('squashedPaths', squashedPaths);
       autocompleteNode = (
         <Autocomplete
           data={squashedPaths}
