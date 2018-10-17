@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getFlattenedPaths, getSquashedArrayOfPaths } from '../utils';
+import { getFlattenedPaths, restructureFlattenedTreeDataForAutocomplete } from '../utils';
 import Autocomplete from './autocomplete';
 import '../../dist/components/dropdown.css';
 
@@ -90,7 +90,7 @@ class TreeSelect extends Component {
     let autocompleteNode;
     if (autocomplete) {
       const flattenedPaths = getFlattenedPaths(data);
-      const squashedPaths = getSquashedArrayOfPaths(flattenedPaths);
+      const squashedPaths = restructureFlattenedTreeDataForAutocomplete(flattenedPaths);
       autocompleteNode = (
         <Autocomplete
           data={squashedPaths}

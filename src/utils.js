@@ -19,17 +19,15 @@ export const getFlattenedPaths = (currentItems, value, path = []) => {
   return flattened;
 };
 
-function getSquashedPath(items, sep = ' / ') {
+export function restructureFlattenedTreeItemsForAutocomplete(items, sep = ' / ') {
   return {
     value: items[items.length - 1].value,
     pathLabel: items.map(item => item.label).join(sep),
     itemLabel: items[items.length - 1].label,
     items,
-
   };
 }
 
-export function getSquashedArrayOfPaths(paths) {
-  // console.log(paths);
-  return paths.map(items => getSquashedPath(items));
+export function restructureFlattenedTreeDataForAutocomplete(flattenedTreeData) {
+  return flattenedTreeData.map(items => restructureFlattenedTreeItemsForAutocomplete(items));
 }

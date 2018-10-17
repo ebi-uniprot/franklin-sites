@@ -1,4 +1,4 @@
-import { getFlattenedPaths, getSquashedArrayOfPaths } from '../../utils';
+import { getFlattenedPaths, restructureFlattenedTreeDataForAutocomplete } from '../../utils';
 
 export const treeData = [{
   label: 'Item 1',
@@ -22,4 +22,5 @@ export const treeData = [{
   value: 'item_2',
 }];
 
-export const flattenedPaths = getSquashedArrayOfPaths(getFlattenedPaths(treeData));
+const flatPaths = getFlattenedPaths(treeData);
+export const flattenedPaths = restructureFlattenedTreeDataForAutocomplete(flatPaths);
