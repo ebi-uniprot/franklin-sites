@@ -23,10 +23,17 @@ class Autocomplete extends Component {
   }
 
   handleChange(event) {
+    const { data } = this.props;
     const { value } = event.target;
+    let showDropdown = false;
+    const trimmed = value.trim();
+    if (trimmed) {
+      const found = Autocomplete.filterOptions(data, trimmed);
+      showDropdown = found.length > 0;
+    }
     this.resetDropdown({
       textInputValue: value,
-      showDropdown: !!value.trim(),
+      showDropdown,
     });
   }
 
