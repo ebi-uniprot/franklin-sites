@@ -114,11 +114,17 @@ class Autocomplete extends Component {
       showDropdown,
       hoverIndex,
     } = this.state;
-    const { data } = this.props;
+    const { data, placeholder } = this.props;
     return (
       <div className="dropdown-container">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={textInputValue} onChange={this.handleChange} onKeyDown={this.handleOnKeyDown} />
+          <input
+            type="text"
+            value={textInputValue}
+            onChange={this.handleChange}
+            onKeyDown={this.handleOnKeyDown}
+            placeholder={placeholder}
+          />
         </form>
         <div className={showDropdown ? 'autocomplete-menu dropdown-menu-open' : 'autocomplete-menu'}>
           {this.buildOptions(
@@ -135,6 +141,7 @@ class Autocomplete extends Component {
 Autocomplete.defaultProps = {
   showDropwdownUpdated: () => {},
   clearOnSelect: false,
+  placeholder: '',
 };
 
 Autocomplete.propTypes = {
@@ -142,6 +149,7 @@ Autocomplete.propTypes = {
   onSelect: PropTypes.func.isRequired,
   showDropwdownUpdated: PropTypes.func,
   clearOnSelect: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default Autocomplete;
