@@ -95,3 +95,148 @@ exports[`TreeSelect component should render 1`] = `
   </div>
 </div>
 `;
+
+exports[`TreeSelect component with filter should render 1`] = `
+<div
+  className="dropdown-container"
+>
+  <button
+    className="button dropdown"
+    onClick={[Function]}
+    type="button"
+  >
+    Select
+  </button>
+  <div
+    className="dropdown-menu"
+  >
+    <div
+      className="dropdown-container"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder=""
+          type="text"
+          value=""
+        />
+      </form>
+      <div
+        className="autocomplete-menu"
+      >
+        <ul>
+          <li>
+            <button
+              className=""
+              onClick={[Function]}
+              type="button"
+            />
+          </li>
+          <li>
+            <button
+              className=""
+              onClick={[Function]}
+              type="button"
+            />
+          </li>
+          <li>
+            <button
+              className=""
+              onClick={[Function]}
+              type="button"
+            />
+          </li>
+          <li>
+            <button
+              className=""
+              onClick={[Function]}
+              type="button"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ul
+      className=""
+    >
+      <li
+        className="branch"
+      >
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Item 1
+        </button>
+        <ul
+          className=""
+        >
+          <li
+            className=""
+          >
+            <button
+              className=""
+              onClick={[Function]}
+              type="button"
+            >
+              Item 1a
+            </button>
+          </li>
+          <li
+            className="branch"
+          >
+            <button
+              className=""
+              onClick={[Function]}
+              type="button"
+            >
+              Item 1b
+            </button>
+            <ul
+              className=""
+            >
+              <li
+                className=""
+              >
+                <button
+                  className=""
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Item 1b A
+                </button>
+              </li>
+              <li
+                className=""
+              >
+                <button
+                  className=""
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Item 1b B
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li
+        className=""
+      >
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        >
+          Some Item 2
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

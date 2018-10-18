@@ -25,13 +25,26 @@ const components = [
     },
   },
   {
-    name: 'Auto complete ',
+    name: 'Tree select with filter',
+    component: TreeSelect,
+    function: 'Navigate through a tree to make a selection with an autocomplete filter',
+    purpose: 'Allow selection of item(s) from nested data set with an autocomplete filter on the items',
+    props: {
+      data: treeData,
+      onSelect: () => {},
+      autocomplete: true,
+      autocompletePlaceholder: 'Search for item',
+    },
+  },
+  {
+    name: 'Autocomplete',
     component: Autocomplete,
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
     props: {
       data: flattenedPaths,
       onSelect: () => {},
+      placeholder: 'Placeholder',
     },
   },
 ];

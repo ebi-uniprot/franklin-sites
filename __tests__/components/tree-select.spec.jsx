@@ -9,3 +9,16 @@ describe('TreeSelect component', () => {
     expect(component).toMatchSnapshot();
   });
 });
+
+describe('TreeSelect component with filter', () => {
+  test('should render', () => {
+    const component = renderer.create(
+      <TreeSelect
+        data={treeData}
+        onSelect={d => d}
+        autocomplete
+      />,
+    ).toJSON();
+    expect(component).toMatchSnapshot();
+  });
+});

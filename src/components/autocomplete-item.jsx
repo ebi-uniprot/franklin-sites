@@ -51,7 +51,7 @@ class AutocompleteItem extends Component {
         >
           {
             substringToHighlight
-              ? AutocompleteItem.highlightSubstring(item.label, substringToHighlight)
+              ? AutocompleteItem.highlightSubstring(item.pathLabel, substringToHighlight)
               : item.label
           }
         </button>
@@ -62,7 +62,9 @@ class AutocompleteItem extends Component {
 
 AutocompleteItem.propTypes = {
   item: PropTypes.shape({
-    label: PropTypes.string,
+    pathLabel: PropTypes.string.isRequired,
+    itemLabel: PropTypes.string.isRequired,
+    items: PropTypes.array,
   }).isRequired,
   active: PropTypes.bool.isRequired,
   substringToHighlight: PropTypes.string.isRequired,

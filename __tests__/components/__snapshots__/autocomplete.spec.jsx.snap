@@ -10,6 +10,7 @@ exports[`Autocomplete component should render 1`] = `
     <input
       onChange={[Function]}
       onKeyDown={[Function]}
+      placeholder=""
       type="text"
       value=""
     />
@@ -23,36 +24,80 @@ exports[`Autocomplete component should render 1`] = `
           className=""
           onClick={[Function]}
           type="button"
-        >
-          Item 1 / Item 1a
-        </button>
+        />
       </li>
       <li>
         <button
           className=""
           onClick={[Function]}
           type="button"
-        >
-          Item 1 / Item 1b / Item 1b A
-        </button>
+        />
       </li>
       <li>
         <button
           className=""
           onClick={[Function]}
           type="button"
-        >
-          Item 1 / Item 1b / Item 1b B
-        </button>
+        />
       </li>
       <li>
         <button
           className=""
           onClick={[Function]}
           type="button"
-        >
-          Some Item 2
-        </button>
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Autocomplete component with props: showDropwdownUpdated & clearOnSelect should render 1`] = `
+<div
+  className="dropdown-container"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </form>
+  <div
+    className="autocomplete-menu"
+  >
+    <ul>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        />
+      </li>
+      <li>
+        <button
+          className=""
+          onClick={[Function]}
+          type="button"
+        />
       </li>
     </ul>
   </div>
