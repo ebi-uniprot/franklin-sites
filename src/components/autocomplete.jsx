@@ -23,11 +23,15 @@ class Autocomplete extends Component {
   }
 
   handleChange(event) {
-    const { data } = this.props;
+    const {
+      data,
+      onChange,
+    } = this.props;
     const { value } = event.target;
     let showDropdown = false;
     const trimmed = value.trim();
     if (trimmed) {
+      onChange(trimmed);
       const found = Autocomplete.filterOptions(data, trimmed);
       showDropdown = found.length > 0;
     }
@@ -147,6 +151,7 @@ class Autocomplete extends Component {
 
 Autocomplete.defaultProps = {
   showDropwdownUpdated: () => {},
+  onChange: () => {},
   clearOnSelect: false,
   placeholder: '',
 };
@@ -157,6 +162,7 @@ Autocomplete.propTypes = {
   showDropwdownUpdated: PropTypes.func,
   clearOnSelect: PropTypes.bool,
   placeholder: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default Autocomplete;
