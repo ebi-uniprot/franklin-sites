@@ -22,22 +22,23 @@ class TreeSelect extends Component {
       this.toggleNode(node);
     } else {
       const path = getFlattenedPaths(data, node.value)[0];
+      const leafNode = path[path.length - 1];
       this.setState({
         activeNodes: path.map(d => d.value),
-        selectedNode: node,
+        selectedNode: leafNode,
         openNodes: path.map(d => d.value),
       });
       this.toggleTreeSelect();
-      onSelect(node);
+      onSelect(leafNode);
     }
   }
 
   toggleNode(node) {
-    const { openNodes } = this.state;
+    let { openNodes } = this.state;
     if (openNodes.includes(node.value)) {
-      openNodes.splice(openNodes.indexOf(node.value));
+      openNodes = openNodes.slice(0, openNodes.indexOf(node.value));
     } else {
-      openNodes.push(node.value);
+      openNodes = [...openNodes, node.value];
     }
     this.setState({ openNodes });
   }
@@ -73,7 +74,6 @@ class TreeSelect extends Component {
 
   handleAutocompleteSelect(node) {
     this.handleNodeClick(node);
-    // this.setState({ selectedNode });
   }
 
   render() {
