@@ -112,7 +112,9 @@ class TreeSelect extends Component {
         </button>
         <div className={showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}>
           {autocompleteNode}
-          {treeNode}
+          <div className="tree-select-nodes">
+            {treeNode}
+          </div>
         </div>
       </div>
     );
