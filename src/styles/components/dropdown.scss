@@ -1,24 +1,17 @@
-@import '../settings';
-@import 'foundation';
-@import '../colours';
-@import '../common/z-index';
+@import "../settings";
+@import "foundation";
+@import "../colours";
+@import "../common/z-index";
 
 .dropdown-container {
   position: relative;
   display: block;
-  &>.button {
+  & > .button {
     margin: 0;
   }
   button {
     outline: 0;
   }
-  width: 100%;
-  max-height: 12vh;
-}
-
-.tree-select-nodes {
-  overflow-y: auto;
-  position: relative;
 }
 
 .hover {
@@ -34,80 +27,87 @@
   display: none;
   white-space: nowrap;
   position: absolute;
-  background: #FFF;
+  background: #fff;
   width: 100%;
-  -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   z-index: $z-index-high;
 
-  ul {
-    display: block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    // overflow-y: hidden;
-    // height: auto !important;
-    li {
-      float: none !important;
-      line-height: 1.6rem;
-      background-color: $white !important;
-      button {
+  .tree-select-nodes {
+    overflow-y: auto;
+    max-height: 25vh;
+
+    ul {
+      display: block;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      // overflow-y: hidden;
+      // height: auto !important;
+      li {
+        float: none !important;
         line-height: 1.6rem;
-        cursor: pointer;
-        width: 100%;
-        text-align: left;
-        padding: .5rem;
-        position: relative;
-        display: block;
-        border: none;
-        padding-right: 1rem;
-        color: $colour-black;
-        text-decoration: none;
-        &:hover {
-          @extend .hover;
-        }
-        &.active {
-          font-weight: bold;
-        }
-      }
-      &.branch>button::after {
-        width: 0;
-        height: 0;
-        border: inset .4rem;
-        content: '';
-        border-right-width: 0;
-        border-left-style: solid;
-        border-color: transparent transparent transparent $colour-black;
-        position: relative;
-        top: .4rem;
-        display: inline-block;
-        float: right;
-        margin-left: 1rem;
-      }
-      ul {
-        opacity: 0;
-        visibility: hidden;
-        -webkit-transition: none;
-        /* Safari */
-        transition: none;
-        &.open {
-          opacity: 1;
+        background-color: $white !important;
+        button {
+          line-height: 1.6rem;
+          cursor: pointer;
+          width: 100%;
+          text-align: left;
+          padding: 0.5rem;
           position: relative;
-          visibility: visible;
-          -webkit-transition: all 0.5s;
-          /* Safari */
-          transition: all 0.5s;
+          display: block;
+          border: none;
+          padding-right: 1rem;
+          color: $colour-black;
+          text-decoration: none;
+          &:hover {
+            @extend .hover;
+          }
+          &.active {
+            font-weight: bold;
+          }
         }
-      }
-      ul li {
-        padding-left: 1rem;
+        &.branch > button::after {
+          width: 0;
+          height: 0;
+          border: inset 0.4rem;
+          content: "";
+          border-right-width: 0;
+          border-left-style: solid;
+          border-color: transparent transparent transparent $colour-black;
+          position: relative;
+          top: 0.4rem;
+          display: inline-block;
+          float: right;
+          margin-left: 1rem;
+        }
+        ul {
+          opacity: 0;
+          display: none;
+          -webkit-transition: none;
+          /* Safari */
+          transition: none;
+          &.open {
+            opacity: 1;
+            position: relative;
+            display: block;
+            -webkit-transition: all 0.5s;
+            /* Safari */
+            transition: all 0.5s;
+          }
+        }
+        ul li {
+          padding-left: 1rem;
+        }
       }
     }
-  }
-  .branch ul {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
+    .branch ul {
+      // visibility: hidden;
+      display: none;
+      opacity: 0;
+    }
   }
 }
 
