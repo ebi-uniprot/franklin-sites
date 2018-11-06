@@ -77,16 +77,8 @@ class TreeSelect extends Component {
   }
 
   render() {
-    const {
-      selectedNode,
-      showMenu,
-      autocompleteShowDropdown,
-    } = this.state;
-    const {
-      data,
-      autocomplete,
-      autocompletePlaceholder,
-    } = this.props;
+    const { selectedNode, showMenu, autocompleteShowDropdown } = this.state;
+    const { data, autocomplete, autocompletePlaceholder } = this.props;
     let autocompleteNode;
     if (autocomplete) {
       const flattenedPaths = getFlattenedPaths(data);
@@ -112,9 +104,7 @@ class TreeSelect extends Component {
         </button>
         <div className={showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}>
           {autocompleteNode}
-          <div className="tree-select-nodes">
-            {treeNode}
-          </div>
+          <div className="dropdown-menu__panel">{treeNode}</div>
         </div>
       </div>
     );
