@@ -1,8 +1,8 @@
 import Tile from './tile';
 import TreeSelect from './tree-select';
 import Autocomplete from './autocomplete';
+import MainSearch from './main-search';
 import { treeData, flattenedPaths } from '../app/common/tree-data';
-
 
 const components = [
   {
@@ -28,7 +28,8 @@ const components = [
     name: 'Tree select with filter',
     component: TreeSelect,
     function: 'Navigate through a tree to make a selection with an autocomplete filter',
-    purpose: 'Allow selection of item(s) from nested data set with an autocomplete filter on the items',
+    purpose:
+      'Allow selection of item(s) from nested data set with an autocomplete filter on the items',
     props: {
       data: treeData,
       onSelect: () => {},
@@ -46,6 +47,13 @@ const components = [
       onSelect: () => {},
       placeholder: 'Placeholder',
     },
+  },
+  {
+    name: 'Main search',
+    component: MainSearch,
+    function: 'Search through an array to make a selection',
+    purpose: 'Allow selection of item from flat data set',
+    props: {},
   },
 ];
 
