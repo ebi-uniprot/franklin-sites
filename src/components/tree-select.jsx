@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getFlattenedPaths, restructureFlattenedTreeDataForAutocomplete } from '../utils';
 import Autocomplete from './autocomplete';
-import '../../dist/components/dropdown.css';
+import '../../dist/components/tree-select.css';
 
 class TreeSelect extends Component {
   constructor(props) {

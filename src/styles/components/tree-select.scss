@@ -1,0 +1,40 @@
+@import "./dropdown";
+
+.dropdown-menu__panel ul {
+  li {
+    &.branch > button::after {
+      width: 0;
+      height: 0;
+      border: inset 0.4rem;
+      content: "";
+      border-right-width: 0;
+      border-left-style: solid;
+      border-color: transparent transparent transparent $colour-black;
+      position: relative;
+      top: 0.4rem;
+      display: inline-block;
+      float: right;
+      margin-left: 1rem;
+    }
+    &.branch {
+      ul {
+        opacity: 0;
+        display: none;
+        -webkit-transition: none;
+        /* Safari */
+        transition: none;
+        &.open {
+          opacity: 1;
+          position: relative;
+          display: block;
+          -webkit-transition: all 0.5s;
+          /* Safari */
+          transition: all 0.5s;
+        }
+        li {
+          padding-left: 1rem;
+        }
+      }
+    }
+  }
+}

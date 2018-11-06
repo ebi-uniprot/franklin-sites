@@ -28,13 +28,13 @@
 }
 
 .demo-code-snippet {
-  background-color: #CEDFF5;
+  background-color: #cedff5;
   padding: 1.2em;
   white-space: pre-wrap;
 }
 
 .demo-active {
-  border-bottom: #FFFFFF 2px solid;
+  border-bottom: #ffffff 2px solid;
 }
 
 .demo-content {
@@ -43,4 +43,8 @@
 
 .component-wrapper {
   padding-right: 2rem;
+}
+
+.button {
+  line-height: 0.9;
 }
