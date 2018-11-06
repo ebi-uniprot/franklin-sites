@@ -23,10 +23,7 @@ class Autocomplete extends Component {
   }
 
   handleChange(event) {
-    const {
-      data,
-      onChange,
-    } = this.props;
+    const { data, onChange } = this.props;
     const { value } = event.target;
     let showDropdown = false;
     const trimmed = value.trim();
@@ -58,10 +55,7 @@ class Autocomplete extends Component {
   }
 
   handleNodeSelect(item) {
-    const {
-      onSelect,
-      clearOnSelect,
-    } = this.props;
+    const { onSelect, clearOnSelect } = this.props;
     this.resetDropdown({
       textInputValue: clearOnSelect ? '' : item.pathLabel,
       showDropdown: false,
@@ -102,11 +96,7 @@ class Autocomplete extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {
-      hoverIndex,
-      textInputValue,
-      showDropdown,
-    } = this.state;
+    const { hoverIndex, textInputValue, showDropdown } = this.state;
     const { data } = this.props;
     let chosen;
     if (showDropdown && hoverIndex >= 0) {
@@ -117,11 +107,7 @@ class Autocomplete extends Component {
   }
 
   render() {
-    const {
-      textInputValue,
-      showDropdown,
-      hoverIndex,
-    } = this.state;
+    const { textInputValue, showDropdown, hoverIndex } = this.state;
     const { data, placeholder } = this.props;
     return (
       <div className="dropdown-container">
@@ -134,12 +120,16 @@ class Autocomplete extends Component {
             placeholder={placeholder}
           />
         </form>
-        <div className={showDropdown ? 'autocomplete-menu dropdown-menu-open' : 'autocomplete-menu'}>
-          {this.buildOptions(
-            Autocomplete.filterOptions(data, textInputValue),
-            textInputValue,
-            hoverIndex,
-          )}
+        <div
+          className={showDropdown ? 'autocomplete-menu dropdown-menu-open' : 'autocomplete-menu'}
+        >
+          <div className="dropdown-menu__panel">
+            {this.buildOptions(
+              Autocomplete.filterOptions(data, textInputValue),
+              textInputValue,
+              hoverIndex,
+            )}
+          </div>
         </div>
       </div>
     );
