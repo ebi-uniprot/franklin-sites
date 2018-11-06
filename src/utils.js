@@ -24,7 +24,6 @@ export function restructureFlattenedTreeItemsForAutocomplete(items, sep = ' / ')
     value: items[items.length - 1].value,
     pathLabel: items.map(item => item.label).join(sep),
     itemLabel: items[items.length - 1].label,
-    items,
   };
 }
 
