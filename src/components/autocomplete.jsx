@@ -23,13 +23,13 @@ class Autocomplete extends Component {
   }
 
   handleChange(event) {
-    const { data, onChange } = this.props;
+    const { data, onChange, filter } = this.props;
     const { value } = event.target;
     let showDropdown = false;
     const trimmed = value.trim();
     if (trimmed) {
       onChange(trimmed);
-      const found = Autocomplete.filterOptions(data, trimmed);
+      const found = filter ? Autocomplete.filterOptions(data, trimmed) : data;
       showDropdown = found.length > 0;
     }
     this.resetDropdown({
@@ -87,8 +87,8 @@ class Autocomplete extends Component {
       event.preventDefault();
       let { hoverIndex } = this.state;
       const { textInputValue } = this.state;
-      const { data } = this.props;
-      const options = Autocomplete.filterOptions(data, textInputValue);
+      const { data, filter } = this.props;
+      const options = filter ? Autocomplete.filterOptions(data, textInputValue) : data;
       hoverIndex = Math.min(options.length - 1, hoverIndex + 1);
       this.setState({ hoverIndex });
     }
@@ -97,10 +97,10 @@ class Autocomplete extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { hoverIndex, textInputValue, showDropdown } = this.state;
-    const { data } = this.props;
+    const { data, filter } = this.props;
     let chosen;
     if (showDropdown && hoverIndex >= 0) {
-      const options = Autocomplete.filterOptions(data, textInputValue);
+      const options = filter ? Autocomplete.filterOptions(data, textInputValue) : data;
       chosen = options[hoverIndex];
       this.handleNodeSelect(chosen);
     }
@@ -108,7 +108,7 @@ class Autocomplete extends Component {
 
   render() {
     const { textInputValue, showDropdown, hoverIndex } = this.state;
-    const { data, placeholder } = this.props;
+    const { data, placeholder, filter } = this.props;
     return (
       <div className="dropdown-container">
         <form onSubmit={this.handleSubmit}>
@@ -125,7 +125,7 @@ class Autocomplete extends Component {
         >
           <div className="dropdown-menu__panel">
             {this.buildOptions(
-              Autocomplete.filterOptions(data, textInputValue),
+              filter ? Autocomplete.filterOptions(data, textInputValue) : data,
               textInputValue,
               hoverIndex,
             )}
@@ -141,6 +141,7 @@ Autocomplete.defaultProps = {
   onChange: () => {},
   clearOnSelect: false,
   placeholder: '',
+  filter: true,
 };
 
 Autocomplete.propTypes = {
@@ -150,6 +151,7 @@ Autocomplete.propTypes = {
   clearOnSelect: PropTypes.bool,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
+  filter: PropTypes.bool,
 };
 
 export default Autocomplete;
