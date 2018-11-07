@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const defaultLabel = 'Select';
+
 class Select extends Component {
   constructor(props) {
     super(props);
@@ -9,19 +11,25 @@ class Select extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    const { label } = this.props;
+    if (label !== prevProps.label) {
+      this.setState({ showMenu: false });
+    }
+  }
+
   toggleDropdown() {
     const { showMenu } = this.state;
     this.setState({ showMenu: !showMenu });
   }
 
   render() {
-    const { children, selectedLabel } = this.props;
+    const { children, label } = this.props;
     const { showMenu } = this.state;
-    // const childrenWithProps = React.Children.map(children, child => React.cloneElement(child, { setSelectedLabel: this.setSelectedLabel }));
     return (
       <div className="dropdown-container">
         <button type="button" className="button dropdown" onClick={() => this.toggleDropdown()}>
-          {selectedLabel}
+          {label}
         </button>
         <div className={showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}>
           {children}
@@ -32,12 +40,12 @@ class Select extends Component {
 }
 
 Select.propTypes = {
-  children: PropTypes.instanceOf(Element).isRequired,
-  selectedLabel: PropTypes.string,
+  children: PropTypes.instanceOf(Object).isRequired,
+  label: PropTypes.string,
 };
 
 Select.defaultProps = {
-  selectedLabel: 'Select',
+  label: defaultLabel,
 };
 
 export default Select;
