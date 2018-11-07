@@ -18,36 +18,40 @@ exports[`Autocomplete component should render 1`] = `
   <div
     className="autocomplete-menu"
   >
-    <ul>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-    </ul>
+    <div
+      className="dropdown-menu__panel"
+    >
+      <ul>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 `;
@@ -70,36 +74,40 @@ exports[`Autocomplete component with props: showDropwdownUpdated & clearOnSelect
   <div
     className="autocomplete-menu"
   >
-    <ul>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-      <li>
-        <button
-          className=""
-          onClick={[Function]}
-          type="button"
-        />
-      </li>
-    </ul>
+    <div
+      className="dropdown-menu__panel"
+    >
+      <ul>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+        <li>
+          <button
+            className=""
+            onClick={[Function]}
+            type="button"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 `;
