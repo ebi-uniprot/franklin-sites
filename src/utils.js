@@ -2,17 +2,17 @@ export function getLastIndexOfSubstringIgnoreCase(string, substring) {
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
 }
 
-export const getFlattenedPaths = (currentItems, value, path = []) => {
+export const getFlattenedPaths = (currentItems, id, path = []) => {
   let flattened = [];
   currentItems.forEach((node) => {
     const { items, ...thisNode } = node;
     const nodePath = [...path, thisNode];
     if (items) {
-      const result = getFlattenedPaths(items, value, nodePath);
+      const result = getFlattenedPaths(items, id, nodePath);
       if (result.length) {
         flattened = [...flattened, ...result];
       }
-    } else if (!value || thisNode.value === value) {
+    } else if (!id || thisNode.id === id) {
       flattened = [...flattened, nodePath];
     }
   });
@@ -21,7 +21,7 @@ export const getFlattenedPaths = (currentItems, value, path = []) => {
 
 export function restructureFlattenedTreeItemsForAutocomplete(items, sep = ' / ') {
   return {
-    value: items[items.length - 1].value,
+    id: items[items.length - 1].id,
     pathLabel: items.map(item => item.label).join(sep),
     itemLabel: items[items.length - 1].label,
   };
