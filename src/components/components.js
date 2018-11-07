@@ -22,7 +22,16 @@ const components = [
     function: 'Make a selection',
     purpose: 'Allow selection of item(s)',
     props: {
-      children: <div>This</div>,
+      children: (
+        <ul>
+          <li>
+            <button>Some option 1</button>
+          </li>
+          <li>
+            <button>Another option 2</button>
+          </li>
+        </ul>
+      ),
       onSelect: () => {},
     },
   },

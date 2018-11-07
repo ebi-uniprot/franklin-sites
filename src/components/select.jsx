@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../../dist/components/dropdown.css';
 
 const defaultLabel = 'Select';
 
