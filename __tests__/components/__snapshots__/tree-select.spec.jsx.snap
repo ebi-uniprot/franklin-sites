@@ -133,38 +133,7 @@ exports[`TreeSelect component with filter should render 1`] = `
       >
         <div
           className="dropdown-menu__panel"
-        >
-          <ul>
-            <li>
-              <button
-                className=""
-                onClick={[Function]}
-                type="button"
-              />
-            </li>
-            <li>
-              <button
-                className=""
-                onClick={[Function]}
-                type="button"
-              />
-            </li>
-            <li>
-              <button
-                className=""
-                onClick={[Function]}
-                type="button"
-              />
-            </li>
-            <li>
-              <button
-                className=""
-                onClick={[Function]}
-                type="button"
-              />
-            </li>
-          </ul>
-        </div>
+        />
       </div>
     </div>
     <div
