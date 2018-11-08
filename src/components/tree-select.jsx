@@ -22,12 +22,12 @@ class TreeSelect extends Component {
     if (node.items) {
       this.toggleNode(node);
     } else {
-      const path = getFlattenedPaths(data, node.value)[0];
+      const path = getFlattenedPaths(data, node.id)[0];
       const leafNode = path[path.length - 1];
       this.setState({
-        activeNodes: path.map(d => d.value),
+        activeNodes: path.map(d => d.id),
         selectedNode: leafNode,
-        openNodes: path.map(d => d.value),
+        openNodes: path.map(d => d.id),
       });
       onSelect(leafNode);
     }
@@ -35,10 +35,10 @@ class TreeSelect extends Component {
 
   toggleNode(node) {
     let { openNodes } = this.state;
-    if (openNodes.includes(node.value)) {
-      openNodes = openNodes.slice(0, openNodes.indexOf(node.value));
+    if (openNodes.includes(node.id)) {
+      openNodes = openNodes.slice(0, openNodes.indexOf(node.id));
     } else {
-      openNodes = [...openNodes, node.value];
+      openNodes = [...openNodes, node.id];
     }
     this.setState({ openNodes });
   }
@@ -48,15 +48,15 @@ class TreeSelect extends Component {
     return (
       <ul className={open ? 'open' : ''}>
         {data.map(node => (
-          <li key={node.value} className={node.items ? 'branch' : ''}>
+          <li key={node.id} className={node.items ? 'branch' : ''}>
             <button
               type="button"
               onClick={e => this.handleNodeClick(node, e)}
-              className={activeNodes.includes(node.value) ? 'active' : ''}
+              className={activeNodes.includes(node.id) ? 'active' : ''}
             >
               {node.label}
             </button>
-            {node.items && this.buildTree(node.items, openNodes.includes(node.value))}
+            {node.items && this.buildTree(node.items, openNodes.includes(node.id))}
           </li>
         ))}
       </ul>
@@ -72,8 +72,10 @@ class TreeSelect extends Component {
   }
 
   render() {
-    const { selectedNode, autocompleteShowDropdown } = this.state;
-    const { data, autocomplete, autocompletePlaceholder } = this.props;
+    const { selectedNode, showMenu, autocompleteShowDropdown } = this.state;
+    const {
+      data, autocomplete, autocompletePlaceholder, autocompleteFilter,
+    } = this.props;
     let autocompleteNode;
     if (autocomplete) {
       const flattenedPaths = getFlattenedPaths(data);
@@ -84,6 +86,7 @@ class TreeSelect extends Component {
           showDropwdownUpdated={this.handleAutocompleteDropwdownUpdated}
           onSelect={this.handleAutocompleteSelect}
           placeholder={autocompletePlaceholder}
+          filter={autocompleteFilter}
           clearOnSelect
         />
       );
@@ -106,11 +109,13 @@ TreeSelect.propTypes = {
   onSelect: PropTypes.func.isRequired,
   autocomplete: PropTypes.bool,
   autocompletePlaceholder: PropTypes.string,
+  autocompleteFilter: PropTypes.bool,
 };
 
 TreeSelect.defaultProps = {
   autocomplete: false,
   autocompletePlaceholder: '',
+  autocompleteFilter: true,
 };
 
 export default TreeSelect;

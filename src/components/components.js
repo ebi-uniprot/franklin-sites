@@ -45,6 +45,7 @@ const components = [
       onSelect: () => {},
       autocomplete: true,
       autocompletePlaceholder: 'Search for item',
+      autocompleteFilter: true,
     },
   },
   {
@@ -56,6 +57,7 @@ const components = [
       data: flattenedPaths,
       onSelect: () => {},
       placeholder: 'Placeholder',
+      filter: true,
     },
   },
   {
