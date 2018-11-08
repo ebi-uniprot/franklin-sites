@@ -72,7 +72,7 @@ class TreeSelect extends Component {
   }
 
   render() {
-    const { selectedNode, showMenu, autocompleteShowDropdown } = this.state;
+    const { selectedNode, autocompleteShowDropdown } = this.state;
     const {
       data, autocomplete, autocompletePlaceholder, autocompleteFilter,
     } = this.props;
