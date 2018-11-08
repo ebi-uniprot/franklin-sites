@@ -1,5 +1,4 @@
 @import "../settings";
-// @import "foundation";
 @import "../colours";
 @import "../common/z-index";
 
@@ -37,41 +36,42 @@
   .dropdown-menu__panel {
     overflow-y: auto;
     max-height: 25vh;
+  }
 
-    ul {
-      display: block;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      // overflow-y: hidden;
-      // height: auto !important;
-      li {
-        float: none !important;
+  ul {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    // overflow-y: hidden;
+    // height: auto !important;
+    li {
+      float: none !important;
+      line-height: 1.6rem;
+      background-color: $white !important;
+      button {
         line-height: 1.6rem;
-        background-color: $white !important;
-        button {
-          line-height: 1.6rem;
-          cursor: pointer;
-          width: 100%;
-          text-align: left;
-          padding: 0.5rem;
-          position: relative;
-          display: block;
-          border: none;
-          padding-right: 1rem;
-          color: $colour-black;
-          text-decoration: none;
-          margin-right: 2rem;
-          &:hover {
-            @extend .hover;
-          }
-          &.active {
-            font-weight: bold;
-          }
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem;
+        margin-right: 2rem;
+        position: relative;
+        display: block;
+        border: none;
+        padding-right: 1rem;
+        color: $colour-black;
+        text-decoration: none;
+        &:hover {
+          @extend .hover;
+        }
+        &.active {
+          font-weight: bold;
         }
       }
     }
   }
+
   // The autocomplete has a dropdown-menu inside a dropdown-menu
   // so needs to have position set to relative so its width can
   // follow its container's

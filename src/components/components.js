@@ -1,4 +1,6 @@
+import React from 'react';
 import Tile from './tile';
+import Select from './select';
 import TreeSelect from './tree-select';
 import Autocomplete from './autocomplete';
 import MainSearch from './main-search';
@@ -12,6 +14,25 @@ const components = [
     purpose: 'Advertise a specific dataset of the website and provide searchable access to it.',
     props: {
       namespace: 'uniref',
+    },
+  },
+  {
+    name: 'Select',
+    component: Select,
+    function: 'Make a selection',
+    purpose: 'Allow selection of item(s)',
+    props: {
+      children: (
+        <ul>
+          <li>
+            <button>Some option 1</button>
+          </li>
+          <li>
+            <button>Another option 2</button>
+          </li>
+        </ul>
+      ),
+      onSelect: () => {},
     },
   },
   {

@@ -1,6 +1,8 @@
 .main-search {
   display: flex;
-  #namespace-selector {
-    display: flex;
+  .dropdown-container {
+    .button {
+      display: flex;
+    }
   }
 }
