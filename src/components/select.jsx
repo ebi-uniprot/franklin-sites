@@ -10,6 +10,11 @@ class Select extends Component {
     this.state = {
       showMenu: false,
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
   }
 
   componentDidUpdate(prevProps) {
@@ -17,6 +22,17 @@ class Select extends Component {
     if (label !== prevProps.label) {
       this.setState({ showMenu: false });
     }
+  }
+
+  handleClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    this.setState({ showMenu: false });
+  }
+
+  componentDidUnMount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
   }
 
   toggleDropdown() {
@@ -28,7 +44,12 @@ class Select extends Component {
     const { children, label } = this.props;
     const { showMenu } = this.state;
     return (
-      <div className="dropdown-container">
+      <div
+        className="dropdown-container"
+        ref={(n) => {
+          this.node = n;
+        }}
+      >
         <button type="button" className="button dropdown" onClick={() => this.toggleDropdown()}>
           {label}
         </button>
