@@ -1,31 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import Select from './select';
 import '../../dist/components/main-search.css';
-
-const showDropdown = true;
 
 const MainSearch = () => (
   <div className="main-search">
     <Select label="UniProtKB">
       <ul>
         <li>
-          <button>UniProtKB - the UniProt knowledgebase</button>
+          <button type="button">UniProtKB - the UniProt knowledgebase</button>
         </li>
         <li>
-          <button>UniRef</button>
+          <button type="button">UniRef</button>
         </li>
         <li>
-          <button>UniParc</button>
+          <button type="button">UniParc</button>
         </li>
         <li>
-          <button>Proteomes</button>
+          <button type="button">Proteomes</button>
         </li>
         <li>
-          <button>Publications</button>
+          <button type="button">Publications</button>
         </li>
         <li>
-          <button>Keywords</button>
+          <button type="button">Keywords</button>
         </li>
       </ul>
     </Select>
@@ -36,10 +34,10 @@ const MainSearch = () => (
   </div>
 );
 
-MainSearch.propTypes = {
-  searchAction: PropTypes.func,
-  namespace: PropTypes.string,
-};
+MainSearch.propTypes = {};
+//   searchAction: PropTypes.func,
+//   namespace: PropTypes.string,
+// };
 
 MainSearch.defaultProps = {};
 
