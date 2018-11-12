@@ -25,10 +25,10 @@ const components = [
       children: (
         <ul>
           <li>
-            <button>Some option 1</button>
+            <button type="button">Some option 1</button>
           </li>
           <li>
-            <button>Another option 2</button>
+            <button type="button">Another option 2</button>
           </li>
         </ul>
       ),
