@@ -40,7 +40,6 @@ class Autocomplete extends Component {
     const {
       data, filter, showDropwdownUpdated, onChange,
     } = this.props;
-    const hoverIndex = -1;
     const selected = false;
     const showDropwdown = Autocomplete.shouldShowDropdown({
       textInputValue,
@@ -48,6 +47,7 @@ class Autocomplete extends Component {
       selected,
       filter,
     });
+    const hoverIndex = showDropwdown ? 0 : -1;
     showDropwdownUpdated(showDropwdown);
     this.setState({
       textInputValue,
