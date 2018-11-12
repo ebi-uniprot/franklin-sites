@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../../dist/components/dropdown.css';
 
-const defaultLabel = 'Select';
-
-class Select extends Component {
+class DropdownButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,13 +13,6 @@ class Select extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick, false);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { label } = this.props;
-    if (label !== prevProps.label) {
-      this.setState({ showMenu: false });
-    }
   }
 
   handleClick(e) {
@@ -40,14 +31,18 @@ class Select extends Component {
     this.setState({ showMenu: !showMenu });
   }
 
+  close() {
+    this.setState({ showMenu: false });
+  }
+
   render() {
     const { children, label } = this.props;
     const { showMenu } = this.state;
     return (
       <div
         className="dropdown-container"
-        ref={(n) => {
-          this.node = n;
+        ref={(el) => {
+          this.node = el;
         }}
       >
         <button type="button" className="button dropdown" onClick={() => this.toggleDropdown()}>
@@ -61,13 +56,9 @@ class Select extends Component {
   }
 }
 
-Select.propTypes = {
+DropdownButton.propTypes = {
   children: PropTypes.instanceOf(Object).isRequired,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
 };
 
-Select.defaultProps = {
-  label: defaultLabel,
-};
-
-export default Select;
+export default DropdownButton;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Tile from './tile';
-import Select from './select';
+import DropdownButton from './dropdown-button';
 import TreeSelect from './tree-select';
 import Autocomplete from './autocomplete';
 import MainSearch from './main-search';
@@ -17,20 +17,24 @@ const components = [
     },
   },
   {
-    name: 'Select',
-    component: Select,
-    function: 'Make a selection',
-    purpose: 'Allow selection of item(s)',
+    name: 'Dropdown button',
+    component: DropdownButton,
+    function: 'Shows a dropdown area when clicked',
+    purpose: 'Allow the user to perform actions',
     props: {
+      label: 'Download',
       children: (
-        <ul>
-          <li>
-            <button type="button">Some option 1</button>
-          </li>
-          <li>
-            <button type="button">Another option 2</button>
-          </li>
-        </ul>
+        <div className="dropdown-menu__content">
+          <p>Download content from:</p>
+          <ul>
+            <li>
+              <a href="//www.uniprot.org">UniProt</a>
+            </li>
+            <li>
+              <a href="//www.ensembl.org">Ensembl</a>
+            </li>
+          </ul>
+        </div>
       ),
       onSelect: () => {},
     },

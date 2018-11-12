@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getFlattenedPaths, restructureFlattenedTreeDataForAutocomplete } from '../utils';
-import Select from './select';
+import DropdownButton from './dropdown-button';
 import Autocomplete from './autocomplete';
 import '../../dist/components/tree-select.css';
 
@@ -15,6 +15,11 @@ class TreeSelect extends Component {
     };
     this.handleAutocompleteDropwdownUpdated = this.handleAutocompleteDropwdownUpdated.bind(this);
     this.handleAutocompleteSelect = this.handleAutocompleteSelect.bind(this);
+    this.setDropdownRef = this.setDropdownRef.bind(this);
+  }
+
+  setDropdownRef(element) {
+    this.dropdownElemnent = element;
   }
 
   handleNodeClick(node) {
@@ -30,6 +35,7 @@ class TreeSelect extends Component {
         openNodes: path.map(d => d.id),
       });
       onSelect(leafNode);
+      this.dropdownElemnent.close();
     }
   }
 
@@ -96,10 +102,13 @@ class TreeSelect extends Component {
       treeNode = this.buildTree(data);
     }
     return (
-      <Select label={selectedNode && selectedNode.label}>
+      <DropdownButton
+        label={selectedNode ? selectedNode.label : 'Select'}
+        ref={this.setDropdownRef}
+      >
         {autocompleteNode}
         <div className="dropdown-menu__panel">{treeNode}</div>
-      </Select>
+      </DropdownButton>
     );
   }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Select from './select';
+import DropdownButton from './dropdown-button';
 import '../../dist/components/main-search.css';
 
 const MainSearch = () => (
   <div className="main-search">
-    <Select label="UniProtKB">
+    <DropdownButton label="UniProtKB">
       <ul>
         <li>
           <button type="button">UniProtKB - the UniProt knowledgebase</button>
@@ -26,7 +26,7 @@ const MainSearch = () => (
           <button type="button">Keywords</button>
         </li>
       </ul>
-    </Select>
+    </DropdownButton>
     <input type="text" className="main-search__input" />
     <button type="button" className="button">
       Search
