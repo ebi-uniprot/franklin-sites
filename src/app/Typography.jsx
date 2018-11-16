@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 const Typography = () => (
   <Fragment>
-    <h1>Typography</h1>
+    <h1 id="type">Typography</h1>
     <section>
       <p>
         The chosen type is a sans-serif, Lato, designed by Warsaw-based designer

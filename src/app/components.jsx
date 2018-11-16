@@ -1,10 +1,10 @@
 import React from 'react';
-import Tile from './tile';
-import Select from './select';
-import TreeSelect from './tree-select';
-import Autocomplete from './autocomplete';
-import MainSearch from './main-search';
-import { treeData, flattenedPaths } from '../app/common/tree-data';
+import Tile from '../components/tile';
+import Select from '../components/select';
+import TreeSelect from '../components/tree-select';
+import Autocomplete from '../components/autocomplete';
+import MainSearch from '../components/main-search';
+import { treeData, flattenedPaths } from './common/tree-data';
 
 const components = [
   {

@@ -12,11 +12,9 @@ const FranklinHeader = () => (
       <ul className="header__navigation">
         <li>
           <Link to="/atoms">Atoms</Link>
-          {' '}
         </li>
         <li>
           <Link to="/ui-components">UI components</Link>
-          {' '}
         </li>
       </ul>
     </div>

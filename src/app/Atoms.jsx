@@ -11,6 +11,23 @@ const HomePageContent = () => (
   </Fragment>
 );
 
-const HomePage = () => <DefaultPageLayout title="Home Page" content={<HomePageContent />} />;
+const SidebarContent = () => (
+  <Fragment>
+    <li>
+      <a href="#colours">Colours</a>
+    </li>
+    <li>
+      <a href="#type">Typography</a>
+    </li>
+  </Fragment>
+);
+
+const HomePage = () => (
+  <DefaultPageLayout
+    title="Home Page"
+    content={<HomePageContent />}
+    sidebarContent={<SidebarContent />}
+  />
+);
 
 export default HomePage;
