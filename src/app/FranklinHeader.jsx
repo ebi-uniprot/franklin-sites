@@ -6,21 +6,15 @@ import Header from '../components/header';
 const FranklinHeader = () => (
   <Header>
     <div>
-      <a className="header__logo" href="/franklin">
+      <a className="header__logo" href="/franklin-sites">
         <Logo width={50} height={50} />
       </a>
       <ul className="header__navigation">
         <li>
-          <Link to="/">Home</Link>
-          {' '}
-        </li>
-        <li>
           <Link to="/atoms">Atoms</Link>
-          {' '}
         </li>
         <li>
           <Link to="/ui-components">UI components</Link>
-          {' '}
         </li>
       </ul>
     </div>
