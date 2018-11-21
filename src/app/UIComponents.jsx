@@ -28,11 +28,14 @@ const formatPattern = Component => (
 
 const UIComponentsNav = () => (
   <Fragment>
-    {components.map(component => (
-      <li>
-        <a href={`#${component.name}`}>{component.name}</a>
-      </li>
-    ))}
+    {components.map((component, index) => {
+      const key = `id_${component.name}_${index}`;
+      return (
+        <li key={key}>
+          <a href={`#${component.name}`}>{component.name}</a>
+        </li>
+      );
+    })}
   </Fragment>
 );
 
