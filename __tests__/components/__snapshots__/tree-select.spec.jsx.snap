@@ -115,7 +115,7 @@ exports[`TreeSelect component with filter should render 1`] = `
     className="dropdown-menu"
   >
     <div
-      className="dropdown-container"
+      className="autocomplete-container"
     >
       <form
         onSubmit={[Function]}
