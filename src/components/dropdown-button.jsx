@@ -9,24 +9,36 @@ class DropdownButton extends Component {
       showMenu: false,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.setContainerRef = this.setContainerRef.bind(this);
+    this.documentMousedownEventListening = false;
   }
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick);
+  }
+
+  setContainerRef(ref) {
+    this.containerRef = ref;
   }
 
   handleClick(e) {
-    if (this.node.contains(e.target)) {
+    if (this.containerRef.contains(e.target)) {
       return;
     }
     this.setState({ showMenu: false });
   }
 
   componentDidUnMount() {
-    document.removeEventListener('mousedown', this.handleClick, false);
+    if (this.documentMousedownEventListening) {
+      document.removeEventListener('mousedown', this.handleClick, false);
+    }
   }
 
   toggleDropdown() {
+    if (!this.documentMousedownEventListening) {
+      document.addEventListener('mousedown', this.handleClick, false);
+      this.documentMousedownEventListening = true;
+    }
     const { showMenu } = this.state;
     this.setState({ showMenu: !showMenu });
   }
@@ -39,12 +51,7 @@ class DropdownButton extends Component {
     const { children, label } = this.props;
     const { showMenu } = this.state;
     return (
-      <div
-        className="dropdown-container"
-        ref={(el) => {
-          this.node = el;
-        }}
-      >
+      <div className="dropdown-container" ref={this.setContainerRef}>
         <button type="button" className="button dropdown" onClick={() => this.toggleDropdown()}>
           {label}
         </button>
