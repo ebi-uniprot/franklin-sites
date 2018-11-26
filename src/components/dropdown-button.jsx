@@ -14,7 +14,9 @@ class DropdownButton extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick);
+    if (this.documentMousedownEventListening) {
+      document.removeEventListener('mousedown', this.handleClick);
+    }
   }
 
   setContainerRef(ref) {
@@ -26,12 +28,6 @@ class DropdownButton extends Component {
       return;
     }
     this.setState({ showMenu: false });
-  }
-
-  componentDidUnMount() {
-    if (this.documentMousedownEventListening) {
-      document.removeEventListener('mousedown', this.handleClick, false);
-    }
   }
 
   toggleDropdown() {
