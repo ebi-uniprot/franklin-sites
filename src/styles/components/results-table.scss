@@ -1,0 +1,55 @@
+@import "../settings";
+@import "../colours";
+
+.results-table {
+  border: 1px solid $colour-seashell-grey;
+  margin: 0 0 3em 0;
+
+  .table-head {
+    font-weight: bold;
+    background-color: $colour-light-grey;
+  }
+
+  .table-body {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .table-row {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    &.table-row-odd {
+      background-color: $colour-seashell-grey;
+    }
+  }
+
+  .table-header,
+  .table-data {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.8em 1.2em;
+    overflow: hidden;
+  }
+
+  .table-header-large,
+  .table-data-large {
+    flex: 4 1 90em;
+  }
+
+  .table-header-small,
+  .table-data-small {
+    flex: 0 1 16em;
+  }
+}
+
+@include breakpoint(small only) {
+  .results-table {
+    .table-header {
+      display: none;
+    }
+    .table-row {
+      flex-wrap: wrap;
+    }
+  }
+}
