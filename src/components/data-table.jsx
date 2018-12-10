@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../dist/components/results-table.css';
 
-const ResultsTable = ({ columns, data }) => (
+const DataTable = ({ columns, data }) => (
   <div className="results-table">
     <div className="table-head">
       <div className="table-row">
@@ -27,9 +27,9 @@ const ResultsTable = ({ columns, data }) => (
   </div>
 );
 
-ResultsTable.propTypes = {
+DataTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default ResultsTable;
+export default DataTable;

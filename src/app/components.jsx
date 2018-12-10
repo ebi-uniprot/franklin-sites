@@ -4,7 +4,7 @@ import DropdownButton from '../components/dropdown-button';
 import TreeSelect from '../components/tree-select';
 import Autocomplete from '../components/autocomplete';
 import MainSearch from '../components/main-search';
-import ResultsTable from '../components/results-table';
+import DataTable from '../components/data-table';
 import { treeData, flattenedPaths } from './common/tree-data';
 
 const components = [
@@ -73,8 +73,8 @@ const components = [
     props: {},
   },
   {
-    name: 'Results table',
-    component: ResultsTable,
+    name: 'Data table',
+    component: DataTable,
     function: '',
     purpose: '',
     props: {
