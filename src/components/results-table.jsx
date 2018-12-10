@@ -15,9 +15,9 @@ const ResultsTable = ({ columns, data }) => (
     </div>
     <div className="table-body">
       {data.map((row, i) => (
-        <div className={i % 2 === 0 ? 'table-row' : 'table-row table-row-odd'}>
+        <div className={i % 2 === 0 ? 'table-row' : 'table-row table-row-odd'} key={row.id}>
           {columns.map(column => (
-            <div className="table-data" key={column.name}>
+            <div className="table-data" key={`${row.id}_${column.name}`}>
               {column.render(row)}
             </div>
           ))}
@@ -28,8 +28,8 @@ const ResultsTable = ({ columns, data }) => (
 );
 
 ResultsTable.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.obj).isRequired,
-  data: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ResultsTable;
