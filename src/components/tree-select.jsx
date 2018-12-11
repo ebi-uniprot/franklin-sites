@@ -8,10 +8,12 @@ import '../../dist/components/tree-select.css';
 class TreeSelect extends Component {
   constructor(props) {
     super(props);
+    const { value } = props;
     this.state = {
       activeNodes: [],
       openNodes: [],
       autocompleteShowDropdown: false,
+      selectedNode: value,
     };
     this.handleAutocompleteDropwdownUpdated = this.handleAutocompleteDropwdownUpdated.bind(this);
     this.handleAutocompleteSelect = this.handleAutocompleteSelect.bind(this);
@@ -119,12 +121,14 @@ TreeSelect.propTypes = {
   autocomplete: PropTypes.bool,
   autocompletePlaceholder: PropTypes.string,
   autocompleteFilter: PropTypes.bool,
+  value: PropTypes.shape({}),
 };
 
 TreeSelect.defaultProps = {
   autocomplete: false,
   autocompletePlaceholder: '',
   autocompleteFilter: true,
+  value: undefined,
 };
 
 export default TreeSelect;
