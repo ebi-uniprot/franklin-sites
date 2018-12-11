@@ -24,8 +24,9 @@ class Autocomplete extends Component {
 
   constructor(props) {
     super(props);
+    const { value } = props;
     this.state = {
-      textInputValue: '',
+      textInputValue: value || '',
       hoverIndex: -1,
       selected: false,
     };
@@ -161,6 +162,7 @@ Autocomplete.defaultProps = {
   clearOnSelect: false,
   placeholder: '',
   filter: true,
+  value: '',
 };
 
 Autocomplete.propTypes = {
@@ -171,6 +173,7 @@ Autocomplete.propTypes = {
   clearOnSelect: PropTypes.bool,
   placeholder: PropTypes.string,
   filter: PropTypes.bool,
+  value: PropTypes.string,
 };
 
 export default Autocomplete;
