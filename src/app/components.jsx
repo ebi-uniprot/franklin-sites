@@ -70,7 +70,9 @@ const components = [
     component: MainSearch,
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
-    props: {},
+    props: {
+      handleSearchSubmit: searchTerm => console.log(searchTerm),
+    },
   },
   {
     name: 'Data table',
