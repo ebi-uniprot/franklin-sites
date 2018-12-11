@@ -4,6 +4,7 @@ import DropdownButton from '../components/dropdown-button';
 import TreeSelect from '../components/tree-select';
 import Autocomplete from '../components/autocomplete';
 import MainSearch from '../components/main-search';
+import DataTable from '../components/data-table';
 import { treeData, flattenedPaths } from './common/tree-data';
 
 const components = [
@@ -70,6 +71,46 @@ const components = [
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
     props: {},
+  },
+  {
+    name: 'Data table',
+    component: DataTable,
+    function: '',
+    purpose: '',
+    props: {
+      columns: [
+        {
+          label: 'Column 1',
+          name: 'col1',
+          render: row => <span>{row.fieldValue1.value}</span>,
+        },
+        {
+          label: 'Column 2',
+          name: 'col2',
+          render: row => <span>{row.fieldValue2.value}</span>,
+        },
+      ],
+      data: [
+        {
+          id: 'blah1',
+          fieldValue1: {
+            value: 'Some data 1',
+          },
+          fieldValue2: {
+            value: 'Some data 2',
+          },
+        },
+        {
+          id: 'blah2',
+          fieldValue1: {
+            value: 'Some data A',
+          },
+          fieldValue2: {
+            value: 'Some data B',
+          },
+        },
+      ],
+    },
   },
 ];
 
