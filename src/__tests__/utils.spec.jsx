@@ -3,8 +3,8 @@ import {
   getLastIndexOfSubstringIgnoreCase,
   restructureFlattenedTreeDataForAutocomplete,
   restructureFlattenedTreeItemsForAutocomplete,
-} from '../src/utils';
-import { treeData } from '../src/app/common/tree-data';
+} from '../utils';
+import { treeData } from '../app/common/tree-data';
 
 test('should get all paths', () => {
   const path = getFlattenedPaths(treeData);

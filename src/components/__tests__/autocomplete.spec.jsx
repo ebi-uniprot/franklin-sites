@@ -1,27 +1,29 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Autocomplete from '../../src/components/autocomplete';
-import { flattenedPaths } from '../../src/app/common/tree-data';
+import Autocomplete from '../autocomplete';
+import { flattenedPaths } from '../../app/common/tree-data';
 
 describe('Autocomplete component', () => {
   test('should render', () => {
-    const component = renderer.create(
-      <Autocomplete data={flattenedPaths} onSelect={d => d} />,
-    ).toJSON();
+    const component = renderer
+      .create(<Autocomplete data={flattenedPaths} onSelect={d => d} />)
+      .toJSON();
     expect(component).toMatchSnapshot();
   });
 });
 
 describe('Autocomplete component with props: showDropwdownUpdated & clearOnSelect', () => {
   test('should render', () => {
-    const component = renderer.create(
-      <Autocomplete
-        data={flattenedPaths}
-        onSelect={d => d}
-        showDropwdownUpdated={d => d}
-        clearOnSelect
-      />,
-    ).toJSON();
+    const component = renderer
+      .create(
+        <Autocomplete
+          data={flattenedPaths}
+          onSelect={d => d}
+          showDropwdownUpdated={d => d}
+          clearOnSelect
+        />,
+      )
+      .toJSON();
     expect(component).toMatchSnapshot();
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import AutocompleteItem from '../../src/components/autocomplete-item';
+import AutocompleteItem from '../autocomplete-item';
 
 describe('AutocompleteItem component', () => {
   test('should render', () => {
@@ -10,15 +10,17 @@ describe('AutocompleteItem component', () => {
       value: 'item',
     };
     const active = false;
-    const component = renderer.create(
-      <AutocompleteItem
-        item={item}
-        active={active}
-        substringToHighlight="item"
-        key="key"
-        handleOnClick={d => d}
-      />,
-    ).toJSON();
+    const component = renderer
+      .create(
+        <AutocompleteItem
+          item={item}
+          active={active}
+          substringToHighlight="item"
+          key="key"
+          handleOnClick={d => d}
+        />,
+      )
+      .toJSON();
     expect(component).toMatchSnapshot();
   });
 });

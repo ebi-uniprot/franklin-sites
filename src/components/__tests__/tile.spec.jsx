@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Tile from '../../src/components/tile';
+import Tile from '../tile';
 
 describe('Tile component', () => {
   test('should render', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import TreeSelect from '../../src/components/tree-select';
-import { treeData } from '../../src/app/common/tree-data';
+import TreeSelect from '../tree-select';
+import { treeData } from '../../app/common/tree-data';
 
 describe('TreeSelect component', () => {
   test('should render', () => {
@@ -12,13 +12,9 @@ describe('TreeSelect component', () => {
 
 describe('TreeSelect component with filter', () => {
   test('should render', () => {
-    const component = renderer.create(
-      <TreeSelect
-        data={treeData}
-        onSelect={d => d}
-        autocomplete
-      />,
-    ).toJSON();
+    const component = renderer
+      .create(<TreeSelect data={treeData} onSelect={d => d} autocomplete />)
+      .toJSON();
     expect(component).toMatchSnapshot();
   });
 });
