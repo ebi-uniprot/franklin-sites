@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../dist/components/results-table.css';
+import '../styles/components/results-table.scss';
 
 const DataTable = ({ columns, data }) => (
   <div className="results-table">

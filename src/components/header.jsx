@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import '../../dist/components/header.css';
+import '../styles/components/header.scss';
 
 const Header = ({
   logo, links, search, isNegative,

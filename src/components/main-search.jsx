@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DropdownButton from './dropdown-button';
-import '../../dist/components/main-search.css';
+import '../styles/components/main-search.scss';
 
 class MainSearch extends Component {
   constructor(props) {

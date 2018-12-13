@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../../dist/components/dropdown.css';
-import '../../dist/components/autocomplete.css';
+import '../styles/components/dropdown.scss';
+import '../styles/components/autocomplete.scss';
 import AutocompleteItem from './autocomplete-item';
 import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 

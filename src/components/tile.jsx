@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../dist/components/tile.css';
+import '../styles/components/tile.scss';
 
 const Tile = ({ namespace, title, description }) => (
   <div className={namespace ? `tile tile-${namespace}` : 'tile'}>

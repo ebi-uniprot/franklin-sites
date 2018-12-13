@@ -1,5 +1,5 @@
-@import 'settings';
-@import 'foundation';
+@import "settings";
+@import "~foundation-sites/scss/foundation";
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;

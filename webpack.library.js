@@ -34,9 +34,21 @@ module.exports = [
           },
         },
         {
-          test: /\.css/,
-          exclude: /(node_modules)/,
-          use: ['style-loader', 'css-loader'],
+          test: /\.(scss|sass|css)$/,
+          use: [
+            {
+              loader: 'style-loader', // creates style nodes from JS strings
+            },
+            {
+              loader: 'css-loader', // translates CSS into CommonJS
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [path.resolve(__dirname, 'src/styles')],
+              },
+            },
+          ],
         },
       ],
     },
