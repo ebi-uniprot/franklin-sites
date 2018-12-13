@@ -16,10 +16,16 @@ const formatPattern = Component => (
         <h5>Function</h5>
         <p>{Component.function}</p>
         <h5>Props</h5>
-        <pre>
+        <div>
           {Component.props
-            && Object.entries(Component.props).map(prop => `${prop[0]}: ${prop[1]}\n`)}
-        </pre>
+            && Object.entries(Component.props).map(prop => (
+              <div>
+                <strong>{prop[0]}</strong>
+:
+                {JSON.stringify(prop[1])}
+              </div>
+            ))}
+        </div>
       </div>
     </div>
     <hr />
