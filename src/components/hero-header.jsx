@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../dist/components/header.css';
+import '../styles/components/header.scss';
 
 const HeroHeader = ({ title, children, footer }) => (
   <div className="hero-header">
