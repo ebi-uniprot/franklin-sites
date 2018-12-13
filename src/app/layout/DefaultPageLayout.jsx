@@ -8,7 +8,7 @@ import FranklinHeader from '../FranklinHeader';
 const DefaultPageLayout = ({ content, sidebarContent }) => (
   <Fragment>
     <FranklinHeader />
-    <div className="default-page-layout grid-container">
+    <div className="default-page-layout ">
       <DefaultPageContent>{content}</DefaultPageContent>
       <Sidebar>{sidebarContent}</Sidebar>
     </div>

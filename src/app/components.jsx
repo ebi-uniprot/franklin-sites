@@ -5,7 +5,9 @@ import TreeSelect from '../components/tree-select';
 import Autocomplete from '../components/autocomplete';
 import MainSearch from '../components/main-search';
 import DataTable from '../components/data-table';
+import HeroHeader from '../components/hero-header';
 import { treeData, flattenedPaths } from './common/tree-data';
+import lipsum from './common/lipsum';
 
 const components = [
   {
@@ -72,6 +74,17 @@ const components = [
     purpose: 'Allow selection of item from flat data set',
     props: {
       handleSearchSubmit: searchTerm => console.log(searchTerm),
+    },
+  },
+  {
+    name: 'Hero header',
+    component: HeroHeader,
+    function: 'Tell the user what the resource is about and offer a way in',
+    purpose: 'Provide an entry point',
+    props: {
+      title: 'Title',
+      children: <input type="text" />,
+      footer: lipsum.substring(0, 150),
     },
   },
   {
