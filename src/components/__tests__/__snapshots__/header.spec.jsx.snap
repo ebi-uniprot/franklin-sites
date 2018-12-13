@@ -4,8 +4,28 @@ exports[`Header component should render 1`] = `
 <div
   className="header"
 >
-  <span>
-    Hello
-  </span>
+  <div
+    className="header__logo"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    />
+  </div>
+  <ul
+    className="header__navigation"
+  >
+    <li>
+      <a
+        href="/there"
+        onClick={[Function]}
+      >
+        there
+      </a>
+    </li>
+  </ul>
+  <div
+    className="header__search"
+  />
 </div>
 `;

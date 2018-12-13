@@ -3,7 +3,33 @@
 
 .header,
 .hero-header {
+  display: flex;
+  align-items: center;
+  align-content: center;
   color: $colour-white;
+  &.header--negative {
+    color: $colour-dark-blue;
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: $colour-dark-blue;
+    }
+    background: $colour-white;
+    .header__logo {
+      svg {
+        stroke: $colour-dark-blue;
+        fill: $colour-dark-blue;
+        circle {
+          stroke: $colour-dark-blue;
+        }
+        path {
+          fill: $colour-dark-blue;
+        }
+      }
+    }
+  }
   padding: 0.5em 1em;
   a,
   a:link,
@@ -22,7 +48,7 @@
   &__logo {
     display: inline-block;
     svg {
-      margin-bottom: -1em;
+      // margin-bottom: -1em;
       stroke: $colour-white;
       fill: $colour-white;
       circle {
@@ -36,12 +62,20 @@
   &__navigation {
     list-style: none;
     display: inline-block;
+    margin: 0;
     a:hover {
       border-bottom: 1px solid $colour-white;
     }
     li {
       display: inline-block;
       margin: 0 0.7em;
+    }
+  }
+  &__search {
+    flex: 4 4 auto;
+    input,
+    button {
+      margin: 0;
     }
   }
 }

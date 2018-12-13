@@ -19,7 +19,7 @@ const formatPattern = Component => (
         <div>
           {Component.props
             && Object.entries(Component.props).map(prop => (
-              <div>
+              <div key={prop[0]}>
                 <strong>{prop[0]}</strong>
 :
                 {JSON.stringify(prop[1])}
