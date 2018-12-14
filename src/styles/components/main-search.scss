@@ -1,5 +1,9 @@
 .main-search {
   display: flex;
+  input,
+  button {
+    margin: 0;
+  }
   .dropdown-container {
     .button {
       display: flex;

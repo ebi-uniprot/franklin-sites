@@ -8,6 +8,7 @@
   align-content: center;
   color: $colour-white;
   &.header--negative {
+    justify-content: space-between;
     color: $colour-dark-blue;
     a,
     a:link,
@@ -19,13 +20,13 @@
     background: $colour-white;
     .header__logo {
       svg {
-        stroke: $colour-dark-blue;
-        fill: $colour-dark-blue;
+        stroke: $colour-uniprot-blue;
+        fill: $colour-uniprot-blue;
         circle {
-          stroke: $colour-dark-blue;
+          stroke: $colour-uniprot-blue;
         }
         path {
-          fill: $colour-dark-blue;
+          fill: $colour-uniprot-blue;
         }
       }
     }
@@ -35,7 +36,8 @@
   a:link,
   a:visited,
   a:hover,
-  a:active {
+  a:active,
+  button {
     color: $colour-white;
   }
   background: linear-gradient(
@@ -86,6 +88,11 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2em;
+  -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
   .hero-header__title {
     h1 {
@@ -98,9 +105,13 @@
 
   .hero-header__content {
     flex: 2 1 auto;
+    width: 90%;
   }
 
   .hero-header__footer {
     flex: 0 1 auto;
+  }
+  label {
+    color: $colour-white;
   }
 }
