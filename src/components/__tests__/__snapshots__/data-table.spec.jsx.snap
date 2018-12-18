@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable component should render 1`] = `
+<div
+  className="results-table"
+>
+  <div
+    className="table-head"
+  >
+    <div
+      className="table-row"
+    >
+      <div
+        className="table-header"
+      >
+        Column 1
+      </div>
+      <div
+        className="table-header"
+      >
+        Column 2
+      </div>
+    </div>
+  </div>
+  <div
+    className="table-body"
+  >
+    <div
+      className="table-row"
+    >
+      <div
+        className="table-data"
+      >
+        <span>
+          Some data 1
+        </span>
+      </div>
+      <div
+        className="table-data"
+      >
+        <span>
+          Some data 2
+        </span>
+      </div>
+    </div>
+    <div
+      className="table-row table-row-odd"
+    >
+      <div
+        className="table-data"
+      >
+        <span>
+          Some data A
+        </span>
+      </div>
+      <div
+        className="table-data"
+      >
+        <span>
+          Some data B
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
