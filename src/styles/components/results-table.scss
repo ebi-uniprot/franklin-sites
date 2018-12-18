@@ -32,6 +32,18 @@
     overflow: hidden;
   }
 
+  .table-header-select,
+  .table-data-select {
+    box-sizing: border-box;
+    width: 0;
+    padding: 0.8em 1.2em;
+    overflow: hidden;
+  }
+
+  [type="checkbox"] {
+    margin: 0;
+  }
+
   .table-header-large,
   .table-data-large {
     flex: 4 1 90em;

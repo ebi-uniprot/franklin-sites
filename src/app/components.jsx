@@ -93,6 +93,11 @@ const components = [
     function: '',
     purpose: '',
     props: {
+      selectable: true,
+      selected: {},
+      onSelect: (rowId) => {
+        console.log(rowId, 'selected');
+      },
       columns: [
         {
           label: 'Column 1',
