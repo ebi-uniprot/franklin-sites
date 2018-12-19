@@ -26,7 +26,7 @@ exports[`DataTable component should render 1`] = `
     className="table-body"
   >
     <div
-      className="table-row"
+      className="table-row-even"
     >
       <div
         className="table-data"
@@ -44,7 +44,7 @@ exports[`DataTable component should render 1`] = `
       </div>
     </div>
     <div
-      className="table-row table-row-odd"
+      className="table-row-odd"
     >
       <div
         className="table-data"
