@@ -94,7 +94,7 @@ const components = [
     purpose: '',
     props: {
       selectable: true,
-      selected: {},
+      selected: { blah3: true },
       onSelect: (rowId) => {
         console.log(rowId, 'selected');
       },
@@ -127,6 +127,15 @@ const components = [
           },
           fieldValue2: {
             value: 'Some data B',
+          },
+        },
+        {
+          id: 'blah3',
+          fieldValue1: {
+            value: 'Some data α',
+          },
+          fieldValue2: {
+            value: 'Some data β',
           },
         },
       ],

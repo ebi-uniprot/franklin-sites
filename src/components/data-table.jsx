@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/results-table.scss';
 
+const getRowClassName = (index, selected = false) => {
+  if (selected) {
+    return 'table-row-selected';
+  }
+  return index % 2 === 0 ? 'table-row-even' : 'table-row-odd';
+};
+
 const DataTable = ({
   columns, data, selectable = false, selected = {}, onSelect,
 }) => (
@@ -9,7 +16,7 @@ const DataTable = ({
     <div className="table-head">
       <div className="table-row">
         {selectable && (
-          <div className="table-header-select" key="select">
+          <div className="table-header-checkbox" key="select">
             {''}
           </div>
         )}
@@ -22,9 +29,9 @@ const DataTable = ({
     </div>
     <div className="table-body">
       {data.map((row, i) => (
-        <div className={i % 2 === 0 ? 'table-row' : 'table-row table-row-odd'} key={row.id}>
+        <div className={getRowClassName(i, row.id in selected)} key={row.id}>
           {selectable && (
-            <div className="table-data-select" key={`${row.id}_select`}>
+            <div className="table-data-checkbox" key={`${row.id}_select`}>
               <input
                 id={row.id}
                 type="checkbox"
