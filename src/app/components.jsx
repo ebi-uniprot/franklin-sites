@@ -6,8 +6,10 @@ import Autocomplete from '../components/autocomplete';
 import MainSearch from '../components/main-search';
 import DataTable from '../components/data-table';
 import HeroHeader from '../components/hero-header';
+import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
 import lipsum from './common/lipsum';
+import facetData from './common/facetData';
 
 const components = [
   {
@@ -125,6 +127,19 @@ const components = [
           },
         },
       ],
+    },
+  },
+  {
+    name: 'Facets',
+    component: Facets,
+    function: '',
+    purpose: '',
+    props: {
+      data: facetData,
+      selectedFacets: {
+        facet_2: ['value_2'],
+      },
+      toggleFacet: () => console.log('facet toggled'),
     },
   },
 ];
