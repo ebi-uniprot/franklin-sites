@@ -24,7 +24,7 @@ const facetData = [
       {
         label: 'Value 1',
         value: 'value_1',
-        count: 764,
+        count: 764879,
       },
       {
         label: 'Value 2',

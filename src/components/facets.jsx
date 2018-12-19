@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { formatLargeNumber } from '../utils';
 
 import '../styles/components/facets.scss';
 
@@ -35,7 +36,7 @@ class Facets extends Component {
                     className={this.isActive(facet.name, value.value) ? 'facet-active' : ''}
                   >
                     <button type="button" onClick={() => toggleFacet(facet.name, value.value)}>
-                      {value.label}
+                      {`${value.label} (${formatLargeNumber(value.count)})`}
                     </button>
                   </li>
                 ))}
