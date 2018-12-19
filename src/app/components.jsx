@@ -93,6 +93,11 @@ const components = [
     function: '',
     purpose: '',
     props: {
+      selectable: true,
+      selected: { blah3: true },
+      onSelect: (rowId) => {
+        console.log(rowId, 'selected');
+      },
       columns: [
         {
           label: 'Column 1',
@@ -122,6 +127,15 @@ const components = [
           },
           fieldValue2: {
             value: 'Some data B',
+          },
+        },
+        {
+          id: 'blah3',
+          fieldValue1: {
+            value: 'Some data α',
+          },
+          fieldValue2: {
+            value: 'Some data β',
           },
         },
       ],

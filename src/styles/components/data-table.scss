@@ -1,7 +1,7 @@
 @import "../settings";
 @import "../colours";
 
-.results-table {
+.data-table {
   border: 1px solid $colour-seashell-grey;
   margin: 0 0 3em 0;
 
@@ -19,9 +19,21 @@
     display: flex;
     width: 100%;
     flex-wrap: nowrap;
-    &.table-row-odd {
-      background-color: $colour-seashell-grey;
-    }
+  }
+
+  .table-row-even {
+    @extend .table-row;
+  }
+
+  .table-row-odd {
+    @extend .table-row;
+    background-color: $colour-seashell-grey;
+  }
+
+  .table-row-selected {
+    @extend .table-row;
+    background-color: $colour-light-blue;
+    border-bottom: 1px solid $colour-white;
   }
 
   .table-header,
@@ -30,6 +42,18 @@
     width: 100%;
     padding: 0.8em 1.2em;
     overflow: hidden;
+  }
+
+  .table-header-checkbox,
+  .table-data-checkbox {
+    box-sizing: border-box;
+    width: 0;
+    padding: 0.8em 1.2em;
+    overflow: hidden;
+  }
+
+  [type="checkbox"] {
+    margin: 0;
   }
 
   .table-header-large,
@@ -44,7 +68,7 @@
 }
 
 @include breakpoint(small only) {
-  .results-table {
+  .data-table {
     .table-header {
       display: none;
     }
