@@ -52,6 +52,11 @@ class Facets extends Component {
 Facets.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   toggleFacet: PropTypes.func.isRequired,
-  selectedFacets: PropTypes.object.isRequired,
+  selectedFacets: PropTypes.shape({}),
 };
+
+Facets.defaultProps = {
+  selectedFacets: {},
+};
+
 export default Facets;
