@@ -2,7 +2,7 @@
 
 exports[`DataTable component should render 1`] = `
 <div
-  className="results-table"
+  className="data-table"
 >
   <div
     className="table-head"

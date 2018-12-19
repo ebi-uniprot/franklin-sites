@@ -1,7 +1,7 @@
 @import "../settings";
 @import "../colours";
 
-.results-table {
+.data-table {
   border: 1px solid $colour-seashell-grey;
   margin: 0 0 3em 0;
 
@@ -68,7 +68,7 @@
 }
 
 @include breakpoint(small only) {
-  .results-table {
+  .data-table {
     .table-header {
       display: none;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/results-table.scss';
+import '../styles/components/data-table.scss';
 
 const getRowClassName = (index, selected = false) => {
   if (selected) {
@@ -12,7 +12,7 @@ const getRowClassName = (index, selected = false) => {
 const DataTable = ({
   columns, data, selectable = false, selected = {}, onSelect,
 }) => (
-  <div className="results-table">
+  <div className="data-table">
     <div className="table-head">
       <div className="table-row">
         {selectable && (
