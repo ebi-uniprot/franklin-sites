@@ -103,11 +103,14 @@ const components = [
           label: 'Column 1',
           name: 'col1',
           render: row => <span>{row.fieldValue1.value}</span>,
+          sortable: true,
         },
         {
           label: 'Column 2',
           name: 'col2',
           render: row => <span>{row.fieldValue2.value}</span>,
+          sorted: 'ascend',
+          sortable: true,
         },
       ],
       data: [

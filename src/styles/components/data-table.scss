@@ -1,5 +1,6 @@
 @import "../settings";
 @import "../colours";
+@import "../mixins";
 
 .data-table {
   border: 1px solid $colour-seashell-grey;
@@ -42,6 +43,27 @@
     width: 100%;
     padding: 0.8em 1.2em;
     overflow: hidden;
+  }
+
+  .table-header-ascend {
+    @extend .table-header;
+    &::after {
+      @include chevron(up, $black);
+    }
+  }
+
+  .table-header-descend {
+    @extend .table-header;
+    &::after {
+      @include chevron(down, $black);
+    }
+  }
+
+  .table-header-sortable {
+    @extend .table-header;
+    &::after {
+      @include chevron(down, $colour-seashell-grey);
+    }
   }
 
   .table-header-checkbox,

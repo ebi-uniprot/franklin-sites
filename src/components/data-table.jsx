@@ -9,6 +9,13 @@ const getRowClassName = (index, selected = false) => {
   return index % 2 === 0 ? 'table-row-even' : 'table-row-odd';
 };
 
+const getColumnClassName = (column) => {
+  if ('sorted' in column) {
+    return column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
+  }
+  return 'sortable' in column ? 'table-header-sortable' : 'table-header';
+};
+
 const DataTable = ({
   columns, data, selectable = false, selected = {}, onSelect,
 }) => (
@@ -21,7 +28,7 @@ const DataTable = ({
           </div>
         )}
         {columns.map(column => (
-          <div className="table-header" key={column.name}>
+          <div className={getColumnClassName(column)} key={column.name}>
             {column.label}
           </div>
         ))}
