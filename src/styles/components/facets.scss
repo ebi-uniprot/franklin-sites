@@ -1,0 +1,33 @@
+@import "../settings";
+@import "../colours";
+
+.facets {
+  .facet-name {
+    color: $colour-dark-grey;
+    font-weight: 800;
+    margin-bottom: $global-margin / 4;
+  }
+
+  & > ul > li {
+    padding-bottom: $global-margin / 2;
+    margin-bottom: $global-margin / 2;
+    border-bottom: 1px solid $colour-medium-grey;
+    button {
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: $global-margin / 3;
+      &:hover {
+        background: $colour-light-grey;
+      }
+    }
+    li.facet-active button {
+      font-weight: bold;
+      background: $colour-seashell-grey;
+      &:hover {
+        background: $colour-light-grey;
+      }
+    }
+  }
+}

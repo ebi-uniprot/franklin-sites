@@ -6,3 +6,4 @@ export { default as TreeSelect } from './tree-select';
 export { default as Autocomplete } from './autocomplete';
 export { default as MainSearch } from './main-search';
 export { default as DataTable } from './data-table';
+export { default as Facets } from './facets';

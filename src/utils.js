@@ -30,3 +30,7 @@ export function restructureFlattenedTreeItemsForAutocomplete(items, sep = ' / ')
 export function restructureFlattenedTreeDataForAutocomplete(flattenedTreeData) {
   return flattenedTreeData.map(items => restructureFlattenedTreeItemsForAutocomplete(items));
 }
+
+export function formatLargeNumber(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
