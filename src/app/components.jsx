@@ -139,7 +139,7 @@ const components = [
       selectedFacets: {
         facet_2: ['value_2'],
       },
-      toggleFacet: () => console.log('facet toggled'),
+      toggleFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
     },
   },
 ];
