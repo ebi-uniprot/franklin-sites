@@ -12,10 +12,7 @@ class Facets extends Component {
 
   isActive(facetName, facetValue) {
     const { selectedFacets } = this.props;
-    if (facetName in selectedFacets && selectedFacets[facetName].includes(facetValue)) {
-      return true;
-    }
-    return false;
+    return facetName in selectedFacets && selectedFacets[facetName].includes(facetValue);
   }
 
   render() {
