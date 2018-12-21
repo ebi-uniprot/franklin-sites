@@ -98,6 +98,9 @@ const components = [
       onSelect: (rowId) => {
         console.log(rowId, 'selected');
       },
+      onHeaderClick: (columnName) => {
+        console.log(columnName);
+      },
       columns: [
         {
           label: 'Column 1',
