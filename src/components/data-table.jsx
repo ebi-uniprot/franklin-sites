@@ -2,27 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/data-table.scss';
 
-const getRowClassName = (index, selected = false) => {
-  if (selected) {
-    return 'table-row-selected';
-  }
-  return index % 2 === 0 ? 'table-row-even' : 'table-row-odd';
-};
-
-const getColumnClassName = (column) => {
-  if ('sorted' in column) {
-    return column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
-  }
-  console.log(column);
-  return column.sortable ? 'table-header-sortable' : 'table-header';
-};
-
 class DataTable extends Component {
-  //   columns, data, selectable = false, selected = {}, onSelect,
-  // }) =>
   constructor(props) {
     super(props);
     this.handleHeaderKeyPress = this.handleHeaderKeyPress.bind(this);
+  }
+
+  static getRowClassName(index, selected = false) {
+    if (selected) {
+      return 'table-row-selected';
+    }
+    return index % 2 === 0 ? 'table-row-even' : 'table-row-odd';
+  }
+
+  static getSortableColumnClassName(column) {
+    if ('sorted' in column) {
+      return column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
+    }
+    return 'table-header-sortable';
   }
 
   handleHeaderKeyPress(event, columnName) {
@@ -54,14 +51,14 @@ class DataTable extends Component {
               <button
                 type="button"
                 key={column.name}
-                className={getColumnClassName(column)}
+                className={DataTable.getSortableColumnClassName(column)}
                 onClick={() => onHeaderClick(column.name)}
                 onKeyPress={() => this.handleHeaderKeyPress(column.name)}
               >
                 {column.label}
               </button>
             ) : (
-              <div key={column.name} className={getColumnClassName(column)}>
+              <div key={column.name} className="table-header">
                 {column.label}
               </div>
             )))}
@@ -69,7 +66,7 @@ class DataTable extends Component {
         </div>
         <div className="table-body">
           {data.map((row, i) => (
-            <div className={getRowClassName(i, row.id in selected)} key={row.id}>
+            <div className={DataTable.getRowClassName(i, row.id in selected)} key={row.id}>
               {selectable && (
                 <div className="table-data-checkbox" key={`${row.id}_select`}>
                   <input
