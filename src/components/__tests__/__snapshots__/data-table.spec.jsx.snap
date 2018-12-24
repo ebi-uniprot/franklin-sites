@@ -15,11 +15,14 @@ exports[`DataTable component should render 1`] = `
       >
         Column 1
       </div>
-      <div
-        className="table-header"
+      <button
+        className="table-header-ascend"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        type="button"
       >
         Column 2
-      </div>
+      </button>
     </div>
   </div>
   <div
