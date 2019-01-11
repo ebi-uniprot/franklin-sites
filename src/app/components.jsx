@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Tile from '../components/tile';
 import DropdownButton from '../components/dropdown-button';
 import TreeSelect from '../components/tree-select';
@@ -10,6 +10,27 @@ import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
 import lipsum from './common/lipsum';
 import facetData from './common/facetData';
+
+class MainSearchWrapper extends Component {
+  constructor(props) {
+    super(props);
+    const { searchTerm } = this.props;
+    this.state = { searchTerm };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(searchTerm) {
+    this.setState({ searchTerm });
+    console.log('Main search change:', searchTerm);
+  }
+
+  render() {
+    const { searchTerm } = this.state;
+    return (
+      <MainSearch {...this.props} searchTerm={searchTerm} onChange={v => this.handleChange(v)} />
+    );
+  }
+}
 
 const components = [
   {
@@ -71,11 +92,14 @@ const components = [
   },
   {
     name: 'Main search',
-    component: MainSearch,
+    component: MainSearchWrapper,
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
     props: {
-      handleSearchSubmit: searchTerm => console.log(searchTerm),
+      onSubmit: (e) => {
+        e.preventDefault();
+        console.log('Main search submit');
+      },
     },
   },
   {
