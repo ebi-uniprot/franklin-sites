@@ -180,10 +180,9 @@ const components = [
     purpose: '',
     props: {
       data: facetData,
-      selectedFacets: {
-        facet_2: ['value_2'],
-      },
-      toggleFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+      selectedFacets: [{ name: 'facet_2', value: 'value_2' }],
+      addFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+      removeFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
     },
   },
 ];
