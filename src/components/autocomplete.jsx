@@ -36,6 +36,14 @@ class Autocomplete extends Component {
     this.handleNodeSelect = this.handleNodeSelect.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { value } = this.props;
+    const { value: prevValue } = prevProps;
+    if (value !== prevValue) {
+      this.setState({ textInputValue: value });
+    }
+  }
+
   handleInputChange(event) {
     const { value: textInputValue } = event.target;
     const {
