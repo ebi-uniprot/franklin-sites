@@ -33,10 +33,11 @@ class Facets extends Component {
     if (!data) {
       return null;
     }
+    const facetsToShow = data.filter(facet => facet.values && facet.values.length > 0);
     return (
       <div className="facets">
         <ul className="no-bullet">
-          {data.map(facet => (
+          {facetsToShow.map(facet => (
             <li key={facet.name}>
               <div className="facet-name">{facet.label}</div>
               <ul className="no-bullet">
@@ -46,7 +47,9 @@ class Facets extends Component {
                     className={this.isActive(facet.name, value.value) ? 'facet-active' : ''}
                   >
                     <button type="button" onClick={() => this.handleClick(facet.name, value.value)}>
-                      {`${value.label} (${formatLargeNumber(value.count)})`}
+                      {`${value.label ? value.label : value.value} (${formatLargeNumber(
+                        value.count,
+                      )})`}
                     </button>
                   </li>
                 ))}

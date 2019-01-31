@@ -36,6 +36,14 @@ class Autocomplete extends Component {
     this.handleNodeSelect = this.handleNodeSelect.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { value } = this.props;
+    const { value: prevValue } = prevProps;
+    if (value !== prevValue) {
+      this.setState({ textInputValue: value });
+    }
+  }
+
   handleInputChange(event) {
     const { value: textInputValue } = event.target;
     const {
@@ -48,11 +56,9 @@ class Autocomplete extends Component {
       selected,
       filter,
     });
-    const hoverIndex = showDropwdown ? 0 : -1;
     showDropwdownUpdated(showDropwdown);
     this.setState({
       textInputValue,
-      hoverIndex,
       selected,
     });
     onChange(textInputValue);
@@ -76,8 +82,9 @@ class Autocomplete extends Component {
 
   handleNodeSelect(item) {
     const { onSelect, clearOnSelect, showDropwdownUpdated } = this.props;
+    const textInputValue = item.pathLabel ? item.pathLabel : item;
     this.setState({
-      textInputValue: clearOnSelect ? '' : item.pathLabel,
+      textInputValue: clearOnSelect ? '' : textInputValue,
       hoverIndex: -1,
       selected: true,
     });
@@ -103,6 +110,9 @@ class Autocomplete extends Component {
       const options = filter ? Autocomplete.filterOptions(data, textInputValue) : data;
       hoverIndex = Math.min(options.length - 1, hoverIndex + 1);
       this.setState({ hoverIndex });
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
+      this.setState({ hoverIndex: -1, selected: true });
     }
   }
 
@@ -115,6 +125,8 @@ class Autocomplete extends Component {
       const options = filter ? Autocomplete.filterOptions(data, textInputValue) : data;
       chosen = options[hoverIndex];
       this.handleNodeSelect(chosen);
+    } else {
+      this.handleNodeSelect(textInputValue);
     }
   }
 

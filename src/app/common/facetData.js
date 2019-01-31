@@ -27,11 +27,15 @@ const facetData = [
         count: 764879,
       },
       {
-        label: 'Value 2',
+        label: undefined,
         value: 'value_2',
         count: 794,
       },
     ],
+  },
+  {
+    label: 'Facet not shown',
+    name: 'facet_not',
   },
 ];
 

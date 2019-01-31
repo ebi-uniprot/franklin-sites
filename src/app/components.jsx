@@ -85,7 +85,7 @@ const components = [
     purpose: 'Allow selection of item from flat data set',
     props: {
       data: flattenedPaths,
-      onSelect: () => {},
+      onSelect: value => console.log(value),
       placeholder: 'Placeholder',
       filter: true,
     },
