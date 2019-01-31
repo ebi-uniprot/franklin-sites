@@ -7,17 +7,27 @@ import MainSearch from '../main-search';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('MainSearch component', () => {
+  const handleSubmit = jest.fn();
+  const handleChange = jest.fn();
+
   test('should submit the search term', () => {
-    const handleSearchSubmit = jest.fn();
-    const wrapper = mount(<MainSearch handleSearchSubmit={handleSearchSubmit} />);
+    const wrapper = mount(<MainSearch onChange={handleChange} onSubmit={handleSubmit} />);
     wrapper.find('[type="submit"]').simulate('submit');
-    expect(handleSearchSubmit).toHaveBeenCalled();
+    expect(handleSubmit).toHaveBeenCalled();
+  });
+
+  test('should detect the search term', () => {
+    const wrapper = mount(<MainSearch onChange={handleChange} onSubmit={handleSubmit} />);
+    wrapper
+      .find('[type="text"]')
+      .first()
+      .simulate('change', { target: { value: 'foo' } });
+    expect(handleChange).toHaveBeenCalledWith('foo');
   });
 
   test('should set searchTerm', () => {
-    const handleSearchSubmit = jest.fn();
     const wrapper = shallow(
-      <MainSearch searchTerm="blah" handleSearchSubmit={handleSearchSubmit} />,
+      <MainSearch searchTerm="blah" onChange={handleChange} onSubmit={handleSubmit} />,
     );
     expect(
       wrapper

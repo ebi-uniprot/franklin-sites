@@ -8,15 +8,28 @@ class Facets extends Component {
   constructor(props) {
     super(props);
     this.isActive = this.isActive.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   isActive(facetName, facetValue) {
     const { selectedFacets } = this.props;
-    return facetName in selectedFacets && selectedFacets[facetName].includes(facetValue);
+    const matchingFacet = selectedFacets.filter(
+      facet => facet.name === facetName && facet.value === facetValue,
+    );
+    return matchingFacet && matchingFacet.length > 0;
+  }
+
+  handleClick(facetName, facetValue) {
+    const { addFacet, removeFacet } = this.props;
+    if (this.isActive(facetName, facetValue)) {
+      removeFacet(facetName, facetValue);
+    } else {
+      addFacet(facetName, facetValue);
+    }
   }
 
   render() {
-    const { data, toggleFacet } = this.props;
+    const { data } = this.props;
     if (!data) {
       return null;
     }
@@ -33,7 +46,7 @@ class Facets extends Component {
                     key={`${facet.name}_${value.value}`}
                     className={this.isActive(facet.name, value.value) ? 'facet-active' : ''}
                   >
-                    <button type="button" onClick={() => this.toggleFacet(facet.name, value.value)}>
+                    <button type="button" onClick={() => this.handleClick(facet.name, value.value)}>
                       {`${value.label ? value.label : value.value} (${formatLargeNumber(
                         value.count,
                       )})`}
@@ -51,12 +64,9 @@ class Facets extends Component {
 
 Facets.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  toggleFacet: PropTypes.func.isRequired,
-  selectedFacets: PropTypes.shape({}),
-};
-
-Facets.defaultProps = {
-  selectedFacets: {},
+  addFacet: PropTypes.func.isRequired,
+  removeFacet: PropTypes.func.isRequired,
+  selectedFacets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Facets;
