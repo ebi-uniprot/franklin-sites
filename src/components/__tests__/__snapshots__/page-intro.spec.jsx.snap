@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageIntro component should render 1`] = `
+<div
+  className="page-intro"
+>
+  <h2>
+    <button
+      className="dropdown"
+      onClick={[Function]}
+      type="button"
+    >
+      <test-file-stub />
+       
+      Title
+    </button>
+    <small>
+       
+      1,000
+       
+      results
+    </small>
+  </h2>
+  <div
+    className="intro-content"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div>
+      Some content
+    </div>
+    <div
+      className="intro-links"
+    />
+  </div>
+</div>
+`;

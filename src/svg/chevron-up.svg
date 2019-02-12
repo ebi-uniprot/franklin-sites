@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Icons/Chevron down Copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icons/Chevron-down-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="chevron-down" transform="translate(7.000000, 7.500000) rotate(-180.000000) translate(-7.000000, -7.500000) translate(0.000000, 3.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M6.45754795,8.26178995 L0.245671233,2.04988128 C-0.0539223744,1.75028767 -0.0539223744,1.26457078 0.245671233,0.965009132 L0.970187215,0.240493151 C1.26926941,-0.0585890411 1.75399543,-0.0591643836 2.05378082,0.239214612 L7,5.16226027 L11.9461872,0.239214612 C12.2459726,-0.0591643836 12.7306986,-0.0585890411 13.0297808,0.240493151 L13.7542968,0.965009132 C14.0538904,1.26460274 14.0538904,1.75031963 13.7542968,2.04988128 L7.54245205,8.26178995 C7.24285845,8.5613516 6.75714155,8.5613516 6.45754795,8.26178995 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
