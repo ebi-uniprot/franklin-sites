@@ -6,6 +6,10 @@
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
     -moz-column-count: 2; /* Firefox */
     column-count: 2;
+    display: none;
+    &--display-content {
+      display: block;
+    }
   }
   .intro-links {
     text-align: right;

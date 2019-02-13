@@ -23,11 +23,6 @@ exports[`PageIntro component should render 1`] = `
   </h2>
   <div
     className="intro-content"
-    style={
-      Object {
-        "display": "none",
-      }
-    }
   >
     <div>
       Some content

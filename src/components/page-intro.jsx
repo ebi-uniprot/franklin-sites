@@ -36,7 +36,9 @@ results
           )}
         </h2>
 
-        <div className="intro-content" style={{ display: showContent ? 'block' : 'none' }}>
+        <div
+          className={showContent ? 'intro-content intro-content--display-content' : 'intro-content'}
+        >
           {children}
           <div className="intro-links">
             {links.map(link => (
