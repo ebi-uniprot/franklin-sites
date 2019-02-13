@@ -7,12 +7,7 @@ import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 
 class PageIntro extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showContent: false,
-    };
-  }
+  state = { showContent: false };
 
   render() {
     const {
