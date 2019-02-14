@@ -22,7 +22,7 @@ exports[`PageIntro component should render 1`] = `
     </small>
   </h2>
   <div
-    className="intro-content"
+    className="intro-content false"
   >
     <div>
       Some content

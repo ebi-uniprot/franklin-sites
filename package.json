@@ -12,7 +12,7 @@
     "build-library": "webpack --config webpack.library.js",
     "build": "yarn build-library && yarn build-site",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
-    "test": "jest && npm run jslint",
+    "test": "npm run jslint && jest",
     "test-watch": "jest --watch"
   },
   "browserslist": [
