@@ -10,6 +10,7 @@ import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
 import lipsum from './common/lipsum';
 import facetData from './common/facetData';
+import PageIntro from '../components/page-intro';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -40,6 +41,21 @@ const components = [
     purpose: 'Advertise a specific dataset of the website and provide searchable access to it.',
     props: {
       namespace: 'uniref',
+    },
+  },
+  {
+    name: 'Page intro',
+    component: PageIntro,
+    function:
+      'Tell users a bit about the area of the website that they are on with links to further information',
+    purpose:
+      'People might land on areas of the website they don’t know much about. The intro is a place they can get some contextual help, some introductory info and links to further help, information and downloads',
+    props: {
+      title: 'UniProtKB',
+      resultsCount: 1000,
+      children:
+        'UniProtKB consists of two sections:Reviewed (Swiss-Prot) - Manually annotated Records with information extracted from literature and curator-evaluated computational analysis. Unreviewed (TrEMBL) - Computationally analyzed. Records that await full manual annotation. The UniProt Knowledgebase (UniProtKB) is the central hub for the collection of functional information on proteins, with accurate, consistent and rich annotation. In addition to capturing the core data mandatory for each UniProtKB entry (mainly, the amino acid sequence, protein name or description, taxonomic data and citation information), as much annotation information as possible is added.',
+      links: [{ title: 'Help', icon: '', destination: '' }],
     },
   },
   {

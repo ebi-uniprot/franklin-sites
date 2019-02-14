@@ -12,7 +12,7 @@
     "build-library": "webpack --config webpack.library.js",
     "build": "yarn build-library && yarn build-site",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
-    "test": "jest && npm run jslint",
+    "test": "npm run jslint && jest",
     "test-watch": "jest --watch"
   },
   "browserslist": [
@@ -47,6 +47,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
