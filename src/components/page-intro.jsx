@@ -37,7 +37,7 @@ results
         </h2>
 
         <div
-          className={showContent ? 'intro-content intro-content--display-content' : 'intro-content'}
+          className={`intro-content ${showContent && 'intro-content--display-content'}`}
         >
           {children}
           <div className="intro-links">
