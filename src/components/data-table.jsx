@@ -37,6 +37,7 @@ class DataTable extends Component {
       selected = {},
       onSelect,
       onHeaderClick,
+      idKey,
     } = this.props;
     return (
       <div className="data-table">
@@ -66,7 +67,7 @@ class DataTable extends Component {
         </div>
         <div className="table-body">
           {data.map((row, i) => (
-            <div className={DataTable.getRowClassName(i, row.id in selected)} key={row.id}>
+            <div className={DataTable.getRowClassName(i, row[idKey] in selected)} key={row[idKey]}>
               {selectable && (
                 <div className="table-data-checkbox" key={`${row.id}_select`}>
                   <input
@@ -78,7 +79,7 @@ class DataTable extends Component {
                 </div>
               )}
               {columns.map(column => (
-                <div className="table-data" key={`${row.id}_${column.name}`}>
+                <div className="table-data" key={`${row[idKey]}_${column.name}`}>
                   {column.render(row)}
                 </div>
               ))}
@@ -97,6 +98,7 @@ DataTable.propTypes = {
   selected: PropTypes.shape({}),
   onSelect: PropTypes.func,
   onHeaderClick: PropTypes.func,
+  idKey: PropTypes.string,
 };
 
 DataTable.defaultProps = {
@@ -104,6 +106,7 @@ DataTable.defaultProps = {
   selected: {},
   onSelect: () => {},
   onHeaderClick: () => {},
+  idKey: 'id',
 };
 
 export default DataTable;
