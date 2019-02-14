@@ -69,12 +69,12 @@ class DataTable extends Component {
           {data.map((row, i) => (
             <div className={DataTable.getRowClassName(i, row[idKey] in selected)} key={row[idKey]}>
               {selectable && (
-                <div className="table-data-checkbox" key={`${row.id}_select`}>
+                <div className="table-data-checkbox" key={`${row[idKey]}_select`}>
                   <input
-                    id={row.id}
+                    id={row[idKey]}
                     type="checkbox"
-                    onChange={() => onSelect(row.id)}
-                    checked={row.id in selected}
+                    onChange={() => onSelect(row[idKey])}
+                    checked={row[idKey] in selected}
                   />
                 </div>
               )}

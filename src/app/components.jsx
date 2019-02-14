@@ -142,9 +142,10 @@ const components = [
           sortable: true,
         },
       ],
+      idKey: 'accessionId',
       data: [
         {
-          id: 'blah1',
+          accessionId: 'blah1',
           fieldValue1: {
             value: 'Some data 1',
           },
@@ -153,7 +154,7 @@ const components = [
           },
         },
         {
-          id: 'blah2',
+          accessionId: 'blah2',
           fieldValue1: {
             value: 'Some data A',
           },
@@ -162,7 +163,7 @@ const components = [
           },
         },
         {
-          id: 'blah3',
+          accessionId: 'blah3',
           fieldValue1: {
             value: 'Some data α',
           },
