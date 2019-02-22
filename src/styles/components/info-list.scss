@@ -1,0 +1,23 @@
+@import "../settings";
+@import "../colours";
+@import "../mixins.scss";
+
+.info-list {
+  &__item {
+    display: flex;
+    margin-bottom: $global-margin;
+    &__title {
+      flex-basis: 15vw;
+      font-weight: 700;
+      margin-right: $global-margin;
+    }
+  }
+}
+
+@include breakpoint(small only) {
+  .info-list {
+    &__item {
+      display: block;
+    }
+  }
+}

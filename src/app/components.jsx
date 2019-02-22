@@ -11,6 +11,7 @@ import { treeData, flattenedPaths } from './common/tree-data';
 import lipsum from './common/lipsum';
 import facetData from './common/facetData';
 import PageIntro from '../components/page-intro';
+import InfoList from '../components/info-list';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -127,6 +128,26 @@ const components = [
       title: 'Title',
       children: <input type="text" />,
       footer: lipsum.substring(0, 150),
+    },
+  },
+  {
+    name: 'Info list',
+    component: InfoList,
+    function:
+      'Display a list of attribute names/values. The values can be of any form. Attribute names can have extra information attached to them in the form of tooltips.',
+    purpose:
+      'Provide a way of easily scanning for attribute names in order to view their associated data.',
+    props: {
+      infoData: [
+        {
+          title: 'Item 1',
+          content: <div>Some content</div>,
+        },
+        {
+          title: 'Another item',
+          content: <div>Some more content</div>,
+        },
+      ],
     },
   },
   {
