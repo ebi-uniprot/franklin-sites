@@ -12,6 +12,7 @@ import lipsum from './common/lipsum';
 import facetData from './common/facetData';
 import PageIntro from '../components/page-intro';
 import InfoList from '../components/info-list';
+import Card from '../components/card';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -148,6 +149,16 @@ const components = [
           content: <div>Some more content</div>,
         },
       ],
+    },
+  },
+  {
+    name: 'Card',
+    component: Card,
+    function: 'Provide a contained section to show content for a given category.',
+    purpose: 'Create visually delimited areas to allow for easier scanning of content.',
+    props: {
+      title: 'Title',
+      children: <p>An example of content</p>,
     },
   },
   {

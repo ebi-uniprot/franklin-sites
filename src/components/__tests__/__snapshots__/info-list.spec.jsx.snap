@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoList component should render 1`] = `
+<div
+  className="info-list"
+>
+  <div
+    className="info-list__item"
+  >
+    <div
+      className="info-list__item__title"
+    >
+      Item 1
+    </div>
+    <div
+      className="info-list__item__content"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+  <div
+    className="info-list__item"
+  >
+    <div
+      className="info-list__item__title"
+    >
+      Another item
+    </div>
+    <div
+      className="info-list__item__content"
+    >
+      <div>
+        Some more content
+      </div>
+    </div>
+  </div>
+</div>
+`;
