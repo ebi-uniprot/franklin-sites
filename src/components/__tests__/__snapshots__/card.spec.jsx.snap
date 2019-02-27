@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component should render 1`] = `
+<div
+  className="card"
+>
+  <h3
+    className="card__title"
+  >
+    Title
+  </h3>
+  <div
+    className="card__content"
+  >
+    <span>
+      Some content
+    </span>
+  </div>
+</div>
+`;

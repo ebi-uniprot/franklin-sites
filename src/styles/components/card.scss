@@ -1,0 +1,16 @@
+@import "../settings";
+@import "../colours";
+
+.card {
+  background-color: $colour-white;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.125rem 0.25rem 0.125rem rgba($colour-black, 0.2);
+  margin: $global-margin;
+  &__title,
+  &__content {
+    padding: $global-padding;
+  }
+  &__title {
+    border-bottom: 0.05rem solid $colour-light-grey;
+  }
+}

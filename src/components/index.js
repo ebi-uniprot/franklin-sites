@@ -8,3 +8,5 @@ export { default as MainSearch } from './main-search';
 export { default as DataTable } from './data-table';
 export { default as Facets } from './facets';
 export { default as PageIntro } from './page-intro';
+export { default as InfoList } from './info-list';
+export { default as Card } from './card';
