@@ -10,7 +10,10 @@ exports[`PageIntro component should render 1`] = `
       onClick={[Function]}
       type="button"
     >
-      <test-file-stub />
+      <test-file-stub
+        height={20}
+        width={20}
+      />
        
       Title
     </button>
