@@ -1,0 +1,25 @@
+@import "../settings";
+@import "../colours";
+
+.evidence-tag {
+  &--reviewed {
+    color: $colour-reviewed;
+    svg {
+      path {
+        fill: $colour-reviewed;
+      }
+    }
+  }
+  &--unreviewed {
+    color: darken($colour-unreviewed, 40);
+    svg {
+      path {
+        fill: darken($colour-unreviewed, 40);
+      }
+    }
+  }
+  &__label {
+    padding-left: ($global-padding / 4);
+    text-transform: capitalize;
+  }
+}
