@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>Icons/Chevron down</title>
+<svg width="512px" height="311px" viewBox="0 0 512 311" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>chevron-down</title>
     <desc>Created with Sketch.</desc>
-    <g id="Icons/Chevron-down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="chevron-down" transform="translate(0.000000, 3.000000)" fill="#000000" fill-rule="nonzero">
-            <path d="M6.45754795,8.26178995 L0.245671233,2.04988128 C-0.0539223744,1.75028767 -0.0539223744,1.26457078 0.245671233,0.965009132 L0.970187215,0.240493151 C1.26926941,-0.0585890411 1.75399543,-0.0591643836 2.05378082,0.239214612 L7,5.16226027 L11.9461872,0.239214612 C12.2459726,-0.0591643836 12.7306986,-0.0585890411 13.0297808,0.240493151 L13.7542968,0.965009132 C14.0538904,1.26460274 14.0538904,1.75031963 13.7542968,2.04988128 L7.54245205,8.26178995 C7.24285845,8.5613516 6.75714155,8.5613516 6.45754795,8.26178995 Z" id="Shape"></path>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="chevron-down" fill="#000000" fill-rule="nonzero">
+            <path d="M236.161754,302.145461 L8.98454795,74.9670868 C-1.97201826,64.0105205 -1.97201826,46.24716 8.98454795,35.2917625 L35.4811324,8.79517809 C46.4189956,-2.14268493 64.1461186,-2.16372603 75.1096986,8.7484201 L256,188.791233 L436.889132,8.7484201 C447.852712,-2.16372603 465.579835,-2.14268493 476.517698,8.79517809 L503.014283,35.2917625 C513.970849,46.2483288 513.970849,64.0116893 503.014283,74.9670868 L275.838246,302.145461 C264.88168,313.100859 247.11832,313.100859 236.161754,302.145461 Z" id="Shape"></path>
         </g>
     </g>
 </svg>

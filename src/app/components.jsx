@@ -13,6 +13,7 @@ import facetData from './common/facetData';
 import PageIntro from '../components/page-intro';
 import InfoList from '../components/info-list';
 import Card from '../components/card';
+import { EvidenceTag } from '../components';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -43,6 +44,16 @@ const components = [
     purpose: 'Advertise a specific dataset of the website and provide searchable access to it.',
     props: {
       namespace: 'uniref',
+    },
+  },
+  {
+    name: 'Evidence Tag',
+    component: EvidenceTag,
+    function: 'Provide the user with information about the evidence associated to a piece of text.',
+    purpose:
+      'Inform the user so they can make a decision regarding the trustworthyness of a piece of text',
+    props: {
+      label: 'evidence tag',
     },
   },
   {

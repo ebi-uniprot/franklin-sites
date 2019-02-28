@@ -6,6 +6,7 @@ import '../styles/components/page-intro.scss';
 import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 
+const chevronSize = 20;
 class PageIntro extends Component {
   state = { showContent: false };
 
@@ -22,7 +23,11 @@ class PageIntro extends Component {
             onClick={() => this.setState({ showContent: !showContent })}
             className="dropdown"
           >
-            {showContent ? <ChevronUp /> : <ChevronDown />}
+            {showContent ? (
+              <ChevronUp width={chevronSize} height={chevronSize} />
+            ) : (
+              <ChevronDown width={chevronSize} height={chevronSize} />
+            )}
             {' '}
             {title}
           </button>
@@ -36,9 +41,7 @@ results
           )}
         </h2>
 
-        <div
-          className={`intro-content ${showContent && 'intro-content--display-content'}`}
-        >
+        <div className={`intro-content ${showContent && 'intro-content--display-content'}`}>
           {children}
           <div className="intro-links">
             {links.map(link => (

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EvidenceTag component should render reviewed tag 1`] = `
+<span
+  className="evidence-tag evidence-tag--reviewed"
+>
+  <test-file-stub
+    height={12}
+    width={12}
+  />
+  <span
+    className="evidence-tag__label"
+    title="My title"
+  >
+    My evidence
+  </span>
+</span>
+`;
+
+exports[`EvidenceTag component should render unreviewed tag 1`] = `
+<span
+  className="evidence-tag evidence-tag--unreviewed"
+>
+  <test-file-stub
+    height={12}
+    width={12}
+  />
+  <span
+    className="evidence-tag__label"
+    title="My title"
+  >
+    My evidence
+  </span>
+</span>
+`;
