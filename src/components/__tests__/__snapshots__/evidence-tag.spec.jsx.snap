@@ -5,8 +5,8 @@ exports[`EvidenceTag component should render reviewed tag 1`] = `
   className="evidence-tag evidence-tag--reviewed"
 >
   <test-file-stub
-    height={12}
-    width={12}
+    height={10}
+    width={10}
   />
   <span
     className="evidence-tag__label"
@@ -22,8 +22,8 @@ exports[`EvidenceTag component should render unreviewed tag 1`] = `
   className="evidence-tag evidence-tag--unreviewed"
 >
   <test-file-stub
-    height={12}
-    width={12}
+    height={10}
+    width={10}
   />
   <span
     className="evidence-tag__label"
