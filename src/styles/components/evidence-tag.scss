@@ -13,10 +13,10 @@
     }
   }
   &--unreviewed {
-    color: darken($colour-unreviewed, 40);
+    color: darken($colour-unreviewed, 30);
     svg {
       path {
-        fill: darken($colour-unreviewed, 40);
+        fill: darken($colour-unreviewed, 30);
       }
     }
   }
