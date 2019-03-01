@@ -2,6 +2,8 @@
 @import "../colours";
 
 .evidence-tag {
+  margin-left: ($global-margin/2);
+  font-size: $small-font-size;
   &--reviewed {
     color: $colour-reviewed;
     svg {

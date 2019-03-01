@@ -21,7 +21,7 @@ $colour-white: #fefefe;
 
 // CURATION
 $colour-reviewed: #c39b00;
-$colour-unreviewed: #93cffa;
+$colour-unreviewed: #c0c0c0;
 
 // NAMESPACES
 $colour-uniref: #c08c5c;
@@ -32,74 +32,74 @@ $colour-help: #6bad69;
 $colour-annotation-systems: #f8982e;
 
 .box-colour {
-    vertical-align: top;
-    display: inline-block;
-    width: 9em;
-    height: 9em;
-    margin-bottom: 4em;
-    font-size: $small-font-size;
-    &:before {
-        content: attr(data-name);
-        margin-top: 10em;
-        display: block;
-        text-align: center;
-    }
-    // PRIMARY
-    &-dark-blue {
-        background: $colour-dark-blue;
-    }
-    &-uniprot-blue {
-        background: $colour-uniprot-blue;
-    }
-    &-medium-blue {
-        background: $colour-medium-blue;
-    }
-    &-light-blue {
-        background: $colour-light-blue;
-    }
-    // GREY
-    &-black {
-        background: $colour-black;
-    }
-    &-dark-grey {
-        background: $colour-dark-grey;
-    }
-    &-cool-grey {
-        background: $colour-cool-grey;
-    }
-    &-medium-grey {
-        background: $colour-medium-grey;
-    }
-    &-light-grey {
-        background: $colour-light-grey;
-    }
-    &-seashell-grey {
-        background: $colour-seashell-grey;
-    }
-    // CURATION
-    &-reviewed {
-        background: $colour-reviewed;
-    }
-    &-unreviewed {
-        background: $colour-unreviewed;
-    }
-    // NAMESPACE
-    &-uniref {
-        background: $colour-uniref;
-    }
-    &-uniparc {
-        background: $colour-uniparc;
-    }
-    &-proteomes {
-        background: $colour-proteomes;
-    }
-    &-supporting-data {
-        background: $colour-supporting-data;
-    }
-    &-help {
-        background: $colour-help;
-    }
-    &-annotation-systems {
-        background: $colour-annotation-systems;
-    }
+  vertical-align: top;
+  display: inline-block;
+  width: 9em;
+  height: 9em;
+  margin-bottom: 4em;
+  font-size: $small-font-size;
+  &:before {
+    content: attr(data-name);
+    margin-top: 10em;
+    display: block;
+    text-align: center;
+  }
+  // PRIMARY
+  &-dark-blue {
+    background: $colour-dark-blue;
+  }
+  &-uniprot-blue {
+    background: $colour-uniprot-blue;
+  }
+  &-medium-blue {
+    background: $colour-medium-blue;
+  }
+  &-light-blue {
+    background: $colour-light-blue;
+  }
+  // GREY
+  &-black {
+    background: $colour-black;
+  }
+  &-dark-grey {
+    background: $colour-dark-grey;
+  }
+  &-cool-grey {
+    background: $colour-cool-grey;
+  }
+  &-medium-grey {
+    background: $colour-medium-grey;
+  }
+  &-light-grey {
+    background: $colour-light-grey;
+  }
+  &-seashell-grey {
+    background: $colour-seashell-grey;
+  }
+  // CURATION
+  &-reviewed {
+    background: $colour-reviewed;
+  }
+  &-unreviewed {
+    background: $colour-unreviewed;
+  }
+  // NAMESPACE
+  &-uniref {
+    background: $colour-uniref;
+  }
+  &-uniparc {
+    background: $colour-uniparc;
+  }
+  &-proteomes {
+    background: $colour-proteomes;
+  }
+  &-supporting-data {
+    background: $colour-supporting-data;
+  }
+  &-help {
+    background: $colour-help;
+  }
+  &-annotation-systems {
+    background: $colour-annotation-systems;
+  }
 }

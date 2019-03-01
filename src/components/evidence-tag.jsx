@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tag from '../svg/tag.svg';
 import '../styles/components/evidence-tag.scss';
 
-const size = 12;
+const size = 10;
 
 const EvidenceTag = ({ label, title, reviewed = false }) => {
   const styleClassName = `evidence-tag ${
