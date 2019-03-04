@@ -1,5 +1,5 @@
-@import "../settings";
-@import "../colours";
+@import "./settings";
+@import "./colours";
 
 $global-left: if($global-text-direction == rtl, right, left);
 $global-right: if($global-text-direction == rtl, left, right);
