@@ -11,6 +11,10 @@ const links = [
     label: 'UI Components',
     path: '/ui-components',
   },
+  {
+    label: 'Infinite Data Table',
+    path: '/infinite-data-table',
+  },
 ];
 
 const FranklinHeader = () => <Header logo={<Logo width={50} height={50} />} links={links} />;

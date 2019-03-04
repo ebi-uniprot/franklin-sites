@@ -10,7 +10,7 @@ const DefaultPageLayout = ({ content, sidebarContent }) => (
     <FranklinHeader />
     <div className="default-page-layout ">
       <DefaultPageContent>{content}</DefaultPageContent>
-      <Sidebar>{sidebarContent}</Sidebar>
+      {sidebarContent && <Sidebar>{sidebarContent}</Sidebar>}
     </div>
   </Fragment>
 );
@@ -22,7 +22,7 @@ DefaultPageLayout.propTypes = {
 
 DefaultPageLayout.defaultProps = {
   content: () => <h3>Page Content</h3>,
-  sidebarContent: () => <h3>Sidebar content</h3>,
+  sidebarContent: undefined,
 };
 
 export default DefaultPageLayout;
