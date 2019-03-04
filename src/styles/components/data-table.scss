@@ -66,7 +66,7 @@
     @extend .table-header;
     cursor: pointer;
     &::after {
-      @include chevron(down, lighten($black, 40%));
+      @include chevron(down, lighten($black, 50%));
     }
     &:hover:after {
       @include chevron(down, lighten($black, 20%));
