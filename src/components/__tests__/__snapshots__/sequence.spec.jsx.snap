@@ -6,597 +6,1616 @@ exports[`Sequence component should render 1`] = `
 >
   <span
     className="sequence__chunk"
-  >
-    10
-    <br />
-    MFNFPHPAID
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    20
-    <br />
-    LASRMKSSPL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    30
-    <br />
-    MAGGSSSASS
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    40
-    <br />
-    EDLFSPPMME
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    50
-    <br />
-    DLDTPMTEYP
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    60
-    <br />
-    MGSPPRMPYR
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    70
-    <br />
-    GEDIEIAFLR
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    80
-    <br />
-    SEASIKKSSL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    90
-    <br />
-    FNDKFAATLD
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    100
-    <br />
-    DLSARPIDSA
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    110
-    <br />
-    SLIGKLQSMT
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    120
-    <br />
-    RSVREILDSG
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    130
-    <br />
-    GEDIEIAFLR
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    140
-    <br />
-    SEASIKKSSL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    150
-    <br />
-    FNDKFAATLD
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    160
-    <br />
-    DLSARPIDSA
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    170
-    <br />
-    SLIGKLQSMT
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    180
-    <br />
-    RSVREILDSG
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    190
-    <br />
-    DQLVHEDGPQ
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    200
-    <br />
-    EILKQFVRVV
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    210
-    <br />
-    NKHLCQDEDI
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    220
-    <br />
-    HTVLAPLALE
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    230
-    <br />
-    PEEKFHIIQT
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    240
-    <br />
-    YYQAISMTQF
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    250
-    <br />
-    DQLVHEDGPQ
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    260
-    <br />
-    EILKQFVRVV
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    270
-    <br />
-    NKHLCQDEDI
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    280
-    <br />
-    HTVLAPLALE
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    290
-    <br />
-    PEEKFHIIQT
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    300
-    <br />
-    YYQAISMTQF
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    310
-    <br />
-    VSPKWTSSLL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    320
-    <br />
-    SDALCRRANI
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    330
-    <br />
-    VTVFNGQGVE
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    340
-    <br />
-    GYFSELQHLY
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    350
-    <br />
-    DTYGGLLAEP
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    360
-    <br />
-    LYALSKQLKG
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    370
-    <br />
-    VSPKWTSSLL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    380
-    <br />
-    SDALCRRANI
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    390
-    <br />
-    VTVFNGQGVE
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    400
-    <br />
-    GYFSELQHLY
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    410
-    <br />
-    DTYGGLLAEP
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    420
-    <br />
-    LYALSKQLKG
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    430
-    <br />
-    LASDVRAQDM
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    440
-    <br />
-    YPHGLDVIGW
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    450
-    <br />
-    LENPEARPST
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    460
-    <br />
-    DYLLSAPVSQ
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    470
-    <br />
-    PLIGLVQLLN
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    480
-    <br />
-    YAITCKILNK
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    490
-    <br />
-    LASDVRAQDM
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    500
-    <br />
-    YPHGLDVIGW
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    510
-    <br />
-    LENPEARPST
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    520
-    <br />
-    DYLLSAPVSQ
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    530
-    <br />
-    PLIGLVQLLN
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    540
-    <br />
-    YAITCKILNK
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    550
-    <br />
-    SPGEFARHLS
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    560
-    <br />
-    GSAGHSQGIV
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    570
-    <br />
-    VAAMLATVVS
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    580
-    <br />
-    WPTFFDAAST
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    590
-    <br />
-    ALQVLFWIGC
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    600
-    <br />
-    RSQQCYPSHS
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    610
-    <br />
-    SPGEFARHLS
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    620
-    <br />
-    GSAGHSQGIV
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    630
-    <br />
-    VAAMLATVVS
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    640
-    <br />
-    WPTFFDAAST
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    650
-    <br />
-    ALQVLFWIGC
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    660
-    <br />
-    RSQQCYPSHS
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    670
-    <br />
-    IPPSLVDQSE
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    680
-    <br />
-    RLSPMLSVKG
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    690
-    <br />
-    ASRESLLKYL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    700
-    <br />
-    DEHNRHLPPA
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    710
-    <br />
-    QQGSLALING
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    720
-    <br />
-    RQQFVVAGNP
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    730
-    <br />
-    IPPSLVDQSE
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    740
-    <br />
-    RLSPMLSVKG
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    750
-    <br />
-    ASRESLLKYL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    760
-    <br />
-    DEHNRHLPPA
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    770
-    <br />
-    QQGSLALING
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    780
-    <br />
-    RQQFVVAGNP
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    790
-    <br />
-    LSLYAFANKL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    800
-    <br />
-    RAASNNSSTT
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    810
-    <br />
-    NTARVPFSQR
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    820
-    <br />
-    PLLITARFLP
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    830
-    <br />
-    ISVPFHTSLL
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    840
-    <br />
-    EDAEAQILED
-  </span>
-  <span
-    className="sequence__chunk"
-  >
-    <br />
-    ED
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      10
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      MFNFPHPAID
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      20
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LASRMKSSPL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      30
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      MAGGSSSASS
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      40
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      EDLFSPPMME
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      50
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DLDTPMTEYP
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      60
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      MGSPPRMPYR
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      70
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      GEDIEIAFLR
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      80
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SEASIKKSSL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      90
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      FNDKFAATLD
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      100
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DLSARPIDSA
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      110
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SLIGKLQSMT
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      120
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RSVREILDSG
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      130
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      GEDIEIAFLR
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      140
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SEASIKKSSL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      150
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      FNDKFAATLD
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      160
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DLSARPIDSA
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      170
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SLIGKLQSMT
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      180
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RSVREILDSG
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      190
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DQLVHEDGPQ
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      200
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      EILKQFVRVV
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      210
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      NKHLCQDEDI
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      220
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      HTVLAPLALE
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      230
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      PEEKFHIIQT
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      240
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      YYQAISMTQF
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      250
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DQLVHEDGPQ
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      260
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      EILKQFVRVV
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      270
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      NKHLCQDEDI
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      280
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      HTVLAPLALE
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      290
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      PEEKFHIIQT
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      300
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      YYQAISMTQF
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      310
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      VSPKWTSSLL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      320
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SDALCRRANI
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      330
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      VTVFNGQGVE
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      340
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      GYFSELQHLY
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      350
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DTYGGLLAEP
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      360
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LYALSKQLKG
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      370
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      VSPKWTSSLL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      380
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SDALCRRANI
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      390
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      VTVFNGQGVE
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      400
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      GYFSELQHLY
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      410
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DTYGGLLAEP
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      420
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LYALSKQLKG
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      430
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LASDVRAQDM
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      440
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      YPHGLDVIGW
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      450
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LENPEARPST
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      460
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DYLLSAPVSQ
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      470
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      PLIGLVQLLN
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      480
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      YAITCKILNK
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      490
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LASDVRAQDM
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      500
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      YPHGLDVIGW
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      510
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LENPEARPST
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      520
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DYLLSAPVSQ
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      530
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      PLIGLVQLLN
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      540
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      YAITCKILNK
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      550
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SPGEFARHLS
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      560
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      GSAGHSQGIV
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      570
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      VAAMLATVVS
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      580
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      WPTFFDAAST
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      590
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      ALQVLFWIGC
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      600
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RSQQCYPSHS
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      610
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      SPGEFARHLS
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      620
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      GSAGHSQGIV
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      630
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      VAAMLATVVS
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      640
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      WPTFFDAAST
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      650
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      ALQVLFWIGC
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      660
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RSQQCYPSHS
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      670
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      IPPSLVDQSE
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      680
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RLSPMLSVKG
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      690
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      ASRESLLKYL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      700
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DEHNRHLPPA
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      710
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      QQGSLALING
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      720
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RQQFVVAGNP
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      730
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      IPPSLVDQSE
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      740
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RLSPMLSVKG
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      750
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      ASRESLLKYL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      760
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      DEHNRHLPPA
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      770
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      QQGSLALING
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      780
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RQQFVVAGNP
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      790
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      LSLYAFANKL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      800
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      RAASNNSSTT
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      810
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      NTARVPFSQR
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      820
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      PLLITARFLP
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      830
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      ISVPFHTSLL
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    >
+      840
+    </div>
+    <div
+      className="sequence__chunk_sequence"
+    >
+      EDAEAQILED
+    </div>
+  </span>
+  <span
+    className="sequence__chunk"
+    style={
+      Object {
+        "minWidth": "5rem",
+      }
+    }
+  >
+    <div
+      className="sequence__chunk__counter"
+    />
+    <div
+      className="sequence__chunk_sequence"
+    >
+      ED
+    </div>
   </span>
 </div>
 `;
