@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v1 } from 'uuid';
 
 import '../styles/components/sequence.scss';
 
@@ -17,7 +18,7 @@ const Sequence = ({ sequence, chunkSize = 10 }) => {
   return (
     <div className="sequence">
       {chunks.map((chunk, counter) => (
-        <span className="sequence__chunk" id="{chunk}">
+        <span className="sequence__chunk" key={`chunk_${v1()}`}>
           {chunk.length === chunkSize && counter * chunkSize + chunkSize}
           <br />
           {chunk}
