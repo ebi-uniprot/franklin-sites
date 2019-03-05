@@ -1,0 +1,687 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sequence component should render 1`] = `
+<div
+  className="sequence"
+>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    10
+    <br />
+    MFNFPHPAID
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    20
+    <br />
+    LASRMKSSPL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    30
+    <br />
+    MAGGSSSASS
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    40
+    <br />
+    EDLFSPPMME
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    50
+    <br />
+    DLDTPMTEYP
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    60
+    <br />
+    MGSPPRMPYR
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    70
+    <br />
+    GEDIEIAFLR
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    80
+    <br />
+    SEASIKKSSL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    90
+    <br />
+    FNDKFAATLD
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    100
+    <br />
+    DLSARPIDSA
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    110
+    <br />
+    SLIGKLQSMT
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    120
+    <br />
+    RSVREILDSG
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    130
+    <br />
+    GEDIEIAFLR
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    140
+    <br />
+    SEASIKKSSL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    150
+    <br />
+    FNDKFAATLD
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    160
+    <br />
+    DLSARPIDSA
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    170
+    <br />
+    SLIGKLQSMT
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    180
+    <br />
+    RSVREILDSG
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    190
+    <br />
+    DQLVHEDGPQ
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    200
+    <br />
+    EILKQFVRVV
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    210
+    <br />
+    NKHLCQDEDI
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    220
+    <br />
+    HTVLAPLALE
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    230
+    <br />
+    PEEKFHIIQT
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    240
+    <br />
+    YYQAISMTQF
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    250
+    <br />
+    DQLVHEDGPQ
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    260
+    <br />
+    EILKQFVRVV
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    270
+    <br />
+    NKHLCQDEDI
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    280
+    <br />
+    HTVLAPLALE
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    290
+    <br />
+    PEEKFHIIQT
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    300
+    <br />
+    YYQAISMTQF
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    310
+    <br />
+    VSPKWTSSLL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    320
+    <br />
+    SDALCRRANI
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    330
+    <br />
+    VTVFNGQGVE
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    340
+    <br />
+    GYFSELQHLY
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    350
+    <br />
+    DTYGGLLAEP
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    360
+    <br />
+    LYALSKQLKG
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    370
+    <br />
+    VSPKWTSSLL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    380
+    <br />
+    SDALCRRANI
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    390
+    <br />
+    VTVFNGQGVE
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    400
+    <br />
+    GYFSELQHLY
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    410
+    <br />
+    DTYGGLLAEP
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    420
+    <br />
+    LYALSKQLKG
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    430
+    <br />
+    LASDVRAQDM
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    440
+    <br />
+    YPHGLDVIGW
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    450
+    <br />
+    LENPEARPST
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    460
+    <br />
+    DYLLSAPVSQ
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    470
+    <br />
+    PLIGLVQLLN
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    480
+    <br />
+    YAITCKILNK
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    490
+    <br />
+    LASDVRAQDM
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    500
+    <br />
+    YPHGLDVIGW
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    510
+    <br />
+    LENPEARPST
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    520
+    <br />
+    DYLLSAPVSQ
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    530
+    <br />
+    PLIGLVQLLN
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    540
+    <br />
+    YAITCKILNK
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    550
+    <br />
+    SPGEFARHLS
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    560
+    <br />
+    GSAGHSQGIV
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    570
+    <br />
+    VAAMLATVVS
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    580
+    <br />
+    WPTFFDAAST
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    590
+    <br />
+    ALQVLFWIGC
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    600
+    <br />
+    RSQQCYPSHS
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    610
+    <br />
+    SPGEFARHLS
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    620
+    <br />
+    GSAGHSQGIV
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    630
+    <br />
+    VAAMLATVVS
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    640
+    <br />
+    WPTFFDAAST
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    650
+    <br />
+    ALQVLFWIGC
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    660
+    <br />
+    RSQQCYPSHS
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    670
+    <br />
+    IPPSLVDQSE
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    680
+    <br />
+    RLSPMLSVKG
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    690
+    <br />
+    ASRESLLKYL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    700
+    <br />
+    DEHNRHLPPA
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    710
+    <br />
+    QQGSLALING
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    720
+    <br />
+    RQQFVVAGNP
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    730
+    <br />
+    IPPSLVDQSE
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    740
+    <br />
+    RLSPMLSVKG
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    750
+    <br />
+    ASRESLLKYL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    760
+    <br />
+    DEHNRHLPPA
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    770
+    <br />
+    QQGSLALING
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    780
+    <br />
+    RQQFVVAGNP
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    790
+    <br />
+    LSLYAFANKL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    800
+    <br />
+    RAASNNSSTT
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    810
+    <br />
+    NTARVPFSQR
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    820
+    <br />
+    PLLITARFLP
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    830
+    <br />
+    ISVPFHTSLL
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    840
+    <br />
+    EDAEAQILED
+  </span>
+  <span
+    className="sequence__chunk"
+    id="{chunk}"
+  >
+    <br />
+    ED
+  </span>
+</div>
+`;

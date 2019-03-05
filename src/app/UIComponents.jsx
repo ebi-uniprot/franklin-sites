@@ -15,7 +15,8 @@ const formatPattern = Component => (
         <p>{Component.purpose}</p>
         <h5>Function</h5>
         <p>{Component.function}</p>
-        <h5>Props</h5>
+        {/* Disabling until we find a better way to show this */}
+        {/* <h5>Props</h5>
         <div>
           {Component.props
             && Object.entries(Component.props).map(prop => (
@@ -25,7 +26,7 @@ const formatPattern = Component => (
                 {JSON.stringify(prop[1])}
               </div>
             ))}
-        </div>
+        </div> */}
       </div>
     </div>
     <hr />
