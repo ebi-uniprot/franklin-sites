@@ -7,6 +7,9 @@
   flex-wrap: wrap;
   &__chunk {
     margin: ($global-margin/2);
-    text-align: right;
+    &__counter {
+      text-align: right;
+      min-height: 1.6rem;
+    }
   }
 }

@@ -18,10 +18,15 @@ const Sequence = ({ sequence, chunkSize = 10 }) => {
   return (
     <div className="sequence">
       {chunks.map((chunk, counter) => (
-        <span className="sequence__chunk" key={`chunk_${v1()}`}>
-          {chunk.length === chunkSize && counter * chunkSize + chunkSize}
-          <br />
-          {chunk}
+        <span
+          className="sequence__chunk"
+          key={`chunk_${v1()}`}
+          style={{ minWidth: `${chunkSize / 2}rem` }}
+        >
+          <div className="sequence__chunk__counter">
+            {chunk.length === chunkSize && counter * chunkSize + chunkSize}
+          </div>
+          <div className="sequence__chunk_sequence">{chunk}</div>
         </span>
       ))}
     </div>
