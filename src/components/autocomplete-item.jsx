@@ -12,9 +12,7 @@ class AutocompleteItem extends Component {
     return (
       <Fragment>
         {prestring}
-        <b>
-          {highlight}
-        </b>
+        <b>{highlight}</b>
         {poststring}
       </Fragment>
     );
@@ -37,23 +35,22 @@ class AutocompleteItem extends Component {
 
   render() {
     const {
-      item,
-      active,
-      substringToHighlight,
-      handleOnClick,
+      item, active, substringToHighlight, handleOnClick,
     } = this.props;
     return (
-      <li ref={(node) => { this.node = node; }}>
+      <li
+        ref={(node) => {
+          this.node = node;
+        }}
+      >
         <button
           type="button"
           onClick={e => handleOnClick(item, e)}
           className={active ? 'hover' : ''}
         >
-          {
-            substringToHighlight
-              ? AutocompleteItem.highlightSubstring(item.pathLabel, substringToHighlight)
-              : item.label
-          }
+          {substringToHighlight
+            ? AutocompleteItem.highlightSubstring(item.pathLabel, substringToHighlight)
+            : item.label}
         </button>
       </li>
     );
