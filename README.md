@@ -6,26 +6,16 @@ The purpose of Franklin is to create a library a re-usable user interface compon
 
 ## yarn tasks
 
-Build CSS
-
-```shell
-yarn run build-css #build css
-yarn run watch-css #indeed
-```
-
-The css files are compiled into the `dist/` directory.
-
 Building the Franklin site
 
 ```shell
-yarn run build #build Franklin library
-yarn run dev-server #run a local server and build with development flag
-yarn run jslint #run linter for JS
-yarn run test #run JEST tests
-yarn run update-snapshots #update JEST snapshots
-yarn run remove-obsolete-snapshots #what it says on the tin
-yarn run build-site #build Franklin site
-yarn run start #watch CSS and run dev-server
+    "start": //start the local dev application,
+    "build-site": //build the franklin website,
+    "build-library": //build the franklin library (npm package),
+    "build": //build both site and library,
+    "jslint": //check code style,
+    "test": //run tests and check code style,
+    "test-watch": //watch tests
 ```
 
 ## How to use
@@ -36,10 +26,12 @@ Get from npm:
 yarn install franklin-sites
 ```
 
-Include the base css from `node_modules/franklin-sites/src/styles/index.scss`
-
-You can then load components like:
-
+Wrap your application in the `FranklinSite` tag:
 ```javascript
-import { TreeSelect } from "franklin-sites";
+import { FranklinSite } from "franklin-sites";
+
+...
+<FranklinSite>
+  //Your content goes here//
+</FranklinSite>
 ```
