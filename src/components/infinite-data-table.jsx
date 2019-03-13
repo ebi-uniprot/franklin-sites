@@ -34,7 +34,6 @@ class InfiniteDataTable extends Component {
     // this.getColumnWidth = this.getColumnWidth.bind(this);
     // this.cellRenderer = this.cellRenderer.bind(this);
     this.isRowLoaded = this.isRowLoaded.bind(this);
-    this.setTableRef = this.setTableRef.bind(this);
   }
 
   static getRowClassName(index, selected = false) {
@@ -65,13 +64,14 @@ class InfiniteDataTable extends Component {
     );
   }
 
-  componentDidUpdate() {
-    this.cache.clearAll();
-    const { data } = this.props;
-    for (let i = 0; i <= data.length; i += 1) {
-      this.table.recomputeRowHeights(i);
+  componentDidUpdate(prevProps) {
+    const { data, columns } = this.props;
+    const { data: prevData } = prevProps;
+    for (let rowIndex = prevData.length; rowIndex < data.length; rowIndex += 1) {
+      for (let columnIndex = 0; columnIndex < columns.length; columnIndex += 1) {
+        this.cache.clear(rowIndex, columnIndex);
+      }
     }
-    this.cache.clearAll();
   }
 
   getTableWidth() {
@@ -89,10 +89,10 @@ class InfiniteDataTable extends Component {
 
   getColumns() {
     const { columns, showRowNumbers } = this.props;
-    const columnNodes = columns.map((column) => {
+    const columnNodes = columns.map((column, index) => {
       let render;
       if (column.render) {
-        render = row => (row ? column.render(row) : <span style={{ fontSize: 100 }}>loading...</span>);
+        render = row => (row ? column.render(row) : 'loading...');
       } else {
         render = () => <div className="warning">{`${column.label} has no render method`}</div>;
       }
@@ -111,15 +111,12 @@ class InfiniteDataTable extends Component {
           cellDataGetter={rowData => rowData}
           width={column.width}
           minWidth={column.width}
-          // cellRenderer={({
-          //   rowData, parent, dataKey, rowIndex, style,
-          // }) => render(rowData)}
           cellRenderer={({
             rowData, parent, dataKey, rowIndex,
           }) => (
             <CellMeasurer
               cache={this.cache}
-              columnIndex={0}
+              columnIndex={index}
               key={dataKey}
               parent={parent}
               rowIndex={rowIndex}
@@ -240,39 +237,39 @@ class InfiniteDataTable extends Component {
       showRowNumbers,
     } = this.props;
     const rowCount = Math.min(totalNumberRows, data.length + numberResultsPerRequest);
-    console.log(this.cache);
-    console.log(this.table);
+    console.log(rowCount);
 
     return (
-      <InfiniteLoader
-        loadMoreRows={onLoadMoreRows}
-        isRowLoaded={this.isRowLoaded}
-        rowCount={rowCount}
-        threshold={1}
-      >
-        {({ onRowsRendered, registerChild }) => (
-          <Table
-            width={this.getTableWidth()}
-            height={500}
-            headerHeight={150}
-            deferredMeasurementCache={this.cache}
-            rowHeight={this.cache.rowHeight}
-            ref={ref => this.setTableRef(ref, registerChild)}
-            onRowsRendered={onRowsRendered}
-            rowCount={rowCount}
-            rowGetter={({ index }) => data[index]}
-            scrollToIndex={data.length <= numberResultsPerRequest ? 0 : undefined}
-          >
-            {this.getColumns()}
-          </Table>
-        )}
-      </InfiniteLoader>
+      <div style={{ overflowX: 'scroll', width: 600, height: '100%' }}>
+        <InfiniteLoader
+          loadMoreRows={onLoadMoreRows}
+          isRowLoaded={this.isRowLoaded}
+          rowCount={rowCount}
+          threshold={1}
+        >
+          {({ onRowsRendered, registerChild }) => (
+            <AutoSizer disableWidth>
+              {({ width, height }) => (
+                <Table
+                  width={this.getTableWidth()}
+                  height={height}
+                  headerHeight={75}
+                  deferredMeasurementCache={this.cache}
+                  rowHeight={this.cache.rowHeight}
+                  ref={registerChild}
+                  onRowsRendered={onRowsRendered}
+                  rowCount={rowCount}
+                  rowGetter={({ index }) => data[index]}
+                  // scrollToIndex={data.length <= numberResultsPerRequest ? 0 : undefined}
+                >
+                  {this.getColumns()}
+                </Table>
+              )}
+            </AutoSizer>
+          )}
+        </InfiniteLoader>
+      </div>
     );
-  }
-
-  setTableRef(ref, registerChild) {
-    this.table = ref;
-    registerChild(ref);
   }
 }
 

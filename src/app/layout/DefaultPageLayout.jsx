@@ -6,13 +6,11 @@ import Sidebar from './Sidebar';
 import FranklinHeader from '../FranklinHeader';
 
 const DefaultPageLayout = ({ content, sidebarContent }) => (
-  <Fragment>
+  <div className="default-page-layout ">
     <FranklinHeader />
-    <div className="default-page-layout ">
-      <DefaultPageContent>{content}</DefaultPageContent>
-      {sidebarContent && <Sidebar>{sidebarContent}</Sidebar>}
-    </div>
-  </Fragment>
+    <DefaultPageContent>{content}</DefaultPageContent>
+    {sidebarContent && <Sidebar>{sidebarContent}</Sidebar>}
+  </div>
 );
 
 DefaultPageLayout.propTypes = {

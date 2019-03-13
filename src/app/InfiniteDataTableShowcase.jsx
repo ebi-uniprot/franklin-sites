@@ -10,7 +10,7 @@ const propData = {
   fixedRowCount: 1,
   showHeader: true,
   numberResultsPerRequest: 10,
-  totalNumberRows: 40,
+  totalNumberRows: 400,
   showRowNumbers: true,
   columns: [
     {
@@ -24,6 +24,30 @@ const propData = {
       label: 'Column 2',
       name: 'col2',
       render: row => <span>{row.col2.value}</span>,
+      sorted: 'ascend',
+      sortable: true,
+      width: 300,
+    },
+    {
+      label: 'Column 3',
+      name: 'col3',
+      render: row => <span>{row.col3.value}</span>,
+      sorted: 'ascend',
+      sortable: true,
+      width: 300,
+    },
+    {
+      label: 'Column 4',
+      name: 'col4',
+      render: row => <span>{row.col4.value}</span>,
+      sorted: 'ascend',
+      sortable: true,
+      width: 300,
+    },
+    {
+      label: 'Column 5',
+      name: 'col5',
+      render: row => <span>{row.col5.value}</span>,
       sorted: 'ascend',
       sortable: true,
       width: 300,
@@ -50,7 +74,7 @@ class InfiniteDataTableShowcaseContent extends Component {
     console.log(columnName);
   }
 
-  generateDataRows(numberWords = 10, sleepDuration = 1) {
+  generateDataRows(numberWords = 10, sleepDuration = 2) {
     const {
       columns, idKey, numberResultsPerRequest, totalNumberRows,
     } = this.props;
@@ -63,9 +87,8 @@ class InfiniteDataTableShowcaseContent extends Component {
         columns.forEach((column) => {
           dataPoint[column.name] = {
             value: loremIpsum({
-              sentenceLowerBound: 2,
+              sentenceLowerBound: 1,
               sentenceUpperBound: 100,
-              units: 'sentences',
             }),
           };
         });
@@ -91,24 +114,22 @@ class InfiniteDataTableShowcaseContent extends Component {
     } = this.props;
     console.log(data.length);
     return (
-      <div style={{ height: 1000 }}>
-        <InfiniteDataTable
-          selectable={selectable}
-          selected={selected}
-          onSelect={InfiniteDataTableShowcaseContent.onSelect}
-          onHeaderClick={InfiniteDataTableShowcaseContent.onHeaderClick}
-          onLoadMoreRows={() => this.generateDataRows()}
-          columns={columns}
-          idKey={idKey}
-          data={data}
-          fixedColumnCount={fixedColumnCount}
-          fixedRowCount={fixedRowCount}
-          showRowNumbers={showRowNumbers}
-          totalNumberRows={totalNumberRows}
-          showHeader={showHeader}
-          numberResultsPerRequest={numberResultsPerRequest}
-        />
-      </div>
+      <InfiniteDataTable
+        selectable={selectable}
+        selected={selected}
+        onSelect={InfiniteDataTableShowcaseContent.onSelect}
+        onHeaderClick={InfiniteDataTableShowcaseContent.onHeaderClick}
+        onLoadMoreRows={() => this.generateDataRows()}
+        columns={columns}
+        idKey={idKey}
+        data={data}
+        fixedColumnCount={fixedColumnCount}
+        fixedRowCount={fixedRowCount}
+        showRowNumbers={showRowNumbers}
+        totalNumberRows={totalNumberRows}
+        showHeader={showHeader}
+        numberResultsPerRequest={numberResultsPerRequest}
+      />
     );
   }
 }
