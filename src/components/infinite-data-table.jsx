@@ -1,25 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Column,
-  Table,
-  MultiGrid,
   CellMeasurer,
   CellMeasurerCache,
+  MultiGrid,
   AutoSizer,
   InfiniteLoader,
 } from 'react-virtualized';
-import v1 from 'uuid';
-import 'react-virtualized/styles.css'; // only needs to be imported once
-import '../styles/components/infinite-data-table.scss';
+import '../styles/components/data-table.scss';
 
 const defaultWidth = 200;
-const resultsTableRowIndex = {
-  label: '#',
-  name: 'resultsTableRowIndex',
-  render: (row, index) => index,
-  width: 100,
-};
 
 class InfiniteDataTable extends Component {
   cache = new CellMeasurerCache({
@@ -31,13 +21,13 @@ class InfiniteDataTable extends Component {
   constructor(props) {
     super(props);
     this.handleHeaderKeyPress = this.handleHeaderKeyPress.bind(this);
-    // this.getColumnWidth = this.getColumnWidth.bind(this);
-    // this.cellRenderer = this.cellRenderer.bind(this);
+    this.getColumnWidth = this.getColumnWidth.bind(this);
+    this.cellRenderer = this.cellRenderer.bind(this);
     this.isRowLoaded = this.isRowLoaded.bind(this);
   }
 
-  static getRowClassName(index, selected = false) {
-    if (selected) {
+  static getRowClassName(index, selectedRows = false) {
+    if (selectedRows) {
       return 'table-row-selected';
     }
     return index % 2 === 0 ? 'table-row-even' : 'table-row-odd';
@@ -50,98 +40,89 @@ class InfiniteDataTable extends Component {
     return 'table-header-sortable';
   }
 
-  static getNumberColumn() {
-    return (
-      <Column
-        key={v1()}
-        label="#"
-        dataKey="index"
-        width={50}
-        minWidth={50}
-        cellDataGetter={columnData => columnData}
-        cellRenderer={({ rowIndex }) => rowIndex + 1}
-      />
-    );
-  }
-
   componentDidUpdate(prevProps) {
     const { data, columns } = this.props;
     const { data: prevData } = prevProps;
-    for (let rowIndex = prevData.length; rowIndex < data.length; rowIndex += 1) {
+    for (
+      let rowIndex = Math.max(0, prevData.length - 1);
+      rowIndex <= data.length + 1;
+      rowIndex += 1
+    ) {
       for (let columnIndex = 0; columnIndex < columns.length; columnIndex += 1) {
+        // console.log(rowIndex, columnIndex);
         this.cache.clear(rowIndex, columnIndex);
       }
     }
   }
 
-  getTableWidth() {
-    let { columns } = this.props;
-    const { showRowNumbers } = this.props;
-    if (showRowNumbers) {
-      columns = [resultsTableRowIndex, ...columns];
-    }
-    const width = columns.reduce(
-      (totalWidth, column) => totalWidth + column.width || defaultWidth,
-      0,
-    );
-    return width;
+  getHeader() {
+    const { columns } = this.props;
+    return columns.map(column => ({ label: column.label, render: x => x }));
   }
 
-  getColumns() {
-    const { columns, showRowNumbers } = this.props;
-    const columnNodes = columns.map((column, index) => {
-      let render;
-      if (column.render) {
-        render = row => (row ? column.render(row) : 'loading...');
-      } else {
-        render = () => <div className="warning">{`${column.label} has no render method`}</div>;
+  getColumnWidth({ index }) {
+    const { columns } = this.props;
+    const column = columns[index];
+    return 'width' in column ? column.width : defaultWidth;
+  }
+
+  cellRenderer({
+    columnIndex, rowIndex, key, parent, style,
+  }) {
+    const {
+      fixedRowCount,
+      fixedColumnCount,
+      firstRowIsHeader,
+      showRowNumbers,
+      data,
+      columns,
+      selectedRows,
+      idKey,
+      rowSelectOnChange,
+    } = this.props;
+
+    let className = 'table-data';
+    let cellContent;
+    const column = columns[columnIndex];
+    const row = data[rowIndex];
+    if (firstRowIsHeader && rowIndex === 0) {
+      className += ' table-head';
+    } else if (!className.includes('frozen-column')) {
+      className += rowIndex % 2 ? ' table-row-odd' : ' table-row-even';
+    }
+    if (!row) {
+      cellContent = 'loading...';
+    } else if ('render' in column) {
+      const id = row[idKey];
+      const onChange = () => rowSelectOnChange(id);
+      const checked = id in selectedRows;
+      if (checked) {
+        className += ' table-row-selected';
       }
-
-      // const getContent = measure => {
-      //   // store callback for later use
-      //   this.measureCallbacks[index] = measure;
-      //   return content;
-      // };
-
-      return (
-        <Column
-          key={v1()}
-          label={column.label}
-          dataKey={column.name}
-          cellDataGetter={rowData => rowData}
-          width={column.width}
-          minWidth={column.width}
-          cellRenderer={({
-            rowData, parent, dataKey, rowIndex,
-          }) => (
-            <CellMeasurer
-              cache={this.cache}
-              columnIndex={index}
-              key={dataKey}
-              parent={parent}
-              rowIndex={rowIndex}
-            >
-              <div
-                style={{
-                  overflow: 'normal',
-                  whiteSpace: 'normal',
-                }}
-              >
-                {render(rowData)}
-              </div>
-            </CellMeasurer>
-          )}
-        />
-      );
-      // return {
-      //   label: columnName,
-      //   name: columnName,
-      //   render,
-      //   sortable: columnName in SortableColumns,
-      //   sorted: columnName === sort.column ? sort.direction : false,
-      // };
-    });
-    return showRowNumbers ? [InfiniteDataTable.getNumberColumn(), ...columnNodes] : columnNodes;
+      cellContent = column.render(row, rowIndex, onChange, checked);
+    } else {
+      cellContent = <div className="warning">{`${columnIndex} has no render method`}</div>;
+    }
+    return (
+      <CellMeasurer
+        cache={this.cache}
+        columnIndex={columnIndex}
+        key={key}
+        width={column.width}
+        parent={parent}
+        rowIndex={rowIndex}
+      >
+        <div
+          className={className}
+          style={{
+            ...style,
+            width: column.width,
+          }}
+        >
+          {cellContent}
+        </div>
+      </CellMeasurer>
+    );
   }
 
   handleHeaderKeyPress(event, columnName) {
@@ -150,71 +131,6 @@ class InfiniteDataTable extends Component {
       onHeaderClick(columnName);
     }
   }
-
-  // cellRenderer({
-  //   columnIndex, rowIndex, key, parent, style,
-  // }) {
-  //   let { columns } = this.props;
-  //   const {
-  //     data, fixedRowCount, fixedColumnCount, showHeader, showRowNumbers,
-  //   } = this.props;
-  //   let className = '';
-  //   let cellContent;
-
-  //   if (showRowNumbers) {
-  //     columns = [resultsTableRowIndex, ...columns];
-  //   }
-
-  //   if (fixedColumnCount && columnIndex < fixedColumnCount) {
-  //     className += ' frozen-column';
-  //   }
-
-  //   if (fixedRowCount && rowIndex < fixedRowCount) {
-  //     className += ' frozen-row';
-  //   }
-
-  //   const ri = rowIndex - Number(showHeader);
-  //   const column = columns[columnIndex];
-  //   if (ri === -1) {
-  //     cellContent = 'label' in column ? <b>{column.label}</b> : `${columnIndex} has no label`;
-  //   } else {
-  //     const row = data[ri];
-  //     if (!className.includes('frozen-column')) {
-  //       className += ri % 2 ? ' table-row-odd' : ' table-row-even';
-  //     }
-  //     if (!row) {
-  //       cellContent = <span style={{ fontSize: 100 }}>loading...</span>;
-  //     } else if ('render' in column) {
-  //       cellContent = column.render(row, rowIndex);
-  //     } else {
-  //       cellContent = (
-  //         <div style={{ fontSize: 100 }} className="warning">
-  //           {`${columnIndex} has no render method`}
-  //         </div>
-  //       );
-  //     }
-  //   }
-  //   return (
-  //     <CellMeasurer
-  //       cache={this.cache}
-  //       columnIndex={columnIndex}
-  //       key={key}
-  //       parent={parent}
-  //       rowIndex={ri}
-  //     >
-  //       <div
-  //         style={{
-  //           ...style,
-  //           minWidth: column.width,
-  //           // paddingBottom: 30,
-  //           // paddingTop: 30,
-  //         }}
-  //       >
-  //         {cellContent}
-  //       </div>
-  //     </CellMeasurer>
-  //   );
-  // }
 
   isRowLoaded({ index }) {
     const { data } = this.props;
@@ -226,49 +142,56 @@ class InfiniteDataTable extends Component {
       columns,
       data,
       selectable = false,
-      selected = {},
+      selectedRows = {},
       onSelect,
       onHeaderClick,
       idKey,
       onLoadMoreRows,
-      showHeader,
+      firstRowIsHeader,
+      fixedColumnCount,
+      fixedRowCount,
       totalNumberRows,
       numberResultsPerRequest,
       showRowNumbers,
     } = this.props;
-    const rowCount = Math.min(totalNumberRows, data.length + numberResultsPerRequest);
-    console.log(rowCount);
-
+    const rowCount = Math.min(
+      totalNumberRows + Number(firstRowIsHeader),
+      data.length + numberResultsPerRequest + Number(firstRowIsHeader) - 1,
+    );
     return (
-      <div style={{ overflowX: 'scroll', width: 600, height: '100%' }}>
-        <InfiniteLoader
-          loadMoreRows={onLoadMoreRows}
-          isRowLoaded={this.isRowLoaded}
-          rowCount={rowCount}
-          threshold={1}
-        >
-          {({ onRowsRendered, registerChild }) => (
-            <AutoSizer disableWidth>
-              {({ width, height }) => (
-                <Table
-                  width={this.getTableWidth()}
+      <InfiniteLoader
+        loadMoreRows={onLoadMoreRows}
+        isRowLoaded={this.isRowLoaded}
+        rowCount={rowCount}
+        threshold={1}
+      >
+        {({ onRowsRendered, registerChild }) => (
+          <AutoSizer>
+            {({ width, height }) => (
+              <div className="data-table">
+                <MultiGrid
+                  cellRenderer={this.cellRenderer}
+                  columnCount={columns.length + Number(showRowNumbers)}
+                  width={width}
                   height={height}
-                  headerHeight={75}
-                  deferredMeasurementCache={this.cache}
+                  columnWidth={this.getColumnWidth}
                   rowHeight={this.cache.rowHeight}
+                  deferredMeasurementCache={this.cache}
+                  fixedRowCount={1}
                   ref={registerChild}
-                  onRowsRendered={onRowsRendered}
                   rowCount={rowCount}
-                  rowGetter={({ index }) => data[index]}
-                  // scrollToIndex={data.length <= numberResultsPerRequest ? 0 : undefined}
-                >
-                  {this.getColumns()}
-                </Table>
-              )}
-            </AutoSizer>
-          )}
-        </InfiniteLoader>
-      </div>
+                  scrollToRow={data.length <= numberResultsPerRequest ? 0 : undefined}
+                  onSectionRendered={({ rowStartIndex, rowStopIndex }) => onRowsRendered({
+                    startIndex: rowStartIndex,
+                    stopIndex: rowStopIndex,
+                  })
+                  }
+                />
+              </div>
+            )}
+          </AutoSizer>
+        )}
+      </InfiniteLoader>
     );
   }
 }
@@ -277,7 +200,7 @@ InfiniteDataTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectable: PropTypes.bool,
-  selected: PropTypes.shape({}),
+  selectedRows: PropTypes.shape({}),
   onSelect: PropTypes.func,
   onHeaderClick: PropTypes.func,
   idKey: PropTypes.string,
@@ -285,7 +208,7 @@ InfiniteDataTable.propTypes = {
 
 InfiniteDataTable.defaultProps = {
   selectable: false,
-  selected: {},
+  selectedRows: {},
   onSelect: () => {},
   onHeaderClick: () => {},
   idKey: 'id',

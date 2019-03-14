@@ -6,13 +6,29 @@ import InfiniteDataTable from '../components/infinite-data-table';
 
 const propData = {
   selectable: true,
-  fixedColumnCount: 1,
-  fixedRowCount: 1,
-  showHeader: true,
+  fixedColumnCount: 0,
+  fixedRowCount: 0,
+  firstRowIsHeader: true,
   numberResultsPerRequest: 10,
-  totalNumberRows: 400,
-  showRowNumbers: true,
+  totalNumberRows: 2000000,
+  showRowNumbers: false,
   columns: [
+    {
+      label: '',
+      name: 'select',
+      render: (row, index, onChange, checked) => (index ? (
+        <input type="checkbox" onChange={onChange} checked={checked} />
+      ) : (
+        <span>{row.select.value}</span>
+      )),
+      width: 40,
+    },
+    {
+      label: '#',
+      name: 'rowNumber',
+      render: (row, index) => index || <span>{row.rowNumber.value}</span>,
+      width: 40,
+    },
     {
       label: 'Column 1',
       name: 'col1',
@@ -59,19 +75,35 @@ const propData = {
 class InfiniteDataTableShowcaseContent extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [], selected: {} };
-  }
-
-  componentDidMount() {
-    this.generateDataRows();
-  }
-
-  static onSelect(rowId) {
-    console.log(rowId, 'selected');
+    this.state = { data: [], selectedRows: {} };
+    this.getHeaderRow = this.getHeaderRow.bind(this);
+    this.onSelect = this.onSelect.bind(this);
   }
 
   static onHeaderClick(columnName) {
     console.log(columnName);
+  }
+
+  onSelect(rowId) {
+    const { selectedRows: prevSelectedRows } = this.state;
+    console.log(rowId, 'selected');
+    if (rowId in prevSelectedRows) {
+      const { [rowId]: value, ...selectedRows } = prevSelectedRows;
+      this.setState({ selectedRows });
+    } else {
+      prevSelectedRows[rowId] = true;
+      this.setState({ selectedRows: prevSelectedRows });
+    }
+  }
+
+  getHeaderRow() {
+    const { columns } = this.props;
+    const headerRow = {};
+    columns.forEach((column) => {
+      headerRow[column.name] = { value: column.label };
+    });
+
+    return headerRow;
   }
 
   generateDataRows(numberWords = 10, sleepDuration = 2) {
@@ -87,8 +119,8 @@ class InfiniteDataTableShowcaseContent extends Component {
         columns.forEach((column) => {
           dataPoint[column.name] = {
             value: loremIpsum({
-              sentenceLowerBound: 1,
-              sentenceUpperBound: 100,
+              sentenceLowerBound: 2,
+              sentenceUpperBound: 30,
             }),
           };
         });
@@ -100,7 +132,7 @@ class InfiniteDataTableShowcaseContent extends Component {
   }
 
   render() {
-    const { selected, data } = this.state;
+    const { selectedRows, data } = this.state;
     const {
       selectable,
       columns,
@@ -109,26 +141,26 @@ class InfiniteDataTableShowcaseContent extends Component {
       fixedRowCount,
       showRowNumbers,
       totalNumberRows,
-      showHeader,
+      firstRowIsHeader,
       numberResultsPerRequest,
     } = this.props;
-    console.log(data.length);
     return (
       <InfiniteDataTable
         selectable={selectable}
-        selected={selected}
+        selectedRows={selectedRows}
         onSelect={InfiniteDataTableShowcaseContent.onSelect}
         onHeaderClick={InfiniteDataTableShowcaseContent.onHeaderClick}
         onLoadMoreRows={() => this.generateDataRows()}
         columns={columns}
         idKey={idKey}
-        data={data}
+        data={[this.getHeaderRow(), ...data]}
         fixedColumnCount={fixedColumnCount}
         fixedRowCount={fixedRowCount}
         showRowNumbers={showRowNumbers}
         totalNumberRows={totalNumberRows}
-        showHeader={showHeader}
+        firstRowIsHeader={firstRowIsHeader}
         numberResultsPerRequest={numberResultsPerRequest}
+        rowSelectOnChange={this.onSelect}
       />
     );
   }
