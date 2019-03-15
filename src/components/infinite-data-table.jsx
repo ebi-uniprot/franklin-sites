@@ -90,6 +90,9 @@ class InfiniteDataTable extends Component {
     } else if (!className.includes('frozen-column')) {
       className += rowIndex % 2 ? ' table-row-odd' : ' table-row-even';
     }
+    if (column.name === 'select' && rowIndex > 0) {
+      className += ' table-data-checkbox';
+    }
     if (!row) {
       cellContent = 'loading...';
     } else if ('render' in column) {
