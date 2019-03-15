@@ -34,10 +34,31 @@ class InfiniteDataTable extends Component {
   }
 
   static getSortableColumnClassName(column) {
+    let className;
     if ('sorted' in column) {
-      return column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
+      className = column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
+    } else {
+      className = 'table-header-sortable';
     }
-    return 'table-header-sortable';
+    return `${className} table-head`;
+  }
+
+  static getSortableColumn(column, row, onHeaderClick, style) {
+    return (
+      <button
+        style={{
+          ...style,
+          width: column.width,
+        }}
+        type="button"
+        key={column.name}
+        className={InfiniteDataTable.getSortableColumnClassName(column)}
+        onClick={() => onHeaderClick(column.name)}
+        // onKeyPress={() => this.handleHeaderKeyPress(column.name)}
+      >
+        {column.label}
+      </button>
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -79,10 +100,12 @@ class InfiniteDataTable extends Component {
       selectedRows,
       idKey,
       rowSelectOnChange,
+      onHeaderClick,
     } = this.props;
 
     let className = 'table-data';
     let cellContent;
+    let cellNode;
     const column = columns[columnIndex];
     const row = data[rowIndex];
     if (firstRowIsHeader && rowIndex === 0) {
@@ -94,17 +117,57 @@ class InfiniteDataTable extends Component {
       className += ' table-data-checkbox';
     }
     if (!row) {
-      cellContent = 'loading...';
+      cellNode = (
+        <div
+          className={className}
+          style={{
+            ...style,
+            width: column.width,
+          }}
+        >
+          loading...
+        </div>
+      );
     } else if ('render' in column) {
-      const id = row[idKey];
-      const onChange = () => rowSelectOnChange(id);
-      const checked = id in selectedRows;
-      if (checked) {
-        className += ' table-row-selected';
+      if ('sortable' in column && firstRowIsHeader && rowIndex === 0) {
+        cellNode = InfiniteDataTable.getSortableColumn(column, row, onHeaderClick, style);
+      } else {
+        const id = row[idKey];
+        const onChange = () => rowSelectOnChange(id);
+        const checked = id in selectedRows;
+        if (checked) {
+          className += ' table-row-selected';
+        }
+        cellContent = column.render({
+          row,
+          rowIndex,
+          onChange,
+          checked,
+        });
+        cellNode = (
+          <div
+            className={className}
+            style={{
+              ...style,
+              width: column.width,
+            }}
+          >
+            {cellContent}
+          </div>
+        );
       }
-      cellContent = column.render(row, rowIndex, onChange, checked);
     } else {
-      cellContent = <div className="warning">{`${columnIndex} has no render method`}</div>;
+      cellNode = (
+        <div
+          className={className}
+          style={{
+            ...style,
+            width: column.width,
+          }}
+        >
+          <div className="warning">{`${columnIndex} has no render method`}</div>
+        </div>
+      );
     }
     return (
       <CellMeasurer
@@ -115,15 +178,7 @@ class InfiniteDataTable extends Component {
         parent={parent}
         rowIndex={rowIndex}
       >
-        <div
-          className={className}
-          style={{
-            ...style,
-            width: column.width,
-          }}
-        >
-          {cellContent}
-        </div>
+        {cellNode}
       </CellMeasurer>
     );
   }
@@ -159,7 +214,8 @@ class InfiniteDataTable extends Component {
     } = this.props;
     const rowCount = Math.min(
       totalNumberRows + Number(firstRowIsHeader),
-      data.length + numberResultsPerRequest + Number(firstRowIsHeader) - 1,
+      data.length + Number(firstRowIsHeader),
+      // data.length + numberResultsPerRequest + Number(firstRowIsHeader) - 1,
     );
     return (
       <InfiniteLoader
