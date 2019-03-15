@@ -4,11 +4,15 @@ exports[`Card component should render 1`] = `
 <div
   className="card"
 >
-  <h3
-    className="card__title"
+  <div
+    className="card__header"
   >
-    Title
-  </h3>
+    <h3
+      className="card__title"
+    >
+      Title
+    </h3>
+  </div>
   <div
     className="card__content"
   >
