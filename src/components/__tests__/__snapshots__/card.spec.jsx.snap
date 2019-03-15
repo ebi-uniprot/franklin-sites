@@ -22,3 +22,77 @@ exports[`Card component should render 1`] = `
   </div>
 </div>
 `;
+
+exports[`Card component should render card with links 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card__header"
+  >
+    <h3
+      className="card__title"
+    >
+      Title
+    </h3>
+    <div
+      className="card__subtitle"
+    >
+      Subtitle
+    </div>
+  </div>
+  <div
+    className="card__content"
+  >
+    <span>
+      Some content
+    </span>
+  </div>
+  <div
+    className="card__actions"
+  >
+    <div
+      className="card__link"
+      style={
+        Object {
+          "borderColor": "red",
+        }
+      }
+    >
+      <a
+        href="example.com"
+      >
+        link
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card component should render card with subtitle 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card__header"
+  >
+    <h3
+      className="card__title"
+    >
+      Title
+    </h3>
+    <div
+      className="card__subtitle"
+    >
+      Subtitle
+    </div>
+  </div>
+  <div
+    className="card__content"
+  >
+    <span>
+      Some content
+    </span>
+  </div>
+</div>
+`;

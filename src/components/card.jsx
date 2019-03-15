@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import '../styles/components/card.scss';
@@ -8,7 +7,7 @@ const DEFAULT_LINK_BORDER_COLOR = '#fff';
 
 const CardLink = ({ name, link, color }) => (
   <div className="card__link" style={{ borderColor: color }}>
-    <Link to={link}>{name}</Link>
+    <a href={link}>{name}</a>
   </div>
 );
 
