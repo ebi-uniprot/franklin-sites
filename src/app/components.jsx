@@ -35,11 +35,7 @@ class MainSearchWrapper extends Component {
   render() {
     const { searchTerm } = this.state;
     return (
-      <MainSearch
-        {...this.props}
-        searchTerm={searchTerm}
-        onChange={v => this.handleChange(v)}
-      />
+      <MainSearch {...this.props} searchTerm={searchTerm} onChange={v => this.handleChange(v)} />
     );
   }
 }
@@ -48,24 +44,21 @@ const components = [
   {
     name: 'Tile',
     component: Tile,
-    function:
-      'Provide a sneak peak and navigate to a searchable data section of the website.',
-    purpose:
-      'Advertise a specific dataset of the website and provide searchable access to it.',
+    function: 'Provide a sneak peak and navigate to a searchable data section of the website.',
+    purpose: 'Advertise a specific dataset of the website and provide searchable access to it.',
     props: {
-      namespace: 'uniref'
-    }
+      namespace: 'uniref',
+    },
   },
   {
     name: 'Evidence Tag',
     component: EvidenceTag,
-    function:
-      'Provide the user with information about the evidence associated to a piece of text.',
+    function: 'Provide the user with information about the evidence associated to a piece of text.',
     purpose:
       'Inform the user so they can make a decision regarding the trustworthyness of a piece of text',
     props: {
-      label: 'evidence tag'
-    }
+      label: 'evidence tag',
+    },
   },
   {
     name: 'Page intro',
@@ -79,8 +72,8 @@ const components = [
       resultsCount: 1000,
       children:
         'UniProtKB consists of two sections:Reviewed (Swiss-Prot) - Manually annotated Records with information extracted from literature and curator-evaluated computational analysis. Unreviewed (TrEMBL) - Computationally analyzed. Records that await full manual annotation. The UniProt Knowledgebase (UniProtKB) is the central hub for the collection of functional information on proteins, with accurate, consistent and rich annotation. In addition to capturing the core data mandatory for each UniProtKB entry (mainly, the amino acid sequence, protein name or description, taxonomic data and citation information), as much annotation information as possible is added.',
-      links: [{ title: 'Help', icon: '', destination: '' }]
-    }
+      links: [{ title: 'Help', icon: '', destination: '' }],
+    },
   },
   {
     name: 'Dropdown button',
@@ -102,8 +95,8 @@ const components = [
           </ul>
         </div>
       ),
-      onSelect: () => {}
-    }
+      onSelect: () => {},
+    },
   },
   {
     name: 'Tree select',
@@ -115,8 +108,8 @@ const components = [
       onSelect: () => {},
       autocomplete: true,
       autocompletePlaceholder: 'Search for item',
-      autocompleteFilter: true
-    }
+      autocompleteFilter: true,
+    },
   },
   {
     name: 'Autocomplete',
@@ -127,8 +120,8 @@ const components = [
       data: flattenedPaths,
       onSelect: value => console.log(value),
       placeholder: 'Placeholder',
-      filter: true
-    }
+      filter: true,
+    },
   },
   {
     name: 'Main search',
@@ -136,11 +129,11 @@ const components = [
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
     props: {
-      onSubmit: e => {
+      onSubmit: (e) => {
         e.preventDefault();
         console.log('Main search submit');
-      }
-    }
+      },
+    },
   },
   {
     name: 'Hero header',
@@ -150,8 +143,8 @@ const components = [
     props: {
       title: 'Title',
       children: <input type="text" />,
-      footer: lipsum.substring(0, 150)
-    }
+      footer: lipsum.substring(0, 150),
+    },
   },
   {
     name: 'Info list',
@@ -164,61 +157,57 @@ const components = [
       infoData: [
         {
           title: 'Item 1',
-          content: <div>Some content</div>
+          content: <div>Some content</div>,
         },
         {
           title: 'Another item',
-          content: <div>Some more content</div>
-        }
-      ]
-    }
+          content: <div>Some more content</div>,
+        },
+      ],
+    },
   },
   {
     name: 'Card',
     component: Card,
-    function:
-      'Provide a contained section to show content for a given category.',
-    purpose:
-      'Create visually delimited areas to allow for easier scanning of content.',
+    function: 'Provide a contained section to show content for a given category.',
+    purpose: 'Create visually delimited areas to allow for easier scanning of content.',
     props: {
       title: 'Title',
-      children: <p>An example of content</p>
-    }
+      children: <p>An example of content</p>,
+    },
   },
   {
     name: 'Protein Card',
     component: Card,
-    function:
-      'Provide a contained section to show content for a given category.',
-    purpose:
-      'Create visually delimited areas to allow for easier scanning of content.',
+    function: 'Provide a contained section to show content for a given category.',
+    purpose: 'Create visually delimited areas to allow for easier scanning of content.',
     props: {
       title: 'Title',
-      subtitle: <Link to="#">APOE_HUMAN - P02649</Link>,
+      subtitle: <Link to="/#">APOE_HUMAN - P02649</Link>,
       children: <p>An example of content</p>,
       links: [
         {
           name: '10 Protein Interactions',
           link: '#',
-          color: 'red'
+          color: 'red',
         },
         {
           name: '9 Pathways',
           link: '#',
-          color: 'blue'
+          color: 'blue',
         },
         {
           name: '5 Diseases',
           link: '#',
-          color: '#bada55'
+          color: '#bada55',
         },
         {
           name: '72 Variants',
           link: '#',
-          color: 'burlywood'
-        }
-      ]
-    }
+          color: 'burlywood',
+        },
+      ],
+    },
   },
   {
     name: 'Data table',
@@ -228,10 +217,10 @@ const components = [
     props: {
       selectable: true,
       selected: { blah3: true },
-      onSelect: rowId => {
+      onSelect: (rowId) => {
         console.log(rowId, 'selected');
       },
-      onHeaderClick: columnName => {
+      onHeaderClick: (columnName) => {
         console.log(columnName);
       },
       columns: [
@@ -239,47 +228,47 @@ const components = [
           label: 'Column 1',
           name: 'col1',
           render: row => <span>{row.fieldValue1.value}</span>,
-          sortable: true
+          sortable: true,
         },
         {
           label: 'Column 2',
           name: 'col2',
           render: row => <span>{row.fieldValue2.value}</span>,
           sorted: 'ascend',
-          sortable: true
-        }
+          sortable: true,
+        },
       ],
       idKey: 'accessionId',
       data: [
         {
           accessionId: 'blah1',
           fieldValue1: {
-            value: 'Some data 1'
+            value: 'Some data 1',
           },
           fieldValue2: {
-            value: 'Some data 2'
-          }
+            value: 'Some data 2',
+          },
         },
         {
           accessionId: 'blah2',
           fieldValue1: {
-            value: 'Some data A'
+            value: 'Some data A',
           },
           fieldValue2: {
-            value: 'Some data B'
-          }
+            value: 'Some data B',
+          },
         },
         {
           accessionId: 'blah3',
           fieldValue1: {
-            value: 'Some data α'
+            value: 'Some data α',
           },
           fieldValue2: {
-            value: 'Some data β'
-          }
-        }
-      ]
-    }
+            value: 'Some data β',
+          },
+        },
+      ],
+    },
   },
   {
     name: 'Facets',
@@ -289,11 +278,9 @@ const components = [
     props: {
       data: facetData,
       selectedFacets: [{ name: 'facet_2', value: 'value_2' }],
-      addFacet: (name, value) =>
-        console.log(`${name} facet toggled with ${value}`),
-      removeFacet: (name, value) =>
-        console.log(`${name} facet toggled with ${value}`)
-    }
+      addFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+      removeFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+    },
   },
   {
     name: 'Sequence',
@@ -301,9 +288,9 @@ const components = [
     function: 'Display protein/nucleotide sequence, allow users to copy it',
     purpose: 'Allow users to see a protein / nucleotide sequence',
     props: {
-      sequence: sequenceData
-    }
-  }
+      sequence: sequenceData,
+    },
+  },
 ];
 
 export default components;

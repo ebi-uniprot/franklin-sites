@@ -1,18 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import "../styles/components/card.scss";
+import '../styles/components/card.scss';
 
-const DEFAULT_LINK_BORDER_COLOR = "#fff";
+const DEFAULT_LINK_BORDER_COLOR = '#fff';
 
-const CardLink = ({ name, link, color = DEFAULT_LINK_BORDER_COLOR }) => (
+const CardLink = ({ name, link, color }) => (
   <div className="card__link" style={{ borderColor: color }}>
     <Link to={link}>{name}</Link>
   </div>
 );
 
-const Card = ({ title, subtitle, children, links = [] }) => (
+const Card = ({
+  title, subtitle, children, links = [],
+}) => (
   <div className="card">
     <div className="card__header">
       <h3 className="card__title">{title}</h3>
@@ -32,7 +34,11 @@ const Card = ({ title, subtitle, children, links = [] }) => (
 CardLink.propTypes = {
   name: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  color: PropTypes.string
+  color: PropTypes.string,
+};
+
+CardLink.defaultProps = {
+  color: DEFAULT_LINK_BORDER_COLOR,
 };
 
 Card.propTypes = {
@@ -43,9 +49,14 @@ Card.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
-      color: PropTypes.string
-    })
-  )
+      color: PropTypes.string,
+    }),
+  ),
+};
+
+Card.defaultProps = {
+  subtitle: '',
+  links: [],
 };
 
 export default Card;
