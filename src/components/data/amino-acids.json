@@ -1,0 +1,232 @@
+{
+  "A": {
+    "name": "Alanine",
+    "shortName": "Ala",
+    "mass": 71.0788,
+    "hydrophobicity": true,
+    "pl": 6.01,
+    "polar": false,
+    "size": "tiny"
+  },
+  "R": {
+    "name": "Arginine",
+    "shortName": "Arg",
+    "mass": 156.1875,
+    "hydrophobicity": false,
+    "pl": 0.76,
+    "polar": true,
+    "size": "big"
+  },
+  "N": {
+    "name": "Asparagine",
+    "shortName": "Asn",
+    "mass": 114.1038,
+    "hydrophobicity": false,
+    "pl": 5.41,
+    "polar": true,
+    "size": "small"
+  },
+  "D": {
+    "name": "Aspartate",
+    "shortName": "Asp",
+    "mass": 115.0886,
+    "hydrophobicity": false,
+    "pl": 2.85,
+    "polar": true,
+    "size": "small"
+  },
+  "C": {
+    "name": "Cysteine",
+    "shortName": "Cys",
+    "mass": 103.1388,
+    "hydrophobicity": true,
+    "pl": 5.05,
+    "polar": false,
+    "size": "tiny"
+  },
+  "Q": {
+    "name": "Glutamine",
+    "shortName": "Gln",
+    "mass": 128.1307,
+    "hydrophobicity": false,
+    "pl": 5.65,
+    "polar": true,
+    "size": "big"
+  },
+  "E": {
+    "name": "Glutamate",
+    "shortName": "Glu",
+    "mass": 129.1155,
+    "hydrophobicity": false,
+    "pl": 3.15,
+    "polar": true,
+    "size": "big"
+  },
+  "G": {
+    "name": "Glycine",
+    "shortName": "Gly",
+    "mass": 57.0519,
+    "hydrophobicity": true,
+    "pl": 6.06,
+    "polar": true,
+    "size": "tiny"
+  },
+  "H": {
+    "name": "Histidine",
+    "shortName": "His",
+    "mass": 137.1411,
+    "hydrophobicity": false,
+    "pl": 7.6,
+    "polar": true,
+    "size": "big"
+  },
+  "I": {
+    "name": "Isoleucine",
+    "shortName": "Ile",
+    "mass": 113.1594,
+    "hydrophobicity": true,
+    "pl": 6.05,
+    "polar": false,
+    "size": "big"
+  },
+  "L": {
+    "name": "Leucine",
+    "shortName": "Leu",
+    "mass": 113.1594,
+    "hydrophobicity": true,
+    "pl": 6.01,
+    "polar": false,
+    "size": "big"
+  },
+  "K": {
+    "name": "Lysine",
+    "shortName": "Lys",
+    "mass": 128.1741,
+    "hydrophobicity": false,
+    "pl": 9.6,
+    "polar": true,
+    "size": "big"
+  },
+  "M": {
+    "name": "Methionine",
+    "shortName": "Met",
+    "mass": 131.1926,
+    "hydrophobicity": true,
+    "pl": 5.74,
+    "polar": false,
+    "size": "big"
+  },
+  "F": {
+    "name": "Phenylalanine",
+    "shortName": "Phe",
+    "mass": 147.1766,
+    "hydrophobicity": true,
+    "pl": 5.49,
+    "polar": false,
+    "size": "big"
+  },
+  "P": {
+    "name": "Proline",
+    "shortName": "Pro",
+    "mass": 97.1167,
+    "hydrophobicity": true,
+    "pl": 6.3,
+    "polar": false,
+    "size": "small"
+  },
+  "S": {
+    "name": "Serine",
+    "shortName": "Ser",
+    "mass": 87.0782,
+    "hydrophobicity": false,
+    "pl": 5.68,
+    "polar": true,
+    "size": "tiny"
+  },
+  "T": {
+    "name": "Threonine",
+    "shortName": "Thr",
+    "mass": 101.1051,
+    "hydrophobicity": false,
+    "pl": 5.6,
+    "polar": true,
+    "size": "small"
+  },
+  "W": {
+    "name": "Tryptophan",
+    "shortName": "Trp",
+    "mass": 186.2132,
+    "hydrophobicity": true,
+    "pl": 5.89,
+    "polar": false,
+    "size": "big"
+  },
+  "Y": {
+    "name": "Tyrosine",
+    "shortName": "Tyr",
+    "mass": 163.176,
+    "hydrophobicity": false,
+    "pl": 5.64,
+    "polar": true,
+    "size": "big"
+  },
+  "V": {
+    "name": "Valine",
+    "shortName": "Val",
+    "mass": 99.1326,
+    "hydrophobicity": true,
+    "pl": 6.0,
+    "polar": false,
+    "size": "small"
+  },
+  "B": {
+    "name": "Asparagine or Aspartate",
+    "shortName": "Asx",
+    "mass": 114.6532,
+    "hydrophobicity": false,
+    "pl": 0,
+    "polar": true,
+    "size": "small"
+  },
+  "Z": {
+    "name": "Glutamine or Glutamate",
+    "shortName": "Glx",
+    "mass": 128.7473,
+    "hydrophobicity": false,
+    "pl": 0,
+    "polar": true,
+    "size": "big"
+  },
+  "J": {
+    "name": "Leucine or Isoleucine",
+    "shortName": "Lex",
+    "mass": 113.1594,
+    "hydrophobicity": true,
+    "polar": false,
+    "size": "big"
+  },
+  "U": {
+    "name": "Selenocysteine",
+    "shortName": "Sec",
+    "mass": 150.0388,
+    "hydrophobicity": true,
+    "polar": true,
+    "size": "tiny"
+  },
+  "O": {
+    "name": "Pyrrolysine",
+    "shortName": "Pyr",
+    "mass": 237.3018,
+    "hydrophobicity": false,
+    "polar": true,
+    "size": "big"
+  },
+  "X": {
+    "name": "Any",
+    "shortName": "Xaa",
+    "mass": 111.3306,
+    "hydrophobicity": false,
+    "polar": false,
+    "size": "any"
+  }
+}
