@@ -2,7 +2,7 @@
 @import "../colours";
 @import "../mixins";
 
-.data-table {
+.data-table-base {
   border: 1px solid $colour-seashell-grey;
   margin: 0 0 3em 0;
 
@@ -95,6 +95,14 @@
   .table-data-small {
     flex: 0 1 16em;
   }
+}
+
+.data-table-infinite {
+  @extend .data-table-base;
+}
+
+.data-table {
+  @extend .data-table-base;
 }
 
 @include breakpoint(small only) {

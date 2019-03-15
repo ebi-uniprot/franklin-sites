@@ -7,6 +7,7 @@ import {
   AutoSizer,
   InfiniteLoader,
 } from 'react-virtualized';
+import { serializableDeepAreEqual } from '../utils';
 import '../styles/components/data-table.scss';
 
 const defaultWidth = 200;
@@ -62,16 +63,19 @@ class InfiniteDataTable extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { data, columns } = this.props;
-    const { data: prevData } = prevProps;
-    for (
-      let rowIndex = Math.max(0, prevData.length - 1);
-      rowIndex <= data.length + 1;
-      rowIndex += 1
-    ) {
-      for (let columnIndex = 0; columnIndex < columns.length; columnIndex += 1) {
-        // console.log(rowIndex, columnIndex);
-        this.cache.clear(rowIndex, columnIndex);
+    const { data, columns, selectedRows } = this.props;
+    const { data: prevData, selectedRows: prevSelectedRows } = prevProps;
+    if (!serializableDeepAreEqual(data, prevData)) {
+      console.log('clearing cache', data, prevData);
+      for (
+        let rowIndex = Math.max(0, prevData.length - 1);
+        rowIndex <= data.length + 1;
+        rowIndex += 1
+      ) {
+        for (let columnIndex = 0; columnIndex < columns.length; columnIndex += 1) {
+          // console.log(rowIndex, columnIndex);
+          this.cache.clear(rowIndex, columnIndex);
+        }
       }
     }
   }
@@ -227,7 +231,7 @@ class InfiniteDataTable extends Component {
         {({ onRowsRendered, registerChild }) => (
           <AutoSizer>
             {({ width, height }) => (
-              <div className="data-table">
+              <div className="data-table-infinite">
                 <MultiGrid
                   cellRenderer={this.cellRenderer}
                   columnCount={columns.length + Number(showRowNumbers)}

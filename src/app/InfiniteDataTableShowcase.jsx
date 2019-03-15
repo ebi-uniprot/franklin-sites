@@ -72,6 +72,8 @@ const propData = {
 };
 
 class InfiniteDataTableShowcaseContent extends Component {
+  generatingDataRows = false;
+
   constructor(props) {
     super(props);
     this.state = { data: [], selectedRows: {} };
@@ -110,6 +112,10 @@ class InfiniteDataTableShowcaseContent extends Component {
       columns, idKey, numberResultsPerRequest, totalNumberRows,
     } = this.props;
     const { data } = this.state;
+    if (this.generatingDataRows) {
+      return;
+    }
+    this.generatingDataRows = true;
     console.log(columns, idKey, numberResultsPerRequest, totalNumberRows);
     const moreData = Array(Math.min(numberResultsPerRequest, totalNumberRows - data.length))
       .fill(null)
@@ -127,6 +133,7 @@ class InfiniteDataTableShowcaseContent extends Component {
       });
     setTimeout(() => {
       this.setState({ data: [...data, ...moreData] });
+      this.generatingDataRows = false;
     }, sleepDuration * 1000);
   }
 
