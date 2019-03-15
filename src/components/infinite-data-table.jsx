@@ -11,12 +11,14 @@ import { serializableDeepAreEqual } from '../utils';
 import '../styles/components/data-table.scss';
 
 const defaultWidth = 200;
+const defaultHeight = 30;
+const minHeight = 30;
 
 class InfiniteDataTable extends Component {
   cache = new CellMeasurerCache({
     fixedWidth: true,
-    defaultHeight: 30,
-    minHeight: 30,
+    defaultHeight,
+    minHeight,
   });
 
   constructor(props) {
@@ -47,15 +49,11 @@ class InfiniteDataTable extends Component {
   static getSortableColumn(column, row, onHeaderClick, style) {
     return (
       <button
-        style={{
-          ...style,
-          width: column.width,
-        }}
+        style={style}
         type="button"
         key={column.name}
         className={InfiniteDataTable.getSortableColumnClassName(column)}
         onClick={() => onHeaderClick(column.name)}
-        // onKeyPress={() => this.handleHeaderKeyPress(column.name)}
       >
         {column.label}
       </button>
@@ -63,17 +61,11 @@ class InfiniteDataTable extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { data, columns, selectedRows } = this.props;
-    const { data: prevData, selectedRows: prevSelectedRows } = prevProps;
+    const { data, columns } = this.props;
+    const { data: prevData } = prevProps;
     if (!serializableDeepAreEqual(data, prevData)) {
-      console.log('clearing cache', data, prevData);
-      for (
-        let rowIndex = Math.max(0, prevData.length - 1);
-        rowIndex <= data.length + 1;
-        rowIndex += 1
-      ) {
+      for (let rowIndex = prevData.length; rowIndex <= data.length + 1; rowIndex += 1) {
         for (let columnIndex = 0; columnIndex < columns.length; columnIndex += 1) {
-          // console.log(rowIndex, columnIndex);
           this.cache.clear(rowIndex, columnIndex);
         }
       }
@@ -91,49 +83,41 @@ class InfiniteDataTable extends Component {
     return 'width' in column ? column.width : defaultWidth;
   }
 
-  cellRenderer({
-    columnIndex, rowIndex, key, parent, style,
-  }) {
-    const {
-      fixedRowCount,
-      fixedColumnCount,
-      firstRowIsHeader,
-      showRowNumbers,
-      data,
-      columns,
-      selectedRows,
-      idKey,
-      rowSelectOnChange,
-      onHeaderClick,
-    } = this.props;
+  // static getHeaderCell({
 
+  // })
+
+  static getCell({
+    column,
+    row,
+    style,
+    rowIndex,
+    showHeader,
+    idKey,
+    rowSelectOnChange,
+    onHeaderClick,
+    selectedRows,
+  }) {
     let className = 'table-data';
     let cellContent;
     let cellNode;
-    const column = columns[columnIndex];
-    const row = data[rowIndex];
-    if (firstRowIsHeader && rowIndex === 0) {
+
+    if (showHeader && rowIndex === 0) {
       className += ' table-head';
-    } else if (!className.includes('frozen-column')) {
+    } else {
       className += rowIndex % 2 ? ' table-row-odd' : ' table-row-even';
     }
-    if (column.name === 'select' && rowIndex > 0) {
+    if (column.name === 'select') {
       className += ' table-data-checkbox';
     }
     if (!row) {
       cellNode = (
-        <div
-          className={className}
-          style={{
-            ...style,
-            width: column.width,
-          }}
-        >
+        <div className={className} style={style}>
           loading...
         </div>
       );
     } else if ('render' in column) {
-      if ('sortable' in column && firstRowIsHeader && rowIndex === 0) {
+      if ('sortable' in column && showHeader && rowIndex === 0) {
         cellNode = InfiniteDataTable.getSortableColumn(column, row, onHeaderClick, style);
       } else {
         const id = row[idKey];
@@ -149,40 +133,53 @@ class InfiniteDataTable extends Component {
           checked,
         });
         cellNode = (
-          <div
-            className={className}
-            style={{
-              ...style,
-              width: column.width,
-            }}
-          >
+          <div className={className} style={style}>
             {cellContent}
           </div>
         );
       }
     } else {
       cellNode = (
-        <div
-          className={className}
-          style={{
-            ...style,
-            width: column.width,
-          }}
-        >
-          <div className="warning">{`${columnIndex} has no render method`}</div>
+        <div className={className} style={style}>
+          <div className="warning">{`${column.name} has no render method`}</div>
         </div>
       );
     }
+    return cellNode;
+  }
+
+  cellRenderer({
+    columnIndex, rowIndex, key, parent, style,
+  }) {
+    const {
+      showHeader,
+      data,
+      columns,
+      selectedRows,
+      idKey,
+      rowSelectOnChange,
+      onHeaderClick,
+    } = this.props;
+    const { width } = columns[columnIndex];
     return (
       <CellMeasurer
         cache={this.cache}
         columnIndex={columnIndex}
         key={key}
-        width={column.width}
         parent={parent}
         rowIndex={rowIndex}
       >
-        {cellNode}
+        {InfiniteDataTable.getCell({
+          column: columns[columnIndex],
+          row: data[rowIndex],
+          style: { ...style, width },
+          rowIndex,
+          showHeader,
+          idKey,
+          rowSelectOnChange,
+          onHeaderClick,
+          selectedRows,
+        })}
       </CellMeasurer>
     );
   }
@@ -203,24 +200,15 @@ class InfiniteDataTable extends Component {
     const {
       columns,
       data,
-      selectable = false,
-      selectedRows = {},
-      onSelect,
-      onHeaderClick,
-      idKey,
       onLoadMoreRows,
-      firstRowIsHeader,
+      showHeader,
       fixedColumnCount,
       fixedRowCount,
       totalNumberRows,
       numberResultsPerRequest,
       showRowNumbers,
     } = this.props;
-    const rowCount = Math.min(
-      totalNumberRows + Number(firstRowIsHeader),
-      data.length + Number(firstRowIsHeader),
-      // data.length + numberResultsPerRequest + Number(firstRowIsHeader) - 1,
-    );
+    const rowCount = Math.min(totalNumberRows + showHeader, data.length + showHeader);
     return (
       <InfiniteLoader
         loadMoreRows={onLoadMoreRows}

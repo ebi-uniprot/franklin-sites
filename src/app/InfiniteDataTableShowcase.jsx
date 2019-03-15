@@ -8,7 +8,7 @@ const propData = {
   selectable: true,
   fixedColumnCount: 0,
   fixedRowCount: 0,
-  firstRowIsHeader: true,
+  showHeader: true,
   numberResultsPerRequest: 10,
   totalNumberRows: 30,
   showRowNumbers: false,
@@ -147,7 +147,7 @@ class InfiniteDataTableShowcaseContent extends Component {
       fixedRowCount,
       showRowNumbers,
       totalNumberRows,
-      firstRowIsHeader,
+      showHeader,
       numberResultsPerRequest,
     } = this.props;
     return (
@@ -164,7 +164,7 @@ class InfiniteDataTableShowcaseContent extends Component {
         fixedRowCount={fixedRowCount}
         showRowNumbers={showRowNumbers}
         totalNumberRows={totalNumberRows}
-        firstRowIsHeader={firstRowIsHeader}
+        showHeader={showHeader}
         numberResultsPerRequest={numberResultsPerRequest}
         rowSelectOnChange={this.onSelect}
       />
