@@ -12,13 +12,14 @@ import DropdownButton from './dropdown-button';
 class Sequence extends Component {
   constructor(props) {
     super(props);
-    this.state = { textSize: null, highlights: [], copied: false };
+    this.state = { textSize: props.textSize, highlights: [], copied: false };
   }
 
   componentDidMount() {
     if (!this.text) {
       return;
     }
+    // Measure height and width of the dummy element
     const box = this.text.getBBox();
     this.setState({ textSize: { width: box.width, height: box.height } });
   }
@@ -57,8 +58,12 @@ class Sequence extends Component {
     <DropdownButton label="Highlight">
       <div className="dropdown-menu__content">
         {aminoAcidsProps.map(aaProp => (
-          <label key={aaProp.name}>
-            <input type="checkbox" onClick={() => this.handleToggleHighlight(aaProp)} />
+          <label key={aaProp.name} htmlFor={aaProp.name}>
+            <input
+              type="checkbox"
+              onClick={() => this.handleToggleHighlight(aaProp)}
+              id={aaProp.name}
+            />
             {aaProp.name}
           </label>
         ))}
@@ -71,6 +76,8 @@ class Sequence extends Component {
     const { textSize, copied } = this.state;
     const chunks = this.getChunks(sequence, chunkSize, textSize);
     let content;
+    // If textSize was not provided, add a text element so it can be measured
+    // in componentDidMount
     if (textSize === null) {
       content = (
         <svg>
@@ -115,11 +122,13 @@ class Sequence extends Component {
 
 Sequence.propTypes = {
   sequence: PropTypes.string.isRequired,
+  textSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }),
   chunkSize: PropTypes.number,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
+  textSize: null,
 };
 
 export default Sequence;

@@ -44,6 +44,12 @@ const SequenceChunk = ({
 
 SequenceChunk.propTypes = {
   sequence: PropTypes.string.isRequired,
+  highlights: PropTypes.arrayOf(
+    PropTypes.shape({
+      aminoAcids: PropTypes.arrayOf(PropTypes.string),
+      colour: PropTypes.string,
+    }),
+  ),
   textSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }),
   chunkSize: PropTypes.number.isRequired,
   chunkNumber: PropTypes.number.isRequired,
@@ -51,6 +57,7 @@ SequenceChunk.propTypes = {
 
 SequenceChunk.defaultProps = {
   textSize: { width: 0, height: 0 },
+  highlights: [],
 };
 
 export default SequenceChunk;

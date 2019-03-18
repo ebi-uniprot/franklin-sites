@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sequence chunk component should render with highlights 1`] = `
+"<Fragment>
+  <svg height={30} width={100}>
+    <text x={100} y={10} className=\\"sequence__sequence__chunk__counter\\">
+      30
+    </text>
+    <text x=\\"0\\" y={20} className=\\"sequence__sequence__chunk_sequence\\">
+      ABCDEFGHIJ
+    </text>
+    <rect x={0} y={22} width={10} height={2} fill=\\"blue\\" />
+    <rect x={50} y={22} width={10} height={2} fill=\\"blue\\" />
+    <rect x={80} y={22} width={10} height={2} fill=\\"blue\\" />
+  </svg>
+</Fragment>"
+`;
+
+exports[`Sequence chunk component should render without highlights 1`] = `
+"<Fragment>
+  <svg height={30} width={100}>
+    <text x={100} y={10} className=\\"sequence__sequence__chunk__counter\\">
+      30
+    </text>
+    <text x=\\"0\\" y={20} className=\\"sequence__sequence__chunk_sequence\\">
+      ABCDEFGHIJ
+    </text>
+  </svg>
+</Fragment>"
+`;
