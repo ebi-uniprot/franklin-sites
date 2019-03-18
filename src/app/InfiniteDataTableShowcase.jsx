@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import loremIpsum from 'lorem-ipsum';
 import v1 from 'uuid';
+import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import InfiniteDataTable from '../components/infinite-data-table';
 
@@ -117,7 +118,6 @@ class InfiniteDataTableShowcaseContent extends Component {
       showRowNumbers,
       totalNumberRows,
       showHeader,
-      numberResultsPerRequest,
     } = this.props;
     return (
       <InfiniteDataTable
@@ -145,5 +145,30 @@ const InfiniteDataTableShowcase = () => (
     content=<InfiniteDataTableShowcaseContent {...propData} />
   />
 );
+
+InfiniteDataTableShowcaseContent.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectedRows: PropTypes.shape({}),
+  idKey: PropTypes.string,
+  fixedColumnCount: PropTypes.number,
+  fixedRowCount: PropTypes.number,
+  totalNumberRows: PropTypes.number.isRequired,
+  showHeader: PropTypes.bool,
+  numberResultsPerRequest: PropTypes.number.isRequired,
+  showRowNumbers: PropTypes.bool,
+  selectable: PropTypes.bool,
+};
+
+InfiniteDataTableShowcaseContent.defaultProps = {
+  selectedRows: {},
+  onSelect: () => {},
+  onHeaderClick: () => {},
+  idKey: 'id',
+  fixedColumnCount: 0,
+  fixedRowCount: 0,
+  showHeader: true,
+  showRowNumbers: false,
+  selectable: false,
+};
 
 export default InfiniteDataTableShowcase;
