@@ -27,6 +27,11 @@
     @extend .table-row;
   }
 
+  .table-row-warning {
+    @extend .table-row;
+    background-color: map-get($foundation-palette, warning);
+  }
+
   .table-row-odd {
     @extend .table-row;
     background-color: $colour-seashell-grey;

@@ -11,3 +11,4 @@ export { default as PageIntro } from './page-intro';
 export { default as InfoList } from './info-list';
 export { default as Card } from './card';
 export { default as EvidenceTag } from './evidence-tag';
+export { default as InfiniteDataTable } from './infinite-data-table';

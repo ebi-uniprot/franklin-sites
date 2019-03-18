@@ -7,34 +7,16 @@ import InfiniteDataTable from '../components/infinite-data-table';
 const propData = {
   selectable: true,
   fixedColumnCount: 0,
-  fixedRowCount: 0,
+  fixedRowCount: 1,
   showHeader: true,
+  showRowNumbers: true,
   numberResultsPerRequest: 10,
   totalNumberRows: 30,
-  showRowNumbers: false,
   columns: [
-    {
-      label: '',
-      name: 'select',
-      render: ({
-        row, rowIndex, onChange, checked,
-      }) => (rowIndex ? (
-        <input type="checkbox" onChange={onChange} checked={checked} />
-      ) : (
-        <span>{row.select.value}</span>
-      )),
-      width: 40,
-    },
-    {
-      label: '#',
-      name: 'rowNumber',
-      render: ({ row, rowIndex }) => rowIndex || <span>{row.rowNumber.value}</span>,
-      width: 40,
-    },
     {
       label: 'Column 1',
       name: 'col1',
-      render: ({ row }) => <span>{row.col1.value}</span>,
+      render: row => <span>{row.col1.value}</span>,
       sortable: true,
       width: 200,
       sorted: 'ascend',
@@ -42,28 +24,27 @@ const propData = {
     {
       label: 'Column 2',
       name: 'col2',
-      render: ({ row }) => <span>{row.col2.value}</span>,
+      render: row => <span>{row.col2.value}</span>,
       width: 300,
     },
     {
       label: 'Column 3',
       name: 'col3',
-      render: ({ row }) => <span>{row.col3.value}</span>,
+      render: row => <span>{row.col3.value}</span>,
       sortable: true,
       width: 300,
-      sorted: 'descend',
     },
     {
       label: 'Column 4',
       name: 'col4',
-      render: ({ row }) => <span>{row.col4.value}</span>,
+      render: row => <span>{row.col4.value}</span>,
       sortable: true,
       width: 300,
     },
     {
       label: 'Column 5',
       name: 'col5',
-      render: ({ row }) => <span>{row.col5.value}</span>,
+      render: row => <span>{row.col5.value}</span>,
       sortable: false,
       width: 300,
     },
@@ -77,7 +58,6 @@ class InfiniteDataTableShowcaseContent extends Component {
   constructor(props) {
     super(props);
     this.state = { data: [], selectedRows: {} };
-    this.getHeaderRow = this.getHeaderRow.bind(this);
     this.onSelect = this.onSelect.bind(this);
   }
 
@@ -97,17 +77,7 @@ class InfiniteDataTableShowcaseContent extends Component {
     }
   }
 
-  getHeaderRow() {
-    const { columns } = this.props;
-    const headerRow = {};
-    columns.forEach((column) => {
-      headerRow[column.name] = { value: column.label };
-    });
-
-    return headerRow;
-  }
-
-  generateDataRows(numberWords = 10, sleepDuration = 2) {
+  generateDataRows(sleepDuration = 2) {
     const {
       columns, idKey, numberResultsPerRequest, totalNumberRows,
     } = this.props;
@@ -116,7 +86,6 @@ class InfiniteDataTableShowcaseContent extends Component {
       return;
     }
     this.generatingDataRows = true;
-    console.log(columns, idKey, numberResultsPerRequest, totalNumberRows);
     const moreData = Array(Math.min(numberResultsPerRequest, totalNumberRows - data.length))
       .fill(null)
       .map(() => {
@@ -154,19 +123,17 @@ class InfiniteDataTableShowcaseContent extends Component {
       <InfiniteDataTable
         selectable={selectable}
         selectedRows={selectedRows}
-        onSelect={InfiniteDataTableShowcaseContent.onSelect}
+        onSelect={this.onSelect}
         onHeaderClick={InfiniteDataTableShowcaseContent.onHeaderClick}
         onLoadMoreRows={() => this.generateDataRows()}
         columns={columns}
         idKey={idKey}
-        data={[this.getHeaderRow(), ...data]}
+        data={data}
         fixedColumnCount={fixedColumnCount}
         fixedRowCount={fixedRowCount}
         showRowNumbers={showRowNumbers}
         totalNumberRows={totalNumberRows}
         showHeader={showHeader}
-        numberResultsPerRequest={numberResultsPerRequest}
-        rowSelectOnChange={this.onSelect}
       />
     );
   }

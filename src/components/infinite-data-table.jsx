@@ -14,6 +14,33 @@ const defaultWidth = 200;
 const defaultHeight = 30;
 const minHeight = 30;
 
+const numberColumn = {
+  label: '#',
+  numberColumn: true,
+  width: 40,
+};
+
+const selectColumn = {
+  label: '',
+  selectColumn: true,
+  width: 40,
+};
+
+const InfiniteDataTableWrapper = (props) => {
+  const {
+    showRowNumbers, selectable, showHeader, data: inData, columns: inColumns,
+  } = props;
+  const data = showHeader ? [{}, ...inData] : [...inData];
+  let columns = [...inColumns];
+  if (showRowNumbers) {
+    columns = [numberColumn, ...columns];
+  }
+  if (selectable) {
+    columns = [selectColumn, ...columns];
+  }
+  return <InfiniteDataTable {...props} data={data} columns={columns} />;
+};
+
 class InfiniteDataTable extends Component {
   cache = new CellMeasurerCache({
     fixedWidth: true,
@@ -27,37 +54,6 @@ class InfiniteDataTable extends Component {
     this.getColumnWidth = this.getColumnWidth.bind(this);
     this.cellRenderer = this.cellRenderer.bind(this);
     this.isRowLoaded = this.isRowLoaded.bind(this);
-  }
-
-  static getRowClassName(index, selectedRows = false) {
-    if (selectedRows) {
-      return 'table-row-selected';
-    }
-    return index % 2 === 0 ? 'table-row-even' : 'table-row-odd';
-  }
-
-  static getSortableColumnClassName(column) {
-    let className;
-    if ('sorted' in column) {
-      className = column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
-    } else {
-      className = 'table-header-sortable';
-    }
-    return `${className} table-head`;
-  }
-
-  static getSortableColumn(column, row, onHeaderClick, style) {
-    return (
-      <button
-        style={style}
-        type="button"
-        key={column.name}
-        className={InfiniteDataTable.getSortableColumnClassName(column)}
-        onClick={() => onHeaderClick(column.name)}
-      >
-        {column.label}
-      </button>
-    );
   }
 
   componentDidUpdate(prevProps) {
@@ -80,12 +76,76 @@ class InfiniteDataTable extends Component {
   getColumnWidth({ index }) {
     const { columns } = this.props;
     const column = columns[index];
-    return 'width' in column ? column.width : defaultWidth;
+    return column && column.width ? column.width : defaultWidth;
   }
 
-  // static getHeaderCell({
+  static getSortableHeaderCell({ column, onHeaderClick, style }) {
+    let className = 'table-head ';
+    if (column.sorted) {
+      className += column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
+    } else {
+      className += 'table-header-sortable';
+    }
+    return (
+      <button
+        style={style}
+        type="button"
+        key={column.name}
+        className={className}
+        onClick={() => onHeaderClick(column.name)}
+      >
+        {column.label}
+      </button>
+    );
+  }
 
-  // })
+  static getHeaderCell({ column, onHeaderClick, style }) {
+    if (column.sortable) {
+      return InfiniteDataTable.getSortableHeaderCell({ column, onHeaderClick, style });
+    }
+    return (
+      <div className="table-head table-header" style={style}>
+        {column.label}
+      </div>
+    );
+  }
+
+  static getLoadingCell({ className, style }) {
+    return (
+      <div className={className} style={style}>
+        loading...
+      </div>
+    );
+  }
+
+  static getSelectCell({
+    id, onSelect, style, className, selectedRows,
+  }) {
+    const checked = id in selectedRows;
+    return (
+      <div className={`${className} ${checked && 'table-row-selected'}`} style={style}>
+        <input type="checkbox" onChange={() => onSelect(id)} checked={id in selectedRows} />
+      </div>
+    );
+  }
+
+  static getNumberCell({
+    style, className, rowIndex, showHeader,
+  }) {
+    return (
+      <div className={className} style={style}>
+        {rowIndex + 1 - showHeader}
+      </div>
+    );
+  }
+
+  static getNoRenderCell({ style, column }) {
+    return (
+      <div className="table-data table-row-warning" style={style}>
+        {`${column.name} has no render method`}
+      </div>
+    );
+  }
 
   static getCell({
     column,
@@ -94,71 +154,67 @@ class InfiniteDataTable extends Component {
     rowIndex,
     showHeader,
     idKey,
-    rowSelectOnChange,
+    onSelect,
     onHeaderClick,
     selectedRows,
   }) {
-    let className = 'table-data';
-    let cellContent;
-    let cellNode;
-
     if (showHeader && rowIndex === 0) {
-      className += ' table-head';
-    } else {
-      className += rowIndex % 2 ? ' table-row-odd' : ' table-row-even';
+      return InfiniteDataTable.getHeaderCell({
+        column,
+        onHeaderClick,
+        style,
+      });
     }
-    if (column.name === 'select') {
-      className += ' table-data-checkbox';
-    }
+
+    let className = `table-data ${rowIndex % 2 ? 'table-row-odd' : 'table-row-even'}`;
+
     if (!row) {
-      cellNode = (
-        <div className={className} style={style}>
-          loading...
-        </div>
-      );
-    } else if ('render' in column) {
-      if ('sortable' in column && showHeader && rowIndex === 0) {
-        cellNode = InfiniteDataTable.getSortableColumn(column, row, onHeaderClick, style);
-      } else {
-        const id = row[idKey];
-        const onChange = () => rowSelectOnChange(id);
-        const checked = id in selectedRows;
-        if (checked) {
-          className += ' table-row-selected';
-        }
-        cellContent = column.render({
-          row,
-          rowIndex,
-          onChange,
-          checked,
-        });
-        cellNode = (
-          <div className={className} style={style}>
-            {cellContent}
-          </div>
-        );
-      }
-    } else {
-      cellNode = (
-        <div className={className} style={style}>
-          <div className="warning">{`${column.name} has no render method`}</div>
-        </div>
-      );
+      return InfiniteDataTable.getLoadingCell({ className, style });
     }
-    return cellNode;
+
+    if (column.selectColumn) {
+      return InfiniteDataTable.getSelectCell({
+        id: row[idKey],
+        onSelect,
+        selectedRows,
+        className,
+        style,
+      });
+    }
+
+    const id = row[idKey];
+    const checked = id in selectedRows;
+
+    if (checked) {
+      className += ' table-row-selected';
+    }
+
+    if (column.numberColumn) {
+      return InfiniteDataTable.getNumberCell({
+        style,
+        column,
+        className,
+        rowIndex,
+        showHeader,
+      });
+    }
+
+    if (!('render' in column)) {
+      return InfiniteDataTable.getNoRenderCell({ style, column });
+    }
+
+    return (
+      <div className={`${className} ${checked && ' table-row-selected'}`} style={style}>
+        {column.render(row)}
+      </div>
+    );
   }
 
   cellRenderer({
     columnIndex, rowIndex, key, parent, style,
   }) {
     const {
-      showHeader,
-      data,
-      columns,
-      selectedRows,
-      idKey,
-      rowSelectOnChange,
-      onHeaderClick,
+      showHeader, data, columns, selectedRows, idKey, onSelect, onHeaderClick,
     } = this.props;
     const { width } = columns[columnIndex];
     return (
@@ -176,7 +232,7 @@ class InfiniteDataTable extends Component {
           rowIndex,
           showHeader,
           idKey,
-          rowSelectOnChange,
+          onSelect,
           onHeaderClick,
           selectedRows,
         })}
@@ -205,10 +261,8 @@ class InfiniteDataTable extends Component {
       fixedColumnCount,
       fixedRowCount,
       totalNumberRows,
-      numberResultsPerRequest,
-      showRowNumbers,
     } = this.props;
-    const rowCount = Math.min(totalNumberRows + showHeader, data.length + showHeader);
+    const rowCount = showHeader + Math.min(totalNumberRows, data.length);
     return (
       <InfiniteLoader
         loadMoreRows={onLoadMoreRows}
@@ -222,16 +276,16 @@ class InfiniteDataTable extends Component {
               <div className="data-table-infinite">
                 <MultiGrid
                   cellRenderer={this.cellRenderer}
-                  columnCount={columns.length + Number(showRowNumbers)}
+                  columnCount={columns.length}
                   width={width}
                   height={height}
                   columnWidth={this.getColumnWidth}
                   rowHeight={this.cache.rowHeight}
                   deferredMeasurementCache={this.cache}
-                  fixedRowCount={1}
+                  fixedRowCount={fixedRowCount}
+                  fixedColumnCount={fixedColumnCount}
                   ref={registerChild}
                   rowCount={rowCount}
-                  scrollToRow={data.length <= numberResultsPerRequest ? 0 : undefined}
                   onSectionRendered={({ rowStartIndex, rowStopIndex }) => onRowsRendered({
                     startIndex: rowStartIndex,
                     stopIndex: rowStopIndex,
@@ -247,7 +301,7 @@ class InfiniteDataTable extends Component {
   }
 }
 
-InfiniteDataTable.propTypes = {
+InfiniteDataTableWrapper.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectable: PropTypes.bool,
@@ -255,14 +309,48 @@ InfiniteDataTable.propTypes = {
   onSelect: PropTypes.func,
   onHeaderClick: PropTypes.func,
   idKey: PropTypes.string,
+  onLoadMoreRows: PropTypes.func.isRequired,
+  fixedColumnCount: PropTypes.number,
+  fixedRowCount: PropTypes.number,
+  showRowNumbers: PropTypes.bool,
+  totalNumberRows: PropTypes.number.isRequired,
+  showHeader: PropTypes.bool,
 };
 
-InfiniteDataTable.defaultProps = {
+InfiniteDataTableWrapper.defaultProps = {
   selectable: false,
   selectedRows: {},
   onSelect: () => {},
   onHeaderClick: () => {},
   idKey: 'id',
+  fixedColumnCount: 0,
+  fixedRowCount: 0,
+  showRowNumbers: false,
+  showHeader: true,
 };
 
-export default InfiniteDataTable;
+InfiniteDataTable.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectedRows: PropTypes.shape({}),
+  onSelect: PropTypes.func,
+  onHeaderClick: PropTypes.func,
+  idKey: PropTypes.string,
+  onLoadMoreRows: PropTypes.func.isRequired,
+  fixedColumnCount: PropTypes.number,
+  fixedRowCount: PropTypes.number,
+  totalNumberRows: PropTypes.number.isRequired,
+  showHeader: PropTypes.bool,
+};
+
+InfiniteDataTable.defaultProps = {
+  selectedRows: {},
+  onSelect: () => {},
+  onHeaderClick: () => {},
+  idKey: 'id',
+  fixedColumnCount: 0,
+  fixedRowCount: 0,
+  showHeader: true,
+};
+
+export default InfiniteDataTableWrapper;
