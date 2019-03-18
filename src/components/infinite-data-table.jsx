@@ -23,7 +23,9 @@ const SELECT_COLUMN = {
   width: 40,
 };
 
-const InfiniteDataTableWrapper = (props) => {
+export const InfiniteDataTablePreprocessor = (props) => {
+  // This functional component prepends the data and columns being passed into InfiniteDataTableCore
+  // based on consumer choices (ie showRowNumbers, selectable, showHeader).
   const {
     showRowNumbers, selectable, showHeader, data: inData, columns: inColumns,
   } = props;
@@ -35,10 +37,10 @@ const InfiniteDataTableWrapper = (props) => {
   if (selectable) {
     columns = [SELECT_COLUMN, ...columns];
   }
-  return <InfiniteDataTable {...props} data={data} columns={columns} />;
+  return <InfiniteDataTableCore {...props} data={data} columns={columns} />;
 };
 
-class InfiniteDataTable extends Component {
+export class InfiniteDataTableCore extends Component {
   cache = new CellMeasurerCache({
     fixedWidth: true,
     DEFAULT_HEIGHT,
@@ -47,7 +49,6 @@ class InfiniteDataTable extends Component {
 
   constructor(props) {
     super(props);
-    this.handleHeaderKeyPress = this.handleHeaderKeyPress.bind(this);
     this.getColumnWidth = this.getColumnWidth.bind(this);
     this.cellRenderer = this.cellRenderer.bind(this);
     this.isRowLoaded = this.isRowLoaded.bind(this);
@@ -98,7 +99,7 @@ class InfiniteDataTable extends Component {
 
   static getHeaderCell({ column, onHeaderClick, style }) {
     if (column.sortable) {
-      return InfiniteDataTable.getSortableHeaderCell({ column, onHeaderClick, style });
+      return InfiniteDataTableCore.getSortableHeaderCell({ column, onHeaderClick, style });
     }
     return (
       <div className="table-head table-header" style={style}>
@@ -110,7 +111,7 @@ class InfiniteDataTable extends Component {
   static getLoadingCell({ className, style }) {
     return (
       <div className={className} style={style}>
-        loading...
+        Loading...
       </div>
     );
   }
@@ -156,7 +157,7 @@ class InfiniteDataTable extends Component {
     selectedRows,
   }) {
     if (showHeader && rowIndex === 0) {
-      return InfiniteDataTable.getHeaderCell({
+      return InfiniteDataTableCore.getHeaderCell({
         column,
         onHeaderClick,
         style,
@@ -166,11 +167,11 @@ class InfiniteDataTable extends Component {
     let className = `table-data ${rowIndex % 2 ? 'table-row-odd' : 'table-row-even'}`;
 
     if (!row) {
-      return InfiniteDataTable.getLoadingCell({ className, style });
+      return InfiniteDataTableCore.getLoadingCell({ className, style });
     }
 
     if (column.selectColumn) {
-      return InfiniteDataTable.getSelectCell({
+      return InfiniteDataTableCore.getSelectCell({
         id: row[idKey],
         onSelect,
         selectedRows,
@@ -187,7 +188,7 @@ class InfiniteDataTable extends Component {
     }
 
     if (column.numberColumn) {
-      return InfiniteDataTable.getNumberCell({
+      return InfiniteDataTableCore.getNumberCell({
         style,
         column,
         className,
@@ -197,7 +198,7 @@ class InfiniteDataTable extends Component {
     }
 
     if (!('render' in column)) {
-      return InfiniteDataTable.getNoRenderCell({ style, column });
+      return InfiniteDataTableCore.getNoRenderCell({ style, column });
     }
 
     return (
@@ -222,7 +223,7 @@ class InfiniteDataTable extends Component {
         parent={parent}
         rowIndex={rowIndex}
       >
-        {InfiniteDataTable.getCell({
+        {InfiniteDataTableCore.getCell({
           column: columns[columnIndex],
           row: data[rowIndex],
           style: { ...style, width },
@@ -235,13 +236,6 @@ class InfiniteDataTable extends Component {
         })}
       </CellMeasurer>
     );
-  }
-
-  handleHeaderKeyPress(event, columnName) {
-    const { onHeaderClick } = this.props;
-    if (event.key === 'Enter') {
-      onHeaderClick(columnName);
-    }
   }
 
   isRowLoaded({ index }) {
@@ -298,7 +292,7 @@ class InfiniteDataTable extends Component {
   }
 }
 
-InfiniteDataTableWrapper.propTypes = {
+InfiniteDataTablePreprocessor.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       width: PropTypes.number.isRequired,
@@ -318,7 +312,7 @@ InfiniteDataTableWrapper.propTypes = {
   showHeader: PropTypes.bool,
 };
 
-InfiniteDataTableWrapper.defaultProps = {
+InfiniteDataTablePreprocessor.defaultProps = {
   selectable: false,
   selectedRows: {},
   onSelect: () => {},
@@ -330,7 +324,7 @@ InfiniteDataTableWrapper.defaultProps = {
   showHeader: true,
 };
 
-InfiniteDataTable.propTypes = {
+InfiniteDataTableCore.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       width: PropTypes.number.isRequired,
@@ -348,7 +342,7 @@ InfiniteDataTable.propTypes = {
   showHeader: PropTypes.bool,
 };
 
-InfiniteDataTable.defaultProps = {
+InfiniteDataTableCore.defaultProps = {
   selectedRows: {},
   onSelect: () => {},
   onHeaderClick: () => {},
@@ -358,4 +352,4 @@ InfiniteDataTable.defaultProps = {
   showHeader: true,
 };
 
-export default InfiniteDataTableWrapper;
+export default InfiniteDataTablePreprocessor;
