@@ -12,7 +12,7 @@ const propData = {
   showHeader: true,
   showRowNumbers: true,
   numberResultsPerRequest: 10,
-  totalNumberRows: 30,
+  totalNumberRows: 2000,
   idKey: 'accessionId',
   columns: [
     {
@@ -53,7 +53,7 @@ const propData = {
   ],
 };
 
-class InfiniteDataTableShowcaseContent extends Component {
+class InfiniteDataTableDemoContent extends Component {
   generatingDataRows = false;
 
   constructor(props) {
@@ -78,7 +78,7 @@ class InfiniteDataTableShowcaseContent extends Component {
     }
   }
 
-  generateDataRows(sleepDuration = 2) {
+  generateDataRows(sleepDuration = 1) {
     const {
       columns, idKey, numberResultsPerRequest, totalNumberRows,
     } = this.props;
@@ -124,7 +124,7 @@ class InfiniteDataTableShowcaseContent extends Component {
         selectable={selectable}
         selectedRows={selectedRows}
         onSelect={this.onSelect}
-        onHeaderClick={InfiniteDataTableShowcaseContent.onHeaderClick}
+        onHeaderClick={InfiniteDataTableDemoContent.onHeaderClick}
         onLoadMoreRows={() => this.generateDataRows()}
         columns={columns}
         idKey={idKey}
@@ -139,14 +139,14 @@ class InfiniteDataTableShowcaseContent extends Component {
   }
 }
 
-const InfiniteDataTableShowcase = () => (
+const InfiniteDataTableDemo = () => (
   <DefaultPageLayout
-    title="Franklin - Data Table"
-    content=<InfiniteDataTableShowcaseContent {...propData} />
+    title="Franklin - Infinite Data Table"
+    content=<InfiniteDataTableDemoContent {...propData} />
   />
 );
 
-InfiniteDataTableShowcaseContent.propTypes = {
+InfiniteDataTableDemoContent.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedRows: PropTypes.shape({}),
   idKey: PropTypes.string,
@@ -159,7 +159,7 @@ InfiniteDataTableShowcaseContent.propTypes = {
   selectable: PropTypes.bool,
 };
 
-InfiniteDataTableShowcaseContent.defaultProps = {
+InfiniteDataTableDemoContent.defaultProps = {
   selectedRows: {},
   onSelect: () => {},
   onHeaderClick: () => {},
@@ -171,4 +171,4 @@ InfiniteDataTableShowcaseContent.defaultProps = {
   selectable: false,
 };
 
-export default InfiniteDataTableShowcase;
+export default InfiniteDataTableDemo;

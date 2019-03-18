@@ -353,3 +353,75 @@ InfiniteDataTableCore.defaultProps = {
 };
 
 export default InfiniteDataTablePreprocessor;
+
+/*
+columns
+(array of objects)
+Specifies attributes about each column of your data. Objects have the shape:
+
+{
+  label: 'Column 1', // (string) The text which will be rendered
+  name: 'col1', // (string) A unique ID for the column
+  render: row => <span>{row.col1.value}</span>, // (function) The render function which pulls
+   out the correct attribute from a row of data.
+  sortable: true, // (boolean) A boolean flag to indicate if a column is sortable
+  width: 200, // (number) The width of the column
+}
+
+data
+(array of objects)
+Each object represents a row of the data. Each object must include: attributes that have a
+corresponding column with that name; a unique ID attribute whose name is given by idKey.
+
+
+selectable
+(boolean)
+Flag which indicates rows should be selectable with an input box.
+
+
+selectedRows
+(object: rowId: true)
+An object which indicates which rows have been selected by the user.
+
+
+onSelect
+(callback function with row ID returned)
+A callback function that is called whenever a user selects a row. The row ID is returned upon
+callback.
+
+onHeaderClick
+(callback function with column name returned)
+A callback function that is called whenever a user clicks the header. The column name is returned
+upon callback.
+
+idKey
+(string)
+The name of an attribute in each of the data objects which serves as a unique ID
+
+onLoadMoreRows
+(callback function with no arguments)
+When invoked by the InfiniteDataTable indicates more data needs to be fetched.
+
+fixedColumnCount
+(number)
+The number of columns to fix (similar to freeze in excel) so that they are always visible no
+matter where the user has scrolled.
+
+fixedRowCount
+(number)
+The number of rows to fix (similar to freeze in excel) so that they are always visible no matter
+where the user has scrolled.
+
+showRowNumbers
+(boolean)
+Display row numbers flag.
+
+totalNumberRows
+(number)
+The total number of rows of data that is expected. For example, if you a query returns 1,000,000
+results but you only want to show the user 10 results at a time, totalNumberRows will be 1,000,000.
+
+showHeader
+(boolean)
+Display header flag.
+*/
