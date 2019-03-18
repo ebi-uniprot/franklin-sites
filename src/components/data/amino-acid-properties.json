@@ -19,5 +19,24 @@
       "O"
     ],
     "colour": "red"
+  },
+  {
+    "name": "Hydrophobic",
+    "aminoAcids": [
+      "A",
+      "C",
+      "G",
+      "I",
+      "L",
+      "M",
+      "F",
+      "P",
+      "W",
+      "T",
+      "V",
+      "J",
+      "U"
+    ],
+    "colour": "blue"
   }
 ]

@@ -7,11 +7,12 @@ import SequenceChunk from './sequence-chunk';
 import aminoAcidsProps from './data/amino-acid-properties.json';
 
 import '../styles/components/sequence.scss';
+import DropdownButton from './dropdown-button';
 
 class Sequence extends Component {
   constructor(props) {
     super(props);
-    this.state = { textSize: null, highlights: [] };
+    this.state = { textSize: null, highlights: [], copied: false };
   }
 
   componentDidMount() {
@@ -41,29 +42,33 @@ class Sequence extends Component {
   };
 
   handleToggleHighlight = (aaProp) => {
-    const { highlights } = this.state;
-    // TODO this should toggle not just add
-    highlights.push(aaProp);
+    let { highlights } = this.state;
+    if (highlights.includes(aaProp)) {
+      highlights = highlights.filter(h => h !== aaProp);
+    } else {
+      highlights.push(aaProp);
+    }
     this.setState({
       highlights,
     });
   };
 
   getSelectors = () => (
-    <Fragment>
-      {aminoAcidsProps.map(aaProp => (
-        <label key={aaProp.name}>
-          <input type="checkbox" onClick={() => this.handleToggleHighlight(aaProp)} />
-          {aaProp.name}
-        </label>
-      ))}
-    </Fragment>
+    <DropdownButton label="Highlight">
+      <div className="dropdown-menu__content">
+        {aminoAcidsProps.map(aaProp => (
+          <label key={aaProp.name}>
+            <input type="checkbox" onClick={() => this.handleToggleHighlight(aaProp)} />
+            {aaProp.name}
+          </label>
+        ))}
+      </div>
+    </DropdownButton>
   );
 
   render() {
-    // console.log(aminoAcids);
     const { sequence, chunkSize } = this.props;
-    const { textSize } = this.state;
+    const { textSize, copied } = this.state;
     const chunks = this.getChunks(sequence, chunkSize, textSize);
     let content;
     if (textSize === null) {
@@ -92,12 +97,14 @@ class Sequence extends Component {
 
     return (
       <Fragment>
-        {this.getSelectors()}
-        <CopyToClipboard text={sequence}>
-          <button type="button" className="button sequence__copy-button">
-            Copy
-          </button>
-        </CopyToClipboard>
+        <div className="action-bar">
+          {this.getSelectors()}
+          <CopyToClipboard text={sequence} onCopy={() => this.setState({ copied: true })}>
+            <button type="button" className="button sequence__copy-button">
+              {copied ? 'Copied' : 'Copy sequence'}
+            </button>
+          </CopyToClipboard>
+        </div>
         <div className="sequence">
           <div className="sequence__sequence">{content}</div>
         </div>
