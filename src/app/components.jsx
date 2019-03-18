@@ -184,6 +184,7 @@ const components = [
     props: {
       title: 'Title',
       subtitle: <Link to="/#">APOE_HUMAN - P02649</Link>,
+      color: 'darkblue',
       children: <p>An example of content</p>,
       links: [
         {
