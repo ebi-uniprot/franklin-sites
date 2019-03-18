@@ -10,17 +10,15 @@ import {
 import { serializableDeepAreEqual } from '../utils';
 import '../styles/components/data-table.scss';
 
-const defaultWidth = 200;
-const defaultHeight = 30;
-const minHeight = 30;
-
-const numberColumn = {
+const DEFAULT_WIDTH = 200;
+const DEFAULT_HEIGHT = 30;
+const MIN_HEIGHT = 30;
+const NUMBER_COLUMN = {
   label: '#',
   numberColumn: true,
   width: 40,
 };
-
-const selectColumn = {
+const SELECT_COLUMN = {
   selectColumn: true,
   width: 40,
 };
@@ -32,10 +30,10 @@ const InfiniteDataTableWrapper = (props) => {
   const data = showHeader ? [{}, ...inData] : [...inData];
   let columns = [...inColumns];
   if (showRowNumbers) {
-    columns = [numberColumn, ...columns];
+    columns = [NUMBER_COLUMN, ...columns];
   }
   if (selectable) {
-    columns = [selectColumn, ...columns];
+    columns = [SELECT_COLUMN, ...columns];
   }
   return <InfiniteDataTable {...props} data={data} columns={columns} />;
 };
@@ -43,8 +41,8 @@ const InfiniteDataTableWrapper = (props) => {
 class InfiniteDataTable extends Component {
   cache = new CellMeasurerCache({
     fixedWidth: true,
-    defaultHeight,
-    minHeight,
+    DEFAULT_HEIGHT,
+    MIN_HEIGHT,
   });
 
   constructor(props) {
@@ -75,7 +73,7 @@ class InfiniteDataTable extends Component {
   getColumnWidth({ index }) {
     const { columns } = this.props;
     const column = columns[index];
-    return column && column.width ? column.width : defaultWidth;
+    return column && column.width ? column.width : DEFAULT_WIDTH;
   }
 
   static getSortableHeaderCell({ column, onHeaderClick, style }) {
@@ -276,8 +274,8 @@ class InfiniteDataTable extends Component {
                 <MultiGrid
                   cellRenderer={this.cellRenderer}
                   columnCount={columns.length}
-                  width={width}
-                  height={height}
+                  width={width || 100}
+                  height={height || 100}
                   columnWidth={this.getColumnWidth}
                   rowHeight={this.cache.rowHeight}
                   deferredMeasurementCache={this.cache}

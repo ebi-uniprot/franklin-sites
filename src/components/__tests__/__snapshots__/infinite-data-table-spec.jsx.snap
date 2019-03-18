@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable component should render 1`] = `
+<div
+  style={
+    Object {
+      "height": 0,
+      "overflow": "visible",
+      "width": 0,
+    }
+  }
+>
+  <div
+    className="data-table-infinite"
+  >
+    <div
+      style={
+        Object {
+          "height": 100,
+          "overflow": "visible",
+          "width": 100,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "height": 0,
+            "position": "relative",
+            "width": 100,
+          }
+        }
+      >
+        <div
+          aria-label="grid"
+          aria-readonly={true}
+          className="ReactVirtualized__Grid"
+          onScroll={[Function]}
+          role="grid"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "boxSizing": "border-box",
+              "direction": "ltr",
+              "height": 0,
+              "left": 0,
+              "overflowX": "hidden",
+              "overflowY": "hidden",
+              "position": "absolute",
+              "top": 0,
+              "width": 100,
+              "willChange": "transform",
+            }
+          }
+          tabIndex={null}
+        />
+      </div>
+      <div
+        style={
+          Object {
+            "height": 100,
+            "overflow": "visible",
+            "position": "relative",
+            "width": 100,
+          }
+        }
+      >
+        <div
+          aria-label="grid"
+          aria-readonly={true}
+          className="ReactVirtualized__Grid"
+          onScroll={[Function]}
+          role="grid"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "boxSizing": "border-box",
+              "direction": "ltr",
+              "height": 100,
+              "left": 0,
+              "overflowX": "auto",
+              "overflowY": "hidden",
+              "position": "absolute",
+              "width": 100,
+              "willChange": "transform",
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            className="ReactVirtualized__Grid__innerScrollContainer"
+            role="rowgroup"
+            style={
+              Object {
+                "height": 0,
+                "maxHeight": 0,
+                "maxWidth": 220,
+                "overflow": "hidden",
+                "pointerEvents": "",
+                "position": "relative",
+                "width": 220,
+              }
+            }
+          >
+            <div
+              className="table-data table-row-odd false"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
+            </div>
+            <div
+              className="table-data table-row-odd"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 40,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              1
+            </div>
+            <div
+              className="table-data table-row-odd false"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 80,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              <span>
+                Some data 1
+              </span>
+            </div>
+            <div
+              className="table-data table-row-even false"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
+            </div>
+            <div
+              className="table-data table-row-even"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 40,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              2
+            </div>
+            <div
+              className="table-data table-row-even false"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 80,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              <span>
+                Some data A
+              </span>
+            </div>
+            <div
+              className="table-data table-row-odd"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              loading...
+            </div>
+            <div
+              className="table-data table-row-odd"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 40,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              loading...
+            </div>
+            <div
+              className="table-data table-row-odd"
+              style={
+                Object {
+                  "height": 0,
+                  "left": 80,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 40,
+                }
+              }
+            >
+              loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

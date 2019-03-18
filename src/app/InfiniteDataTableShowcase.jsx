@@ -13,6 +13,7 @@ const propData = {
   showRowNumbers: true,
   numberResultsPerRequest: 10,
   totalNumberRows: 30,
+  idKey: 'accessionId',
   columns: [
     {
       label: 'Column 1',
@@ -50,7 +51,6 @@ const propData = {
       width: 300,
     },
   ],
-  idKey: 'accessionId',
 };
 
 class InfiniteDataTableShowcaseContent extends Component {
