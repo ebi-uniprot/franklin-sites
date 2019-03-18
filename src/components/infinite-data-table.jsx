@@ -21,7 +21,6 @@ const numberColumn = {
 };
 
 const selectColumn = {
-  label: '',
   selectColumn: true,
   width: 40,
 };
@@ -70,7 +69,7 @@ class InfiniteDataTable extends Component {
 
   getHeader() {
     const { columns } = this.props;
-    return columns.map(column => ({ label: column.label, render: x => x }));
+    return columns.map(column => ({ label: column.label || '', render: x => x }));
   }
 
   getColumnWidth({ index }) {
@@ -94,7 +93,7 @@ class InfiniteDataTable extends Component {
         className={className}
         onClick={() => onHeaderClick(column.name)}
       >
-        {column.label}
+        {column.label || ''}
       </button>
     );
   }
@@ -105,7 +104,7 @@ class InfiniteDataTable extends Component {
     }
     return (
       <div className="table-head table-header" style={style}>
-        {column.label}
+        {column.label || ''}
       </div>
     );
   }
@@ -302,7 +301,11 @@ class InfiniteDataTable extends Component {
 }
 
 InfiniteDataTableWrapper.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      width: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectable: PropTypes.bool,
   selectedRows: PropTypes.shape({}),
@@ -330,7 +333,11 @@ InfiniteDataTableWrapper.defaultProps = {
 };
 
 InfiniteDataTable.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      width: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedRows: PropTypes.shape({}),
   onSelect: PropTypes.func,
