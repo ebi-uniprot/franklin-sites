@@ -8,13 +8,9 @@ configure({ adapter: new Adapter() });
 
 describe('Sequence chunk component', () => {
   test('should render without highlights', () => {
+    const textSize = { width: 10, height: 10 };
     const wrapper = shallow(
-      <SequenceChunk
-        sequence="ABCDEFGHIJ"
-        textSize={{ width: 10, height: 10 }}
-        chunkSize={10}
-        chunkNumber={2}
-      />,
+      <SequenceChunk sequence="ABCDEFGHIJ" textSize={textSize} chunkSize={10} chunkNumber={2} />,
     );
     expect(wrapper.debug()).toMatchSnapshot();
   });

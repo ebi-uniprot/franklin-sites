@@ -9,7 +9,7 @@
     display: flex;
     flex-wrap: wrap;
     &__chunk {
-      margin: ($global-margin/2);
+      margin: ($global-margin / 2);
       &__counter {
         text-anchor: end;
       }

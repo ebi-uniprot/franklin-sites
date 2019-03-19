@@ -28,10 +28,10 @@ class Sequence extends Component {
     const { textSize, highlights } = this.state;
     const numChunks = Math.ceil(str.length / size);
     const chunks = new Array(numChunks);
-    for (let i = 0, o = 0; i < numChunks; i += 1, o += size) {
+    for (let i = 0, chunkStart = 0; i < numChunks; i += 1, chunkStart += size) {
       chunks[i] = (
         <SequenceChunk
-          sequence={str.substr(o, size)}
+          sequence={str.substr(chunkStart, size)}
           textSize={textSize}
           chunkSize={size}
           chunkNumber={i}
@@ -43,14 +43,15 @@ class Sequence extends Component {
   };
 
   handleToggleHighlight = (aaProp) => {
-    let { highlights } = this.state;
-    if (highlights.includes(aaProp)) {
-      highlights = highlights.filter(h => h !== aaProp);
+    const { highlights } = this.state;
+    let highlightsToUpdate = [...highlights];
+    if (highlightsToUpdate.includes(aaProp)) {
+      highlightsToUpdate = highlightsToUpdate.filter(h => h !== aaProp);
     } else {
-      highlights.push(aaProp);
+      highlightsToUpdate.push(aaProp);
     }
     this.setState({
-      highlights,
+      highlights: highlightsToUpdate,
     });
   };
 

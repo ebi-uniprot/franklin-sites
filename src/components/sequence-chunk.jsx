@@ -2,24 +2,29 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import v1 from 'uuid';
 
+// Gaps in px
 const highlightHeight = 2;
 const highlightGap = 3;
 
-const computeHighlights = (sequence, highlights, textSize) => {
+const generateHighlights = (sequence, highlights, textSize) => {
   const sequenceArray = sequence.split('');
-  return highlights.map((highlight, i) => sequenceArray
-    .map((aa, j) => (highlight.aminoAcids.includes(aa) ? j : ''))
-    .filter(String)
-    .map(pos => (
-      <rect
-        x={pos * textSize.width}
-        y={2 * textSize.height + (highlightHeight + highlightGap * i)}
-        width={textSize.width}
-        height={highlightHeight}
-        fill={highlight.colour}
-        key={v1()}
-      />
-    )));
+  return highlights.reduce((accumulator, highlight, i) => {
+    sequenceArray.forEach((aa, j) => {
+      if (highlight.aminoAcids.includes(aa)) {
+        accumulator.push(
+          <rect
+            x={j * textSize.width}
+            y={2 * textSize.height + (highlightHeight + highlightGap * i)}
+            width={textSize.width}
+            height={highlightHeight}
+            fill={highlight.colour}
+            key={v1()}
+          />,
+        );
+      }
+    });
+    return accumulator;
+  }, []);
 };
 
 const SequenceChunk = ({
@@ -34,10 +39,10 @@ const SequenceChunk = ({
       >
         {sequence.length === chunkSize && chunkNumber * chunkSize + chunkSize}
       </text>
-      <text x="0" y={2 * textSize.height} className="sequence__sequence__chunk_sequence">
+      <text x="0" y={2 * textSize.height} className="sequence__sequence__chunk__sequence">
         {sequence}
       </text>
-      {computeHighlights(sequence, highlights, textSize)}
+      {generateHighlights(sequence, highlights, textSize)}
     </svg>
   </Fragment>
 );

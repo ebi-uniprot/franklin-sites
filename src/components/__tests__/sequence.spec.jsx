@@ -15,13 +15,21 @@ describe('Sequence component', () => {
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
-  test('should toggle highlight', () => {
+  test('should toggle highlight on', () => {
     const highlight = { name: 'Test', aminoAcids: ['A', 'B', 'C'] };
     const wrapper = shallow(
       <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} />,
     );
     wrapper.instance().handleToggleHighlight(highlight);
     expect(wrapper.state().highlights).toEqual([highlight]);
+  });
+
+  test('should toggle highlight off', () => {
+    const highlight = { name: 'Test', aminoAcids: ['A', 'B', 'C'] };
+    const wrapper = shallow(
+      <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} />,
+    );
+    wrapper.instance().handleToggleHighlight(highlight);
     wrapper.instance().handleToggleHighlight(highlight);
     expect(wrapper.state().highlights).toEqual([]);
   });
