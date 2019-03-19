@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Polar",
+    "aminoAcids": [
+      "R",
+      "N",
+      "D",
+      "Q",
+      "E",
+      "G",
+      "H",
+      "K",
+      "S",
+      "T",
+      "Y",
+      "B",
+      "Z",
+      "U",
+      "O"
+    ],
+    "colour": "red"
+  },
+  {
+    "name": "Hydrophobic",
+    "aminoAcids": [
+      "A",
+      "C",
+      "G",
+      "I",
+      "L",
+      "M",
+      "F",
+      "P",
+      "W",
+      "T",
+      "V",
+      "J",
+      "U"
+    ],
+    "colour": "blue"
+  }
+]
