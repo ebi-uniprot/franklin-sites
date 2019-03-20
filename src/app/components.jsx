@@ -208,7 +208,7 @@ const components = [
         },
       ],
     },
-  }, 
+  },
   {
     name: 'Facets',
     component: Facets,
