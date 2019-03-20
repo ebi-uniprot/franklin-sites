@@ -1,5 +1,5 @@
-@import '../settings';
-@import '../colours';
+@import "../settings";
+@import "../colours";
 
 .card {
   background-color: $colour-white;
@@ -12,12 +12,12 @@
   }
   &__title {
     margin: 0;
-    margin-right: 8px;
+    margin-right: $global-margin;
   }
   &__header {
     display: flex;
     align-items: baseline;
-    border-bottom: 2px solid;
+    border-bottom: 0.125rem solid;
     border-color: $colour-seashell-grey;
   }
   &__actions {
@@ -32,6 +32,6 @@
   margin: 0;
   padding: 0.5rem;
   font-weight: 600;
-  border-bottom: 2px solid;
+  border-bottom: 0.125rem solid;
   border-color: $colour-seashell-grey;
 }
