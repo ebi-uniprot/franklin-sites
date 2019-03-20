@@ -105,14 +105,3 @@
     flex: 0 1 16em;
   }
 }
-
-.data-table--collapsible {
-  @include breakpoint(small only) {
-    .data-table__header {
-      display: none;
-    }
-    .data-table__row {
-      flex-wrap: wrap;
-    }
-  }
-}

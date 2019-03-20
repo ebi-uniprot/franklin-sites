@@ -5,7 +5,6 @@ export { default as HeroHeader } from './hero-header';
 export { default as TreeSelect } from './tree-select';
 export { default as Autocomplete } from './autocomplete';
 export { default as MainSearch } from './main-search';
-export { default as DataTable } from './data-table';
 export { default as Facets } from './facets';
 export { default as PageIntro } from './page-intro';
 export { default as InfoList } from './info-list';

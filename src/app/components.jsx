@@ -4,7 +4,6 @@ import DropdownButton from '../components/dropdown-button';
 import TreeSelect from '../components/tree-select';
 import Autocomplete from '../components/autocomplete';
 import MainSearch from '../components/main-search';
-import DataTable from '../components/data-table';
 import HeroHeader from '../components/hero-header';
 import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
@@ -170,67 +169,6 @@ const components = [
     props: {
       title: 'Title',
       children: <p>An example of content</p>,
-    },
-  },
-  {
-    name: 'Data table',
-    component: DataTable,
-    function: '',
-    purpose: '',
-    props: {
-      selectable: true,
-      selected: { blah3: true },
-      onSelect: (rowId) => {
-        console.log(rowId, 'selected');
-      },
-      onHeaderClick: (columnName) => {
-        console.log(columnName);
-      },
-      columns: [
-        {
-          label: 'Column 1',
-          name: 'col1',
-          render: row => <span>{row.fieldValue1.value}</span>,
-          sortable: true,
-        },
-        {
-          label: 'Column 2',
-          name: 'col2',
-          render: row => <span>{row.fieldValue2.value}</span>,
-          sorted: 'ascend',
-          sortable: true,
-        },
-      ],
-      idKey: 'accessionId',
-      data: [
-        {
-          accessionId: 'blah1',
-          fieldValue1: {
-            value: 'Some data 1',
-          },
-          fieldValue2: {
-            value: 'Some data 2',
-          },
-        },
-        {
-          accessionId: 'blah2',
-          fieldValue1: {
-            value: 'Some data A',
-          },
-          fieldValue2: {
-            value: 'Some data B',
-          },
-        },
-        {
-          accessionId: 'blah3',
-          fieldValue1: {
-            value: 'Some data α',
-          },
-          fieldValue2: {
-            value: 'Some data β',
-          },
-        },
-      ],
     },
   },
   {
