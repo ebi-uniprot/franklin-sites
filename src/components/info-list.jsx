@@ -8,16 +8,19 @@ const InfoList = ({ infoData }) => (
     {infoData.map(
       // Only draw if there is content
       item => item.content && (
-        <div className="info-list__item" key={item.title}>
-          <div className="info-list__item__title">{item.title}</div>
-          <div className="info-list__item__content">{item.content}</div>
-        </div>
+      <div className="info-list__item" key={item.title}>
+        <div className="info-list__item__title">{item.title}</div>
+        <div className="info-list__item__content">{item.content}</div>
+      </div>
       ),
     )}
   </div>
 );
 
 InfoList.propTypes = {
+  /**
+   * An array of objects each containing 'title' and 'content'
+   */
   infoData: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,

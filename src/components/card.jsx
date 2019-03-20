@@ -39,10 +39,25 @@ const Card = ({
 );
 
 Card.propTypes = {
+  /**
+   * The card title (can be an Element)
+   */
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  /**
+   * The subtitle (can be an Element)
+   */
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  /**
+   * The main content of the card
+   */
   children: PropTypes.element.isRequired,
+  /**
+   * The colour of the line displayed under the title (default is $colour-seashell-grey)
+   */
   color: PropTypes.string,
+  /**
+   * Links to be displayed at the bottom of the card
+   */
   links: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

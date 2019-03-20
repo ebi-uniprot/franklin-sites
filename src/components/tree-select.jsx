@@ -116,11 +116,26 @@ class TreeSelect extends Component {
 }
 
 TreeSelect.propTypes = {
+  /**
+   * The tree structure
+   */
   data: PropTypes.instanceOf(Array).isRequired,
+  /**
+   * What happens when something is selected
+   */
   onSelect: PropTypes.func.isRequired,
+  /**
+   * Contains autocomplete functionality to search through tree
+   */
   autocomplete: PropTypes.bool,
+  /**
+   * Placeholder for the autocomplete input box
+   */
   autocompletePlaceholder: PropTypes.string,
   autocompleteFilter: PropTypes.bool,
+  /**
+   * The selected value
+   */
   value: PropTypes.shape({}),
 };
 

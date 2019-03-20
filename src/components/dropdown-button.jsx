@@ -60,7 +60,13 @@ class DropdownButton extends Component {
 }
 
 DropdownButton.propTypes = {
+  /**
+   * Content revealed on click
+   */
   children: PropTypes.instanceOf(Object).isRequired,
+  /**
+   * Label to be display by the button
+   */
   label: PropTypes.string.isRequired,
 };
 

@@ -63,9 +63,21 @@ class Facets extends Component {
 }
 
 Facets.propTypes = {
+  /**
+   * The data to be displayed
+   */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * What happens if a facet is selected
+   */
   addFacet: PropTypes.func.isRequired,
+  /**
+   * What happens if a facet is de-selected
+   */
   removeFacet: PropTypes.func.isRequired,
+  /**
+   * An array of selected facets
+   */
   selectedFacets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

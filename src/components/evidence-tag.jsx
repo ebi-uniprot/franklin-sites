@@ -20,8 +20,17 @@ const EvidenceTag = ({ label, title, reviewed = false }) => {
 };
 
 EvidenceTag.propTypes = {
+  /**
+   * Displayed on the tag
+   */
   label: PropTypes.string.isRequired,
+  /**
+   * Displayed on on mouseover
+   */
   title: PropTypes.string,
+  /**
+   * Decides the colour of the tag
+   */
   reviewed: PropTypes.bool,
 };
 

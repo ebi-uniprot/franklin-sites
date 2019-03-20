@@ -46,6 +46,7 @@ const components = [
     function: 'Provide a sneak peak and navigate to a searchable data section of the website.',
     purpose: 'Advertise a specific dataset of the website and provide searchable access to it.',
     props: {
+      title: 'Tile',
       namespace: 'uniref',
     },
   },
@@ -172,16 +173,6 @@ const components = [
     purpose: 'Create visually delimited areas to allow for easier scanning of content.',
     props: {
       title: 'Title',
-      children: <p>An example of content</p>,
-    },
-  },
-  {
-    name: 'Protein Card',
-    component: Card,
-    function: 'Provide a contained section to show content for a given category.',
-    purpose: 'Create visually delimited areas to allow for easier scanning of content.',
-    props: {
-      title: 'Title',
       subtitle: <Link to="/#">APOE_HUMAN - P02649</Link>,
       color: 'darkblue',
       children: <p>An example of content</p>,
@@ -212,8 +203,10 @@ const components = [
   {
     name: 'Facets',
     component: Facets,
-    function: '',
-    purpose: '',
+    function:
+      'Modify a query to filter a set of results, highlight filter which is currently selected, remove selected filter',
+    purpose:
+      'Give meta-information about a result set (e.g. keywords, top organisms, …) and allow restriction of a results set.',
     props: {
       data: facetData,
       selectedFacets: [{ name: 'facet_2', value: 'value_2' }],

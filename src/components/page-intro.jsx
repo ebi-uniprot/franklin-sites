@@ -57,9 +57,21 @@ results
 }
 
 PageIntro.propTypes = {
+  /**
+   * The title, works as a trigger to open/close
+   */
   title: PropTypes.string.isRequired,
+  /**
+   * Number of results
+   */
   resultsCount: PropTypes.number,
+  /**
+   * Content revealed on toggle
+   */
   children: PropTypes.node.isRequired,
+  /**
+   * Links revealed on toggle
+   */
   links: PropTypes.arrayOf(PropTypes.shape({})),
 };
 

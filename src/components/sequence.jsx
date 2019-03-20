@@ -122,8 +122,17 @@ class Sequence extends Component {
 }
 
 Sequence.propTypes = {
+  /**
+   * The sequence
+   */
   sequence: PropTypes.string.isRequired,
+  /**
+   * The width and height of a letter. Will be calculated if left blank
+   */
   textSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }),
+  /**
+   * The number of items to include in a sequence chunk. Default 10
+   */
   chunkSize: PropTypes.number,
 };
 

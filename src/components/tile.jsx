@@ -11,13 +11,21 @@ const Tile = ({ namespace, title, description }) => (
 );
 
 Tile.propTypes = {
-  title: PropTypes.string,
+  /**
+   * The tile title
+   */
+  title: PropTypes.string.isRequired,
+  /**
+   * The tile description. Short and snappy.
+   */
   description: PropTypes.string,
+  /**
+   * The namespace, which decides the colour
+   */
   namespace: PropTypes.string,
 };
 
 Tile.defaultProps = {
-  title: 'Tile title',
   description: 'This is a short description of what the resource is/provides.',
   namespace: '',
 };

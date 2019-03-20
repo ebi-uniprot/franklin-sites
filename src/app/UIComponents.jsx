@@ -27,12 +27,12 @@ const formatPattern = (Component) => {
               && Object.keys(doc.props).map(prop => (
                 <li key={prop}>
                   <strong>{prop}</strong>
-                  {': '}
+                  {' '}
                   <em>
                     {doc.props[prop].type.name}
                     {!doc.props[prop].required && ' (optional)'}
                   </em>
-                  {doc.props[prop].description && ` - ${doc.props[prop].description}`}
+                  <p>{doc.props[prop].description && doc.props[prop].description}</p>
                 </li>
               ))}
           </ul>
