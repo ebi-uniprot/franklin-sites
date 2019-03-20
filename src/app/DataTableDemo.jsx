@@ -3,7 +3,7 @@ import loremIpsum from 'lorem-ipsum';
 import v1 from 'uuid';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
-import InfiniteDataTable from '../components/infinite-data-table';
+import DataTable from '../components/data-table';
 
 const propData = {
   selectable: true,
@@ -53,7 +53,7 @@ const propData = {
   ],
 };
 
-class InfiniteDataTableDemoContent extends Component {
+class DataTableDemoContent extends Component {
   generatingDataRows = false;
 
   constructor(props) {
@@ -120,11 +120,11 @@ class InfiniteDataTableDemoContent extends Component {
       showHeader,
     } = this.props;
     return (
-      <InfiniteDataTable
+      <DataTable
         selectable={selectable}
         selectedRows={selectedRows}
         onSelect={this.onSelect}
-        onHeaderClick={InfiniteDataTableDemoContent.onHeaderClick}
+        onHeaderClick={DataTableDemoContent.onHeaderClick}
         onLoadMoreRows={() => this.generateDataRows()}
         columns={columns}
         idKey={idKey}
@@ -139,14 +139,11 @@ class InfiniteDataTableDemoContent extends Component {
   }
 }
 
-const InfiniteDataTableDemo = () => (
-  <DefaultPageLayout
-    title="Franklin - Infinite Data Table"
-    content=<InfiniteDataTableDemoContent {...propData} />
-  />
+const DataTableDemo = () => (
+  <DefaultPageLayout title="Franklin - Data Table" content=<DataTableDemoContent {...propData} /> />
 );
 
-InfiniteDataTableDemoContent.propTypes = {
+DataTableDemoContent.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedRows: PropTypes.shape({}),
   idKey: PropTypes.string,
@@ -159,7 +156,7 @@ InfiniteDataTableDemoContent.propTypes = {
   selectable: PropTypes.bool,
 };
 
-InfiniteDataTableDemoContent.defaultProps = {
+DataTableDemoContent.defaultProps = {
   selectedRows: {},
   onSelect: () => {},
   onHeaderClick: () => {},
@@ -171,4 +168,4 @@ InfiniteDataTableDemoContent.defaultProps = {
   selectable: false,
 };
 
-export default InfiniteDataTableDemo;
+export default DataTableDemo;

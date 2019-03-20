@@ -12,8 +12,8 @@ const links = [
     path: '/ui-components',
   },
   {
-    label: 'Infinite Data Table',
-    path: '/infinite-data-table',
+    label: 'Data Table',
+    path: '/data-table',
   },
 ];
 

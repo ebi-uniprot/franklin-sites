@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
-import { InfiniteDataTableCore } from '../infinite-data-table';
+import { DataTableCore } from '../data-table';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -60,7 +60,7 @@ describe('DataTable component', () => {
   test('static method getSortableHeaderCell should return a button with key "col2" and call onHeaderClick on click', () => {
     const onHeaderClick = jest.fn();
     const wrapper = shallow(
-      InfiniteDataTableCore.getSortableHeaderCell({
+      DataTableCore.getSortableHeaderCell({
         column: columns[1],
         onHeaderClick,
         style: {},
@@ -72,21 +72,21 @@ describe('DataTable component', () => {
     expect(onHeaderClick).toHaveBeenCalled();
   });
 
-  test('static method getHeaderCell should return an element with text "Column 1" and have "table-head table-header" as className', () => {
+  test('static method getHeaderCell should return an element with text "Column 1" and have "data-table__head data-table__header" as className', () => {
     const wrapper = shallow(
-      InfiniteDataTableCore.getHeaderCell({
+      DataTableCore.getHeaderCell({
         column: columns[0],
         onHeaderClick: jest.fn(),
         style: {},
       }),
     );
     expect(wrapper.text()).toBe('Column 1');
-    expect(wrapper.hasClass('table-head table-header')).toBe(true);
+    expect(wrapper.hasClass('data-table__head data-table__header')).toBe(true);
   });
 
   test('static method getLoadingCell should element with text "Loading..." and "foo" as className', () => {
     const wrapper = shallow(
-      InfiniteDataTableCore.getLoadingCell({
+      DataTableCore.getLoadingCell({
         className: 'foo',
         style: {},
       }),
@@ -97,7 +97,7 @@ describe('DataTable component', () => {
 
   test('static method getRowCountCell should return component with correct row number and "foo" as className', () => {
     const wrapper = shallow(
-      InfiniteDataTableCore.getRowCountCell({
+      DataTableCore.getRowCountCell({
         className: 'foo',
         style: {},
         rowIndex: 100,
@@ -108,21 +108,21 @@ describe('DataTable component', () => {
     expect(wrapper.hasClass('foo')).toBe(true);
   });
 
-  test('static method getNoRenderCell should return component with correct warning text and "table-row--warning" as className', () => {
+  test('static method getNoRenderCell should return component with correct warning text and "table__row--warning" as className', () => {
     const wrapper = shallow(
-      InfiniteDataTableCore.getNoRenderCell({
+      DataTableCore.getNoRenderCell({
         style: {},
         column: columns[0],
       }),
     );
     expect(wrapper.text()).toBe('col1 has no render method');
-    expect(wrapper.hasClass('table-row--warning')).toBe(true);
+    expect(wrapper.hasClass('data-table__row--warning')).toBe(true);
   });
 
   test('static method getSelectCell should return component with correct className and respond to checkbox toggle with an onSelect call', () => {
     const onSelect = jest.fn();
     const wrapper = shallow(
-      InfiniteDataTableCore.getSelectCell({
+      DataTableCore.getSelectCell({
         id: 'blah1',
         onSelect,
         style: {},
@@ -130,7 +130,7 @@ describe('DataTable component', () => {
         selectedRows: { blah1: true },
       }),
     );
-    expect(wrapper.hasClass('foo table-row--selected')).toBe(true);
+    expect(wrapper.hasClass('foo data-table__row--selected')).toBe(true);
     const inputNode = wrapper.children();
     expect(inputNode.type()).toBe('input');
     inputNode.simulate('change');
@@ -138,19 +138,19 @@ describe('DataTable component', () => {
   });
 
   test('isRowLoaded should be false when row is missing and true when row is present', () => {
-    const wrapper = mount(<InfiniteDataTableCore {...props} />);
+    const wrapper = mount(<DataTableCore {...props} />);
     expect(wrapper.instance().isRowLoaded({ index: 0 })).toEqual(true);
     expect(wrapper.instance().isRowLoaded({ index: 100 })).toEqual(false);
   });
 
   test('getColumnWidth should return correct column width and return default when index is not found', () => {
-    const wrapper = mount(<InfiniteDataTableCore {...props} />);
+    const wrapper = mount(<DataTableCore {...props} />);
     expect(wrapper.instance().getColumnWidth({ index: 0 })).toEqual(40);
     expect(wrapper.instance().getColumnWidth({ index: 100 })).toEqual(200);
   });
 
   test('should render', () => {
-    const component = renderer.create(<InfiniteDataTableCore {...props} />).toJSON();
+    const component = renderer.create(<DataTableCore {...props} />).toJSON();
     expect(component).toMatchSnapshot();
   });
 });

@@ -11,7 +11,7 @@ exports[`DataTable component should render 1`] = `
   }
 >
   <div
-    className="data-table-infinite"
+    className="data-table"
   >
     <div
       style={
@@ -103,7 +103,7 @@ exports[`DataTable component should render 1`] = `
             }
           >
             <div
-              className="table-data table-row--odd"
+              className="data-table__data data-table__row--odd"
               style={
                 Object {
                   "height": 0,
@@ -119,7 +119,7 @@ exports[`DataTable component should render 1`] = `
               </span>
             </div>
             <div
-              className="table-data table-row--odd"
+              className="data-table__data data-table__row--odd"
               style={
                 Object {
                   "height": 0,
@@ -135,7 +135,7 @@ exports[`DataTable component should render 1`] = `
               </span>
             </div>
             <div
-              className="table-data table-row--even"
+              className="data-table__data data-table__row--even"
               style={
                 Object {
                   "height": 0,
@@ -149,7 +149,7 @@ exports[`DataTable component should render 1`] = `
               Loading...
             </div>
             <div
-              className="table-data table-row--even"
+              className="data-table__data data-table__row--even"
               style={
                 Object {
                   "height": 0,

@@ -25,8 +25,8 @@ const SELECT_COLUMN = {
   width: 40,
 };
 
-export const InfiniteDataTablePreprocessor = (props) => {
-  // This functional component prepends the data and columns being passed into InfiniteDataTableCore
+export const DataTablePreprocessor = (props) => {
+  // This functional component prepends the data and columns being passed into DataTableCore
   // based on consumer choices (ie showRowNumbers, selectable, showHeader).
   const {
     showRowNumbers, selectable, showHeader, data: inData, columns: inColumns,
@@ -39,10 +39,10 @@ export const InfiniteDataTablePreprocessor = (props) => {
   if (selectable) {
     columns = [SELECT_COLUMN, ...columns];
   }
-  return <InfiniteDataTableCore {...props} data={data} columns={columns} />;
+  return <DataTableCore {...props} data={data} columns={columns} />;
 };
 
-export class InfiniteDataTableCore extends Component {
+export class DataTableCore extends Component {
   cache = new CellMeasurerCache({
     fixedWidth: true,
     DEFAULT_ROW_HEIGHT,
@@ -97,7 +97,7 @@ export class InfiniteDataTableCore extends Component {
 
   static getHeaderCell({ column, onHeaderClick, style }) {
     if (column.sortable) {
-      return InfiniteDataTableCore.getSortableHeaderCell({ column, onHeaderClick, style });
+      return DataTableCore.getSortableHeaderCell({ column, onHeaderClick, style });
     }
     return (
       <div className="data-table__head data-table__header" style={style}>
@@ -156,7 +156,7 @@ export class InfiniteDataTableCore extends Component {
     selectedRows,
   }) {
     if (showHeader && rowIndex === 0) {
-      return InfiniteDataTableCore.getHeaderCell({
+      return DataTableCore.getHeaderCell({
         column,
         onHeaderClick,
         style,
@@ -168,11 +168,11 @@ export class InfiniteDataTableCore extends Component {
     }`;
 
     if (!row) {
-      return InfiniteDataTableCore.getLoadingCell({ className, style });
+      return DataTableCore.getLoadingCell({ className, style });
     }
 
     if (column.selectColumn) {
-      return InfiniteDataTableCore.getSelectCell({
+      return DataTableCore.getSelectCell({
         id: row[idKey],
         onSelect,
         selectedRows,
@@ -189,7 +189,7 @@ export class InfiniteDataTableCore extends Component {
     }
 
     if (column.numberColumn) {
-      return InfiniteDataTableCore.getRowCountCell({
+      return DataTableCore.getRowCountCell({
         style,
         column,
         className,
@@ -199,7 +199,7 @@ export class InfiniteDataTableCore extends Component {
     }
 
     if (!('render' in column)) {
-      return InfiniteDataTableCore.getNoRenderCell({ style, column });
+      return DataTableCore.getNoRenderCell({ style, column });
     }
 
     return (
@@ -224,7 +224,7 @@ export class InfiniteDataTableCore extends Component {
         parent={parent}
         rowIndex={rowIndex}
       >
-        {InfiniteDataTableCore.getCell({
+        {DataTableCore.getCell({
           column: columns[columnIndex],
           row: data[rowIndex],
           style: { ...style, width },
@@ -294,7 +294,7 @@ export class InfiniteDataTableCore extends Component {
   }
 }
 
-InfiniteDataTablePreprocessor.propTypes = {
+DataTablePreprocessor.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       width: PropTypes.number.isRequired,
@@ -314,7 +314,7 @@ InfiniteDataTablePreprocessor.propTypes = {
   showHeader: PropTypes.bool,
 };
 
-InfiniteDataTablePreprocessor.defaultProps = {
+DataTablePreprocessor.defaultProps = {
   selectable: false,
   selectedRows: {},
   onSelect: () => {},
@@ -326,7 +326,7 @@ InfiniteDataTablePreprocessor.defaultProps = {
   showHeader: true,
 };
 
-InfiniteDataTableCore.propTypes = {
+DataTableCore.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       width: PropTypes.number.isRequired,
@@ -344,7 +344,7 @@ InfiniteDataTableCore.propTypes = {
   showHeader: PropTypes.bool,
 };
 
-InfiniteDataTableCore.defaultProps = {
+DataTableCore.defaultProps = {
   selectedRows: {},
   onSelect: () => {},
   onHeaderClick: () => {},
@@ -354,7 +354,7 @@ InfiniteDataTableCore.defaultProps = {
   showHeader: true,
 };
 
-export default InfiniteDataTablePreprocessor;
+export default DataTablePreprocessor;
 
 /*
 columns
