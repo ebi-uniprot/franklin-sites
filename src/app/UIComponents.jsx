@@ -1,37 +1,47 @@
 import React, { Fragment } from 'react';
 import components from './components';
+import docJson from '../../doc/doc.json';
 
 import DefaultPageLayout from './layout/DefaultPageLayout';
 
-const formatPattern = Component => (
-  <div key={Component.name}>
-    <h2 id={Component.name}>{Component.name}</h2>
-    <div className="grid-x">
-      <div className="cell small-6 component-wrapper">
-        <Component.component {...Component.props} />
+const formatPattern = (Component) => {
+  const doc = Object.values(docJson).find(
+    componentDoc => componentDoc.displayName === Component.component.name,
+  );
+  return (
+    <div key={Component.name}>
+      <h2 id={Component.name}>{Component.name}</h2>
+      <div className="grid-x">
+        <div className="cell small-6 component-wrapper">
+          <Component.component {...Component.props} />
+        </div>
+        <div className="cell small-6">
+          <h5>Purpose</h5>
+          <p>{Component.purpose}</p>
+          <h5>Function</h5>
+          <p>{Component.function}</p>
+          <h5>Props</h5>
+          <ul className="no-bullet">
+            {doc
+              && doc.props
+              && Object.keys(doc.props).map(prop => (
+                <li key={prop}>
+                  <strong>{prop}</strong>
+                  {': '}
+                  <em>
+                    {doc.props[prop].type.name}
+                    {!doc.props[prop].required && ' (optional)'}
+                  </em>
+                  {doc.props[prop].description && ` - ${doc.props[prop].description}`}
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
-      <div className="cell small-6">
-        <h5>Purpose</h5>
-        <p>{Component.purpose}</p>
-        <h5>Function</h5>
-        <p>{Component.function}</p>
-        {/* Disabling until we find a better way to show this */}
-        {/* <h5>Props</h5>
-        <div>
-          {Component.props
-            && Object.entries(Component.props).map(prop => (
-              <div key={prop[0]}>
-                <strong>{prop[0]}</strong>
-:
-                {JSON.stringify(prop[1])}
-              </div>
-            ))}
-        </div> */}
-      </div>
+      <hr />
     </div>
-    <hr />
-  </div>
-);
+  );
+};
 
 const UIComponentsNav = () => (
   <Fragment>
