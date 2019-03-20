@@ -8,6 +8,7 @@ const formatPattern = (Component) => {
   const doc = Object.values(docJson).find(
     componentDoc => componentDoc.displayName === Component.component.name,
   );
+  console.log(doc);
   return (
     <div key={Component.name}>
       <h2 id={Component.name}>{Component.name}</h2>
