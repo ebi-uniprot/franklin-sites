@@ -95,9 +95,9 @@ describe('DataTable component', () => {
     expect(wrapper.hasClass('foo')).toBe(true);
   });
 
-  test('static method getNumberCell should return component with correct row number and "foo" as className', () => {
+  test('static method getRowCountCell should return component with correct row number and "foo" as className', () => {
     const wrapper = shallow(
-      InfiniteDataTableCore.getNumberCell({
+      InfiniteDataTableCore.getRowCountCell({
         className: 'foo',
         style: {},
         rowIndex: 100,
@@ -108,7 +108,7 @@ describe('DataTable component', () => {
     expect(wrapper.hasClass('foo')).toBe(true);
   });
 
-  test('static method getNoRenderCell should return component with correct warning text and "table-row-warning" as className', () => {
+  test('static method getNoRenderCell should return component with correct warning text and "table-row--warning" as className', () => {
     const wrapper = shallow(
       InfiniteDataTableCore.getNoRenderCell({
         style: {},
@@ -116,7 +116,7 @@ describe('DataTable component', () => {
       }),
     );
     expect(wrapper.text()).toBe('col1 has no render method');
-    expect(wrapper.hasClass('table-row-warning')).toBe(true);
+    expect(wrapper.hasClass('table-row--warning')).toBe(true);
   });
 
   test('static method getSelectCell should return component with correct className and respond to checkbox toggle with an onSelect call', () => {
@@ -130,7 +130,7 @@ describe('DataTable component', () => {
         selectedRows: { blah1: true },
       }),
     );
-    expect(wrapper.hasClass('foo table-row-selected')).toBe(true);
+    expect(wrapper.hasClass('foo table-row--selected')).toBe(true);
     const inputNode = wrapper.children();
     expect(inputNode.type()).toBe('input');
     inputNode.simulate('change');

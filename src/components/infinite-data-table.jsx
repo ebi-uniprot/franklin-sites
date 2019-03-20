@@ -10,9 +10,11 @@ import {
 import { serializableDeepAreEqual } from '../utils';
 import '../styles/components/data-table.scss';
 
-const DEFAULT_WIDTH = 200;
-const DEFAULT_HEIGHT = 30;
-const MIN_HEIGHT = 30;
+const DEFAULT_TABLE_WIDTH = 400;
+const DEFAULT_TABLE_HEIGHT = 400;
+const DEFAULT_COLUMN_WIDTH = 200;
+const DEFAULT_ROW_HEIGHT = 30;
+const MIN_ROW_HEIGHT = 30;
 const NUMBER_COLUMN = {
   label: '#',
   numberColumn: true,
@@ -43,8 +45,8 @@ export const InfiniteDataTablePreprocessor = (props) => {
 export class InfiniteDataTableCore extends Component {
   cache = new CellMeasurerCache({
     fixedWidth: true,
-    DEFAULT_HEIGHT,
-    MIN_HEIGHT,
+    DEFAULT_ROW_HEIGHT,
+    MIN_ROW_HEIGHT,
   });
 
   constructor(props) {
@@ -66,23 +68,19 @@ export class InfiniteDataTableCore extends Component {
     }
   }
 
-  getHeader() {
-    const { columns } = this.props;
-    return columns.map(column => ({ label: column.label || '', render: x => x }));
-  }
-
   getColumnWidth({ index }) {
     const { columns } = this.props;
     const column = columns[index];
-    return column && column.width ? column.width : DEFAULT_WIDTH;
+    return column && column.width ? column.width : DEFAULT_COLUMN_WIDTH;
   }
 
   static getSortableHeaderCell({ column, onHeaderClick, style }) {
-    let className = 'table-head ';
+    let className = 'data-table__head data-table__header ';
     if (column.sorted) {
-      className += column.sorted === 'ascend' ? 'table-header-ascend' : 'table-header-descend';
+      className
+        += column.sorted === 'ascend' ? 'data-table__header--ascend' : 'data-table__header--descend';
     } else {
-      className += 'table-header-sortable';
+      className += 'data-table__header--sortable';
     }
     return (
       <button
@@ -102,7 +100,7 @@ export class InfiniteDataTableCore extends Component {
       return InfiniteDataTableCore.getSortableHeaderCell({ column, onHeaderClick, style });
     }
     return (
-      <div className="table-head table-header" style={style}>
+      <div className="data-table__head data-table__header" style={style}>
         {column.label || ''}
       </div>
     );
@@ -121,25 +119,26 @@ export class InfiniteDataTableCore extends Component {
   }) {
     const checked = id in selectedRows;
     return (
-      <div className={`${className} ${checked && 'table-row-selected'}`} style={style}>
-        <input type="checkbox" onChange={() => onSelect(id)} checked={id in selectedRows} />
+      <div className={`${className} ${checked && 'data-table__row--selected'}`} style={style}>
+        <input type="checkbox" onChange={() => onSelect(id)} checked={checked} />
       </div>
     );
   }
 
-  static getNumberCell({
+  static getRowCountCell({
     style, className, rowIndex, showHeader,
   }) {
+    const headerRowCount = +showHeader;
     return (
       <div className={className} style={style}>
-        {rowIndex + 1 - showHeader}
+        {rowIndex + 1 - headerRowCount}
       </div>
     );
   }
 
   static getNoRenderCell({ style, column }) {
     return (
-      <div className="table-data table-row-warning" style={style}>
+      <div className="data-table__data data-table__row--warning" style={style}>
         {`${column.name} has no render method`}
       </div>
     );
@@ -164,7 +163,9 @@ export class InfiniteDataTableCore extends Component {
       });
     }
 
-    let className = `table-data ${rowIndex % 2 ? 'table-row-odd' : 'table-row-even'}`;
+    let className = `data-table__data ${
+      rowIndex % 2 ? 'data-table__row--odd' : 'data-table__row--even'
+    }`;
 
     if (!row) {
       return InfiniteDataTableCore.getLoadingCell({ className, style });
@@ -184,11 +185,11 @@ export class InfiniteDataTableCore extends Component {
     const checked = id in selectedRows;
 
     if (checked) {
-      className += ' table-row-selected';
+      className += ' data-table__row--selected';
     }
 
     if (column.numberColumn) {
-      return InfiniteDataTableCore.getNumberCell({
+      return InfiniteDataTableCore.getRowCountCell({
         style,
         column,
         className,
@@ -202,7 +203,7 @@ export class InfiniteDataTableCore extends Component {
     }
 
     return (
-      <div className={`${className} ${checked && ' table-row-selected'}`} style={style}>
+      <div className={className} style={style}>
         {column.render(row)}
       </div>
     );
@@ -253,7 +254,8 @@ export class InfiniteDataTableCore extends Component {
       fixedRowCount,
       totalNumberRows,
     } = this.props;
-    const rowCount = showHeader + Math.min(totalNumberRows, data.length);
+    const headerRowCount = +showHeader;
+    const rowCount = headerRowCount + Math.min(totalNumberRows, data.length);
     return (
       <InfiniteLoader
         loadMoreRows={onLoadMoreRows}
@@ -263,13 +265,13 @@ export class InfiniteDataTableCore extends Component {
       >
         {({ onRowsRendered, registerChild }) => (
           <AutoSizer>
-            {({ width, height }) => (
-              <div className="data-table-infinite">
+            {({ width: tableWidth, height: tableHeight }) => (
+              <div className="data-table">
                 <MultiGrid
                   cellRenderer={this.cellRenderer}
                   columnCount={columns.length}
-                  width={width || 100}
-                  height={height || 100}
+                  width={tableWidth || DEFAULT_TABLE_WIDTH}
+                  height={tableHeight || DEFAULT_TABLE_HEIGHT}
                   columnWidth={this.getColumnWidth}
                   rowHeight={this.cache.rowHeight}
                   deferredMeasurementCache={this.cache}

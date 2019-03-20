@@ -16,9 +16,9 @@ exports[`DataTable component should render 1`] = `
     <div
       style={
         Object {
-          "height": 100,
+          "height": 400,
           "overflow": "visible",
-          "width": 100,
+          "width": 400,
         }
       }
     >
@@ -27,7 +27,7 @@ exports[`DataTable component should render 1`] = `
           Object {
             "height": 0,
             "position": "relative",
-            "width": 100,
+            "width": 400,
           }
         }
       >
@@ -48,7 +48,7 @@ exports[`DataTable component should render 1`] = `
               "overflowY": "hidden",
               "position": "absolute",
               "top": 0,
-              "width": 100,
+              "width": 400,
               "willChange": "transform",
             }
           }
@@ -58,10 +58,10 @@ exports[`DataTable component should render 1`] = `
       <div
         style={
           Object {
-            "height": 100,
+            "height": 400,
             "overflow": "visible",
             "position": "relative",
-            "width": 100,
+            "width": 400,
           }
         }
       >
@@ -76,12 +76,12 @@ exports[`DataTable component should render 1`] = `
               "WebkitOverflowScrolling": "touch",
               "boxSizing": "border-box",
               "direction": "ltr",
-              "height": 100,
+              "height": 400,
               "left": 0,
               "overflowX": "hidden",
               "overflowY": "hidden",
               "position": "absolute",
-              "width": 100,
+              "width": 400,
               "willChange": "transform",
             }
           }
@@ -103,7 +103,7 @@ exports[`DataTable component should render 1`] = `
             }
           >
             <div
-              className="table-data table-row-odd false"
+              className="table-data table-row--odd"
               style={
                 Object {
                   "height": 0,
@@ -119,7 +119,7 @@ exports[`DataTable component should render 1`] = `
               </span>
             </div>
             <div
-              className="table-data table-row-odd false"
+              className="table-data table-row--odd"
               style={
                 Object {
                   "height": 0,
@@ -135,7 +135,7 @@ exports[`DataTable component should render 1`] = `
               </span>
             </div>
             <div
-              className="table-data table-row-even"
+              className="table-data table-row--even"
               style={
                 Object {
                   "height": 0,
@@ -149,7 +149,7 @@ exports[`DataTable component should render 1`] = `
               Loading...
             </div>
             <div
-              className="table-data table-row-even"
+              className="table-data table-row--even"
               style={
                 Object {
                   "height": 0,

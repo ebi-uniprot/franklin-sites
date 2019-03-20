@@ -2,49 +2,40 @@
 @import "../colours";
 @import "../mixins";
 
-.data-table-base {
+.data-table {
   border: 1px solid $colour-seashell-grey;
   margin: 0 0 3em 0;
 
-  .table-head {
+  &__head {
     font-weight: bold;
     background-color: $colour-light-grey;
   }
 
-  .table-body {
+  &__body {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .table-row {
+  &__row {
     display: flex;
     width: 100%;
     flex-wrap: nowrap;
-    // padding: 0.3rem;
+
+    &--warning {
+      background-color: map-get($foundation-palette, warning);
+    }
+
+    &--odd {
+      background-color: $colour-seashell-grey;
+    }
+
+    &--selected {
+      background-color: $colour-light-blue;
+      border-bottom: 1px solid $colour-white;
+    }
   }
 
-  .table-row-even {
-    @extend .table-row;
-  }
-
-  .table-row-warning {
-    @extend .table-row;
-    background-color: map-get($foundation-palette, warning);
-  }
-
-  .table-row-odd {
-    @extend .table-row;
-    background-color: $colour-seashell-grey;
-  }
-
-  .table-row-selected {
-    @extend .table-row;
-    background-color: $colour-light-blue;
-    border-bottom: 1px solid $colour-white;
-  }
-
-  .table-header,
-  .table-data {
+  %cell {
     box-sizing: border-box;
     width: 100%;
     padding: 0.8em 1.2em;
@@ -52,70 +43,74 @@
     text-align: left;
   }
 
-  .table-header-ascend {
-    @extend .table-header;
-    cursor: pointer;
-    &::after {
-      @include chevron(up, $black);
-    }
-  }
-
-  .table-header-descend {
-    @extend .table-header;
-    cursor: pointer;
-    &::after {
-      @include chevron(down, $black);
-    }
-  }
-
-  .table-header-sortable {
-    @extend .table-header;
-    cursor: pointer;
-    &::after {
-      @include chevron(down, lighten($black, 50%));
-    }
-    &:hover:after {
-      @include chevron(down, lighten($black, 20%));
-    }
-  }
-
-  .table-header-checkbox,
-  .table-data-checkbox {
+  %checkbox {
     box-sizing: border-box;
     width: 0;
     padding: 0.8em 1.2em;
     overflow: hidden;
   }
 
+  &__data {
+    @extend %cell;
+
+    &--checkbox {
+      @extend %checkbox;
+    }
+  }
+
+  &__header {
+    @extend %cell;
+
+    &--checkbox {
+      @extend %checkbox;
+    }
+
+    &--ascend {
+      cursor: pointer;
+      &::after {
+        @include chevron(up, $black);
+      }
+    }
+
+    &--descend {
+      cursor: pointer;
+      &::after {
+        @include chevron(down, $black);
+      }
+    }
+
+    &--sortable {
+      cursor: pointer;
+      &::after {
+        @include chevron(down, lighten($black, 50%));
+      }
+      &:hover:after {
+        @include chevron(down, lighten($black, 20%));
+      }
+    }
+  }
+
   [type="checkbox"] {
     margin: 0;
   }
 
-  .table-header-large,
-  .table-data-large {
+  &__header--large,
+  &__data--large {
     flex: 4 1 90em;
   }
 
-  .table-header-small,
-  .table-data-small {
+  &__header--small,
+  &__data--small {
     flex: 0 1 16em;
   }
 }
 
-.data-table-infinite {
-  @extend .data-table-base;
-}
-
-.data-table {
-  @extend .data-table-base;
-}
-
-@include breakpoint(small only) {
-  .data-table {
-    .table-header {
+.data-table--collapsible {
+  @include breakpoint(small only) {
+    .data-table__header {
       display: none;
     }
-    .table-row {
+    .data-table__row {
       flex-wrap: wrap;
     }
   }

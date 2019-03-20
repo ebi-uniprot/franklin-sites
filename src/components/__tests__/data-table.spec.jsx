@@ -60,22 +60,22 @@ describe('DataTable component', () => {
     expect(handleOnHeaderClick).toHaveBeenCalled();
   });
 
-  test('static method getRowClassName should return table-row-selected if selected=True', () => {
-    expect(DataTable.getRowClassName(0, true)).toEqual('table-row-selected');
+  test('static method getRowClassName should return table-row--selected if selected=True', () => {
+    expect(DataTable.getRowClassName(0, true)).toEqual('table-row--selected');
   });
 
-  test('static method getRowClassName should return table-row-even if selected=False and index=44', () => {
-    expect(DataTable.getRowClassName(44, false)).toEqual('table-row-even');
+  test('static method getRowClassName should return table-row--even if selected=False and index=44', () => {
+    expect(DataTable.getRowClassName(44, false)).toEqual('table-row--even');
   });
 
-  test('static method getSortableColumnClassName should return table-header-ascend if column.sorted=descend', () => {
+  test('static method getSortableColumnClassName should return table-header--ascend if column.sorted=descend', () => {
     expect(DataTable.getSortableColumnClassName({ sorted: 'descend' })).toEqual(
-      'table-header-descend',
+      'table-header--descend',
     );
   });
 
-  test('static method getSortableColumnClassName should return table-header-sortable if sorted is not a proprety of column', () => {
-    expect(DataTable.getSortableColumnClassName({})).toEqual('table-header-sortable');
+  test('static method getSortableColumnClassName should return table-header--sortable if sorted is not a proprety of column', () => {
+    expect(DataTable.getSortableColumnClassName({})).toEqual('table-header--sortable');
   });
 
   test('should render', () => {
