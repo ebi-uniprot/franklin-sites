@@ -34,3 +34,7 @@ export function restructureFlattenedTreeDataForAutocomplete(flattenedTreeData) {
 export function formatLargeNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export function serializableDeepAreEqual(obj1, obj2) {
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
+}

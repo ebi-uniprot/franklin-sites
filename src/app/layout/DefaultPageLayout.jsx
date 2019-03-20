@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import DefaultPageContent from './DefaultPageContent';
@@ -6,13 +6,11 @@ import Sidebar from './Sidebar';
 import FranklinHeader from '../FranklinHeader';
 
 const DefaultPageLayout = ({ content, sidebarContent }) => (
-  <Fragment>
+  <div className="default-page-layout ">
     <FranklinHeader />
-    <div className="default-page-layout ">
-      <DefaultPageContent>{content}</DefaultPageContent>
-      <Sidebar>{sidebarContent}</Sidebar>
-    </div>
-  </Fragment>
+    <DefaultPageContent>{content}</DefaultPageContent>
+    {sidebarContent && <Sidebar>{sidebarContent}</Sidebar>}
+  </div>
 );
 
 DefaultPageLayout.propTypes = {
@@ -22,7 +20,7 @@ DefaultPageLayout.propTypes = {
 
 DefaultPageLayout.defaultProps = {
   content: () => <h3>Page Content</h3>,
-  sidebarContent: () => <h3>Sidebar content</h3>,
+  sidebarContent: undefined,
 };
 
 export default DefaultPageLayout;

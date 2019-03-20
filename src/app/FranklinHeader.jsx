@@ -11,8 +11,14 @@ const links = [
     label: 'UI Components',
     path: '/ui-components',
   },
+  {
+    label: 'Data Table',
+    path: '/data-table',
+  },
 ];
 
-const FranklinHeader = () => <Header logo={<Logo width={50} height={50} />} links={links} />;
+const FranklinHeader = () => (
+  <Header className="default-header" logo={<Logo width={50} height={50} />} links={links} />
+);
 
 export default FranklinHeader;
