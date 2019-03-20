@@ -8,7 +8,8 @@
 
   &__head {
     font-weight: bold;
-    background-color: $colour-light-grey;
+    color: $colour-white;
+    background-color: $colour-uniprot-blue;
   }
 
   &__body {
@@ -68,24 +69,24 @@
     &--ascend {
       cursor: pointer;
       &::after {
-        @include chevron(up, $black);
+        @include chevron(up, $colour-white);
       }
     }
 
     &--descend {
       cursor: pointer;
       &::after {
-        @include chevron(down, $black);
+        @include chevron(down, $colour-white);
       }
     }
 
     &--sortable {
       cursor: pointer;
       &::after {
-        @include chevron(down, lighten($black, 50%));
+        @include chevron(down, $colour-light-grey);
       }
       &:hover:after {
-        @include chevron(down, lighten($black, 20%));
+        @include chevron(down, $colour-white);
       }
     }
   }
