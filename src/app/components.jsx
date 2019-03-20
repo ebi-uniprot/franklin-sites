@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import Tile from '../components/tile';
 import DropdownButton from '../components/dropdown-button';
 import TreeSelect from '../components/tree-select';
 import Autocomplete from '../components/autocomplete';
 import MainSearch from '../components/main-search';
-import DataTable from '../components/data-table';
 import HeroHeader from '../components/hero-header';
 import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
@@ -175,62 +176,35 @@ const components = [
     },
   },
   {
-    name: 'Data table',
-    component: DataTable,
-    function: '',
-    purpose: '',
+    name: 'Protein Card',
+    component: Card,
+    function: 'Provide a contained section to show content for a given category.',
+    purpose: 'Create visually delimited areas to allow for easier scanning of content.',
     props: {
-      selectable: true,
-      selected: { blah3: true },
-      onSelect: (rowId) => {
-        console.log(rowId, 'selected');
-      },
-      onHeaderClick: (columnName) => {
-        console.log(columnName);
-      },
-      columns: [
+      title: 'Title',
+      subtitle: <Link to="/#">APOE_HUMAN - P02649</Link>,
+      color: 'darkblue',
+      children: <p>An example of content</p>,
+      links: [
         {
-          label: 'Column 1',
-          name: 'col1',
-          render: row => <span>{row.fieldValue1.value}</span>,
-          sortable: true,
+          name: '10 Protein Interactions',
+          link: '#',
+          color: 'red',
         },
         {
-          label: 'Column 2',
-          name: 'col2',
-          render: row => <span>{row.fieldValue2.value}</span>,
-          sorted: 'ascend',
-          sortable: true,
-        },
-      ],
-      idKey: 'accessionId',
-      data: [
-        {
-          accessionId: 'blah1',
-          fieldValue1: {
-            value: 'Some data 1',
-          },
-          fieldValue2: {
-            value: 'Some data 2',
-          },
+          name: '9 Pathways',
+          link: '#',
+          color: 'blue',
         },
         {
-          accessionId: 'blah2',
-          fieldValue1: {
-            value: 'Some data A',
-          },
-          fieldValue2: {
-            value: 'Some data B',
-          },
+          name: '5 Diseases',
+          link: '#',
+          color: '#bada55',
         },
         {
-          accessionId: 'blah3',
-          fieldValue1: {
-            value: 'Some data α',
-          },
-          fieldValue2: {
-            value: 'Some data β',
-          },
+          name: '72 Variants',
+          link: '#',
+          color: 'burlywood',
         },
       ],
     },

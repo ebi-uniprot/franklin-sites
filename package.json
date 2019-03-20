@@ -37,6 +37,7 @@
   "dependencies": {
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.0-rc.3",
+    "lorem-ipsum": "^1.0.6",
     "npm-run-all": "^4.1.2",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
@@ -45,6 +46,7 @@
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.2.2",
     "react-svg-loader": "^2.1.0",
+    "react-virtualized": "^9.21.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
