@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import Tile from '../components/tile';
 import DropdownButton from '../components/dropdown-button';
 import TreeSelect from '../components/tree-select';
@@ -9,10 +11,12 @@ import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
 import lipsum from './common/lipsum';
 import facetData from './common/facetData';
+import sequenceData from './common/sequence-data';
 import PageIntro from '../components/page-intro';
 import InfoList from '../components/info-list';
 import Card from '../components/card';
 import { EvidenceTag } from '../components';
+import Sequence from '../components/sequence';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -172,6 +176,40 @@ const components = [
     },
   },
   {
+    name: 'Protein Card',
+    component: Card,
+    function: 'Provide a contained section to show content for a given category.',
+    purpose: 'Create visually delimited areas to allow for easier scanning of content.',
+    props: {
+      title: 'Title',
+      subtitle: <Link to="/#">APOE_HUMAN - P02649</Link>,
+      color: 'darkblue',
+      children: <p>An example of content</p>,
+      links: [
+        {
+          name: '10 Protein Interactions',
+          link: '#',
+          color: 'red',
+        },
+        {
+          name: '9 Pathways',
+          link: '#',
+          color: 'blue',
+        },
+        {
+          name: '5 Diseases',
+          link: '#',
+          color: '#bada55',
+        },
+        {
+          name: '72 Variants',
+          link: '#',
+          color: 'burlywood',
+        },
+      ],
+    },
+  }, 
+  {
     name: 'Facets',
     component: Facets,
     function: '',
@@ -181,6 +219,15 @@ const components = [
       selectedFacets: [{ name: 'facet_2', value: 'value_2' }],
       addFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
       removeFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+    },
+  },
+  {
+    name: 'Sequence',
+    component: Sequence,
+    function: 'Display protein/nucleotide sequence, allow users to copy it',
+    purpose: 'Allow users to see a protein / nucleotide sequence',
+    props: {
+      sequence: sequenceData,
     },
   },
 ];

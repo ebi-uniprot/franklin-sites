@@ -1,0 +1,18 @@
+@import "../settings";
+@import "../colours";
+
+.sequence {
+  display: flex;
+  align-items: flex-start;
+  &__sequence {
+    font-family: $font-family-monospace;
+    display: flex;
+    flex-wrap: wrap;
+    &__chunk {
+      margin: ($global-margin / 2);
+      &__counter {
+        text-anchor: end;
+      }
+    }
+  }
+}
