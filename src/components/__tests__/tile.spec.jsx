@@ -5,7 +5,7 @@ import Tile from '../tile';
 
 describe('Tile component', () => {
   test('should render', () => {
-    const component = renderer.create(<Tile namespace="uniref" />).toJSON();
+    const component = renderer.create(<Tile title="Tile title" namespace="uniref" />).toJSON();
 
     expect(component).toMatchSnapshot();
   });
