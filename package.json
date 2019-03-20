@@ -8,10 +8,11 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack.dev.js --open",
-    "build-site": "webpack --mode production --config webpack.prod.js",
+    "build-site": "yarn docgen && webpack --mode production --config webpack.prod.js",
     "build-library": "webpack --config webpack.library.js",
     "build": "yarn build-library && yarn build-site",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
+    "docgen": "react-docgen ./src/components -o dist/doc.json -e index.js",
     "test": "npm run jslint && jest",
     "test-watch": "jest --watch"
   },
@@ -74,6 +75,7 @@
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.1",
+    "react-docgen": "^4.1.0",
     "react-test-renderer": "^16.4.1",
     "regenerator-runtime": "^0.12.1",
     "sass-loader": "^7.1.0",
