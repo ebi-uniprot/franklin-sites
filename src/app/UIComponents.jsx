@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import components from './components';
-import docJson from '../../dist/doc.json';
+import docJson from '../../doc/doc.json';
 
 import DefaultPageLayout from './layout/DefaultPageLayout';
 

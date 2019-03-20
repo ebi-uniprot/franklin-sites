@@ -12,8 +12,8 @@
     "build-library": "webpack --config webpack.library.js",
     "build": "yarn build-library && yarn build-site",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
-    "docgen": "react-docgen ./src/components -o dist/doc.json -e index.js",
-    "test": "yarn jslint && yarn docgen && jest",
+    "docgen": "mkdirp doc && react-docgen ./src/components -o doc/doc.json -e index.js",
+    "test": "yarn docgen && yarn jslint && jest",
     "test-watch": "jest --watch"
   },
   "browserslist": [
@@ -74,6 +74,7 @@
     "html-webpack-plugin": "^3.0.3",
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.4.0",
+    "mkdirp": "^0.5.1",
     "node-sass": "^4.9.1",
     "react-docgen": "^4.1.0",
     "react-test-renderer": "^16.4.1",
