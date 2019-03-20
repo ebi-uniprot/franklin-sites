@@ -13,6 +13,7 @@ Building the Franklin site
     "build-site": //build the franklin website,
     "build-library": //build the franklin library (npm package),
     "build": //build both site and library,
+    "docgen": //generate documentation for components
     "jslint": //check code style,
     "test": //run tests and check code style,
     "test-watch": //watch tests
@@ -27,6 +28,7 @@ yarn install franklin-sites
 ```
 
 Wrap your application in the `FranklinSite` tag:
+
 ```javascript
 import { FranklinSite } from "franklin-sites";
 
