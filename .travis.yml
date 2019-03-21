@@ -2,8 +2,6 @@ language: node_js
 node_js:
   # lock to 11.10.1 due to https://github.com/facebook/jest/issues/8069
   - "11.10.1"
-before_build:
-  - yarn docgen
 before_deploy:
   - yarn build
 notifications:
