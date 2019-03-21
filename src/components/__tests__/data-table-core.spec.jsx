@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
-import { DataTableCore } from '../data-table';
+import DataTableCore from '../data-table-core';
 
 Enzyme.configure({ adapter: new Adapter() });
 
