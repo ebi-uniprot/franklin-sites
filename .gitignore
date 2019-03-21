@@ -8,8 +8,8 @@
 # coverage
 /coverage
 
-# doc
-/doc
+# doc - keep in for now
+# /doc
 
 # misc
 .DS_Store
