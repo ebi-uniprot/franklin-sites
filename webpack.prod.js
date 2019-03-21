@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const doc = require('./../doc/doc.json');
 
 module.exports = merge(common, {
   mode: 'production',
