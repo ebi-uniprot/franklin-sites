@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const Typography = () => (
-  <Fragment>
-    <h1 id="type">Typography</h1>
+  <div className="atoms-section" id="type">
+    <h1>Typography</h1>
     <section>
       <p>
         The chosen type is a sans-serif, Lato, designed by Warsaw-based designer
@@ -93,9 +93,8 @@ const Typography = () => (
         <li>Item 4</li>
         <li>Item 5</li>
       </ul>
-      <hr />
     </section>
-  </Fragment>
+  </div>
 );
 
 export default Typography;

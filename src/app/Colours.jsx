@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import './styles/atoms.scss';
 
 const Colours = () => (
-  <Fragment>
-    <h1 id="colours">Colours</h1>
+  <div className="atoms-section" id="colours">
+    <h1>Colours</h1>
     <div>
       <h4>Primary palette</h4>
       <div className="box-colour box-colour-dark-blue" data-name="$colour-dark-blue" />
@@ -39,7 +40,7 @@ const Colours = () => (
         data-name="$colour-annotation-systems"
       />
     </div>
-  </Fragment>
+  </div>
 );
 
 export default Colours;
