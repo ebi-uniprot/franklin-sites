@@ -846,6 +846,20 @@
       }
     }
   },
+  "src/components/external-link.jsx": {
+    "description": "",
+    "displayName": "ExternalLink",
+    "methods": [],
+    "props": {
+      "newTab": {
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
   "src/components/facets.jsx": {
     "description": "",
     "displayName": "Facets",
@@ -1048,20 +1062,6 @@
         },
         "required": true,
         "description": "An array of objects each containing 'title' and 'content'"
-      }
-    }
-  },
-  "src/components/links.jsx": {
-    "description": "",
-    "displayName": "ExternalLink",
-    "methods": [],
-    "props": {
-      "newTab": {
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        },
-        "required": false
       }
     }
   },
