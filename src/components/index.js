@@ -12,3 +12,4 @@ export { default as Card } from './card';
 export { default as EvidenceTag } from './evidence-tag';
 export { default as DataTable } from './data-table';
 export { default as Sequence } from './sequence';
+export { default as ExternalLink } from './external-link';
