@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExternalLink component should render external link 1`] = `
+<a
+  className="external-link"
+  href="#"
+  target="_blank"
+>
+  <span>
+    Link text
+  </span>
+  <test-file-stub
+    width={12.5}
+  />
+</a>
+`;
+
+exports[`ExternalLink component should render external link without target: _blank attribute 1`] = `
+<a
+  className="external-link"
+  href="#"
+>
+  <span>
+    Link text
+  </span>
+  <test-file-stub
+    width={12.5}
+  />
+</a>
+`;

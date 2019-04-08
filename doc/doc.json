@@ -851,12 +851,30 @@
     "displayName": "ExternalLink",
     "methods": [],
     "props": {
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": true,
+        "description": "The text which is displayed to the user"
+      },
+      "url": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": "The location that is visted when clicked"
+      },
       "newTab": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Decides if a new browser tab should be opened or not",
         "defaultValue": {
           "value": "true",
           "computed": false
-        },
-        "required": false
+        }
       }
     }
   },

@@ -8,7 +8,9 @@ const Links = () => (
     <section>
       <ul className="no-bullet">
         <li>
-          <ExternalLink uri="https://www.ebi.ac.uk/">External link</ExternalLink>
+          <span>Lorem ipsum </span>
+          <ExternalLink url="https://www.ebi.ac.uk/">external link</ExternalLink>
+          <span>dolor sit amet.</span>
         </li>
       </ul>
     </section>
