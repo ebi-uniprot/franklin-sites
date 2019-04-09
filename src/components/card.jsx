@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import '../styles/components/card.scss';
 
 const CardLink = ({ name, link, color }) => (
   <div className="card__link" style={color ? { borderColor: color } : {}}>
-    <a href={link}>{name}</a>
+    <Link to={link}>{name}</Link>
   </div>
 );
 
