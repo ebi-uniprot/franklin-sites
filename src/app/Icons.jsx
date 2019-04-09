@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Obsolete from '../svg/obsolete.svg';
 import SwissProt from '../svg/swissprot.svg';
 import Trembl from '../svg/trembl.svg';
 import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 import Tag from '../svg/tag.svg';
+import ExternalLink from '../svg/external-link.svg';
+import './styles/atoms.scss';
 
 const size = 50;
 
@@ -39,11 +41,16 @@ const iconDefinition = [
     description: 'Chevron Down',
     icon: <ChevronDown width={size} height={size} />,
   },
+  {
+    name: 'external-link.svg',
+    description: 'External Link',
+    icon: <ExternalLink width={size} height={size} />,
+  },
 ];
 
 const Icons = () => (
-  <Fragment>
-    <h1 id="icons">Icons</h1>
+  <div className="atoms-section" id="icons">
+    <h1>Icons</h1>
     <div className="icon-list">
       {iconDefinition.map(d => (
         <div className="icon-container" key={d.name}>
@@ -52,7 +59,7 @@ const Icons = () => (
         </div>
       ))}
     </div>
-  </Fragment>
+  </div>
 );
 
 export default Icons;
