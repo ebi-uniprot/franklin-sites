@@ -62,7 +62,8 @@ exports[`Card component should render card with links 1`] = `
       }
     >
       <a
-        href="example.com"
+        href="/example.com"
+        onClick={[Function]}
       >
         link
       </a>
