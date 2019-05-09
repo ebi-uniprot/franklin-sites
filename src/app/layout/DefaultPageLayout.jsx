@@ -5,22 +5,21 @@ import DefaultPageContent from './DefaultPageContent';
 import Sidebar from './Sidebar';
 import FranklinHeader from '../FranklinHeader';
 
-const DefaultPageLayout = ({ content, sidebarContent }) => (
+const DefaultPageLayout = ({ content, sections }) => (
   <div className="default-page-layout ">
     <FranklinHeader />
     <DefaultPageContent>{content}</DefaultPageContent>
-    {sidebarContent && <Sidebar>{sidebarContent}</Sidebar>}
+    {sections && <Sidebar sections={sections} />}
   </div>
 );
 
 DefaultPageLayout.propTypes = {
   content: PropTypes.element,
-  sidebarContent: PropTypes.element,
+  sections: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 DefaultPageLayout.defaultProps = {
   content: () => <h3>Page Content</h3>,
-  sidebarContent: undefined,
 };
 
 export default DefaultPageLayout;

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InPageNav component should render 1`] = `
+<div
+  className="in-page-nav in-page-nav--sticky"
+>
+  <ul
+    className=""
+    style={Object {}}
+  >
+    <li
+      className=""
+    >
+      <a
+        href="#id1"
+      >
+        First link
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="#id2"
+      >
+        Second link
+      </a>
+    </li>
+    <li
+      className="in-page-nav--disabled"
+    >
+      <a
+        href="#id3"
+      >
+        Third link
+      </a>
+    </li>
+  </ul>
+</div>
+`;
