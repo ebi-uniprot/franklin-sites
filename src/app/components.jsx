@@ -227,8 +227,8 @@ const components = [
   {
     name: 'In page nav',
     component: InPageNav,
-    function: '',
-    purpose: '',
+    function: 'Quickly navigate to different sections of the current page.',
+    purpose: 'Help with navigation, give an idea of the position on a very long page.',
     props: {
       sections: [
         {
