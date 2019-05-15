@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InPageNav from '../../components/in-page-nav';
 
-const SideBar = ({ children }) => (
+const SideBar = ({ sections }) => (
   <div className="sidebar">
-    <ul>{children}</ul>
+    <InPageNav sections={sections} />
   </div>
 );
 
 SideBar.propTypes = {
-  children: PropTypes.node,
-};
-
-SideBar.defaultProps = {
-  children: 'Sidebar content',
+  sections: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SideBar;

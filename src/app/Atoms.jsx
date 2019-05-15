@@ -14,28 +14,28 @@ const HomePageContent = () => (
   </Fragment>
 );
 
-const SidebarContent = () => (
-  <Fragment>
-    <li>
-      <a href="#colours">Colours</a>
-    </li>
-    <li>
-      <a href="#type">Typography</a>
-    </li>
-    <li>
-      <a href="#icons">Icons</a>
-    </li>
-    <li>
-      <a href="#links">Links</a>
-    </li>
-  </Fragment>
-);
-
 const HomePage = () => (
   <DefaultPageLayout
     title="Home Page"
     content={<HomePageContent />}
-    sidebarContent={<SidebarContent />}
+    sections={[
+      {
+        label: 'Colours',
+        id: 'colours',
+      },
+      {
+        label: 'Typography',
+        id: 'type',
+      },
+      {
+        label: 'Icons',
+        id: 'icons',
+      },
+      {
+        label: 'Links',
+        id: 'links',
+      },
+    ]}
   />
 );
 
