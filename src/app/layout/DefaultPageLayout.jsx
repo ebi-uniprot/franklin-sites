@@ -15,11 +15,12 @@ const DefaultPageLayout = ({ content, sections }) => (
 
 DefaultPageLayout.propTypes = {
   content: PropTypes.element,
-  sections: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sections: PropTypes.arrayOf(PropTypes.object),
 };
 
 DefaultPageLayout.defaultProps = {
   content: () => <h3>Page Content</h3>,
+  sections: [],
 };
 
 export default DefaultPageLayout;

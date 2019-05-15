@@ -4,7 +4,7 @@ import Scrollspy from 'react-scrollspy';
 import '../styles/components/in-page-nav.scss';
 
 const InPageNav = ({ sections, sticky = true }) => (
-  <div className={`in-page-nav ${sticky ? 'in-page-nav--sticky' : ''}`}>
+  <div className={`in-page-nav ${sticky && 'in-page-nav--sticky'}`}>
     <Scrollspy items={sections.map(section => section.id)} currentClassName="in-page-nav--active">
       {sections.map(section => (
         <li className={section.disabled && 'in-page-nav--disabled'} key={section.label}>
