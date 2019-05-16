@@ -6,6 +6,7 @@ import FranklinSite from '../components/franklin-site';
 import Atoms from './Atoms';
 import UIComponents from './UIComponents';
 import DataTableDemo from './DataTableDemo';
+import DataListDemo from './DataListDemo';
 
 const App = () => (
   <FranklinSite>
@@ -15,6 +16,7 @@ const App = () => (
         <Route path="/atoms" component={Atoms} />
         <Route path="/ui-components" component={UIComponents} />
         <Route path="/data-table" component={DataTableDemo} />
+        <Route path="/data-list" component={DataListDemo} />
       </Fragment>
     </Router>
   </FranklinSite>

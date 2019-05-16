@@ -1,3 +1,19 @@
-const lipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent hendrerit turpis a pretium consectetur. Duis sed metus in mauris vestibulum auctor iaculis vitae enim. Curabitur vel tortor a ex tristique ultrices. Nam rhoncus dui ut lacus congue laoreet. Integer a libero nec purus viverra ultricies. Aliquam mollis rhoncus lectus, at gravida ante tempus quis. Donec egestas tellus neque, a porta est placerat et. Etiam eu accumsan leo. Morbi sed leo sapien. Curabitur ultrices, dolor eu egestas elementum, risus nulla efficitur elit, posuere eleifend lectus arcu in purus. Donec pharetra a tortor vitae blandit.';
+import { loremIpsum } from 'lorem-ipsum';
+import v1 from 'uuid';
 
-export default lipsum;
+export const getLipsumData = ({ numberDataPoints, keys, idKey }) => Array(numberDataPoints)
+  .fill(null)
+  .map(() => {
+    const dataPoint = { [idKey]: v1() };
+    keys.forEach((key) => {
+      dataPoint[key] = {
+        value: loremIpsum({
+          sentenceLowerBound: 2,
+          sentenceUpperBound: 30,
+        }),
+      };
+    });
+    return dataPoint;
+  });
+
+export default getLipsumData;

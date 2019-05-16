@@ -15,6 +15,10 @@ const links = [
     label: 'Data Table',
     path: '/data-table',
   },
+  {
+    label: 'Data List',
+    path: '/data-list',
+  },
 ];
 
 const FranklinHeader = () => (

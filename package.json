@@ -37,7 +37,7 @@
   "dependencies": {
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.0-rc.3",
-    "lorem-ipsum": "^1.0.6",
+    "lorem-ipsum": "^2.0.2",
     "npm-run-all": "^4.1.2",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",

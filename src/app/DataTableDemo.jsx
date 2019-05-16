@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import loremIpsum from 'lorem-ipsum';
-import v1 from 'uuid';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import DataTable from '../components/data-table';
+import { getLipsumData } from './common/lipsum';
 
 const propData = {
   selectable: true,
@@ -87,20 +86,12 @@ class DataTableDemoContent extends Component {
       return;
     }
     this.generatingDataRows = true;
-    const moreData = Array(Math.min(numberResultsPerRequest, totalNumberRows - data.length))
-      .fill(null)
-      .map(() => {
-        const dataPoint = { [idKey]: v1() };
-        columns.forEach((column) => {
-          dataPoint[column.name] = {
-            value: loremIpsum({
-              sentenceLowerBound: 2,
-              sentenceUpperBound: 30,
-            }),
-          };
-        });
-        return dataPoint;
-      });
+    const numberDataPoints = Math.min(numberResultsPerRequest, totalNumberRows - data.length);
+    const moreData = getLipsumData({
+      keys: columns.map(column => column.name),
+      idKey,
+      numberDataPoints,
+    });
     setTimeout(() => {
       this.setState({ data: [...data, ...moreData] });
       this.generatingDataRows = false;
