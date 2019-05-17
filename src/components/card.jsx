@@ -24,12 +24,14 @@ const Card = ({
   title, subtitle, children, color, links,
 }) => (
   <div className="card">
-    <div className="card__header" style={color ? { borderColor: color } : {}}>
-      <h3 className="card__title">{title}</h3>
-      {subtitle ? <div className="card__subtitle">{subtitle}</div> : null}
-    </div>
+    {title && (
+      <div className="card__header" style={color ? { borderColor: color } : {}}>
+        <h3 className="card__title">{title}</h3>
+        {subtitle && <div className="card__subtitle">{subtitle}</div>}
+      </div>
+    )}
     <div className="card__content">{children}</div>
-    {links.length === 0 ? null : (
+    {links.length > 0 && (
       <div className="card__actions">
         {links.map(l => (
           <CardLink key={l.name} {...l} />
@@ -43,7 +45,7 @@ Card.propTypes = {
   /**
    * The card title (can be an Element)
    */
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   /**
    * The subtitle (can be an Element)
    */
@@ -70,6 +72,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   color: '',
+  title: '',
   subtitle: '',
   links: [],
 };
