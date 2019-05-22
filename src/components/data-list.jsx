@@ -25,15 +25,7 @@ class DataList extends Component {
   }
 
   componentDidMount() {
-    const { data, totalNumberDataPoints } = this.props;
-    const { loading } = this.state;
-    const isScrollable = DataList.isScrollable(this.myRef.current);
-    console.log(loading);
-    if (!isScrollable && !loading && data.length > 0 && data.length < totalNumberDataPoints) {
-      console.log('laod more data');
-    } else {
-      console.log('do not load more data');
-    }
+    this.loadMoreDataIfNeeded();
   }
 
   componentDidUpdate(prevProps) {
@@ -43,7 +35,23 @@ class DataList extends Component {
     const { data: prevData } = prevProps;
     console.log(prevData.length);
     if (data.length > prevData.length) {
-      this.setState({ loading: false });
+      this.setState({ loading: false }, this.loadMoreDataIfNeeded());
+    }
+  }
+
+  shouldLoadMoreData() {
+    const { data, totalNumberDataPoints } = this.props;
+    const { loading } = this.state;
+    const isScrollable = DataList.isScrollable(this.myRef.current);
+    console.log(!isScrollable, !loading, data.length > 0, data.length < totalNumberDataPoints);
+    return !isScrollable && !loading && data.length > 0 && data.length < totalNumberDataPoints;
+  }
+
+  loadMoreDataIfNeeded() {
+    const { onLoadMoreRows } = this.props;
+    if (this.shouldLoadMoreData()) {
+      console.log('it should load more rows?');
+      this.setState({ loading: true }, onLoadMoreRows());
     }
   }
 
@@ -61,7 +69,7 @@ class DataList extends Component {
     const { data, loadingComponent } = this.props;
     const { loading } = this.state;
     const cardNodes = data.map(({ id, content }) => <Card key={id}>{content}</Card>);
-
+    console.log('loading', loading);
     return (
       <div className="data-list__wrapper">
         <div className="data-list__inner" ref={this.myRef} onScroll={this.handleScroll}>

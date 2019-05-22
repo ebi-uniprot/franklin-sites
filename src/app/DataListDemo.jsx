@@ -16,7 +16,9 @@ class DataListDemoContent extends Component {
   }
 
   generateData(sleepDuration = 1) {
+    console.log('here!!!!');
     const { data } = this.state;
+    console.log(this.generatingData);
     if (this.generatingData) {
       return;
     }
@@ -25,11 +27,11 @@ class DataListDemoContent extends Component {
     const moreData = getLipsumData({
       keys: ['content'],
       idKey,
-      numberDataPoints: 14,
+      numberDataPoints: 8,
     });
     setTimeout(() => {
-      this.setState({ data: [...data, ...moreData] });
       this.generatingData = false;
+      this.setState({ data: [...data, ...moreData] });
     }, sleepDuration * 1000);
   }
 
