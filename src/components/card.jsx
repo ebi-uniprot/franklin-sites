@@ -23,7 +23,7 @@ CardLink.defaultProps = {
 const Card = ({
   title, subtitle, children, color, links,
 }) => (
-  <div className="card">
+  <div className="card" id={title}>
     <div className="card__header" style={color ? { borderColor: color } : {}}>
       <h3 className="card__title">{title}</h3>
       {subtitle ? <div className="card__subtitle">{subtitle}</div> : null}
