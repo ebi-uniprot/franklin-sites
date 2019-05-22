@@ -3,5 +3,14 @@
 @import "../mixins";
 
 .data-list {
-  overflow-y: scroll;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  &__inner {
+    overflow-y: auto;
+  }
 }

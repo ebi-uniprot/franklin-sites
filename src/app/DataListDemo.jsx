@@ -25,7 +25,7 @@ class DataListDemoContent extends Component {
     const moreData = getLipsumData({
       keys: ['content'],
       idKey,
-      numberDataPoints: 4,
+      numberDataPoints: 14,
     });
     setTimeout(() => {
       this.setState({ data: [...data, ...moreData] });

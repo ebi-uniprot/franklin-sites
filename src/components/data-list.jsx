@@ -63,9 +63,11 @@ class DataList extends Component {
     const cardNodes = data.map(({ id, content }) => <Card key={id}>{content}</Card>);
 
     return (
-      <div className="data-list" ref={this.myRef} onScroll={this.handleScroll}>
-        {data.length > 0 && cardNodes}
-        {(loading || data.length === 0) && loadingComponent}
+      <div className="data-list__wrapper">
+        <div className="data-list__inner" ref={this.myRef} onScroll={this.handleScroll}>
+          {data.length > 0 && cardNodes}
+          {(loading || data.length === 0) && loadingComponent}
+        </div>
       </div>
     );
   }
