@@ -3,6 +3,7 @@
 exports[`Card component should render 1`] = `
 <div
   className="card"
+  id="Title"
 >
   <div
     className="card__header"
@@ -27,6 +28,7 @@ exports[`Card component should render 1`] = `
 exports[`Card component should render card with links 1`] = `
 <div
   className="card"
+  id="Title"
 >
   <div
     className="card__header"
@@ -75,6 +77,7 @@ exports[`Card component should render card with links 1`] = `
 exports[`Card component should render card with subtitle 1`] = `
 <div
   className="card"
+  id="Title"
 >
   <div
     className="card__header"
