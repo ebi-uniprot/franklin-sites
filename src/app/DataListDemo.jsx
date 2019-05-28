@@ -1,33 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import DataList from '../components/data-list';
 import { getLipsumData } from './common/lipsum';
 
-const idKey = 'id';
+const props = {
+  idKey: 'id',
+  numberDataPointsPerRequest: 12,
+  totalNumberDataPoints: 50,
+  loadingComponent: <h4>Loading...</h4>,
+  sleepDuration: 2,
+  numberInitialDataPoints: 0,
+};
 
 class DataListDemoContent extends Component {
   generatingData = false;
 
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+    const { numberInitialDataPoints, idKey } = this.props;
+    console.log(numberInitialDataPoints);
+    const data = numberInitialDataPoints > 0
+      ? getLipsumData({
+        keys: ['content'],
+        idKey,
+        numberDataPoints: numberInitialDataPoints,
+      })
+      : [];
+    console.log(data);
+    this.state = { data };
     this.generateData = this.generateData.bind(this);
-    this.generateData();
+    // this.generateData();
   }
 
-  generateData(sleepDuration = 1) {
-    console.log('here!!!!');
+  generateData() {
     const { data } = this.state;
-    console.log(this.generatingData);
+    const {
+      numberDataPointsPerRequest, totalNumberDataPoints, idKey, sleepDuration,
+    } = this.props;
     if (this.generatingData) {
       return;
     }
     this.generatingData = true;
-    // const numberDataPoints = Math.min(numberResultsPerRequest, totalNumberRows - data.length);
+    const numberDataPoints = Math.min(
+      numberDataPointsPerRequest,
+      totalNumberDataPoints - data.length,
+    );
     const moreData = getLipsumData({
       keys: ['content'],
       idKey,
-      numberDataPoints: 8,
+      numberDataPoints,
     });
     setTimeout(() => {
       this.generatingData = false;
@@ -37,23 +58,31 @@ class DataListDemoContent extends Component {
 
   render() {
     const { data } = this.state;
-    console.log(data);
+    const {
+      idKey, totalNumberDataPoints, loadingComponent, sleepDuration,
+    } = this.props;
     return (
-      <div className="data-list">
-        <DataList
-          data={data}
-          idKey={idKey}
-          onLoadMoreRows={() => this.generateData()}
-          totalNumberDataPoints={50}
-          loadingComponent={<h4>Loading...</h4>}
-        />
-      </div>
+      <Fragment>
+        <p>
+          Number of data points loaded:
+          {data.length}
+        </p>
+        <div className="data-list">
+          <DataList
+            data={data}
+            idKey={idKey}
+            onLoadMoreData={this.generateData}
+            totalNumberDataPoints={totalNumberDataPoints}
+            loadingComponent={loadingComponent}
+          />
+        </div>
+      </Fragment>
     );
   }
 }
 
 const DataListDemo = () => (
-  <DefaultPageLayout title="Franklin - Data Table" content=<DataListDemoContent /> />
+  <DefaultPageLayout title="Franklin - Data Table" content=<DataListDemoContent {...props} /> />
 );
 
 export default DataListDemo;
