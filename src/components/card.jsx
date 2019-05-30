@@ -21,11 +21,11 @@ CardLink.defaultProps = {
 };
 
 const Card = ({
-  title, subtitle, children, color, links,
+  title, subtitle, children, links, backgroundColor,
 }) => (
-  <div className="card">
+  <div className="card" style={backgroundColor ? { backgroundColor } : {}}>
     {title && (
-      <div className="card__header" style={color ? { borderColor: color } : {}}>
+      <div className="card__header">
         <h3 className="card__title">{title}</h3>
         {subtitle && <div className="card__subtitle">{subtitle}</div>}
       </div>
@@ -53,11 +53,11 @@ Card.propTypes = {
   /**
    * The main content of the card
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   /**
    * The colour of the line displayed under the title (default is $colour-seashell-grey)
    */
-  color: PropTypes.string,
+  backgroundColor: PropTypes.string,
   /**
    * Links to be displayed at the bottom of the card
    */
@@ -71,7 +71,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  color: '',
+  backgroundColor: '',
   title: '',
   subtitle: '',
   links: [],

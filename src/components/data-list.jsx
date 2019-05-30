@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import Card from './card';
+import PropTypes from 'prop-types';
 import '../styles/components/data-list.scss';
 
 class DataList extends Component {
@@ -20,26 +19,26 @@ class DataList extends Component {
     this.shouldLoadMoreData = this.shouldLoadMoreData.bind(this);
     this.loadMoreDataIfNeeded = this.loadMoreDataIfNeeded.bind(this);
     this.state = { loading: false };
-    this.myRef = React.createRef();
+    this.ref = React.createRef();
   }
 
   componentDidMount() {
     this.loadMoreDataIfNeeded();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { data } = this.props;
-    const { data: prevData } = prevProps;
-    if (data.length > prevData.length) {
+  componentDidUpdate(prevProps) {
+    const { children } = this.props;
+    const { children: prevChildren } = prevProps;
+    if (children.length > prevChildren.length) {
       this.setState({ loading: false }, this.loadMoreDataIfNeeded);
     }
   }
 
   shouldLoadMoreData() {
-    const { data, totalNumberDataPoints } = this.props;
+    const { children, totalNumberDataPoints } = this.props;
     const { loading } = this.state;
-    const isScrollable = DataList.isScrollable(this.myRef.current);
-    return !isScrollable && !loading && data.length < totalNumberDataPoints;
+    const isScrollable = DataList.isScrollable(this.ref.current);
+    return !isScrollable && !loading && children.length < totalNumberDataPoints;
   }
 
   loadMoreDataIfNeeded() {
@@ -52,28 +51,50 @@ class DataList extends Component {
   }
 
   handleScroll(e) {
-    const { onLoadMoreData, totalNumberDataPoints, data } = this.props;
+    const { onLoadMoreData, totalNumberDataPoints, children } = this.props;
     const { loading } = this.state;
     const isBottom = DataList.isScrolledToBottom(e.target);
-    if (isBottom && !loading && data.length < totalNumberDataPoints) {
-      this.setState({ loading: true });
-      onLoadMoreData();
+    if (isBottom && !loading && children.length < totalNumberDataPoints) {
+      this.setState({ loading: true }, onLoadMoreData);
     }
   }
 
   render() {
-    const { data, loadingComponent } = this.props;
+    const { loadingComponent, idKey, children } = this.props;
     const { loading } = this.state;
-    const cardNodes = data.map(({ id, content }) => <Card key={id}>{content}</Card>);
+    console.log(loading || children.length === 0);
     return (
       <div className="data-list__wrapper">
-        <div className="data-list__inner" ref={this.myRef} onScroll={this.handleScroll}>
-          {data.length > 0 && cardNodes}
-          {(loading || data.length === 0) && loadingComponent}
+        <div className="data-list__inner" ref={this.ref} onScroll={this.handleScroll}>
+          {children.length > 0 && children}
+          {(loading || children.length === 0) && loadingComponent}
         </div>
       </div>
     );
   }
 }
+// DataList.propTypes = {
+//   idKey: PropTypes.string,
+//   totalNumberDataPoints: PropTypes.number.isRequired,
+//   loadingComponent: PropTypes.element,
+//   onLoadMoreData: PropTypes.func.isRequired,
+//   data: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string,
+//       content: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+//     }),
+//   ).isRequired,
+//   selectable: PropTypes.bool,
+//   selectedRows: PropTypes.shape({}),
+//   onSelect: PropTypes.func,
+// };
+
+// DataList.defaultProps = {
+//   idKey: 'id',
+//   selectable: false,
+//   selectedRows: {},
+//   onSelect: () => {},
+//   loadingComponent: <h4>Loading...</h4>,
+// };
 
 export default DataList;

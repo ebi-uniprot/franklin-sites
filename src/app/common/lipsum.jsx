@@ -11,7 +11,7 @@ export const getLipsumData = ({ numberDataPoints, keys, idKey }) => Array(number
         sentenceLowerBound: 2,
         sentenceUpperBound: 30,
       });
-      dataPoint[key] = <p>{text}</p>;
+      dataPoint[key] = text;
     });
     return dataPoint;
   });
