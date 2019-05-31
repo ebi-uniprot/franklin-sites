@@ -5,7 +5,7 @@ import '../styles/components/data-list.scss';
 class InfiniteDataLoader extends Component {
   constructor(props) {
     super(props);
-    this.handleScroll = this.handleScroll.bind(this);
+    // this.handleScroll = this.handleScroll.bind(this);
     this.shouldLoadMoreData = this.shouldLoadMoreData.bind(this);
     this.loadMoreDataIfNeeded = this.loadMoreDataIfNeeded.bind(this);
     this.isScrolledToBottom = this.isScrolledToBottom.bind(this);
@@ -26,11 +26,22 @@ class InfiniteDataLoader extends Component {
     }
   }
 
+  isScrolledToBottom() {
+    const { scrollHeight, scrollTop, clientHeight } = this.ref.current;
+    return scrollHeight - Math.ceil(scrollTop) === clientHeight;
+  }
+
+  isScrollable() {
+    const { scrollHeight, clientHeight } = this.ref.current;
+    return scrollHeight > clientHeight;
+  }
+
   shouldLoadMoreData() {
     const { children, totalNumberDataPoints } = this.props;
     const { loading } = this.state;
     const isScrollable = this.isScrollable();
-    return !isScrollable && !loading && children.length < totalNumberDataPoints;
+    const isBottom = this.isScrolledToBottom();
+    return (isBottom || !isScrollable) && !loading && children.length < totalNumberDataPoints;
   }
 
   loadMoreDataIfNeeded() {
@@ -42,31 +53,12 @@ class InfiniteDataLoader extends Component {
     }
   }
 
-  isScrolledToBottom() {
-    const { scrollHeight, scrollTop, clientHeight } = this.ref.current;
-    return scrollHeight - Math.ceil(scrollTop) === clientHeight;
-  }
-
-  isScrollable() {
-    const { scrollHeight, clientHeight } = this.ref.current;
-    return scrollHeight > clientHeight;
-  }
-
-  handleScroll() {
-    const { onLoadMoreData, totalNumberDataPoints, children } = this.props;
-    const { loading } = this.state;
-    const isBottom = this.isScrolledToBottom();
-    if (isBottom && !loading && children.length < totalNumberDataPoints) {
-      this.setState({ loading: true }, onLoadMoreData);
-    }
-  }
-
   render() {
     const { loadingComponent, children } = this.props;
     const { loading } = this.state;
     return (
       <div className="data-list__wrapper">
-        <div className="data-list__inner" ref={this.ref} onScroll={this.handleScroll}>
+        <div className="data-list__inner" ref={this.ref} onScroll={this.loadMoreDataIfNeeded}>
           {children.length > 0 && children}
           {(loading || children.length === 0) && loadingComponent}
         </div>
