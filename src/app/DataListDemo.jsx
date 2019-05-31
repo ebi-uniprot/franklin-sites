@@ -1,25 +1,43 @@
 import React, { Component, Fragment } from 'react';
 import DefaultPageLayout from './layout/DefaultPageLayout';
-import DataList from '../components/data-list';
-import { getLipsumData } from './common/lipsum';
+import InfiniteDataLoader from '../components/infinte-data-loader';
+import { getLipsumObjectArray } from './common/lipsum';
 import ListItem from './ListItem';
+
+const parameters = new Map();
+parameters.set('totalNumberDataPoints', {
+  text: 'Total number of datapoints',
+  default: 50,
+});
+parameters.set('numberInitialDataPoints', {
+  text: 'Number of datapoints intially loaded',
+  default: 10,
+});
+parameters.set('numberDataPointsPerRequest', {
+  text: 'Number of datapoints per request',
+  default: 10,
+});
+parameters.set('selectable', {
+  text: 'Each element is selectable',
+  default: true,
+});
 
 const DataListDemoProps = {
   idKey: 'id23',
   numberDataPointsPerRequest: 10,
   totalNumberDataPoints: 50,
   sleepDuration: 1,
-  numberInitialDataPoints: 10,
+  numberInitialDataPoints: 3,
   selectable: true,
   loadingComponent: <h4>Loading...</h4>,
 };
 
 class DataListDemoContent extends Component {
-  loadingData = false;
-
   static isSelected(selected, id) {
     return !!selected[id];
   }
+
+  loadingData = false;
 
   constructor(props) {
     super(props);
@@ -33,34 +51,19 @@ class DataListDemoContent extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleSelect(id) {
+  handleSelect(e, id) {
     const { selected } = this.state;
     selected[id] = !selected[id];
-    console.log(selected);
     this.setState({ selected });
   }
 
-  generateData(numberDataPoints) {
+  generateData(numberElements) {
     const { idKey, contentKey, selectable } = this.props;
-    let data = getLipsumData({
+    return getLipsumObjectArray({
       keys: ['content'],
       idKey,
-      numberDataPoints,
+      numberElements,
     });
-    if (selectable) {
-      data = data.map(({ [idKey]: id, content }) => ({
-        [idKey]: id,
-        content: (
-          <div style={{ display: 'flex' }}>
-            <div style={{ width: '1.5em' }}>
-              <input type="checkbox" onChange={() => this.handleSelect(id)} />
-            </div>
-            <p style={{ flex: 1 }}>{content}</p>
-          </div>
-        ),
-      }));
-    }
-    return data;
   }
 
   loadMoreData() {
@@ -83,16 +86,14 @@ class DataListDemoContent extends Component {
 
   render() {
     const { data, selected } = this.state;
-    const {
-      idKey, totalNumberDataPoints, loadingComponent, sleepDuration,
-    } = this.props;
+    const { idKey, totalNumberDataPoints, loadingComponent } = this.props;
     const childNodes = data.map(({ [idKey]: id, content }) => (
       <ListItem
         selected={DataListDemoContent.isSelected(selected, id)}
         key={id}
-        onSelect={() => this.handleSelect(id)}
+        onSelect={e => this.handleSelect(e, id)}
       >
-        {id}
+        <p>{content}</p>
       </ListItem>
     ));
     return (
@@ -102,19 +103,39 @@ class DataListDemoContent extends Component {
           {data.length}
         </p>
         <div className="data-list">
-          <DataList
+          <InfiniteDataLoader
             idKey={idKey}
             onLoadMoreData={this.loadMoreData}
             totalNumberDataPoints={totalNumberDataPoints}
             loadingComponent={loadingComponent}
           >
             {childNodes}
-          </DataList>
+          </InfiniteDataLoader>
         </div>
       </Fragment>
     );
   }
 }
+
+// idKey: 'id23',
+//   numberDataPointsPerRequest: 10,
+//     totalNumberDataPoints: 50,
+//       sleepDuration: 1,
+//         numberInitialDataPoints: 10,
+//           selectable: true,
+//             loadingComponent: <h4>Loading...</h4> ,
+// };
+
+// DataListDemoContent.propTypes = {
+//   idKey: PropTypes.element.isRequired,
+//   selected: PropTypes.bool,
+//   onSelect: PropTypes.func,
+// };
+
+// DataListDemoContent.defaultProps = {
+//   selected: false,
+//   onSelect: () => {},
+// };
 
 const DataListDemo = () => (
   <DefaultPageLayout

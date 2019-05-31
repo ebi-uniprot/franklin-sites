@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import DataTable from '../components/data-table';
-import { getLipsumData } from './common/lipsum';
+import { getLipsumObjectArray } from './common/lipsum';
 
 const propData = {
   selectable: true,
@@ -86,11 +86,11 @@ class DataTableDemoContent extends Component {
       return;
     }
     this.generatingDataRows = true;
-    const numberDataPoints = Math.min(numberResultsPerRequest, totalNumberRows - data.length);
-    const moreData = getLipsumData({
+    const numberElements = Math.min(numberResultsPerRequest, totalNumberRows - data.length);
+    const moreData = getLipsumObjectArray({
       keys: columns.map(column => column.name),
       idKey,
-      numberDataPoints,
+      numberElements,
     });
     setTimeout(() => {
       this.setState({ data: [...data, ...moreData] });
