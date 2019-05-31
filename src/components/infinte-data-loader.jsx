@@ -29,7 +29,7 @@ class InfiniteDataLoader extends Component {
   shouldLoadMoreData() {
     const { children, totalNumberDataPoints } = this.props;
     const { loading } = this.state;
-    const isScrollable = this.isScrollable(this.ref.current);
+    const isScrollable = this.isScrollable();
     return !isScrollable && !loading && children.length < totalNumberDataPoints;
   }
 
