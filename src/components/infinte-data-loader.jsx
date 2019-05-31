@@ -5,11 +5,8 @@ import '../styles/components/data-list.scss';
 class InfiniteDataLoader extends Component {
   constructor(props) {
     super(props);
-    // this.handleScroll = this.handleScroll.bind(this);
     this.shouldLoadMoreData = this.shouldLoadMoreData.bind(this);
     this.loadMoreDataIfNeeded = this.loadMoreDataIfNeeded.bind(this);
-    this.isScrolledToBottom = this.isScrolledToBottom.bind(this);
-    this.isScrollable = this.isScrollable.bind(this);
     this.state = { loading: false };
     this.ref = React.createRef();
   }
@@ -26,21 +23,12 @@ class InfiniteDataLoader extends Component {
     }
   }
 
-  isScrolledToBottom() {
-    const { scrollHeight, scrollTop, clientHeight } = this.ref.current;
-    return scrollHeight - Math.ceil(scrollTop) === clientHeight;
-  }
-
-  isScrollable() {
-    const { scrollHeight, clientHeight } = this.ref.current;
-    return scrollHeight > clientHeight;
-  }
-
   shouldLoadMoreData() {
     const { children, totalNumberDataPoints } = this.props;
     const { loading } = this.state;
-    const isScrollable = this.isScrollable();
-    const isBottom = this.isScrolledToBottom();
+    const { scrollHeight, clientHeight, scrollTop } = this.ref.current;
+    const isScrollable = scrollHeight > clientHeight;
+    const isBottom = scrollHeight - Math.ceil(scrollTop) === clientHeight;
     return (isBottom || !isScrollable) && !loading && children.length < totalNumberDataPoints;
   }
 
