@@ -11,7 +11,7 @@ const InfiniteDataLoader = ({
   const [loading, setLoading] = useState(false);
   const [loadMoreData, setLoadMoreData] = useState(false);
   const dataListRef = useRef();
-  const shouldLoadMoreData = () => {
+  const checkLoadMoreData = () => {
     const noMoreData = children.length === totalNumberDataPoints;
     if (loading || noMoreData) {
       return;
@@ -34,8 +34,8 @@ const InfiniteDataLoader = ({
 
   useEffect(() => {
     if (!prevChildren || children.length > prevChildren.length) {
-      shouldLoadMoreData();
       setLoading(false);
+      checkLoadMoreData();
     }
   }, [children]);
 
@@ -48,7 +48,7 @@ const InfiniteDataLoader = ({
 
   return (
     <div className="data-list__wrapper">
-      <div className="data-list__inner" ref={dataListRef} onScroll={shouldLoadMoreData}>
+      <div className="data-list__inner" ref={dataListRef} onScroll={checkLoadMoreData}>
         {children.length > 0 && children}
         {(loading || children.length === 0) && loadingComponent}
       </div>
