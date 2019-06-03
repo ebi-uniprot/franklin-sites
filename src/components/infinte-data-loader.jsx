@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/data-list.scss';
 
+let i = 0;
+
 const InfiniteDataLoader = ({
   onLoadMoreData,
   loadingComponent,
@@ -10,31 +12,31 @@ const InfiniteDataLoader = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [loadMoreData, setLoadMoreData] = useState(false);
-  const ref = useRef();
+  const dataListRef = useRef();
   const shouldLoadMoreData = () => {
-    const { scrollHeight, scrollTop, clientHeight } = ref.current;
+    i += 1;
+    console.log(i);
+    const { scrollHeight, scrollTop, clientHeight } = dataListRef.current;
     const isNotScrollable = scrollHeight <= clientHeight;
     const isBottom = scrollHeight - Math.ceil(scrollTop) === clientHeight;
     const hasMoreData = children.length < totalNumberDataPoints;
-    console.log(loading);
-    console.log((isNotScrollable || isBottom) && !loading && hasMoreData);
     setLoadMoreData((isNotScrollable || isBottom) && !loading && hasMoreData);
   };
 
-  function usePrevious(value) {
-    const r = useRef();
+  const usePrevious = (value) => {
+    const ref = useRef();
     useEffect(() => {
-      r.current = value;
+      ref.current = value;
     });
-    return r.current;
-  }
+    return ref.current;
+  };
 
   const prevChildren = usePrevious(children);
 
   useEffect(() => {
-    console.log(children, prevChildren);
     if (!prevChildren || children.length > prevChildren.length) {
       shouldLoadMoreData();
+      setLoading(false);
     }
   }, [children]);
 
@@ -42,13 +44,12 @@ const InfiniteDataLoader = ({
     if (loadMoreData) {
       setLoading(true);
       onLoadMoreData();
-      setLoading(false);
     }
   }, [loadMoreData]);
 
   return (
     <div className="data-list__wrapper">
-      <div className="data-list__inner" ref={ref} onScroll={shouldLoadMoreData}>
+      <div className="data-list__inner" ref={dataListRef} onScroll={shouldLoadMoreData}>
         {children.length > 0 && children}
         {(loading || children.length === 0) && loadingComponent}
       </div>
