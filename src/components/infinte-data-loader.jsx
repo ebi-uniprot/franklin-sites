@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/data-list.scss';
 
-let i = 0;
-
 const InfiniteDataLoader = ({
   onLoadMoreData,
   loadingComponent,
@@ -14,13 +12,14 @@ const InfiniteDataLoader = ({
   const [loadMoreData, setLoadMoreData] = useState(false);
   const dataListRef = useRef();
   const shouldLoadMoreData = () => {
-    i += 1;
-    console.log(i);
+    const noMoreData = children.length === totalNumberDataPoints;
+    if (loading || noMoreData) {
+      return;
+    }
     const { scrollHeight, scrollTop, clientHeight } = dataListRef.current;
     const isNotScrollable = scrollHeight <= clientHeight;
     const isBottom = scrollHeight - Math.ceil(scrollTop) === clientHeight;
-    const hasMoreData = children.length < totalNumberDataPoints;
-    setLoadMoreData((isNotScrollable || isBottom) && !loading && hasMoreData);
+    setLoadMoreData(isNotScrollable || isBottom);
   };
 
   const usePrevious = (value) => {
