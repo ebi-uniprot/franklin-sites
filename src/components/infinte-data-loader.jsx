@@ -1,59 +1,60 @@
-import React, { Component } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/data-list.scss';
 
-class InfiniteDataLoader extends Component {
-  constructor(props) {
-    super(props);
-    this.shouldLoadMoreData = this.shouldLoadMoreData.bind(this);
-    this.loadMoreDataIfNeeded = this.loadMoreDataIfNeeded.bind(this);
-    this.state = { loading: false };
-    this.ref = React.createRef();
-  }
-
-  componentDidMount() {
-    this.loadMoreDataIfNeeded();
-  }
-
-  componentDidUpdate(prevProps) {
-    const { children } = this.props;
-    const { children: prevChildren } = prevProps;
-    if (children.length > prevChildren.length) {
-      this.setState({ loading: false }, this.loadMoreDataIfNeeded);
-    }
-  }
-
-  shouldLoadMoreData() {
-    const { children, totalNumberDataPoints } = this.props;
-    const { loading } = this.state;
-    const { scrollHeight, clientHeight, scrollTop } = this.ref.current;
-    const isScrollable = scrollHeight > clientHeight;
+const InfiniteDataLoader = ({
+  onLoadMoreData,
+  loadingComponent,
+  children,
+  totalNumberDataPoints,
+}) => {
+  const [loading, setLoading] = useState(false);
+  const [loadMoreData, setLoadMoreData] = useState(false);
+  const ref = useRef();
+  const shouldLoadMoreData = () => {
+    const { scrollHeight, scrollTop, clientHeight } = ref.current;
+    const isNotScrollable = scrollHeight <= clientHeight;
     const isBottom = scrollHeight - Math.ceil(scrollTop) === clientHeight;
-    return (isBottom || !isScrollable) && !loading && children.length < totalNumberDataPoints;
+    const hasMoreData = children.length < totalNumberDataPoints;
+    console.log(loading);
+    console.log((isNotScrollable || isBottom) && !loading && hasMoreData);
+    setLoadMoreData((isNotScrollable || isBottom) && !loading && hasMoreData);
+  };
+
+  function usePrevious(value) {
+    const r = useRef();
+    useEffect(() => {
+      r.current = value;
+    });
+    return r.current;
   }
 
-  loadMoreDataIfNeeded() {
-    if (this.shouldLoadMoreData()) {
-      this.setState({ loading: true }, () => {
-        const { onLoadMoreData } = this.props;
-        onLoadMoreData();
-      });
+  const prevChildren = usePrevious(children);
+
+  useEffect(() => {
+    console.log(children, prevChildren);
+    if (!prevChildren || children.length > prevChildren.length) {
+      shouldLoadMoreData();
     }
-  }
+  }, [children]);
 
-  render() {
-    const { loadingComponent, children } = this.props;
-    const { loading } = this.state;
-    return (
-      <div className="data-list__wrapper">
-        <div className="data-list__inner" ref={this.ref} onScroll={this.loadMoreDataIfNeeded}>
-          {children.length > 0 && children}
-          {(loading || children.length === 0) && loadingComponent}
-        </div>
+  useEffect(() => {
+    if (loadMoreData) {
+      setLoading(true);
+      onLoadMoreData();
+      setLoading(false);
+    }
+  }, [loadMoreData]);
+
+  return (
+    <div className="data-list__wrapper">
+      <div className="data-list__inner" ref={ref} onScroll={shouldLoadMoreData}>
+        {children.length > 0 && children}
+        {(loading || children.length === 0) && loadingComponent}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 InfiniteDataLoader.propTypes = {
   totalNumberDataPoints: PropTypes.number.isRequired,

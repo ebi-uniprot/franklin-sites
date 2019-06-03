@@ -70,7 +70,7 @@ class DataListDemoContent extends Component {
     const { data } = this.state;
     const { numberDataPointsPerRequest, totalNumberDataPoints, sleepDuration } = this.props;
     if (this.loadingData) {
-      return;
+      return null;
     }
     this.loadingData = true;
     const numberDataPoints = Math.min(
@@ -87,6 +87,7 @@ class DataListDemoContent extends Component {
   render() {
     const { data, selected } = this.state;
     const { idKey, totalNumberDataPoints, loadingComponent } = this.props;
+    console.log(data.length);
     const childNodes = data.map(({ [idKey]: id, content }) => (
       <ListItem
         selected={DataListDemoContent.isSelected(selected, id)}
