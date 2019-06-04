@@ -107,7 +107,7 @@ class DataListDemoContent extends Component {
             <ScrollDataLoader
               idKey={idKey}
               onLoadMoreData={this.loadMoreData}
-              totalNumberDataPoints={totalNumberDataPoints}
+              hasMoreData={listNodes.length < totalNumberDataPoints}
               loadingIndicator={loadingComponent}
               scrollContainer=<div />
               items={listNodes}

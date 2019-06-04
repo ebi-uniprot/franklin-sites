@@ -9,14 +9,13 @@ const ScrollDataLoader = ({
   loadingIndicator,
   scrollContainer,
   items,
-  totalNumberDataPoints,
+  hasMoreData,
 }) => {
   const [loading, setLoading] = useState(false);
   const [loadMoreData, setLoadMoreData] = useState(false);
   const dataListRef = useRef();
   const checkLoadMoreData = () => {
-    const noMoreData = items.length === totalNumberDataPoints;
-    if (loading || noMoreData) {
+    if (loading || !hasMoreData) {
       return;
     }
     const { scrollHeight, scrollTop, clientHeight } = dataListRef.current;
@@ -48,6 +47,10 @@ const ScrollDataLoader = ({
       onLoadMoreData();
     }
   }, [loadMoreData]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [hasMoreData]);
 
   const c = cloneElement(
     scrollContainer,
