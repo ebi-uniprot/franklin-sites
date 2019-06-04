@@ -23,13 +23,12 @@ parameters.set('selectable', {
 });
 
 const DataListDemoProps = {
-  idKey: 'id23',
-  numberDataPointsPerRequest: 10,
+  idKey: 'id',
+  numberDataPointsPerRequest: 5,
   totalNumberDataPoints: 50,
-  sleepDuration: 1,
-  numberInitialDataPoints: 3,
+  sleepDuration: 0.75,
+  numberInitialDataPoints: 1,
   selectable: true,
-  loadingComponent: <h4 key="abc23">Loading...</h4>,
 };
 
 class DataListDemoContent extends Component {
@@ -108,8 +107,6 @@ class DataListDemoContent extends Component {
               idKey={idKey}
               onLoadMoreData={this.loadMoreData}
               hasMoreData={listNodes.length < totalNumberDataPoints}
-              loadingIndicator={loadingComponent}
-              scrollContainer=<div />
               items={listNodes}
             />
           </div>

@@ -2,6 +2,7 @@ import React, {
   useState, useRef, useEffect, cloneElement,
 } from 'react';
 import PropTypes from 'prop-types';
+import v1 from 'uuid';
 import '../styles/components/data-list.scss';
 
 const ScrollDataLoader = ({
@@ -14,30 +15,29 @@ const ScrollDataLoader = ({
   const [loading, setLoading] = useState(false);
   const [loadMoreData, setLoadMoreData] = useState(false);
   const dataListRef = useRef();
-  const checkLoadMoreData = () => {
-    if (loading || !hasMoreData) {
-      return;
-    }
+
+  const isNotScrollable = () => {
+    const { scrollHeight, clientHeight } = dataListRef.current;
+    return scrollHeight <= clientHeight;
+  };
+
+  const isBottom = () => {
     const { scrollHeight, scrollTop, clientHeight } = dataListRef.current;
-    const isNotScrollable = scrollHeight <= clientHeight;
-    const isBottom = scrollHeight - Math.ceil(scrollTop) === clientHeight;
-    setLoadMoreData(isNotScrollable || isBottom);
+    return scrollHeight - Math.ceil(scrollTop) === clientHeight;
   };
 
-  const usePrevious = (value) => {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
+  const checkLoadMoreData = () => {
+    if (!loading && hasMoreData && isBottom()) {
+      setLoadMoreData(true);
+    }
   };
-
-  const prevItems = usePrevious(items);
 
   useEffect(() => {
-    if (!prevItems || items.length > prevItems.length) {
+    if (isNotScrollable()) {
+      onLoadMoreData();
+    } else {
       setLoading(false);
-      checkLoadMoreData();
+      setLoadMoreData(false);
     }
   }, [items]);
 
@@ -52,7 +52,7 @@ const ScrollDataLoader = ({
     setLoading(false);
   }, [hasMoreData]);
 
-  const c = cloneElement(
+  return cloneElement(
     scrollContainer,
     {
       ref: dataListRef,
@@ -61,20 +61,19 @@ const ScrollDataLoader = ({
     },
     [items.length > 0 && items, (loading || items.length === 0) && loadingIndicator],
   );
-  return c;
 };
 
-// InfiniteDataLoader.propTypes = {
-//   totalNumberDataPoints: PropTypes.number.isRequired,
-//   loadingIndicator: PropTypes.element,
-//   onLoadMoreData: PropTypes.func.isRequired,
-//   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-//   selectedRows: PropTypes.shape({}),
-// };
+ScrollDataLoader.propTypes = {
+  onLoadMoreData: PropTypes.func.isRequired,
+  loadingIndicator: PropTypes.element,
+  scrollContainer: PropTypes.element,
+  items: PropTypes.arrayOf(PropTypes.element).isRequired,
+  hasMoreData: PropTypes.bool.isRequired,
+};
 
-// InfiniteDataLoader.defaultProps = {
-//   selectedRows: {},
-//   loadingIndicator: <h4>Loading...</h4>,
-// };
+ScrollDataLoader.defaultProps = {
+  scrollContainer: <div />,
+  loadingIndicator: <h4 key={v1()}>Loading...</h4>,
+};
 
 export default ScrollDataLoader;
