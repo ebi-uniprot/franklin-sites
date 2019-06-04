@@ -1,29 +1,21 @@
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Card from '../components/card';
 import '../styles/components/data-table.scss';
 
-class ListItem extends Component {
-  shouldComponentUpdate(nextProps) {
-    const { selected } = this.props;
-    const { selected: nextSelected } = nextProps;
-    return selected !== nextSelected;
-  }
-
-  render() {
-    const { selected, children, onSelect } = this.props;
-    return (
-      <Card backgroundColor={selected ? '#f1f1f1' : ''}>
-        <div className="data-list-item">
-          <div className="data-list-item__checkbox">
-            <input type="checkbox" checked={selected} onChange={onSelect} />
-          </div>
-          <div className="data-list-item__content">{children}</div>
+const ListItem = memo(
+  ({ selected, children, onSelect }) => (
+    <Card backgroundColor={selected ? '#f1f1f1' : ''}>
+      <div className="data-list-item">
+        <div className="data-list-item__checkbox">
+          <input type="checkbox" checked={selected} onChange={onSelect} />
         </div>
-      </Card>
-    );
-  }
-}
+        <div className="data-list-item__content">{children}</div>
+      </div>
+    </Card>
+  ),
+  (props, nextProps) => props.selected === nextProps.selected,
+);
 
 ListItem.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
