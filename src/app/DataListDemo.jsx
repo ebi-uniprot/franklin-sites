@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import ScrollDataLoader from '../components/scroll-data-loader';
 import { getLipsumObjectArray } from './common/lipsum';
@@ -10,7 +11,6 @@ const DataListDemoProps = {
   totalNumberDataPoints: 50,
   sleepDuration: 0.75,
   numberInitialDataPoints: 1,
-  selectable: true,
 };
 
 class DataListDemoContent extends Component {
@@ -22,7 +22,7 @@ class DataListDemoContent extends Component {
 
   constructor(props) {
     super(props);
-    const { numberInitialDataPoints, idKey, contentKey } = this.props;
+    const { numberInitialDataPoints } = this.props;
     this.state = {
       data: numberInitialDataPoints > 0 ? this.generateData(numberInitialDataPoints) : [],
       selected: {},
@@ -39,7 +39,7 @@ class DataListDemoContent extends Component {
   }
 
   generateData(numberElements) {
-    const { idKey, contentKey, selectable } = this.props;
+    const { idKey } = this.props;
     return getLipsumObjectArray({
       keys: ['content'],
       idKey,
@@ -59,7 +59,7 @@ class DataListDemoContent extends Component {
       totalNumberDataPoints - data.length,
     );
     const moreData = this.generateData(numberDataPoints);
-    setTimeout(() => {
+    return setTimeout(() => {
       this.loadingData = false;
       this.setState({ data: [...data, ...moreData] });
     }, sleepDuration * 1000);
@@ -67,7 +67,7 @@ class DataListDemoContent extends Component {
 
   render() {
     const { data, selected } = this.state;
-    const { idKey, totalNumberDataPoints, loadingComponent } = this.props;
+    const { idKey, totalNumberDataPoints } = this.props;
     const listNodes = data.map(({ [idKey]: id, content }) => (
       <ListItem
         selected={DataListDemoContent.isSelected(selected, id)}
@@ -98,25 +98,13 @@ class DataListDemoContent extends Component {
   }
 }
 
-// idKey: 'id23',
-//   numberDataPointsPerRequest: 10,
-//     totalNumberDataPoints: 50,
-//       sleepDuration: 1,
-//         numberInitialDataPoints: 10,
-//           selectable: true,
-//             loadingComponent: <h4>Loading...</h4> ,
-// };
-
-// DataListDemoContent.propTypes = {
-//   idKey: PropTypes.element.isRequired,
-//   selected: PropTypes.bool,
-//   onSelect: PropTypes.func,
-// };
-
-// DataListDemoContent.defaultProps = {
-//   selected: false,
-//   onSelect: () => {},
-// };
+DataListDemoContent.propTypes = {
+  idKey: PropTypes.string.isRequired,
+  numberInitialDataPoints: PropTypes.number.isRequired,
+  sleepDuration: PropTypes.number.isRequired,
+  totalNumberDataPoints: PropTypes.number.isRequired,
+  numberDataPointsPerRequest: PropTypes.number.isRequired,
+};
 
 const DataListDemo = () => (
   <DefaultPageLayout
