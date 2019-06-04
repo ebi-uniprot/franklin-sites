@@ -4,24 +4,6 @@ import ScrollDataLoader from '../components/scroll-data-loader';
 import { getLipsumObjectArray } from './common/lipsum';
 import ListItem from './ListItem';
 
-const parameters = new Map();
-parameters.set('totalNumberDataPoints', {
-  text: 'Total number of datapoints',
-  default: 50,
-});
-parameters.set('numberInitialDataPoints', {
-  text: 'Number of datapoints intially loaded',
-  default: 10,
-});
-parameters.set('numberDataPointsPerRequest', {
-  text: 'Number of datapoints per request',
-  default: 10,
-});
-parameters.set('selectable', {
-  text: 'Each element is selectable',
-  default: true,
-});
-
 const DataListDemoProps = {
   idKey: 'id',
   numberDataPointsPerRequest: 5,
@@ -97,11 +79,11 @@ class DataListDemoContent extends Component {
     ));
     return (
       <Fragment>
-        <p>
-          Number of data points loaded:
-          {data.length}
-        </p>
         <div className="data-list">
+          <h4 className="data-list__status">
+            Number of data points loaded:
+            {` ${data.length}`}
+          </h4>
           <div className="data-list__wrapper">
             <ScrollDataLoader
               idKey={idKey}
