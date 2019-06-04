@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import DefaultPageLayout from './layout/DefaultPageLayout';
-import InfiniteDataLoader from '../components/infinte-data-loader';
+import ScrollDataLoader from '../components/scroll-data-loader';
 import { getLipsumObjectArray } from './common/lipsum';
 import ListItem from './ListItem';
 
@@ -29,7 +29,7 @@ const DataListDemoProps = {
   sleepDuration: 1,
   numberInitialDataPoints: 3,
   selectable: true,
-  loadingComponent: <h4>Loading...</h4>,
+  loadingComponent: <h4 key="abc23">Loading...</h4>,
 };
 
 class DataListDemoContent extends Component {
@@ -87,8 +87,7 @@ class DataListDemoContent extends Component {
   render() {
     const { data, selected } = this.state;
     const { idKey, totalNumberDataPoints, loadingComponent } = this.props;
-    console.log(data.length);
-    const childNodes = data.map(({ [idKey]: id, content }) => (
+    const listNodes = data.map(({ [idKey]: id, content }) => (
       <ListItem
         selected={DataListDemoContent.isSelected(selected, id)}
         key={id}
@@ -104,14 +103,16 @@ class DataListDemoContent extends Component {
           {data.length}
         </p>
         <div className="data-list">
-          <InfiniteDataLoader
-            idKey={idKey}
-            onLoadMoreData={this.loadMoreData}
-            totalNumberDataPoints={totalNumberDataPoints}
-            loadingComponent={loadingComponent}
-          >
-            {childNodes}
-          </InfiniteDataLoader>
+          <div className="data-list__wrapper">
+            <ScrollDataLoader
+              idKey={idKey}
+              onLoadMoreData={this.loadMoreData}
+              totalNumberDataPoints={totalNumberDataPoints}
+              loadingIndicator={loadingComponent}
+              scrollContainer=<div />
+              items={listNodes}
+            />
+          </div>
         </div>
       </Fragment>
     );
