@@ -82,7 +82,7 @@ class DataListDemoContent extends Component {
         <div className="data-list">
           <h4 className="data-list__status">
             Number of data points loaded:
-            {` ${data.length}`}
+            {` ${data.length} / ${totalNumberDataPoints}`}
           </h4>
           <div className="data-list__wrapper">
             <ScrollDataLoader
