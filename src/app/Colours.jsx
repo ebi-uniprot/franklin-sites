@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/atoms.scss';
 
 const Colours = () => (
   <div className="atoms-section" id="colours">

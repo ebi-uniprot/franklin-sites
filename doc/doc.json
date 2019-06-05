@@ -272,8 +272,12 @@
             }
           ]
         },
-        "required": true,
-        "description": "The card title (can be an Element)"
+        "required": false,
+        "description": "The card title (can be an Element)",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
       },
       "subtitle": {
         "type": {
@@ -296,12 +300,20 @@
       },
       "children": {
         "type": {
-          "name": "element"
+          "name": "union",
+          "value": [
+            {
+              "name": "element"
+            },
+            {
+              "name": "string"
+            }
+          ]
         },
         "required": true,
         "description": "The main content of the card"
       },
-      "color": {
+      "backgroundColor": {
         "type": {
           "name": "string"
         },

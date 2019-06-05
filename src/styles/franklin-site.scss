@@ -1,5 +1,5 @@
-@import "../styles/colours";
-@import "../styles/settings";
+@import '../styles/colours';
+@import '../styles/settings';
 
 .font-style {
   display: inline-block;
@@ -112,4 +112,8 @@
   &__content {
     flex: 1;
   }
+}
+
+.atoms-section {
+  margin-bottom: 2rem;
 }

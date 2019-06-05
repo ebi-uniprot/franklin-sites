@@ -6,7 +6,6 @@ import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 import Tag from '../svg/tag.svg';
 import ExternalLink from '../svg/external-link.svg';
-import './styles/atoms.scss';
 
 const size = 50;
 
