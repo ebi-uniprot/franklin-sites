@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import ScrollDataLoader from '../components/scroll-data-loader';
 import { getLipsumObjectArray } from './common/lipsum';
 import ListItem from './ListItem';
 
-const DataListDemoProps = {
+const ScrollDataLoaderDemoProps = {
   idKey: 'id',
   numberDataPointsPerRequest: 5,
   totalNumberDataPoints: 50,
@@ -13,7 +13,7 @@ const DataListDemoProps = {
   numberInitialDataPoints: 1,
 };
 
-class DataListDemoContent extends Component {
+class ScrollDataLoaderDemoContent extends Component {
   static isSelected(selected, id) {
     return !!selected[id];
   }
@@ -70,7 +70,7 @@ class DataListDemoContent extends Component {
     const { idKey, totalNumberDataPoints } = this.props;
     const listNodes = data.map(({ [idKey]: id, content }) => (
       <ListItem
-        selected={DataListDemoContent.isSelected(selected, id)}
+        selected={ScrollDataLoaderDemoContent.isSelected(selected, id)}
         key={id}
         onSelect={e => this.handleSelect(e, id)}
       >
@@ -96,7 +96,7 @@ class DataListDemoContent extends Component {
   }
 }
 
-DataListDemoContent.propTypes = {
+ScrollDataLoaderDemoContent.propTypes = {
   idKey: PropTypes.string.isRequired,
   numberInitialDataPoints: PropTypes.number.isRequired,
   sleepDuration: PropTypes.number.isRequired,
@@ -104,11 +104,11 @@ DataListDemoContent.propTypes = {
   numberDataPointsPerRequest: PropTypes.number.isRequired,
 };
 
-const DataListDemo = () => (
+const ScrollDataLoaderDemo = () => (
   <DefaultPageLayout
     title="Franklin - Data Table"
-    content=<DataListDemoContent {...DataListDemoProps} />
+    content=<ScrollDataLoaderDemoContent {...ScrollDataLoaderDemoProps} />
   />
 );
 
-export default DataListDemo;
+export default ScrollDataLoaderDemo;

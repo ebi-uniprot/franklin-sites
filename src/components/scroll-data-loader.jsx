@@ -14,15 +14,15 @@ const ScrollDataLoader = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [loadMoreData, setLoadMoreData] = useState(false);
-  const dataListRef = useRef();
+  const ref = useRef();
 
   const isNotScrollable = () => {
-    const { scrollHeight, clientHeight } = dataListRef.current;
+    const { scrollHeight, clientHeight } = ref.current;
     return scrollHeight <= clientHeight;
   };
 
   const isBottom = () => {
-    const { scrollHeight, scrollTop, clientHeight } = dataListRef.current;
+    const { scrollHeight, scrollTop, clientHeight } = ref.current;
     return scrollHeight - Math.ceil(scrollTop) === clientHeight;
   };
 
@@ -55,7 +55,7 @@ const ScrollDataLoader = ({
   return cloneElement(
     scrollContainer,
     {
-      ref: dataListRef,
+      ref,
       onScroll: checkLoadMoreData,
       className: `${scrollContainer.props.className} scroll-container`,
     },
