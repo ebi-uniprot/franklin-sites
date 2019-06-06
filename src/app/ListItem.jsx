@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Card from '../components/card';
-import '../styles/components/data-table.scss';
 
 const ListItem = memo(
   ({ selected, children, onSelect }) => (

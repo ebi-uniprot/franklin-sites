@@ -21,26 +21,32 @@ CardLink.defaultProps = {
 };
 
 const Card = ({
-  title, subtitle, children, links, backgroundColor,
-}) => (
-  <div className="card" style={backgroundColor ? { backgroundColor } : {}}>
-    {title && (
-      <div className="card__header">
-        <h3 className="card__title">{title}</h3>
-        {subtitle && <div className="card__subtitle">{subtitle}</div>}
+  title, subtitle, children, links, selectable, selected, onSelect,
+}) => {
+  const checkbox = <input type="checkbox" checked={selected} onChange={onSelect} />;
+  return (
+    <div className={`card ${selected ? 'card--selected' : ''}`}>
+      {title && (
+        <div className="card__header">
+          {selectable && <div className="card__header__checkbox">{checkbox}</div>}
+          <h3 className="card__title">{title}</h3>
+          {subtitle && <div className="card__subtitle">{subtitle}</div>}
+        </div>
+      )}
+      <div className="card__content">
+        {selectable && !title && <div className="card__content__checkbox">{checkbox}</div>}
+        {children}
       </div>
-    )}
-    <div className="card__content">{children}</div>
-    {links.length > 0 && (
-      <div className="card__actions">
-        {links.map(l => (
-          <CardLink key={l.name} {...l} />
-        ))}
-      </div>
-    )}
-  </div>
-);
-
+      {links.length > 0 && (
+        <div className="card__actions">
+          {links.map(l => (
+            <CardLink key={l.name} {...l} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 Card.propTypes = {
   /**
    * The card title (can be an Element)
@@ -55,10 +61,6 @@ Card.propTypes = {
    */
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   /**
-   * The colour of the line displayed under the title (default is $colour-seashell-grey)
-   */
-  backgroundColor: PropTypes.string,
-  /**
    * Links to be displayed at the bottom of the card
    */
   links: PropTypes.arrayOf(
@@ -68,13 +70,18 @@ Card.propTypes = {
       color: PropTypes.string,
     }),
   ),
+  selectable: PropTypes.bool,
+  selected: PropTypes.bool,
+  onSelect: PropTypes.func,
 };
 
 Card.defaultProps = {
-  backgroundColor: '',
   title: '',
   subtitle: '',
   links: [],
+  selectable: false,
+  selected: false,
+  onSelect: () => null,
 };
 
 export default Card;
