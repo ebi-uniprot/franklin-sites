@@ -1,0 +1,43 @@
+@import "../settings";
+@import "../colours";
+
+.button {
+  svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-top: -0.2rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    fill: $colour-white;
+  }
+}
+
+.button.secondary {
+  color: $colour-uniprot-blue;
+  border: 0.1rem solid $colour-uniprot-blue;
+  font-weight: 700;
+  svg {
+    fill: $colour-uniprot-blue;
+  }
+}
+
+.button.link-button {
+  background-color: $colour-white;
+  color: $colour-uniprot-blue;
+  font-weight: 700;
+  padding: $global-padding/2;
+  &:hover {
+    background-color: $colour-seashell-grey;
+  }
+  &.disabled:hover {
+    color: $colour-light-grey;
+    background-color: $colour-white;
+  }
+  svg {
+    fill: $colour-uniprot-blue;
+  }
+}
+
+.button-group {
+  margin-bottom: $global-margin/2;
+}

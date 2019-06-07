@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="400px" height="512px" viewBox="0 0 400 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-    <title>Shape</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="obsolete" fill="#000000" fill-rule="nonzero">
-            <path d="M400,144 L256,144 L256,0 L400,144 Z M84.336,317.904 L192.24,265.664 L325.264,318.96 L400,277.152 L400,176 L224,176 L224,0 L0,0 L0,268.704 L84.336,317.904 Z M204.256,512 L399.328,512 L399.328,369.2 L330.992,407.424 L195.296,353.072 L80.816,408.464 L0,361.312 L0,512 L204.256,512 Z" id="Shape"></path>
-        </g>
-    </g>
+    <path d="M400,144 L256,144 L256,0 L400,144 Z M84.336,317.904 L192.24,265.664 L325.264,318.96 L400,277.152 L400,176 L224,176 L224,0 L0,0 L0,268.704 L84.336,317.904 Z M204.256,512 L399.328,512 L399.328,369.2 L330.992,407.424 L195.296,353.072 L80.816,408.464 L0,361.312 L0,512 L204.256,512 Z" id="Shape"></path>
 </svg>

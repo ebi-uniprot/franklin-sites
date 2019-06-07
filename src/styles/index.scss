@@ -2,10 +2,10 @@
 @import "~foundation-sites/scss/foundation";
 
 @include foundation-global-styles;
-@include foundation-xy-grid-classes;
 @include foundation-typography;
 @include foundation-forms;
 @include foundation-button;
-@include foundation-table;
+@include foundation-button-group;
 
 @import "./common/action-bar";
+@import "./common/buttons";
