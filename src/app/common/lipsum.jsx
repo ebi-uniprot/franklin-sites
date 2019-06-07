@@ -1,16 +1,12 @@
 import { loremIpsum } from 'lorem-ipsum';
 import v1 from 'uuid';
+import { fillArray } from '../../utils';
 
 export const getLipsumSentence = () =>
   loremIpsum({
     sentenceLowerBound: 2,
     sentenceUpperBound: 30,
   });
-
-export const fillArray = (numberElements, func) =>
-  Array(numberElements)
-    .fill(null)
-    .map(func);
 
 export const getLipsumObjectArray = ({ numberElements, keys, idKey }) =>
   fillArray(numberElements, () => {

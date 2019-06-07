@@ -313,17 +313,6 @@
         "required": true,
         "description": "The main content of the card"
       },
-      "backgroundColor": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": "The colour of the line displayed under the title (default is $colour-seashell-grey)",
-        "defaultValue": {
-          "value": "''",
-          "computed": false
-        }
-      },
       "links": {
         "type": {
           "name": "arrayOf",
@@ -349,6 +338,39 @@
         "description": "Links to be displayed at the bottom of the card",
         "defaultValue": {
           "value": "[]",
+          "computed": false
+        }
+      },
+      "selectable": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "selected": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onSelect": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "() => null",
           "computed": false
         }
       }

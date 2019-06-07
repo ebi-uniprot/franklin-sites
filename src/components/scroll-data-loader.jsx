@@ -34,7 +34,7 @@ const ScrollDataLoader = ({
   };
 
   useEffect(() => {
-    if (isNotScrollable()) {
+    if (isNotScrollable() && hasMoreData) {
       onLoadMoreData();
     } else {
       setLoading(false);
@@ -43,7 +43,7 @@ const ScrollDataLoader = ({
   }, [items]);
 
   useEffect(() => {
-    if (loadMoreData) {
+    if (loadMoreData && hasMoreData) {
       setLoading(true);
       onLoadMoreData();
     }
