@@ -4,18 +4,18 @@ import React, {
 import PropTypes from 'prop-types';
 import v1 from 'uuid';
 
-import '../styles/components/scroll-data-loader.scss';
+import '../styles/components/scroll-items-loader.scss';
 
-const ScrollDataLoader = ({
-  onLoadMoreData,
+const ScrollItemsLoader = ({
+  onLoadMoreItems,
   loadingIndicator,
   scrollContainer,
   items,
-  hasMoreData,
+  hasMoreItems,
 }) => {
   const { className: scrollContainerClassName } = scrollContainer.props;
   const [loading, setLoading] = useState(false);
-  const [loadMoreData, setLoadMoreData] = useState(false);
+  const [loadMoreItems, setLoadMoreItems] = useState(false);
   const ref = useRef();
 
   const isNotScrollable = () => {
@@ -28,51 +28,51 @@ const ScrollDataLoader = ({
     return scrollHeight - Math.ceil(scrollTop) === clientHeight;
   };
 
-  const checkLoadMoreData = () => {
-    if (!loading && hasMoreData && isBottom()) {
-      setLoadMoreData(true);
+  const checkLoadMoreItems = () => {
+    if (!loading && hasMoreItems && isBottom()) {
+      setLoadMoreItems(true);
     }
   };
 
   useEffect(() => {
-    if (isNotScrollable() && hasMoreData) {
-      onLoadMoreData();
+    if (isNotScrollable() && hasMoreItems) {
+      onLoadMoreItems();
     } else {
       setLoading(false);
-      setLoadMoreData(false);
+      setLoadMoreItems(false);
     }
   }, [items]);
 
   useEffect(() => {
-    if (loadMoreData && hasMoreData) {
+    if (loadMoreItems && hasMoreItems) {
       setLoading(true);
-      onLoadMoreData();
+      onLoadMoreItems();
     }
-  }, [loadMoreData]);
+  }, [loadMoreItems]);
 
   useEffect(() => {
     setLoading(false);
-  }, [hasMoreData]);
+  }, [hasMoreItems]);
 
   return cloneElement(
     scrollContainer,
     {
       ref,
-      onScroll: checkLoadMoreData,
+      onScroll: checkLoadMoreItems,
       className: `${scrollContainerClassName || ''} scroll-container`,
     },
     [items.length > 0 && items, (loading || items.length === 0) && loadingIndicator],
   );
 };
 
-ScrollDataLoader.propTypes = {
+ScrollItemsLoader.propTypes = {
   /**
-   * Callback to request more data if user scrolled to the bottom of the scroll-container or if
+   * Callback to request more items if user scrolled to the bottom of the scroll-container or if
    * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
    */
-  onLoadMoreData: PropTypes.func.isRequired,
+  onLoadMoreItems: PropTypes.func.isRequired,
   /**
-   * Component to indicate to user that more data is being loaded.
+   * Component to indicate to user that more items are being loaded.
    */
   loadingIndicator: PropTypes.element,
   /**
@@ -84,14 +84,14 @@ ScrollDataLoader.propTypes = {
    */
   items: PropTypes.arrayOf(PropTypes.element).isRequired,
   /**
-   * A boolean to indicate that the parent has more data to provide.
+   * A boolean to indicate that the parent has more items to provide.
    */
-  hasMoreData: PropTypes.bool.isRequired,
+  hasMoreItems: PropTypes.bool.isRequired,
 };
 
-ScrollDataLoader.defaultProps = {
+ScrollItemsLoader.defaultProps = {
   scrollContainer: <div />,
   loadingIndicator: <h4 key={v1()}>Loading...</h4>,
 };
 
-export default ScrollDataLoader;
+export default ScrollItemsLoader;

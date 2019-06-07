@@ -6,7 +6,7 @@ import FranklinSite from '../components/franklin-site';
 import Atoms from './Atoms';
 import UIComponents from './UIComponents';
 import DataTableDemo from './DataTableDemo';
-import ScrollDataLoaderDemo from './ScrollDataLoaderDemo';
+import ScrollItemsLoaderDemo from './ScrollItemsLoaderDemo';
 
 const App = () => (
   <FranklinSite>
@@ -16,7 +16,7 @@ const App = () => (
         <Route path="/atoms" component={Atoms} />
         <Route path="/ui-components" component={UIComponents} />
         <Route path="/data-table" component={DataTableDemo} />
-        <Route path="/scroll-data-loader" component={ScrollDataLoaderDemo} />
+        <Route path="/scroll-items-loader" component={ScrollItemsLoaderDemo} />
       </Fragment>
     </Router>
   </FranklinSite>

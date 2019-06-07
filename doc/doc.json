@@ -6,9 +6,7 @@
       {
         "name": "highlightSubstring",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "string",
@@ -81,9 +79,7 @@
       {
         "name": "filterOptions",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "items",
@@ -99,9 +95,7 @@
       {
         "name": "shouldShowDropdown",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  textInputValue, data, selected, filter,\n}",
@@ -395,9 +389,7 @@
       {
         "name": "getSortableHeaderCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ column, onHeaderClick, style }",
@@ -409,9 +401,7 @@
       {
         "name": "getHeaderCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ column, onHeaderClick, style }",
@@ -423,9 +413,7 @@
       {
         "name": "getLoadingCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ className, style }",
@@ -437,9 +425,7 @@
       {
         "name": "getSelectCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  id, onSelect, style, className, selectedRows,\n}",
@@ -451,9 +437,7 @@
       {
         "name": "getRowCountCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  style, className, rowIndex, showHeader,\n}",
@@ -465,9 +449,7 @@
       {
         "name": "getNoRenderCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ style, column }",
@@ -479,9 +461,7 @@
       {
         "name": "getCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  column,\n  row,\n  style,\n  rowIndex,\n  showHeader,\n  idKey,\n  onSelect,\n  onHeaderClick,\n  selectedRows,\n}",
@@ -1226,10 +1206,10 @@
   },
   "src/components/scroll-data-loader.jsx": {
     "description": "",
-    "displayName": "ScrollDataLoader",
+    "displayName": "ScrollItemsLoader",
     "methods": [],
     "props": {
-      "onLoadMoreData": {
+      "onLoadMoreItems": {
         "type": {
           "name": "func"
         },
@@ -1268,7 +1248,7 @@
         "required": true,
         "description": "An array of JSX elements which will populate the scrollContainer."
       },
-      "hasMoreData": {
+      "hasMoreItems": {
         "type": {
           "name": "bool"
         },

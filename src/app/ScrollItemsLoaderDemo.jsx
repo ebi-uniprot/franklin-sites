@@ -3,7 +3,7 @@ import DefaultPageLayout from './layout/DefaultPageLayout';
 import { getLipsumObjectArray } from './common/lipsum';
 import DataList from './DataList';
 
-const ScrollDataLoaderDemoContent = () => {
+const ScrollItemsLoaderDemoContent = () => {
   const [selected, setSelected] = useState({});
 
   let loadingData = false;
@@ -25,7 +25,7 @@ const ScrollDataLoaderDemoContent = () => {
     numberInitialDataPoints > 0 ? generateData(numberInitialDataPoints) : [],
   );
 
-  function loadMoreData() {
+  function loadMoreItems() {
     if (loadingData) {
       return null;
     }
@@ -49,8 +49,8 @@ const ScrollDataLoaderDemoContent = () => {
       </h4>
       <DataList
         data={data}
-        loadMoreData={loadMoreData}
-        hasMoreData={data.length < totalNumberDataPoints}
+        loadMoreItems={loadMoreItems}
+        hasMoreItems={data.length < totalNumberDataPoints}
         idKey={idKey}
         onSelect={id => setSelected({ ...selected, [id]: !selected[id] })}
         selected={selected}
@@ -59,8 +59,8 @@ const ScrollDataLoaderDemoContent = () => {
   );
 };
 
-const ScrollDataLoaderDemo = () => (
-  <DefaultPageLayout title="Franklin - Data Table" content=<ScrollDataLoaderDemoContent /> />
+const ScrollItemsLoaderDemo = () => (
+  <DefaultPageLayout title="Franklin - Data Table" content=<ScrollItemsLoaderDemoContent /> />
 );
 
-export default ScrollDataLoaderDemo;
+export default ScrollItemsLoaderDemo;

@@ -16,8 +16,8 @@ const links = [
     path: '/data-table',
   },
   {
-    label: 'Scroll Data Loader',
-    path: '/scroll-data-loader',
+    label: 'Scroll Items Loader',
+    path: '/scroll-items-loader',
   },
 ];
 
