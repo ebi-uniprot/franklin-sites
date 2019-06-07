@@ -1,3 +1,10 @@
+@import "~foundation-sites/scss/foundation";
+@include foundation-xy-grid-classes;
+
+section {
+  margin-bottom: 1.5rem;
+}
+
 .font-style {
   display: inline-block;
   text-align: center;
@@ -74,10 +81,9 @@
   display: flex;
   flex-wrap: wrap;
   .icon-container {
-    padding: 2rem;
+    padding: 1rem;
     margin: 0.2rem;
-    width: 20rem;
+    width: 10rem;
     text-align: center;
-    border: 1px solid lighten(#000000, 80);
   }
 }

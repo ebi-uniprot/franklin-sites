@@ -3,6 +3,7 @@ import DefaultPageLayout from './layout/DefaultPageLayout';
 import Typography from './Typography';
 import Colours from './Colours';
 import Icons from './Icons';
+import Buttons from './Buttons';
 import Links from './Links';
 
 const HomePageContent = () => (
@@ -10,6 +11,7 @@ const HomePageContent = () => (
     <Colours />
     <Typography />
     <Icons />
+    <Buttons />
     <Links />
   </Fragment>
 );
@@ -30,6 +32,10 @@ const HomePage = () => (
       {
         label: 'Icons',
         id: 'icons',
+      },
+      {
+        label: 'Buttons',
+        id: 'buttons',
       },
       {
         label: 'Links',
