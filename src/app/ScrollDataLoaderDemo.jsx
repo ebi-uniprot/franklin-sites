@@ -51,7 +51,7 @@ const ScrollDataLoaderDemoContent = () => {
       <DataList
         data={data}
         loadMoreData={loadMoreData}
-        hasMoreData={false}
+        hasMoreData
         idKey={idKey}
         onSelect={id => setSelected({ ...selected, [id]: !selected[id] })}
         selected={selected}

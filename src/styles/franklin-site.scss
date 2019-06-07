@@ -97,6 +97,10 @@
   }
 }
 
+.scroll-data-loader__status {
+  padding-left: $global-padding;
+}
+
 .data-list {
   height: 80vh;
   &__wrapper {
