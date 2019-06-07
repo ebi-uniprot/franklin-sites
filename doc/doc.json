@@ -1090,6 +1090,34 @@
       }
     }
   },
+  "src/components/in-page-nav.jsx": {
+    "description": "",
+    "displayName": "InPageNav",
+    "methods": [],
+    "props": {
+      "sections": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "object"
+          }
+        },
+        "required": true,
+        "description": ""
+      },
+      "sticky": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
   "src/components/info-list.jsx": {
     "description": "",
     "displayName": "InfoList",

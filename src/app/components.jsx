@@ -17,6 +17,7 @@ import InfoList from '../components/info-list';
 import Card from '../components/card';
 import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
+import InPageNav from '../components/in-page-nav';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -224,6 +225,30 @@ const components = [
     purpose: 'Allow users to see a protein / nucleotide sequence',
     props: {
       sequence: sequenceData,
+    },
+  },
+  {
+    name: 'In page nav',
+    component: InPageNav,
+    function: 'Quickly navigate to different sections of the current page.',
+    purpose: 'Help with navigation, give an idea of the position on a very long page.',
+    props: {
+      sections: [
+        {
+          id: 'id1',
+          label: 'First link',
+        },
+        {
+          id: 'id2',
+          label: 'Second link',
+        },
+        {
+          id: 'id3',
+          label: 'Third link',
+          disabled: true,
+        },
+      ],
+      sticky: false,
     },
   },
 ];

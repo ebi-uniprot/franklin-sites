@@ -43,19 +43,6 @@ const formatPattern = (Component) => {
   );
 };
 
-const UIComponentsNav = () => (
-  <Fragment>
-    {components.map((component, index) => {
-      const key = `id_${component.name}_${index}`;
-      return (
-        <li key={key}>
-          <a href={`#${component.name}`}>{component.name}</a>
-        </li>
-      );
-    })}
-  </Fragment>
-);
-
 const UIComponentsContent = () => (
   <Fragment>{components.map(component => formatPattern(component))}</Fragment>
 );
@@ -64,7 +51,10 @@ const UIComponents = () => (
   <DefaultPageLayout
     title="Franklin - UI Components"
     content={<UIComponentsContent />}
-    sidebarContent={<UIComponentsNav />}
+    sections={components.map(component => ({
+      label: component.name,
+      id: component.name,
+    }))}
   />
 );
 
