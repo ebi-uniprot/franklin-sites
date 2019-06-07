@@ -1196,6 +1196,59 @@
       }
     }
   },
+  "src/components/scroll-data-loader.jsx": {
+    "description": "",
+    "displayName": "ScrollDataLoader",
+    "methods": [],
+    "props": {
+      "onLoadMoreData": {
+        "type": {
+          "name": "func"
+        },
+        "required": true,
+        "description": "Callback to request more data if user scrolled to the bottom of the scroll-container or if"
+      },
+      "loadingIndicator": {
+        "type": {
+          "name": "element"
+        },
+        "required": false,
+        "description": "Component to indicate to user that more data is being loaded.",
+        "defaultValue": {
+          "value": "<h4 key={v1()}>Loading...</h4>",
+          "computed": false
+        }
+      },
+      "scrollContainer": {
+        "type": {
+          "name": "element"
+        },
+        "required": false,
+        "description": "The component which will hold the items and is scrolled over.",
+        "defaultValue": {
+          "value": "<div />",
+          "computed": false
+        }
+      },
+      "items": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "element"
+          }
+        },
+        "required": true,
+        "description": "An array of JSX elements which will populate the scrollContainer."
+      },
+      "hasMoreData": {
+        "type": {
+          "name": "bool"
+        },
+        "required": true,
+        "description": "A boolean to indicate that the parent has more data to provide."
+      }
+    }
+  },
   "src/components/sequence-chunk.jsx": {
     "description": "",
     "displayName": "SequenceChunk",

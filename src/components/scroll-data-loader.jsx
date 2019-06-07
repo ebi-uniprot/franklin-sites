@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import v1 from 'uuid';
+
 import '../styles/components/scroll-data-loader.scss';
 
 const ScrollDataLoader = ({

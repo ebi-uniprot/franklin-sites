@@ -13,7 +13,7 @@
     "build": "yarn build-library && yarn build-site",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
     "docgen": "mkdirp doc && react-docgen ./src/components -o doc/doc.json -e index.js --pretty",
-    "test": "yarn docgen && yarn jslint && jest",
+    "test": "yarn jslint && jest",
     "test-watch": "jest --watch"
   },
   "browserslist": [
