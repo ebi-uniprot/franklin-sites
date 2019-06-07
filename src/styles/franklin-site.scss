@@ -99,18 +99,9 @@
 
 .data-list {
   height: 80vh;
-  &__status {
-    margin: $global-margin;
-  }
-}
-
-.data-list-item {
-  display: flex;
-  &__checkbox {
-    width: 1.5rem;
-  }
-  &__content {
-    flex: 1;
+  &__wrapper {
+    overflow: hidden;
+    height: 100%;
   }
 }
 

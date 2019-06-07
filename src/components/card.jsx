@@ -47,6 +47,7 @@ const Card = ({
     </div>
   );
 };
+
 Card.propTypes = {
   /**
    * The card title (can be an Element)

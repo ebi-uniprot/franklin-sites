@@ -12,6 +12,7 @@ const ScrollDataLoader = ({
   items,
   hasMoreData,
 }) => {
+  const { className: scrollContainerClassName } = scrollContainer.props;
   const [loading, setLoading] = useState(false);
   const [loadMoreData, setLoadMoreData] = useState(false);
   const ref = useRef();
@@ -57,7 +58,7 @@ const ScrollDataLoader = ({
     {
       ref,
       onScroll: checkLoadMoreData,
-      className: `${scrollContainer.props.className} scroll-container`,
+      className: `${scrollContainerClassName || ''} scroll-container`,
     },
     [items.length > 0 && items, (loading || items.length === 0) && loadingIndicator],
   );
