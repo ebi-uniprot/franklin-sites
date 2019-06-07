@@ -65,10 +65,26 @@ const ScrollDataLoader = ({
 };
 
 ScrollDataLoader.propTypes = {
+  /**
+   * Callback to request more data if user scrolled to the bottom of the scroll-container or if
+   * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
+   */
   onLoadMoreData: PropTypes.func.isRequired,
+  /**
+   * Component to indicate to user that more data is being loaded.
+   */
   loadingIndicator: PropTypes.element,
+  /**
+   * The component which will hold the items and is scrolled over.
+   */
   scrollContainer: PropTypes.element,
+  /**
+   * An array of JSX elements which will populate the scrollContainer.
+   */
   items: PropTypes.arrayOf(PropTypes.element).isRequired,
+  /**
+   * A boolean to indicate that the parent has more data to provide.
+   */
   hasMoreData: PropTypes.bool.isRequired,
 };
 

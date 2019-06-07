@@ -26,7 +26,6 @@ const ScrollDataLoaderDemoContent = () => {
   );
 
   function loadMoreData() {
-    console.log('here');
     if (loadingData) {
       return null;
     }
@@ -51,7 +50,7 @@ const ScrollDataLoaderDemoContent = () => {
       <DataList
         data={data}
         loadMoreData={loadMoreData}
-        hasMoreData
+        hasMoreData={data.length < totalNumberDataPoints}
         idKey={idKey}
         onSelect={id => setSelected({ ...selected, [id]: !selected[id] })}
         selected={selected}
