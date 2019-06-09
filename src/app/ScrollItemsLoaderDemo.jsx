@@ -60,7 +60,7 @@ const ScrollItemsLoaderDemoContent = () => {
 };
 
 const ScrollItemsLoaderDemo = () => (
-  <DefaultPageLayout title="Franklin - Data Table" content=<ScrollItemsLoaderDemoContent /> />
+  <DefaultPageLayout title="Franklin - Data Table" content={<ScrollItemsLoaderDemoContent />} />
 );
 
 export default ScrollItemsLoaderDemo;

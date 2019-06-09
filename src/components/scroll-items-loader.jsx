@@ -6,6 +6,8 @@ import v1 from 'uuid';
 
 import '../styles/components/scroll-items-loader.scss';
 
+const scrollOffsetFactor = 0.05;
+
 const ScrollItemsLoader = ({
   onLoadMoreItems,
   loadingIndicator,
@@ -20,12 +22,12 @@ const ScrollItemsLoader = ({
 
   const isNotScrollable = () => {
     const { scrollHeight, clientHeight } = ref.current;
-    return scrollHeight <= clientHeight;
+    return (1 - scrollOffsetFactor) * scrollHeight <= clientHeight;
   };
 
   const isBottom = () => {
     const { scrollHeight, scrollTop, clientHeight } = ref.current;
-    return scrollHeight - Math.ceil(scrollTop) === clientHeight;
+    return scrollHeight - Math.ceil(scrollTop) < clientHeight * (1 + scrollOffsetFactor);
   };
 
   const checkLoadMoreItems = () => {
@@ -36,6 +38,7 @@ const ScrollItemsLoader = ({
 
   useEffect(() => {
     if (isNotScrollable() && hasMoreItems) {
+      setLoading(true);
       onLoadMoreItems();
     } else {
       setLoading(false);
@@ -44,15 +47,11 @@ const ScrollItemsLoader = ({
   }, [items]);
 
   useEffect(() => {
-    if (loadMoreItems && hasMoreItems) {
+    if (loadMoreItems) {
       setLoading(true);
       onLoadMoreItems();
     }
   }, [loadMoreItems]);
-
-  useEffect(() => {
-    setLoading(false);
-  }, [hasMoreItems]);
 
   return cloneElement(
     scrollContainer,
@@ -61,7 +60,7 @@ const ScrollItemsLoader = ({
       onScroll: checkLoadMoreItems,
       className: `${scrollContainerClassName || ''} scroll-container`,
     },
-    [items.length > 0 && items, (loading || items.length === 0) && loadingIndicator],
+    [items, loading && loadingIndicator],
   );
 };
 
