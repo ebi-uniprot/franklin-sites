@@ -6,7 +6,7 @@ import v1 from 'uuid';
 
 import '../styles/components/scroll-items-loader.scss';
 
-const scrollOffsetFactor = 0.05;
+const scrollOffsetFactor = 0.1;
 
 const ScrollItemsLoader = ({
   onLoadMoreItems,

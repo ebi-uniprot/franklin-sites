@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
+import { getLipsumObjectArray } from './common/lipsum';
 
 import Tile from '../components/tile';
 import DropdownButton from '../components/dropdown-button';
@@ -18,6 +19,7 @@ import Card from '../components/card';
 import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
+import DataTableHtml from '../components/data-table-html';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -39,6 +41,35 @@ class MainSearchWrapper extends Component {
     );
   }
 }
+
+const tableColumns = [
+  {
+    label: 'Column 1',
+    name: 'col1',
+    render: row => <span>{row.col1}</span>,
+    sortable: true,
+    width: 200,
+    sorted: 'ascend',
+  },
+  {
+    label: 'Column 2',
+    name: 'col2',
+    render: row => <span>{row.col2}</span>,
+    width: 300,
+  },
+  {
+    label: 'Column 3',
+    name: 'col3',
+    render: row => <span>{row.col3}</span>,
+    sortable: true,
+    width: 300,
+  },
+];
+
+const tableData = getLipsumObjectArray({
+  keys: tableColumns.map(column => column.name),
+  numberElements: 10,
+});
 
 const components = [
   {
@@ -249,6 +280,16 @@ const components = [
         },
       ],
       sticky: false,
+    },
+  },
+  {
+    name: 'Data table',
+    component: DataTableHtml,
+    function: 'A standard html table.',
+    purpose: 'Display tabular data.',
+    props: {
+      columns: tableColumns,
+      data: tableData,
     },
   },
 ];
