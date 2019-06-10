@@ -2,38 +2,43 @@
 @import '../colours';
 @import '../mixins';
 
-.data-table-container {
-  height: 30vh;
-  // width: 20vw;
-  overflow-x: auto;
+.outer-container {
+  height: 300px;
 }
-
 .data-table {
   border: 0;
   border-collapse: collapse;
   text-align: left;
-  width: 100%;
 
-  &__thead {
-    margin-right: 0px;
+  &__container {
+    height: 100%;
+    overflow: hidden;
   }
 
-  &__tbody {
-    // overflow-x: hidden;
-    // overflow-y: auto;
-    // padding-top: 1rem;
+  &__header__table {
+    height: 40px;
+    position: relative;
+
+    &__th {
+      padding: 0.25rem 0.5rem;
+      font-weight: bold;
+      color: $colour-white;
+      background-color: $colour-uniprot-blue;
+      height: 40px;
+      width: 200px;
+      min-width: 200px;
+    }
   }
 
-  &__th {
-    padding: 0.25rem 0.5rem;
-    font-weight: bold;
-    color: $colour-white;
-    // border: 0;
-    background-color: $colour-uniprot-blue;
-    // width: 300px;
-    top: 0;
-    position: sticky;
-    z-index: 2;
+  &__body__table {
+    height: calc(100% - 40px);
+    overflow: auto;
+
+    &__td {
+      width: 200px;
+      min-width: 200px;
+      vertical-align: top;
+    }
   }
 
   // &__tr {
@@ -48,92 +53,92 @@
   //   display: flex;
   //   flex-wrap: wrap;
   // }
-
-  &__td {
-    padding: 0.5rem;
-    vertical-align: top;
-    // text-align: left;
-
-    &--warning {
-      background-color: map-get($foundation-palette, warning);
-    }
-
-    &--odd {
-      background-color: $colour-seashell-grey;
-    }
-
-    &--selected {
-      background-color: $colour-light-blue;
-      border-bottom: 1px solid $colour-white;
-    }
-  }
-
-  // %cell {
-  //   box-sizing: border-box;
-  //   width: 100%;
-  //   padding: 0.8em 1.2em;
-  //   overflow: hidden;
-  //   text-align: left;
-  // }
-
-  // %checkbox {
-  //   box-sizing: border-box;
-  //   width: 0;
-  //   padding: 0.8em 1.2em;
-  //   overflow: hidden;
-  // }
-
-  // &__data {
-  //   @extend %cell;
-
-  //   &--checkbox {
-  //     @extend %checkbox;
-  //   }
-  // }
-
-  // &__header {
-  //   @extend %cell;
-
-  //   &--checkbox {
-  //     @extend %checkbox;
-  //   }
-
-  //   &--ascend {
-  //     cursor: pointer;
-  //     &::after {
-  //       @include chevron(up, $colour-white);
-  //     }
-  //   }
-
-  //   &--descend {
-  //     cursor: pointer;
-  //     &::after {
-  //       @include chevron(down, $colour-white);
-  //     }
-  //   }
-
-  //   &--sortable {
-  //     cursor: pointer;
-  //     &::after {
-  //       @include chevron(down, $colour-light-grey);
-  //     }
-  //     &:hover:after {
-  //       @include chevron(down, $colour-white);
-  //     }
-  //   }
-  // }
-
-  // [type='checkbox'] {
-  //   margin: 0;
-  // }
-
-  // &__header--large,
-  // &__data--large {
-  //   flex: 4 1 90em;
-  // }
-
-  // &__header--small,
-  // &__data--small {
-  //   flex: 0 1 16em;
-  // }
 }
+
+// &__td {
+//     padding: 0.5rem;
+//     vertical-align: top;
+//     // text-align: left;
+
+//     &--warning {
+//       background-color: map-get($foundation-palette, warning);
+//     }
+
+//     &--odd {
+//       background-color: $colour-seashell-grey;
+//     }
+
+//     &--selected {
+//       background-color: $colour-light-blue;
+//       border-bottom: 1px solid $colour-white;
+//     }
+//   }
+
+// %cell {
+//   box-sizing: border-box;
+//   width: 100%;
+//   padding: 0.8em 1.2em;
+//   overflow: hidden;
+//   text-align: left;
+// }
+
+// %checkbox {
+//   box-sizing: border-box;
+//   width: 0;
+//   padding: 0.8em 1.2em;
+//   overflow: hidden;
+// }
+
+// &__data {
+//   @extend %cell;
+
+//   &--checkbox {
+//     @extend %checkbox;
+//   }
+// }
+
+// &__header {
+//   @extend %cell;
+
+//   &--checkbox {
+//     @extend %checkbox;
+//   }
+
+//   &--ascend {
+//     cursor: pointer;
+//     &::after {
+//       @include chevron(up, $colour-white);
+//     }
+//   }
+
+//   &--descend {
+//     cursor: pointer;
+//     &::after {
+//       @include chevron(down, $colour-white);
+//     }
+//   }
+
+//   &--sortable {
+//     cursor: pointer;
+//     &::after {
+//       @include chevron(down, $colour-light-grey);
+//     }
+//     &:hover:after {
+//       @include chevron(down, $colour-white);
+//     }
+//   }
+// }
+
+// [type='checkbox'] {
+//   margin: 0;
+// }
+
+// &__header--large,
+// &__data--large {
+//   flex: 4 1 90em;
+// }
+
+// &__header--small,
+// &__data--small {
+//   flex: 0 1 16em;
+// }

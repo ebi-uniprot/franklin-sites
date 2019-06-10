@@ -46,7 +46,7 @@ const tableColumns = [
   {
     label: 'Column 1',
     name: 'col1',
-    render: row => <span>{row.col1}</span>,
+    render: row => <span>{row.col1.slice(0, 5)}</span>,
     sortable: true,
     width: 200,
     sorted: 'ascend',
