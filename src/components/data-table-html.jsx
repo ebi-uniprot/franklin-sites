@@ -11,15 +11,19 @@ const DataTableHtml = ({ columns, data }) => {
       <thead className="data-table__thead">
         <tr>
           {columns.map(column => (
-            <th className="data-table__th">{column.label}</th>
+            <th key={column.name} className="data-table__th">
+              {column.label}
+            </th>
           ))}
         </tr>
       </thead>
       <tbody>
         {data.map(row => (
-          <tr>
+          <tr key={row.id}>
             {columns.map(column => (
-              <td className="data-table__td">{column.render(row)}</td>
+              <td key={`${row.id}-${column.name}`} className="data-table__td">
+                {column.render(row)}
+              </td>
             ))}
           </tr>
         ))}
