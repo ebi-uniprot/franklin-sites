@@ -35,6 +35,9 @@ exports[`ScrollItemsLoader should render ScrollItemsLoader 1`] = `
     <p>
       9
     </p>
+    <h4>
+      Loading...
+    </h4>
   </div>
 </DocumentFragment>
 `;
