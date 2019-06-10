@@ -7,28 +7,30 @@ const DataTableHtml = ({ columns, data }) => {
   console.log(columns);
   console.log(data);
   return (
-    <table className="data-table">
-      <thead className="data-table__thead">
-        <tr>
-          {columns.map(column => (
-            <th key={column.name} className="data-table__th">
-              {column.label}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map(row => (
-          <tr key={row.id}>
+    <div className="data-table-container">
+      <table className="data-table">
+        <thead className="data-table__thead">
+          <tr className="data-table__tr">
             {columns.map(column => (
-              <td key={`${row.id}-${column.name}`} className="data-table__td">
-                {column.render(row)}
-              </td>
+              <th key={column.name} className="data-table__th">
+                {column.label}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="data-table__tbody">
+          {data.map(row => (
+            <tr className="data-table__tr" key={row.id}>
+              {columns.map(column => (
+                <td key={`${row.id}-${column.name}`} className="data-table__td">
+                  {column.render(row)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

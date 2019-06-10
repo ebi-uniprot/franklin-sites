@@ -64,6 +64,20 @@ const tableColumns = [
     sortable: true,
     width: 300,
   },
+  {
+    label: 'Column 4',
+    name: 'col4',
+    render: row => <span>{row.col4}</span>,
+    sortable: true,
+    width: 100,
+  },
+  {
+    label: 'Column 5',
+    name: 'col5',
+    render: row => <span>{row.col5}</span>,
+    sortable: true,
+    width: 300,
+  },
 ];
 
 const tableData = getLipsumObjectArray({
