@@ -3,7 +3,7 @@
 
 .in-page-nav {
   padding: 0;
-  margin: $global-margin;
+  margin: 0;
   ul {
     margin: 0;
   }
@@ -17,7 +17,7 @@
 
   &--active a {
     color: $colour-dark-blue;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   &--disabled {

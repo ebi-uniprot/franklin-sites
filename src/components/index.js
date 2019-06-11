@@ -14,3 +14,14 @@ export { default as DataTable } from './data-table';
 export { default as Sequence } from './sequence';
 export { default as ExternalLink } from './external-link';
 export { default as InPageNav } from './in-page-nav';
+
+export { default as ObsoleteIcon } from '../svg/obsolete.svg';
+export { default as SwissProtIcon } from '../svg/swissprot.svg';
+export { default as TremblIcon } from '../svg/trembl.svg';
+export { default as ChevronDownIcon } from '../svg/chevron-down.svg';
+export { default as ChevronUpIcon } from '../svg/chevron-up.svg';
+export { default as TagIcon } from '../svg/tag.svg';
+export { default as ExternalLinkIcon } from '../svg/external-link.svg';
+export { default as DownloadIcon } from '../svg/download.svg';
+export { default as StatisticsIcon } from '../svg/statistics.svg';
+export { default as BasketIcon } from '../svg/basket.svg';
