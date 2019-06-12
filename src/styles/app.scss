@@ -1,4 +1,5 @@
-@import "~foundation-sites/scss/foundation";
+@import './settings';
+@import '~foundation-sites/scss/foundation';
 @include foundation-xy-grid-classes;
 
 section {
@@ -61,7 +62,8 @@ section {
   grid-template-columns: 5fr 1fr;
   grid-template-rows: auto 1fr;
   column-gap: 4rem;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   width: 100vw;
 }
 
@@ -86,4 +88,22 @@ section {
     width: 10rem;
     text-align: center;
   }
+}
+
+.scroll-data-loader__status {
+  padding-left: $global-padding;
+}
+
+.data-list {
+  height: 80vh;
+  &__wrapper {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.atoms-section {
+  margin-bottom: 2rem;
 }

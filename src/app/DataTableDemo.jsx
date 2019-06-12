@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import loremIpsum from 'lorem-ipsum';
-import v1 from 'uuid';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import DataTable from '../components/data-table';
+import { getLipsumObjectArray } from './common/lipsum';
 
 const propData = {
   selectable: true,
@@ -18,7 +17,7 @@ const propData = {
     {
       label: 'Column 1',
       name: 'col1',
-      render: row => <span>{row.col1.value}</span>,
+      render: row => <span>{row.col1}</span>,
       sortable: true,
       width: 200,
       sorted: 'ascend',
@@ -26,27 +25,27 @@ const propData = {
     {
       label: 'Column 2',
       name: 'col2',
-      render: row => <span>{row.col2.value}</span>,
+      render: row => <span>{row.col2}</span>,
       width: 300,
     },
     {
       label: 'Column 3',
       name: 'col3',
-      render: row => <span>{row.col3.value}</span>,
+      render: row => <span>{row.col3}</span>,
       sortable: true,
       width: 300,
     },
     {
       label: 'Column 4',
       name: 'col4',
-      render: row => <span>{row.col4.value}</span>,
+      render: row => <span>{row.col4}</span>,
       sortable: true,
       width: 300,
     },
     {
       label: 'Column 5',
       name: 'col5',
-      render: row => <span>{row.col5.value}</span>,
+      render: row => <span>{row.col5}</span>,
       sortable: false,
       width: 300,
     },
@@ -87,20 +86,12 @@ class DataTableDemoContent extends Component {
       return;
     }
     this.generatingDataRows = true;
-    const moreData = Array(Math.min(numberResultsPerRequest, totalNumberRows - data.length))
-      .fill(null)
-      .map(() => {
-        const dataPoint = { [idKey]: v1() };
-        columns.forEach((column) => {
-          dataPoint[column.name] = {
-            value: loremIpsum({
-              sentenceLowerBound: 2,
-              sentenceUpperBound: 30,
-            }),
-          };
-        });
-        return dataPoint;
-      });
+    const numberElements = Math.min(numberResultsPerRequest, totalNumberRows - data.length);
+    const moreData = getLipsumObjectArray({
+      keys: columns.map(column => column.name),
+      idKey,
+      numberElements,
+    });
     setTimeout(() => {
       this.setState({ data: [...data, ...moreData] });
       this.generatingDataRows = false;

@@ -13,7 +13,7 @@
     "build": "yarn build-library && yarn build-site",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
     "docgen": "mkdirp doc && react-docgen ./src/components -o doc/doc.json -e index.js --pretty",
-    "test": "yarn docgen && yarn jslint && jest",
+    "test": "yarn jslint && jest",
     "test-watch": "jest --watch"
   },
   "browserslist": [
@@ -37,7 +37,7 @@
   "dependencies": {
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.0-rc.3",
-    "lorem-ipsum": "^1.0.6",
+    "lorem-ipsum": "^2.0.2",
     "npm-run-all": "^4.1.2",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
@@ -57,6 +57,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^8.0.1",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",

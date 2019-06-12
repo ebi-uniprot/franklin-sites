@@ -1,6 +1,5 @@
 import React from 'react';
 import ExternalLink from '../components/external-link';
-import './styles/atoms.scss';
 
 const Links = () => (
   <div className="atoms-section" id="links">

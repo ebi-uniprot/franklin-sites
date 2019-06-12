@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScrollItemsLoader should render ScrollItemsLoader 1`] = `
+<DocumentFragment>
+  <div
+    class=" scroll-container"
+  >
+    <p>
+      0
+    </p>
+    <p>
+      1
+    </p>
+    <p>
+      2
+    </p>
+    <p>
+      3
+    </p>
+    <p>
+      4
+    </p>
+    <p>
+      5
+    </p>
+    <p>
+      6
+    </p>
+    <p>
+      7
+    </p>
+    <p>
+      8
+    </p>
+    <p>
+      9
+    </p>
+    <h4>
+      Loading...
+    </h4>
+  </div>
+</DocumentFragment>
+`;

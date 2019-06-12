@@ -3,6 +3,7 @@ import {
   getLastIndexOfSubstringIgnoreCase,
   restructureFlattenedTreeDataForAutocomplete,
   restructureFlattenedTreeItemsForAutocomplete,
+  fillArray,
 } from '../utils';
 import { treeData } from '../app/common/tree-data';
 
@@ -135,4 +136,9 @@ test('should prepare flattened tree data items for autocomplete', () => {
     pathLabel: 'Item 1 / Item 1a',
     itemLabel: 'Item 1a',
   });
+});
+
+test('should fill array with objects', () => {
+  const array = fillArray(3, (element, index) => ({ index }));
+  expect(array).toEqual([{ index: 0 }, { index: 1 }, { index: 2 }]);
 });

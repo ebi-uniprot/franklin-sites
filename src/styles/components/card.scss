@@ -1,14 +1,33 @@
-@import "../settings";
-@import "../colours";
+@import '../settings';
+@import '../colours';
 
 .card {
   background-color: $colour-white;
   border-radius: 0.2rem;
   box-shadow: 0 0.125rem 0.25rem 0.125rem rgba($colour-black, 0.2);
   margin: $global-margin;
-  &__header,
+  &--selected {
+    background-color: $colour-light-blue;
+  }
+
+  &__header {
+    padding: $global-padding;
+    &__checkbox {
+      input[type='checkbox'] {
+        margin: 0 0.75rem 0.5rem 0;
+        vertical-align: middle;
+      }
+    }
+  }
+
   &__content {
     padding: $global-padding;
+    &__checkbox {
+      input[type='checkbox'] {
+        margin: 0.25rem 0.5rem 0 0;
+        float: left;
+      }
+    }
   }
   &__title {
     margin: 0;

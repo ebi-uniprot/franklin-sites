@@ -2,18 +2,17 @@
 
 exports[`Card component should render 1`] = `
 <div
-  className="card"
-  id="Title"
+  className="card "
 >
   <div
     className="card__header"
-    style={Object {}}
   >
     <h3
       className="card__title"
     >
       Title
     </h3>
+    
   </div>
   <div
     className="card__content"
@@ -27,12 +26,10 @@ exports[`Card component should render 1`] = `
 
 exports[`Card component should render card with links 1`] = `
 <div
-  className="card"
-  id="Title"
+  className="card "
 >
   <div
     className="card__header"
-    style={Object {}}
   >
     <h3
       className="card__title"
@@ -76,12 +73,10 @@ exports[`Card component should render card with links 1`] = `
 
 exports[`Card component should render card with subtitle 1`] = `
 <div
-  className="card"
-  id="Title"
+  className="card "
 >
   <div
     className="card__header"
-    style={Object {}}
   >
     <h3
       className="card__title"

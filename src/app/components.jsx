@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { loremIpsum } from 'lorem-ipsum';
 
 import Tile from '../components/tile';
 import DropdownButton from '../components/dropdown-button';
@@ -9,7 +10,6 @@ import MainSearch from '../components/main-search';
 import HeroHeader from '../components/hero-header';
 import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
-import lipsum from './common/lipsum';
 import facetData from './common/facetData';
 import sequenceData from './common/sequence-data';
 import PageIntro from '../components/page-intro';
@@ -144,7 +144,7 @@ const components = [
     props: {
       title: 'Title',
       children: <input type="text" />,
-      footer: lipsum.substring(0, 150),
+      footer: loremIpsum({ count: 25, units: 'words' }),
     },
   },
   {
@@ -177,6 +177,9 @@ const components = [
       subtitle: <Link to="/#">APOE_HUMAN - P02649</Link>,
       color: 'darkblue',
       children: <p>An example of content</p>,
+      selectable: true,
+      onSelect: () => null,
+      selected: true,
       links: [
         {
           name: '10 Protein Interactions',

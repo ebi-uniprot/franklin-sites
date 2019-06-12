@@ -6,9 +6,7 @@
       {
         "name": "highlightSubstring",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "string",
@@ -81,9 +79,7 @@
       {
         "name": "filterOptions",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "items",
@@ -99,9 +95,7 @@
       {
         "name": "shouldShowDropdown",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  textInputValue, data, selected, filter,\n}",
@@ -272,8 +266,12 @@
             }
           ]
         },
-        "required": true,
-        "description": "The card title (can be an Element)"
+        "required": false,
+        "description": "The card title (can be an Element)",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
       },
       "subtitle": {
         "type": {
@@ -296,21 +294,18 @@
       },
       "children": {
         "type": {
-          "name": "element"
+          "name": "union",
+          "value": [
+            {
+              "name": "element"
+            },
+            {
+              "name": "string"
+            }
+          ]
         },
         "required": true,
         "description": "The main content of the card"
-      },
-      "color": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": "The colour of the line displayed under the title (default is $colour-seashell-grey)",
-        "defaultValue": {
-          "value": "''",
-          "computed": false
-        }
       },
       "links": {
         "type": {
@@ -339,6 +334,39 @@
           "value": "[]",
           "computed": false
         }
+      },
+      "selectable": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "selected": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onSelect": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "() => null",
+          "computed": false
+        }
       }
     }
   },
@@ -361,9 +389,7 @@
       {
         "name": "getSortableHeaderCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ column, onHeaderClick, style }",
@@ -375,9 +401,7 @@
       {
         "name": "getHeaderCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ column, onHeaderClick, style }",
@@ -389,9 +413,7 @@
       {
         "name": "getLoadingCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ className, style }",
@@ -403,9 +425,7 @@
       {
         "name": "getSelectCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  id, onSelect, style, className, selectedRows,\n}",
@@ -417,9 +437,7 @@
       {
         "name": "getRowCountCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  style, className, rowIndex, showHeader,\n}",
@@ -431,9 +449,7 @@
       {
         "name": "getNoRenderCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{ style, column }",
@@ -445,9 +461,7 @@
       {
         "name": "getCell",
         "docblock": null,
-        "modifiers": [
-          "static"
-        ],
+        "modifiers": ["static"],
         "params": [
           {
             "name": "{\n  column,\n  row,\n  style,\n  rowIndex,\n  showHeader,\n  idKey,\n  onSelect,\n  onHeaderClick,\n  selectedRows,\n}",
@@ -1187,6 +1201,59 @@
           "value": "[]",
           "computed": false
         }
+      }
+    }
+  },
+  "src/components/scroll-data-loader.jsx": {
+    "description": "",
+    "displayName": "ScrollItemsLoader",
+    "methods": [],
+    "props": {
+      "onLoadMoreItems": {
+        "type": {
+          "name": "func"
+        },
+        "required": true,
+        "description": "Callback to request more data if user scrolled to the bottom of the scroll-container or if"
+      },
+      "loadingIndicator": {
+        "type": {
+          "name": "element"
+        },
+        "required": false,
+        "description": "Component to indicate to user that more data is being loaded.",
+        "defaultValue": {
+          "value": "<h4 key={v1()}>Loading...</h4>",
+          "computed": false
+        }
+      },
+      "scrollContainer": {
+        "type": {
+          "name": "element"
+        },
+        "required": false,
+        "description": "The component which will hold the items and is scrolled over.",
+        "defaultValue": {
+          "value": "<div />",
+          "computed": false
+        }
+      },
+      "items": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "element"
+          }
+        },
+        "required": true,
+        "description": "An array of JSX elements which will populate the scrollContainer."
+      },
+      "hasMoreItems": {
+        "type": {
+          "name": "bool"
+        },
+        "required": true,
+        "description": "A boolean to indicate that the parent has more data to provide."
       }
     }
   },

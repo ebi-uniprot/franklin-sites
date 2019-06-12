@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/atoms.scss';
 import { DownloadIcon } from '../components';
 
 const Links = () => (
