@@ -307,6 +307,11 @@ const components = [
       onHeaderClick: (name) => {
         console.log(`Column header "${name}" clicked.`);
       },
+      selectable: true,
+      onSelect: (rowId) => {
+        console.log(`Row "${rowId}" selected.`);
+      },
+      selected: { [tableData[0].id]: true },
     },
   },
 ];

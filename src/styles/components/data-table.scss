@@ -4,7 +4,7 @@
 
 .data-table {
   &__container {
-    height: 30vh;
+    height: 40vh;
     overflow-x: auto;
   }
 
@@ -24,8 +24,8 @@
 
     &__header {
       &__row {
-        margin-right: 0px;
         &__cell {
+          border: 0;
           padding: 0.25rem 0.5rem;
           font-weight: bold;
           white-space: nowrap;
@@ -70,6 +70,7 @@
       &__cell {
         padding: 0.5rem;
         vertical-align: top;
+        border: 0;
 
         &--warning {
           background-color: map-get($foundation-palette, warning);
@@ -81,90 +82,15 @@
 
         &--selected {
           background-color: $colour-light-blue;
-          border-bottom: 1px solid $colour-white;
+        }
+
+        &--checkbox {
+          box-sizing: border-box;
+          width: 0;
+          padding: 0.8em 1.2em;
+          overflow: hidden;
         }
       }
     }
   }
-  // &__tr {
-  //   width: 100%;
-  //   display: flex;
-  // }
-  // &__td {
-  //   width: 300px;
-  // }
-
-  // tbody {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  // }
-
-  // %cell {
-  //   box-sizing: border-box;
-  //   width: 100%;
-  //   padding: 0.8em 1.2em;
-  //   overflow: hidden;
-  //   text-align: left;
-  // }
-
-  // %checkbox {
-  //   box-sizing: border-box;
-  //   width: 0;
-  //   padding: 0.8em 1.2em;
-  //   overflow: hidden;
-  // }
-
-  // &__data {
-  //   @extend %cell;
-
-  //   &--checkbox {
-  //     @extend %checkbox;
-  //   }
-  // }
-
-  // &__header {
-  //   @extend %cell;
-
-  //   &--checkbox {
-  //     @extend %checkbox;
-  //   }
-
-  //   &--ascend {
-  //     cursor: pointer;
-  //     &::after {
-  //       @include chevron(up, $colour-white);
-  //     }
-  //   }
-
-  //   &--descend {
-  //     cursor: pointer;
-  //     &::after {
-  //       @include chevron(down, $colour-white);
-  //     }
-  //   }
-
-  //   &--sortable {
-  //     cursor: pointer;
-  //     &::after {
-  //       @include chevron(down, $colour-light-grey);
-  //     }
-  //     &:hover:after {
-  //       @include chevron(down, $colour-white);
-  //     }
-  //   }
-  // }
-
-  // [type='checkbox'] {
-  //   margin: 0;
-  // }
-
-  // &__header--large,
-  // &__data--large {
-  //   flex: 4 1 90em;
-  // }
-
-  // &__header--small,
-  // &__data--small {
-  //   flex: 0 1 16em;
-  // }
 }

@@ -3,13 +3,20 @@ import React from 'react';
 
 import '../styles/components/data-table.scss';
 
-const DataTableHtml = ({ columns, data, onHeaderClick }) => (
+const DataTableHtml = ({
+  columns, data, onHeaderClick, selectable, selected, onSelect,
+}) => (
   <div>
     <div className="data-table__cover" />
     <div className="data-table__container">
       <table className="data-table__table">
         <thead className="data-table__table__header">
           <tr className="data-table__table__header__row">
+            {selectable && (
+              <th key="selectable-column" className="data-table__table__header__row__cell">
+                {' '}
+              </th>
+            )}
             {columns.map((column) => {
               let className = 'data-table__table__header__row__cell ';
               let onClick;
@@ -32,16 +39,31 @@ const DataTableHtml = ({ columns, data, onHeaderClick }) => (
             })}
           </tr>
         </thead>
-        <tbody>
-          {data.map(row => (
-            <tr key={row.id}>
-              {columns.map(column => (
-                <td key={`${row.id}-${column.name}`} className="data-table__table__body__cell">
-                  {column.render(row)}
-                </td>
-              ))}
-            </tr>
-          ))}
+        <tbody className="data-table__table__body">
+          {data.map((row) => {
+            let className = 'data-table__table__body__cell ';
+            if (selectable && !!selected[row.id]) {
+              className += 'data-table__table__body__cell--selected';
+            }
+            return (
+              <tr key={row.id}>
+                {selectable && (
+                  <td key={`${row.id}-select-column`} className={className}>
+                    <input
+                      type="checkbox"
+                      onChange={() => onSelect(row.id)}
+                      checked={!!selected[row.id]}
+                    />
+                  </td>
+                )}
+                {columns.map(column => (
+                  <td key={`${row.id}-${column.name}`} className={className}>
+                    {column.render(row)}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
