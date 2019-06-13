@@ -3,26 +3,25 @@ import React from 'react';
 
 import '../styles/components/data-table.scss';
 
-const DataTableHtml = ({ columns, data }) => {
-  console.log(columns);
-  console.log(data);
-  return (
-    <div className="data-table-container">
-      <table className="data-table">
-        <thead className="data-table__thead">
-          <tr className="data-table__tr">
+const DataTableHtml = ({ columns, data }) => (
+  <div>
+    <div className="data-table__cover" />
+    <div className="data-table__container">
+      <table className="data-table__table">
+        <thead className="data-table__table__header">
+          <tr className="data-table__table__header__row">
             {columns.map(column => (
-              <th key={column.name} className="data-table__th">
+              <th key={column.name} className="data-table__table__header__row__cell">
                 {column.label}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="data-table__tbody">
+        <tbody>
           {data.map(row => (
-            <tr className="data-table__tr" key={row.id}>
+            <tr key={row.id}>
               {columns.map(column => (
-                <td key={`${row.id}-${column.name}`} className="data-table__td">
+                <td key={`${row.id}-${column.name}`} className="data-table__table__body__cell">
                   {column.render(row)}
                 </td>
               ))}
@@ -31,8 +30,8 @@ const DataTableHtml = ({ columns, data }) => {
         </tbody>
       </table>
     </div>
-  );
-};
+  </div>
+);
 
 // DataTableHtml.propTypes = {
 //   /**

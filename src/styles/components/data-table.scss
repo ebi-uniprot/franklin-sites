@@ -2,40 +2,66 @@
 @import '../colours';
 @import '../mixins';
 
-.data-table-container {
-  height: 30vh;
-  // width: 20vw;
-  overflow-x: auto;
-}
-
 .data-table {
-  border: 0;
-  border-collapse: collapse;
-  text-align: left;
-  width: 100%;
-
-  &__thead {
-    margin-right: 0px;
+  &__container {
+    height: 30vh;
+    overflow-x: auto;
   }
 
-  &__tbody {
-    // overflow-x: hidden;
-    // overflow-y: auto;
-    // padding-top: 1rem;
+  &__cover {
+    width: 100%;
+    position: relative;
+    background-color: white;
+    height: 1px;
+    top: 1px;
   }
 
-  &__th {
-    padding: 0.25rem 0.5rem;
-    font-weight: bold;
-    color: $colour-white;
-    // border: 0;
-    background-color: $colour-uniprot-blue;
-    // width: 300px;
-    top: 0;
-    position: sticky;
-    z-index: 2;
-  }
+  &__table {
+    border: 0;
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
 
+    &__header {
+      &__row {
+        margin-right: 0px;
+        &__cell {
+          padding: 0.25rem 0.5rem;
+          font-weight: bold;
+          color: $colour-white;
+          background-color: $colour-uniprot-blue;
+          top: 0;
+          z-index: 2;
+          position: sticky;
+          position: -webkit-sticky;
+          position: -moz-sticky;
+          position: -ms-sticky;
+          position: -o-sticky;
+        }
+      }
+    }
+
+    &__body {
+      &__cell {
+        padding: 0.5rem;
+        vertical-align: top;
+        // text-align: left;
+
+        &--warning {
+          background-color: map-get($foundation-palette, warning);
+        }
+
+        &--odd {
+          background-color: $colour-seashell-grey;
+        }
+
+        &--selected {
+          background-color: $colour-light-blue;
+          border-bottom: 1px solid $colour-white;
+        }
+      }
+    }
+  }
   // &__tr {
   //   width: 100%;
   //   display: flex;
@@ -48,25 +74,6 @@
   //   display: flex;
   //   flex-wrap: wrap;
   // }
-
-  &__td {
-    padding: 0.5rem;
-    vertical-align: top;
-    // text-align: left;
-
-    &--warning {
-      background-color: map-get($foundation-palette, warning);
-    }
-
-    &--odd {
-      background-color: $colour-seashell-grey;
-    }
-
-    &--selected {
-      background-color: $colour-light-blue;
-      border-bottom: 1px solid $colour-white;
-    }
-  }
 
   // %cell {
   //   box-sizing: border-box;
