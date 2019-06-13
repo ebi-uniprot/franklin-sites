@@ -11,7 +11,7 @@
   &__cover {
     width: 100%;
     position: relative;
-    background-color: white;
+    background-color: $colour-white;
     height: 1px;
     top: 1px;
   }
@@ -28,6 +28,7 @@
         &__cell {
           padding: 0.25rem 0.5rem;
           font-weight: bold;
+          white-space: nowrap;
           color: $colour-white;
           background-color: $colour-uniprot-blue;
           top: 0;
@@ -37,6 +38,30 @@
           position: -moz-sticky;
           position: -ms-sticky;
           position: -o-sticky;
+
+          &--ascend {
+            cursor: pointer;
+            &::after {
+              @include chevron(up, $colour-white);
+            }
+          }
+
+          &--descend {
+            cursor: pointer;
+            &::after {
+              @include chevron(down, $colour-white);
+            }
+          }
+
+          &--sortable {
+            cursor: pointer;
+            &::after {
+              @include chevron(down, $colour-light-grey);
+            }
+            &:hover:after {
+              @include chevron(down, $colour-white);
+            }
+          }
         }
       }
     }
@@ -45,7 +70,6 @@
       &__cell {
         padding: 0.5rem;
         vertical-align: top;
-        // text-align: left;
 
         &--warning {
           background-color: map-get($foundation-palette, warning);

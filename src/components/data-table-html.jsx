@@ -3,18 +3,33 @@ import React from 'react';
 
 import '../styles/components/data-table.scss';
 
-const DataTableHtml = ({ columns, data }) => (
+const DataTableHtml = ({ columns, data, onHeaderClick }) => (
   <div>
     <div className="data-table__cover" />
     <div className="data-table__container">
       <table className="data-table__table">
         <thead className="data-table__table__header">
           <tr className="data-table__table__header__row">
-            {columns.map(column => (
-              <th key={column.name} className="data-table__table__header__row__cell">
-                {column.label}
-              </th>
-            ))}
+            {columns.map((column) => {
+              let className = 'data-table__table__header__row__cell ';
+              let onClick;
+              if (column.sortable) {
+                onClick = () => onHeaderClick(column.name);
+                if (column.sorted) {
+                  className
+                    += column.sorted === 'ascend'
+                      ? 'data-table__table__header__row__cell--ascend'
+                      : 'data-table__table__header__row__cell--descend';
+                } else {
+                  className += 'data-table__table__header__row__cell--sortable';
+                }
+              }
+              return (
+                <th key={column.name} className={className} onClick={onClick}>
+                  {column.label}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>

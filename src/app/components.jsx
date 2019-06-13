@@ -304,6 +304,9 @@ const components = [
     props: {
       columns: tableColumns,
       data: tableData,
+      onHeaderClick: (name) => {
+        console.log(`Column header "${name}" clicked.`);
+      },
     },
   },
 ];
