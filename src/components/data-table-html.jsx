@@ -1,10 +1,16 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import '../styles/components/data-table.scss';
 
 const DataTableHtml = ({
-  columns, data, onHeaderClick, selectable, selected, onSelect,
+  columns,
+  data,
+  onHeaderClick,
+  selectable,
+  selectedRows,
+  onSelect,
+  idKey,
 }) => (
   <div>
     <div className="data-table__cover" />
@@ -20,9 +26,12 @@ const DataTableHtml = ({
             {columns.map((column) => {
               let className = 'data-table__table__header__row__cell ';
               let onClick;
-              if (column.sortable) {
+              const {
+                sorted, name, label, sortable,
+              } = column;
+              if (sortable) {
                 onClick = () => onHeaderClick(column.name);
-                if (column.sorted) {
+                if (sorted) {
                   className
                     += column.sorted === 'ascend'
                       ? 'data-table__table__header__row__cell--ascend'
@@ -32,8 +41,8 @@ const DataTableHtml = ({
                 }
               }
               return (
-                <th key={column.name} className={className} onClick={onClick}>
-                  {column.label}
+                <th key={name} className={className} onClick={onClick}>
+                  {label}
                 </th>
               );
             })}
@@ -41,23 +50,21 @@ const DataTableHtml = ({
         </thead>
         <tbody className="data-table__table__body">
           {data.map((row) => {
+            const { [idKey]: id } = row;
+            const isSelected = !!selectedRows[id];
             let className = 'data-table__table__body__cell ';
-            if (selectable && !!selected[row.id]) {
+            if (selectable && isSelected) {
               className += 'data-table__table__body__cell--selected';
             }
             return (
-              <tr key={row.id}>
+              <tr key={id}>
                 {selectable && (
-                  <td key={`${row.id}-select-column`} className={className}>
-                    <input
-                      type="checkbox"
-                      onChange={() => onSelect(row.id)}
-                      checked={!!selected[row.id]}
-                    />
+                  <td key={`${id}-select-column`} className={className}>
+                    <input type="checkbox" onChange={() => onSelect(id)} checked={isSelected} />
                   </td>
                 )}
                 {columns.map(column => (
-                  <td key={`${row.id}-${column.name}`} className={className}>
+                  <td key={`${id}-${column.name}`} className={className}>
                     {column.render(row)}
                   </td>
                 ))}
@@ -70,24 +77,52 @@ const DataTableHtml = ({
   </div>
 );
 
-// DataTableHtml.propTypes = {
-//   /**
-//    * The tile title
-//    */
-//   title: PropTypes.string.isRequired,
-//   /**
-//    * The tile description. Short and snappy.
-//    */
-//   description: PropTypes.string,
-//   /**
-//    * The namespace, which decides the colour
-//    */
-//   namespace: PropTypes.string,
-// };
+DataTableHtml.propTypes = {
+  /**
+   * An array of column information objects which include name, label, render function, sortable,
+   * sorted
+   */
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      render: PropTypes.func.isRequired,
+      sortable: PropTypes.bool,
+      sorted: PropTypes.oneOf(['ascend', 'descend']),
+    }),
+  ).isRequired,
+  /**
+   * An array of data objects to include an id-like attribute (specified with the idKey prop)
+   */
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * A boolean to indicate that the rows are selectable
+   */
+  selectable: PropTypes.bool,
+  /**
+   * An object that holds the row ids which have been selected
+   */
+  selectedRows: PropTypes.shape({}),
+  /**
+   * A callback for when a row has been selected
+   */
+  onSelect: PropTypes.func,
+  /**
+   * A callback for when a sortable header has been clicked
+   */
+  onHeaderClick: PropTypes.func,
+  /**
+   * Specifies which attribute of a data array entry will serve as the unique id
+   */
+  idKey: PropTypes.string,
+};
 
-// Tile.defaultProps = {
-//   description: 'This is a short description of what the resource is/provides.',
-//   namespace: '',
-// };
+DataTableHtml.defaultProps = {
+  selectedRows: {},
+  onSelect: () => {},
+  onHeaderClick: () => {},
+  idKey: 'id',
+  selectable: false,
+};
 
 export default DataTableHtml;

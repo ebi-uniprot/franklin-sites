@@ -48,35 +48,30 @@ const tableColumns = [
     name: 'col1',
     render: row => <span>{row.col1}</span>,
     sortable: true,
-    width: 200,
     sorted: 'ascend',
   },
   {
     label: 'Column 2',
     name: 'col2',
     render: row => <span>{row.col2}</span>,
-    width: 300,
   },
   {
     label: 'Column 3',
     name: 'col3',
     render: row => <span>{row.col3}</span>,
     sortable: true,
-    width: 300,
   },
   {
     label: 'Column 4',
     name: 'col4',
     render: row => <span>{row.col4}</span>,
     sortable: true,
-    width: 100,
   },
   {
     label: 'Column 5',
     name: 'col5',
     render: row => <span>{row.col5}</span>,
     sortable: true,
-    width: 300,
   },
 ];
 
@@ -311,7 +306,7 @@ const components = [
       onSelect: (rowId) => {
         console.log(`Row "${rowId}" selected.`);
       },
-      selected: { [tableData[0].id]: true },
+      selectedRows: { [tableData[0].id]: true },
     },
   },
 ];
