@@ -19,7 +19,7 @@ import Card from '../components/card';
 import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
-import DataTableHtml from '../components/data-table-html';
+import DataTable from '../components/data-table';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -293,7 +293,7 @@ const components = [
   },
   {
     name: 'Data table',
-    component: DataTableHtml,
+    component: DataTable,
     function: 'A standard html table.',
     purpose: 'Display tabular data.',
     props: {

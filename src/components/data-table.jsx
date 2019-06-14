@@ -1,136 +1,147 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import DataTableCore from './data-table-core';
 
-const NUMBER_COLUMN = {
-  label: '#',
-  numberColumn: true,
-  width: 40,
-};
-const SELECT_COLUMN = {
-  selectColumn: true,
-  width: 40,
-};
+import '../styles/components/data-table.scss';
 
-const DataTable = (props) => {
-  // This functional component prepends the data and columns being passed into DataTableCore
-  // based on consumer choices (ie showRowNumbers, selectable, showHeader).
-  const {
-    showRowNumbers, selectable, showHeader, data: inData, columns: inColumns,
-  } = props;
-  const data = showHeader ? [{}, ...inData] : [...inData];
-  let columns = [...inColumns];
-  if (showRowNumbers) {
-    columns = [NUMBER_COLUMN, ...columns];
-  }
-  if (selectable) {
-    columns = [SELECT_COLUMN, ...columns];
-  }
-  return <DataTableCore {...props} data={data} columns={columns} />;
-};
+export const DataTableRows = ({
+  data, columns, onSelect, selectedRows, idKey, selectable,
+}) =>
+  data.map((row) => {
+    const { [idKey]: id } = row;
+    const isSelected = !!selectedRows[id];
+    let className = 'data-table__table__body__cell ';
+    if (selectable && isSelected) {
+      className += 'data-table__table__body__cell--selected';
+    }
+    return (
+      <tr key={id}>
+        {selectable && (
+          <td key={`${id}-select-column`} className={className}>
+            <input type="checkbox" onChange={() => onSelect(id)} checked={isSelected} />
+          </td>
+        )}
+        {columns.map(column => (
+          <td key={`${id}-${column.name}`} className={className}>
+            {column.render(row)}
+          </td>
+        ))}
+      </tr>
+    );
+  });
+
+const DataTable = ({
+  columns,
+  data,
+  onHeaderClick,
+  selectable,
+  selectedRows,
+  onSelect,
+  idKey,
+  children,
+}) => (
+  <Fragment>
+    <div className="data-table__cover" />
+    <div className="data-table__container">
+      <table className="data-table__table">
+        <thead className="data-table__table__header">
+          <tr className="data-table__table__header__row">
+            {selectable && (
+              <th key="selectable-column" className="data-table__table__header__row__cell">
+                {' '}
+              </th>
+            )}
+            {columns.map((column) => {
+              let className = 'data-table__table__header__row__cell ';
+              let onClick;
+              const {
+                sorted, name, label, sortable,
+              } = column;
+              if (sortable) {
+                onClick = () => onHeaderClick(column.name);
+                if (sorted) {
+                  className
+                    += column.sorted === 'ascend'
+                      ? 'data-table__table__header__row__cell--ascend'
+                      : 'data-table__table__header__row__cell--descend';
+                } else {
+                  className += 'data-table__table__header__row__cell--sortable';
+                }
+              }
+              return (
+                <th key={name} className={className} onClick={onClick}>
+                  {label}
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody className="data-table__table__body">
+          {children || (
+            <DataTableRows
+              {...{
+                data,
+                columns,
+                onSelect,
+                selectedRows,
+                idKey,
+                selectable,
+              }}
+            />
+          )}
+        </tbody>
+      </table>
+    </div>
+  </Fragment>
+);
 
 DataTable.propTypes = {
+  /**
+   * An array of column information objects which include name, label, render function, sortable,
+   * sorted
+   */
   columns: PropTypes.arrayOf(
     PropTypes.shape({
-      width: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      render: PropTypes.func.isRequired,
+      sortable: PropTypes.bool,
+      sorted: PropTypes.oneOf(['ascend', 'descend']),
     }),
   ).isRequired,
+  /**
+   * An array of data objects to include an id-like attribute (specified with the idKey prop)
+   */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * A boolean to indicate that the rows are selectable
+   */
   selectable: PropTypes.bool,
+  /**
+   * An object that holds the row ids which have been selected
+   */
   selectedRows: PropTypes.shape({}),
+  /**
+   * A callback for when a row has been selected
+   */
   onSelect: PropTypes.func,
+  /**
+   * A callback for when a sortable header has been clicked
+   */
   onHeaderClick: PropTypes.func,
+  /**
+   * Specifies which attribute of a data array entry will serve as the unique id
+   */
   idKey: PropTypes.string,
-  onLoadMoreRows: PropTypes.func.isRequired,
-  fixedColumnCount: PropTypes.number,
-  fixedRowCount: PropTypes.number,
-  showRowNumbers: PropTypes.bool,
-  totalNumberRows: PropTypes.number.isRequired,
-  showHeader: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 DataTable.defaultProps = {
-  selectable: false,
   selectedRows: {},
   onSelect: () => {},
   onHeaderClick: () => {},
   idKey: 'id',
-  fixedColumnCount: 0,
-  fixedRowCount: 0,
-  showRowNumbers: false,
-  showHeader: true,
+  selectable: false,
+  children: null,
 };
 
 export default DataTable;
-
-/*
-columns
-(array of objects)
-Specifies attributes about each column of your data. Objects have the shape:
-
-{
-  label: 'Column 1', // (string) The text which will be rendered
-  name: 'col1', // (string) A unique ID for the column
-  render: row => <span>{row.col1.value}</span>, // (function) The render function which pulls
-   out the correct attribute from a row of data.
-  sortable: true, // (boolean) A boolean flag to indicate if a column is sortable
-  width: 200, // (number) The width of the column
-}
-
-data
-(array of objects)
-Each object represents a row of the data. Each object must include: attributes that have a
-corresponding column with that name; a unique ID attribute whose name is given by idKey.
-
-
-selectable
-(boolean)
-Flag which indicates rows should be selectable with an input box.
-
-
-selectedRows
-(object: rowId: true)
-An object which indicates which rows have been selected by the user.
-
-
-onSelect
-(callback function with row ID returned)
-A callback function that is called whenever a user selects a row. The row ID is returned upon
-callback.
-
-onHeaderClick
-(callback function with column name returned)
-A callback function that is called whenever a user clicks the header. The column name is returned
-upon callback.
-
-idKey
-(string)
-The name of an attribute in each of the data objects which serves as a unique ID
-
-onLoadMoreRows
-(callback function with no arguments)
-When invoked by the InfiniteDataTable indicates more data needs to be fetched.
-
-fixedColumnCount
-(number)
-The number of columns to fix (similar to freeze in excel) so that they are always visible no
-matter where the user has scrolled.
-
-fixedRowCount
-(number)
-The number of rows to fix (similar to freeze in excel) so that they are always visible no matter
-where the user has scrolled.
-
-showRowNumbers
-(boolean)
-Display row numbers flag.
-
-totalNumberRows
-(number)
-The total number of rows of data that is expected. For example, if you a query returns 1,000,000
-results but you only want to show the user 10 results at a time, totalNumberRows will be 1,000,000.
-
-showHeader
-(boolean)
-Display header flag.
-*/
