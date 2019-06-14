@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-
 import '../styles/components/data-table.scss';
 
 export const DataTableRows = ({
