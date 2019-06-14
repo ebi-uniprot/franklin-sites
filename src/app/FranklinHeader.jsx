@@ -12,10 +12,6 @@ const links = [
     path: '/ui-components',
   },
   {
-    label: 'Data Table',
-    path: '/data-table',
-  },
-  {
     label: 'Scroll Items Loader',
     path: '/scroll-items-loader',
   },
