@@ -1,10 +1,36 @@
 import React, { Fragment, useState } from 'react';
+import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import { getLipsumObjectArray } from './common/lipsum';
 import DataList from './DataList';
 
+const ViewButtons = ({ view, setView }) => (
+  <div className="button-group">
+    <button
+      className={`button ${view !== 'cards' ? 'secondary' : ''}`}
+      type="button"
+      onClick={() => setView('cards')}
+    >
+      Cards View
+    </button>
+    <button
+      className={`button ${view !== 'table' ? 'secondary' : ''}`}
+      type="button"
+      onClick={() => setView('table')}
+    >
+      Table View
+    </button>
+  </div>
+);
+
+ViewButtons.propTypes = {
+  view: PropTypes.string.isRequired,
+  setView: PropTypes.func.isRequired,
+};
+
 const ScrollItemsLoaderDemoContent = () => {
   const [selected, setSelected] = useState({});
+  const [view, setView] = useState('cards');
 
   let loadingData = false;
   const idKey = 'id';
@@ -43,10 +69,10 @@ const ScrollItemsLoaderDemoContent = () => {
 
   return (
     <Fragment>
-      <h4 className="scroll-data-loader__status">
-        Number of data points loaded:
-        {` ${data.length} / ${totalNumberDataPoints}`}
-      </h4>
+      <div className="data-view-dashboard">
+        <ViewButtons {...{ view, setView }} />
+        <h4>{`Number of data points loaded: ${data.length} / ${totalNumberDataPoints}`}</h4>
+      </div>
       <DataList
         data={data}
         loadMoreItems={loadMoreItems}
