@@ -6,7 +6,8 @@ import v1 from 'uuid';
 
 import '../styles/components/scroll-items-loader.scss';
 
-const scrollOffsetFactor = 0.1;
+const scrollOffsetPercentage = 10;
+const scrollOffsetFactor = 1 + scrollOffsetPercentage / 100;
 
 const ScrollItemsLoader = ({
   onLoadMoreItems,
@@ -21,13 +22,13 @@ const ScrollItemsLoader = ({
   const ref = useRef();
 
   const isNotScrollable = () => {
-    const { scrollHeight, clientHeight } = ref.current;
-    return (1 - scrollOffsetFactor) * scrollHeight <= clientHeight;
+    const { scrollHeight, offsetHeight } = ref.current;
+    return scrollHeight <= offsetHeight * scrollOffsetFactor;
   };
 
   const isBottom = () => {
-    const { scrollHeight, scrollTop, clientHeight } = ref.current;
-    return scrollHeight - Math.ceil(scrollTop) < clientHeight * (1 + scrollOffsetFactor);
+    const { scrollHeight, scrollTop, offsetHeight } = ref.current;
+    return scrollHeight - Math.ceil(scrollTop) <= offsetHeight * scrollOffsetFactor;
   };
 
   const checkLoadMoreItems = () => {

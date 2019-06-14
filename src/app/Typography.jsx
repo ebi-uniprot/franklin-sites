@@ -33,12 +33,12 @@ const Typography = () => (
 
     <section>
       <h1>Headers</h1>
-      <h1>H1. This is a title</h1>
-      <h2>H2. This is a title</h2>
-      <h3>H3. This is a title</h3>
-      <h4>H4. This is a title</h4>
-      <h5>H5. This is a title</h5>
-      <h6>H6. This is a title</h6>
+      <h1>H1. This is a title 48px</h1>
+      <h2>H2. This is a title 40px</h2>
+      <h3>H3. This is a title 31px</h3>
+      <h4>H4. This is a title 25px</h4>
+      <h5>H5. This is a title 20px</h5>
+      <h6>H6. This is a title 22.4px</h6>
       <hr />
     </section>
 
