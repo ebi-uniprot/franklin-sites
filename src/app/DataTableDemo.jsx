@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import DataTable, { DataTableRows } from '../components/data-table';
+import DataTable, { DataTableRows, DataTableBody } from '../components/data-table';
 import ScrollItemsLoader from '../components/scroll-items-loader';
 
 const DataTableDemo = ({
@@ -9,7 +9,7 @@ const DataTableDemo = ({
   hasMoreItems,
   idKey,
   onSelect,
-  selectedRows,
+  selected,
   selectable,
   columns,
   onHeaderClick,
@@ -19,21 +19,24 @@ const DataTableDemo = ({
       {...{
         idKey,
         onSelect,
-        selectedRows,
+        selected,
         onHeaderClick,
+        columns,
+        selectable,
       }}
     >
       <ScrollItemsLoader
         idKey={idKey}
         onLoadMoreItems={loadMoreItems}
         hasMoreItems={hasMoreItems}
+        scrollContainer
         items={(
           <DataTableRows
             {...{
               data,
               columns,
               onSelect,
-              selectedRows,
+              selected,
               idKey,
               selectable,
             }}

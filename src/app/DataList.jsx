@@ -4,21 +4,34 @@ import Card from '../components/card';
 import ScrollItemsLoader from '../components/scroll-items-loader';
 
 const DataList = ({
-  data, loadMoreItems, hasMoreItems, idKey, onSelect, selected,
+  data,
+  onLoadMoreItems,
+  hasMoreData,
+  idKey,
+  onSelect,
+  selected,
+  selectable,
 }) => (
-  <div className="data-list">
-    <div className="data-list__wrapper">
-      <ScrollItemsLoader
-        idKey={idKey}
-        onLoadMoreItems={loadMoreItems}
-        hasMoreItems={hasMoreItems}
-        items={data.map(({ [idKey]: id, content }) => (
-          <Card key={id} selectable selected={!!selected[id]} onSelect={() => onSelect(id)}>
-            <p>{content}</p>
+  <div className="data-list__wrapper">
+    <ScrollItemsLoader
+      {...{
+        idKey,
+        onLoadMoreItems,
+        hasMoreItems: hasMoreData,
+        items: data.map(({ [idKey]: id, ...content }) => (
+          <Card
+            {...{
+              selectable,
+              key: id,
+              selected: !!selected[id],
+              onSelect: () => onSelect(id),
+            }}
+          >
+            {Object.values(content)}
           </Card>
-        ))}
-      />
-    </div>
+        )),
+      }}
+    />
   </div>
 );
 

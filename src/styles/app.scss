@@ -90,17 +90,25 @@ section {
   }
 }
 
-.data-view-dashboard {
-  padding-left: $global-padding;
+.data-view {
+  &__dashboard {
+    padding-left: $global-padding;
+  }
+  &__container {
+    height: 80vh;
+    width: 50vh;
+  }
 }
 
 .data-list {
-  height: 80vh;
   &__wrapper {
     overflow: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
+  }
+  &__scroll-container {
+    overflow-y: auto;
   }
 }
 

@@ -60,7 +60,11 @@ Card.propTypes = {
   /**
    * The main content of the card
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
   /**
    * Links to be displayed at the bottom of the card
    */

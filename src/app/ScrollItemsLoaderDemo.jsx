@@ -1,36 +1,48 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import { getLipsumObjectArray } from './common/lipsum';
 import DataList from './DataList';
+import DataTable from '../components/data-table';
 
-const ViewButtons = ({ view, setView }) => (
-  <div className="button-group">
-    <button
-      className={`button ${view !== 'cards' ? 'secondary' : ''}`}
-      type="button"
-      onClick={() => setView('cards')}
-    >
-      Cards View
-    </button>
-    <button
-      className={`button ${view !== 'table' ? 'secondary' : ''}`}
-      type="button"
-      onClick={() => setView('table')}
-    >
-      Table View
-    </button>
-  </div>
-);
+const CARDS = 'CARDS';
+const TABLE = 'TABLE';
 
-ViewButtons.propTypes = {
-  view: PropTypes.string.isRequired,
-  setView: PropTypes.func.isRequired,
-};
+const columns = [
+  {
+    label: 'Column 1',
+    name: 'content1',
+    render: row => row.content1,
+    sortable: true,
+    sorted: 'ascend',
+  },
+  {
+    label: 'Column 2',
+    name: 'content2',
+    render: row => row.content2,
+  },
+  {
+    label: 'Column 3',
+    name: 'content3',
+    render: row => row.content3,
+    sortable: true,
+  },
+  {
+    label: 'Column 4',
+    name: 'content4',
+    render: row => row.content4,
+    sortable: true,
+  },
+  {
+    label: 'Column 5',
+    name: 'content5',
+    render: row => row.content5,
+  },
+];
 
 const ScrollItemsLoaderDemoContent = () => {
   const [selected, setSelected] = useState({});
-  const [view, setView] = useState('cards');
+  const [view, setView] = useState(TABLE);
 
   let loadingData = false;
   const idKey = 'id';
@@ -38,10 +50,11 @@ const ScrollItemsLoaderDemoContent = () => {
   const totalNumberDataPoints = 50;
   const sleepDuration = 0.75;
   const numberInitialDataPoints = 1;
+  const selectable = true;
 
   function generateData(numberElements) {
     return getLipsumObjectArray({
-      keys: ['content'],
+      keys: columns.map(column => column.name),
       idKey,
       numberElements,
     });
@@ -51,7 +64,7 @@ const ScrollItemsLoaderDemoContent = () => {
     numberInitialDataPoints > 0 ? generateData(numberInitialDataPoints) : [],
   );
 
-  function loadMoreItems() {
+  function onLoadMoreItems() {
     if (loadingData) {
       return null;
     }
@@ -67,26 +80,79 @@ const ScrollItemsLoaderDemoContent = () => {
     }, sleepDuration * 1000);
   }
 
+  const hasMoreData = data.length < totalNumberDataPoints;
+  const onSelect = id => setSelected({ ...selected, [id]: !selected[id] });
+  const onHeaderClick = (columnName) => {
+    // eslint-disable-next-line no-console
+    console.log(`Header for column "${columnName}" clicked.`);
+  };
   return (
-    <Fragment>
-      <div className="data-view-dashboard">
+    <div className="data-view">
+      <div className="data-view__dashboard">
         <ViewButtons {...{ view, setView }} />
         <h4>{`Number of data points loaded: ${data.length} / ${totalNumberDataPoints}`}</h4>
       </div>
-      <DataList
-        data={data}
-        loadMoreItems={loadMoreItems}
-        hasMoreItems={data.length < totalNumberDataPoints}
-        idKey={idKey}
-        onSelect={id => setSelected({ ...selected, [id]: !selected[id] })}
-        selected={selected}
-      />
-    </Fragment>
+      <div className="data-view__container">
+        {view === CARDS && (
+          <DataList
+            {...{
+              data,
+              hasMoreData,
+              idKey,
+              selected,
+              selectable,
+              onSelect,
+              onLoadMoreItems,
+            }}
+          />
+        )}
+        {view === TABLE && (
+          <DataTable
+            {...{
+              hasMoreData,
+              data,
+              idKey,
+              columns,
+              onSelect,
+              selected,
+              onHeaderClick,
+              onLoadMoreItems,
+            }}
+            selectable
+          />
+        )}
+      </div>
+    </div>
   );
 };
 
 const ScrollItemsLoaderDemo = () => (
   <DefaultPageLayout title="Franklin - Data Table" content={<ScrollItemsLoaderDemoContent />} />
 );
+
+function ViewButtons({ view, setView }) {
+  return (
+    <div className="button-group">
+      <button
+        className={`button ${view !== CARDS ? 'secondary' : ''}`}
+        type="button"
+        onClick={() => setView(CARDS)}
+      >
+        Cards View
+      </button>
+      <button
+        className={`button ${view !== TABLE ? 'secondary' : ''}`}
+        type="button"
+        onClick={() => setView(TABLE)}
+      >
+        Table View
+      </button>
+    </div>
+  );
+}
+ViewButtons.propTypes = {
+  view: PropTypes.oneOf([CARDS, TABLE]).isRequired,
+  setView: PropTypes.func.isRequired,
+};
 
 export default ScrollItemsLoaderDemo;

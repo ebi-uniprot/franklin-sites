@@ -53,7 +53,6 @@ const ScrollItemsLoader = ({
       onLoadMoreItems();
     }
   }, [loadMoreItems]);
-
   return cloneElement(
     scrollContainer,
     {
@@ -82,7 +81,7 @@ ScrollItemsLoader.propTypes = {
   /**
    * An array of JSX elements which will populate the scrollContainer.
    */
-  items: PropTypes.arrayOf(PropTypes.element).isRequired,
+  items: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
   /**
    * A boolean to indicate that the parent has more items to provide.
    */

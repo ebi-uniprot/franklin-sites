@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
-import { getLipsumObjectArray } from './common/lipsum';
 
 import Tile from '../components/tile';
 import DropdownButton from '../components/dropdown-button';
@@ -19,7 +18,6 @@ import Card from '../components/card';
 import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
-import DataTable from '../components/data-table';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -31,6 +29,7 @@ class MainSearchWrapper extends Component {
 
   handleChange(searchTerm) {
     this.setState({ searchTerm });
+    // eslint-disable-next-line no-console
     console.log('Main search change:', searchTerm);
   }
 
@@ -41,44 +40,6 @@ class MainSearchWrapper extends Component {
     );
   }
 }
-
-const tableColumns = [
-  {
-    label: 'Column 1',
-    name: 'col1',
-    render: row => <span>{row.col1}</span>,
-    sortable: true,
-    sorted: 'ascend',
-  },
-  {
-    label: 'Column 2',
-    name: 'col2',
-    render: row => <span>{row.col2}</span>,
-  },
-  {
-    label: 'Column 3',
-    name: 'col3',
-    render: row => <span>{row.col3}</span>,
-    sortable: true,
-  },
-  {
-    label: 'Column 4',
-    name: 'col4',
-    render: row => <span>{row.col4}</span>,
-    sortable: true,
-  },
-  {
-    label: 'Column 5',
-    name: 'col5',
-    render: row => <span>{row.col5}</span>,
-    sortable: true,
-  },
-];
-
-const tableData = getLipsumObjectArray({
-  keys: tableColumns.map(column => column.name),
-  numberElements: 10,
-});
 
 const components = [
   {
@@ -159,6 +120,7 @@ const components = [
     purpose: 'Allow selection of item from flat data set',
     props: {
       data: flattenedPaths,
+      // eslint-disable-next-line no-console
       onSelect: value => console.log(value),
       placeholder: 'Placeholder',
       filter: true,
@@ -172,6 +134,7 @@ const components = [
     props: {
       onSubmit: (e) => {
         e.preventDefault();
+        // eslint-disable-next-line no-console
         console.log('Main search submit');
       },
     },
@@ -254,7 +217,9 @@ const components = [
     props: {
       data: facetData,
       selectedFacets: [{ name: 'facet_2', value: 'value_2' }],
+      // eslint-disable-next-line no-console
       addFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+      // eslint-disable-next-line no-console
       removeFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
     },
   },
@@ -289,24 +254,6 @@ const components = [
         },
       ],
       sticky: false,
-    },
-  },
-  {
-    name: 'Data table',
-    component: DataTable,
-    function: 'A standard html table.',
-    purpose: 'Display tabular data.',
-    props: {
-      columns: tableColumns,
-      data: tableData,
-      onHeaderClick: (name) => {
-        console.log(`Column header "${name}" clicked.`);
-      },
-      selectable: true,
-      onSelect: (rowId) => {
-        console.log(`Row "${rowId}" selected.`);
-      },
-      selectedRows: { [tableData[0].id]: true },
     },
   },
 ];
