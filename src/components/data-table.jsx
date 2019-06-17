@@ -1,9 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState, useRef, useEffect, Fragment,
+} from 'react';
 import PropTypes from 'prop-types';
+import {
+  checkLoadMoreItems,
+  checkOnDataLoad,
+  checkOnLoadMoreItems,
+} from './utils/scroll-data-loader';
 import '../styles/components/data-table.scss';
-
-const scrollOffsetPercentage = 10;
-const scrollOffsetFactor = 1 + scrollOffsetPercentage / 100;
 
 const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
   <thead className="data-table__table__header">
@@ -96,62 +100,45 @@ const DataTable = ({
   const [loadMoreItems, setLoadMoreItems] = useState(false);
   const ref = useRef();
 
-  const isNotScrollable = () => {
-    const { scrollHeight, offsetHeight } = ref.current;
-    return scrollHeight <= offsetHeight * scrollOffsetFactor;
-  };
+  useEffect(
+    () => checkOnDataLoad(hasMoreData, setLoading, onLoadMoreItems, setLoadMoreItems, ref),
+    [data],
+  );
 
-  const isBottom = () => {
-    const { scrollHeight, scrollTop, offsetHeight } = ref.current;
-    return scrollHeight - Math.ceil(scrollTop) <= offsetHeight * scrollOffsetFactor;
-  };
-
-  const checkLoadMoreItems = () => {
-    if (!loading && hasMoreData && isBottom()) {
-      setLoadMoreItems(true);
-    }
-  };
-
-  useEffect(() => {
-    if (isNotScrollable() && hasMoreData) {
-      setLoading(true);
-      onLoadMoreItems();
-    } else {
-      setLoading(false);
-      setLoadMoreItems(false);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (loadMoreItems) {
-      setLoading(true);
-      onLoadMoreItems();
-    }
-  }, [loadMoreItems]);
+  useEffect(() => checkOnLoadMoreItems(loadMoreItems, setLoading, onLoadMoreItems), [
+    loadMoreItems,
+  ]);
 
   return (
-    <div className="data-table__container" onScroll={checkLoadMoreItems} ref={ref}>
-      <table className="data-table__table">
-        <DataTableHead
-          {...{
-            selectable,
-            columns,
-            onHeaderClick,
-          }}
-        />
-        <DataTableBody
-          {...{
-            data,
-            columns,
-            onSelect,
-            selected,
-            idKey,
-            selectable,
-            loading,
-          }}
-        />
-      </table>
-    </div>
+    <Fragment>
+      <div className="data-table__cover" />
+      <div
+        className="data-table__container"
+        onScroll={() => checkLoadMoreItems(loading, hasMoreData, ref, setLoadMoreItems)}
+        ref={ref}
+      >
+        <table className="data-table__table">
+          <DataTableHead
+            {...{
+              selectable,
+              columns,
+              onHeaderClick,
+            }}
+          />
+          <DataTableBody
+            {...{
+              data,
+              columns,
+              onSelect,
+              selected,
+              idKey,
+              selectable,
+              loading,
+            }}
+          />
+        </table>
+      </div>
+    </Fragment>
   );
 };
 
@@ -164,7 +151,7 @@ DataTable.propTypes = {
   /**
    * The component which will hold the items and is scrolled over.
    */
-  scrollContainer: PropTypes.element,
+  // scrollContainer: PropTypes.element,
   /**
    * An array of JSX elements which will populate the scrollContainer.
    */

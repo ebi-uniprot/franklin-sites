@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import { getLipsumObjectArray } from './common/lipsum';
-import DataList from './DataList';
+import DataList from '../components/data-list';
 import DataTable from '../components/data-table';
 
 const CARDS = 'CARDS';
@@ -42,7 +42,7 @@ const columns = [
 
 const ScrollItemsLoaderDemoContent = () => {
   const [selected, setSelected] = useState({});
-  const [view, setView] = useState(TABLE);
+  const [view, setView] = useState(CARDS);
 
   let loadingData = false;
   const idKey = 'id';
