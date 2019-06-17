@@ -44,6 +44,23 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
   </thead>
 );
 
+DataTableHead.propTypes = {
+  selectable: PropTypes.bool,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      render: PropTypes.func.isRequired,
+    }),
+  ).isRequired,
+  onHeaderClick: PropTypes.func,
+};
+
+DataTableHead.defaultProps = {
+  onHeaderClick: () => null,
+  selectable: false,
+};
+
 const LoadingRow = ({ columns, selectable }) => (
   <tr key="loading-row">
     {selectable && <td key="loading-select-column" className="data-table__table__body__cell" />}
@@ -54,6 +71,21 @@ const LoadingRow = ({ columns, selectable }) => (
     ))}
   </tr>
 );
+
+LoadingRow.propTypes = {
+  selectable: PropTypes.bool,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      render: PropTypes.func.isRequired,
+    }),
+  ).isRequired,
+};
+
+LoadingRow.defaultProps = {
+  selectable: false,
+};
 
 const DataTableBody = ({
   data, columns, onSelect, selected, idKey, selectable, loading,
@@ -153,17 +185,29 @@ DataTable.propTypes = {
    */
   // scrollContainer: PropTypes.element,
   /**
-   * An array of JSX elements which will populate the scrollContainer.
-   */
-  items: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
-  /**
    * A boolean to indicate that the parent has more items to provide.
    */
   hasMoreData: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  idKey: PropTypes.string,
+  onSelect: PropTypes.func.isRequired,
+  selected: PropTypes.instanceOf(Object),
+  selectable: PropTypes.bool,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      render: PropTypes.func.isRequired,
+    }),
+  ).isRequired,
+  onHeaderClick: PropTypes.func,
 };
 
 DataTable.defaultProps = {
-  // scrollContainer: <div />,
+  onHeaderClick: () => null,
+  idKey: 'id',
+  selected: {},
+  selectable: false,
 };
 
 export default DataTable;

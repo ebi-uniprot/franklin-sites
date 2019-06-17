@@ -59,15 +59,18 @@ const DataList = ({
 
 DataList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loadMoreItems: PropTypes.func.isRequired,
-  hasMoreItems: PropTypes.bool.isRequired,
+  onLoadMoreItems: PropTypes.func.isRequired,
+  hasMoreData: PropTypes.bool.isRequired,
   idKey: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
-  selected: PropTypes.instanceOf(Object).isRequired,
+  selected: PropTypes.instanceOf(Object),
+  selectable: PropTypes.bool,
 };
 
 DataList.defaultProps = {
   idKey: 'id',
+  selected: {},
+  selectable: false,
 };
 
 export default DataList;
