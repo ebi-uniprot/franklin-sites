@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import DefaultPageLayout from './layout/DefaultPageLayout';
 import { getLipsumObjectArray } from './common/lipsum';
@@ -87,7 +87,7 @@ const ScrollItemsLoaderDemoContent = () => {
     console.log(`Header for column "${columnName}" clicked.`);
   };
   return (
-    <div className="data-view">
+    <Fragment>
       <div className="data-view__dashboard">
         <ViewButtons {...{ view, setView }} />
         <h4>{`Number of data points loaded: ${data.length} / ${totalNumberDataPoints}`}</h4>
@@ -117,12 +117,12 @@ const ScrollItemsLoaderDemoContent = () => {
               selected,
               onHeaderClick,
               onLoadMoreItems,
+              selectable,
             }}
-            selectable
           />
         )}
       </div>
-    </div>
+    </Fragment>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   checkOnDataLoad,
   checkOnLoadMoreItems,
 } from './utils/scroll-data-loader';
+import '../styles/components/data-list.scss';
 
 const loadingMessageId = v1();
 

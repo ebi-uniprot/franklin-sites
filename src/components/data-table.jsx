@@ -48,7 +48,7 @@ DataTableHead.propTypes = {
   selectable: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
     }),
@@ -76,7 +76,7 @@ LoadingRow.propTypes = {
   selectable: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
     }),
@@ -195,7 +195,7 @@ DataTable.propTypes = {
   selectable: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
     }),
