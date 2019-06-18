@@ -87,17 +87,25 @@ LoadingRow.defaultProps = {
   selectable: false,
 };
 
+const getCellClassName = (index, selectable, isSelected) => {
+  let className = 'data-table__table__body__cell ';
+  if (index % 2 === 1) {
+    className += 'data-table__table__body__cell--odd ';
+  }
+  if (selectable && isSelected) {
+    className += 'data-table__table__body__cell--selected';
+  }
+  return className;
+};
+
 const DataTableBody = ({
   data, columns, onSelect, selected, idKey, selectable, loading,
 }) => (
   <tbody className="data-table__table__body">
-    {data.map((row) => {
+    {data.map((row, index) => {
       const { [idKey]: id } = row;
       const isSelected = !!selected[id];
-      let className = 'data-table__table__body__cell ';
-      if (selectable && isSelected) {
-        className += 'data-table__table__body__cell--selected';
-      }
+      const className = getCellClassName(index, selectable, isSelected);
       return (
         <tr key={id}>
           {selectable && (
