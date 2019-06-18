@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
-import Card from './card';
 import {
   checkLoadMoreItems,
   checkOnDataLoad,
@@ -11,22 +10,14 @@ import '../styles/components/data-list.scss';
 
 const loadingMessageId = v1();
 
-const DataList = ({
-  data,
-  onLoadMoreItems,
-  hasMoreData,
-  idKey,
-  onSelect,
-  selected,
-  selectable,
-}) => {
+const DataList = ({ onLoadMoreItems, hasMoreData, items }) => {
   const [loading, setLoading] = useState(false);
   const [loadMoreItems, setLoadMoreItems] = useState(false);
   const ref = useRef();
 
   useEffect(
     () => checkOnDataLoad(hasMoreData, setLoading, onLoadMoreItems, setLoadMoreItems, ref),
-    [data],
+    [items.length],
   );
 
   useEffect(() => checkOnLoadMoreItems(loadMoreItems, setLoading, onLoadMoreItems), [
@@ -40,18 +31,7 @@ const DataList = ({
         onScroll={() => checkLoadMoreItems(loading, hasMoreData, ref, setLoadMoreItems)}
         ref={ref}
       >
-        {data.map(({ [idKey]: id, ...content }) => (
-          <Card
-            {...{
-              selectable,
-              key: id,
-              selected: !!selected[id],
-              onSelect: () => onSelect(id),
-            }}
-          >
-            {Object.values(content)}
-          </Card>
-        ))}
+        {items}
         {loading && <h4 key={loadingMessageId}>Loading...</h4>}
       </div>
     </div>
@@ -62,10 +42,10 @@ DataList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   onLoadMoreItems: PropTypes.func.isRequired,
   hasMoreData: PropTypes.bool.isRequired,
-  idKey: PropTypes.string,
-  onSelect: PropTypes.func.isRequired,
-  selected: PropTypes.instanceOf(Object),
-  selectable: PropTypes.bool,
+  /**
+   * An array of JSX elements which will populate the scrollContainer.
+   */
+  items: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 DataList.defaultProps = {

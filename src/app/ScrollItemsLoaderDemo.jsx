@@ -4,6 +4,7 @@ import DefaultPageLayout from './layout/DefaultPageLayout';
 import { getLipsumObjectArray } from './common/lipsum';
 import DataList from '../components/data-list';
 import DataTable from '../components/data-table';
+import Card from '../components/card';
 
 const CARDS = 'CARDS';
 const TABLE = 'TABLE';
@@ -98,11 +99,19 @@ const ScrollItemsLoaderDemoContent = () => {
             {...{
               data,
               hasMoreData,
-              idKey,
-              selected,
-              selectable,
-              onSelect,
               onLoadMoreItems,
+              items: data.map(({ [idKey]: id, ...content }) => (
+                <Card
+                  {...{
+                    selectable,
+                    key: id,
+                    selected: !!selected[id],
+                    onSelect: () => onSelect(id),
+                  }}
+                >
+                  {Object.values(content)}
+                </Card>
+              )),
             }}
           />
         )}
