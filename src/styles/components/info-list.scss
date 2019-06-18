@@ -3,13 +3,19 @@
 @import "../mixins.scss";
 
 .info-list {
+  margin: $global-margin 0 2 * $global-margin 0;
   &__item {
     display: flex;
-    margin-bottom: $global-margin;
+    margin: $global-margin 0;
     &__title {
-      flex-basis: 8vw;
+      flex-basis: 10vw;
       font-weight: 700;
       margin-right: $global-margin;
+      text-align: right;
+    }
+    &__content {
+      border-left: 0.1rem solid $colour-medium-blue;
+      padding-left: $global-padding;
     }
   }
 }

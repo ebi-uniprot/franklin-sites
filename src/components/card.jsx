@@ -29,7 +29,9 @@ const Card = ({
       {title && (
         <div className="card__header">
           {selectable && <div className="card__header__checkbox">{checkbox}</div>}
-          <h3 className="card__title">{title}</h3>
+          <h3 id={title} className="card__title">
+            {title}
+          </h3>
           {subtitle && <div className="card__subtitle">{subtitle}</div>}
         </div>
       )}

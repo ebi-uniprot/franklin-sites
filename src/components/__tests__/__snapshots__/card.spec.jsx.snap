@@ -9,6 +9,7 @@ exports[`Card component should render 1`] = `
   >
     <h3
       className="card__title"
+      id="Title"
     >
       Title
     </h3>
@@ -33,6 +34,7 @@ exports[`Card component should render card with links 1`] = `
   >
     <h3
       className="card__title"
+      id="Title"
     >
       Title
     </h3>
@@ -80,6 +82,7 @@ exports[`Card component should render card with subtitle 1`] = `
   >
     <h3
       className="card__title"
+      id="Title"
     >
       Title
     </h3>
