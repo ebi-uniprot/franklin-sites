@@ -18,6 +18,7 @@ import Card from '../components/card';
 import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
+import Loader from '../components/loader';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -250,6 +251,13 @@ const components = [
       ],
       sticky: false,
     },
+  },
+  {
+    name: 'Loader',
+    component: Loader,
+    function: '',
+    purpose: '',
+    props: {},
   },
 ];
 

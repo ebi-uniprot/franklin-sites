@@ -10,6 +10,7 @@ import {
   DownloadIcon,
   BasketIcon,
   StatisticsIcon,
+  ProteinIcon,
 } from '../components';
 
 const size = 30;
@@ -64,6 +65,11 @@ const iconDefinition = [
     name: 'statistics.svg',
     description: 'Statistics',
     icon: <StatisticsIcon width={size} height={size} />,
+  },
+  {
+    name: 'protein.svg',
+    description: 'Protein',
+    icon: <ProteinIcon width={size} height={size} />,
   },
 ];
 

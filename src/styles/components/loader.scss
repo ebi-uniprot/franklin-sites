@@ -1,0 +1,90 @@
+@mixin animation() {
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+.loader-container {
+  width: 100%;
+  text-align: center;
+}
+
+svg.loader {
+  animation: dash 2s ease infinite;
+  stroke-dasharray: 110;
+  #circle1 {
+    animation-name: circle1-hide;
+    @include animation();
+  }
+  #circle2 {
+    animation-name: circle2-hide;
+    @include animation();
+  }
+  #circle3 {
+    animation-name: circle3-hide;
+    @include animation();
+  }
+
+  #circle4 {
+    animation-name: circle4-hide;
+    @include animation();
+  }
+  #circle5 {
+    animation-name: circle5-hide;
+    @include animation();
+  }
+}
+
+@keyframes dash {
+  60% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -200;
+  }
+}
+
+@keyframes circle1-hide {
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes circle2-hide {
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+}
+
+@keyframes circle3-hide {
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes circle4-hide {
+  20% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
+@keyframes circle5-hide {
+  40% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+}

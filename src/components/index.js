@@ -14,6 +14,7 @@ export { default as DataTable } from './data-table';
 export { default as Sequence } from './sequence';
 export { default as ExternalLink } from './external-link';
 export { default as InPageNav } from './in-page-nav';
+export { default as Loader } from './loader';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
@@ -25,3 +26,4 @@ export { default as ExternalLinkIcon } from '../svg/external-link.svg';
 export { default as DownloadIcon } from '../svg/download.svg';
 export { default as StatisticsIcon } from '../svg/statistics.svg';
 export { default as BasketIcon } from '../svg/basket.svg';
+export { default as ProteinIcon } from '../svg/protein.svg';
