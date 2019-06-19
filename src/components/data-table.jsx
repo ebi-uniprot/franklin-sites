@@ -142,7 +142,7 @@ const DataTable = ({
 
   useEffect(
     () => checkOnDataLoad(hasMoreData, setLoading, onLoadMoreItems, setLoadMoreItems, ref),
-    [data],
+    [data.length],
   );
 
   useEffect(() => checkOnLoadMoreItems(loadMoreItems, setLoading, onLoadMoreItems), [

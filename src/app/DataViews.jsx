@@ -6,7 +6,7 @@ import DataList from '../components/data-list';
 import DataTable from '../components/data-table';
 import Card from '../components/card';
 
-const CARDS = 'CARDS';
+const LIST = 'LIST';
 const TABLE = 'TABLE';
 
 const columns = [
@@ -41,9 +41,9 @@ const columns = [
   },
 ];
 
-const ScrollItemsLoaderDemoContent = () => {
+const DataViewsContent = () => {
   const [selected, setSelected] = useState({});
-  const [view, setView] = useState(CARDS);
+  const [view, setView] = useState(LIST);
 
   let loadingData = false;
   const idKey = 'id';
@@ -94,7 +94,7 @@ const ScrollItemsLoaderDemoContent = () => {
         <h4>{`Number of data points loaded: ${data.length} / ${totalNumberDataPoints}`}</h4>
       </div>
       <div className="data-view__container">
-        {view === CARDS && (
+        {view === LIST && (
           <DataList
             {...{
               data,
@@ -135,19 +135,15 @@ const ScrollItemsLoaderDemoContent = () => {
   );
 };
 
-const ScrollItemsLoaderDemo = () => (
-  <DefaultPageLayout title="Franklin - Data Table" content={<ScrollItemsLoaderDemoContent />} />
-);
-
 function ViewButtons({ view, setView }) {
   return (
     <div className="button-group">
       <button
-        className={`button ${view !== CARDS ? 'secondary' : ''}`}
+        className={`button ${view !== LIST ? 'secondary' : ''}`}
         type="button"
-        onClick={() => setView(CARDS)}
+        onClick={() => setView(LIST)}
       >
-        Cards View
+        List View
       </button>
       <button
         className={`button ${view !== TABLE ? 'secondary' : ''}`}
@@ -159,9 +155,14 @@ function ViewButtons({ view, setView }) {
     </div>
   );
 }
+
 ViewButtons.propTypes = {
-  view: PropTypes.oneOf([CARDS, TABLE]).isRequired,
+  view: PropTypes.oneOf([LIST, TABLE]).isRequired,
   setView: PropTypes.func.isRequired,
 };
 
-export default ScrollItemsLoaderDemo;
+const DataViews = () => (
+  <DefaultPageLayout title="Franklin - Data Table" content={<DataViewsContent />} />
+);
+
+export default DataViews;

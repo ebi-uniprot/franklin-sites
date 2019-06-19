@@ -12,8 +12,8 @@ const links = [
     path: '/ui-components',
   },
   {
-    label: 'Scroll Items Loader',
-    path: '/scroll-items-loader',
+    label: 'Data Views',
+    path: '/data-views',
   },
 ];
 
