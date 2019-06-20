@@ -71,6 +71,7 @@
         padding: 0.5rem;
         vertical-align: top;
         border: 0;
+        border-bottom: 1px solid $colour-white;
 
         &--warning {
           background-color: map-get($foundation-palette, warning);

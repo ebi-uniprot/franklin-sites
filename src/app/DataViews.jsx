@@ -9,38 +9,6 @@ import Card from '../components/card';
 const LIST = 'LIST';
 const TABLE = 'TABLE';
 
-const columns = [
-  {
-    label: 'Column 1',
-    name: 'content1',
-    render: row => row.content1,
-    sortable: true,
-    sorted: 'ascend',
-  },
-  {
-    label: 'Column 2',
-    name: 'content2',
-    render: row => row.content2,
-  },
-  {
-    label: 'Column 3',
-    name: 'content3',
-    render: row => row.content3,
-    sortable: true,
-  },
-  {
-    label: 'Column 4',
-    name: 'content4',
-    render: row => row.content4,
-    sortable: true,
-  },
-  {
-    label: 'Column 5',
-    name: 'content5',
-    render: row => row.content5,
-  },
-];
-
 const DataViewsContent = () => {
   const [selected, setSelected] = useState({});
   const [view, setView] = useState(LIST);
@@ -52,6 +20,37 @@ const DataViewsContent = () => {
   const sleepDuration = 0.75;
   const numberInitialDataPoints = 1;
   const selectable = true;
+  const columns = [
+    {
+      label: 'Column 1',
+      name: 'content1',
+      render: row => row.content1,
+      sortable: true,
+      sorted: 'ascend',
+    },
+    {
+      label: 'Column 2',
+      name: 'content2',
+      render: row => row.content2,
+    },
+    {
+      label: 'Column 3',
+      name: 'content3',
+      render: row => row.content3,
+      sortable: true,
+    },
+    {
+      label: 'Column 4',
+      name: 'content4',
+      render: row => row.content4,
+      sortable: true,
+    },
+    {
+      label: 'Column 5',
+      name: 'content5',
+      render: row => row.content5,
+    },
+  ];
 
   function generateData(numberElements) {
     return getLipsumObjectArray({

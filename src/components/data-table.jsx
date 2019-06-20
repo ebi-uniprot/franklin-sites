@@ -189,18 +189,34 @@ DataTable.propTypes = {
    */
   onLoadMoreItems: PropTypes.func.isRequired,
   /**
-   * The component which will hold the items and is scrolled over.
-   */
-  // scrollContainer: PropTypes.element,
-  /**
    * A boolean to indicate that the parent has more items to provide.
    */
   hasMoreData: PropTypes.bool.isRequired,
+  /**
+   * The data to be displayed
+   */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * The name of an attribute in each of the data objects which serves as a unique ID
+   */
   idKey: PropTypes.string,
+  /**
+   * A callback function that is called whenever a user selects a row. The row ID is returned upon
+   * callback.
+   */
   onSelect: PropTypes.func.isRequired,
+  /**
+   * An object which indicates which rows have been selected by the user.
+   */
   selected: PropTypes.instanceOf(Object),
+  /**
+   * Flag which indicates rows should be selectable with an input box.
+   */
   selectable: PropTypes.bool,
+  /**
+   * An array of objects which specifies attributes about each column of your data. Each object has
+   *  label, name and render attributes.
+   */
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -208,6 +224,10 @@ DataTable.propTypes = {
       render: PropTypes.func.isRequired,
     }),
   ).isRequired,
+  /**
+   * A callback function that is called whenever a user clicks the header. The column name is
+   * returned upon callback.
+   */
   onHeaderClick: PropTypes.func,
 };
 

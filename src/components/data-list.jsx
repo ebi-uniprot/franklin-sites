@@ -39,19 +39,19 @@ const DataList = ({ onLoadMoreItems, hasMoreData, items }) => {
 };
 
 DataList.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * Callback to request more items if user scrolled to the bottom of the scroll-container or if
+   * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
+   */
   onLoadMoreItems: PropTypes.func.isRequired,
+  /**
+   * A boolean to indicate that the parent has more items to provide.
+   */
   hasMoreData: PropTypes.bool.isRequired,
   /**
    * An array of JSX elements which will populate the scrollContainer.
    */
   items: PropTypes.arrayOf(PropTypes.element).isRequired,
-};
-
-DataList.defaultProps = {
-  idKey: 'id',
-  selected: {},
-  selectable: false,
 };
 
 export default DataList;
