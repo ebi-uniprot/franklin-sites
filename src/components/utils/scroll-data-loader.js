@@ -3,6 +3,7 @@ const scrollOffsetFactor = 1 + scrollOffsetPercentage / 100;
 
 export const isNotScrollable = (node) => {
   const { scrollHeight, offsetHeight } = node.current;
+  // console.log(scrollHeight, offsetHeight, scrollHeight <= offsetHeight * scrollOffsetFactor);
   return scrollHeight <= offsetHeight * scrollOffsetFactor;
 };
 
@@ -11,8 +12,8 @@ export const isBottom = (node) => {
   return scrollHeight - Math.ceil(scrollTop) <= offsetHeight * scrollOffsetFactor;
 };
 
-export const checkLoadMoreItems = (loading, hasMoreData, ref, setLoadMoreItems) => {
-  if (!loading && hasMoreData && isBottom(ref)) {
+export const checkLoadMoreItems = (loading, hasMoreData, node, setLoadMoreItems) => {
+  if (!loading && hasMoreData && isBottom(node)) {
     setLoadMoreItems(true);
   }
 };
@@ -22,9 +23,9 @@ export const checkOnDataLoad = (
   setLoading,
   onLoadMoreItems,
   setLoadMoreItems,
-  ref,
+  node,
 ) => {
-  if (hasMoreData && isNotScrollable(ref)) {
+  if (hasMoreData && isNotScrollable(node)) {
     setLoading(true);
     onLoadMoreItems();
   } else {
