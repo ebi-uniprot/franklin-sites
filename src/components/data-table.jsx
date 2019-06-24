@@ -63,12 +63,13 @@ DataTableHead.defaultProps = {
 
 const LoadingRow = ({ columns, selectable }) => (
   <tr key="loading-row">
-    {selectable && <td key="loading-select-column" className="data-table__table__body__cell" />}
-    {columns.map(column => (
-      <td key={`loading-${column.name}`} className="data-table__table__body__cell">
-        Loading...
-      </td>
-    ))}
+    <td
+      key="loading-column"
+      className="data-table__table__body__cell--loading"
+      colSpan={columns.length + (selectable ? 1 : 0)}
+    >
+      Loading...
+    </td>
   </tr>
 );
 

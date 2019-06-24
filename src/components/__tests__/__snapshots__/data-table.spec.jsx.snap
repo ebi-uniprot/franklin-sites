@@ -284,20 +284,8 @@ exports[`DataTable should render 1`] = `
         </tr>
         <tr>
           <td
-            class="data-table__table__body__cell"
-          />
-          <td
-            class="data-table__table__body__cell"
-          >
-            Loading...
-          </td>
-          <td
-            class="data-table__table__body__cell"
-          >
-            Loading...
-          </td>
-          <td
-            class="data-table__table__body__cell"
+            class="data-table__table__body__cell--loading"
+            colspan="4"
           >
             Loading...
           </td>

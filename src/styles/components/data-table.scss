@@ -1,6 +1,6 @@
-@import '../settings';
-@import '../colours';
-@import '../mixins';
+@import "../settings";
+@import "../colours";
+@import "../mixins";
 
 .data-table {
   &__container {
@@ -90,6 +90,10 @@
           width: 0;
           padding: 0.8em 1.2em;
           overflow: hidden;
+        }
+
+        &--loading {
+          text-align: center;
         }
       }
     }
