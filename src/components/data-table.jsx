@@ -1,12 +1,6 @@
-import React, {
-  useState, useRef, useEffect, Fragment,
-} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {
-  checkLoadMoreItems,
-  checkOnDataLoad,
-  checkOnLoadMoreItems,
-} from './utils/scroll-data-loader';
+import withDataLoader from './data-loader';
 import '../styles/components/data-table.scss';
 
 const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
@@ -61,33 +55,6 @@ DataTableHead.defaultProps = {
   selectable: false,
 };
 
-const LoadingRow = ({ columns, selectable }) => (
-  <tr key="loading-row">
-    <td
-      key="loading-column"
-      className="data-table__table__body__cell--loading"
-      colSpan={columns.length + (selectable ? 1 : 0)}
-    >
-      Loading...
-    </td>
-  </tr>
-);
-
-LoadingRow.propTypes = {
-  selectable: PropTypes.bool,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      render: PropTypes.func.isRequired,
-    }),
-  ).isRequired,
-};
-
-LoadingRow.defaultProps = {
-  selectable: false,
-};
-
 const getCellClassName = (index, selectable, isSelected) => {
   let className = 'data-table__table__body__cell ';
   if (index % 2 === 1) {
@@ -100,7 +67,7 @@ const getCellClassName = (index, selectable, isSelected) => {
 };
 
 const DataTableBody = ({
-  data, columns, onSelect, selected, idKey, selectable, loading,
+  data, columns, onSelect, selected, idKey, selectable,
 }) => (
   <tbody className="data-table__table__body">
     {data.map((row, index) => {
@@ -122,77 +89,36 @@ const DataTableBody = ({
         </tr>
       );
     })}
-    {loading && <LoadingRow {...{ columns, selectable }} />}
   </tbody>
 );
 
 const DataTable = ({
-  onLoadMoreItems,
-  data,
-  hasMoreData,
-  columns,
-  onSelect,
-  selected,
-  idKey,
-  selectable,
-  onHeaderClick,
-}) => {
-  const [loading, setLoading] = useState(false);
-  const [loadMoreItems, setLoadMoreItems] = useState(false);
-  const ref = useRef();
-
-  useEffect(
-    () => checkOnDataLoad(hasMoreData, setLoading, onLoadMoreItems, setLoadMoreItems, ref),
-    [data.length],
-  );
-
-  useEffect(() => checkOnLoadMoreItems(loadMoreItems, setLoading, onLoadMoreItems), [
-    loadMoreItems,
-  ]);
-
-  return (
-    <Fragment>
-      <div className="data-table__cover" />
-      <div
-        className="data-table__container"
-        onScroll={() => checkLoadMoreItems(loading, hasMoreData, ref, setLoadMoreItems)}
-        ref={ref}
-      >
-        <table className="data-table__table">
-          <DataTableHead
-            {...{
-              selectable,
-              columns,
-              onHeaderClick,
-            }}
-          />
-          <DataTableBody
-            {...{
-              data,
-              columns,
-              onSelect,
-              selected,
-              idKey,
-              selectable,
-              loading,
-            }}
-          />
-        </table>
-      </div>
-    </Fragment>
-  );
-};
+  data, columns, onSelect, selected, idKey, selectable, onHeaderClick,
+}) => (
+  <Fragment>
+    <table className="data-table__table">
+      <DataTableHead
+        {...{
+          selectable,
+          columns,
+          onHeaderClick,
+        }}
+      />
+      <DataTableBody
+        {...{
+          data,
+          columns,
+          onSelect,
+          selected,
+          idKey,
+          selectable,
+        }}
+      />
+    </table>
+  </Fragment>
+);
 
 DataTable.propTypes = {
-  /**
-   * Callback to request more items if user scrolled to the bottom of the scroll-container or if
-   * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
-   */
-  onLoadMoreItems: PropTypes.func.isRequired,
-  /**
-   * A boolean to indicate that the parent has more items to provide.
-   */
-  hasMoreData: PropTypes.bool.isRequired,
   /**
    * The data to be displayed
    */
@@ -239,4 +165,4 @@ DataTable.defaultProps = {
   selectable: false,
 };
 
-export default DataTable;
+export default withDataLoader(DataTable);

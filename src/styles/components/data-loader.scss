@@ -1,4 +1,4 @@
-.data-list {
+.data-loader {
   &__wrapper {
     overflow: hidden;
     height: 100%;
@@ -7,5 +7,8 @@
   }
   &__scroll-container {
     overflow-y: auto;
+  }
+  &__loading {
+    text-align: center;
   }
 }

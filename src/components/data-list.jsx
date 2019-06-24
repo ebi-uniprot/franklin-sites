@@ -1,57 +1,60 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { v1 } from 'uuid';
-import {
-  checkLoadMoreItems,
-  checkOnDataLoad,
-  checkOnLoadMoreItems,
-} from './utils/scroll-data-loader';
-import '../styles/components/data-list.scss';
+import withDataLoader from './data-loader';
+import Card from './card';
 
-const loadingMessageId = v1();
-
-const DataList = ({ onLoadMoreItems, hasMoreData, items }) => {
-  const [loading, setLoading] = useState(false);
-  const [loadMoreItems, setLoadMoreItems] = useState(false);
-  const ref = useRef();
-
-  useEffect(
-    () => checkOnDataLoad(hasMoreData, setLoading, onLoadMoreItems, setLoadMoreItems, ref),
-    [items.length],
-  );
-
-  useEffect(() => checkOnLoadMoreItems(loadMoreItems, setLoading, onLoadMoreItems), [
-    loadMoreItems,
-  ]);
-
-  return (
-    <div className="data-list__wrapper">
-      <div
-        className="data-list__scroll-container"
-        onScroll={() => checkLoadMoreItems(loading, hasMoreData, ref, setLoadMoreItems)}
-        ref={ref}
+const DataList = ({
+  data, idKey, selectable, selected, onSelect, dataRender,
+}) => (
+  <Fragment>
+    {data.map(({ [idKey]: id, ...content }) => (
+      <Card
+        {...{
+          selectable,
+          key: id,
+          selected: !!selected[id],
+          onSelect: () => onSelect(id),
+        }}
       >
-        {items}
-        {loading && <h4 key={loadingMessageId}>Loading...</h4>}
-      </div>
-    </div>
-  );
-};
+        {dataRender(content)}
+      </Card>
+    ))}
+  </Fragment>
+);
 
 DataList.propTypes = {
   /**
-   * Callback to request more items if user scrolled to the bottom of the scroll-container or if
-   * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
+   * The data to be displayed
    */
-  onLoadMoreItems: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
-   * A boolean to indicate that the parent has more items to provide.
+   * The name of an attribute in each of the data objects which serves as a unique ID
    */
-  hasMoreData: PropTypes.bool.isRequired,
+  idKey: PropTypes.string,
   /**
-   * An array of JSX elements which will populate the scrollContainer.
+   * A callback function that is called whenever a user selects a row. The row ID is returned upon
+   * callback.
    */
-  items: PropTypes.arrayOf(PropTypes.element).isRequired,
+  onSelect: PropTypes.func.isRequired,
+  /**
+   * An object which indicates which rows have been selected by the user.
+   */
+  selected: PropTypes.instanceOf(Object),
+  /**
+   * Flag which indicates rows should be selectable with an input box.
+   */
+  selectable: PropTypes.bool,
+  /**
+   * An array of objects which specifies attributes about each column of your data. Each object has
+   *  label, name and render attributes.
+   */
+  dataRender: PropTypes.func.isRequired,
 };
 
-export default DataList;
+DataList.defaultProps = {
+  idKey: 'id',
+  selected: {},
+  selectable: false,
+};
+
+export default withDataLoader(DataList);

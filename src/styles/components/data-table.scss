@@ -3,19 +3,6 @@
 @import "../mixins";
 
 .data-table {
-  &__container {
-    height: 100%;
-    overflow-x: auto;
-  }
-
-  &__cover {
-    width: 100%;
-    position: relative;
-    background-color: $colour-white;
-    height: 1px;
-    top: 1px;
-  }
-
   &__table {
     border: 0;
     border-collapse: collapse;
