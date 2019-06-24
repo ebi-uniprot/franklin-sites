@@ -3,6 +3,32 @@ import PropTypes from 'prop-types';
 import withDataLoader from './data-loader';
 import '../styles/components/data-table.scss';
 
+const sharedPropTypes = {
+  /**
+   * Flag which indicates rows should be selectable with an input box.
+   */
+  selectable: PropTypes.bool,
+  /**
+   * An array of objects which specifies attributes about each column of your data. Each object has
+   *  label, name and render attributes.
+   */
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      render: PropTypes.func.isRequired,
+    }),
+  ).isRequired,
+  /**
+   * A callback function that is called whenever a user clicks the header. The column name is
+   * returned upon callback.
+   */
+};
+
+const sharedDefaultProps = {
+  selectable: false,
+};
+
 const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
   <thead className="data-table__table__header">
     <tr className="data-table__table__header__row">
@@ -39,20 +65,13 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
 );
 
 DataTableHead.propTypes = {
-  selectable: PropTypes.bool,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      render: PropTypes.func.isRequired,
-    }),
-  ).isRequired,
+  ...sharedPropTypes,
   onHeaderClick: PropTypes.func,
 };
 
 DataTableHead.defaultProps = {
+  ...sharedDefaultProps,
   onHeaderClick: () => null,
-  selectable: false,
 };
 
 const getCellClassName = (index, selectable, isSelected) => {
@@ -92,6 +111,32 @@ const DataTableBody = ({
   </tbody>
 );
 
+DataTableBody.propTypes = {
+  ...sharedPropTypes,
+  /**
+   * The data to be displayed
+   */
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * The name of an attribute in each of the data objects which serves as a unique ID
+   */
+  idKey: PropTypes.string,
+  /**
+   * A callback function that is called whenever a user selects a row. The row ID is returned upon
+   * callback.
+   */
+  onSelect: PropTypes.func.isRequired,
+  /**
+   * An object which indicates which rows have been selected by the user.
+   */
+  selected: PropTypes.instanceOf(Object),
+};
+
+DataTableBody.defaultProps = {
+  idKey: 'id',
+  selected: {},
+};
+
 const DataTable = ({
   data, columns, onSelect, selected, idKey, selectable, onHeaderClick,
 }) => (
@@ -119,50 +164,13 @@ const DataTable = ({
 );
 
 DataTable.propTypes = {
-  /**
-   * The data to be displayed
-   */
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  /**
-   * The name of an attribute in each of the data objects which serves as a unique ID
-   */
-  idKey: PropTypes.string,
-  /**
-   * A callback function that is called whenever a user selects a row. The row ID is returned upon
-   * callback.
-   */
-  onSelect: PropTypes.func.isRequired,
-  /**
-   * An object which indicates which rows have been selected by the user.
-   */
-  selected: PropTypes.instanceOf(Object),
-  /**
-   * Flag which indicates rows should be selectable with an input box.
-   */
-  selectable: PropTypes.bool,
-  /**
-   * An array of objects which specifies attributes about each column of your data. Each object has
-   *  label, name and render attributes.
-   */
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      render: PropTypes.func.isRequired,
-    }),
-  ).isRequired,
-  /**
-   * A callback function that is called whenever a user clicks the header. The column name is
-   * returned upon callback.
-   */
-  onHeaderClick: PropTypes.func,
+  ...DataTableHead.propTypes,
+  ...DataTableBody.propTypes,
 };
 
 DataTable.defaultProps = {
-  onHeaderClick: () => null,
-  idKey: 'id',
-  selected: {},
-  selectable: false,
+  ...sharedDefaultProps,
+  ...DataTableBody.defaultProps,
 };
 
 export default withDataLoader(DataTable);

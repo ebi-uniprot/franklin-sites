@@ -102,7 +102,7 @@ const DataViewsContent = () => {
               onLoadMoreItems,
               selectable,
               selected,
-              dataRender: content => <Fragment>{Object.values(content)}</Fragment>,
+              dataRenderer: content => <Fragment>{Object.values(content)}</Fragment>,
             }}
           />
         )}

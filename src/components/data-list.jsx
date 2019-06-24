@@ -4,19 +4,19 @@ import withDataLoader from './data-loader';
 import Card from './card';
 
 const DataList = ({
-  data, idKey, selectable, selected, onSelect, dataRender,
+  data, idKey, selectable, selected, onSelect, dataRenderer,
 }) => (
   <Fragment>
     {data.map(({ [idKey]: id, ...content }) => (
       <Card
+        key={id}
         {...{
           selectable,
-          key: id,
           selected: !!selected[id],
           onSelect: () => onSelect(id),
         }}
       >
-        {dataRender(content)}
+        {dataRenderer(content)}
       </Card>
     ))}
   </Fragment>
@@ -35,7 +35,7 @@ DataList.propTypes = {
    * A callback function that is called whenever a user selects a row. The row ID is returned upon
    * callback.
    */
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
   /**
    * An object which indicates which rows have been selected by the user.
    */
@@ -48,12 +48,13 @@ DataList.propTypes = {
    * An array of objects which specifies attributes about each column of your data. Each object has
    *  label, name and render attributes.
    */
-  dataRender: PropTypes.func.isRequired,
+  dataRenderer: PropTypes.func.isRequired,
 };
 
 DataList.defaultProps = {
   idKey: 'id',
   selected: {},
+  onSelect: () => {},
   selectable: false,
 };
 

@@ -3,295 +3,295 @@
 exports[`DataTable should render 1`] = `
 <DocumentFragment>
   <div
-    class="data-table__cover"
-  />
-  <div
-    class="data-table__container"
+    class="data-loader__wrapper"
   >
-    <table
-      class="data-table__table"
+    <div
+      class="data-loader__scroll-container"
     >
-      <thead
-        class="data-table__table__header"
+      <table
+        class="data-table__table"
       >
-        <tr
-          class="data-table__table__header__row"
+        <thead
+          class="data-table__table__header"
         >
-          <th
-            class="data-table__table__header__row__cell"
+          <tr
+            class="data-table__table__header__row"
           >
-             
-          </th>
-          <th
-            class="data-table__table__header__row__cell data-table__table__header__row__cell--ascend"
-          >
-            Column 1
-          </th>
-          <th
-            class="data-table__table__header__row__cell "
-          >
-            Column 2
-          </th>
-          <th
-            class="data-table__table__header__row__cell data-table__table__header__row__cell--sortable"
-          >
-            Column 3
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="data-table__table__body"
+            <th
+              class="data-table__table__header__row__cell"
+            >
+               
+            </th>
+            <th
+              class="data-table__table__header__row__cell data-table__table__header__row__cell--ascend"
+            >
+              Column 1
+            </th>
+            <th
+              class="data-table__table__header__row__cell "
+            >
+              Column 2
+            </th>
+            <th
+              class="data-table__table__header__row__cell data-table__table__header__row__cell--sortable"
+            >
+              Column 3
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="data-table__table__body"
+        >
+          <tr>
+            <td
+              class="data-table__table__body__cell "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell "
+            >
+              baz
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              foo
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              bar
+            </td>
+            <td
+              class="data-table__table__body__cell data-table__table__body__cell--odd "
+            >
+              baz
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        class="data-loader__loading"
       >
-        <tr>
-          <td
-            class="data-table__table__body__cell "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            <input
-              type="checkbox"
-            />
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            foo
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            bar
-          </td>
-          <td
-            class="data-table__table__body__cell data-table__table__body__cell--odd "
-          >
-            baz
-          </td>
-        </tr>
-        <tr>
-          <td
-            class="data-table__table__body__cell--loading"
-            colspan="4"
-          >
-            Loading...
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <h4>
+          Loading...
+        </h4>
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
