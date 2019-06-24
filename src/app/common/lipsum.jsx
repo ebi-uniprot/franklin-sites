@@ -8,7 +8,7 @@ export const getLipsumSentence = () =>
     sentenceUpperBound: 30,
   });
 
-export const getLipsumObjectArray = ({ numberElements, keys, idKey }) =>
+export const getLipsumObjectArray = ({ numberElements, keys, idKey = 'id' }) =>
   fillArray(numberElements, () => {
     const dataPoint = { [idKey]: v1() };
     keys.forEach((key) => {

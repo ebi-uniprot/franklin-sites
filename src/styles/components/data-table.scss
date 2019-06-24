@@ -3,105 +3,99 @@
 @import "../mixins";
 
 .data-table {
-  border: 1px solid $colour-seashell-grey;
-  margin: 0 0 3em 0;
-
-  &__head {
-    font-weight: bold;
-    color: $colour-white;
-    background-color: $colour-uniprot-blue;
+  &__container {
+    height: 100%;
+    overflow-x: auto;
   }
 
-  &__body {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  &__row {
-    display: flex;
+  &__cover {
     width: 100%;
-    flex-wrap: nowrap;
-
-    &--warning {
-      background-color: map-get($foundation-palette, warning);
-    }
-
-    &--odd {
-      background-color: $colour-seashell-grey;
-    }
-
-    &--selected {
-      background-color: $colour-light-blue;
-      border-bottom: 1px solid $colour-white;
-    }
+    position: relative;
+    background-color: $colour-white;
+    height: 1px;
+    top: 1px;
   }
 
-  %cell {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0.8em 1.2em;
-    overflow: hidden;
+  &__table {
+    border: 0;
+    border-collapse: collapse;
     text-align: left;
-  }
+    width: 100%;
 
-  %checkbox {
-    box-sizing: border-box;
-    width: 0;
-    padding: 0.8em 1.2em;
-    overflow: hidden;
-  }
+    &__header {
+      &__row {
+        &__cell {
+          border: 0;
+          padding: 0.25rem 0.5rem;
+          font-weight: bold;
+          white-space: nowrap;
+          color: $colour-white;
+          background-color: $colour-uniprot-blue;
+          top: 0;
+          z-index: 2;
+          position: sticky;
+          position: -webkit-sticky;
+          position: -moz-sticky;
+          position: -ms-sticky;
+          position: -o-sticky;
 
-  &__data {
-    @extend %cell;
+          &--ascend {
+            cursor: pointer;
+            &::after {
+              @include chevron(up, $colour-white);
+            }
+          }
 
-    &--checkbox {
-      @extend %checkbox;
-    }
-  }
+          &--descend {
+            cursor: pointer;
+            &::after {
+              @include chevron(down, $colour-white);
+            }
+          }
 
-  &__header {
-    @extend %cell;
-
-    &--checkbox {
-      @extend %checkbox;
-    }
-
-    &--ascend {
-      cursor: pointer;
-      &::after {
-        @include chevron(up, $colour-white);
+          &--sortable {
+            cursor: pointer;
+            &::after {
+              @include chevron(down, $colour-light-grey);
+            }
+            &:hover:after {
+              @include chevron(down, $colour-white);
+            }
+          }
+        }
       }
     }
 
-    &--descend {
-      cursor: pointer;
-      &::after {
-        @include chevron(down, $colour-white);
+    &__body {
+      &__cell {
+        padding: 0.5rem;
+        vertical-align: top;
+        border: 0;
+        border-bottom: 1px solid $colour-white;
+
+        &--warning {
+          background-color: map-get($foundation-palette, warning);
+        }
+
+        &--odd {
+          background-color: $colour-seashell-grey;
+        }
+
+        &--selected {
+          background-color: $colour-light-blue;
+        }
+
+        &--checkbox {
+          box-sizing: border-box;
+          width: 0;
+          padding: 0.8em 1.2em;
+          overflow: hidden;
+        }
+
+        &--loading {
+          text-align: center;
+        }
       }
     }
-
-    &--sortable {
-      cursor: pointer;
-      &::after {
-        @include chevron(down, $colour-light-grey);
-      }
-      &:hover:after {
-        @include chevron(down, $colour-white);
-      }
-    }
-  }
-
-  [type="checkbox"] {
-    margin: 0;
-  }
-
-  &__header--large,
-  &__data--large {
-    flex: 4 1 90em;
-  }
-
-  &__header--small,
-  &__data--small {
-    flex: 0 1 16em;
   }
 }

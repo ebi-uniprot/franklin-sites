@@ -30,6 +30,7 @@ class MainSearchWrapper extends Component {
 
   handleChange(searchTerm) {
     this.setState({ searchTerm });
+    // eslint-disable-next-line no-console
     console.log('Main search change:', searchTerm);
   }
 
@@ -120,6 +121,7 @@ const components = [
     purpose: 'Allow selection of item from flat data set',
     props: {
       data: flattenedPaths,
+      // eslint-disable-next-line no-console
       onSelect: value => console.log(value),
       placeholder: 'Placeholder',
       filter: true,
@@ -133,6 +135,7 @@ const components = [
     props: {
       onSubmit: (e) => {
         e.preventDefault();
+        // eslint-disable-next-line no-console
         console.log('Main search submit');
       },
     },
@@ -215,7 +218,9 @@ const components = [
     props: {
       data: facetData,
       selectedFacets: [{ name: 'facet_2', value: 'value_2' }],
+      // eslint-disable-next-line no-console
       addFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+      // eslint-disable-next-line no-console
       removeFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
     },
   },

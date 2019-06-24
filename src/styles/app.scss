@@ -90,17 +90,13 @@ section {
   }
 }
 
-.scroll-data-loader__status {
-  padding-left: $global-padding;
-}
-
-.data-list {
-  height: 80vh;
-  &__wrapper {
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+.data-view {
+  &__dashboard {
+    padding-left: $global-padding;
+  }
+  &__container {
+    height: 65vh;
+    width: 60vh;
   }
 }
 

@@ -1,0 +1,11 @@
+.data-list {
+  &__wrapper {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  &__scroll-container {
+    overflow-y: auto;
+  }
+}
