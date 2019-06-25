@@ -8,7 +8,7 @@ describe('DataTable', () => {
   const onSelect = jest.fn();
   const onHeaderClick = jest.fn();
   const selectable = true;
-  const selected = {};
+  const selected = { id0: true };
   const hasMoreData = true;
   const columns = [
     {
@@ -31,7 +31,7 @@ describe('DataTable', () => {
     },
   ];
   const data = fillArray(10, (element, index) => ({
-    [idKey]: `id-${index}`,
+    [idKey]: `id${index}`,
     content1: 'foo',
     content2: 'bar',
     content3: 'baz',

@@ -44,24 +44,25 @@ exports[`DataTable should render 1`] = `
         >
           <tr>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__table__body__cell data-table__table__body__cell--selected"
             >
               <input
+                checked=""
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__table__body__cell data-table__table__body__cell--selected"
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__table__body__cell data-table__table__body__cell--selected"
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__table__body__cell data-table__table__body__cell--selected"
             >
               baz
             </td>
@@ -284,13 +285,6 @@ exports[`DataTable should render 1`] = `
           </tr>
         </tbody>
       </table>
-      <div
-        class="data-loader__loading"
-      >
-        <h4>
-          Loading...
-        </h4>
-      </div>
     </div>
   </div>
 </DocumentFragment>

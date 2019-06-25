@@ -23,7 +23,9 @@ const withDataLoader = BaseComponent => (props) => {
 
   useEffect(() => {
     if (hasMoreData && isNotScrollable(ref)) {
-      setLoading(true);
+      // Note: @dan, commenting the following line
+      // as I don't think it's necessary?
+      // setLoading(true);
       onLoadMoreItems();
     } else {
       setLoading(false);

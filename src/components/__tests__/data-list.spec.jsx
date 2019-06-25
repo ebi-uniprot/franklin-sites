@@ -37,7 +37,8 @@ describe('DataList', () => {
         dataRenderer={dataRenderer}
       />,
     );
-    const scrollContainer = container.firstChild.firstChild;
+    const scrollContainer = container.querySelector('.data-loader__scroll-container');
+    jest.spyOn(scrollContainer, 'scrollHeight', 'get').mockImplementation(() => -10);
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
@@ -51,8 +52,24 @@ describe('DataList', () => {
         dataRenderer={dataRenderer}
       />,
     );
-    const scrollContainer = container.firstChild.firstChild;
+    const scrollContainer = container.querySelector('.data-loader__scroll-container');
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalledTimes(0);
+  });
+
+  test('should allow selection', () => {
+    const onSelect = jest.fn();
+    const { container } = render(
+      <DataList
+        onLoadMoreItems={onLoadMoreItems}
+        hasMoreData={false}
+        data={data}
+        selectable
+        onSelect={onSelect}
+        dataRenderer={dataRenderer}
+      />,
+    );
+    fireEvent.click(container.querySelector('input'));
+    expect(onSelect).toHaveBeenCalled();
   });
 });

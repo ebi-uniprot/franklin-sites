@@ -118,13 +118,6 @@ exports[`DataList should render 1`] = `
           </p>
         </div>
       </div>
-      <div
-        class="data-loader__loading"
-      >
-        <h4>
-          Loading...
-        </h4>
-      </div>
     </div>
   </div>
 </DocumentFragment>
