@@ -129,7 +129,7 @@ DataTableBody.propTypes = {
   /**
    * An object which indicates which rows have been selected by the user.
    */
-  selected: PropTypes.instanceOf(Object),
+  selected: PropTypes.objectOf(PropTypes.bool),
 };
 
 DataTableBody.defaultProps = {
@@ -142,22 +142,14 @@ const DataTable = ({
 }) => (
   <Fragment>
     <table className="data-table__table">
-      <DataTableHead
-        {...{
-          selectable,
-          columns,
-          onHeaderClick,
-        }}
-      />
+      <DataTableHead selectable={selectable} columns={columns} onHeaderClick={onHeaderClick} />
       <DataTableBody
-        {...{
-          data,
-          columns,
-          onSelect,
-          selected,
-          idKey,
-          selectable,
-        }}
+        data={data}
+        columns={columns}
+        onSelect={onSelect}
+        selected={selected}
+        idKey={idKey}
+        selectable={selectable}
       />
     </table>
   </Fragment>

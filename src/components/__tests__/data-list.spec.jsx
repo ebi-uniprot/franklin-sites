@@ -5,7 +5,7 @@ import { fillArray } from '../../utils';
 
 describe('DataList', () => {
   const data = fillArray(10, (element, index) => ({
-    id: `id-${index}`,
+    id: `id${index}`,
     content: index,
   }));
 
@@ -38,7 +38,6 @@ describe('DataList', () => {
       />,
     );
     const scrollContainer = container.querySelector('.data-loader__scroll-container');
-    jest.spyOn(scrollContainer, 'scrollHeight', 'get').mockImplementation(() => -10);
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalled();
   });

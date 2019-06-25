@@ -285,6 +285,13 @@ exports[`DataTable should render 1`] = `
           </tr>
         </tbody>
       </table>
+      <div
+        class="data-loader__loading"
+      >
+        <h4>
+          Loading...
+        </h4>
+      </div>
     </div>
   </div>
 </DocumentFragment>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../styles/components/info-list.scss';
-// NOTE: DELETE? is this used???
+
 const InfoList = ({ infoData }) => (
   <div className="info-list">
     {infoData.map(
