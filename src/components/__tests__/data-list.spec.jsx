@@ -4,35 +4,71 @@ import DataList from '../data-list';
 import { fillArray } from '../../utils';
 
 describe('DataList', () => {
-  const items = fillArray(10, (element, index) => <p key={index}>{index}</p>);
+  const data = fillArray(10, (element, index) => ({
+    id: `id${index}`,
+    content: index,
+  }));
 
   let onLoadMoreItems;
+  let dataRenderer;
   beforeEach(() => {
     onLoadMoreItems = jest.fn();
+    dataRenderer = item => <p>{item.content}</p>;
   });
 
   test('should render', () => {
     const { asFragment } = render(
-      <DataList onLoadMoreItems={onLoadMoreItems} hasMoreData items={items} />,
+      <DataList
+        onLoadMoreItems={onLoadMoreItems}
+        hasMoreData
+        data={data}
+        dataRenderer={dataRenderer}
+      />,
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('should request more data', () => {
     const { container } = render(
-      <DataList onLoadMoreItems={onLoadMoreItems} hasMoreData items={items} />,
+      <DataList
+        onLoadMoreItems={onLoadMoreItems}
+        hasMoreData
+        data={data}
+        dataRenderer={dataRenderer}
+      />,
     );
-    const scrollContainer = container.firstChild.firstChild;
+    const scrollContainer = container.querySelector('.data-loader__scroll-container');
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
 
   test('should not request more data', () => {
     const { container } = render(
-      <DataList onLoadMoreItems={onLoadMoreItems} hasMoreData={false} items={items} />,
+      <DataList
+        onLoadMoreItems={onLoadMoreItems}
+        hasMoreData={false}
+        data={data}
+        dataRenderer={dataRenderer}
+      />,
     );
-    const scrollContainer = container.firstChild.firstChild;
+    const scrollContainer = container.querySelector('.data-loader__scroll-container');
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalledTimes(0);
+  });
+
+  test('should allow selection', () => {
+    const onSelect = jest.fn();
+    const { container } = render(
+      <DataList
+        onLoadMoreItems={onLoadMoreItems}
+        hasMoreData={false}
+        data={data}
+        selectable
+        onSelect={onSelect}
+        dataRenderer={dataRenderer}
+      />,
+    );
+    fireEvent.click(container.querySelector('input'));
+    expect(onSelect).toHaveBeenCalled();
   });
 });

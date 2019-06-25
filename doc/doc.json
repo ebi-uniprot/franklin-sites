@@ -6,7 +6,9 @@
       {
         "name": "highlightSubstring",
         "docblock": null,
-        "modifiers": ["static"],
+        "modifiers": [
+          "static"
+        ],
         "params": [
           {
             "name": "string",
@@ -79,7 +81,9 @@
       {
         "name": "filterOptions",
         "docblock": null,
-        "modifiers": ["static"],
+        "modifiers": [
+          "static"
+        ],
         "params": [
           {
             "name": "items",
@@ -95,7 +99,9 @@
       {
         "name": "shouldShowDropdown",
         "docblock": null,
-        "modifiers": ["static"],
+        "modifiers": [
+          "static"
+        ],
         "params": [
           {
             "name": "{\n  textInputValue, data, selected, filter,\n}",
@@ -301,6 +307,12 @@
             },
             {
               "name": "string"
+            },
+            {
+              "name": "arrayOf",
+              "value": {
+                "name": "node"
+              }
             }
           ]
         },
@@ -370,249 +382,34 @@
       }
     }
   },
-  "src/components/data-table-core.jsx": {
+  "src/components/data-list.jsx": {
     "description": "",
-    "displayName": "DataTableCore",
-    "methods": [
-      {
-        "name": "getColumnWidth",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "{ index }",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "getSortableHeaderCell",
-        "docblock": null,
-        "modifiers": ["static"],
-        "params": [
-          {
-            "name": "{ column, onHeaderClick, style }",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "getHeaderCell",
-        "docblock": null,
-        "modifiers": ["static"],
-        "params": [
-          {
-            "name": "{ column, onHeaderClick, style }",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "getLoadingCell",
-        "docblock": null,
-        "modifiers": ["static"],
-        "params": [
-          {
-            "name": "{ className, style }",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "getSelectCell",
-        "docblock": null,
-        "modifiers": ["static"],
-        "params": [
-          {
-            "name": "{\n  id, onSelect, style, className, selectedRows,\n}",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "getRowCountCell",
-        "docblock": null,
-        "modifiers": ["static"],
-        "params": [
-          {
-            "name": "{\n  style, className, rowIndex, showHeader,\n}",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "getNoRenderCell",
-        "docblock": null,
-        "modifiers": ["static"],
-        "params": [
-          {
-            "name": "{ style, column }",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "getCell",
-        "docblock": null,
-        "modifiers": ["static"],
-        "params": [
-          {
-            "name": "{\n  column,\n  row,\n  style,\n  rowIndex,\n  showHeader,\n  idKey,\n  onSelect,\n  onHeaderClick,\n  selectedRows,\n}",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "cellRenderer",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "{\n  columnIndex, rowIndex, key, parent, style,\n}",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "isRowLoaded",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "{ index }",
-            "type": null
-          }
-        ],
-        "returns": null
-      }
-    ],
+    "displayName": "DataList",
+    "methods": [],
     "props": {
-      "columns": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "shape",
-            "value": {
-              "width": {
-                "name": "number",
-                "required": true
-              }
-            }
-          }
-        },
-        "required": true,
-        "description": ""
-      },
-      "data": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "object"
-          }
-        },
-        "required": true,
-        "description": ""
-      },
-      "selectedRows": {
-        "type": {
-          "name": "shape",
-          "value": {}
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "{}",
-          "computed": false
-        }
-      },
-      "onSelect": {
-        "type": {
-          "name": "func"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "() => {}",
-          "computed": false
-        }
-      },
-      "onHeaderClick": {
-        "type": {
-          "name": "func"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "() => {}",
-          "computed": false
-        }
-      },
-      "idKey": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "'id'",
-          "computed": false
-        }
-      },
-      "onLoadMoreRows": {
+      "onLoadMoreItems": {
         "type": {
           "name": "func"
         },
         "required": true,
-        "description": ""
+        "description": "Callback to request more items if user scrolled to the bottom of the scroll-container or if\nthe scroll-container isn't scrollable yet because not enough items have been loaded yet."
       },
-      "fixedColumnCount": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "fixedRowCount": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "totalNumberRows": {
-        "type": {
-          "name": "number"
-        },
-        "required": true,
-        "description": ""
-      },
-      "showHeader": {
+      "hasMoreData": {
         "type": {
           "name": "bool"
         },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
+        "required": true,
+        "description": "A boolean to indicate that the parent has more items to provide."
+      },
+      "items": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "element"
+          }
+        },
+        "required": true,
+        "description": "An array of JSX elements which will populate the scrollContainer."
       }
     }
   },
@@ -621,21 +418,19 @@
     "displayName": "DataTable",
     "methods": [],
     "props": {
-      "columns": {
+      "onLoadMoreItems": {
         "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "shape",
-            "value": {
-              "width": {
-                "name": "number",
-                "required": true
-              }
-            }
-          }
+          "name": "func"
         },
         "required": true,
-        "description": ""
+        "description": "Callback to request more items if user scrolled to the bottom of the scroll-container or if\nthe scroll-container isn't scrollable yet because not enough items have been loaded yet."
+      },
+      "hasMoreData": {
+        "type": {
+          "name": "bool"
+        },
+        "required": true,
+        "description": "A boolean to indicate that the parent has more items to provide."
       },
       "data": {
         "type": {
@@ -645,28 +440,16 @@
           }
         },
         "required": true,
-        "description": ""
+        "description": "The data to be displayed"
       },
-      "selectable": {
+      "idKey": {
         "type": {
-          "name": "bool"
+          "name": "string"
         },
         "required": false,
-        "description": "",
+        "description": "The name of an attribute in each of the data objects which serves as a unique ID",
         "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "selectedRows": {
-        "type": {
-          "name": "shape",
-          "value": {}
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "{}",
+          "value": "'id'",
           "computed": false
         }
       },
@@ -674,90 +457,64 @@
         "type": {
           "name": "func"
         },
+        "required": true,
+        "description": "A callback function that is called whenever a user selects a row. The row ID is returned upon\ncallback."
+      },
+      "selected": {
+        "type": {
+          "name": "instanceOf",
+          "value": "Object"
+        },
         "required": false,
-        "description": "",
+        "description": "An object which indicates which rows have been selected by the user.",
         "defaultValue": {
-          "value": "() => {}",
+          "value": "{}",
           "computed": false
         }
+      },
+      "selectable": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Flag which indicates rows should be selectable with an input box.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "columns": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "label": {
+                "name": "string",
+                "required": true
+              },
+              "name": {
+                "name": "string",
+                "required": true
+              },
+              "render": {
+                "name": "func",
+                "required": true
+              }
+            }
+          }
+        },
+        "required": true,
+        "description": "An array of objects which specifies attributes about each column of your data. Each object has\n label, name and render attributes."
       },
       "onHeaderClick": {
         "type": {
           "name": "func"
         },
         "required": false,
-        "description": "",
+        "description": "A callback function that is called whenever a user clicks the header. The column name is\nreturned upon callback.",
         "defaultValue": {
-          "value": "() => {}",
-          "computed": false
-        }
-      },
-      "idKey": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "'id'",
-          "computed": false
-        }
-      },
-      "onLoadMoreRows": {
-        "type": {
-          "name": "func"
-        },
-        "required": true,
-        "description": ""
-      },
-      "fixedColumnCount": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "fixedRowCount": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "0",
-          "computed": false
-        }
-      },
-      "showRowNumbers": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "false",
-          "computed": false
-        }
-      },
-      "totalNumberRows": {
-        "type": {
-          "name": "number"
-        },
-        "required": true,
-        "description": ""
-      },
-      "showHeader": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "",
-        "defaultValue": {
-          "value": "true",
+          "value": "() => null",
           "computed": false
         }
       }
@@ -1125,6 +882,11 @@
       }
     }
   },
+  "src/components/loader.jsx": {
+    "description": "",
+    "displayName": "Loader",
+    "methods": []
+  },
   "src/components/main-search.jsx": {
     "description": "",
     "displayName": "MainSearch",
@@ -1201,59 +963,6 @@
           "value": "[]",
           "computed": false
         }
-      }
-    }
-  },
-  "src/components/scroll-data-loader.jsx": {
-    "description": "",
-    "displayName": "ScrollItemsLoader",
-    "methods": [],
-    "props": {
-      "onLoadMoreItems": {
-        "type": {
-          "name": "func"
-        },
-        "required": true,
-        "description": "Callback to request more data if user scrolled to the bottom of the scroll-container or if"
-      },
-      "loadingIndicator": {
-        "type": {
-          "name": "element"
-        },
-        "required": false,
-        "description": "Component to indicate to user that more data is being loaded.",
-        "defaultValue": {
-          "value": "<h4 key={v1()}>Loading...</h4>",
-          "computed": false
-        }
-      },
-      "scrollContainer": {
-        "type": {
-          "name": "element"
-        },
-        "required": false,
-        "description": "The component which will hold the items and is scrolled over.",
-        "defaultValue": {
-          "value": "<div />",
-          "computed": false
-        }
-      },
-      "items": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "element"
-          }
-        },
-        "required": true,
-        "description": "An array of JSX elements which will populate the scrollContainer."
-      },
-      "hasMoreItems": {
-        "type": {
-          "name": "bool"
-        },
-        "required": true,
-        "description": "A boolean to indicate that the parent has more data to provide."
       }
     }
   },

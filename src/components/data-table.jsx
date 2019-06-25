@@ -1,13 +1,33 @@
-import React, {
-  useState, useRef, useEffect, Fragment,
-} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {
-  checkLoadMoreItems,
-  checkOnDataLoad,
-  checkOnLoadMoreItems,
-} from './utils/scroll-data-loader';
+import withDataLoader from './data-loader';
 import '../styles/components/data-table.scss';
+
+const sharedPropTypes = {
+  /**
+   * Flag which indicates rows should be selectable with an input box.
+   */
+  selectable: PropTypes.bool,
+  /**
+   * An array of objects which specifies attributes about each column of your data. Each object has
+   *  label, name and render attributes.
+   */
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      render: PropTypes.func.isRequired,
+    }),
+  ).isRequired,
+  /**
+   * A callback function that is called whenever a user clicks the header. The column name is
+   * returned upon callback.
+   */
+};
+
+const sharedDefaultProps = {
+  selectable: false,
+};
 
 const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
   <thead className="data-table__table__header">
@@ -45,47 +65,13 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
 );
 
 DataTableHead.propTypes = {
-  selectable: PropTypes.bool,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      render: PropTypes.func.isRequired,
-    }),
-  ).isRequired,
+  ...sharedPropTypes,
   onHeaderClick: PropTypes.func,
 };
 
 DataTableHead.defaultProps = {
+  ...sharedDefaultProps,
   onHeaderClick: () => null,
-  selectable: false,
-};
-
-const LoadingRow = ({ columns, selectable }) => (
-  <tr key="loading-row">
-    <td
-      key="loading-column"
-      className="data-table__table__body__cell--loading"
-      colSpan={columns.length + (selectable ? 1 : 0)}
-    >
-      Loading...
-    </td>
-  </tr>
-);
-
-LoadingRow.propTypes = {
-  selectable: PropTypes.bool,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      render: PropTypes.func.isRequired,
-    }),
-  ).isRequired,
-};
-
-LoadingRow.defaultProps = {
-  selectable: false,
 };
 
 const getCellClassName = (index, selectable, isSelected) => {
@@ -100,7 +86,7 @@ const getCellClassName = (index, selectable, isSelected) => {
 };
 
 const DataTableBody = ({
-  data, columns, onSelect, selected, idKey, selectable, loading,
+  data, columns, onSelect, selected, idKey, selectable,
 }) => (
   <tbody className="data-table__table__body">
     {data.map((row, index) => {
@@ -122,77 +108,11 @@ const DataTableBody = ({
         </tr>
       );
     })}
-    {loading && <LoadingRow {...{ columns, selectable }} />}
   </tbody>
 );
 
-const DataTable = ({
-  onLoadMoreItems,
-  data,
-  hasMoreData,
-  columns,
-  onSelect,
-  selected,
-  idKey,
-  selectable,
-  onHeaderClick,
-}) => {
-  const [loading, setLoading] = useState(false);
-  const [loadMoreItems, setLoadMoreItems] = useState(false);
-  const ref = useRef();
-
-  useEffect(
-    () => checkOnDataLoad(hasMoreData, setLoading, onLoadMoreItems, setLoadMoreItems, ref),
-    [data.length],
-  );
-
-  useEffect(() => checkOnLoadMoreItems(loadMoreItems, setLoading, onLoadMoreItems), [
-    loadMoreItems,
-  ]);
-
-  return (
-    <Fragment>
-      <div className="data-table__cover" />
-      <div
-        className="data-table__container"
-        onScroll={() => checkLoadMoreItems(loading, hasMoreData, ref, setLoadMoreItems)}
-        ref={ref}
-      >
-        <table className="data-table__table">
-          <DataTableHead
-            {...{
-              selectable,
-              columns,
-              onHeaderClick,
-            }}
-          />
-          <DataTableBody
-            {...{
-              data,
-              columns,
-              onSelect,
-              selected,
-              idKey,
-              selectable,
-              loading,
-            }}
-          />
-        </table>
-      </div>
-    </Fragment>
-  );
-};
-
-DataTable.propTypes = {
-  /**
-   * Callback to request more items if user scrolled to the bottom of the scroll-container or if
-   * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
-   */
-  onLoadMoreItems: PropTypes.func.isRequired,
-  /**
-   * A boolean to indicate that the parent has more items to provide.
-   */
-  hasMoreData: PropTypes.bool.isRequired,
+DataTableBody.propTypes = {
+  ...sharedPropTypes,
   /**
    * The data to be displayed
    */
@@ -209,34 +129,40 @@ DataTable.propTypes = {
   /**
    * An object which indicates which rows have been selected by the user.
    */
-  selected: PropTypes.instanceOf(Object),
-  /**
-   * Flag which indicates rows should be selectable with an input box.
-   */
-  selectable: PropTypes.bool,
-  /**
-   * An array of objects which specifies attributes about each column of your data. Each object has
-   *  label, name and render attributes.
-   */
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      render: PropTypes.func.isRequired,
-    }),
-  ).isRequired,
-  /**
-   * A callback function that is called whenever a user clicks the header. The column name is
-   * returned upon callback.
-   */
-  onHeaderClick: PropTypes.func,
+  selected: PropTypes.objectOf(PropTypes.bool),
+};
+
+DataTableBody.defaultProps = {
+  idKey: 'id',
+  selected: {},
+};
+
+const DataTable = ({
+  data, columns, onSelect, selected, idKey, selectable, onHeaderClick,
+}) => (
+  <Fragment>
+    <table className="data-table__table">
+      <DataTableHead selectable={selectable} columns={columns} onHeaderClick={onHeaderClick} />
+      <DataTableBody
+        data={data}
+        columns={columns}
+        onSelect={onSelect}
+        selected={selected}
+        idKey={idKey}
+        selectable={selectable}
+      />
+    </table>
+  </Fragment>
+);
+
+DataTable.propTypes = {
+  ...DataTableHead.propTypes,
+  ...DataTableBody.propTypes,
 };
 
 DataTable.defaultProps = {
-  onHeaderClick: () => null,
-  idKey: 'id',
-  selected: {},
-  selectable: false,
+  ...sharedDefaultProps,
+  ...DataTableBody.defaultProps,
 };
 
-export default DataTable;
+export default withDataLoader(DataTable);

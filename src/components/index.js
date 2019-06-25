@@ -11,6 +11,7 @@ export { default as InfoList } from './info-list';
 export { default as Card } from './card';
 export { default as EvidenceTag } from './evidence-tag';
 export { default as DataTable } from './data-table';
+export { default as DataList } from './data-list';
 export { default as Sequence } from './sequence';
 export { default as ExternalLink } from './external-link';
 export { default as InPageNav } from './in-page-nav';

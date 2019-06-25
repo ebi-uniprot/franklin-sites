@@ -7,12 +7,13 @@ const InfoList = ({ infoData }) => (
   <div className="info-list">
     {infoData.map(
       // Only draw if there is content
-      item => item.content && (
-      <div className="info-list__item" key={item.title}>
-        <div className="info-list__item__title">{item.title}</div>
-        <div className="info-list__item__content">{item.content}</div>
-      </div>
-      ),
+      item =>
+        item.content && (
+          <div className="info-list__item" key={item.title}>
+            <div className="info-list__item__title">{item.title}</div>
+            <div className="info-list__item__content">{item.content}</div>
+          </div>
+        ),
     )}
   </div>
 );
