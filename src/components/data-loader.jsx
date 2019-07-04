@@ -15,7 +15,6 @@ const withDataLoader = BaseComponent => (props) => {
   const {
     onLoadMoreItems, hasMoreData, data, loaderComponent = 'Loading...',
   } = props;
-
   const [loading, setLoading] = useState(false);
   const [loadMoreItems, setLoadMoreItems] = useState(false);
   const ref = useRef();
@@ -29,14 +28,14 @@ const withDataLoader = BaseComponent => (props) => {
       setLoading(false);
       setLoadMoreItems(false);
     }
-  }, [data.length]);
+  }, [data.length, hasMoreData, onLoadMoreItems]);
 
   useEffect(() => {
     if (loadMoreItems) {
       setLoading(true);
       onLoadMoreItems();
     }
-  }, [loadMoreItems]);
+  }, [loadMoreItems, onLoadMoreItems]);
 
   const isBottom = () => {
     const { scrollHeight, scrollTop, offsetHeight } = ref.current;

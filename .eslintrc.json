@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": ["airbnb", "plugin:jest/recommended"],
-  "plugins": ["jest"],
+  "plugins": ["jest", "react-hooks"],
   "env": {
     "browser": true,
     "node": true,
@@ -17,6 +17,8 @@
       }
     ],
     "react/no-did-update-set-state": "off",
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
