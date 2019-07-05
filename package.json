@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.3-dev.38",
+  "version": "0.0.3-dev.39",
   "main": "./dist/franklin-components.js",
   "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
@@ -41,13 +41,13 @@
     "npm-run-all": "^4.1.2",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
-    "react-router-dom": "^4.2.2",
+    "react": "^16.8.6",
     "react-copy-to-clipboard": "^5.0.1",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^4.2.2",
     "react-scrollspy": "^3.4.0",
     "react-svg-loader": "^2.1.0",
-    "uuid": "^3.3.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
