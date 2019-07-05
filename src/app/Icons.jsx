@@ -11,6 +11,8 @@ import {
   BasketIcon,
   StatisticsIcon,
   ProteinIcon,
+  TableIcon,
+  ListIcon,
 } from '../components';
 
 const size = 30;
@@ -70,6 +72,16 @@ const iconDefinition = [
     name: 'protein.svg',
     description: 'Protein',
     icon: <ProteinIcon width={size} height={size} />,
+  },
+  {
+    name: 'table.svg',
+    description: 'Table',
+    icon: <TableIcon width={size} height={size} />,
+  },
+  {
+    name: 'th-list.svg',
+    description: 'List',
+    icon: <ListIcon width={size} height={size} />,
   },
 ];
 

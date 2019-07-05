@@ -28,3 +28,5 @@ export { default as DownloadIcon } from '../svg/download.svg';
 export { default as StatisticsIcon } from '../svg/statistics.svg';
 export { default as BasketIcon } from '../svg/basket.svg';
 export { default as ProteinIcon } from '../svg/protein.svg';
+export { default as ListIcon } from '../svg/th-list.svg';
+export { default as TableIcon } from '../svg/table.svg';
