@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { v1 } from 'uuid';
 import '../styles/components/data-loader.scss';
 
 const scrollOffsetPercentage = 10;
 const scrollOffsetFactor = 1 + scrollOffsetPercentage / 100;
-
-const isNotScrollable = (node) => {
-  const { scrollHeight, offsetHeight } = node.current;
-  return scrollHeight <= offsetHeight * scrollOffsetFactor;
-};
 
 const withDataLoader = BaseComponent => (props) => {
   const {
@@ -18,10 +12,14 @@ const withDataLoader = BaseComponent => (props) => {
   const [loading, setLoading] = useState(false);
   const [loadMoreItems, setLoadMoreItems] = useState(false);
   const ref = useRef();
-  const loadingMessageId = v1();
+
+  const isNotScrollable = () => {
+    const { scrollHeight, offsetHeight } = ref.current;
+    return scrollHeight <= offsetHeight * scrollOffsetFactor;
+  };
 
   useEffect(() => {
-    if (hasMoreData && isNotScrollable(ref)) {
+    if (hasMoreData && isNotScrollable()) {
       setLoading(true);
       onLoadMoreItems();
     } else {
@@ -58,7 +56,7 @@ const withDataLoader = BaseComponent => (props) => {
         <BaseComponent {...props} />
         {loading && (
           <div className="data-loader__loading">
-            <h4 key={loadingMessageId}>{loaderComponent}</h4>
+            <h4>{loaderComponent}</h4>
           </div>
         )}
       </div>
