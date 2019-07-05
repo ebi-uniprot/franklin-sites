@@ -7,13 +7,13 @@ const DataList = ({
   data, idKey, selectable, selected, onSelect, dataRenderer,
 }) => (
   <Fragment>
-    {data.map(({ [idKey]: id, ...content }) => (
+    {data.map(content => (
       <Card
-        key={id}
+        key={content[idKey]}
         {...{
           selectable,
-          selected: !!selected[id],
-          onSelect: () => onSelect(id),
+          selected: !!selected[content[idKey]],
+          onSelect: () => onSelect(content[idKey]),
         }}
       >
         {dataRenderer(content)}
