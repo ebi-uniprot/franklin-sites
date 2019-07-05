@@ -10,6 +10,12 @@
     vertical-align: middle;
     fill: $colour-white;
   }
+  &.large-icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: -0.2rem;
+    margin-right: 0.5rem;
+  }
   &.secondary {
     color: $colour-uniprot-blue;
     border: 0.1rem solid $colour-uniprot-blue;
@@ -32,6 +38,11 @@
     }
     svg {
       fill: $colour-uniprot-blue;
+    }
+    & .link-button-icon__active {
+      svg {
+        fill: $colour-light-grey;
+      }
     }
   }
 }
