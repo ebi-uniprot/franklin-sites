@@ -288,9 +288,7 @@ exports[`DataTable should render 1`] = `
       <div
         class="data-loader__loading"
       >
-        <h4>
-          Loading...
-        </h4>
+        Loading...
       </div>
     </div>
   </div>

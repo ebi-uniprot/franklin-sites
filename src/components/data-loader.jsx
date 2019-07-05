@@ -54,11 +54,7 @@ const withDataLoader = BaseComponent => (props) => {
         ref={ref}
       >
         <BaseComponent {...props} />
-        {loading && (
-          <div className="data-loader__loading">
-            <h4>{loaderComponent}</h4>
-          </div>
-        )}
+        {loading && <div className="data-loader__loading">{loaderComponent}</div>}
       </div>
     </div>
   );
