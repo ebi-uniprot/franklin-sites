@@ -2,11 +2,15 @@ import { loremIpsum } from 'lorem-ipsum';
 import v1 from 'uuid';
 import { fillArray } from '../../utils';
 
-export const getLipsumSentence = () =>
-  loremIpsum({
+export const getLipsumWord = () => loremIpsum({ count: 1, units: 'words' });
+
+export const getLipsumSentence = (maxLength = null) => {
+  const sentence = loremIpsum({
     sentenceLowerBound: 2,
     sentenceUpperBound: 30,
   });
+  return maxLength ? sentence.slice(0, maxLength) : sentence;
+};
 
 export const getLipsumObjectArray = ({ numberElements, keys, idKey = 'id' }) =>
   fillArray(numberElements, () => {

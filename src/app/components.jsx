@@ -19,6 +19,8 @@ import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
 import Loader from '../components/loader';
+import { getLipsumWord, getLipsumSentence } from './common/lipsum';
+import { fillArray } from '../utils';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -159,16 +161,10 @@ const components = [
     purpose:
       'Provide a way of easily scanning for attribute names in order to view their associated data.',
     props: {
-      infoData: [
-        {
-          title: 'Item 1',
-          content: <div>Some content</div>,
-        },
-        {
-          title: 'Another item',
-          content: <div>Some more content</div>,
-        },
-      ],
+      infoData: fillArray(20, index => ({
+        title: `title ${index + 1}`,
+        content: <div>{getLipsumSentence(30)}</div>,
+      })),
     },
   },
   {
