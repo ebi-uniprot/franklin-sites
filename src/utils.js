@@ -43,3 +43,7 @@ export const fillArray = (numberElements, func) =>
   Array(numberElements)
     .fill(null)
     .map((currentValue, index) => func(index));
+
+export function capitaliseFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

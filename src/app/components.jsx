@@ -19,8 +19,8 @@ import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
 import Loader from '../components/loader';
-import { getLipsumWord, getLipsumSentence } from './common/lipsum';
-import { fillArray } from '../utils';
+import ExpandableList from '../components/expandable-list';
+import { getLipsumObjectArray } from './common/lipsum';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -161,10 +161,27 @@ const components = [
     purpose:
       'Provide a way of easily scanning for attribute names in order to view their associated data.',
     props: {
-      infoData: fillArray(20, index => ({
-        title: `title ${index + 1}`,
-        content: <div>{getLipsumSentence(30)}</div>,
-      })),
+      infoData: [
+        {
+          title: 'Item 1',
+          content: <div>Some content</div>,
+        },
+        {
+          title: 'Another item',
+          content: <div>Some more content</div>,
+        },
+      ],
+    },
+  },
+  {
+    name: 'Expandable List',
+    component: ExpandableList,
+    function: 'Display an unordered list of items which is initially collapsed.',
+    purpose: 'Provide a way of truncating long unordered lists of items.',
+    props: {
+      numberCollapsedItems: 5,
+      descriptionString: 'lorem ipsum items',
+      children: getLipsumObjectArray({ numberElements: 10, keys: ['content'], type: 'words' }),
     },
   },
   {
