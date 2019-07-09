@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ExpandableMessage = ({ descriptionString, expanded, setExpanded }) => (
+export const ExpandableMessage = ({ descriptionString, expanded, setExpanded }) => (
   <button className="button link-button" type="button" onClick={() => setExpanded(!expanded)}>
     {expanded ? `Less ${descriptionString}` : `More ${descriptionString}`}
   </button>
@@ -10,7 +10,11 @@ const ExpandableMessage = ({ descriptionString, expanded, setExpanded }) => (
 ExpandableMessage.propTypes = {
   expanded: PropTypes.bool.isRequired,
   setExpanded: PropTypes.func.isRequired,
-  descriptionString: PropTypes.string.isRequired,
+  descriptionString: PropTypes.string,
+};
+
+ExpandableMessage.defaultProps = {
+  descriptionString: 'items',
 };
 
 const ExpandableList = ({
