@@ -387,51 +387,6 @@
     "displayName": "DataList",
     "methods": [],
     "props": {
-      "onLoadMoreItems": {
-        "type": {
-          "name": "func"
-        },
-        "required": true,
-        "description": "Callback to request more items if user scrolled to the bottom of the scroll-container or if\nthe scroll-container isn't scrollable yet because not enough items have been loaded yet."
-      },
-      "hasMoreData": {
-        "type": {
-          "name": "bool"
-        },
-        "required": true,
-        "description": "A boolean to indicate that the parent has more items to provide."
-      },
-      "items": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "element"
-          }
-        },
-        "required": true,
-        "description": "An array of JSX elements which will populate the scrollContainer."
-      }
-    }
-  },
-  "src/components/data-table.jsx": {
-    "description": "",
-    "displayName": "DataTable",
-    "methods": [],
-    "props": {
-      "onLoadMoreItems": {
-        "type": {
-          "name": "func"
-        },
-        "required": true,
-        "description": "Callback to request more items if user scrolled to the bottom of the scroll-container or if\nthe scroll-container isn't scrollable yet because not enough items have been loaded yet."
-      },
-      "hasMoreData": {
-        "type": {
-          "name": "bool"
-        },
-        "required": true,
-        "description": "A boolean to indicate that the parent has more items to provide."
-      },
       "data": {
         "type": {
           "name": "arrayOf",
@@ -457,8 +412,12 @@
         "type": {
           "name": "func"
         },
-        "required": true,
-        "description": "A callback function that is called whenever a user selects a row. The row ID is returned upon\ncallback."
+        "required": false,
+        "description": "A callback function that is called whenever a user selects a row. The row ID is returned upon\ncallback.",
+        "defaultValue": {
+          "value": "() => {}",
+          "computed": false
+        }
       },
       "selected": {
         "type": {
@@ -483,42 +442,19 @@
           "computed": false
         }
       },
-      "columns": {
-        "type": {
-          "name": "arrayOf",
-          "value": {
-            "name": "shape",
-            "value": {
-              "label": {
-                "name": "string",
-                "required": true
-              },
-              "name": {
-                "name": "string",
-                "required": true
-              },
-              "render": {
-                "name": "func",
-                "required": true
-              }
-            }
-          }
-        },
-        "required": true,
-        "description": "An array of objects which specifies attributes about each column of your data. Each object has\n label, name and render attributes."
-      },
-      "onHeaderClick": {
+      "dataRenderer": {
         "type": {
           "name": "func"
         },
-        "required": false,
-        "description": "A callback function that is called whenever a user clicks the header. The column name is\nreturned upon callback.",
-        "defaultValue": {
-          "value": "() => null",
-          "computed": false
-        }
+        "required": true,
+        "description": "An array of objects which specifies attributes about each column of your data. Each object has\n label, name and render attributes."
       }
     }
+  },
+  "src/components/data-table.jsx": {
+    "description": "",
+    "displayName": "DataTable",
+    "methods": []
   },
   "src/components/dropdown-button.jsx": {
     "description": "",
