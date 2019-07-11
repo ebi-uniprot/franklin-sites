@@ -21,17 +21,20 @@ const ExpandableList = ({
   children, numberCollapsedItems, descriptionString, showBullets,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const enoughChildren = children.length > numberCollapsedItems + 1;
   const itemNodes = children
-    .slice(0, expanded ? children.length : numberCollapsedItems)
+    .slice(0, expanded || !enoughChildren ? children.length : numberCollapsedItems)
     .map(item => <li key={item.id}>{item.content}</li>);
   return (
     <ul className={showBullets ? '' : 'no-bullet'}>
       {itemNodes}
-      <ExpandableMessage
-        expanded={expanded}
-        setExpanded={setExpanded}
-        descriptionString={descriptionString}
-      />
+      {enoughChildren && (
+        <ExpandableMessage
+          expanded={expanded}
+          setExpanded={setExpanded}
+          descriptionString={descriptionString}
+        />
+      )}
     </ul>
   );
 };
