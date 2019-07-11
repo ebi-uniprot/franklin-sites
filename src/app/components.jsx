@@ -19,6 +19,8 @@ import { EvidenceTag } from '../components';
 import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
 import Loader from '../components/loader';
+import ExpandableList from '../components/expandable-list';
+import { getLipsumObjectArray } from './common/lipsum';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -169,6 +171,17 @@ const components = [
           content: <div>Some more content</div>,
         },
       ],
+    },
+  },
+  {
+    name: 'Expandable List',
+    component: ExpandableList,
+    function: 'Display an unordered list of items which is initially collapsed.',
+    purpose: 'Provide a way of truncating long unordered lists of items.',
+    props: {
+      numberCollapsedItems: 5,
+      descriptionString: 'lorem ipsum items',
+      children: getLipsumObjectArray({ numberElements: 10, keys: ['content'], type: 'words' }),
     },
   },
   {

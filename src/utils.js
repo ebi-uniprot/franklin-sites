@@ -42,4 +42,8 @@ export function serializableDeepAreEqual(obj1, obj2) {
 export const fillArray = (numberElements, func) =>
   Array(numberElements)
     .fill(null)
-    .map(func);
+    .map((currentValue, index) => func(currentValue, index));
+
+export function capitaliseFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
