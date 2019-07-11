@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import ExpandableList, { ExpandableMessage } from '../expandable-list';
 import { fillArray } from '../../utils';
+
+afterEach(cleanup);
 
 const descriptionString = 'foo';
 
@@ -69,6 +71,30 @@ describe('ExpandableList', () => {
       </ExpandableList>,
     );
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should not show more button if numberItems <= numberCollapsedItems + 1', () => {
+    const { queryByTestId } = render(
+      <ExpandableList
+        numberCollapsedItems={numberCollapsedItems}
+        descriptionString={descriptionString}
+      >
+        {items.slice(0, numberCollapsedItems + 1)}
+      </ExpandableList>,
+    );
+    expect(queryByTestId('expandable-message')).toBeNull();
+  });
+
+  test('should not show more button if numberItems > numberCollapsedItems + 1', () => {
+    const { getByTestId } = render(
+      <ExpandableList
+        numberCollapsedItems={numberCollapsedItems}
+        descriptionString={descriptionString}
+      >
+        {items}
+      </ExpandableList>,
+    );
+    expect(getByTestId('expandable-message')).toBeTruthy();
   });
 
   test('should initially have numberCollapsedItems and then total number of items after More button click ', () => {

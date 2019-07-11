@@ -22,6 +22,7 @@ exports[`ExpandableList should render 1`] = `
     </li>
     <button
       class="button link-button"
+      data-testid="expandable-message"
       type="button"
     >
       More foo
@@ -34,6 +35,7 @@ exports[`ExpandableMessage should render 1`] = `
 <DocumentFragment>
   <button
     class="button link-button"
+    data-testid="expandable-message"
     type="button"
   >
     More foo

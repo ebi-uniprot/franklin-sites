@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export const ExpandableMessage = ({ descriptionString, expanded, setExpanded }) => (
-  <button className="button link-button" type="button" onClick={() => setExpanded(!expanded)}>
+  <button
+    data-testid="expandable-message"
+    className="button link-button"
+    type="button"
+    onClick={() => setExpanded(!expanded)}
+  >
     {expanded ? `Less ${descriptionString}` : `More ${descriptionString}`}
   </button>
 );
