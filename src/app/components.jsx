@@ -181,7 +181,7 @@ const components = [
     props: {
       numberCollapsedItems: 5,
       descriptionString: 'lorem ipsum items',
-      children: getLipsumObjectArray({ numberElements: 25, keys: ['content'], type: 'words' }),
+      children: getLipsumObjectArray({ numberElements: 10, keys: ['content'], type: 'words' }),
     },
   },
   {
