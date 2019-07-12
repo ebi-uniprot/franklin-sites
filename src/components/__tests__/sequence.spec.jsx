@@ -11,11 +11,7 @@ describe('Sequence component', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(
-      <Sequence
-        sequence={sequenceData}
-        textSize={{ width: 10, height: 10 }}
-        isoformId="isoformId-1"
-      />,
+      <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} id="isoformId-1" />,
     );
   });
 

@@ -244,7 +244,7 @@ const components = [
     purpose: 'Allow users to see a protein / nucleotide sequence',
     props: {
       sequence: sequenceData,
-      isoformId: 'isoformId-1',
+      id: 'isoformId-1',
     },
   },
   {

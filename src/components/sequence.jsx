@@ -57,17 +57,18 @@ class Sequence extends Component {
 
   getSelectors = () => {
     const { highlights } = this.state;
-    const { isoformId } = this.props;
+    const { id } = this.props;
+
     return (
       <DropdownButton label="Highlight">
         <div className="dropdown-menu__content">
           {aminoAcidsProps.map((aaProp) => {
-            const id = `${isoformId}-${aaProp.name}`;
+            const inputId = `${id || v1()}-${aaProp.name}`;
             return (
-              <label key={aaProp.name} htmlFor={id}>
+              <label key={aaProp.name} htmlFor={inputId}>
                 <input
                   type="checkbox"
-                  id={id}
+                  id={inputId}
                   onChange={() => this.handleToggleHighlight(aaProp)}
                   checked={highlights.includes(aaProp)}
                 />
@@ -143,14 +144,15 @@ Sequence.propTypes = {
    */
   chunkSize: PropTypes.number,
   /**
-   * The isoform ID used to form a unique ID for the component's highlight options.
+   * An ID used to form the highlight options IDs. Default uuid/v1
    */
-  isoformId: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
   textSize: null,
+  id: '',
 };
 
 export default Sequence;
