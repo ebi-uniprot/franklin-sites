@@ -8,27 +8,25 @@ import Sequence from '../sequence';
 configure({ adapter: new Adapter() });
 
 describe('Sequence component', () => {
-  test('should render', () => {
-    const wrapper = shallow(
-      <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} />,
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(
+      <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} id="isoformId-1" />,
     );
+  });
+
+  test('should render', () => {
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
   test('should toggle highlight on', () => {
     const highlight = { name: 'Test', aminoAcids: ['A', 'B', 'C'] };
-    const wrapper = shallow(
-      <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} />,
-    );
     wrapper.instance().handleToggleHighlight(highlight);
     expect(wrapper.state().highlights).toEqual([highlight]);
   });
 
   test('should toggle highlight off', () => {
     const highlight = { name: 'Test', aminoAcids: ['A', 'B', 'C'] };
-    const wrapper = shallow(
-      <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} />,
-    );
     wrapper.instance().handleToggleHighlight(highlight);
     wrapper.instance().handleToggleHighlight(highlight);
     expect(wrapper.state().highlights).toEqual([]);
@@ -36,11 +34,8 @@ describe('Sequence component', () => {
 
   test('simulate highlight click', () => {
     const handleToggleHighlight = jest.fn();
-    const wrapper = shallow(
-      <Sequence sequence={sequenceData} textSize={{ width: 10, height: 10 }} />,
-    );
     wrapper.instance().handleToggleHighlight = handleToggleHighlight;
-    wrapper.find('#Polar').simulate('click');
+    wrapper.find('#isoformId-1-Polar').simulate('change');
     expect(handleToggleHighlight).toBeCalled();
   });
 });

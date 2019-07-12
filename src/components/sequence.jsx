@@ -55,22 +55,31 @@ class Sequence extends Component {
     });
   };
 
-  getSelectors = () => (
-    <DropdownButton label="Highlight">
-      <div className="dropdown-menu__content">
-        {aminoAcidsProps.map(aaProp => (
-          <label key={aaProp.name} htmlFor={aaProp.name}>
-            <input
-              type="checkbox"
-              onClick={() => this.handleToggleHighlight(aaProp)}
-              id={aaProp.name}
-            />
-            {aaProp.name}
-          </label>
-        ))}
-      </div>
-    </DropdownButton>
-  );
+  getSelectors = () => {
+    const { highlights } = this.state;
+    const { id } = this.props;
+
+    return (
+      <DropdownButton label="Highlight">
+        <div className="dropdown-menu__content">
+          {aminoAcidsProps.map((aaProp) => {
+            const inputId = `${id || v1()}-${aaProp.name}`;
+            return (
+              <label key={aaProp.name} htmlFor={inputId}>
+                <input
+                  type="checkbox"
+                  id={inputId}
+                  onChange={() => this.handleToggleHighlight(aaProp)}
+                  checked={highlights.includes(aaProp)}
+                />
+                {aaProp.name}
+              </label>
+            );
+          })}
+        </div>
+      </DropdownButton>
+    );
+  };
 
   render() {
     const { sequence, chunkSize } = this.props;
@@ -134,11 +143,16 @@ Sequence.propTypes = {
    * The number of items to include in a sequence chunk. Default 10
    */
   chunkSize: PropTypes.number,
+  /**
+   * An ID used to form the highlight options IDs. Default uuid/v1
+   */
+  id: PropTypes.string,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
   textSize: null,
+  id: '',
 };
 
 export default Sequence;

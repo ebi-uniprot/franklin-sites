@@ -5,12 +5,12 @@ exports[`Sequence component should render 1`] = `
   <div className=\\"action-bar\\">
     <DropdownButton label=\\"Highlight\\">
       <div className=\\"dropdown-menu__content\\">
-        <label htmlFor=\\"Polar\\">
-          <input type=\\"checkbox\\" onClick={[Function: onClick]} id=\\"Polar\\" />
+        <label htmlFor=\\"isoformId-1-Polar\\">
+          <input type=\\"checkbox\\" id=\\"isoformId-1-Polar\\" onChange={[Function: onChange]} checked={false} />
           Polar
         </label>
-        <label htmlFor=\\"Hydrophobic\\">
-          <input type=\\"checkbox\\" onClick={[Function: onClick]} id=\\"Hydrophobic\\" />
+        <label htmlFor=\\"isoformId-1-Hydrophobic\\">
+          <input type=\\"checkbox\\" id=\\"isoformId-1-Hydrophobic\\" onChange={[Function: onChange]} checked={false} />
           Hydrophobic
         </label>
       </div>
