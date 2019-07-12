@@ -1057,6 +1057,13 @@
           "value": "10",
           "computed": false
         }
+      },
+      "isoformId": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": ""
       }
     }
   },
