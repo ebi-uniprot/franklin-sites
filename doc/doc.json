@@ -1058,12 +1058,16 @@
           "computed": false
         }
       },
-      "isoformId": {
+      "id": {
         "type": {
           "name": "string"
         },
-        "required": true,
-        "description": ""
+        "required": false,
+        "description": "An ID used to form the highlight options IDs. Default uuid/v1",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
       }
     }
   },
