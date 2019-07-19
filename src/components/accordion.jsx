@@ -18,6 +18,7 @@ const Accordion = ({ title, count, children }) => {
   return (
     <div className="accordion">
       <div
+        data-testid="accordion-title"
         role="button"
         tabIndex={0}
         className="accordion__title"
@@ -43,6 +44,7 @@ const Accordion = ({ title, count, children }) => {
         </div>
       </div>
       <div
+        data-testid="accordion-content"
         className={`accordion__content ${
           showContent ? 'accordion__content--display-content' : 'accordion__content--hide-content'
         }`}
