@@ -84,12 +84,12 @@ const components = [
   {
     name: 'Accordion',
     component: Accordion,
-    function: 'blah',
-    purpose: 'blah',
+    function: 'Show/hide blocks of content',
+    purpose: 'Minimise information-overload',
     props: {
       title: 'Title',
-      count: 9,
-      children: <div>Infinte content now</div>,
+      count: 10,
+      children: <div>{loremIpsum({ count: 25, units: 'words' })}</div>,
     },
   },
   {

@@ -4,14 +4,14 @@ import '../styles/components/accordion.scss';
 import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 
-const chevronSize = 20;
+const chevronSize = 16;
 const Accordion = ({ title, count, children }) => {
   const [showContent, setShowContent] = useState(false);
   const toggleShowContent = () => {
     setShowContent(!showContent);
   };
   const handleKeyPress = (key) => {
-    if (key === 'Enter') {
+    if (key.key === 'Enter') {
       toggleShowContent();
     }
   };
@@ -53,28 +53,26 @@ const Accordion = ({ title, count, children }) => {
   );
 };
 
-// PageIntro.propTypes = {
-//   /**
-//    * The title, works as a trigger to open/close
-//    */
-//   title: PropTypes.string.isRequired,
-//   /**
-//    * Number of results
-//    */
-//   resultsCount: PropTypes.number,
-//   /**
-//    * Content revealed on toggle
-//    */
-//   children: PropTypes.node.isRequired,
-//   /**
-//    * Links revealed on toggle
-//    */
-//   links: PropTypes.arrayOf(PropTypes.shape({})),
-// };
+// title, count, children
 
-// PageIntro.defaultProps = {
-//   resultsCount: 0,
-//   links: [],
-// };
+Accordion.propTypes = {
+  /**
+   * The title, works as a trigger to open/close
+   */
+  title: PropTypes.string.isRequired,
+  /**
+   * Number displayed at the right of the accordion. This could, for example, be used to inform
+     the user how many checkboxes have selected in the accodion's hidden content.
+   */
+  count: PropTypes.number,
+  /**
+   * Content revealed on toggle
+   */
+  children: PropTypes.node.isRequired,
+};
+
+Accordion.defaultProps = {
+  count: 0,
+};
 
 export default Accordion;
