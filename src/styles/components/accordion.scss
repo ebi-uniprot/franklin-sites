@@ -1,0 +1,51 @@
+@import '../settings';
+@import '../colours';
+
+.accordion {
+  width: 100%;
+  border: 1px solid $medium-gray;
+
+  &__title {
+    padding: 0.25rem 0.5rem;
+    width: 100%;
+    outline: 0;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &__text {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    &__side {
+      margin-top: 0.25rem;
+
+      &__chevron {
+        position: relative;
+        top: 0.25rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  &__content {
+    border-top: 1px solid $medium-gray;
+    padding: 0.75rem;
+    &--hide-content {
+      display: none;
+    }
+    &--display-content {
+      display: block;
+    }
+  }
+}
+
+.accordion-group {
+  .accordion:not(:first-child) {
+    border-top: none;
+  }
+}

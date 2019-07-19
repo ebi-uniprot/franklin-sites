@@ -1,26 +1,52 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/page-intro.scss';
+import '../styles/components/accordion.scss';
 import ChevronDown from '../svg/chevron-down.svg';
-import ChevronRight from '../svg/chevron-up.svg';
+import ChevronUp from '../svg/chevron-up.svg';
 
 const chevronSize = 20;
 const Accordion = ({ title, count, children }) => {
   const [showContent, setShowContent] = useState(false);
+  const toggleShowContent = () => {
+    setShowContent(!showContent);
+  };
+  const handleKeyPress = (key) => {
+    if (key === 'Enter') {
+      toggleShowContent();
+    }
+  };
   return (
-    <div className="page-intro">
-      <h2>
-        {title}
-        <button type="button" onClick={() => setShowContent(!showContent)} className="dropdown">
+    <div className="accordion">
+      <div
+        role="button"
+        tabIndex={0}
+        className="accordion__title"
+        onClick={() => toggleShowContent()}
+        onKeyPress={key => handleKeyPress(key)}
+      >
+        <div className="accordion__title__text">{title}</div>
+        <div className="accordion__title__side">
+          {count > 0 && count}
           {showContent ? (
-            <ChevronRight width={chevronSize} height={chevronSize} />
+            <ChevronUp
+              width={chevronSize}
+              height={chevronSize}
+              className="accordion__title__side__chevron"
+            />
           ) : (
-            <ChevronDown width={chevronSize} height={chevronSize} />
+            <ChevronDown
+              width={chevronSize}
+              height={chevronSize}
+              className="accordion__title__side__chevron"
+            />
           )}
-        </button>
-        {count > 0 && <small>{count}</small>}
-      </h2>
-      <div className={`intro-content ${showContent && 'intro-content--display-content'}`}>
+        </div>
+      </div>
+      <div
+        className={`accordion__content ${
+          showContent ? 'accordion__content--display-content' : 'accordion__content--hide-content'
+        }`}
+      >
         {children}
       </div>
     </div>
