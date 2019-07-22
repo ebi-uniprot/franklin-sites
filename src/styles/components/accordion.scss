@@ -1,13 +1,16 @@
 @import '../colours';
 
+$border-color: $colour-light-grey;
+
 .accordion {
   width: 100%;
-  border: 1px solid $medium-gray;
+  border: 1px solid $border-color;
 
   &__title {
     padding: 0.25rem 0.5rem;
     width: 100%;
     outline: 0;
+    background-color: $colour-seashell-grey;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
@@ -32,7 +35,7 @@
     }
   }
   &__content {
-    border-top: 1px solid $medium-gray;
+    border-top: 1px solid $border-color;
     padding: 0.75rem;
     &--hide-content {
       display: none;
