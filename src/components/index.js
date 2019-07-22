@@ -17,6 +17,7 @@ export { default as ExternalLink } from './external-link';
 export { default as InPageNav } from './in-page-nav';
 export { default as Loader } from './loader';
 export { default as ExpandableList } from './expandable-list';
+export { default as Accordion } from './accordion';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
