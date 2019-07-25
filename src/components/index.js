@@ -31,3 +31,4 @@ export { default as BasketIcon } from '../svg/basket.svg';
 export { default as ProteinIcon } from '../svg/protein.svg';
 export { default as ListIcon } from '../svg/th-list.svg';
 export { default as TableIcon } from '../svg/table.svg';
+export { default as ConfigureIcon } from '../svg/cog.svg';
