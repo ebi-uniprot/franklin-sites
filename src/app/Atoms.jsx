@@ -5,6 +5,7 @@ import Colours from './Colours';
 import Icons from './Icons';
 import Buttons from './Buttons';
 import Links from './Links';
+import Numbers from './Numbers';
 
 const HomePageContent = () => (
   <Fragment>
@@ -13,6 +14,7 @@ const HomePageContent = () => (
     <Icons />
     <Buttons />
     <Links />
+    <Numbers />
   </Fragment>
 );
 
@@ -40,6 +42,10 @@ const HomePage = () => (
       {
         label: 'Links',
         id: 'links',
+      },
+      {
+        label: 'Numbers',
+        id: 'numbers',
       },
     ]}
   />
