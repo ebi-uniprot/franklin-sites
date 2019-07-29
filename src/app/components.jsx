@@ -20,6 +20,7 @@ import Sequence from '../components/sequence';
 import InPageNav from '../components/in-page-nav';
 import Loader from '../components/loader';
 import ExpandableList from '../components/expandable-list';
+import Accordion from '../components/accordion';
 import { getLipsumObjectArray } from './common/lipsum';
 
 class MainSearchWrapper extends Component {
@@ -78,6 +79,17 @@ const components = [
       children:
         'UniProtKB consists of two sections:Reviewed (Swiss-Prot) - Manually annotated Records with information extracted from literature and curator-evaluated computational analysis. Unreviewed (TrEMBL) - Computationally analyzed. Records that await full manual annotation. The UniProt Knowledgebase (UniProtKB) is the central hub for the collection of functional information on proteins, with accurate, consistent and rich annotation. In addition to capturing the core data mandatory for each UniProtKB entry (mainly, the amino acid sequence, protein name or description, taxonomic data and citation information), as much annotation information as possible is added.',
       links: [{ title: 'Help', icon: '', destination: '' }],
+    },
+  },
+  {
+    name: 'Accordion',
+    component: Accordion,
+    function: 'Show/hide blocks of content',
+    purpose: 'Minimise information-overload',
+    props: {
+      title: 'Title',
+      count: 10,
+      children: <div>{loremIpsum({ count: 25, units: 'words' })}</div>,
     },
   },
   {
