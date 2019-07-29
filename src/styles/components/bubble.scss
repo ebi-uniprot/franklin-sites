@@ -1,0 +1,14 @@
+@import "../settings";
+@import "../colours";
+
+.bubble {
+  display: inline-block;
+  margin: 0 0.2rem;
+  background: $colour-uniprot-blue;
+  color: $colour-white;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+}

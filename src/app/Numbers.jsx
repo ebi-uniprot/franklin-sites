@@ -1,5 +1,6 @@
 import React from 'react';
 import DoughnutChart from '../components/doughnut-chart';
+import Bubble from '../components/bubble';
 
 const Numbers = () => (
   <section className="atoms-section" id="numbers">
@@ -12,6 +13,12 @@ const Numbers = () => (
           as percentages but custom text can be shown instead.
         </p>
         <DoughnutChart percent={60}>3/5</DoughnutChart>
+      </section>
+      <section>
+        <h3>Bubble</h3>
+        <p />
+        <Bubble value={56} />
+        <Bubble value={10000} />
       </section>
     </section>
   </section>
