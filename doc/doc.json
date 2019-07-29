@@ -1,4 +1,107 @@
 {
+  "src/components/accordion.jsx": {
+    "description": "",
+    "displayName": "Accordion",
+    "methods": [],
+    "props": {
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": "The title, works as a trigger to open/close"
+      },
+      "count": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Number displayed at the right of the accordion. This could, for example, be used to inform\n     the user how many checkboxes have selected in the accodion's hidden content.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": true,
+        "description": "Content revealed on toggle"
+      }
+    }
+  },
+  "src/components/auto-complete.jsx": {
+    "description": "",
+    "displayName": "AutoComplete",
+    "methods": [
+      {
+        "name": "getMatchingPaths",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "items",
+            "type": null
+          },
+          {
+            "name": "id",
+            "type": null
+          },
+          {
+            "name": "path",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "getPathLabels",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "path",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "getPathTerms",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "path",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "handleChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "event",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
+    "props": {
+      "data": {
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  },
   "src/components/autocomplete-item.jsx": {
     "description": "",
     "displayName": "AutocompleteItem",
