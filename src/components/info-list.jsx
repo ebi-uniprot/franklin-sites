@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import '../styles/components/info-list.scss';
 
-const InfoList = ({ infoData }) => (
-  <div className="info-list">
+const InfoList = ({ infoData, columns = false }) => (
+  <div className={`info-list${columns ? ' info-list--columns' : ''}`}>
     {infoData.map(
       // Only draw if there is content
       item =>
@@ -28,6 +28,15 @@ InfoList.propTypes = {
       content: PropTypes.element,
     }),
   ).isRequired,
+  /**
+   * A boolean indicating whether the component should span multiple
+   * columns on medium to large screens or not.
+   */
+  columns: PropTypes.bool,
+};
+
+InfoList.defaultProps = {
+  columns: false,
 };
 
 export default InfoList;

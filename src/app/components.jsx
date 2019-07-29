@@ -182,6 +182,10 @@ const components = [
           title: 'Another item',
           content: <div>Some more content</div>,
         },
+        {
+          title: 'Yet another item',
+          content: loremIpsum({ count: 25, units: 'words' }),
+        },
       ],
     },
   },
