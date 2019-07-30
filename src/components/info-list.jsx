@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../styles/components/info-list.scss';
 
-const InfoList = ({ infoData, columns = false }) => (
+const InfoList = ({ infoData, columns }) => (
   <div className={`info-list${columns ? ' info-list--columns' : ''}`}>
     {infoData.map(
       // Only draw if there is content
