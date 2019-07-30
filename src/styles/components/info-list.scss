@@ -6,7 +6,7 @@
   margin: $global-margin 0 2 * $global-margin 0;
   &__item {
     display: flex;
-    margin: $global-margin 0;
+    margin-bottom: $global-margin;
     &__title {
       flex-basis: 10vw;
       flex-shrink: 0;
