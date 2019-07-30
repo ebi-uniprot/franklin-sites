@@ -839,7 +839,15 @@
                 "required": false
               },
               "content": {
-                "name": "element",
+                "name": "union",
+                "value": [
+                  {
+                    "name": "string"
+                  },
+                  {
+                    "name": "element"
+                  }
+                ],
                 "required": false
               }
             }
@@ -847,6 +855,17 @@
         },
         "required": true,
         "description": "An array of objects each containing 'title' and 'content'"
+      },
+      "columns": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "A boolean indicating whether the component should span multiple\ncolumns on medium to large screens or not.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },
