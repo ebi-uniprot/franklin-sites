@@ -14,6 +14,7 @@ import {
   TableIcon,
   ListIcon,
   ConfigureIcon,
+  SearchIcon,
 } from '../components';
 
 const size = 30;
@@ -88,6 +89,11 @@ const iconDefinition = [
     name: 'cog.svg',
     description: 'Configure',
     icon: <ConfigureIcon width={size} height={size} />,
+  },
+  {
+    name: 'search.svg',
+    description: 'Search',
+    icon: <SearchIcon width={size} height={size} />,
   },
 ];
 
