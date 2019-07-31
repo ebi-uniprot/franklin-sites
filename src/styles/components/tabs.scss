@@ -1,0 +1,36 @@
+@import "../settings";
+@import "../colours";
+
+.tabs {
+  &__header {
+    width: 100%;
+    border-bottom: 1px solid $colour-light-grey;
+    margin-bottom: $global-margin;
+
+    &__item {
+      display: inline-block;
+      padding: $global-padding;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      &:hover {
+        color: $colour-uniprot-blue;
+      }
+
+      &--active {
+        border-bottom: 1px solid $colour-uniprot-blue;
+      }
+    }
+  }
+
+  &__content {
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+}
