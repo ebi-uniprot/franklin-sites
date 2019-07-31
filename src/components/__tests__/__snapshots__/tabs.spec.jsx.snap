@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs should render 1`] = `
+<DocumentFragment>
+  <div
+    class="tabs"
+  >
+    <div
+      class="tabs__header"
+    >
+      <div
+        class="tabs__header__item tabs__header__item--active"
+        data-testid="tab-title"
+        role="button"
+        tabindex="0"
+      >
+        <div>
+          Title 1
+        </div>
+      </div>
+      <div
+        class="tabs__header__item "
+        data-testid="tab-title"
+        role="button"
+        tabindex="0"
+      >
+        Title 2
+      </div>
+      <div
+        class="tabs__header__item "
+        data-testid="tab-title"
+        role="button"
+        tabindex="0"
+      >
+        Title 3
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="tabs__content tabs__content--active"
+      data-testid="tab-content"
+    >
+      blah
+    </div>
+    <div
+      class="tabs__content "
+      data-testid="tab-content"
+    >
+      blaher
+    </div>
+    <div
+      class="tabs__content "
+      data-testid="tab-content"
+    >
+      blahest
+    </div>
+  </div>
+</DocumentFragment>
+`;

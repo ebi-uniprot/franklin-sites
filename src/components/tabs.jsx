@@ -31,7 +31,7 @@ const Content = ({ children, active }) => (
   </div>
 );
 
-export const Tabs = ({ tabData }) => {
+const Tabs = ({ tabData }) => {
   const [visibleTab, setVisibleTab] = useState(tabData[0].id);
   return (
     <Fragment>
