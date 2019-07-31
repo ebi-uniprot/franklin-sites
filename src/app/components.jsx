@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
-
 import { treeData, flattenedPaths } from './common/tree-data';
 import facetData from './common/facetData';
 import sequenceData from './common/sequence-data';
