@@ -1,14 +1,38 @@
 @import "../settings";
 @import "../colours";
 
-.bubble {
+$small-bubble: 1.5rem;
+$medium-bubble: 3rem;
+$large-bubble: 5rem;
+
+@mixin bubble {
   display: inline-block;
   margin: 0 0.2rem;
-  background: $colour-uniprot-blue;
   color: $colour-white;
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  line-height: 3rem;
   text-align: center;
+}
+
+.bubble--small {
+  @include bubble();
+  width: $small-bubble;
+  height: $small-bubble;
+  line-height: $small-bubble;
+  font-size: $small-bubble/2;
+}
+
+.bubble--medium {
+  @include bubble();
+  width: $medium-bubble;
+  height: $medium-bubble;
+  line-height: $medium-bubble;
+  font-size: $medium-bubble/3;
+}
+
+.bubble--large {
+  @include bubble();
+  width: $large-bubble;
+  height: $large-bubble;
+  line-height: $large-bubble;
+  font-size: $large-bubble/3;
 }
