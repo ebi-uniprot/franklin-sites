@@ -312,7 +312,21 @@
       },
       "size": {
         "type": {
-          "name": "string"
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'medium'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
         },
         "required": false,
         "description": "The bubble size (default is medium)",
@@ -531,7 +545,21 @@
     "props": {
       "size": {
         "type": {
-          "name": "string"
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'medium'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
         },
         "required": false,
         "description": "The bubble size (default is medium)",
@@ -988,7 +1016,7 @@
     "displayName": "LongNumber",
     "methods": [],
     "props": {
-      "number": {
+      "children": {
         "type": {
           "name": "number"
         },
@@ -1242,6 +1270,53 @@
           "value": "''",
           "computed": false
         }
+      }
+    }
+  },
+  "src/components/tabs.jsx": {
+    "description": "",
+    "displayName": "Tabs",
+    "methods": [],
+    "props": {
+      "tabData": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "title": {
+                "name": "union",
+                "value": [
+                  {
+                    "name": "string"
+                  },
+                  {
+                    "name": "element"
+                  }
+                ],
+                "required": true
+              },
+              "content": {
+                "name": "union",
+                "value": [
+                  {
+                    "name": "string"
+                  },
+                  {
+                    "name": "element"
+                  }
+                ],
+                "required": true
+              },
+              "id": {
+                "name": "string",
+                "required": true
+              }
+            }
+          }
+        },
+        "required": true,
+        "description": "An array of objects each containing 'title', 'content' and 'id' (which must be unique)"
       }
     }
   },
