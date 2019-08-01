@@ -5,6 +5,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { treeData, flattenedPaths } from './common/tree-data';
 import facetData from './common/facetData';
 import sequenceData from './common/sequence-data';
+import { getLipsumObjectArray } from './common/lipsum';
 import {
   Accordion,
   Autocomplete,
@@ -24,9 +25,8 @@ import {
   Tabs,
   Tile,
   TreeSelect,
+  SearchInput,
 } from '../components';
-import { getLipsumObjectArray } from './common/lipsum';
-import SearchInput from '../components/search-input';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -211,10 +211,8 @@ const components = [
   {
     name: 'Tabs',
     component: Tabs,
-    function:
-      'Upon clicking a header the corresponding content will be displayed.',
-    purpose:
-      'Allow users to switch between different views.',
+    function: 'Upon clicking a header the corresponding content will be displayed.',
+    purpose: 'Allow users to switch between different views.',
     props: {
       tabData: [
         {
@@ -223,7 +221,8 @@ const components = [
               Title 1
               {' '}
               <ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
-            </div>),
+            </div>
+          ),
           content: loremIpsum({ count: 2 }),
           id: 'id1',
         },
