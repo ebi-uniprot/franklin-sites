@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
-
-import Tile from '../components/tile';
-import DropdownButton from '../components/dropdown-button';
-import TreeSelect from '../components/tree-select';
-import Autocomplete from '../components/autocomplete';
-import MainSearch from '../components/main-search';
-import HeroHeader from '../components/hero-header';
-import Facets from '../components/facets';
 import { treeData, flattenedPaths } from './common/tree-data';
 import facetData from './common/facetData';
 import sequenceData from './common/sequence-data';
-import PageIntro from '../components/page-intro';
-import InfoList from '../components/info-list';
-import Card from '../components/card';
-import { EvidenceTag } from '../components';
-import Sequence from '../components/sequence';
-import InPageNav from '../components/in-page-nav';
-import Loader from '../components/loader';
-import ExpandableList from '../components/expandable-list';
-import Accordion from '../components/accordion';
+import {
+  Accordion,
+  Autocomplete,
+  Card,
+  ConfigureIcon,
+  DropdownButton,
+  EvidenceTag,
+  ExpandableList,
+  Facets,
+  HeroHeader,
+  InfoList,
+  InPageNav,
+  Loader,
+  MainSearch,
+  PageIntro,
+  Sequence,
+  Tabs,
+  Tile,
+  TreeSelect,
+} from '../components';
 import { getLipsumObjectArray } from './common/lipsum';
 
 class MainSearchWrapper extends Component {
@@ -185,6 +188,38 @@ const components = [
         {
           title: 'Yet another item',
           content: loremIpsum({ count: 25, units: 'words' }),
+        },
+      ],
+    },
+  },
+  {
+    name: 'Tabs',
+    component: Tabs,
+    function:
+      'Upon clicking a header the corresponding content will be displayed.',
+    purpose:
+      'Allow users to switch between different views.',
+    props: {
+      tabData: [
+        {
+          title: (
+            <div>
+              Title 1
+              {' '}
+              <ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
+            </div>),
+          content: loremIpsum({ count: 2 }),
+          id: 'id1',
+        },
+        {
+          title: 'Title 2',
+          content: loremIpsum({ count: 2 }),
+          id: 'id2',
+        },
+        {
+          title: 'Title 3',
+          content: loremIpsum({ count: 2 }),
+          id: 'id3',
         },
       ],
     },
