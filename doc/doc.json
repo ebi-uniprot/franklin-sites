@@ -1,4 +1,36 @@
 {
+  "src/components/accordion.jsx": {
+    "description": "",
+    "displayName": "Accordion",
+    "methods": [],
+    "props": {
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": "The title, works as a trigger to open/close"
+      },
+      "count": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Number displayed at the right of the accordion. This could, for example, be used to inform\n     the user how many checkboxes have selected in the accodion's hidden content.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": true,
+        "description": "Content revealed on toggle"
+      }
+    }
+  },
   "src/components/autocomplete-item.jsx": {
     "description": "",
     "displayName": "AutocompleteItem",
@@ -916,7 +948,15 @@
                 "required": false
               },
               "content": {
-                "name": "element",
+                "name": "union",
+                "value": [
+                  {
+                    "name": "string"
+                  },
+                  {
+                    "name": "element"
+                  }
+                ],
                 "required": false
               }
             }
@@ -924,6 +964,17 @@
         },
         "required": true,
         "description": "An array of objects each containing 'title' and 'content'"
+      },
+      "columns": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "A boolean indicating whether the component should span multiple\ncolumns on medium to large screens or not.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },

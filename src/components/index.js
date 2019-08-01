@@ -20,6 +20,9 @@ export { default as ExpandableList } from './expandable-list';
 export { default as DoughnutChart } from './doughnut-chart';
 export { default as Bubble } from './bubble';
 export { default as LongNumber } from './long-number';
+export { default as Accordion } from './accordion';
+export { default as Tabs } from './tabs';
+export { default as DropdownButton } from './dropdown-button';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
@@ -34,3 +37,5 @@ export { default as BasketIcon } from '../svg/basket.svg';
 export { default as ProteinIcon } from '../svg/protein.svg';
 export { default as ListIcon } from '../svg/th-list.svg';
 export { default as TableIcon } from '../svg/table.svg';
+export { default as ConfigureIcon } from '../svg/cog.svg';
+export { default as SearchIcon } from '../svg/search.svg';
