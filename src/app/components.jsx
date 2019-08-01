@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
@@ -22,6 +23,7 @@ import Loader from '../components/loader';
 import ExpandableList from '../components/expandable-list';
 import Accordion from '../components/accordion';
 import { getLipsumObjectArray } from './common/lipsum';
+import SearchInput from '../components/search-input';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -33,7 +35,6 @@ class MainSearchWrapper extends Component {
 
   handleChange(searchTerm) {
     this.setState({ searchTerm });
-    // eslint-disable-next-line no-console
     console.log('Main search change:', searchTerm);
   }
 
@@ -113,6 +114,21 @@ const components = [
         </div>
       ),
       onSelect: () => {},
+    },
+  },
+  {
+    name: 'Search Input',
+    component: SearchInput,
+    function: 'blah',
+    purpose: 'blah',
+    props: {
+      onChange: (event) => {
+        console.log(`Search Input onChange: ${event.target.value}`);
+      },
+      onKeyDown: (event) => {
+        console.log(`Search Input key pressed: ${event.key}`);
+      },
+      placeholder: 'Search',
     },
   },
   {

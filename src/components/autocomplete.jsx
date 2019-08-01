@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../styles/components/dropdown.scss';
 import '../styles/components/autocomplete.scss';
 import AutocompleteItem from './autocomplete-item';
+import SearchInput from './search-input';
 import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 
 class Autocomplete extends Component {
@@ -150,7 +151,7 @@ class Autocomplete extends Component {
     return (
       <div className="autocomplete-container">
         <form onSubmit={this.handleSubmit}>
-          <input
+          <SearchInput
             type="text"
             value={textInputValue}
             onChange={this.handleInputChange}
