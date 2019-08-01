@@ -9,7 +9,7 @@ const Numbers = () => (
     <section>
       <h3>Long numbers</h3>
       <p>
-        <LongNumber number={1000000} />
+        <LongNumber>{1000000}</LongNumber>
       </p>
     </section>
     <section>
