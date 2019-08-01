@@ -5,10 +5,10 @@ exports[`DoughnutChart component should render 1`] = `
   className="doughnut-chart--medium colour-light-grey"
 >
   <div
-    className="doughnut-chart--medium-wrap"
+    className="doughnut-chart--medium__left-wrap"
   >
     <div
-      className="doughnut-chart--medium-wrap__loader colour-uniprot-blue"
+      className="doughnut-chart--medium__left-wrap__loader colour-uniprot-blue"
       style={
         Object {
           "transform": "rotate(0deg)",
