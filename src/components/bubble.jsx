@@ -22,7 +22,7 @@ Bubble.propTypes = {
   /**
    * The bubble size (default is medium)
    */
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 Bubble.defaultProps = {

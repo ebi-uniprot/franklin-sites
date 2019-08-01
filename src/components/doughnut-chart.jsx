@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 import '../styles/components/doughnut-chart.scss';
 
-const DoughnutChart = (props) => {
-  const {
-    size, percent, bgColorClass, colorClass, children,
-  } = props;
-  let leftTransformerDegree = '0deg';
-  let rightTransformerDegree = '0deg';
+const DoughnutChart = ({
+  size, percent, bgColorClass, colorClass, children,
+}) => {
+  let leftTransformerDegree;
+  let rightTransformerDegree;
   if (percent >= 50) {
     rightTransformerDegree = '180deg';
     leftTransformerDegree = `${(percent - 50) * 3.6}deg`;
@@ -50,7 +49,7 @@ DoughnutChart.propTypes = {
   /**
    * The bubble size (default is medium)
    */
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * The chart colour
    */

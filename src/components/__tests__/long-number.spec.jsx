@@ -4,7 +4,7 @@ import LongNumber from '../long-number';
 
 describe('Long number component', () => {
   test('should render', () => {
-    const component = renderer.create(<LongNumber number={1000000} />).toJSON();
+    const component = renderer.create(<LongNumber>{1000000}</LongNumber>).toJSON();
     expect(component).toMatchSnapshot();
   });
 });
