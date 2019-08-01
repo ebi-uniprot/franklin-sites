@@ -2,34 +2,26 @@
 @import "../colours";
 @import "../common/utils";
 
-@mixin bubble {
+@mixin bubble($size, $textRatio: 3) {
   display: inline-block;
   margin: 0 $global-margin/5;
   color: $colour-white;
   border-radius: 50%;
   text-align: center;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  font-size: $size/$textRatio;
 }
 
 .bubble--small {
-  @include bubble();
-  width: $small-bubble;
-  height: $small-bubble;
-  line-height: $small-bubble;
-  font-size: $small-bubble/2;
+  @include bubble($small-bubble, 2);
 }
 
 .bubble--medium {
-  @include bubble();
-  width: $medium-bubble;
-  height: $medium-bubble;
-  line-height: $medium-bubble;
-  font-size: $medium-bubble/3;
+  @include bubble($medium-bubble);
 }
 
 .bubble--large {
-  @include bubble();
-  width: $large-bubble;
-  height: $large-bubble;
-  line-height: $large-bubble;
-  font-size: $large-bubble/3;
+  @include bubble($large-bubble);
 }
