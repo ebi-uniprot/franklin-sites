@@ -20,7 +20,7 @@ const Numbers = () => (
       </p>
       <Bubble value={56} />
       <Bubble value={10000} colourClass="colour-reviewed" />
-      <Bubble value={10} size="large" colourClass="colour-proteomes" />
+      <Bubble value={10.12345} size="large" colourClass="colour-proteomes" />
       <Bubble value={2} size="small" colourClass="colour-light-grey" />
     </section>
     <section>

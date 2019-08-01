@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import '../styles/components/bubble.scss';
 
 const Bubble = ({ value, size, colourClass }) => {
-  let displayValue = value;
+  let displayValue = Math.round(value * 10) / 10;
   if (value > 99) {
     displayValue = '99+';
   }
