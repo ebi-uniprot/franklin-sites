@@ -4,7 +4,7 @@
 
 $border-width: 2px;
 
-@mixin doughnut-chart($remSize, $textRatio: 3) {
+@mixin doughnut-chart($remSize) {
   $size: remToPx($remSize/2);
   overflow: hidden;
   position: relative;
@@ -13,7 +13,7 @@ $border-width: 2px;
   width: $size * 2;
   height: $size * 2;
   border-radius: $size;
-  font-size: $remSize / $textRatio;
+  font-size: $remSize / 3;
   &__left-wrap {
     overflow: hidden;
     position: absolute;
@@ -73,7 +73,7 @@ $border-width: 2px;
 }
 
 .doughnut-chart--small {
-  @include doughnut-chart($small-bubble, 2);
+  @include doughnut-chart($small-bubble);
 }
 
 .doughnut-chart--medium {

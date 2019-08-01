@@ -2,7 +2,7 @@
 @import "../colours";
 @import "../common/utils";
 
-@mixin bubble($size, $textRatio: 3) {
+@mixin bubble($size) {
   display: inline-block;
   margin: 0 $global-margin/5;
   color: $colour-white;
@@ -11,11 +11,11 @@
   width: $size;
   height: $size;
   line-height: $size;
-  font-size: $size/$textRatio;
+  font-size: $size/3;
 }
 
 .bubble--small {
-  @include bubble($small-bubble, 2);
+  @include bubble($small-bubble);
 }
 
 .bubble--medium {
