@@ -18,9 +18,9 @@ const DoughnutChart = (props) => {
   }
   return (
     <div className={`doughnut-chart--${size} ${bgColorClass}`}>
-      <div className={`doughnut-chart--${size}-wrap`}>
+      <div className={`doughnut-chart--${size}__left-wrap`}>
         <div
-          className={`doughnut-chart--${size}-wrap__loader ${colorClass}`}
+          className={`doughnut-chart--${size}__left-wrap__loader ${colorClass}`}
           style={{
             transform: `rotate(${leftTransformerDegree})`,
           }}
