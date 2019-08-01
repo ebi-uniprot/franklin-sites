@@ -4,7 +4,7 @@
 .tabs {
   &__header {
     width: 100%;
-    border-bottom: 1px solid $colour-light-grey;
+    border-bottom: 0.0625rem solid $colour-light-grey;
     margin-bottom: $global-margin;
 
     &__item {
@@ -16,12 +16,13 @@
       -ms-user-select: none;
       user-select: none;
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $colour-uniprot-blue;
       }
 
       &--active {
-        border-bottom: 1px solid $colour-uniprot-blue;
+        border-bottom: 0.1rem solid $colour-uniprot-blue;
       }
     }
   }
