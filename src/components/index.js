@@ -17,10 +17,12 @@ export { default as ExternalLink } from './external-link';
 export { default as InPageNav } from './in-page-nav';
 export { default as Loader } from './loader';
 export { default as ExpandableList } from './expandable-list';
+export { default as DoughnutChart } from './doughnut-chart';
+export { default as Bubble } from './bubble';
+export { default as LongNumber } from './long-number';
 export { default as Accordion } from './accordion';
 export { default as Tabs } from './tabs';
 export { default as DropdownButton } from './dropdown-button';
-
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';

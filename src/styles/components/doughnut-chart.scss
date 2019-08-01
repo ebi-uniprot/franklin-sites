@@ -1,0 +1,85 @@
+@import "../settings";
+@import "../colours";
+@import "../common/utils";
+
+$border-width: 2px;
+
+@mixin doughnut-chart($remSize) {
+  $size: remToPx($remSize/2);
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  margin: 0 $global-margin/5;
+  width: $size * 2;
+  height: $size * 2;
+  border-radius: $size;
+  font-size: $remSize / 3;
+  &__left-wrap {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $size;
+    height: $size * 2;
+    &__loader {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 1000px;
+      transform-origin: 0 50%;
+      left: $size;
+      width: $size;
+      height: $size * 2;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &__right-wrap {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: $size;
+    width: $size;
+    height: $size * 2;
+    &__loader {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 1000px;
+      transform-origin: 100% 50%;
+      left: -$size;
+      width: $size;
+      height: $size * 2;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__inner-circle {
+    background-color: $colour-white;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: $border-width;
+    top: $border-width;
+    width: ($size - $border-width) * 2;
+    height: ($size - $border-width) * 2;
+    border-radius: $size - $border-width;
+  }
+}
+
+.doughnut-chart--small {
+  @include doughnut-chart($small-bubble);
+}
+
+.doughnut-chart--medium {
+  @include doughnut-chart($medium-bubble);
+}
+
+.doughnut-chart--large {
+  @include doughnut-chart($large-bubble);
+}
