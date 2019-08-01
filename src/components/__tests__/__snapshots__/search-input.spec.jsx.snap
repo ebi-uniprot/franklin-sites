@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchInput should render 1`] = `
+<DocumentFragment>
+  <span
+    class="search-input"
+  >
+    <input
+      placeholder="This is the initial value"
+      props="[object Object]"
+      type="text"
+    />
+    <test-file-stub
+      classname="search-input__icon"
+      height="14"
+      width="14"
+    />
+  </span>
+</DocumentFragment>
+`;
