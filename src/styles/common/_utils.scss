@@ -1,0 +1,9 @@
+@import "../settings";
+
+$small-bubble: 1.5rem;
+$medium-bubble: 3rem;
+$large-bubble: 5rem;
+
+@function remToPx($rem) {
+  @return unitless-calc($rem) * 16 + 0px;
+}

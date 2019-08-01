@@ -30,7 +30,19 @@ const Numbers = () => (
           Used to represent numbers which represent a quantity relative to a total. By default shown
           as percentages but custom text can be shown instead.
         </p>
-        <DoughnutChart percent={60}>3/5</DoughnutChart>
+        <DoughnutChart percent={60} />
+        <DoughnutChart
+          percent={60}
+          borderWidth={10}
+          colorClass="colour-uniref"
+          bgColorClass="colour-seashell-grey"
+        >
+          3/5
+        </DoughnutChart>
+        <DoughnutChart percent={20} size="large" />
+        <DoughnutChart percent={90} size="small">
+          9
+        </DoughnutChart>
       </section>
     </section>
   </section>

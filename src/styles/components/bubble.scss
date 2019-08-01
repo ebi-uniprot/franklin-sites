@@ -1,13 +1,10 @@
 @import "../settings";
 @import "../colours";
-
-$small-bubble: 1.5rem;
-$medium-bubble: 3rem;
-$large-bubble: 5rem;
+@import "../common/utils";
 
 @mixin bubble {
   display: inline-block;
-  margin: 0 0.2rem;
+  margin: 0 $global-margin/5;
   color: $colour-white;
   border-radius: 50%;
   text-align: center;

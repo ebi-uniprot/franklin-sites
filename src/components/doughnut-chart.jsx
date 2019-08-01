@@ -5,7 +5,7 @@ import '../styles/components/doughnut-chart.scss';
 
 const DoughnutChart = (props) => {
   const {
-    percent, radius, bgcolor, color, borderWidth, innerColor, children, textStyle,
+    size, percent, bgColorClass, colorClass, children,
   } = props;
   let leftTransformerDegree = '0deg';
   let rightTransformerDegree = '0deg';
@@ -17,72 +17,26 @@ const DoughnutChart = (props) => {
     leftTransformerDegree = '0deg';
   }
   return (
-    <div
-      className="circle"
-      style={{
-        width: radius * 2,
-        height: radius * 2,
-        borderRadius: radius,
-        backgroundColor: bgcolor,
-      }}
-    >
-      <div
-        className="left-wrap"
-        style={{
-          width: radius,
-          height: radius * 2,
-          left: 0,
-        }}
-      >
+    <div className={`doughnut-chart--${size} ${bgColorClass}`}>
+      <div className={`doughnut-chart--${size}-wrap`}>
         <div
-          className="loader"
-          id="id1"
+          className={`doughnut-chart--${size}-wrap__loader ${colorClass}`}
           style={{
-            left: radius,
-            width: radius,
-            height: radius * 2,
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-            backgroundColor: color,
             transform: `rotate(${leftTransformerDegree})`,
           }}
         />
       </div>
-      <div
-        className="right-wrap"
-        style={{
-          width: radius,
-          height: radius * 2,
-          left: radius,
-        }}
-      >
+      <div className={`doughnut-chart--${size}__right-wrap`}>
         <div
-          className="loader2"
-          id="id2"
+          className={`doughnut-chart--${size}__right-wrap__loader ${colorClass}`}
           style={{
-            left: -radius,
-            width: radius,
-            height: radius * 2,
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-            backgroundColor: color,
             transform: `rotate(${rightTransformerDegree})`,
           }}
         />
       </div>
-      <div
-        className="inner-circle"
-        style={{
-          left: borderWidth,
-          top: borderWidth,
-          width: (radius - borderWidth) * 2,
-          height: (radius - borderWidth) * 2,
-          borderRadius: radius - borderWidth,
-          backgroundColor: innerColor,
-        }}
-      >
+      <div className={`doughnut-chart--${size}__inner-circle`} style={{}}>
         {children || (
-        <span className={`text ${textStyle}`}>
+        <span>
           {percent}
 %
         </span>
@@ -93,24 +47,33 @@ const DoughnutChart = (props) => {
 };
 
 DoughnutChart.propTypes = {
-  color: PropTypes.string,
-  bgcolor: PropTypes.string,
-  innerColor: PropTypes.string,
-  radius: PropTypes.number,
+  /**
+   * The bubble size (default is medium)
+   */
+  size: PropTypes.string,
+  /**
+   * The chart colour
+   */
+  colorClass: PropTypes.string,
+  /**
+   * The background chart colour
+   */
+  bgColorClass: PropTypes.string,
+  /**
+   * The ratio to be displayed in percent.
+   */
   percent: PropTypes.number,
-  borderWidth: PropTypes.number,
-  textStyle: PropTypes.string,
+  /**
+   * The component(s) to display inside as an alternative to the percentage
+   */
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 DoughnutChart.defaultProps = {
-  color: '#22424B',
-  radius: 60,
+  size: 'medium',
+  colorClass: 'colour-uniprot-blue',
+  bgColorClass: 'colour-light-grey',
   percent: 0,
-  borderWidth: 20,
-  bgcolor: '#cacaca',
-  innerColor: '#fff',
-  textStyle: '',
   children: null,
 };
 

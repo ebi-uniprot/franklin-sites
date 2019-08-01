@@ -2,80 +2,35 @@
 
 exports[`DoughnutChart component should render 1`] = `
 <div
-  className="circle"
-  style={
-    Object {
-      "backgroundColor": "#cacaca",
-      "borderRadius": 60,
-      "height": 120,
-      "width": 120,
-    }
-  }
+  className="doughnut-chart--medium colour-light-grey"
 >
   <div
-    className="left-wrap"
-    style={
-      Object {
-        "height": 120,
-        "left": 0,
-        "width": 60,
-      }
-    }
+    className="doughnut-chart--medium-wrap"
   >
     <div
-      className="loader"
-      id="id1"
+      className="doughnut-chart--medium-wrap__loader colour-uniprot-blue"
       style={
         Object {
-          "backgroundColor": "#22424B",
-          "borderBottomLeftRadius": 0,
-          "borderTopLeftRadius": 0,
-          "height": 120,
-          "left": 60,
           "transform": "rotate(0deg)",
-          "width": 60,
         }
       }
     />
   </div>
   <div
-    className="right-wrap"
-    style={
-      Object {
-        "height": 120,
-        "left": 60,
-        "width": 60,
-      }
-    }
+    className="doughnut-chart--medium__right-wrap"
   >
     <div
-      className="loader2"
-      id="id2"
+      className="doughnut-chart--medium__right-wrap__loader colour-uniprot-blue"
       style={
         Object {
-          "backgroundColor": "#22424B",
-          "borderBottomRightRadius": 0,
-          "borderTopRightRadius": 0,
-          "height": 120,
-          "left": -60,
           "transform": "rotate(144deg)",
-          "width": 60,
         }
       }
     />
   </div>
   <div
-    className="inner-circle"
-    style={
-      Object {
-        "backgroundColor": "#fff",
-        "borderRadius": 40,
-        "height": 80,
-        "left": 20,
-        "top": 20,
-        "width": 80,
-      }
-    }
+    className="doughnut-chart--medium__inner-circle"
+    style={Object {}}
   >
     <span>
       Some content
