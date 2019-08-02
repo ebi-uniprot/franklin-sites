@@ -3,10 +3,15 @@
   width: 100%;
   display: inline-block;
 
-  &__icon {
-    position: absolute;
-    right: 0.7rem;
-    top: 0.8rem;
+  input {
+    padding-right: 1.75rem;
+  }
 
+  &__suffix {
+    position: absolute;
+    right: 0rem;
+    top: 0.6rem;
+    width: 1.5rem;
+    height: 1.75rem;
   }
 }

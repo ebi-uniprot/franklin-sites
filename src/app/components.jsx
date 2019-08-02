@@ -125,12 +125,6 @@ const components = [
     function: 'blah',
     purpose: 'blah',
     props: {
-      onChange: (event) => {
-        console.log(`Search Input onChange: ${event.target.value}`);
-      },
-      onKeyDown: (event) => {
-        console.log(`Search Input key pressed: ${event.key}`);
-      },
       placeholder: 'Search',
     },
   },
