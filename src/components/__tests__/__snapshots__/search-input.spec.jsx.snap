@@ -6,15 +6,21 @@ exports[`SearchInput should render 1`] = `
     class="search-input"
   >
     <input
+      data-testid="search-input"
       placeholder="This is the initial value"
-      props="[object Object]"
       type="text"
+      value=""
     />
-    <test-file-stub
-      classname="search-input__icon"
-      height="14"
-      width="14"
-    />
+    <span
+      class="search-input__suffix"
+      data-testid="search-input-suffix"
+      role="presentation"
+    >
+      <test-file-stub
+        height="14"
+        width="14"
+      />
+    </span>
   </span>
 </DocumentFragment>
 `;

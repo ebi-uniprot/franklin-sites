@@ -11,18 +11,25 @@ exports[`Autocomplete component should render 1`] = `
       className="search-input"
     >
       <input
+        data-testid="search-input"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder=""
-        props={Object {}}
         type="text"
         value=""
       />
-      <test-file-stub
-        className="search-input__icon"
-        height={14}
-        width={14}
-      />
+      <span
+        className="search-input__suffix"
+        data-testid="search-input-suffix"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="presentation"
+      >
+        <test-file-stub
+          height={14}
+          width={14}
+        />
+      </span>
     </span>
   </form>
   <div
@@ -46,18 +53,25 @@ exports[`Autocomplete component with props: showDropwdownUpdated & clearOnSelect
       className="search-input"
     >
       <input
+        data-testid="search-input"
         onChange={[Function]}
         onKeyDown={[Function]}
         placeholder=""
-        props={Object {}}
         type="text"
         value=""
       />
-      <test-file-stub
-        className="search-input__icon"
-        height={14}
-        width={14}
-      />
+      <span
+        className="search-input__suffix"
+        data-testid="search-input-suffix"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="presentation"
+      >
+        <test-file-stub
+          height={14}
+          width={14}
+        />
+      </span>
     </span>
   </form>
   <div

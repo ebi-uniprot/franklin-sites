@@ -13,6 +13,7 @@ const SearchInput = ({
   return (
     <span className="search-input">
       <input
+        data-testid="search-input"
         type="text"
         value={value}
         onChange={onChange}
@@ -21,6 +22,7 @@ const SearchInput = ({
         ref={inputRef}
       />
       <span
+        data-testid="search-input-suffix"
         role="presentation"
         className="search-input__suffix"
         onKeyPress={focusOnInput}
