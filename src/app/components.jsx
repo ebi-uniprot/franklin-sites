@@ -8,6 +8,7 @@ import sequenceData from './common/sequence-data';
 import { getLipsumObjectArray } from './common/lipsum';
 import {
   Accordion,
+  AccordionSearch,
   Autocomplete,
   Card,
   ConfigureIcon,
@@ -154,6 +155,46 @@ const components = [
       filter: true,
     },
   },
+  {
+    name: 'Accordion Search',
+    component: AccordionSearch,
+    function: 'Search through an array to make a selection',
+    purpose: 'Allow selection of item from flat data set',
+    props: {
+      placeholder: 'Filter',
+      accordionData: [
+        {
+          title: 'Gene',
+          id: '1',
+          items: [
+            {
+              content: 'BRCA2',
+              id: '1-1',
+            },
+            {
+              content: 'TP53',
+              id: '1-2',
+            },
+          ],
+        },
+        {
+          title: 'Organelle',
+          id: '2',
+          items: [
+            {
+              content: 'Ribosome',
+              id: '2-1',
+            },
+            {
+              content: 'Nucleus',
+              id: '2-2',
+            },
+          ],
+        },
+      ],
+    },
+  },
+
   {
     name: 'Main search',
     component: MainSearchWrapper,
