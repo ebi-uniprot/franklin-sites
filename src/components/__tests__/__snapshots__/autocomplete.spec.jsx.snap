@@ -7,13 +7,30 @@ exports[`Autocomplete component should render 1`] = `
   <form
     onSubmit={[Function]}
   >
-    <input
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder=""
-      type="text"
-      value=""
-    />
+    <span
+      className="search-input"
+    >
+      <input
+        data-testid="search-input"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+      <span
+        className="search-input__suffix"
+        data-testid="search-input-suffix"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="presentation"
+      >
+        <test-file-stub
+          height={14}
+          width={14}
+        />
+      </span>
+    </span>
   </form>
   <div
     className="autocomplete-menu"
@@ -32,13 +49,30 @@ exports[`Autocomplete component with props: showDropwdownUpdated & clearOnSelect
   <form
     onSubmit={[Function]}
   >
-    <input
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder=""
-      type="text"
-      value=""
-    />
+    <span
+      className="search-input"
+    >
+      <input
+        data-testid="search-input"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+      <span
+        className="search-input__suffix"
+        data-testid="search-input-suffix"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="presentation"
+      >
+        <test-file-stub
+          height={14}
+          width={14}
+        />
+      </span>
+    </span>
   </form>
   <div
     className="autocomplete-menu"

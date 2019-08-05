@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 import { treeData, flattenedPaths } from './common/tree-data';
 import facetData from './common/facetData';
 import sequenceData from './common/sequence-data';
+import { getLipsumObjectArray } from './common/lipsum';
 import {
   Accordion,
   Autocomplete,
@@ -23,8 +25,8 @@ import {
   Tabs,
   Tile,
   TreeSelect,
+  SearchInput,
 } from '../components';
-import { getLipsumObjectArray } from './common/lipsum';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -36,7 +38,6 @@ class MainSearchWrapper extends Component {
 
   handleChange(searchTerm) {
     this.setState({ searchTerm });
-    // eslint-disable-next-line no-console
     console.log('Main search change:', searchTerm);
   }
 
@@ -119,6 +120,15 @@ const components = [
     },
   },
   {
+    name: 'Search Input',
+    component: SearchInput,
+    function: 'Filter data displayed on the screen (autocomplete, list of fields etc.)',
+    purpose: 'Provide the user with an indication that typing in the input box will search something',
+    props: {
+      placeholder: 'Search',
+    },
+  },
+  {
     name: 'Tree select',
     component: TreeSelect,
     function: 'Navigate through a tree to make a selection',
@@ -195,10 +205,8 @@ const components = [
   {
     name: 'Tabs',
     component: Tabs,
-    function:
-      'Upon clicking a header the corresponding content will be displayed.',
-    purpose:
-      'Allow users to switch between different views.',
+    function: 'Upon clicking a header the corresponding content will be displayed.',
+    purpose: 'Allow users to switch between different views.',
     props: {
       tabData: [
         {
@@ -207,7 +215,8 @@ const components = [
               Title 1
               {' '}
               <ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
-            </div>),
+            </div>
+          ),
           content: loremIpsum({ count: 2 }),
           id: 'id1',
         },

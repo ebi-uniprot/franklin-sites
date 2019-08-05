@@ -23,6 +23,7 @@ export { default as LongNumber } from './long-number';
 export { default as Accordion } from './accordion';
 export { default as Tabs } from './tabs';
 export { default as DropdownButton } from './dropdown-button';
+export { default as SearchInput } from './search-input';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';

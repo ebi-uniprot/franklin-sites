@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchInput should render 1`] = `
+<DocumentFragment>
+  <span
+    class="search-input"
+  >
+    <input
+      data-testid="search-input"
+      placeholder="This is the initial value"
+      type="text"
+      value=""
+    />
+    <span
+      class="search-input__suffix"
+      data-testid="search-input-suffix"
+      role="presentation"
+    >
+      <test-file-stub
+        height="14"
+        width="14"
+      />
+    </span>
+  </span>
+</DocumentFragment>
+`;
