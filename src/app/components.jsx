@@ -168,12 +168,16 @@ const components = [
           id: '1',
           items: [
             {
-              content: 'BRCA2',
+              content: 'BRCA1',
               id: '1-1',
             },
             {
-              content: 'TP53',
+              content: 'BRCA2',
               id: '1-2',
+            },
+            {
+              content: 'TP53',
+              id: '1-3',
             },
           ],
         },

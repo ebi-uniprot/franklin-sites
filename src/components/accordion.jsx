@@ -5,14 +5,14 @@ import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 
 const chevronSize = 16;
-const Accordion = ({ title, count, children }) => {
-  const [showContent, setShowContent] = useState(false);
-  const toggleShowContent = () => {
-    setShowContent(!showContent);
+const Accordion = ({ title, count, children, alwaysOpen }) => {
+  const [open, setOpen] = useState(false);
+  const toggleOpen = () => {
+    setOpen(!open);
   };
   const handleKeyPress = (key) => {
     if (key.key === 'Enter') {
-      toggleShowContent();
+      toggleOpen();
     }
   };
   return (
@@ -22,31 +22,35 @@ const Accordion = ({ title, count, children }) => {
         role="button"
         tabIndex={0}
         className="accordion__title"
-        onClick={() => toggleShowContent()}
+        onClick={() => toggleOpen()}
         onKeyPress={key => handleKeyPress(key)}
       >
         <div className="accordion__title__text">{title}</div>
-        <div className="accordion__title__side">
-          {count > 0 && count}
-          {showContent ? (
-            <ChevronUp
-              width={chevronSize}
-              height={chevronSize}
-              className="accordion__title__side__chevron"
-            />
-          ) : (
-            <ChevronDown
-              width={chevronSize}
-              height={chevronSize}
-              className="accordion__title__side__chevron"
-            />
-          )}
-        </div>
+        {!alwaysOpen && (
+          <div className="accordion__title__side">
+            {count > 0 && count}
+            {open ? (
+              <ChevronUp
+                width={chevronSize}
+                height={chevronSize}
+                className="accordion__title__side__chevron"
+              />
+            ) : (
+              <ChevronDown
+                width={chevronSize}
+                height={chevronSize}
+                className="accordion__title__side__chevron"
+              />
+            )
+          }
+          </div>
+        )
+      }
       </div>
       <div
         data-testid="accordion-content"
         className={`accordion__content ${
-          showContent ? 'accordion__content--display-content' : 'accordion__content--hide-content'
+          open || alwaysOpen ? 'accordion__content--display-content' : 'accordion__content--hide-content'
         }`}
       >
         {children}
@@ -71,10 +75,15 @@ Accordion.propTypes = {
    * Content revealed on toggle
    */
   children: PropTypes.node.isRequired,
+  /**
+   * Disable toggling and always open accordion
+   */
+  alwaysOpen: PropTypes.bool,
 };
 
 Accordion.defaultProps = {
   count: 0,
+  alwaysOpen: false,
 };
 
 export default Accordion;

@@ -4,27 +4,40 @@ import Accordion from './accordion';
 import SearchInput from './search-input';
 import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 
-const filterAccordionData = (accordionData, query) =>
-  accordionData.reduce((filteredAccordionData, accordionDatum) => {
-    const { items } = accordionDatum;
-    const filteredItems = items.filter(
-      ({ content }) => getLastIndexOfSubstringIgnoreCase(content, query) >= 0,
-    );
-    if (filteredItems.length > 0) {
-      filteredAccordionData.push({ ...accordionDatum, items: filteredItems });
-    }
-    return filteredAccordionData;
-  }, []);
+const filterAccordionData = (accordionData, query) => {
+  let isFiltered = false;
+  if (!query) {
+    return [accordionData, isFiltered];
+  }
+  const filteredAccordionData = accordionData.reduce(
+    (filteredAccordionDataAccum, accordionDatum) => {
+      const { items } = accordionDatum;
+      const filteredItems = items.filter(
+        ({ content }) => getLastIndexOfSubstringIgnoreCase(content, query) >= 0,
+      );
+      if (filteredItems.length > 0) {
+        filteredAccordionDataAccum.push({ ...accordionDatum, items: filteredItems });
+        isFiltered = true;
+      }
+      return filteredAccordionDataAccum;
+    },
+    [],
+  );
+  return [filteredAccordionData, isFiltered];
+};
 
 const AccordionSearch = ({ accordionData, placeholder }) => {
   // const [showContent, setShowContent] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] = useState(accordionData);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   const handleInputChange = (event) => {
     const { value } = event.target;
     setInputValue(value);
-    setFilteredAccordionData(filterAccordionData(accordionData, value));
+    const [filteredData, filtered] = filterAccordionData(accordionData, value);
+    setIsFiltered(filtered);
+    setFilteredAccordionData(filteredData);
   };
 
   return (
@@ -35,15 +48,18 @@ const AccordionSearch = ({ accordionData, placeholder }) => {
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      {filteredAccordionData.map(({ title, id: accordionId, items }) => (
-        <Accordion title={title} key={accordionId}>
-          <ul>
-            {items.map(({ content, id: itemId }) => (
-              <li key={itemId}>{content}</li>
-            ))}
-          </ul>
-        </Accordion>
-      ))}
+      {
+        filteredAccordionData && filteredAccordionData.length > 0
+          ? filteredAccordionData.map(({ title, id: accordionId, items }) => (
+            <Accordion title={title} key={accordionId} alwaysOpen={isFiltered}>
+              <ul>
+                {items.map(({ content, id: itemId }) => (
+                  <li key={itemId}>{content}</li>
+                ))}
+              </ul>
+            </Accordion>
+          )) : <div>no results</div>
+      }
     </Fragment>
   );
 };
