@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DoughnutChart component should render 1`] = `
+<div
+  className="doughnut-chart--medium colour-light-grey"
+>
+  <div
+    className="doughnut-chart--medium__left-wrap"
+  >
+    <div
+      className="doughnut-chart--medium__left-wrap__loader colour-uniprot-blue"
+      style={
+        Object {
+          "transform": "rotate(0deg)",
+        }
+      }
+    />
+  </div>
+  <div
+    className="doughnut-chart--medium__right-wrap"
+  >
+    <div
+      className="doughnut-chart--medium__right-wrap__loader colour-uniprot-blue"
+      style={
+        Object {
+          "transform": "rotate(144deg)",
+        }
+      }
+    />
+  </div>
+  <div
+    className="doughnut-chart--medium__inner-circle"
+    style={Object {}}
+  >
+    <span>
+      Some content
+    </span>
+  </div>
+</div>
+`;

@@ -287,6 +287,56 @@
       }
     }
   },
+  "src/components/bubble.jsx": {
+    "description": "",
+    "displayName": "Bubble",
+    "methods": [],
+    "props": {
+      "value": {
+        "type": {
+          "name": "number"
+        },
+        "required": true,
+        "description": "The number to display"
+      },
+      "colourClass": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The class name of the colour to use (optional)",
+        "defaultValue": {
+          "value": "'colour-uniprot-blue'",
+          "computed": false
+        }
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'medium'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "The bubble size (default is medium)",
+        "defaultValue": {
+          "value": "'medium'",
+          "computed": false
+        }
+      }
+    }
+  },
   "src/components/card.jsx": {
     "description": "",
     "displayName": "Card",
@@ -487,6 +537,93 @@
     "description": "",
     "displayName": "DataTable",
     "methods": []
+  },
+  "src/components/doughnut-chart.jsx": {
+    "description": "",
+    "displayName": "DoughnutChart",
+    "methods": [],
+    "props": {
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'medium'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "The bubble size (default is medium)",
+        "defaultValue": {
+          "value": "'medium'",
+          "computed": false
+        }
+      },
+      "colorClass": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The chart colour",
+        "defaultValue": {
+          "value": "'colour-uniprot-blue'",
+          "computed": false
+        }
+      },
+      "bgColorClass": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The background chart colour",
+        "defaultValue": {
+          "value": "'colour-light-grey'",
+          "computed": false
+        }
+      },
+      "percent": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The ratio to be displayed in percent.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "children": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "arrayOf",
+              "value": {
+                "name": "node"
+              }
+            },
+            {
+              "name": "node"
+            }
+          ]
+        },
+        "required": false,
+        "description": "The component(s) to display inside as an alternative to the percentage",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      }
+    }
   },
   "src/components/dropdown-button.jsx": {
     "description": "",
@@ -874,6 +1011,20 @@
     "displayName": "Loader",
     "methods": []
   },
+  "src/components/long-number.jsx": {
+    "description": "",
+    "displayName": "LongNumber",
+    "methods": [],
+    "props": {
+      "children": {
+        "type": {
+          "name": "number"
+        },
+        "required": true,
+        "description": "The number to format"
+      }
+    }
+  },
   "src/components/main-search.jsx": {
     "description": "",
     "displayName": "MainSearch",
@@ -1119,6 +1270,53 @@
           "value": "''",
           "computed": false
         }
+      }
+    }
+  },
+  "src/components/tabs.jsx": {
+    "description": "",
+    "displayName": "Tabs",
+    "methods": [],
+    "props": {
+      "tabData": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "title": {
+                "name": "union",
+                "value": [
+                  {
+                    "name": "string"
+                  },
+                  {
+                    "name": "element"
+                  }
+                ],
+                "required": true
+              },
+              "content": {
+                "name": "union",
+                "value": [
+                  {
+                    "name": "string"
+                  },
+                  {
+                    "name": "element"
+                  }
+                ],
+                "required": true
+              },
+              "id": {
+                "name": "string",
+                "required": true
+              }
+            }
+          }
+        },
+        "required": true,
+        "description": "An array of objects each containing 'title', 'content' and 'id' (which must be unique)"
       }
     }
   },
