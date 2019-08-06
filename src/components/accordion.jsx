@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/accordion.scss';
 import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 
 const chevronSize = 16;
-const Accordion = ({ title, count, children, alwaysOpen }) => {
+const Accordion = ({
+  title, count, children, alwaysOpen,
+}) => {
   const [open, setOpen] = useState(false);
   const toggleOpen = () => {
     setOpen(!open);
@@ -15,6 +17,11 @@ const Accordion = ({ title, count, children, alwaysOpen }) => {
       toggleOpen();
     }
   };
+  useEffect(() => {
+    if (alwaysOpen === false) {
+      setOpen(false);
+    }
+  }, [alwaysOpen]);
   return (
     <div className="accordion">
       <div
