@@ -1,9 +1,13 @@
 @import "../settings";
 
-$small-bubble: 2.25rem;
+$small-bubble: 1.6rem;
 $medium-bubble: 3rem;
 $large-bubble: 5rem;
 
 @function remToPx($rem) {
   @return unitless-calc($rem) * 16px;
+}
+
+@function bubbleFontSize($size) {
+  @return 0.26960784313 * $size+0.31862745099;
 }
