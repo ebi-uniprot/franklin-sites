@@ -11,13 +11,18 @@ const filterAccordionData = (accordionData, query) => {
   }
   const filteredAccordionData = accordionData.reduce(
     (filteredAccordionDataAccum, accordionDatum) => {
-      const { items } = accordionDatum;
-      const filteredItems = items.filter(
-        ({ content }) => getLastIndexOfSubstringIgnoreCase(content, query) >= 0,
-      );
-      if (filteredItems.length > 0) {
-        filteredAccordionDataAccum.push({ ...accordionDatum, items: filteredItems });
+      const { items, title } = accordionDatum;
+      if (getLastIndexOfSubstringIgnoreCase(title, query) >= 0) {
+        filteredAccordionDataAccum.push({ ...accordionDatum, ...items });
         isFiltered = true;
+      } else {
+        const filteredItems = items.filter(
+          ({ content }) => getLastIndexOfSubstringIgnoreCase(content, query) >= 0,
+        );
+        if (filteredItems.length > 0) {
+          filteredAccordionDataAccum.push({ ...accordionDatum, items: filteredItems });
+          isFiltered = true;
+        }
       }
       return filteredAccordionDataAccum;
     },
@@ -26,11 +31,12 @@ const filterAccordionData = (accordionData, query) => {
   return [filteredAccordionData, isFiltered];
 };
 
-const AccordionSearch = ({ accordionData, placeholder }) => {
+const AccordionSearch = ({ accordionData, placeholder, onSelect }) => {
   // const [showContent, setShowContent] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] = useState(accordionData);
   const [isFiltered, setIsFiltered] = useState(false);
+  const [selected, setSelected] = useState(accordionData.reduce((o, { id }) => ({ ...o, [id]: [] }), {}));
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -38,6 +44,14 @@ const AccordionSearch = ({ accordionData, placeholder }) => {
     const [filteredData, filtered] = filterAccordionData(accordionData, value);
     setIsFiltered(filtered);
     setFilteredAccordionData(filteredData);
+  };
+
+  const toggleSelect = (groupId, itemId) => {
+    if (selected[groupId].includes(itemId)) {
+      setSelected({ ...selected, [groupId]: selected[groupId].filter(item => item !== itemId) });
+    } else {
+      setSelected({ ...selected, [groupId]: [...selected[groupId], itemId] });
+    }
   };
 
   return (
@@ -51,10 +65,21 @@ const AccordionSearch = ({ accordionData, placeholder }) => {
       {
         filteredAccordionData && filteredAccordionData.length > 0
           ? filteredAccordionData.map(({ title, id: accordionId, items }) => (
-            <Accordion title={title} key={accordionId} alwaysOpen={isFiltered}>
-              <ul>
+            <Accordion title={title} key={accordionId} count={selected[accordionId].length} alwaysOpen={isFiltered}>
+              <ul className="no-bullet">
                 {items.map(({ content, id: itemId }) => (
-                  <li key={itemId}>{content}</li>
+                  <li key={itemId}>
+                    <label key={itemId} htmlFor={`checkbox-${itemId}`}>
+                      <input
+                        type="checkbox"
+                        id={`checkbox-${itemId}`}
+                        style={{ marginBottom: 0 }}
+                        onChange={() => toggleSelect(accordionId, itemId)}
+                        checked={selected[accordionId].includes(itemId)}
+                      />
+                      {content}
+                    </label>
+                  </li>
                 ))}
               </ul>
             </Accordion>

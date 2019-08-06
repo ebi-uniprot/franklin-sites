@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../styles/components/accordion.scss';
 import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
+import Bubble from './bubble';
 
 const chevronSize = 16;
 const Accordion = ({
@@ -33,10 +34,11 @@ const Accordion = ({
         onKeyPress={key => handleKeyPress(key)}
       >
         <div className="accordion__title__text">{title}</div>
-        {!alwaysOpen && (
-          <div className="accordion__title__side">
-            {count > 0 && count}
-            {open ? (
+
+        <div className="accordion__title__side">
+          {count > 0 && <span className="accordion__title__side__count"><Bubble size="small" value={count} /></span>}
+          {!alwaysOpen
+            && (open ? (
               <ChevronUp
                 width={chevronSize}
                 height={chevronSize}
@@ -48,11 +50,9 @@ const Accordion = ({
                 height={chevronSize}
                 className="accordion__title__side__chevron"
               />
-            )
+            ))
           }
-          </div>
-        )
-      }
+        </div>
       </div>
       <div
         data-testid="accordion-content"
