@@ -1,3 +1,5 @@
+import React, { Fragment } from 'react';
+
 export function getLastIndexOfSubstringIgnoreCase(string, substring) {
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
 }
@@ -46,4 +48,20 @@ export const fillArray = (numberElements, func) =>
 
 export function capitaliseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+export function highlightSubstring(string, substring) {
+  const i = getLastIndexOfSubstringIgnoreCase(string, substring);
+  if (i < 0) return string;
+  const prestring = string.slice(0, i);
+  const highlight = string.slice(i, i + substring.length);
+  const poststring = string.slice(i + substring.length);
+  return (
+    <Fragment>
+      {prestring}
+      <b>{highlight}</b>
+      {poststring}
+    </Fragment>
+  );
 }

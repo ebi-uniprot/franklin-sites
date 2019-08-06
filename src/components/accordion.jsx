@@ -72,7 +72,7 @@ Accordion.propTypes = {
   /**
    * The title, works as a trigger to open/close
    */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   /**
    * Number displayed at the right of the accordion. This could, for example, be used to inform
      the user how many checkboxes have selected in the accodion's hidden content.

@@ -1,4 +1,9 @@
 {
+  "src/components/accordion-search.jsx": {
+    "description": "",
+    "displayName": "AccordionSearch",
+    "methods": []
+  },
   "src/components/accordion.jsx": {
     "description": "",
     "displayName": "Accordion",
@@ -6,7 +11,15 @@
     "props": {
       "title": {
         "type": {
-          "name": "string"
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "element"
+            }
+          ]
         },
         "required": true,
         "description": "The title, works as a trigger to open/close"
@@ -28,6 +41,17 @@
         },
         "required": true,
         "description": "Content revealed on toggle"
+      },
+      "alwaysOpen": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Disable toggling and always open accordion",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },
@@ -35,24 +59,6 @@
     "description": "",
     "displayName": "AutocompleteItem",
     "methods": [
-      {
-        "name": "highlightSubstring",
-        "docblock": null,
-        "modifiers": [
-          "static"
-        ],
-        "params": [
-          {
-            "name": "string",
-            "type": null
-          },
-          {
-            "name": "substring",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
       {
         "name": "ensureVisible",
         "docblock": null,
@@ -1100,6 +1106,57 @@
         "defaultValue": {
           "value": "[]",
           "computed": false
+        }
+      }
+    }
+  },
+  "src/components/search-input.jsx": {
+    "description": "",
+    "displayName": "SearchInput",
+    "methods": [],
+    "props": {
+      "value": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
+        }
+      },
+      "onChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
+        }
+      },
+      "onKeyDown": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
+        }
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
         }
       }
     }

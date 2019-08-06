@@ -2,7 +2,10 @@ import React, { useState, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import Accordion from './accordion';
 import SearchInput from './search-input';
-import { getLastIndexOfSubstringIgnoreCase } from '../utils';
+import { getLastIndexOfSubstringIgnoreCase, highlightSubstring } from '../utils';
+
+const highlightItems = (items, query) => items.map(item =>
+  ({ ...item, content: highlightSubstring(item.content, query) }));
 
 const filterAccordionData = (accordionData, query) => {
   let isFiltered = false;
@@ -13,14 +16,21 @@ const filterAccordionData = (accordionData, query) => {
     (filteredAccordionDataAccum, accordionDatum) => {
       const { items, title } = accordionDatum;
       if (getLastIndexOfSubstringIgnoreCase(title, query) >= 0) {
-        filteredAccordionDataAccum.push({ ...accordionDatum, ...items });
+        filteredAccordionDataAccum.push({
+          ...accordionDatum,
+          title: highlightSubstring(title, query),
+          items: highlightItems(items, query),
+        });
         isFiltered = true;
       } else {
         const filteredItems = items.filter(
           ({ content }) => getLastIndexOfSubstringIgnoreCase(content, query) >= 0,
         );
         if (filteredItems.length > 0) {
-          filteredAccordionDataAccum.push({ ...accordionDatum, items: filteredItems });
+          filteredAccordionDataAccum.push({
+            ...accordionDatum,
+            items: highlightItems(filteredItems, query),
+          });
           isFiltered = true;
         }
       }
@@ -31,12 +41,12 @@ const filterAccordionData = (accordionData, query) => {
   return [filteredAccordionData, isFiltered];
 };
 
-const AccordionSearch = ({ accordionData, placeholder, onSelect }) => {
-  // const [showContent, setShowContent] = useState(false);
+const AccordionSearch = ({ accordionData, placeholder }) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] = useState(accordionData);
   const [isFiltered, setIsFiltered] = useState(false);
-  const [selected, setSelected] = useState(accordionData.reduce((o, { id }) => ({ ...o, [id]: [] }), {}));
+  const [selected, setSelected] = useState(accordionData.reduce((accum, { id }) =>
+    ({ ...accum, [id]: [] }), {}));
 
   const handleInputChange = (event) => {
     const { value } = event.target;
