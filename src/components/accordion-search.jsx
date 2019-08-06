@@ -64,6 +64,41 @@ const AccordionSearch = ({ accordionData, placeholder }) => {
     }
   };
 
+  let accordionGroupNode = <div>no results</div>;
+  if (filteredAccordionData && filteredAccordionData.length > 0) {
+    accordionGroupNode = (
+      <div className="accordion-group">
+        {filteredAccordionData.map(({ title, id: accordionId, items }) => (
+          <Accordion
+            title={title}
+            key={accordionId}
+            count={selected[accordionId].length}
+            alwaysOpen={isFiltered}
+          >
+            <ul className="no-bullet">
+              {items.map(({ content, id: itemId }) => (
+                <li key={itemId}>
+                  <label key={itemId} htmlFor={`checkbox-${itemId}`}>
+                    <input
+                      type="checkbox"
+                      id={`checkbox-${itemId}`}
+                      style={{ marginBottom: 0 }}
+                      onChange={() => toggleSelect(accordionId, itemId)}
+                      checked={selected[accordionId].includes(itemId)}
+                    />
+                    {content}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </Accordion>
+        ))}
+
+      </div>
+    );
+  }
+
+
   return (
     <Fragment>
       <SearchInput
@@ -72,29 +107,7 @@ const AccordionSearch = ({ accordionData, placeholder }) => {
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      {
-        filteredAccordionData && filteredAccordionData.length > 0
-          ? filteredAccordionData.map(({ title, id: accordionId, items }) => (
-            <Accordion title={title} key={accordionId} count={selected[accordionId].length} alwaysOpen={isFiltered}>
-              <ul className="no-bullet">
-                {items.map(({ content, id: itemId }) => (
-                  <li key={itemId}>
-                    <label key={itemId} htmlFor={`checkbox-${itemId}`}>
-                      <input
-                        type="checkbox"
-                        id={`checkbox-${itemId}`}
-                        style={{ marginBottom: 0 }}
-                        onChange={() => toggleSelect(accordionId, itemId)}
-                        checked={selected[accordionId].includes(itemId)}
-                      />
-                      {content}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </Accordion>
-          )) : <div>no results</div>
-      }
+      {accordionGroupNode}
     </Fragment>
   );
 };
