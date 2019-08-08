@@ -162,8 +162,8 @@ const components = [
     purpose: 'Allow selection of item from flat data set',
     props: {
       placeholder: 'Filter',
-      onSelect: itemId => {
-        console.log(itemId);
+      onSelect: (accordionId, itemId) => {
+        console.log(accordionId, itemId);
       },
       accordionData: [
         {
@@ -208,7 +208,7 @@ const components = [
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
     props: {
-      onSubmit: e => {
+      onSubmit: (e) => {
         e.preventDefault();
         // eslint-disable-next-line no-console
         console.log('Main search submit');
@@ -260,7 +260,9 @@ const components = [
         {
           title: (
             <div>
-              Title 1 <ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
+              Title 1 
+{' '}
+<ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
             </div>
           ),
           content: loremIpsum({ count: 2 }),
