@@ -2,7 +2,16 @@
   "src/components/accordion-search.jsx": {
     "description": "",
     "displayName": "AccordionSearch",
-    "methods": []
+    "methods": [],
+    "props": {
+      "selected": {
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        },
+        "required": false
+      }
+    }
   },
   "src/components/accordion.jsx": {
     "description": "",

@@ -1,11 +1,11 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import Accordion from './accordion';
 import SearchInput from './search-input';
 import { getLastIndexOfSubstringIgnoreCase, highlightSubstring } from '../utils';
 
 const highlightItems = (items, query) =>
-  items.map(item => ({ ...item, content: highlightSubstring(item.content, query) }));
+  items.map(item => ({ ...item, label: highlightSubstring(item.label, query) }));
 
 const filterAccordionData = (accordionData, query) => {
   let isFiltered = false;
@@ -24,7 +24,7 @@ const filterAccordionData = (accordionData, query) => {
         isFiltered = true;
       } else {
         const filteredItems = items.filter(
-          ({ content }) => getLastIndexOfSubstringIgnoreCase(content, query) >= 0,
+          ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0,
         );
         if (filteredItems.length > 0) {
           filteredAccordionDataAccum.push({
@@ -45,8 +45,12 @@ const AccordionSearch = ({
   accordionData, placeholder, onSelect, selected = [],
 }) => {
   const [inputValue, setInputValue] = useState('');
-  const [filteredAccordionData, setFilteredAccordionData] = useState(accordionData);
+  const [filteredAccordionData, setFilteredAccordionData] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
+
+  useEffect(() => {
+    setFilteredAccordionData(accordionData);
+  }, [accordionData]);
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -55,9 +59,11 @@ const AccordionSearch = ({
     setIsFiltered(filtered);
     setFilteredAccordionData(filteredData);
   };
-
+  if (!accordionData || !accordionData.length) {
+    return <span>loading...</span>;
+  }
   let accordionGroupNode = <div>no results</div>;
-  if (filteredAccordionData && filteredAccordionData.length > 0) {
+  if (filteredAccordionData && filteredAccordionData.length) {
     accordionGroupNode = (
       <div className="accordion-group">
         {filteredAccordionData.map(({ title, id: accordionId, items }) => {
@@ -70,7 +76,7 @@ const AccordionSearch = ({
               alwaysOpen={isFiltered}
             >
               <ul className="no-bullet">
-                {items.map(({ content, id: itemId }) => (
+                {items.map(({ label, id: itemId }) => (
                   <li key={itemId}>
                     <label key={itemId} htmlFor={`checkbox-${itemId}`}>
                       <input
@@ -80,7 +86,7 @@ const AccordionSearch = ({
                         onChange={() => onSelect(accordionId, itemId)}
                         checked={accordionSelected.filter(item => item.itemId === itemId).length === 1}
                       />
-                      {content}
+                      {label}
                     </label>
                   </li>
                 ))}

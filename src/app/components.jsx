@@ -171,15 +171,15 @@ const components = [
           id: '1',
           items: [
             {
-              content: 'BRCA1',
+              label: 'BRCA1',
               id: '1-1',
             },
             {
-              content: 'BRCA2',
+              label: 'BRCA2',
               id: '1-2',
             },
             {
-              content: 'TP53',
+              label: 'TP53',
               id: '1-3',
             },
           ],
@@ -189,11 +189,11 @@ const components = [
           id: '2',
           items: [
             {
-              content: 'Ribosome',
+              label: 'Ribosome',
               id: '2-1',
             },
             {
-              content: 'Nucleus',
+              label: 'Nucleus',
               id: '2-2',
             },
           ],
@@ -260,9 +260,9 @@ const components = [
         {
           title: (
             <div>
-              Title 1 
-{' '}
-<ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
+              Title 1
+              {' '}
+              <ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
             </div>
           ),
           content: loremIpsum({ count: 2 }),
