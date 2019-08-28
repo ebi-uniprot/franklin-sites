@@ -55,7 +55,7 @@ const AccordionSearch = ({
   const handleInputChange = (event) => {
     const { value } = event.target;
     setInputValue(value);
-    const [filteredData, filtered] = filterAccordionData(accordionData, value);
+    const [filteredData, filtered] = filterAccordionData(accordionData, value.trim());
     setIsFiltered(filtered);
     setFilteredAccordionData(filteredData);
   };
