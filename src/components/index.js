@@ -41,3 +41,4 @@ export { default as ListIcon } from '../svg/th-list.svg';
 export { default as TableIcon } from '../svg/table.svg';
 export { default as ConfigureIcon } from '../svg/cog.svg';
 export { default as SearchIcon } from '../svg/search.svg';
+export { default as TimesIcon } from '../svg/times.svg';
