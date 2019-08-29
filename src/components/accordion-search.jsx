@@ -1,8 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Accordion from './accordion';
 import SearchInput from './search-input';
 import { getLastIndexOfSubstringIgnoreCase, highlightSubstring } from '../utils';
+import '../styles/components/accordion-search.scss';
 
 const highlightItems = (items, query) =>
   items.map(item => ({ ...item, label: highlightSubstring(item.label, query) }));
@@ -42,7 +43,7 @@ const filterAccordionData = (accordionData, query) => {
 };
 
 const AccordionSearch = ({
-  accordionData, placeholder, onSelect, selected = [],
+  accordionData, placeholder, onSelect, selected, inputWidth,
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] = useState([]);
@@ -75,16 +76,18 @@ const AccordionSearch = ({
               count={accordionSelected.length}
               alwaysOpen={isFiltered}
             >
-              <ul className="no-bullet">
+              <ul className="no-bullet accordion-search__list">
                 {items.map(({ label, id: itemId }) => (
                   <li key={itemId}>
                     <label key={itemId} htmlFor={`checkbox-${itemId}`}>
                       <input
                         type="checkbox"
                         id={`checkbox-${itemId}`}
-                        style={{ marginBottom: 0 }}
+                        className="accordion-search__list__item__checkbox"
                         onChange={() => onSelect(accordionId, itemId)}
-                        checked={accordionSelected.filter(item => item.itemId === itemId).length === 1}
+                        checked={
+                          accordionSelected.filter(item => item.itemId === itemId).length === 1
+                        }
                       />
                       {label}
                     </label>
@@ -97,38 +100,63 @@ const AccordionSearch = ({
       </div>
     );
   }
-
+  const inputStyle = {};
+  if (inputWidth) {
+    inputStyle.width = inputWidth;
+  }
   return (
     <Fragment>
-      <SearchInput
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-      />
+      <div style={inputStyle}>
+        <SearchInput
+          type="text"
+          value={inputValue}
+          inputWidth={inputWidth}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+        />
+      </div>
       {accordionGroupNode}
     </Fragment>
   );
 };
 
-// AccordionSearch.propTypes = {
-//   /**
-//    * The title, works as a trigger to open/close
-//    */
-//   title: PropTypes.string.isRequired,
-//   /**
-//    * Number displayed at the right of the accordion. This could, for example, be used to inform
-//      the user how many checkboxes have selected in the accodion's hidden content.
-//    */
-//   count: PropTypes.number,
-//   /**
-//    * Content revealed on toggle
-//    */
-//   children: PropTypes.node.isRequired,
-// };
+AccordionSearch.propTypes = {
+  /**
+   * An array of objects each of which is used to populate an accordion.
+   */
+  accordionData: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf([
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          id: PropTypes.string.isRequired,
+        }),
+      ]),
+    }),
+  ).isRequired,
+  /**
+   * String used to fill in the search input when empty
+   */
+  placeholder: PropTypes.string,
+  /**
+   * Callback that is fired when an accordion's item is selected
+   */
+  onSelect: PropTypes.func.isRequired,
+  /**
+   * Array of the selected items' IDs
+   */
+  selected: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * The width of the text input box
+   */
+  inputWidth: PropTypes.number,
+};
 
-// AccordionSearch.defaultProps = {
-//   count: 0,
-// };
+AccordionSearch.defaultProps = {
+  placeholder: '',
+  inputWidth: 300,
+};
 
 export default AccordionSearch;
