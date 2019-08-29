@@ -4,12 +4,72 @@
     "displayName": "AccordionSearch",
     "methods": [],
     "props": {
-      "selected": {
-        "defaultValue": {
-          "value": "[]",
-          "computed": false
+      "accordionData": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "title": {
+                "name": "string",
+                "required": true
+              },
+              "id": {
+                "name": "string",
+                "required": true
+              },
+              "items": {
+                "name": "arrayOf",
+                "value": {
+                  "name": "custom",
+                  "raw": "[\n  PropTypes.shape({\n    label: PropTypes.string.isRequired,\n    id: PropTypes.string.isRequired,\n  }),\n]"
+                },
+                "required": false
+              }
+            }
+          }
         },
-        "required": false
+        "required": true,
+        "description": "An array of objects each of which is used to populate an accordion."
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "String used to fill in the search input when empty",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
+      },
+      "onSelect": {
+        "type": {
+          "name": "func"
+        },
+        "required": true,
+        "description": "Callback that is fired when an accordion's item is selected"
+      },
+      "selected": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": true,
+        "description": "Array of the selected items' IDs"
+      },
+      "inputWidth": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The width of the text input box",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
       }
     }
   },

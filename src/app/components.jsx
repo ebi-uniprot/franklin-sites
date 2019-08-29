@@ -165,6 +165,7 @@ const components = [
       onSelect: (accordionId, itemId) => {
         console.log(accordionId, itemId);
       },
+      selected: [],
       accordionData: [
         {
           title: 'Gene',
