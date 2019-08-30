@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Accordion from './accordion';
 import SearchInput from './search-input';
+import Loader from './loader';
 import { getLastIndexOfSubstringIgnoreCase, highlightSubstring } from '../utils';
 import '../styles/components/accordion-search.scss';
 
@@ -43,7 +44,7 @@ const filterAccordionData = (accordionData, query) => {
 };
 
 const AccordionSearch = ({
-  accordionData, placeholder, onSelect, selected, inputWidth,
+  accordionData, placeholder, onSelect, selected, searchInputWidth,
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] = useState([]);
@@ -61,7 +62,7 @@ const AccordionSearch = ({
     setFilteredAccordionData(filteredData);
   };
   if (!accordionData || !accordionData.length) {
-    return <span>loading...</span>;
+    return <Loader />;
   }
   let accordionGroupNode = <div>no results</div>;
   if (filteredAccordionData && filteredAccordionData.length) {
@@ -100,17 +101,16 @@ const AccordionSearch = ({
       </div>
     );
   }
-  const inputStyle = {};
-  if (inputWidth) {
-    inputStyle.width = inputWidth;
+  const searchInputStyle = {};
+  if (searchInputWidth) {
+    searchInputStyle.width = searchInputWidth;
   }
   return (
     <Fragment>
-      <div style={inputStyle}>
+      <div style={searchInputStyle}>
         <SearchInput
           type="text"
           value={inputValue}
-          inputWidth={inputWidth}
           onChange={handleInputChange}
           placeholder={placeholder}
         />
@@ -151,12 +151,12 @@ AccordionSearch.propTypes = {
   /**
    * The width of the text input box
    */
-  inputWidth: PropTypes.number,
+  searchInputWidth: PropTypes.number,
 };
 
 AccordionSearch.defaultProps = {
   placeholder: '',
-  inputWidth: 300,
+  searchInputWidth: 300,
 };
 
 export default AccordionSearch;
