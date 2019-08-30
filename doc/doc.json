@@ -1198,7 +1198,7 @@
           "name": "string"
         },
         "required": false,
-        "description": "",
+        "description": "The value to display in the text input.",
         "defaultValue": {
           "value": "undefined",
           "computed": true
@@ -1209,7 +1209,7 @@
           "name": "func"
         },
         "required": false,
-        "description": "",
+        "description": "Value change callback for the text input component.",
         "defaultValue": {
           "value": "undefined",
           "computed": true
@@ -1220,7 +1220,7 @@
           "name": "func"
         },
         "required": false,
-        "description": "",
+        "description": "Key pressed callback for the text input component.",
         "defaultValue": {
           "value": "undefined",
           "computed": true
@@ -1231,7 +1231,7 @@
           "name": "string"
         },
         "required": false,
-        "description": "",
+        "description": "Text to place in the text input component in the absence of value.",
         "defaultValue": {
           "value": "undefined",
           "computed": true
