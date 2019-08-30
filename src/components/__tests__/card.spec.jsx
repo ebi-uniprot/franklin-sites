@@ -9,7 +9,7 @@ describe('Card component', () => {
     const component = renderer
       .create(
         <Router>
-          <Card title="Title">
+          <Card title="Title" onClick={null}>
             <span>Some content</span>
           </Card>
         </Router>,
@@ -22,7 +22,7 @@ describe('Card component', () => {
     const component = renderer
       .create(
         <Router>
-          <Card title="Title" subtitle="Subtitle">
+          <Card title="Title" subtitle="Subtitle" onClick={null}>
             <span>Some content</span>
           </Card>
         </Router>,
@@ -43,7 +43,7 @@ describe('Card component', () => {
     const component = renderer
       .create(
         <Router>
-          <Card title="Title" subtitle="Subtitle" links={links}>
+          <Card title="Title" subtitle="Subtitle" links={links} onClick={null}>
             <span>Some content</span>
           </Card>
         </Router>,

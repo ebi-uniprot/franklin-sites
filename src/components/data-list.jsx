@@ -4,7 +4,7 @@ import withDataLoader from './data-loader';
 import Card from './card';
 
 const DataList = ({
-  data, idKey, selectable, selected, onSelect, dataRenderer,
+  data, idKey, selectable, selected, onSelect, dataRenderer, onCardClick,
 }) => (
   <Fragment>
     {data.map(content => (
@@ -14,6 +14,11 @@ const DataList = ({
           selectable,
           selected: !!selected[content[idKey]],
           onSelect: () => onSelect(content[idKey]),
+          onClick: onCardClick
+            ? () => {
+              onCardClick(content[idKey]);
+            }
+            : null,
         }}
       >
         {dataRenderer(content)}
@@ -49,6 +54,7 @@ DataList.propTypes = {
    *  label, name and render attributes.
    */
   dataRenderer: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func,
 };
 
 DataList.defaultProps = {
@@ -56,6 +62,7 @@ DataList.defaultProps = {
   selected: {},
   onSelect: () => {},
   selectable: false,
+  onCardClick: null,
 };
 
 export default withDataLoader(DataList);
