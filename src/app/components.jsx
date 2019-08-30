@@ -123,8 +123,8 @@ const components = [
   {
     name: 'Search Input',
     component: SearchInput,
-    function: 'blah',
-    purpose: 'blah',
+    function: 'Filter data displayed on the screen (autocomplete, list of fields etc.)',
+    purpose: 'Provide the user with an indication that typing in the input box will search something',
     props: {
       placeholder: 'Search',
     },

@@ -35,9 +35,21 @@ const SearchInput = ({
 };
 
 SearchInput.propTypes = {
+  /**
+   * The value to display in the text input.
+   */
   value: PropTypes.string,
+  /**
+   * Value change callback for the text input component.
+   */
   onChange: PropTypes.func,
+  /**
+   * Key pressed callback for the text input component.
+   */
   onKeyDown: PropTypes.func,
+  /**
+   * Text to place in the text input component in the absence of value.
+   */
   placeholder: PropTypes.string,
 };
 
