@@ -9,7 +9,7 @@ import '../styles/components/accordion-search.scss';
 const highlightItems = (items, query) =>
   items.map(item => ({ ...item, label: highlightSubstring(item.label, query) }));
 
-const filterAccordionData = (accordionData, query) => {
+export const filterAccordionData = (accordionData, query) => {
   let isFiltered = false;
   if (!query) {
     return [accordionData, isFiltered];

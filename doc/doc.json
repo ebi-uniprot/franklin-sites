@@ -21,8 +21,17 @@
               "items": {
                 "name": "arrayOf",
                 "value": {
-                  "name": "custom",
-                  "raw": "[\n  PropTypes.shape({\n    label: PropTypes.string.isRequired,\n    id: PropTypes.string.isRequired,\n  }),\n]"
+                  "name": "shape",
+                  "value": {
+                    "label": {
+                      "name": "string",
+                      "required": true
+                    },
+                    "id": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
                 },
                 "required": false
               }
@@ -60,7 +69,7 @@
         "required": true,
         "description": "Array of the selected items' IDs"
       },
-      "inputWidth": {
+      "searchInputWidth": {
         "type": {
           "name": "number"
         },
