@@ -63,7 +63,7 @@ describe('AccordionSearch', () => {
     expect(isFiltered).toBe(false);
   });
 
-  test('blah', () => {
+  test('should be two accordions with a total of five list items', () => {
     const { queryAllByTestId } = render(<AccordionSearch {...props} />);
     const content = queryAllByTestId('accordion-content');
     expect(content).toHaveLength(2);
