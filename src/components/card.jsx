@@ -21,11 +21,21 @@ CardLink.defaultProps = {
 };
 
 const Card = ({
-  title, subtitle, children, links, selectable, selected, onSelect,
+  title, subtitle, children, links, selectable, selected, onSelect, onClick,
 }) => {
   const checkbox = <input type="checkbox" checked={selected} onChange={onSelect} />;
+  const containerAttributes = {
+    className: `card ${selected ? 'card--selected' : ''}`,
+  };
+  if (onClick) {
+    containerAttributes.className += ' card--has-hover';
+    containerAttributes.onClick = onClick;
+    containerAttributes.onKeyDown = onClick;
+    containerAttributes.role = 'button';
+    containerAttributes.tabIndex = 0;
+  }
   return (
-    <div className={`card ${selected ? 'card--selected' : ''}`}>
+    <div {...containerAttributes}>
       {title && (
         <div className="card__header">
           {selectable && <div className="card__header__checkbox">{checkbox}</div>}
@@ -78,6 +88,7 @@ Card.propTypes = {
   selectable: PropTypes.bool,
   selected: PropTypes.bool,
   onSelect: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Card.defaultProps = {
@@ -86,7 +97,8 @@ Card.defaultProps = {
   links: [],
   selectable: false,
   selected: false,
-  onSelect: () => null,
+  onSelect: null,
+  onClick: null,
 };
 
 export default Card;

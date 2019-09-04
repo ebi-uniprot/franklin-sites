@@ -71,6 +71,38 @@ exports[`Card component should render card with links 1`] = `
 </div>
 `;
 
+exports[`Card component should render card with onclick 1`] = `
+<div
+  className="card  card--has-hover"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
+>
+  <div
+    className="card__header"
+  >
+    <h3
+      className="card__title"
+    >
+      Title
+    </h3>
+    <div
+      className="card__subtitle"
+    >
+      Subtitle
+    </div>
+  </div>
+  <div
+    className="card__content"
+  >
+    <span>
+      Some content
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Card component should render card with subtitle 1`] = `
 <div
   className="card "
