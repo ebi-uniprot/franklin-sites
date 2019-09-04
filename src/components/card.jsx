@@ -25,9 +25,10 @@ const Card = ({
 }) => {
   const checkbox = <input type="checkbox" checked={selected} onChange={onSelect} />;
   const containerAttributes = {
-    className: `card ${selected ? 'card--selected' : ''} ${onClick ? 'card--hashover' : ''}`,
+    className: `card ${selected ? 'card--selected' : ''}`,
   };
   if (onClick) {
+    containerAttributes.className += ' card--has-hover';
     containerAttributes.onClick = onClick;
     containerAttributes.onKeyDown = onClick;
     containerAttributes.role = 'button';

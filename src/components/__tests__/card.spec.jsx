@@ -51,4 +51,17 @@ describe('Card component', () => {
       .toJSON();
     expect(component).toMatchSnapshot();
   });
+
+  test('should render card with onclick', () => {
+    const component = renderer
+      .create(
+        <Router>
+          <Card title="Title" subtitle="Subtitle" onClick={() => {}}>
+            <span>Some content</span>
+          </Card>
+        </Router>,
+      )
+      .toJSON();
+    expect(component).toMatchSnapshot();
+  });
 });

@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import withDataLoader from './data-loader';
 import Card from './card';
 
+const getEventProps = (onSelect, onCardClick, content, idKey) => {
+  const eventProps = {};
+  if (onSelect) {
+    eventProps.onSelect = () => onSelect(content[idKey]);
+  }
+  if (onCardClick) {
+    eventProps.onClick = () => onCardClick(content[idKey]);
+  }
+  return eventProps;
+};
+
 const DataList = ({
   data, idKey, selectable, selected, onSelect, dataRenderer, onCardClick,
 }) => (
@@ -13,12 +24,7 @@ const DataList = ({
         {...{
           selectable,
           selected: !!selected[content[idKey]],
-          onSelect: () => onSelect(content[idKey]),
-          onClick: onCardClick
-            ? () => {
-              onCardClick(content[idKey]);
-            }
-            : null,
+          ...getEventProps(onSelect, onCardClick, content, idKey),
         }}
       >
         {dataRenderer(content)}
@@ -60,7 +66,7 @@ DataList.propTypes = {
 DataList.defaultProps = {
   idKey: 'id',
   selected: {},
-  onSelect: () => {},
+  onSelect: null,
   selectable: false,
   onCardClick: null,
 };
