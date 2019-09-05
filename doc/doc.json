@@ -458,7 +458,18 @@
         "required": false,
         "description": "",
         "defaultValue": {
-          "value": "() => null",
+          "value": "null",
+          "computed": false
+        }
+      },
+      "onClick": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "null",
           "computed": false
         }
       }
@@ -497,7 +508,7 @@
         "required": false,
         "description": "A callback function that is called whenever a user selects a row. The row ID is returned upon\ncallback.",
         "defaultValue": {
-          "value": "() => {}",
+          "value": "null",
           "computed": false
         }
       },
@@ -530,6 +541,17 @@
         },
         "required": true,
         "description": "An array of objects which specifies attributes about each column of your data. Each object has\n label, name and render attributes."
+      },
+      "onCardClick": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
       }
     }
   },
@@ -1100,6 +1122,57 @@
         "defaultValue": {
           "value": "[]",
           "computed": false
+        }
+      }
+    }
+  },
+  "src/components/search-input.jsx": {
+    "description": "",
+    "displayName": "SearchInput",
+    "methods": [],
+    "props": {
+      "value": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The value to display in the text input.",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
+        }
+      },
+      "onChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Value change callback for the text input component.",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
+        }
+      },
+      "onKeyDown": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Key pressed callback for the text input component.",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
+        }
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Text to place in the text input component in the absence of value.",
+        "defaultValue": {
+          "value": "undefined",
+          "computed": true
         }
       }
     }
