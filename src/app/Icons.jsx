@@ -15,7 +15,7 @@ import {
   ListIcon,
   ConfigureIcon,
   SearchIcon,
-  TimesIcon,
+  CloseIcon,
 } from '../components';
 
 const size = 30;
@@ -98,8 +98,8 @@ const iconDefinition = [
   },
   {
     name: 'times.svg',
-    description: 'Times',
-    icon: <TimesIcon width={size} height={size} />,
+    description: 'Close',
+    icon: <CloseIcon width={size} height={size} />,
   },
 ];
 
