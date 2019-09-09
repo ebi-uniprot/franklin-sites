@@ -51,16 +51,14 @@ describe('AccordionSearch', () => {
   });
 
   test('filterAccordionData should return filtered data with matching query', () => {
-    const [filteredAccordionData, isFiltered] = filterAccordionData(props.accordionData, 'Nucleus');
+    const filteredAccordionData = filterAccordionData(props.accordionData, 'Nucleus');
     expect(filteredAccordionData).toHaveLength(1);
     expect(filteredAccordionData[0].items[0].id).toBe('2-2');
-    expect(isFiltered).toBe(true);
   });
 
   test('filterAccordionData should return no data with nonmatching query', () => {
-    const [filteredAccordionData, isFiltered] = filterAccordionData(props.accordionData, 'Zap');
+    const filteredAccordionData = filterAccordionData(props.accordionData, 'Zap');
     expect(filteredAccordionData).toHaveLength(0);
-    expect(isFiltered).toBe(false);
   });
 
   test('should be two accordions with a total of five list items', () => {
