@@ -1,5 +1,5 @@
-@import "./settings";
-@import "./colours";
+@import './settings';
+@import './colours';
 
 $global-left: if($global-text-direction == rtl, right, left);
 $global-right: if($global-text-direction == rtl, left, right);
@@ -12,4 +12,15 @@ $global-right: if($global-text-direction == rtl, left, right);
   top: -0.1em;
   display: inline-block;
   margin-#{$global-left}: $offset;
+}
+
+@mixin columns($base-class, $number) {
+  .#{$base-class}--columns {
+    column-count: $number;
+    column-width: percentage(1 / $number);
+
+    .#{$base-class}__item {
+      break-inside: avoid;
+    }
+  }
 }

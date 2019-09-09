@@ -41,7 +41,12 @@ export const filterAccordionData = (accordionData, query) => {
 };
 
 const AccordionSearch = ({
-  accordionData, placeholder, onSelect, selected, searchInputWidth,
+  accordionData,
+  placeholder,
+  onSelect,
+  selected,
+  searchInputWidth,
+  columns,
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] = useState([]);
@@ -72,9 +77,13 @@ const AccordionSearch = ({
               count={accordionSelected.length}
               alwaysOpen={!!inputValue}
             >
-              <ul className=" accordion-search__list no-bullet">
+              <ul
+                className={`no-bullet accordion-search__list${
+                  columns ? ' accordion-search__list--columns' : ''
+                }`}
+              >
                 {items.map(({ label, id: itemId }) => (
-                  <li key={itemId}>
+                  <li key={itemId} className="accordion-search__list__item">
                     <label key={itemId} htmlFor={`checkbox-${itemId}`}>
                       <input
                         type="checkbox"
@@ -145,11 +154,17 @@ AccordionSearch.propTypes = {
    * The width of the text input box
    */
   searchInputWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * A boolean indicating whether the component should span multiple
+   * columns: 2 columns for medium to 3 columns for large+ screens.
+   */
+  columns: PropTypes.bool,
 };
 
 AccordionSearch.defaultProps = {
   placeholder: '',
   searchInputWidth: '18rem',
+  columns: false,
 };
 
 export default AccordionSearch;

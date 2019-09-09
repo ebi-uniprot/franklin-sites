@@ -58,9 +58,11 @@ exports[`AccordionSearch should render 1`] = `
         data-testid="accordion-content"
       >
         <ul
-          class=" accordion-search__list no-bullet"
+          class="no-bullet accordion-search__list"
         >
-          <li>
+          <li
+            class="accordion-search__list__item"
+          >
             <label
               for="checkbox-1-1"
             >
@@ -72,7 +74,9 @@ exports[`AccordionSearch should render 1`] = `
               BRCA1
             </label>
           </li>
-          <li>
+          <li
+            class="accordion-search__list__item"
+          >
             <label
               for="checkbox-1-2"
             >
@@ -84,7 +88,9 @@ exports[`AccordionSearch should render 1`] = `
               BRCA2
             </label>
           </li>
-          <li>
+          <li
+            class="accordion-search__list__item"
+          >
             <label
               for="checkbox-1-3"
             >
@@ -128,9 +134,11 @@ exports[`AccordionSearch should render 1`] = `
         data-testid="accordion-content"
       >
         <ul
-          class=" accordion-search__list no-bullet"
+          class="no-bullet accordion-search__list"
         >
-          <li>
+          <li
+            class="accordion-search__list__item"
+          >
             <label
               for="checkbox-2-1"
             >
@@ -142,7 +150,9 @@ exports[`AccordionSearch should render 1`] = `
               Ribosome
             </label>
           </li>
-          <li>
+          <li
+            class="accordion-search__list__item"
+          >
             <label
               for="checkbox-2-2"
             >
