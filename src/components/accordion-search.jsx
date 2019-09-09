@@ -10,9 +10,8 @@ const highlightItems = (items, query) =>
   items.map(item => ({ ...item, label: highlightSubstring(item.label, query) }));
 
 export const filterAccordionData = (accordionData, query) => {
-  let isFiltered = false;
   if (!query) {
-    return [accordionData, isFiltered];
+    return accordionData;
   }
   const filteredAccordionData = accordionData.reduce(
     (filteredAccordionDataAccum, accordionDatum) => {
@@ -23,7 +22,6 @@ export const filterAccordionData = (accordionData, query) => {
           title: highlightSubstring(title, query),
           items: highlightItems(items, query),
         });
-        isFiltered = true;
       } else {
         const filteredItems = items.filter(
           ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0,
@@ -33,14 +31,13 @@ export const filterAccordionData = (accordionData, query) => {
             ...accordionDatum,
             items: highlightItems(filteredItems, query),
           });
-          isFiltered = true;
         }
       }
       return filteredAccordionDataAccum;
     },
     [],
   );
-  return [filteredAccordionData, isFiltered];
+  return filteredAccordionData;
 };
 
 const AccordionSearch = ({
@@ -48,7 +45,6 @@ const AccordionSearch = ({
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] = useState([]);
-  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     setFilteredAccordionData(accordionData);
@@ -57,8 +53,7 @@ const AccordionSearch = ({
   const handleInputChange = (event) => {
     const { value } = event.target;
     setInputValue(value);
-    const [filteredData, filtered] = filterAccordionData(accordionData, value.trim());
-    setIsFiltered(filtered);
+    const filteredData = filterAccordionData(accordionData, value.trim());
     setFilteredAccordionData(filteredData);
   };
   if (!accordionData || !accordionData.length) {
@@ -75,7 +70,7 @@ const AccordionSearch = ({
               title={title}
               key={accordionId}
               count={accordionSelected.length}
-              alwaysOpen={isFiltered}
+              alwaysOpen={!!inputValue}
             >
               <ul className="no-bullet accordion-search__list">
                 {items.map(({ label, id: itemId }) => (
