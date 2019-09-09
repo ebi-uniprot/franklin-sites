@@ -59,10 +59,10 @@ const AccordionSearch = ({
   if (!accordionData || !accordionData.length) {
     return <Loader />;
   }
-  let accordionGroupNode = <div>no results</div>;
+  let accordionGroupNode = <div>No matches found</div>;
   if (filteredAccordionData && filteredAccordionData.length) {
     accordionGroupNode = (
-      <div className="accordion-group">
+      <div className="accordion-group accordion-search">
         {filteredAccordionData.map(({ title, id: accordionId, items }) => {
           const accordionSelected = selected.filter(item => item.accordionId === accordionId);
           return (
@@ -72,14 +72,14 @@ const AccordionSearch = ({
               count={accordionSelected.length}
               alwaysOpen={!!inputValue}
             >
-              <ul className="no-bullet accordion-search__list">
+              <ul className=" accordion-search__list no-bullet">
                 {items.map(({ label, id: itemId }) => (
                   <li key={itemId}>
                     <label key={itemId} htmlFor={`checkbox-${itemId}`}>
                       <input
                         type="checkbox"
                         id={`checkbox-${itemId}`}
-                        className="accordion-search__list__item__checkbox"
+                        className="accordion-search__list__item-checkbox"
                         onChange={() => onSelect(accordionId, itemId)}
                         checked={accordionSelected.some(item => item.itemId === itemId)}
                       />
