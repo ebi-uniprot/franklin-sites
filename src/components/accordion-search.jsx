@@ -86,9 +86,7 @@ const AccordionSearch = ({
                         id={`checkbox-${itemId}`}
                         className="accordion-search__list__item__checkbox"
                         onChange={() => onSelect(accordionId, itemId)}
-                        checked={
-                          accordionSelected.filter(item => item.itemId === itemId).length === 1
-                        }
+                        checked={accordionSelected.some(item => item.itemId === itemId)}
                       />
                       {label}
                     </label>
