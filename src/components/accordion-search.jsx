@@ -144,12 +144,12 @@ AccordionSearch.propTypes = {
   /**
    * The width of the text input box
    */
-  searchInputWidth: PropTypes.number,
+  searchInputWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 AccordionSearch.defaultProps = {
   placeholder: '',
-  searchInputWidth: 300,
+  searchInputWidth: '18rem',
 };
 
 export default AccordionSearch;

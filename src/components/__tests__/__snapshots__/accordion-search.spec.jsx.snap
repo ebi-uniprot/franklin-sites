@@ -3,7 +3,7 @@
 exports[`AccordionSearch should render 1`] = `
 <DocumentFragment>
   <div
-    style="width: 300px;"
+    style="width: 18rem;"
   >
     <span
       class="search-input"
