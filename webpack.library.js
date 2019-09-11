@@ -16,7 +16,9 @@ module.exports = [
       libraryTarget: 'commonjs',
     },
     externals: {
-      react: 'react',
+      react: { commonjs: 'react' },
+      'react-dom': { commonjs: 'react-dom' },
+      'react-router-dom': { commonjs: 'react-router-dom' },
     },
     resolve: {
       extensions: ['.jsx', '.js'],
