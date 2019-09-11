@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 import { treeData, flattenedPaths } from './common/tree-data';
@@ -48,6 +49,14 @@ class MainSearchWrapper extends Component {
     );
   }
 }
+
+MainSearchWrapper.propTypes = {
+  searchTerm: PropTypes.string,
+};
+
+MainSearchWrapper.defaultProps = {
+  searchTerm: null,
+};
 
 const components = [
   {
@@ -123,7 +132,8 @@ const components = [
     name: 'Search Input',
     component: SearchInput,
     function: 'Filter data displayed on the screen (autocomplete, list of fields etc.)',
-    purpose: 'Provide the user with an indication that typing in the input box will search something',
+    purpose:
+      'Provide the user with an indication that typing in the input box will search something',
     props: {
       placeholder: 'Search',
     },

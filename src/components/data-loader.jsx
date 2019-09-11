@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/data-loader.scss';

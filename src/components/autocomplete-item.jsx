@@ -50,7 +50,7 @@ class AutocompleteItem extends Component {
         >
           {substringToHighlight
             ? AutocompleteItem.highlightSubstring(item.pathLabel, substringToHighlight)
-            : item.label}
+            : item.itemLabel}
         </button>
       </li>
     );
