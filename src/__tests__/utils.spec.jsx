@@ -1,9 +1,11 @@
+import { render } from '@testing-library/react';
 import {
   getFlattenedPaths,
   getLastIndexOfSubstringIgnoreCase,
   restructureFlattenedTreeDataForAutocomplete,
   restructureFlattenedTreeItemsForAutocomplete,
   fillArray,
+  highlightSubstring,
 } from '../utils';
 import { treeData } from '../app/common/tree-data';
 
@@ -141,4 +143,15 @@ test('should prepare flattened tree data items for autocomplete', () => {
 test('should fill array with objects', () => {
   const array = fillArray(3, (element, index) => ({ index }));
   expect(array).toEqual([{ index: 0 }, { index: 1 }, { index: 2 }]);
+});
+
+describe('highlightSubstring', () => {
+  const string = 'Item 1 / Item 1a';
+  test('should highlight substring (case insensitive', () => {
+    const { asFragment } = render(highlightSubstring(string, 'item 1'));
+    expect(asFragment()).toMatchSnapshot();
+  });
+  test('should return string if no substring found', () => {
+    expect(highlightSubstring(string, 'zap')).toEqual(string);
+  });
 });

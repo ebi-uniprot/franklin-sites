@@ -9,6 +9,7 @@ import sequenceData from './common/sequence-data';
 import { getLipsumObjectArray } from './common/lipsum';
 import {
   Accordion,
+  AccordionSearch,
   Autocomplete,
   Card,
   ConfigureIcon,
@@ -32,8 +33,7 @@ import {
 class MainSearchWrapper extends Component {
   constructor(props) {
     super(props);
-    const { searchTerm } = this.props;
-    this.state = { searchTerm };
+    this.state = { searchTerm: '' };
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -164,6 +164,54 @@ const components = [
       filter: true,
     },
   },
+  {
+    name: 'Accordion Search',
+    component: AccordionSearch,
+    function: 'Search through an array to make a selection',
+    purpose: 'Allow selection of item from flat data set',
+    props: {
+      placeholder: 'Filter',
+      onSelect: (accordionId, itemId) => {
+        console.log(accordionId, itemId);
+      },
+      selected: [],
+      accordionData: [
+        {
+          title: 'Gene',
+          id: '1',
+          items: [
+            {
+              label: 'BRCA1',
+              id: '1-1',
+            },
+            {
+              label: 'BRCA2',
+              id: '1-2',
+            },
+            {
+              label: 'TP53',
+              id: '1-3',
+            },
+          ],
+        },
+        {
+          title: 'Organelle',
+          id: '2',
+          items: [
+            {
+              label: 'Ribosome',
+              id: '2-1',
+            },
+            {
+              label: 'Nucleus',
+              id: '2-2',
+            },
+          ],
+        },
+      ],
+    },
+  },
+
   {
     name: 'Main search',
     component: MainSearchWrapper,

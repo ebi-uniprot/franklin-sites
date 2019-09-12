@@ -29,7 +29,7 @@ const formatPattern = (Component) => {
                   <strong>{prop}</strong>
                   {' '}
                   <em>
-                    {doc.props[prop].type.name}
+                    {doc.props[prop].type && doc.props[prop].type.name}
                     {!doc.props[prop].required && ' (optional)'}
                   </em>
                   <p>{doc.props[prop].description && doc.props[prop].description}</p>

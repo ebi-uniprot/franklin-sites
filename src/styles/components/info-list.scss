@@ -1,6 +1,6 @@
-@import "../settings";
-@import "../colours";
-@import "../mixins.scss";
+@import '../settings';
+@import '../colours';
+@import '../mixins.scss';
 
 .info-list {
   margin: $global-margin 0 2 * $global-margin 0;
@@ -40,11 +40,5 @@
 }
 
 @include breakpoint(medium) {
-  .info-list--columns {
-    column-count: 2;
-    column-width: 50%;
-    .info-list__item {
-      break-inside: avoid;
-    }
-  }
+  @include columns('info-list', 2);
 }

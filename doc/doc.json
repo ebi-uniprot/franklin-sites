@@ -1,4 +1,87 @@
 {
+  "src/components/accordion-search.jsx": {
+    "description": "",
+    "displayName": "AccordionSearch",
+    "methods": [],
+    "props": {
+      "accordionData": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "title": {
+                "name": "string",
+                "required": true
+              },
+              "id": {
+                "name": "string",
+                "required": true
+              },
+              "items": {
+                "name": "arrayOf",
+                "value": {
+                  "name": "shape",
+                  "value": {
+                    "label": {
+                      "name": "string",
+                      "required": true
+                    },
+                    "id": {
+                      "name": "string",
+                      "required": true
+                    }
+                  }
+                },
+                "required": false
+              }
+            }
+          }
+        },
+        "required": true,
+        "description": "An array of objects each of which is used to populate an accordion."
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "String used to fill in the search input when empty",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
+      },
+      "onSelect": {
+        "type": {
+          "name": "func"
+        },
+        "required": true,
+        "description": "Callback that is fired when an accordion's item is selected"
+      },
+      "selected": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": true,
+        "description": "Array of the selected items' IDs"
+      },
+      "searchInputWidth": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The width of the text input box",
+        "defaultValue": {
+          "value": "300",
+          "computed": false
+        }
+      }
+    }
+  },
   "src/components/accordion.jsx": {
     "description": "",
     "displayName": "Accordion",
@@ -6,7 +89,15 @@
     "props": {
       "title": {
         "type": {
-          "name": "string"
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "element"
+            }
+          ]
         },
         "required": true,
         "description": "The title, works as a trigger to open/close"
@@ -28,6 +119,17 @@
         },
         "required": true,
         "description": "Content revealed on toggle"
+      },
+      "alwaysOpen": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Disable toggling and always open accordion",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },
@@ -35,24 +137,6 @@
     "description": "",
     "displayName": "AutocompleteItem",
     "methods": [
-      {
-        "name": "highlightSubstring",
-        "docblock": null,
-        "modifiers": [
-          "static"
-        ],
-        "params": [
-          {
-            "name": "string",
-            "type": null
-          },
-          {
-            "name": "substring",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
       {
         "name": "ensureVisible",
         "docblock": null,

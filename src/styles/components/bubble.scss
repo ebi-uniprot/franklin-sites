@@ -11,7 +11,7 @@
   width: $size;
   height: $size;
   line-height: $size;
-  font-size: $size/3;
+  font-size: bubbleFontSize($size);
 }
 
 .bubble--small {
