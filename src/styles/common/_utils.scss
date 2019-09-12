@@ -1,4 +1,4 @@
-@import "../settings";
+@import '../settings';
 
 $small-bubble: 1.6rem;
 $medium-bubble: 3rem;
@@ -9,5 +9,5 @@ $large-bubble: 5rem;
 }
 
 @function bubbleFontSize($size) {
-  @return 0.26960784313 * $size+0.31862745099;
+  @return $size/4 + 1/3;
 }

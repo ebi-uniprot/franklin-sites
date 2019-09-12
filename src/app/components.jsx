@@ -33,8 +33,7 @@ import {
 class MainSearchWrapper extends Component {
   constructor(props) {
     super(props);
-    const { searchTerm } = this.props;
-    this.state = { searchTerm };
+    this.state = { searchTerm: '' };
     this.handleChange = this.handleChange.bind(this);
   }
 
