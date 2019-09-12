@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "main": "./dist/franklin-components.js",
   "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
@@ -35,6 +35,11 @@
       "\\.(css|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1"
+  },
   "dependencies": {
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.0-rc.3",
@@ -42,10 +47,10 @@
     "npm-run-all": "^4.1.2",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
-    "react": "^16.8.6",
+    "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^4.2.2",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1",
     "react-scrollspy": "^3.4.0",
     "react-svg-loader": "^2.1.0",
     "uuid": "^3.3.2"
@@ -57,7 +62,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "@testing-library/react": "^8.0.1",
+    "@testing-library/react": "^9.1.4",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
@@ -73,8 +78,8 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-jsx-a11y": "6.1.1",
-    "eslint-plugin-react": "7.11.1",
-    "eslint-plugin-react-hooks": "^1.6.1",
+    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.0.3",
     "jest": "^23.6.0",
@@ -82,7 +87,7 @@
     "mkdirp": "^0.5.1",
     "node-sass": "^4.9.1",
     "react-docgen": "^4.1.0",
-    "react-test-renderer": "^16.4.1",
+    "react-test-renderer": "^16.9.0",
     "regenerator-runtime": "^0.12.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",

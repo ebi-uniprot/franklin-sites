@@ -34,8 +34,8 @@ class AutocompleteItem extends Component {
           className={active ? 'hover' : ''}
         >
           {substringToHighlight
-            ? highlightSubstring(item.pathLabel, substringToHighlight)
-            : item.label}
+            ? AutocompleteItem.highlightSubstring(item.pathLabel, substringToHighlight)
+            : item.itemLabel}
         </button>
       </li>
     );

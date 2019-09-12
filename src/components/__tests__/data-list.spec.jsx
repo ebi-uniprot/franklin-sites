@@ -23,6 +23,7 @@ describe('DataList', () => {
         hasMoreData
         data={data}
         dataRenderer={dataRenderer}
+        onCardClick={null}
       />,
     );
     expect(asFragment()).toMatchSnapshot();
@@ -35,6 +36,7 @@ describe('DataList', () => {
         hasMoreData
         data={data}
         dataRenderer={dataRenderer}
+        onCardClick={null}
       />,
     );
     const scrollContainer = container.querySelector('.data-loader__scroll-container');
@@ -49,6 +51,7 @@ describe('DataList', () => {
         hasMoreData={false}
         data={data}
         dataRenderer={dataRenderer}
+        onCardClick={null}
       />,
     );
     const scrollContainer = container.querySelector('.data-loader__scroll-container');
@@ -66,6 +69,7 @@ describe('DataList', () => {
         selectable
         onSelect={onSelect}
         dataRenderer={dataRenderer}
+        onCardClick={null}
       />,
     );
     fireEvent.click(container.querySelector('input'));
