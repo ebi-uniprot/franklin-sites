@@ -37,6 +37,67 @@ const facetData = [
     label: 'Facet not shown',
     name: 'facet_not',
   },
+  {
+    label: 'Long facet shown',
+    name: 'long_facet',
+    values: [
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+      {
+        label: 'Value 1',
+        value: 'value_1',
+        count: 764879,
+      },
+    ],
+  },
 ];
 
 export default facetData;
