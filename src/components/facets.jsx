@@ -46,16 +46,15 @@ class Facets extends Component {
                 {facet.values.map(value => ({
                   id: `${facet.name}_${value.value}`,
                   content: (
-                    <li className={this.isActive(facet.name, value.value) ? 'facet-active' : ''}>
-                      <button
-                        type="button"
-                        onClick={() => this.handleClick(facet.name, value.value)}
-                      >
-                        {`${value.label ? value.label : value.value} (${formatLargeNumber(
-                          value.count,
-                        )})`}
-                      </button>
-                    </li>
+                    <button
+                      type="button"
+                      className={this.isActive(facet.name, value.value) ? 'facet-active' : ''}
+                      onClick={() => this.handleClick(facet.name, value.value)}
+                    >
+                      {`${value.label ? value.label : value.value} (${formatLargeNumber(
+                        value.count,
+                      )})`}
+                    </button>
                   ),
                 }))}
               </ExpandableList>

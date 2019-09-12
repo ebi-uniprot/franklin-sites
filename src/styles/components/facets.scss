@@ -23,7 +23,7 @@
         background: $colour-seashell-grey;
       }
     }
-    li.facet-active button {
+    button.facet-active {
       font-weight: bold;
       background: $colour-light-blue;
       &:hover {
