@@ -71,12 +71,31 @@
       },
       "searchInputWidth": {
         "type": {
-          "name": "number"
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
         },
         "required": false,
         "description": "The width of the text input box",
         "defaultValue": {
-          "value": "300",
+          "value": "'18rem'",
+          "computed": false
+        }
+      },
+      "columns": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "A boolean indicating whether the component should span multiple\ncolumns: 2 columns for medium to 3 columns for large+ screens.",
+        "defaultValue": {
+          "value": "false",
           "computed": false
         }
       }
