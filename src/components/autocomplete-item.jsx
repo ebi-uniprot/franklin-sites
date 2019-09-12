@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { highlightSubstring } from '../utils';
 
 class AutocompleteItem extends Component {
   componentDidMount() {
@@ -33,7 +34,7 @@ class AutocompleteItem extends Component {
           className={active ? 'hover' : ''}
         >
           {substringToHighlight
-            ? AutocompleteItem.highlightSubstring(item.pathLabel, substringToHighlight)
+            ? highlightSubstring(item.pathLabel, substringToHighlight)
             : item.itemLabel}
         </button>
       </li>
