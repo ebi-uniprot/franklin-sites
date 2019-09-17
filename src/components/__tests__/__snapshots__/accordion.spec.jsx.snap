@@ -19,7 +19,15 @@ exports[`Accordion should render 1`] = `
       <div
         class="accordion__title__side"
       >
-        10
+        <span
+          class="accordion__title__side__count"
+        >
+          <span
+            class="bubble--small colour-uniprot-blue"
+          >
+            10
+          </span>
+        </span>
         <test-file-stub
           classname="accordion__title__side__chevron"
           height="16"

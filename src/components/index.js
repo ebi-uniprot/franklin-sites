@@ -24,6 +24,7 @@ export { default as Accordion } from './accordion';
 export { default as Tabs } from './tabs';
 export { default as DropdownButton } from './dropdown-button';
 export { default as SearchInput } from './search-input';
+export { default as AccordionSearch } from './accordion-search';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
@@ -40,3 +41,4 @@ export { default as ListIcon } from '../svg/th-list.svg';
 export { default as TableIcon } from '../svg/table.svg';
 export { default as ConfigureIcon } from '../svg/cog.svg';
 export { default as SearchIcon } from '../svg/search.svg';
+export { default as CloseIcon } from '../svg/times.svg';

@@ -15,6 +15,7 @@ import {
   ListIcon,
   ConfigureIcon,
   SearchIcon,
+  CloseIcon,
 } from '../components';
 
 const size = 30;
@@ -94,6 +95,11 @@ const iconDefinition = [
     name: 'search.svg',
     description: 'Search',
     icon: <SearchIcon width={size} height={size} />,
+  },
+  {
+    name: 'times.svg',
+    description: 'Close',
+    icon: <CloseIcon width={size} height={size} />,
   },
 ];
 
