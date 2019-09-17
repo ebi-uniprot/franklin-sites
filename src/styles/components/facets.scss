@@ -11,22 +11,36 @@
   & > ul > li {
     padding-bottom: $global-margin / 2;
     margin-bottom: $global-margin / 2;
-    border-bottom: 1px solid $colour-medium-grey;
+    border-bottom: 1px solid $colour-seashell-grey;
+    position: relative;
     button {
       cursor: pointer;
       display: block;
       width: 100%;
+      line-height: $global-lineheight;
       text-align: left;
       padding: $global-margin / 3;
       &:hover {
-        background: $colour-light-grey;
+        background: $colour-seashell-grey;
       }
     }
-    li.facet-active button {
+    button.facet-active {
       font-weight: bold;
-      background: $colour-seashell-grey;
+      background: $colour-light-blue;
       &:hover {
-        background: $colour-light-grey;
+        background: $colour-medium-blue;
+        &:after {
+          display: inline-block;
+          position: absolute;
+          background: url("../../svg/times.svg");
+          background-repeat: no-repeat;
+          background-size: 1rem 1rem;
+          right: 0.2rem;
+          margin-top: 0.3rem;
+          content: " ";
+          height: 1rem;
+          width: 1rem;
+        }
       }
     }
   }

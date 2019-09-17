@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { formatLargeNumber } from '../utils';
 
 import '../styles/components/facets.scss';
+import ExpandableList from './expandable-list';
 
 class Facets extends Component {
   constructor(props) {
@@ -34,26 +35,29 @@ class Facets extends Component {
       return null;
     }
     const facetsToShow = data.filter(facet => facet.values && facet.values.length > 0);
+
     return (
       <div className="facets">
         <ul className="no-bullet">
           {facetsToShow.map(facet => (
             <li key={facet.name}>
               <div className="facet-name">{facet.label}</div>
-              <ul className="no-bullet">
-                {facet.values.map(value => (
-                  <li
-                    key={`${facet.name}_${value.value}`}
-                    className={this.isActive(facet.name, value.value) ? 'facet-active' : ''}
-                  >
-                    <button type="button" onClick={() => this.handleClick(facet.name, value.value)}>
+              <ExpandableList>
+                {facet.values.map(value => ({
+                  id: `${facet.name}_${value.value}`,
+                  content: (
+                    <button
+                      type="button"
+                      className={this.isActive(facet.name, value.value) ? 'facet-active' : ''}
+                      onClick={() => this.handleClick(facet.name, value.value)}
+                    >
                       {`${value.label ? value.label : value.value} (${formatLargeNumber(
                         value.count,
                       )})`}
                     </button>
-                  </li>
-                ))}
-              </ul>
+                  ),
+                }))}
+              </ExpandableList>
             </li>
           ))}
         </ul>
