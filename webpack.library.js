@@ -54,6 +54,7 @@ module.exports = [
         },
         {
           test: /\.svg$/,
+          issuer: /\.jsx?$/,
           use: [
             {
               loader: 'babel-loader',
@@ -68,6 +69,11 @@ module.exports = [
               },
             },
           ],
+        },
+        {
+          test: /\.svg$/i,
+          issuer: /\.(css|scss)?$/,
+          loader: 'svg-url-loader',
         },
       ],
     },

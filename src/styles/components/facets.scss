@@ -32,8 +32,12 @@
         &:after {
           display: inline-block;
           position: absolute;
-          right: 0px;
-          content: "x";
+          background: url("../../svg/close.svg");
+          background-repeat: no-repeat;
+          background-size: 1rem 1rem;
+          right: 0.2rem;
+          margin-top: 0.2rem;
+          content: " ";
           height: 1rem;
           width: 1rem;
         }
