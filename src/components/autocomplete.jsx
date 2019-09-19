@@ -156,7 +156,7 @@ class Autocomplete extends Component {
     }
     return (
       <div className="autocomplete-container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} data-testid="autocomplete-form">
           <SearchInput
             type="text"
             value={textInputValue}

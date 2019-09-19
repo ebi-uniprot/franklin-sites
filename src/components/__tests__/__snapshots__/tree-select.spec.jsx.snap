@@ -118,6 +118,7 @@ exports[`TreeSelect component with filter should render 1`] = `
       className="autocomplete-container"
     >
       <form
+        data-testid="autocomplete-form"
         onSubmit={[Function]}
       >
         <span
