@@ -30,6 +30,7 @@ class Autocomplete extends Component {
       textInputValue: value || '',
       hoverIndex: -1,
       selected: false,
+      submittedInputValue: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
@@ -83,9 +84,14 @@ class Autocomplete extends Component {
 
   handleNodeSelect(item) {
     const { onSelect, clearOnSelect, showDropwdownUpdated } = this.props;
+    const { submittedInputValue } = this.state;
     const textInputValue = item.pathLabel ? item.pathLabel : item;
+    if (submittedInputValue === textInputValue) {
+      return;
+    }
     this.setState({
       textInputValue: clearOnSelect ? '' : textInputValue,
+      submittedInputValue: textInputValue,
       hoverIndex: -1,
       selected: true,
     });
