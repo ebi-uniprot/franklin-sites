@@ -1,85 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Autocomplete component should render 1`] = `
-<div
-  className="autocomplete-container"
->
-  <form
-    onSubmit={[Function]}
-  >
-    <span
-      className="search-input"
-    >
-      <input
-        data-testid="search-input"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder=""
-        type="text"
-        value=""
-      />
-      <span
-        className="search-input__suffix"
-        data-testid="search-input-suffix"
-        onClick={[Function]}
-        onKeyPress={[Function]}
-        role="presentation"
-      >
-        <test-file-stub
-          height={14}
-          width={14}
-        />
-      </span>
-    </span>
-  </form>
+<DocumentFragment>
   <div
-    className="autocomplete-menu"
+    class="autocomplete-container"
   >
+    <form
+      data-testid="autocomplete-form"
+    >
+      <span
+        class="search-input"
+      >
+        <input
+          data-testid="search-input"
+          placeholder=""
+          type="text"
+          value=""
+        />
+        <span
+          class="search-input__suffix"
+          data-testid="search-input-suffix"
+          role="presentation"
+        >
+          <test-file-stub
+            height="14"
+            width="14"
+          />
+        </span>
+      </span>
+    </form>
     <div
-      className="dropdown-menu__panel"
-    />
+      class="autocomplete-menu"
+    >
+      <div
+        class="dropdown-menu__panel"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
-exports[`Autocomplete component with props: showDropwdownUpdated & clearOnSelect should render 1`] = `
-<div
-  className="autocomplete-container"
->
-  <form
-    onSubmit={[Function]}
-  >
-    <span
-      className="search-input"
-    >
-      <input
-        data-testid="search-input"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder=""
-        type="text"
-        value=""
-      />
-      <span
-        className="search-input__suffix"
-        data-testid="search-input-suffix"
-        onClick={[Function]}
-        onKeyPress={[Function]}
-        role="presentation"
-      >
-        <test-file-stub
-          height={14}
-          width={14}
-        />
-      </span>
-    </span>
-  </form>
+exports[`Autocomplete component should render with props: showDropwdownUpdated & clearOnSelect 1`] = `
+<DocumentFragment>
   <div
-    className="autocomplete-menu"
+    class="autocomplete-container"
   >
+    <form
+      data-testid="autocomplete-form"
+    >
+      <span
+        class="search-input"
+      >
+        <input
+          data-testid="search-input"
+          placeholder=""
+          type="text"
+          value=""
+        />
+        <span
+          class="search-input__suffix"
+          data-testid="search-input-suffix"
+          role="presentation"
+        >
+          <test-file-stub
+            height="14"
+            width="14"
+          />
+        </span>
+      </span>
+    </form>
     <div
-      className="dropdown-menu__panel"
-    />
+      class="autocomplete-menu"
+    >
+      <div
+        class="dropdown-menu__panel"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
