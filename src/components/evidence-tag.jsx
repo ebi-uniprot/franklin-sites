@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../svg/tag.svg';
 import '../styles/components/evidence-tag.scss';
 
-const size = 10;
+const size = 12;
 
-const EvidenceTag = ({ label, title, reviewed = false }) => {
-  const styleClassName = `evidence-tag ${
-    reviewed ? 'evidence-tag--reviewed' : 'evidence-tag--unreviewed'
-  }`;
+const EvidenceTag = ({
+  label, title, labelClassName, children,
+}) => {
+  const [contentDisplay, setContentDisplay] = useState(false);
   return (
-    <span className={styleClassName}>
-      <Tag width={size} height={size} />
-      <span className="evidence-tag__label" title={title}>
-        {label}
+    <span>
+      <span
+        className={`evidence-tag ${labelClassName}`}
+        onClick={() => setContentDisplay(!contentDisplay)}
+        role="button"
+        tabIndex={0}
+      >
+        <Tag width={size} height={size} />
+        <span className="evidence-tag__label" title={title}>
+          {label}
+        </span>
       </span>
+      {children && (
+        <div
+          className={`evidence-tag-content ${
+            contentDisplay ? 'evidence-tag-content--visible' : ''
+          }`}
+        >
+          {children}
+        </div>
+      )}
     </span>
   );
 };
@@ -31,12 +47,17 @@ EvidenceTag.propTypes = {
   /**
    * Decides the colour of the tag
    */
-  reviewed: PropTypes.bool,
+  labelClassName: PropTypes.string,
+  /**
+   * The content of the tag
+   */
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 EvidenceTag.defaultProps = {
   title: '',
-  reviewed: false,
+  labelClassName: '',
+  children: null,
 };
 
 export default EvidenceTag;

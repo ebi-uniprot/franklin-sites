@@ -2,26 +2,40 @@
 @import "../colours";
 
 .evidence-tag {
+  cursor: pointer;
+  white-space: nowrap;
   margin-left: ($global-margin/2);
-  font-size: $small-font-size;
-  &--reviewed {
-    color: $colour-reviewed;
-    svg {
-      path {
-        fill: $colour-reviewed;
-      }
-    }
-  }
-  &--unreviewed {
-    color: darken($colour-unreviewed, 30);
-    svg {
-      path {
-        fill: darken($colour-unreviewed, 30);
-      }
-    }
-  }
+  border-radius: $global-padding/2;
+  background-color: $colour-seashell-grey;
+  padding: $global-padding/4 $global-padding/2;
+  color: $colour-black;
   &__label {
     padding-left: ($global-padding / 4);
     text-transform: capitalize;
+  }
+}
+
+.evidence-tag-content {
+  opacity: 0;
+  max-height: 0;
+  background-color: $colour-seashell-grey;
+  overflow: hidden;
+  transition: none;
+  display: inline;
+  div {
+    display: none;
+  }
+}
+
+.evidence-tag-content--visible {
+  opacity: 1;
+  margin: $global-margin 0;
+  padding: $global-padding;
+  max-height: 25vh;
+  overflow-y: auto;
+  transition: opacity 0.5s ease-out;
+  display: block;
+  div {
+    display: block;
   }
 }
