@@ -12,12 +12,35 @@
     outline: 0;
     white-space: nowrap;
   }
+  &__trigger {
+    position: relative;
+    padding-right: 2.5rem;
+    &::after {
+      border-color: $colour-white transparent transparent transparent;
+      border-width: 0.3rem;
+      right: 1.5rem;
+      margin-top: -0.14rem;
+      border-style: solid;
+      content: "";
+      display: block;
+      height: 0;
+      position: absolute;
+      top: 50%;
+      width: 0;
+    }
+    &--negative::after {
+      border-color: $colour-uniprot-blue transparent transparent transparent;
+    }
+  }
+  &--hover:hover .dropdown-menu {
+    display: block;
+  }
 }
 
 .hover {
   color: $colour-black;
   border: none;
-  background: $colour-light-grey;
+  background: $colour-seashell-grey;
 }
 
 .dropdown-menu {
@@ -54,7 +77,8 @@
       float: none !important;
       line-height: 1.6rem;
       background-color: $white !important;
-      button {
+      button,
+      a {
         line-height: 1.6rem;
         cursor: pointer;
         width: 100%;
@@ -65,7 +89,7 @@
         display: block;
         border: none;
         padding-right: 1rem;
-        color: $colour-black;
+        color: $colour-black !important;
         text-decoration: none;
         &:hover {
           @extend .hover;
