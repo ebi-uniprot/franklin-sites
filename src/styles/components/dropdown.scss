@@ -13,6 +13,7 @@
     white-space: nowrap;
   }
   &__trigger {
+    cursor: pointer;
     position: relative;
     padding-right: 2.5rem;
     &::after {
