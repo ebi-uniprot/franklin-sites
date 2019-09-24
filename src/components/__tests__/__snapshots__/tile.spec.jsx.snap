@@ -2,7 +2,7 @@
 
 exports[`Tile component should render 1`] = `
 <div
-  className="tile tile-uniref"
+  className="tile tile--uniref"
 >
   <h3
     className="tile__header"
@@ -14,5 +14,17 @@ exports[`Tile component should render 1`] = `
   >
     This is a short description of what the resource is/provides.
   </p>
+</div>
+`;
+
+exports[`Tile component should render small tile 1`] = `
+<div
+  className="tile tile--small"
+>
+  <h3
+    className="tile__header"
+  >
+    Tile title
+  </h3>
 </div>
 `;
