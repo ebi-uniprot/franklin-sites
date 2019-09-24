@@ -1,0 +1,8 @@
+@import "../settings";
+@import "../colours";
+
+.hero-container {
+  margin: $global-margin;
+  padding: $global-padding;
+  background-color: $colour-seashell-grey;
+}
