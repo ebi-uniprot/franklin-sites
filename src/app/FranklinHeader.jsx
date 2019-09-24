@@ -12,8 +12,8 @@ const links = [
     path: '/ui-components',
   },
   {
-    label: 'Data Views',
-    path: '/data-views',
+    label: 'Data',
+    links: [{ label: 'Data Views', path: '/data-views' }],
   },
 ];
 
