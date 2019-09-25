@@ -9,4 +9,8 @@ describe('Tile component', () => {
 
     expect(component).toMatchSnapshot();
   });
+  test('should render small tile', () => {
+    const component = renderer.create(<Tile title="Tile title" small />).toJSON();
+    expect(component).toMatchSnapshot();
+  });
 });

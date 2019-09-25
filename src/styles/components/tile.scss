@@ -3,16 +3,18 @@
 
 $hover-lightness-value: -15%;
 
+$size: 15rem;
+
 .tile {
   position: relative;
   background-color: $colour-uniprot-blue;
   display: inline-block;
-  margin: 0.1em;
+  margin: $global-margin;
   text-align: center;
   color: $colour-white;
-  width: 15rem;
-  height: 15rem;
-  padding: 1em 0;
+  width: $size;
+  height: $size;
+  padding: $global-padding 0;
   cursor: pointer;
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
   &:hover {
@@ -22,11 +24,12 @@ $hover-lightness-value: -15%;
     );
     color: $colour-white;
   }
-  .tile__header {
+  &__header {
     display: block;
   }
-  .tile__content {
+  &__content {
     padding: 0.7em;
+    width: 100%;
     background-color: rgba($colour-white, 0.1);
     height: 7em;
     font-size: 80%;
@@ -34,7 +37,14 @@ $hover-lightness-value: -15%;
     bottom: 0.1em;
   }
 
-  &.tile-uniref {
+  &--small {
+    height: $size/4;
+    .tile__header {
+      font-size: 1.2rem;
+    }
+  }
+
+  &--uniref {
     background-color: $colour-uniref !important;
     &:hover {
       background-color: scale-color(
@@ -44,7 +54,7 @@ $hover-lightness-value: -15%;
     }
   }
 
-  &.tile-uniparc {
+  &--uniparc {
     background-color: $colour-uniparc !important;
     &:hover {
       background-color: scale-color(
@@ -54,7 +64,7 @@ $hover-lightness-value: -15%;
     }
   }
 
-  &.tile-proteomes {
+  &--proteomes {
     background-color: $colour-proteomes !important;
     &:hover {
       background-color: scale-color(
@@ -64,10 +74,3 @@ $hover-lightness-value: -15%;
     }
   }
 }
-
-// $colour-uniref: #c08c5c;
-// $colour-uniparc: #c3878d;
-// $colour-proteomes: #990000;
-// $colour-supporting-data: #aa8ebf;
-// $colour-help: #6bad69;
-// $colour-annotation-systems: #f8982e;

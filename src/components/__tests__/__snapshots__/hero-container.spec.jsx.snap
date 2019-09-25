@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero Container component should render 1`] = `
+<div
+  className="hero-container"
+>
+  <h4>
+    Title
+  </h4>
+  <p>
+    Body content
+  </p>
+</div>
+`;

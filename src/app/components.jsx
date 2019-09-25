@@ -29,6 +29,7 @@ import {
   TreeSelect,
   SearchInput,
 } from '../components';
+import HeroContainer from '../components/hero-container';
 
 class MainSearchWrapper extends Component {
   constructor(props) {
@@ -234,6 +235,16 @@ const components = [
       title: 'Title',
       children: <input type="text" />,
       footer: loremIpsum({ count: 25, units: 'words' }),
+    },
+  },
+  {
+    name: 'Hero Container',
+    component: HeroContainer,
+    function: 'Highlight a specific section',
+    purpose: 'Differentiate section from others',
+    props: {
+      title: 'Title',
+      children: loremIpsum({ count: 25, units: 'words' }),
     },
   },
   {
