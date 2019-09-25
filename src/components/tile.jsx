@@ -29,7 +29,7 @@ Tile.propTypes = {
   /**
    * The namespace, which decides the colour
    */
-  namespace: PropTypes.string,
+  namespace: PropTypes.oneOf(['uniref', 'uniparc', 'proteomes']),
   /**
    * Small or normal version
    */
