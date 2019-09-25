@@ -24,10 +24,10 @@ $size: 15rem;
     );
     color: $colour-white;
   }
-  .tile__header {
+  &__header {
     display: block;
   }
-  .tile__content {
+  &__content {
     padding: 0.7em;
     width: 100%;
     background-color: rgba($colour-white, 0.1);
@@ -37,14 +37,14 @@ $size: 15rem;
     bottom: 0.1em;
   }
 
-  &.tile--small {
+  &--small {
     height: $size/4;
     .tile__header {
       font-size: 1.2rem;
     }
   }
 
-  &.tile--uniref {
+  &--uniref {
     background-color: $colour-uniref !important;
     &:hover {
       background-color: scale-color(
@@ -54,7 +54,7 @@ $size: 15rem;
     }
   }
 
-  &.tile--uniparc {
+  &--uniparc {
     background-color: $colour-uniparc !important;
     &:hover {
       background-color: scale-color(
@@ -64,7 +64,7 @@ $size: 15rem;
     }
   }
 
-  &.tile--proteomes {
+  &--proteomes {
     background-color: $colour-proteomes !important;
     &:hover {
       background-color: scale-color(

@@ -7,8 +7,8 @@ const Tile = ({
   namespace, title, description, small,
 }) => {
   let classNames = 'tile';
-  classNames = namespace ? `${classNames} tile--${namespace}` : `${classNames}`;
-  classNames = small ? `${classNames} tile--small` : `${classNames}`;
+  classNames += namespace ? ` tile--${namespace}` : '';
+  classNames += small ? ' tile--small' : '';
   return (
     <div className={classNames}>
       <h3 className="tile__header">{title}</h3>
