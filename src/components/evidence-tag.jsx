@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../svg/tag.svg';
 import '../styles/components/evidence-tag.scss';
@@ -6,7 +6,7 @@ import '../styles/components/evidence-tag.scss';
 const size = 12;
 
 const EvidenceTag = ({
-  label, title, className, IconComponent, children,
+  label, title, className, iconComponent, children,
 }) => {
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
@@ -19,7 +19,7 @@ const EvidenceTag = ({
         tabIndex={0}
         data-testid="evidence-tag-trigger"
       >
-        <IconComponent width={size} height={size} />
+        {cloneElement(iconComponent, { width: size, height: size })}
         <span className="evidence-tag__label" title={title}>
           {label}
         </span>
@@ -54,7 +54,7 @@ EvidenceTag.propTypes = {
   /**
    * Decides the colour of the tag
    */
-  IconComponent: PropTypes.element,
+  iconComponent: PropTypes.element,
   /**
    * The content of the tag
    */
@@ -64,7 +64,7 @@ EvidenceTag.propTypes = {
 EvidenceTag.defaultProps = {
   title: '',
   className: '',
-  IconComponent: Tag,
+  iconComponent: <Tag />,
   children: null,
 };
 
