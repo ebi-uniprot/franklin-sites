@@ -26,17 +26,17 @@
   div {
     display: none;
   }
-}
 
-.evidence-tag-content--visible {
-  opacity: 1;
-  margin: $global-margin 0;
-  padding: $global-padding;
-  max-height: 25vh;
-  overflow-y: auto;
-  transition: opacity 0.5s ease-out;
-  display: block;
-  div {
+  &--visible {
+    opacity: 1;
+    margin: $global-margin 0;
+    padding: $global-padding;
+    max-height: 25vh;
+    overflow-y: auto;
+    transition: opacity 0.5s ease-out;
     display: block;
+    div {
+      display: block;
+    }
   }
 }
