@@ -845,14 +845,47 @@
           "computed": false
         }
       },
-      "reviewed": {
+      "className": {
         "type": {
-          "name": "bool"
+          "name": "string"
         },
         "required": false,
         "description": "Decides the colour of the tag",
         "defaultValue": {
-          "value": "false",
+          "value": "''",
+          "computed": false
+        }
+      },
+      "iconComponent": {
+        "type": {
+          "name": "element"
+        },
+        "required": false,
+        "description": "Decides the colour of the tag",
+        "defaultValue": {
+          "value": "<Tag />",
+          "computed": false
+        }
+      },
+      "children": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "arrayOf",
+              "value": {
+                "name": "node"
+              }
+            },
+            {
+              "name": "node"
+            }
+          ]
+        },
+        "required": false,
+        "description": "The content of the tag",
+        "defaultValue": {
+          "value": "null",
           "computed": false
         }
       }
@@ -1029,6 +1062,31 @@
           "value": "false",
           "computed": false
         }
+      }
+    }
+  },
+  "src/components/hero-container.jsx": {
+    "description": "",
+    "displayName": "HeroContainer",
+    "methods": [],
+    "props": {
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": true,
+        "description": ""
       }
     }
   },
@@ -1532,12 +1590,37 @@
       },
       "namespace": {
         "type": {
-          "name": "string"
+          "name": "enum",
+          "value": [
+            {
+              "value": "'uniref'",
+              "computed": false
+            },
+            {
+              "value": "'uniparc'",
+              "computed": false
+            },
+            {
+              "value": "'proteomes'",
+              "computed": false
+            }
+          ]
         },
         "required": false,
         "description": "The namespace, which decides the colour",
         "defaultValue": {
           "value": "''",
+          "computed": false
+        }
+      },
+      "small": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Small or normal version",
+        "defaultValue": {
+          "value": "false",
           "computed": false
         }
       }
