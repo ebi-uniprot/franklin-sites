@@ -66,4 +66,16 @@ describe('Autocomplete component', () => {
     fireEvent.submit(autocompleteForm);
     expect(onSelect).toHaveBeenCalledTimes(1);
   });
+
+  test('shouldShowDropdown should return false if length of text input is less than minCharsToShowDropdown ', () => {
+    expect(
+      Autocomplete.shouldShowDropdown({
+        textInputValue: 'fo',
+        data: [],
+        selected: true,
+        filter: true,
+        minCharsToShowDropdown: 3,
+      }),
+    ).toBe(false);
+  });
 });
