@@ -239,7 +239,7 @@
         ],
         "params": [
           {
-            "name": "{\n  textInputValue, data, selected, filter,\n}",
+            "name": "{\n  textInputValue, data, selected, filter, minCharsToShowDropdown,\n}",
             "type": null
           }
         ],
@@ -333,7 +333,7 @@
           "computed": false
         }
       },
-      "showDropwdownUpdated": {
+      "showDropdownUpdated": {
         "type": {
           "name": "func"
         },
@@ -385,6 +385,17 @@
         "description": "",
         "defaultValue": {
           "value": "''",
+          "computed": false
+        }
+      },
+      "minCharsToShowDropdown": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "0",
           "computed": false
         }
       }
