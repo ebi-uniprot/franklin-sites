@@ -6,18 +6,20 @@ import '../styles/components/evidence-tag.scss';
 const size = 12;
 
 const EvidenceTag = ({
-  label, title, labelClassName, children,
+  label, title, className, IconComponent, children,
 }) => {
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
     <span>
       <span
-        className={`evidence-tag ${labelClassName}`}
+        className={`evidence-tag ${className}`}
         onClick={() => setContentDisplay(!contentDisplay)}
+        onKeyDown={() => setContentDisplay(!contentDisplay)}
         role="button"
         tabIndex={0}
+        data-testid="evidence-tag-trigger"
       >
-        <Tag width={size} height={size} />
+        <IconComponent width={size} height={size} />
         <span className="evidence-tag__label" title={title}>
           {label}
         </span>
@@ -27,6 +29,7 @@ const EvidenceTag = ({
           className={`evidence-tag-content ${
             contentDisplay ? 'evidence-tag-content--visible' : ''
           }`}
+          data-testid="evidence-tag-content"
         >
           {children}
         </div>
@@ -47,7 +50,11 @@ EvidenceTag.propTypes = {
   /**
    * Decides the colour of the tag
    */
-  labelClassName: PropTypes.string,
+  className: PropTypes.string,
+  /**
+   * Decides the colour of the tag
+   */
+  IconComponent: PropTypes.element,
   /**
    * The content of the tag
    */
@@ -56,7 +63,8 @@ EvidenceTag.propTypes = {
 
 EvidenceTag.defaultProps = {
   title: '',
-  labelClassName: '',
+  className: '',
+  IconComponent: Tag,
   children: null,
 };
 

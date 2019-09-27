@@ -6,7 +6,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { treeData, flattenedPaths } from './common/tree-data';
 import facetData from './common/facetData';
 import sequenceData from './common/sequence-data';
-import { getLipsumWords, getLipsumObjectArray, getLipsumSentences } from './common/lipsum';
+import { getLipsumObjectArray, getLipsumSentences } from './common/lipsum';
 import {
   Accordion,
   AccordionSearch,
