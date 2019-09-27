@@ -1,21 +1,21 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import EvidenceTag from '../evidence-tag';
 
 describe('EvidenceTag component', () => {
-  test('should render unreviewed tag', () => {
-    const component = renderer
-      .create(<EvidenceTag label="My evidence" title="My title" />)
-      .toJSON();
-
-    expect(component).toMatchSnapshot();
+  test('should render tag and toggle visibility of content', () => {
+    const { asFragment, getByTestId } = render(
+      <EvidenceTag label="My evidence" title="My title">
+        <p>Some content</p>
+      </EvidenceTag>,
+    );
+    const contentNode = getByTestId('evidence-tag-content');
+    expect(contentNode.classList.contains('evidence-tag-content--visible')).toBe(false);
+    const triggerNode = getByTestId('evidence-tag-trigger');
+    fireEvent.click(triggerNode);
+    expect(contentNode.classList.contains('evidence-tag-content--visible')).toBe(true);
+    expect(asFragment()).toMatchSnapshot();
   });
-  test('should render reviewed tag', () => {
-    const component = renderer
-      .create(<EvidenceTag label="My evidence" title="My title" reviewed />)
-      .toJSON();
 
-    expect(component).toMatchSnapshot();
-  });
+  afterEach(() => cleanup());
 });

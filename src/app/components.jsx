@@ -6,7 +6,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { treeData, flattenedPaths } from './common/tree-data';
 import facetData from './common/facetData';
 import sequenceData from './common/sequence-data';
-import { getLipsumObjectArray } from './common/lipsum';
+import { getLipsumObjectArray, getLipsumSentences } from './common/lipsum';
 import {
   Accordion,
   AccordionSearch,
@@ -78,6 +78,12 @@ const components = [
       'Inform the user so they can make a decision regarding the trustworthyness of a piece of text',
     props: {
       label: 'evidence tag',
+      children: (
+        <div>
+          <h5>Some title</h5>
+          <p>{getLipsumSentences()}</p>
+        </div>
+      ),
     },
   },
   {

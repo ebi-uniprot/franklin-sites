@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { Fragment, useState, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../svg/tag.svg';
 import '../styles/components/evidence-tag.scss';
 
-const size = 10;
+const size = 12;
 
-const EvidenceTag = ({ label, title, reviewed = false }) => {
-  const styleClassName = `evidence-tag ${
-    reviewed ? 'evidence-tag--reviewed' : 'evidence-tag--unreviewed'
-  }`;
+const EvidenceTag = ({
+  label, title, className, iconComponent, children,
+}) => {
+  const [contentDisplay, setContentDisplay] = useState(false);
   return (
-    <span className={styleClassName}>
-      <Tag width={size} height={size} />
-      <span className="evidence-tag__label" title={title}>
-        {label}
+    <Fragment>
+      <span
+        className={`evidence-tag ${className}`}
+        onClick={() => setContentDisplay(!contentDisplay)}
+        onKeyDown={() => setContentDisplay(!contentDisplay)}
+        role="button"
+        tabIndex={0}
+        data-testid="evidence-tag-trigger"
+      >
+        {cloneElement(iconComponent, { width: size, height: size })}
+        <span className="evidence-tag__label" title={title}>
+          {label}
+        </span>
       </span>
-    </span>
+      {children && (
+        <div
+          className={`evidence-tag-content ${
+            contentDisplay ? 'evidence-tag-content--visible' : ''
+          }`}
+          data-testid="evidence-tag-content"
+        >
+          {children}
+        </div>
+      )}
+    </Fragment>
   );
 };
 
@@ -31,12 +50,22 @@ EvidenceTag.propTypes = {
   /**
    * Decides the colour of the tag
    */
-  reviewed: PropTypes.bool,
+  className: PropTypes.string,
+  /**
+   * Decides the colour of the tag
+   */
+  iconComponent: PropTypes.element,
+  /**
+   * The content of the tag
+   */
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 EvidenceTag.defaultProps = {
   title: '',
-  reviewed: false,
+  className: '',
+  iconComponent: <Tag />,
+  children: null,
 };
 
 export default EvidenceTag;

@@ -1,35 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EvidenceTag component should render reviewed tag 1`] = `
-<span
-  className="evidence-tag evidence-tag--reviewed"
->
-  <test-file-stub
-    height={10}
-    width={10}
-  />
+exports[`EvidenceTag component should render tag and toggle visibility of content 1`] = `
+<DocumentFragment>
   <span
-    className="evidence-tag__label"
-    title="My title"
+    class="evidence-tag "
+    data-testid="evidence-tag-trigger"
+    role="button"
+    tabindex="0"
   >
-    My evidence
+    <test-file-stub
+      height="12"
+      width="12"
+    />
+    <span
+      class="evidence-tag__label"
+      title="My title"
+    >
+      My evidence
+    </span>
   </span>
-</span>
-`;
-
-exports[`EvidenceTag component should render unreviewed tag 1`] = `
-<span
-  className="evidence-tag evidence-tag--unreviewed"
->
-  <test-file-stub
-    height={10}
-    width={10}
-  />
-  <span
-    className="evidence-tag__label"
-    title="My title"
+  <div
+    class="evidence-tag-content evidence-tag-content--visible"
+    data-testid="evidence-tag-content"
   >
-    My evidence
-  </span>
-</span>
+    <p>
+      Some content
+    </p>
+  </div>
+</DocumentFragment>
 `;

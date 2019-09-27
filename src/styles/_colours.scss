@@ -91,6 +91,14 @@ $colour-annotation-systems: #f8982e;
   background: $colour-annotation-systems;
 }
 
+// svg fills
+.svg-colour-reviewed {
+  fill: $colour-reviewed;
+}
+.svg-colour-unreviewed {
+  fill: $colour-unreviewed;
+}
+
 .box-colour {
   vertical-align: top;
   display: inline-block;
