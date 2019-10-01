@@ -1683,7 +1683,7 @@
         "returns": null
       },
       {
-        "name": "handleAutocompleteDropwdownUpdated",
+        "name": "handleAutocompleteDropdownUpdated",
         "docblock": null,
         "modifiers": [],
         "params": [
