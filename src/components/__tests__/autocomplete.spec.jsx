@@ -9,12 +9,12 @@ describe('Autocomplete component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render with props: showDropwdownUpdated & clearOnSelect', () => {
+  test('should render with props: showDropdownUpdated & clearOnSelect', () => {
     const { asFragment } = render(
       <Autocomplete
         data={flattenedPaths}
         onSelect={d => d}
-        showDropwdownUpdated={d => d}
+        showDropdownUpdated={d => d}
         clearOnSelect
       />,
     );

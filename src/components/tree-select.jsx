@@ -15,7 +15,7 @@ class TreeSelect extends Component {
       autocompleteShowDropdown: false,
       selectedNode: value,
     };
-    this.handleAutocompleteDropwdownUpdated = this.handleAutocompleteDropwdownUpdated.bind(this);
+    this.handleAutocompleteDropdownUpdated = this.handleAutocompleteDropdownUpdated.bind(this);
     this.handleAutocompleteSelect = this.handleAutocompleteSelect.bind(this);
     this.setDropdownRef = this.setDropdownRef.bind(this);
   }
@@ -71,7 +71,7 @@ class TreeSelect extends Component {
     );
   }
 
-  handleAutocompleteDropwdownUpdated(autocompleteShowDropdown) {
+  handleAutocompleteDropdownUpdated(autocompleteShowDropdown) {
     this.setState({ autocompleteShowDropdown });
   }
 
@@ -91,7 +91,7 @@ class TreeSelect extends Component {
       autocompleteNode = (
         <Autocomplete
           data={squashedPaths}
-          showDropwdownUpdated={this.handleAutocompleteDropwdownUpdated}
+          showDropdownUpdated={this.handleAutocompleteDropdownUpdated}
           onSelect={this.handleAutocompleteSelect}
           placeholder={autocompletePlaceholder}
           filter={autocompleteFilter}

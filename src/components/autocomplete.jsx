@@ -52,15 +52,14 @@ class Autocomplete extends Component {
       data, filter, showDropdownUpdated, onChange, minCharsToShowDropdown,
     } = this.props;
     const selected = false;
-    const showDropwdown = Autocomplete.shouldShowDropdown({
+    const showDropdown = Autocomplete.shouldShowDropdown({
       textInputValue,
       data,
       selected,
       filter,
       minCharsToShowDropdown,
     });
-
-    showDropdownUpdated(showDropwdown);
+    showDropdownUpdated(showDropdown);
     this.setState({
       textInputValue,
       selected,
