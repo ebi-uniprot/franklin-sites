@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DoughnutChart component should render 1`] = `
-<div
+<span
   className="doughnut-chart--medium colour-light-grey"
 >
-  <div
+  <span
     className="doughnut-chart--medium__left-wrap"
   >
-    <div
+    <span
       className="doughnut-chart--medium__left-wrap__loader colour-uniprot-blue"
       style={
         Object {
@@ -15,11 +15,11 @@ exports[`DoughnutChart component should render 1`] = `
         }
       }
     />
-  </div>
-  <div
+  </span>
+  <span
     className="doughnut-chart--medium__right-wrap"
   >
-    <div
+    <span
       className="doughnut-chart--medium__right-wrap__loader colour-uniprot-blue"
       style={
         Object {
@@ -27,14 +27,14 @@ exports[`DoughnutChart component should render 1`] = `
         }
       }
     />
-  </div>
-  <div
+  </span>
+  <span
     className="doughnut-chart--medium__inner-circle"
     style={Object {}}
   >
     <span>
       Some content
     </span>
-  </div>
-</div>
+  </span>
+</span>
 `;

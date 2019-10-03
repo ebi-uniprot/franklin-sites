@@ -19,7 +19,7 @@ exports[`Tile component should render 1`] = `
 
 exports[`Tile component should render small tile 1`] = `
 <div
-  className="tile tile--small"
+  className="tile tile--uniref tile--small"
 >
   <h3
     className="tile__header"
