@@ -16,32 +16,32 @@ const DoughnutChart = ({
     leftTransformerDegree = '0deg';
   }
   return (
-    <div className={`doughnut-chart--${size} ${bgColorClass}`}>
-      <div className={`doughnut-chart--${size}__left-wrap`}>
-        <div
+    <span className={`doughnut-chart--${size} ${bgColorClass}`}>
+      <span className={`doughnut-chart--${size}__left-wrap`}>
+        <span
           className={`doughnut-chart--${size}__left-wrap__loader ${colorClass}`}
           style={{
             transform: `rotate(${leftTransformerDegree})`,
           }}
         />
-      </div>
-      <div className={`doughnut-chart--${size}__right-wrap`}>
-        <div
+      </span>
+      <span className={`doughnut-chart--${size}__right-wrap`}>
+        <span
           className={`doughnut-chart--${size}__right-wrap__loader ${colorClass}`}
           style={{
             transform: `rotate(${rightTransformerDegree})`,
           }}
         />
-      </div>
-      <div className={`doughnut-chart--${size}__inner-circle`} style={{}}>
+      </span>
+      <span className={`doughnut-chart--${size}__inner-circle`} style={{}}>
         {children || (
         <span>
           {percent}
 %
         </span>
         )}
-      </div>
-    </div>
+      </span>
+    </span>
   );
 };
 
