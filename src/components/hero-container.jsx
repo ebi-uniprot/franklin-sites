@@ -4,8 +4,10 @@ import '../styles/components/hero-container.scss';
 
 const HeroContainer = ({ title, children }) => (
   <div className="hero-container">
-    {title && <h4>{title}</h4>}
-    {children}
+    <section>
+      {title && <h4>{title}</h4>}
+      {children}
+    </section>
   </div>
 );
 HeroContainer.propTypes = {

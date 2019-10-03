@@ -2,7 +2,17 @@
 @import "../colours";
 
 .hero-container {
-  margin: $global-margin;
-  padding: $global-padding;
-  background-color: $colour-seashell-grey;
+  grid-area: hero-container;
+  
+  display: grid;
+  grid-template-columns: auto minmax(12rem,64rem) auto;
+
+  & > section:first-child {
+    grid-column-start: 2;
+
+    // the side-margins are temporary. remove when css grid is complete.
+    margin: $global-margin $global-margin / 2;
+    padding: $global-padding;
+    background-color: $colour-seashell-grey;
+  }
 }
