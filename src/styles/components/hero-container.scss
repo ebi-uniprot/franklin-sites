@@ -5,12 +5,12 @@
   grid-area: hero-container;
   
   display: grid;
-  grid-template-columns: auto 64rem auto;
+  grid-template-columns: auto minmax(12rem,64rem) auto;
 
   & > section:first-child {
     grid-column-start: 2;
 
-    // margin: $global-margin;
+    // the side-margins are temporary. remove when css grid is complete.
     margin: $global-margin $global-margin / 2;
     padding: $global-padding;
     background-color: $colour-seashell-grey;
