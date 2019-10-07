@@ -1,6 +1,6 @@
-@import "../settings";
-@import "../colours";
-@import "../common/utils";
+@import '../settings';
+@import '../colours';
+@import '../common/utils';
 
 @mixin bubble($size) {
   display: inline-block;
@@ -8,6 +8,7 @@
   color: $colour-white;
   border-radius: 50%;
   text-align: center;
+  vertical-align: middle;
   width: $size;
   height: $size;
   line-height: $size;
