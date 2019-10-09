@@ -69,6 +69,7 @@ class Sequence extends Component {
                 <input
                   type="checkbox"
                   id={inputId}
+                  data-testid="sequence-highlight-checkbox"
                   onChange={() => this.handleToggleHighlight(aaProp)}
                   checked={highlights.includes(aaProp)}
                 />

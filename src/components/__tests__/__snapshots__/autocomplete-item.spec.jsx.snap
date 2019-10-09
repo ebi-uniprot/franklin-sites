@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AutocompleteItem component should render 1`] = `
-<li>
+<li
+  data-testid="autocomplete-item"
+>
   <button
     className=""
     onClick={[Function]}

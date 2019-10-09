@@ -27,6 +27,7 @@ class AutocompleteItem extends Component {
         ref={(node) => {
           this.node = node;
         }}
+        data-testid="autocomplete-item"
       >
         <button
           type="button"

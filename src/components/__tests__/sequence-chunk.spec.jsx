@@ -1,22 +1,22 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
+import { render } from '@testing-library/react';
 import SequenceChunk from '../sequence-chunk';
-
-configure({ adapter: new Adapter() });
 
 describe('Sequence chunk component', () => {
   test('should render without highlights', () => {
-    const textSize = { width: 10, height: 10 };
-    const wrapper = shallow(
-      <SequenceChunk sequence="ABCDEFGHIJ" textSize={textSize} chunkSize={10} chunkNumber={2} />,
+    const { asFragment } = render(
+      <SequenceChunk
+        sequence="ABCDEFGHIJ"
+        textSize={{ width: 10, height: 10 }}
+        chunkSize={10}
+        chunkNumber={2}
+      />,
     );
-    expect(wrapper.debug()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render with highlights', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <SequenceChunk
         sequence="ABCDEFGHIJ"
         textSize={{ width: 10, height: 10 }}
@@ -30,6 +30,6 @@ describe('Sequence chunk component', () => {
         chunkNumber={2}
       />,
     );
-    expect(wrapper.debug()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

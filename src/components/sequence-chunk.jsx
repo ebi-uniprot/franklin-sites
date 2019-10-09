@@ -19,6 +19,7 @@ const generateHighlights = (sequence, highlights, textSize) => {
             height={highlightHeight}
             fill={highlight.colour}
             key={v1()}
+            data-testid="sequence-highlight-rect"
           />,
         );
       }

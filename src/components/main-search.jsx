@@ -4,7 +4,7 @@ import DropdownButton from './dropdown-button';
 import '../styles/components/main-search.scss';
 
 const MainSearch = ({ searchTerm = '', onChange, onSubmit }) => (
-  <form onSubmit={onSubmit} className="main-search">
+  <form onSubmit={onSubmit} className="main-search" data-testid="main-search-form">
     <DropdownButton label="UniProtKB">
       <ul>
         <li>
@@ -30,6 +30,7 @@ const MainSearch = ({ searchTerm = '', onChange, onSubmit }) => (
     <input
       type="text"
       className="main-search__input"
+      data-testid="main-search-input"
       onChange={e => onChange(e.target.value)}
       value={searchTerm}
     />
