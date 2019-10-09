@@ -21,6 +21,7 @@ exports[`Sequence chunk component should render with highlights 1`] = `
       ABCDEFGHIJ
     </text>
     <rect
+      data-testid="sequence-highlight-rect"
       fill="blue"
       height="2"
       width="10"
@@ -28,6 +29,7 @@ exports[`Sequence chunk component should render with highlights 1`] = `
       y="22"
     />
     <rect
+      data-testid="sequence-highlight-rect"
       fill="blue"
       height="2"
       width="10"
@@ -35,6 +37,7 @@ exports[`Sequence chunk component should render with highlights 1`] = `
       y="22"
     />
     <rect
+      data-testid="sequence-highlight-rect"
       fill="blue"
       height="2"
       width="10"
