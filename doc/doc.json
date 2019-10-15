@@ -1197,6 +1197,28 @@
           "value": "false",
           "computed": false
         }
+      },
+      "isCompact": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "A boolean indicating whether the component should render\nas a compact list",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "highlightFirstItem": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       }
     }
   },
