@@ -3,16 +3,20 @@ import PropTypes from 'prop-types';
 
 import '../styles/components/info-list.scss';
 
-const InfoList = ({ infoData, columns, isFlat }) =>
-  (!isFlat ? (
+const InfoList = ({
+  infoData, columns, isCompact, highlightFirstItem,
+}) =>
+  (!isCompact ? (
     <div className={`info-list${columns ? ' info-list--columns' : ''}`}>
       {infoData.map(
         // Only draw if there is content
-        item =>
+        (item, index) =>
           item.content && (
             <div className="info-list__item" key={item.title}>
               <div className="info-list__item__title">{item.title}</div>
-              <div className="info-list__item__content">{item.content}</div>
+              <div className="info-list__item__content">
+                {index === 0 && highlightFirstItem ? <strong>{item.content}</strong> : item.content}
+              </div>
             </div>
           ),
       )}
@@ -20,7 +24,9 @@ const InfoList = ({ infoData, columns, isFlat }) =>
   ) : (
     <Fragment>
       {infoData.map((item, index) => (
-        <div key={item.title}>{index === 0 ? <strong>{item.content}</strong> : item.content}</div>
+        <div key={item.title}>
+          {index === 0 && highlightFirstItem ? <strong>{item.content}</strong> : item.content}
+        </div>
       ))}
     </Fragment>
   ));
@@ -41,14 +47,16 @@ InfoList.propTypes = {
   columns: PropTypes.bool,
   /**
    * A boolean indicating whether the component should render
-   * as a flat list
+   * as a compact list
    */
-  isFlat: PropTypes.bool,
+  isCompact: PropTypes.bool,
+  highlightFirstItem: PropTypes.bool,
 };
 
 InfoList.defaultProps = {
   columns: false,
-  isFlat: false,
+  isCompact: false,
+  highlightFirstItem: false,
 };
 
 export default InfoList;
