@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 import { treeData, flattenedPaths } from './common/tree-data';
@@ -31,32 +30,33 @@ import {
 } from '../components';
 import HeroContainer from '../components/hero-container';
 
-class MainSearchWrapper extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { searchTerm: '' };
-    this.handleChange = this.handleChange.bind(this);
-  }
+const MainSearchWrapper = (props) => {
+  const [searchTerm, setSearchTerm] = useState('');
 
-  handleChange(searchTerm) {
-    this.setState({ searchTerm });
-    console.log('Main search change:', searchTerm);
-  }
-
-  render() {
-    const { searchTerm } = this.state;
-    return (
-      <MainSearch {...this.props} searchTerm={searchTerm} onChange={v => this.handleChange(v)} />
-    );
-  }
-}
-
-MainSearchWrapper.propTypes = {
-  searchTerm: PropTypes.string,
+  return (
+    <MainSearch
+      {...props}
+      searchTerm={searchTerm}
+      onChange={(v) => {
+        console.log('MainSearch onChange:', v);
+        setSearchTerm(v);
+      }}
+    />
+  );
 };
 
-MainSearchWrapper.defaultProps = {
-  searchTerm: null,
+const TreeSelectWrapper = (props) => {
+  const [value, setValue] = useState(null);
+  return (
+    <TreeSelect
+      {...props}
+      value={value}
+      onSelect={(v) => {
+        console.log('TreeSelect onSelect:', v);
+        setValue(v);
+      }}
+    />
+  );
 };
 
 const components = [
@@ -147,12 +147,11 @@ const components = [
   },
   {
     name: 'Tree select',
-    component: TreeSelect,
+    component: TreeSelectWrapper,
     function: 'Navigate through a tree to make a selection',
     purpose: 'Allow selection of item(s) from nested data set',
     props: {
       data: treeData,
-      onSelect: () => {},
       autocomplete: true,
       autocompletePlaceholder: 'Search for item',
       autocompleteFilter: true,
