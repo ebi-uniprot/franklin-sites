@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getFlattenedPaths, restructureFlattenedTreeDataForAutocomplete } from '../utils';
 import DropdownButton from './dropdown-button';
@@ -16,10 +16,7 @@ const TreeSelect = ({
   const [activeNodes, setActiveNodes] = useState([]);
   const [openNodes, setOpenNodes] = useState([]);
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] = useState(false);
-  const [selectedNode, setSelectedNode] = useState(value);
   const dropdownElemnent = useRef();
-
-  useEffect(() => setSelectedNode(value), [value], [value]);
 
   const toggleNode = (node) => {
     if (openNodes.includes(node.id)) {
@@ -36,7 +33,6 @@ const TreeSelect = ({
       const path = getFlattenedPaths(data, node.id)[0];
       const leafNode = path[path.length - 1];
       setActiveNodes(path.map(d => d.id));
-      setSelectedNode(leafNode);
       setOpenNodes(path.map(d => d.id));
       onSelect(leafNode);
       dropdownElemnent.current.close();
@@ -80,7 +76,7 @@ const TreeSelect = ({
     treeNode = buildTree(data);
   }
   return (
-    <DropdownButton label={selectedNode ? selectedNode.label : 'Select'} ref={dropdownElemnent}>
+    <DropdownButton label={value ? value.label : 'Select'} ref={dropdownElemnent}>
       {autocompleteNode}
       <div className="dropdown-menu__panel">{treeNode}</div>
     </DropdownButton>
@@ -108,7 +104,7 @@ TreeSelect.propTypes = {
   /**
    * The selected value
    */
-  value: PropTypes.shape({}),
+  value: PropTypes.shape({ label: PropTypes.string }),
 };
 
 TreeSelect.defaultProps = {
