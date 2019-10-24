@@ -43,3 +43,4 @@ export { default as TableIcon } from '../svg/table.svg';
 export { default as ConfigureIcon } from '../svg/cog.svg';
 export { default as SearchIcon } from '../svg/search.svg';
 export { default as CloseIcon } from '../svg/times.svg';
+export { default as EditIcon } from '../svg/pen.svg';

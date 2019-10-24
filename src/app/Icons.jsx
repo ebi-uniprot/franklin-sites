@@ -16,6 +16,7 @@ import {
   ConfigureIcon,
   SearchIcon,
   CloseIcon,
+  EditIcon,
 } from '../components';
 
 const size = 30;
@@ -100,6 +101,11 @@ const iconDefinition = [
     name: 'times.svg',
     description: 'Close',
     icon: <CloseIcon width={size} height={size} />,
+  },
+  {
+    name: 'pen.svg',
+    description: 'Edit',
+    icon: <EditIcon width={size} height={size} />,
   },
 ];
 
