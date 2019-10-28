@@ -1651,84 +1651,7 @@
   "src/components/tree-select.jsx": {
     "description": "",
     "displayName": "TreeSelect",
-    "methods": [
-      {
-        "name": "setDropdownRef",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "element",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "handleNodeClick",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "node",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "toggleNode",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "node",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "buildTree",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "data",
-            "type": null
-          },
-          {
-            "name": "open",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "handleAutocompleteDropdownUpdated",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "autocompleteShowDropdown",
-            "type": null
-          }
-        ],
-        "returns": null
-      },
-      {
-        "name": "handleAutocompleteSelect",
-        "docblock": null,
-        "modifiers": [],
-        "params": [
-          {
-            "name": "node",
-            "type": null
-          }
-        ],
-        "returns": null
-      }
-    ],
+    "methods": [],
     "props": {
       "data": {
         "type": {
@@ -1781,7 +1704,12 @@
       "value": {
         "type": {
           "name": "shape",
-          "value": {}
+          "value": {
+            "label": {
+              "name": "string",
+              "required": false
+            }
+          }
         },
         "required": false,
         "description": "The selected value",
