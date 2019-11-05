@@ -83,7 +83,7 @@ const AccordionSearch = ({
                 }`}
               >
                 {items.map(({ label, id: itemId }) => (
-                  <li key={itemId} className="accordion-search__list__item">
+                  <li key={itemId} className="accordion-search__list__item" data-testid="accordion-search-list-item">
                     <label key={itemId} htmlFor={`checkbox-${itemId}`}>
                       <input
                         type="checkbox"
