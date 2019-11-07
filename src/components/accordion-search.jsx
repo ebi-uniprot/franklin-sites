@@ -52,15 +52,10 @@ const AccordionSearch = ({
   const [filteredAccordionData, setFilteredAccordionData] = useState([]);
 
   useEffect(() => {
-    setFilteredAccordionData(accordionData);
-  }, [accordionData]);
-
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    setInputValue(value);
-    const filteredData = filterAccordionData(accordionData, value.trim());
+    const filteredData = filterAccordionData(accordionData, inputValue.trim());
     setFilteredAccordionData(filteredData);
-  };
+  }, [accordionData, inputValue]);
+
   if (!accordionData || !accordionData.length) {
     return <Loader />;
   }
@@ -83,7 +78,11 @@ const AccordionSearch = ({
                 }`}
               >
                 {items.map(({ label, id: itemId }) => (
-                  <li key={itemId} className="accordion-search__list__item" data-testid="accordion-search-list-item">
+                  <li
+                    key={itemId}
+                    className="accordion-search__list__item"
+                    data-testid="accordion-search-list-item"
+                  >
                     <label key={itemId} htmlFor={`checkbox-${itemId}`}>
                       <input
                         type="checkbox"
@@ -113,7 +112,7 @@ const AccordionSearch = ({
         <SearchInput
           type="text"
           value={inputValue}
-          onChange={handleInputChange}
+          onChange={event => setInputValue(event.target.value)}
           placeholder={placeholder}
         />
       </div>
