@@ -26,8 +26,9 @@ export { default as Tabs } from './tabs';
 export { default as DropdownButton } from './dropdown-button';
 export { default as SearchInput } from './search-input';
 export { default as AccordionSearch } from './accordion-search';
-export { default as Windoow } from './window/window';
+export { default as Window } from './window/window';
 export { default as ModalBackdrop } from './modal-backdrop';
+export { default as useModal } from '../hooks/modal';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
