@@ -27,6 +27,7 @@ export { default as DropdownButton } from './dropdown-button';
 export { default as SearchInput } from './search-input';
 export { default as AccordionSearch } from './accordion-search';
 export { default as Window } from './window/window';
+export { WindowActionButton } from './window/window-buttons';
 export { default as ModalBackdrop } from './modal-backdrop';
 export { default as useModal } from '../hooks/modal';
 
