@@ -1719,5 +1719,10 @@
         }
       }
     }
+  },
+  "src/components/window.jsx": {
+    "description": "",
+    "displayName": "Window",
+    "methods": []
   }
 }

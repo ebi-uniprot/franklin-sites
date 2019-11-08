@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Window component should render 1`] = `
+<div
+  className="window window--with-shadow"
+  style={
+    Object {
+      "height": "15rem",
+      "left": "calc((100vw - 20rem) / 2)",
+      "top": "calc((80vh - 15rem) / 2)",
+      "width": "20rem",
+    }
+  }
+>
+  <div
+    className="window__header"
+  >
+    <span
+      className="window__header__title"
+    >
+      Alert
+    </span>
+    <button
+      className="window__action-button window__action-button--icon-only window__default-close-button window__default-close-button--icon-only"
+      onClick={[Function]}
+      type="button"
+    >
+      <test-file-stub
+        height="10"
+        width="10"
+      />
+    </button>
+  </div>
+  <div
+    className="window__content"
+  >
+    Hello, World!
+  </div>
+  <div
+    className="window__footer"
+  >
+    <button
+      className="window__action-button window__action-button--icon-only button window__default-close-button"
+      onClick={[Function]}
+      type="button"
+    >
+      Close
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Window component should render with custom action buttons 1`] = `
+<div
+  className="window"
+  style={
+    Object {
+      "height": "10rem",
+      "left": "calc((100vw - 20rem) / 2)",
+      "top": "calc((80vh - 10rem) / 2)",
+      "width": "20rem",
+    }
+  }
+>
+  <div
+    className="window__header"
+  >
+    <span
+      className="window__header__title"
+    >
+      Confirm
+    </span>
+  </div>
+  <div
+    className="window__content"
+  >
+    Complete this action?
+  </div>
+  <div
+    className="window__footer"
+  >
+    <button
+      className="window__action-button window__action-button--icon-only button secondary"
+      onClick={[Function]}
+      type="button"
+    >
+      No
+    </button>
+    <button
+      className="window__action-button window__action-button--icon-only button"
+      onClick={[Function]}
+      type="button"
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;
