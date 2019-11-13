@@ -63,7 +63,7 @@
         "type": {
           "name": "arrayOf",
           "value": {
-            "name": "string"
+            "name": "object"
           }
         },
         "required": true,
