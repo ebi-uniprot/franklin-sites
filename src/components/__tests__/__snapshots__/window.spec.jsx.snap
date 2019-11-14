@@ -5,8 +5,8 @@ exports[`Window component should render 1`] = `
   className="window window--with-shadow"
   style={
     Object {
-      "height": "15rem",
       "left": "calc((100vw - 20rem) / 2)",
+      "minHeight": "15rem",
       "top": "calc((80vh - 15rem) / 2)",
       "width": "20rem",
     }
@@ -55,8 +55,8 @@ exports[`Window component should render with custom action buttons 1`] = `
   className="window"
   style={
     Object {
-      "height": "10rem",
       "left": "calc((100vw - 20rem) / 2)",
+      "minHeight": "10rem",
       "top": "calc((80vh - 10rem) / 2)",
       "width": "20rem",
     }
