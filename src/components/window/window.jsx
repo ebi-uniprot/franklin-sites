@@ -23,7 +23,7 @@ const Window = ({
 }) => {
   const styles = {
     width,
-    height,
+    minHeight: height,
     top: `calc((80vh - ${height}) / 2)`,
     left: `calc((100vw - ${width}) / 2)`,
   };
