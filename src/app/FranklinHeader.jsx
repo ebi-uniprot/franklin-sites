@@ -15,6 +15,10 @@ const links = [
     label: 'Data',
     links: [{ label: 'Data Views', path: '/data-views' }],
   },
+  {
+    label: 'Hooks',
+    links: [{ label: 'useModal', path: '/use-modal' }],
+  },
 ];
 
 const FranklinHeader = () => (

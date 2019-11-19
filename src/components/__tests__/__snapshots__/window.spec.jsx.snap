@@ -1,98 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Window component should render 1`] = `
-<div
-  className="window window--with-shadow"
-  style={
-    Object {
-      "left": "calc((100vw - 20rem) / 2)",
-      "minHeight": "15rem",
-      "top": "calc((80vh - 15rem) / 2)",
-      "width": "20rem",
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="window__header"
+    class="window window--with-shadow"
+    style="width: 20rem; min-height: 15rem;"
   >
-    <span
-      className="window__header__title"
+    <div
+      class="window__header"
     >
-      Alert
-    </span>
-    <button
-      className="window__action-button window__action-button--icon-only window__default-close-button window__default-close-button--icon-only"
-      onClick={[Function]}
-      type="button"
+      <span
+        class="window__header__title"
+      >
+        Alert
+      </span>
+      <button
+        class="window__action-button window__action-button--icon-only window__default-close-button window__default-close-button--icon-only"
+        type="button"
+      >
+        <test-file-stub
+          height="10"
+          width="10"
+        />
+      </button>
+    </div>
+    <div
+      class="window__content"
     >
-      <test-file-stub
-        height="10"
-        width="10"
-      />
-    </button>
-  </div>
-  <div
-    className="window__content"
-  >
-    Hello, World!
-  </div>
-  <div
-    className="window__footer"
-  >
-    <button
-      className="window__action-button window__action-button--icon-only button window__default-close-button"
-      onClick={[Function]}
-      type="button"
+      Hello, World!
+    </div>
+    <div
+      class="window__footer"
     >
-      Close
-    </button>
+      <button
+        class="window__action-button window__action-button--icon-only button window__default-close-button"
+        type="button"
+      >
+        Close
+      </button>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Window component should render with custom action buttons 1`] = `
-<div
-  className="window"
-  style={
-    Object {
-      "left": "calc((100vw - 20rem) / 2)",
-      "minHeight": "10rem",
-      "top": "calc((80vh - 10rem) / 2)",
-      "width": "20rem",
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="window__header"
+    class="window"
+    style="width: 20rem; min-height: 10rem;"
   >
-    <span
-      className="window__header__title"
+    <div
+      class="window__header"
     >
-      Confirm
-    </span>
-  </div>
-  <div
-    className="window__content"
-  >
-    Complete this action?
-  </div>
-  <div
-    className="window__footer"
-  >
-    <button
-      className="window__action-button window__action-button--icon-only button secondary"
-      onClick={[Function]}
-      type="button"
+      <span
+        class="window__header__title"
+      >
+        Confirm
+      </span>
+    </div>
+    <div
+      class="window__content"
     >
-      No
-    </button>
-    <button
-      className="window__action-button window__action-button--icon-only button"
-      onClick={[Function]}
-      type="button"
+      Complete this action?
+    </div>
+    <div
+      class="window__footer"
     >
-      Yes
-    </button>
+      <button
+        class="window__action-button window__action-button--icon-only button secondary"
+        type="button"
+      >
+        No
+      </button>
+      <button
+        class="window__action-button window__action-button--icon-only button"
+        type="button"
+      >
+        Yes
+      </button>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

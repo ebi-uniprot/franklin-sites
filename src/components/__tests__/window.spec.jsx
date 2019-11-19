@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import Window from '../window/window';
@@ -21,44 +21,40 @@ const customActionButtons = [
 
 describe('Window component', () => {
   test('should render', () => {
-    const component = renderer
-      .create(
-        <Router>
-          <Window
-            width="20rem"
-            height="15rem"
-            title="Alert"
-            withHeaderCloseButton
-            withFooterCloseButton
-            onWindowOpen={() => null}
-            onWindowClose={() => null}
-            withShadow
-            key="full-featured-window"
-          >
-            Hello, World!
-          </Window>
-        </Router>,
-      )
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(
+      <Router>
+        <Window
+          width="20rem"
+          height="15rem"
+          title="Alert"
+          withHeaderCloseButton
+          withFooterCloseButton
+          onWindowOpen={() => null}
+          onWindowClose={() => null}
+          withShadow
+          key="full-featured-window"
+        >
+          Hello, World!
+        </Window>
+      </Router>,
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render with custom action buttons', () => {
-    const component = renderer
-      .create(
-        <Router>
-          <Window
-            width="20rem"
-            height="10rem"
-            title="Confirm"
-            actionButtons={customActionButtons}
-            key="basic-dialog-window"
-          >
-            Complete this action?
-          </Window>
-        </Router>,
-      )
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(
+      <Router>
+        <Window
+          width="20rem"
+          height="10rem"
+          title="Confirm"
+          actionButtons={customActionButtons}
+          key="basic-dialog-window"
+        >
+          Complete this action?
+        </Window>
+      </Router>,
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });

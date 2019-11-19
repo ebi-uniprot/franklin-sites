@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const ModalBackdrop = (props) => {
-  const {
-    className,
-    handleExitModal,
-    ...otherProps
-  } = props;
-
-  const bodayTag = document.getElementsByTagName('body')[0];
-  bodayTag.classList.add('modal__body');
+const ModalBackdrop = ({
+  className,
+  handleExitModal,
+  ...otherProps
+}) => {
+  const bodyTag = document.body;
+  bodyTag.classList.add('modal__body');
 
   // clean-up, when component unmounts.
-  useEffect(() => () => bodayTag.classList.remove('modal__body'));
+  useEffect(() => () => bodyTag.classList.remove('modal__body'));
 
   return (
     <div

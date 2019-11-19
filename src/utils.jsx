@@ -75,18 +75,12 @@ export function getClassNames(mixedInput, optionalCondition, output = '') {
   }
 
   if (Array.isArray(mixedInput)) {
-    if (typeof mixedInput[1] !== 'undefined' && typeof mixedInput[1] === 'boolean') {
+    if (typeof mixedInput[1] === 'boolean') {
       return getClassNames(mixedInput[0], mixedInput[1], output);
     }
 
     return mixedInput
-      .map((item) => {
-        if (Array.isArray(item)) {
-          return getClassNames(item, optionalCondition, output);
-        }
-
-        return getClassNames(item, optionalCondition, output);
-      })
+      .map(item => getClassNames(item, optionalCondition, output))
       .filter(x => x) // removes nulls, undefineds, empty strings, etc.
       .join(' ');
   }

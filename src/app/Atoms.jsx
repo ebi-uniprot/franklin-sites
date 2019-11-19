@@ -6,8 +6,6 @@ import Icons from './Icons';
 import Buttons from './Buttons';
 import Links from './Links';
 import Numbers from './Numbers';
-import Windows from './Windows';
-import Modals from './Modals';
 
 const HomePageContent = () => (
   <Fragment>
@@ -17,8 +15,6 @@ const HomePageContent = () => (
     <Buttons />
     <Links />
     <Numbers />
-    <Windows />
-    <Modals />
   </Fragment>
 );
 
@@ -50,14 +46,6 @@ const HomePage = () => (
       {
         label: 'Numbers',
         id: 'numbers',
-      },
-      {
-        label: 'Windows',
-        id: 'windows',
-      },
-      {
-        label: 'Modals',
-        id: 'modals',
       },
     ]}
   />

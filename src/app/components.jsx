@@ -27,6 +27,7 @@ import {
   Tile,
   TreeSelect,
   SearchInput,
+  Window,
 } from '../components';
 import HeroContainer from '../components/hero-container';
 
@@ -411,6 +412,24 @@ const components = [
     function: '',
     purpose: '',
     props: {},
+  },
+  {
+    name: 'Window',
+    component: Window,
+    function: 'Provide reusable window component with various configurations possible.',
+    purpose: 'Improve the User Experience by providing another way of conent-isoloation.',
+    props: {
+      width: '20rem',
+      height: '15rem',
+      title: 'Alert',
+      withHeaderCloseButton: true,
+      withFooterCloseButton: true,
+      onWindowOpen: () => null,
+      onWindowClose: () => null,
+      withShadow: true,
+      key: 'full-featured-window',
+      children: loremIpsum({ count: 25, units: 'words' }),
+    },
   },
 ];
 
