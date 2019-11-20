@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Window component should render 1`] = `
+<DocumentFragment>
+  <div
+    class="window window--with-shadow"
+    style="width: 20rem; min-height: 15rem;"
+  >
+    <div
+      class="window__header"
+    >
+      <span
+        class="window__header__title"
+      >
+        Alert
+      </span>
+      <button
+        class="window__action-button window__action-button--icon-only window__default-close-button window__default-close-button--icon-only"
+        type="button"
+      >
+        <test-file-stub
+          height="10"
+          width="10"
+        />
+      </button>
+    </div>
+    <div
+      class="window__content"
+    >
+      Hello, World!
+    </div>
+    <div
+      class="window__footer"
+    >
+      <button
+        class="window__action-button window__action-button--icon-only button window__default-close-button"
+        type="button"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Window component should render with custom action buttons 1`] = `
+<DocumentFragment>
+  <div
+    class="window"
+    style="width: 20rem; min-height: 10rem;"
+  >
+    <div
+      class="window__header"
+    >
+      <span
+        class="window__header__title"
+      >
+        Confirm
+      </span>
+    </div>
+    <div
+      class="window__content"
+    >
+      Complete this action?
+    </div>
+    <div
+      class="window__footer"
+    >
+      <button
+        class="window__action-button window__action-button--icon-only button secondary"
+        type="button"
+      >
+        No
+      </button>
+      <button
+        class="window__action-button window__action-button--icon-only button"
+        type="button"
+      >
+        Yes
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

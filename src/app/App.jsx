@@ -6,6 +6,7 @@ import FranklinSite from '../components/franklin-site';
 import Atoms from './Atoms';
 import UIComponents from './UIComponents';
 import DataViews from './DataViews';
+import UseModal from './UseModal';
 
 const App = () => (
   <FranklinSite>
@@ -15,6 +16,7 @@ const App = () => (
         <Route path="/atoms" component={Atoms} />
         <Route path="/ui-components" component={UIComponents} />
         <Route path="/data-views" component={DataViews} />
+        <Route path="/use-modal" component={UseModal} />
       </Fragment>
     </Router>
   </FranklinSite>

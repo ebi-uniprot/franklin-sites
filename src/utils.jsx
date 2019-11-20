@@ -50,7 +50,6 @@ export function capitaliseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-
 export function highlightSubstring(string, substring) {
   const i = getLastIndexOfSubstringIgnoreCase(string, substring);
   if (i < 0) return string;
@@ -64,4 +63,27 @@ export function highlightSubstring(string, substring) {
       {poststring}
     </Fragment>
   );
+}
+
+export function getClassNames(mixedInput, optionalCondition, output = '') {
+  if (typeof optionalCondition !== 'undefined' && optionalCondition !== true) {
+    return '';
+  }
+
+  if (typeof mixedInput === 'string') {
+    return mixedInput;
+  }
+
+  if (Array.isArray(mixedInput)) {
+    if (typeof mixedInput[1] === 'boolean') {
+      return getClassNames(mixedInput[0], mixedInput[1], output);
+    }
+
+    return mixedInput
+      .map(item => getClassNames(item, optionalCondition, output))
+      .filter(x => x) // removes nulls, undefineds, empty strings, etc.
+      .join(' ');
+  }
+
+  return output;
 }
