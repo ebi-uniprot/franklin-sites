@@ -54,12 +54,6 @@ const Card = ({
           {subtitle && <div className="card__subtitle">{subtitle}</div>}
         </div>
       )}
-      <div className="card__content">
-        {selectable && !title && (
-          <div className="card__content__checkbox">{checkbox}</div>
-        )}
-        {children}
-      </div>
       {links.length > 0 && (
         <div className="card__actions">
           {links.map(l => (
@@ -67,6 +61,12 @@ const Card = ({
           ))}
         </div>
       )}
+      <div className="card__content">
+        {selectable && !title && (
+          <div className="card__content__checkbox">{checkbox}</div>
+        )}
+        {children}
+      </div>
     </div>
   );
 };
