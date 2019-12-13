@@ -21,9 +21,18 @@ CardLink.defaultProps = {
 };
 
 const Card = ({
-  title, subtitle, children, links, selectable, selected, onSelect, onClick,
+  title,
+  subtitle,
+  children,
+  links,
+  selectable,
+  selected,
+  onSelect,
+  onClick,
 }) => {
-  const checkbox = <input type="checkbox" checked={selected} onChange={onSelect} />;
+  const checkbox = (
+    <input type="checkbox" checked={selected} onChange={onSelect} />
+  );
   const containerAttributes = {
     className: `card ${selected ? 'card--selected' : ''}`,
   };
@@ -38,13 +47,17 @@ const Card = ({
     <div {...containerAttributes}>
       {title && (
         <div className="card__header">
-          {selectable && <div className="card__header__checkbox">{checkbox}</div>}
+          {selectable && (
+            <div className="card__header__checkbox">{checkbox}</div>
+          )}
           <h3 className="card__title">{title}</h3>
           {subtitle && <div className="card__subtitle">{subtitle}</div>}
         </div>
       )}
       <div className="card__content">
-        {selectable && !title && <div className="card__content__checkbox">{checkbox}</div>}
+        {selectable && !title && (
+          <div className="card__content__checkbox">{checkbox}</div>
+        )}
         {children}
       </div>
       {links.length > 0 && (
@@ -83,7 +96,7 @@ Card.propTypes = {
       name: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
       color: PropTypes.string,
-    }),
+    })
   ),
   selectable: PropTypes.bool,
   selected: PropTypes.bool,
