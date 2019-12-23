@@ -15,7 +15,9 @@
     "docgen": "mkdirp doc && react-docgen ./src/components -o doc/doc.json -e index.js --pretty",
     "test": "yarn jslint && jest",
     "test-watch": "jest --watch",
-    "release": "yarn build && git add doc/doc.json && yarn publish && git push --follow-tags origin master"
+    "release": "yarn build && git add doc/doc.json && yarn publish && git push --follow-tags origin master",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     "last 2 version",
@@ -41,6 +43,10 @@
     "react-router-dom": "^5.0.1"
   },
   "dependencies": {
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/api": "^5.2.8",
+    "@storybook/components": "^5.2.8",
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.0-rc.3",
     "lorem-ipsum": "^2.0.2",
@@ -62,6 +68,8 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/react": "^5.2.8",
     "@testing-library/react": "^9.1.4",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
