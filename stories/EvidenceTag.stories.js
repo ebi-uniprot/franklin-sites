@@ -3,7 +3,15 @@ import EvidenceTag from '../src/components/evidence-tag';
 import { getLipsumSentences } from '../src/app/common/lipsum';
 
 export default {
-  title: 'Evidence Tag',
+  title: 'Biocomponents/Evidence Tag',
+  parameters: {
+    purposeFunction: {
+      function:
+        'Provide the user with information about the evidence associated to a piece of text.',
+      purpose:
+        'Inform the user so they can make a decision regarding the trustworthyness of a piece of text',
+    },
+  },
 };
 
 export const evidenceTag = () => (

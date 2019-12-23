@@ -6,7 +6,7 @@ import StateDecorator from '../src/decorators/StateDecorator';
 
 // Custom decorator
 export default {
-  title: 'Forms/Main Search',
+  title: 'Navigation/Main Search',
   decorators: [
     story => {
       return (

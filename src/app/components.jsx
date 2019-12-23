@@ -1,44 +1,37 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 import { treeData, flattenedPaths } from './common/tree-data';
 import facetData from './common/facetData';
-import sequenceData from './common/sequence-data';
-import { getLipsumObjectArray, getLipsumSentences } from './common/lipsum';
+import { getLipsumObjectArray } from './common/lipsum';
 import {
   Accordion,
   AccordionSearch,
   Autocomplete,
-  Card,
   ConfigureIcon,
   DropdownButton,
-  EvidenceTag,
   ExpandableList,
   Facets,
   HeroHeader,
-  InfoList,
   InPageNav,
   Loader,
   MainSearch,
   PageIntro,
-  Sequence,
   Tabs,
-  Tile,
   TreeSelect,
   SearchInput,
   Window,
 } from '../components';
 import HeroContainer from '../components/hero-container';
 
-const MainSearchWrapper = (props) => {
+const MainSearchWrapper = props => {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <MainSearch
       {...props}
       searchTerm={searchTerm}
-      onChange={(v) => {
+      onChange={v => {
         console.log('MainSearch onChange:', v);
         setSearchTerm(v);
       }}
@@ -46,13 +39,13 @@ const MainSearchWrapper = (props) => {
   );
 };
 
-const TreeSelectWrapper = (props) => {
+const TreeSelectWrapper = props => {
   const [value, setValue] = useState(null);
   return (
     <TreeSelect
       {...props}
       value={value}
-      onSelect={(v) => {
+      onSelect={v => {
         console.log('TreeSelect onSelect:', v);
         setValue(v);
       }}
@@ -61,32 +54,6 @@ const TreeSelectWrapper = (props) => {
 };
 
 const components = [
-  {
-    name: 'Tile',
-    component: Tile,
-    function: 'Provide a sneak peak and navigate to a searchable data section of the website.',
-    purpose: 'Advertise a specific dataset of the website and provide searchable access to it.',
-    props: {
-      title: 'Tile',
-      namespace: 'uniref',
-    },
-  },
-  {
-    name: 'Evidence Tag',
-    component: EvidenceTag,
-    function: 'Provide the user with information about the evidence associated to a piece of text.',
-    purpose:
-      'Inform the user so they can make a decision regarding the trustworthyness of a piece of text',
-    props: {
-      label: 'evidence tag',
-      children: (
-        <div>
-          <h5>Some title</h5>
-          <p>{getLipsumSentences()}</p>
-        </div>
-      ),
-    },
-  },
   {
     name: 'Page intro',
     component: PageIntro,
@@ -139,7 +106,8 @@ const components = [
   {
     name: 'Search Input',
     component: SearchInput,
-    function: 'Filter data displayed on the screen (autocomplete, list of fields etc.)',
+    function:
+      'Filter data displayed on the screen (autocomplete, list of fields etc.)',
     purpose:
       'Provide the user with an indication that typing in the input box will search something',
     props: {
@@ -225,7 +193,7 @@ const components = [
     function: 'Search through an array to make a selection',
     purpose: 'Allow selection of item from flat data set',
     props: {
-      onSubmit: (e) => {
+      onSubmit: e => {
         e.preventDefault();
         // eslint-disable-next-line no-console
         console.log('Main search submit');
@@ -254,33 +222,10 @@ const components = [
     },
   },
   {
-    name: 'Info list',
-    component: InfoList,
-    function:
-      'Display a list of attribute names/values. The values can be of any form. Attribute names can have extra information attached to them in the form of tooltips.',
-    purpose:
-      'Provide a way of easily scanning for attribute names in order to view their associated data.',
-    props: {
-      infoData: [
-        {
-          title: 'Item 1',
-          content: <div>Some content</div>,
-        },
-        {
-          title: 'Another item',
-          content: <div>Some more content</div>,
-        },
-        {
-          title: 'Yet another item',
-          content: loremIpsum({ count: 25, units: 'words' }),
-        },
-      ],
-    },
-  },
-  {
     name: 'Tabs',
     component: Tabs,
-    function: 'Upon clicking a header the corresponding content will be displayed.',
+    function:
+      'Upon clicking a header the corresponding content will be displayed.',
     purpose: 'Allow users to switch between different views.',
     props: {
       tabData: [
@@ -288,8 +233,11 @@ const components = [
           title: (
             <div>
               Title 1
-              {' '}
-              <ConfigureIcon style={{ verticalAlign: 'text-top' }} width={16} height={16} />
+              <ConfigureIcon
+                style={{ verticalAlign: 'text-top' }}
+                width={16}
+                height={16}
+              />
             </div>
           ),
           content: loremIpsum({ count: 2 }),
@@ -311,49 +259,17 @@ const components = [
   {
     name: 'Expandable List',
     component: ExpandableList,
-    function: 'Display an unordered list of items which is initially collapsed.',
+    function:
+      'Display an unordered list of items which is initially collapsed.',
     purpose: 'Provide a way of truncating long unordered lists of items.',
     props: {
       numberCollapsedItems: 5,
       descriptionString: 'lorem ipsum items',
-      children: getLipsumObjectArray({ numberElements: 10, keys: ['content'], type: 'words' }),
-    },
-  },
-  {
-    name: 'Card',
-    component: Card,
-    function: 'Provide a contained section to show content for a given category.',
-    purpose: 'Create visually delimited areas to allow for easier scanning of content.',
-    props: {
-      title: 'Title',
-      subtitle: <Link to="/#">APOE_HUMAN - P02649</Link>,
-      color: 'darkblue',
-      children: <p>An example of content</p>,
-      selectable: true,
-      onSelect: () => null,
-      selected: true,
-      links: [
-        {
-          name: '10 Protein Interactions',
-          link: '#',
-          color: 'red',
-        },
-        {
-          name: '9 Pathways',
-          link: '#',
-          color: 'blue',
-        },
-        {
-          name: '5 Diseases',
-          link: '#',
-          color: '#bada55',
-        },
-        {
-          name: '72 Variants',
-          link: '#',
-          color: 'burlywood',
-        },
-      ],
+      children: getLipsumObjectArray({
+        numberElements: 10,
+        keys: ['content'],
+        type: 'words',
+      }),
     },
   },
   {
@@ -367,26 +283,19 @@ const components = [
       data: facetData,
       selectedFacets: [{ name: 'facet_2', value: 'value_2' }],
       // eslint-disable-next-line no-console
-      addFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
+      addFacet: (name, value) =>
+        console.log(`${name} facet toggled with ${value}`),
       // eslint-disable-next-line no-console
-      removeFacet: (name, value) => console.log(`${name} facet toggled with ${value}`),
-    },
-  },
-  {
-    name: 'Sequence',
-    component: Sequence,
-    function: 'Display protein/nucleotide sequence, allow users to copy it',
-    purpose: 'Allow users to see a protein / nucleotide sequence',
-    props: {
-      sequence: sequenceData,
-      id: 'isoformId-1',
+      removeFacet: (name, value) =>
+        console.log(`${name} facet toggled with ${value}`),
     },
   },
   {
     name: 'In page nav',
     component: InPageNav,
     function: 'Quickly navigate to different sections of the current page.',
-    purpose: 'Help with navigation, give an idea of the position on a very long page.',
+    purpose:
+      'Help with navigation, give an idea of the position on a very long page.',
     props: {
       sections: [
         {
@@ -416,8 +325,10 @@ const components = [
   {
     name: 'Window',
     component: Window,
-    function: 'Provide reusable window component with various configurations possible.',
-    purpose: 'Improve the User Experience by providing another way of conent-isoloation.',
+    function:
+      'Provide reusable window component with various configurations possible.',
+    purpose:
+      'Improve the User Experience by providing another way of conent-isoloation.',
     props: {
       width: '20rem',
       height: '15rem',
