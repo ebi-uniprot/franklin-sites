@@ -17,7 +17,7 @@
     "test-watch": "jest --watch",
     "release": "yarn build && git add doc/doc.json && yarn publish && git push --follow-tags origin master",
     "storybook": "start-storybook -p 6006 -s ./assets",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
   "browserslist": [
     "last 2 version",
