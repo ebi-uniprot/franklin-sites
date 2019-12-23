@@ -1,5 +1,6 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
+import franklinTheme from './franklin-theme';
 import '../src/styles/index.scss';
 
 addDecorator(storyFn => (
@@ -14,6 +15,12 @@ addDecorator(storyFn => (
     {storyFn()}
   </div>
 ));
+
+addParameters({
+  options: {
+    theme: franklinTheme,
+  },
+});
 
 // automatically import all files ending in *.stories.js
 configure(require.context('../stories', true, /\.stories\.js$/), module);
