@@ -39,6 +39,6 @@ export const mainSearch = ({ state, setState }) => {
 };
 
 mainSearch.propTypes = {
-  state: PropTypes.shapeOf({}).isRequired,
+  state: PropTypes.shape({ value: PropTypes.string }).isRequired,
   setState: PropTypes.func.isRequired,
 };
