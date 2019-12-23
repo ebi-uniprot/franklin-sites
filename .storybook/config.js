@@ -9,10 +9,7 @@ addDecorator(withInfo);
 addDecorator(storyFn => (
   <div
     style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '70vh',
+      padding: '2rem 10rem',
     }}
   >
     {storyFn()}

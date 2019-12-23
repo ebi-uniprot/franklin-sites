@@ -1,13 +1,11 @@
 import React, { Fragment, useState, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import Tag from '../svg/tag.svg';
+import TagIcon from '../svg/tag.svg';
 import '../styles/components/evidence-tag.scss';
 
 const size = 12;
 
-const EvidenceTag = ({
-  label, title, className, iconComponent, children,
-}) => {
+const EvidenceTag = ({ label, title, className, iconComponent, children }) => {
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
     <Fragment>
@@ -58,13 +56,16 @@ EvidenceTag.propTypes = {
   /**
    * The content of the tag
    */
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 EvidenceTag.defaultProps = {
   title: '',
   className: '',
-  iconComponent: <Tag />,
+  iconComponent: <TagIcon />,
   children: null,
 };
 
