@@ -1,13 +1,9 @@
 import React, { Fragment } from 'react';
 import components from './components';
-import docJson from '../../doc/doc.json';
 
 import DefaultPageLayout from './layout/DefaultPageLayout';
 
-const formatPattern = (Component) => {
-  const doc = Object.values(docJson).find(
-    componentDoc => componentDoc.displayName === Component.component.name,
-  );
+const formatPattern = Component => {
   return (
     <div key={Component.name}>
       <h2 id={Component.name}>{Component.name}</h2>
@@ -20,22 +16,6 @@ const formatPattern = (Component) => {
           <p>{Component.purpose}</p>
           <h5>Function</h5>
           <p>{Component.function}</p>
-          <h5>Props</h5>
-          <ul className="no-bullet">
-            {doc
-              && doc.props
-              && Object.keys(doc.props).map(prop => (
-                <li key={prop}>
-                  <strong>{prop}</strong>
-                  {' '}
-                  <em>
-                    {doc.props[prop].type && doc.props[prop].type.name}
-                    {!doc.props[prop].required && ' (optional)'}
-                  </em>
-                  <p>{doc.props[prop].description && doc.props[prop].description}</p>
-                </li>
-              ))}
-          </ul>
         </div>
       </div>
       <hr />
