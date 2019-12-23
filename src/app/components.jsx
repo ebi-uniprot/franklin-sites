@@ -1,43 +1,21 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
-import { treeData, flattenedPaths } from './common/tree-data';
+import { treeData } from './common/tree-data';
 import facetData from './common/facetData';
 import { getLipsumObjectArray } from './common/lipsum';
 import {
-  Accordion,
-  AccordionSearch,
-  Autocomplete,
   ConfigureIcon,
-  DropdownButton,
   ExpandableList,
   Facets,
   HeroHeader,
   InPageNav,
   Loader,
-  MainSearch,
-  PageIntro,
   Tabs,
   TreeSelect,
-  SearchInput,
   Window,
 } from '../components';
 import HeroContainer from '../components/hero-container';
-
-const MainSearchWrapper = props => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  return (
-    <MainSearch
-      {...props}
-      searchTerm={searchTerm}
-      onChange={v => {
-        console.log('MainSearch onChange:', v);
-        setSearchTerm(v);
-      }}
-    />
-  );
-};
 
 const TreeSelectWrapper = props => {
   const [value, setValue] = useState(null);
@@ -55,66 +33,6 @@ const TreeSelectWrapper = props => {
 
 const components = [
   {
-    name: 'Page intro',
-    component: PageIntro,
-    function:
-      'Tell users a bit about the area of the website that they are on with links to further information',
-    purpose:
-      'People might land on areas of the website they don’t know much about. The intro is a place they can get some contextual help, some introductory info and links to further help, information and downloads',
-    props: {
-      title: 'UniProtKB',
-      resultsCount: 1000,
-      children:
-        'UniProtKB consists of two sections:Reviewed (Swiss-Prot) - Manually annotated Records with information extracted from literature and curator-evaluated computational analysis. Unreviewed (TrEMBL) - Computationally analyzed. Records that await full manual annotation. The UniProt Knowledgebase (UniProtKB) is the central hub for the collection of functional information on proteins, with accurate, consistent and rich annotation. In addition to capturing the core data mandatory for each UniProtKB entry (mainly, the amino acid sequence, protein name or description, taxonomic data and citation information), as much annotation information as possible is added.',
-      links: [{ title: 'Help', icon: '', destination: '' }],
-    },
-  },
-  {
-    name: 'Accordion',
-    component: Accordion,
-    function: 'Show/hide blocks of content',
-    purpose: 'Minimise information-overload',
-    props: {
-      title: 'Title',
-      count: 10,
-      children: <div>{loremIpsum({ count: 25, units: 'words' })}</div>,
-    },
-  },
-  {
-    name: 'Dropdown button',
-    component: DropdownButton,
-    function: 'Shows a dropdown area when clicked',
-    purpose: 'Allow the user to perform actions',
-    props: {
-      label: 'Download',
-      children: (
-        <div className="dropdown-menu__content">
-          <p>Download content from:</p>
-          <ul>
-            <li>
-              <a href="//www.uniprot.org">UniProt</a>
-            </li>
-            <li>
-              <a href="//www.ensembl.org">Ensembl</a>
-            </li>
-          </ul>
-        </div>
-      ),
-      onSelect: () => {},
-    },
-  },
-  {
-    name: 'Search Input',
-    component: SearchInput,
-    function:
-      'Filter data displayed on the screen (autocomplete, list of fields etc.)',
-    purpose:
-      'Provide the user with an indication that typing in the input box will search something',
-    props: {
-      placeholder: 'Search',
-    },
-  },
-  {
     name: 'Tree select',
     component: TreeSelectWrapper,
     function: 'Navigate through a tree to make a selection',
@@ -124,80 +42,6 @@ const components = [
       autocomplete: true,
       autocompletePlaceholder: 'Search for item',
       autocompleteFilter: true,
-    },
-  },
-  {
-    name: 'Autocomplete',
-    component: Autocomplete,
-    function: 'Search through an array to make a selection',
-    purpose: 'Allow selection of item from flat data set',
-    props: {
-      data: flattenedPaths,
-      // eslint-disable-next-line no-console
-      onSelect: value => console.log(value),
-      placeholder: 'Placeholder',
-      filter: true,
-    },
-  },
-  {
-    name: 'Accordion Search',
-    component: AccordionSearch,
-    function: 'Search through an array to make a selection',
-    purpose: 'Allow selection of item from flat data set',
-    props: {
-      placeholder: 'Filter',
-      onSelect: (accordionId, itemId) => {
-        console.log(accordionId, itemId);
-      },
-      selected: [],
-      accordionData: [
-        {
-          title: 'Gene',
-          id: '1',
-          items: [
-            {
-              label: 'BRCA1',
-              id: '1-1',
-            },
-            {
-              label: 'BRCA2',
-              id: '1-2',
-            },
-            {
-              label: 'TP53',
-              id: '1-3',
-            },
-          ],
-        },
-        {
-          title: 'Organelle',
-          id: '2',
-          items: [
-            {
-              label: 'Ribosome',
-              id: '2-1',
-            },
-            {
-              label: 'Nucleus',
-              id: '2-2',
-            },
-          ],
-        },
-      ],
-    },
-  },
-
-  {
-    name: 'Main search',
-    component: MainSearchWrapper,
-    function: 'Search through an array to make a selection',
-    purpose: 'Allow selection of item from flat data set',
-    props: {
-      onSubmit: e => {
-        e.preventDefault();
-        // eslint-disable-next-line no-console
-        console.log('Main search submit');
-      },
     },
   },
   {
