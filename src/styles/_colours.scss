@@ -3,7 +3,7 @@
 ** @template  ./app/html/colours.html
 ** @text-only
 */
-@import "./settings";
+@import './settings';
 
 // PRIMARY COLOURS
 $colour-dark-blue: #004864;
@@ -106,10 +106,6 @@ $colour-annotation-systems: #f8982e;
   height: 9em;
   margin-bottom: 4em;
   font-size: $small-font-size;
-  &:before {
-    content: attr(data-name);
-    margin-top: 10em;
-    display: block;
-    text-align: center;
-  }
+  text-align: center;
+  padding-top: 8rem;
 }
