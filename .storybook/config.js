@@ -1,7 +1,10 @@
 import React from 'react';
 import { configure, addDecorator, addParameters } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
 import franklinTheme from './franklin-theme';
 import '../src/styles/index.scss';
+
+addDecorator(withInfo);
 
 addDecorator(storyFn => (
   <div
