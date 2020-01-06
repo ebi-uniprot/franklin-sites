@@ -2,7 +2,7 @@ import React from 'react';
 import LongNumber from '../src/components/long-number';
 
 export default {
-  title: 'Atoms/Long number',
+  title: 'Atoms|Long number',
 };
 
 export const longNumber = () => {
