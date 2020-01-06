@@ -8,14 +8,12 @@ import {
   ConfigureIcon,
   ExpandableList,
   Facets,
-  HeroHeader,
   InPageNav,
   Loader,
   Tabs,
   TreeSelect,
   Window,
 } from '../components';
-import HeroContainer from '../components/hero-container';
 
 const TreeSelectWrapper = props => {
   const [value, setValue] = useState(null);
@@ -42,27 +40,6 @@ const components = [
       autocomplete: true,
       autocompletePlaceholder: 'Search for item',
       autocompleteFilter: true,
-    },
-  },
-  {
-    name: 'Hero header',
-    component: HeroHeader,
-    function: 'Tell the user what the resource is about and offer a way in',
-    purpose: 'Provide an entry point',
-    props: {
-      title: 'Title',
-      children: <input type="text" />,
-      footer: loremIpsum({ count: 25, units: 'words' }),
-    },
-  },
-  {
-    name: 'Hero Container',
-    component: HeroContainer,
-    function: 'Highlight a specific section',
-    purpose: 'Differentiate section from others',
-    props: {
-      title: 'Title',
-      children: loremIpsum({ count: 25, units: 'words' }),
     },
   },
   {
