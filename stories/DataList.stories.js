@@ -55,3 +55,5 @@ export const dataList = ({
     selectable
   />
 );
+
+dataList.propTypes = DataList.propTypes;

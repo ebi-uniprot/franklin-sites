@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { getLipsumObjectArray } from '../app/common/lipsum';
 
 const DataDecorator = ({ children, ...props }) => {
@@ -75,43 +76,10 @@ const DataDecorator = ({ children, ...props }) => {
       {children(data, idKey, columns, hasMoreData, onLoadMoreItems)}
     </div>
   );
-
-  //   return (
-  //     <Fragment>
-  //       <div>
-  //         {view === LIST && (
-  //           <DataList
-  //             {...{
-  //               data,
-  //               idKey,
-  //               onSelect,
-  //               hasMoreData,
-  //               onLoadMoreItems,
-  //               selectable,
-  //               selected,
-  //               dataRenderer: content => (
-  //                 <Fragment>{Object.values(content)}</Fragment>
-  //               ),
-  //             }}
-  //           />
-  //         )}
-  //         {view === TABLE && (
-  //           <DataTable
-  //             {...{
-  //               data,
-  //               idKey,
-  //               onSelect,
-  //               hasMoreData,
-  //               onLoadMoreItems,
-  //               selectable,
-  //               selected,
-  //               columns,
-  //               onHeaderClick,
-  //             }}
-  //           />
-  //         )}
-  //       </div>
-  //     </Fragment>
-  //   );
 };
+
+DataDecorator.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 export default DataDecorator;

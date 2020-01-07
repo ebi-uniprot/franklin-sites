@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { loremIpsum } from 'lorem-ipsum';
 
 import DefaultPageLayout from './layout/DefaultPageLayout';
-import {
-  useModal,
-  ModalBackdrop,
-  Window,
-} from '../components';
+import { useModal, ModalBackdrop, Window } from '../components';
 
 const DialogWindow = ({ className, handleExitModal }) => (
   <Window
@@ -36,7 +32,10 @@ DialogWindow.defaultProps = {
 };
 
 const UseModalContent = () => {
-  const { displayModal, setDisplayModal, Modal } = useModal(ModalBackdrop, DialogWindow);
+  const { displayModal, setDisplayModal, Modal } = useModal(
+    ModalBackdrop,
+    DialogWindow
+  );
 
   return (
     <section className="atoms-section" id="modals">
@@ -51,7 +50,9 @@ const UseModalContent = () => {
           >
             Display Modal
           </button>
-          {displayModal && <Modal handleExitModal={() => setDisplayModal(false)} />}
+          {displayModal && (
+            <Modal handleExitModal={() => setDisplayModal(false)} />
+          )}
         </div>
       </section>
     </section>
@@ -59,7 +60,10 @@ const UseModalContent = () => {
 };
 
 const UseModal = () => (
-  <DefaultPageLayout title="Franklin - useModal" content={<UseModalContent />} />
+  <DefaultPageLayout
+    title="Franklin - useModal"
+    content={<UseModalContent />}
+  />
 );
 
 export default UseModal;
