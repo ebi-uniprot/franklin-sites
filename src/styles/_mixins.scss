@@ -1,5 +1,6 @@
 @import './settings';
 @import './colours';
+@import './franklin-settings';
 
 $global-left: if($global-text-direction == rtl, right, left);
 $global-right: if($global-text-direction == rtl, left, right);
@@ -25,6 +26,37 @@ $global-right: if($global-text-direction == rtl, left, right);
   }
 }
 
-@mixin box-shadow($spread:0.125rem) {
+@mixin box-shadow($spread: 0.125rem) {
   box-shadow: 0 0.125rem 0.25rem $spread rgba($colour-black, 0.2);
+}
+
+@function font-weight($weight) {
+  @if map-has-key($fs-font-weights, $weight) {
+    @return map-get($fs-font-weights, $weight);
+  } @else {
+    @return (font-weight: $weight);
+  }
+}
+
+@mixin fs-font-settings($role) {
+  @if map-has-key($fs-font-values, $role) {
+    $size-settings: map-get($fs-font-values, $role);
+    @each $screen-size-name, $settings in $size-settings {
+      @include fs-breakpoints($screen-size-name) {
+        font-size: nth($settings, 1);
+        font-size: nth($settings, 2);
+        line-height: nth($settings, 3);
+        letter-spacing: nth($settings, 4);
+        font-weight: map-get($fs-font-weights, nth($settings, 5));
+      }
+    }
+  }
+}
+
+@mixin fs-breakpoints($size) {
+  @if map-has-key($fs-breakpoint-values, $size) {
+    @media #{inspect(map-get($fs-breakpoint-values, $size))} {
+      @content;
+    }
+  }
 }
