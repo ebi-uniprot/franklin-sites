@@ -17,7 +17,11 @@ import {
   SearchIcon,
   CloseIcon,
   EditIcon,
-} from '../components';
+} from '../src/components';
+
+export default {
+  title: 'Atoms|Icons',
+};
 
 const size = 30;
 
@@ -109,12 +113,19 @@ const iconDefinition = [
   },
 ];
 
-const Icons = () => (
-  <div className="atoms-section" id="icons">
-    <h1>Icons</h1>
-    <div className="icon-list">
+export const icons = () => {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       {iconDefinition.map(d => (
-        <div className="icon-container" key={d.name}>
+        <div
+          key={d.name}
+          style={{
+            padding: '1rem',
+            margin: '0.2rem',
+            width: '10rem',
+            textAlign: 'center',
+          }}
+        >
           {d.icon}
           <div>
             <small>{d.description}</small>
@@ -122,7 +133,5 @@ const Icons = () => (
         </div>
       ))}
     </div>
-  </div>
-);
-
-export default Icons;
+  );
+};
