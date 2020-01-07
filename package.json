@@ -7,17 +7,14 @@
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development --config webpack.dev.js --open",
-    "build-site": "yarn docgen && webpack --mode production --config webpack.prod.js",
+    "build": "yarn build-library && yarn build-storybook",
     "build-library": "webpack --config webpack.library.js",
-    "build": "yarn build-library && yarn build-site",
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
-    "docgen": "mkdirp doc && react-docgen ./src/components -o doc/doc.json -e index.js --pretty",
     "test": "yarn jslint && jest",
     "test-watch": "jest --watch",
     "release": "yarn build && git add doc/doc.json && yarn publish && git push --follow-tags origin master",
     "storybook": "start-storybook -p 6006 -s ./assets",
-    "build-storybook": "build-storybook -c .storybook -o .out"
+    "build-storybook": "build-storybook -c .storybook -o .out -s ./assets"
   },
   "browserslist": [
     "last 2 version",

@@ -32,11 +32,11 @@ const DialogWindow = ({
 DialogWindow.propTypes = {
   title: PropTypes.string.isRequired,
   className: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
   handleExitModal: PropTypes.func.isRequired,
-  withHeaderCloseButton: PropTypes.bool,
-  withFooterCloseButton: PropTypes.bool,
+  withHeaderCloseButton: PropTypes.bool.isRequired,
+  withFooterCloseButton: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
