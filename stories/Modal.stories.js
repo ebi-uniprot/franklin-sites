@@ -3,11 +3,12 @@ import { loremIpsum } from 'lorem-ipsum';
 import ButtonModal from '../src/components/button-modal';
 
 export default {
-  title: 'Data view/Modal',
+  title: 'Atoms|Modal',
   parameters: {
     purposeFunction: {
-      purpose: '',
-      function: '',
+      purpose: 'Display extra contextual information, offer the user choices',
+      function:
+        'Overlay content on top of the current page, obscuring the page content.',
     },
   },
 };

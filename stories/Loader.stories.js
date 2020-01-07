@@ -11,4 +11,4 @@ export default {
   },
 };
 
-export const tile = () => <Loader />;
+export const loader = () => <Loader />;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getClassNames } from '../../utils';
-import { CloseIcon } from '../index';
+import CloseIcon from '../../svg/times.svg';
 
 export const DefaultCloseButton = ({
   iconOnly,
@@ -58,11 +58,7 @@ export const WindowActionButton = ({
   ]);
 
   return (
-    <button
-      className={cssClasses}
-      onClick={onClick}
-      type="button"
-    >
+    <button className={cssClasses} onClick={onClick} type="button">
       {icon && icon}
       {text && text}
     </button>
