@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '../src/components';
-import { getLipsumSentences } from '../src/app/common/lipsum';
+import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 const links = [
   {

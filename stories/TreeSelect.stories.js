@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { TreeSelect } from '../src/components';
-import { treeData } from '../src/app/common/tree-data';
+import { treeData } from '../src/mock-data/tree-data';
 
 export default {
   title: 'Data view/Tree Select',

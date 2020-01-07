@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { getLipsumObjectArray } from '../app/common/lipsum';
+import { getLipsumObjectArray } from '../mock-data/lipsum';
 
 const DataDecorator = ({ children, ...props }) => {
   let loadingData = false;

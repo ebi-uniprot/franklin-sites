@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExpandableList } from '../src/components';
-import getLipsumObjectArray from '../src/app/common/lipsum';
+import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 
 export default {
   title: 'Data view/Expandable List',

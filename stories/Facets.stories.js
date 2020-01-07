@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Facets } from '../src/components';
-import facetData from '../src/app/common/facetData';
+import facetData from '../src/mock-data/facetData';
 
 const selectedFacets = [{ name: 'facet_2', value: 'value_2' }];
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PageIntro from '../src/components/page-intro';
-import { getLipsumSentences } from '../src/app/common/lipsum';
+import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
   title: 'Data view/Page Intro',

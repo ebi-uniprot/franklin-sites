@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Autocomplete } from '../src/components';
-import { flattenedPaths } from '../src/app/common/tree-data';
+import { flattenedPaths } from '../src/mock-data/tree-data';
 
 export default {
   title: 'Forms/Autocomplete',

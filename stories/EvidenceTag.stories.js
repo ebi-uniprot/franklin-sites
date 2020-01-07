@@ -1,6 +1,6 @@
 import React from 'react';
 import EvidenceTag from '../src/components/evidence-tag';
-import { getLipsumSentences } from '../src/app/common/lipsum';
+import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
   title: 'Biocomponents/Evidence Tag',
