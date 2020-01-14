@@ -7,30 +7,24 @@
 // Body
 html, body {
   font-family: $fs-base-font-face;
-  // @include fs-font-settings('normal');
 
   @include fs-breakpoints('small') {
-    background-color: blue;
     font-size: 10px;
   }
 
   @include fs-breakpoints('medium') {
-    background-color: red;
     font-size: 14px;
   }
 
   @include fs-breakpoints('large') {
-    background-color: yellow;
     font-size: 16px;
   }
 
   @include fs-breakpoints('xlarge') {
-    background-color: purple;
     font-size: 16px;
   }
 
   @include fs-breakpoints('xxlarge') {
-    background-color: green;
     font-size: 16px;
   }
 }
@@ -53,3 +47,34 @@ h4, .h4 { @include fs-font-settings('H4'); }
 h5, .h5 { @include fs-font-settings('H5'); }
 h6, .h6 { @include fs-font-settings('H6'); }
 .h7 { @include fs-font-settings('H7'); }
+
+ul.no-bullet,
+ol.no-bullet {
+  margin-left: 0;
+  list-style: none;
+}
+
+ul, ol, dl {
+  list-style-position: outside;
+}
+
+ul {
+  margin-left: 1.25rem;
+  list-style-type: disc;
+}
+ 
+ol {
+  margin-left: 1.25rem;
+}
+
+a, .a1 {
+  color: #0C476A;
+  text-decoration: none;
+  @include fs-font-settings('A1');
+}
+
+.a2 {
+  color: #126A9F;
+  text-decoration: none;
+  @include fs-font-settings('A2');
+}
