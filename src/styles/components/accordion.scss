@@ -1,3 +1,4 @@
+@import "../franklin-settings";
 @import '../colours';
 
 $border-color: $colour-light-grey;
@@ -18,6 +19,7 @@ $border-color: $colour-light-grey;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: $fs-headers-font-face;
 
     &__text {
       margin: 0;
