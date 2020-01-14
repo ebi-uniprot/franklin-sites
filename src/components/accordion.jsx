@@ -36,7 +36,11 @@ const Accordion = ({
         <div className="accordion__title__text">{title}</div>
 
         <div className="accordion__title__side">
-          {count > 0 && <span className="accordion__title__side__count"><Bubble size="small" value={count} /></span>}
+          {count > 0 && (
+            <span className="accordion__title__side__count">
+              <Bubble size="small" value={count} />
+            </span>
+          )}
           {!alwaysOpen
             && (open ? (
               <ChevronUp
@@ -50,14 +54,15 @@ const Accordion = ({
                 height={chevronSize}
                 className="accordion__title__side__chevron"
               />
-            ))
-          }
+            ))}
         </div>
       </div>
       <div
         data-testid="accordion-content"
         className={`accordion__content ${
-          open || alwaysOpen ? 'accordion__content--display-content' : 'accordion__content--hide-content'
+          open || alwaysOpen
+            ? 'accordion__content--display-content'
+            : 'accordion__content--hide-content'
         }`}
       >
         {children}
@@ -65,8 +70,6 @@ const Accordion = ({
     </div>
   );
 };
-
-// title, count, children
 
 Accordion.propTypes = {
   /**

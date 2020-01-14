@@ -6,6 +6,79 @@ import Loader from './loader';
 import { getLastIndexOfSubstringIgnoreCase, highlightSubstring } from '../utils';
 import '../styles/components/accordion-search.scss';
 
+const AccordionSearchItem = ({
+  title, alwaysOpen, items, selected, columns, onSelect, id,
+}) => (
+  <Accordion title={title} count={selected.length} alwaysOpen={alwaysOpen}>
+    <ul
+      className={`no-bullet accordion-search__list${
+        columns ? ' accordion-search__list--columns' : ''
+      }`}
+    >
+      {items.map(({ label, id: itemId }) => (
+        <li
+          key={itemId}
+          className="accordion-search__list__item"
+          data-testid="accordion-search-list-item"
+        >
+          <label key={itemId} htmlFor={`checkbox-${itemId}`}>
+            <input
+              type="checkbox"
+              id={`checkbox-${itemId}`}
+              className="accordion-search__list__item-checkbox"
+              onChange={() => onSelect(id, itemId)}
+              checked={selected.some(item => item.itemId === itemId)}
+            />
+            {label}
+          </label>
+        </li>
+      ))}
+    </ul>
+  </Accordion>
+);
+
+AccordionSearchItem.propTypes = {
+  /**
+   * An array of objects which populates the list items
+   */
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+      id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  /**
+   * String used to fill in the search input when empty
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * Callback that is fired when an accordion's item is selected
+   */
+  onSelect: PropTypes.func.isRequired,
+  /**
+   * Array of the selected items' IDs
+   */
+  selected: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * A boolean indicating whether the component should span multiple
+   * columns: 2 columns for medium to 3 columns for large+ screens.
+   */
+  alwaysOpen: PropTypes.bool,
+  /**
+   * A boolean indicating whether the component should span multiple
+   * columns: 2 columns for medium to 3 columns for large+ screens.
+   */
+  columns: PropTypes.bool.isRequired,
+  /**
+   * The title, works as a trigger to open/close
+   */
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+};
+
+AccordionSearchItem.defaultProps = {
+  alwaysOpen: false,
+};
+
 const highlightItems = (items, query) =>
   items.map(item => ({ ...item, label: highlightSubstring(item.label, query) }));
 
@@ -52,15 +125,10 @@ const AccordionSearch = ({
   const [filteredAccordionData, setFilteredAccordionData] = useState([]);
 
   useEffect(() => {
-    setFilteredAccordionData(accordionData);
-  }, [accordionData]);
-
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    setInputValue(value);
-    const filteredData = filterAccordionData(accordionData, value.trim());
+    const filteredData = filterAccordionData(accordionData, inputValue.trim());
     setFilteredAccordionData(filteredData);
-  };
+  }, [accordionData, inputValue]);
+
   if (!accordionData || !accordionData.length) {
     return <Loader />;
   }
@@ -68,38 +136,18 @@ const AccordionSearch = ({
   if (filteredAccordionData && filteredAccordionData.length) {
     accordionGroupNode = (
       <div className="accordion-group accordion-search">
-        {filteredAccordionData.map(({ title, id: accordionId, items }) => {
-          const accordionSelected = selected.filter(item => item.accordionId === accordionId);
-          return (
-            <Accordion
-              title={title}
-              key={accordionId}
-              count={accordionSelected.length}
-              alwaysOpen={!!inputValue}
-            >
-              <ul
-                className={`no-bullet accordion-search__list${
-                  columns ? ' accordion-search__list--columns' : ''
-                }`}
-              >
-                {items.map(({ label, id: itemId }) => (
-                  <li key={itemId} className="accordion-search__list__item">
-                    <label key={itemId} htmlFor={`checkbox-${itemId}`}>
-                      <input
-                        type="checkbox"
-                        id={`checkbox-${itemId}`}
-                        className="accordion-search__list__item-checkbox"
-                        onChange={() => onSelect(accordionId, itemId)}
-                        checked={accordionSelected.some(item => item.itemId === itemId)}
-                      />
-                      {label}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </Accordion>
-          );
-        })}
+        {filteredAccordionData.map(({ title, id: accordionId, items }) => (
+          <AccordionSearchItem
+            title={title}
+            key={accordionId}
+            id={accordionId}
+            alwaysOpen={!!inputValue}
+            items={items}
+            selected={selected.filter(item => item.accordionId === accordionId)}
+            columns={columns}
+            onSelect={onSelect}
+          />
+        ))}
       </div>
     );
   }
@@ -113,7 +161,7 @@ const AccordionSearch = ({
         <SearchInput
           type="text"
           value={inputValue}
-          onChange={handleInputChange}
+          onChange={event => setInputValue(event.target.value)}
           placeholder={placeholder}
         />
       </div>
@@ -149,7 +197,7 @@ AccordionSearch.propTypes = {
   /**
    * Array of the selected items' IDs
    */
-  selected: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selected: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
    * The width of the text input box
    */

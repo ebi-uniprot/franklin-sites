@@ -43,13 +43,6 @@ exports[`Card component should render card with links 1`] = `
     </div>
   </div>
   <div
-    className="card__content"
-  >
-    <span>
-      Some content
-    </span>
-  </div>
-  <div
     className="card__actions"
   >
     <div
@@ -67,6 +60,13 @@ exports[`Card component should render card with links 1`] = `
         link
       </a>
     </div>
+  </div>
+  <div
+    className="card__content"
+  >
+    <span>
+      Some content
+    </span>
   </div>
 </div>
 `;
