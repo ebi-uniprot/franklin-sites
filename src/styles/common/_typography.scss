@@ -68,13 +68,13 @@ ol {
 }
 
 a, .a1 {
-  color: #0C476A;
+  color: #126A9F;
   text-decoration: none;
   @include fs-font-settings('A1');
 }
 
 .a2 {
-  color: #126A9F;
+  color: #0C476A;
   text-decoration: none;
   @include fs-font-settings('A2');
 }
