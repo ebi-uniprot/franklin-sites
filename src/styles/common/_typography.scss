@@ -43,7 +43,10 @@ h6, .h6,
 h1, .h1 { @include fs-font-settings('H1'); }
 h2, .h2 { @include fs-font-settings('H2'); }
 h3, .h3 { @include fs-font-settings('H3'); }
-h4, .h4 { @include fs-font-settings('H4'); }
+h4, .h4 {
+  opacity: 78%;
+  @include fs-font-settings('H4');
+}
 h5, .h5 { @include fs-font-settings('H5'); }
 h6, .h6 { @include fs-font-settings('H6'); }
 .h7 { @include fs-font-settings('H7'); }
