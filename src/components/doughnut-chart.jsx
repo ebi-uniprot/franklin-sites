@@ -70,8 +70,8 @@ DoughnutChart.propTypes = {
 
 DoughnutChart.defaultProps = {
   size: 'medium',
-  colorClass: 'colour-uniprot-blue',
-  bgColorClass: 'colour-light-grey',
+  colorClass: 'colour-sea-blue',
+  bgColorClass: 'colour-azureish-white',
   percent: 0,
   children: null,
 };

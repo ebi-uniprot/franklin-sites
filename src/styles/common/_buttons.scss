@@ -17,31 +17,31 @@
     margin-right: 0.5rem;
   }
   &.secondary {
-    color: $colour-uniprot-blue;
-    border: 0.1rem solid $colour-uniprot-blue;
+    color: $colour-sea-blue;
+    border: 0.1rem solid $colour-sea-blue;
     font-weight: 700;
     svg {
-      fill: $colour-uniprot-blue;
+      fill: $colour-sea-blue;
     }
   }
   &.link-button {
     background-color: $colour-white;
-    color: $colour-uniprot-blue;
+    color: $colour-sea-blue;
     font-weight: $global-weight-bold;
     padding: $global-padding/2;
     &:hover {
-      background-color: $colour-seashell-grey;
+      background-color: $colour-sky-white;
     }
     &.disabled:hover {
-      color: $colour-light-grey;
+      color: $colour-azureish-white;
       background-color: $colour-white;
     }
     svg {
-      fill: $colour-uniprot-blue;
+      fill: $colour-sea-blue;
     }
     & .link-button-icon__active {
       svg {
-        fill: $colour-light-grey;
+        fill: $colour-azureish-white;
       }
     }
   }

@@ -7,7 +7,7 @@ $size: 15rem;
 
 .tile {
   position: relative;
-  background-color: $colour-uniprot-blue;
+  background-color: $colour-sea-blue;
   display: inline-block;
   margin: $global-margin / 2;
   text-align: center;
@@ -19,7 +19,7 @@ $size: 15rem;
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
   &:hover {
     background-color: scale-color(
-      $colour-uniprot-blue,
+      $colour-sea-blue,
       $lightness: $hover-lightness-value
     );
     color: $colour-white;

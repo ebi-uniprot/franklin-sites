@@ -6,18 +6,18 @@
 @import "./settings";
 
 // PRIMARY COLOURS
-$colour-dark-blue: #014371;
-$colour-uniprot-blue: #00639a;
-$colour-medium-blue: #00a6d5;
-$colour-light-blue: #46d6fa;
+$colour-sapphure-blue: #014371;
+$colour-sea-blue: #00639a;
+$colour-vivid-cerulean: #00a6d5;
+$colour-medium-turquoise: #46d6fa;
 
 // GREYSCALE
-$colour-black: #161d39;
-$colour-dark-grey: #333f56;
-$colour-cool-grey: #8194a1;
-$colour-medium-grey: #abc7d6;
-$colour-light-grey: #e1edf3;
-$colour-seashell-grey: #fbfeff;
+$colour-yankees-blue: #161d39;
+$colour-charcoal: #333f56;
+$colour-weldon-blue: #8194a1;
+$colour-pastel-blue: #abc7d6;
+$colour-azureish-white: #e1edf3;
+$colour-sky-white: #fbfeff;
 $colour-white: #fefefe;
 
 // CURATION
@@ -33,36 +33,36 @@ $colour-help: #6bad69;
 $colour-annotation-systems: #f8982e;
 
 // PRIMARY
-.colour-dark-blue {
-  background: $colour-dark-blue;
+.colour-sapphure-blue {
+  background: $colour-sapphure-blue;
 }
-.colour-uniprot-blue {
-  background: $colour-uniprot-blue;
+.colour-sea-blue {
+  background: $colour-sea-blue;
 }
-.colour-medium-blue {
-  background: $colour-medium-blue;
+.colour-vivid-cerulean {
+  background: $colour-vivid-cerulean;
 }
-.colour-light-blue {
-  background: $colour-light-blue;
+.colour-medium-turquoise {
+  background: $colour-medium-turquoise;
 }
 // GREY
-.colour-black {
-  background: $colour-black;
+.colour-yankees-blue {
+  background: $colour-yankees-blue;
 }
-.colour-dark-grey {
-  background: $colour-dark-grey;
+.colour-charcoal {
+  background: $colour-charcoal;
 }
-.colour-cool-grey {
-  background: $colour-cool-grey;
+.colour-weldon-blue {
+  background: $colour-weldon-blue;
 }
-.colour-medium-grey {
-  background: $colour-medium-grey;
+.colour-pastel-blue {
+  background: $colour-pastel-blue;
 }
-.colour-light-grey {
-  background: $colour-light-grey;
+.colour-azureish-white {
+  background: $colour-azureish-white;
 }
-.colour-seashell-grey {
-  background: $colour-seashell-grey;
+.colour-sky-white {
+  background: $colour-sky-white;
 }
 // CURATION
 .colour-reviewed {

@@ -10,24 +10,24 @@
   color: $colour-white;
   &.header--negative {
     justify-content: space-between;
-    color: $colour-dark-blue;
+    color: $colour-sapphure-blue;
     a,
     a:link,
     a:visited,
     a:hover,
     a:active {
-      color: $colour-dark-blue;
+      color: $colour-sapphure-blue;
     }
     background: $colour-white;
     .header__logo {
       svg {
-        stroke: $colour-uniprot-blue;
-        fill: $colour-uniprot-blue;
+        stroke: $colour-sea-blue;
+        fill: $colour-sea-blue;
         circle {
-          stroke: $colour-uniprot-blue;
+          stroke: $colour-sea-blue;
         }
         path {
-          fill: $colour-uniprot-blue;
+          fill: $colour-sea-blue;
         }
       }
     }
@@ -43,10 +43,10 @@
   }
   background: linear-gradient(
     45deg,
-    $colour-dark-blue,
-    rgba($colour-dark-blue, 0.7),
-    $colour-dark-blue,
-    $colour-dark-blue
+    $colour-sapphure-blue,
+    rgba($colour-sapphure-blue, 0.7),
+    $colour-sapphure-blue,
+    $colour-sapphure-blue
   );
   &__logo {
     display: inline-block;

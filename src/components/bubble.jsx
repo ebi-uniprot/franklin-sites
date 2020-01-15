@@ -26,7 +26,7 @@ Bubble.propTypes = {
 };
 
 Bubble.defaultProps = {
-  colourClass: 'colour-uniprot-blue',
+  colourClass: 'colour-sea-blue',
   size: 'medium',
 };
 

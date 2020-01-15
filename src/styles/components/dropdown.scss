@@ -31,7 +31,7 @@
       width: 0;
     }
     &--negative::after {
-      border-color: $colour-uniprot-blue transparent transparent transparent;
+      border-color: $colour-sea-blue transparent transparent transparent;
     }
   }
   &--hover:hover .dropdown-menu {
@@ -40,9 +40,9 @@
 }
 
 .hover {
-  color: $colour-black;
+  color: $colour-yankees-blue;
   border: none;
-  background: $colour-seashell-grey;
+  background: $colour-sky-white;
 }
 
 .dropdown-menu {
@@ -89,7 +89,7 @@
         display: block;
         border: none;
         padding-right: 1rem;
-        color: $colour-black !important;
+        color: $colour-yankees-blue !important;
         text-decoration: none;
         &:hover {
           @extend .hover;

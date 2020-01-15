@@ -21,7 +21,7 @@ const Numbers = () => (
       <Bubble value={56} />
       <Bubble value={10000} colourClass="colour-reviewed" />
       <Bubble value={10.12345} size="large" colourClass="colour-proteomes" />
-      <Bubble value={22.5} size="small" colourClass="colour-dark-grey" />
+      <Bubble value={22.5} size="small" colourClass="colour-charcoal" />
     </section>
     <section>
       <section>
@@ -35,7 +35,7 @@ const Numbers = () => (
           percent={60}
           borderWidth={10}
           colorClass="colour-uniref"
-          bgColorClass="colour-seashell-grey"
+          bgColorClass="colour-sky-white"
         >
           3/5
         </DoughnutChart>
