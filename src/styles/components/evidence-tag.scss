@@ -7,7 +7,7 @@
   white-space: nowrap;
   margin-left: ($global-margin/2);
   border-radius: $global-padding/2;
-  background-color: $colour-sky-white;
+  background-color: $colour-azureish-white;
   padding: $global-padding/4 $global-padding/2;
   color: $colour-yankees-blue;
   &__label {
@@ -19,7 +19,7 @@
 .evidence-tag-content {
   opacity: 0;
   max-height: 0;
-  background-color: $colour-sky-white;
+  background-color: $colour-azureish-white;
   overflow: hidden;
   transition: none;
   display: inline;
