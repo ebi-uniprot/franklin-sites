@@ -68,13 +68,13 @@ ol {
 }
 
 a, .a1 {
-  color: #126A9F;
+  color: $colour-imperial-blue;
   text-decoration: none;
   @include fs-font-settings('A1');
 }
 
 .a2 {
-  color: #0C476A;
+  color: $colour-dark-imperial-blue;
   text-decoration: none;
   @include fs-font-settings('A2');
 }
