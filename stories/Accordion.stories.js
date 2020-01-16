@@ -65,6 +65,6 @@ export const accordionSearch = () => (
     placeholder="Filter"
     accordionData={accordionData}
     selected={[]}
-    onSelect={action()}
+    onSelect={action('onSelect')}
   />
 );

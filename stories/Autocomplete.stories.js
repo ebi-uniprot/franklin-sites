@@ -16,7 +16,7 @@ export default {
 export const autocomplete = () => (
   <Autocomplete
     data={flattenedPaths}
-    onSelect={action()}
+    onSelect={action('onSelect')}
     placeholder="Item A"
     filter
   />

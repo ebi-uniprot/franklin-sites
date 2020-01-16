@@ -16,7 +16,7 @@ export default {
 export const treeSelect = () => (
   <TreeSelect
     data={treeData}
-    onSelect={action()}
+    onSelect={action('onSelect')}
     autocompletePlaceholder="Search for item"
     autocompleteFilter
   />
@@ -25,7 +25,7 @@ export const treeSelect = () => (
 export const treeSelectWithAutocomplete = () => (
   <TreeSelect
     data={treeData}
-    onSelect={action()}
+    onSelect={action('onSelect')}
     autocomplete
     autocompletePlaceholder="Search for item"
     autocompleteFilter

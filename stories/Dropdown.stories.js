@@ -13,7 +13,7 @@ export default {
 };
 
 export const dropdownButton = () => (
-  <DropdownButton label="Download" onSelect={action()}>
+  <DropdownButton label="Download" onSelect={action('onSelect')}>
     <div className="dropdown-menu__content">
       <p>Download content from:</p>
       <ul>

@@ -21,7 +21,7 @@ export const facets = () => (
   <Facets
     data={facetData}
     selectedFacets={selectedFacets}
-    addFacet={action()}
-    removeFacet={action()}
+    addFacet={action('addFacet')}
+    removeFacet={action('removeFacet')}
   />
 );

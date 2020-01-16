@@ -49,8 +49,8 @@ export const dataList = ({
       hasMoreData,
       onLoadMoreItems,
     }}
-    onSelect={action()}
-    onHeaderClick={action()}
+    onSelect={action('onSelect')}
+    onHeaderClick={action('onHeaderClick')}
     dataRenderer={content => <Fragment>{Object.values(content)}</Fragment>}
     selectable
   />
