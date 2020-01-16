@@ -1,8 +1,7 @@
 import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 import { action } from '@storybook/addon-actions';
-import Accordion from '../src/components/accordion';
-import { AccordionSearch } from '../src/components';
+import { Accordion, AccordionSearch } from '../src/components';
 
 export default {
   title: 'Data view/Accordion',

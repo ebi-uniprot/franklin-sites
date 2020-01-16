@@ -1,5 +1,5 @@
 import React from 'react';
-import Tile from '../src/components/tile';
+import { Tile } from '../src/components';
 
 export default {
   title: 'Navigation/Tile',

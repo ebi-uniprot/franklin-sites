@@ -1,5 +1,5 @@
 import React from 'react';
-import ExternalLink from '../src/components/external-link';
+import { ExternalLink } from '../src/components';
 
 export default {
   title: 'Atoms|External link',

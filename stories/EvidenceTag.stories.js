@@ -1,5 +1,5 @@
 import React from 'react';
-import EvidenceTag from '../src/components/evidence-tag';
+import { EvidenceTag } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {

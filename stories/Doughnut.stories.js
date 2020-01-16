@@ -1,5 +1,5 @@
 import React from 'react';
-import DoughnutChart from '../src/components/doughnut-chart';
+import { DoughnutChart } from '../src/components';
 
 export default {
   title: 'Atoms|Doughnut',

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { action } from '@storybook/addon-actions';
-import MainSearch from '../src/components/main-search';
+import { MainSearch } from '../src/components';
 import StateDecorator from '../src/decorators/StateDecorator';
 
 // Custom decorator

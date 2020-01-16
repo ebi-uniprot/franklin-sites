@@ -1,5 +1,5 @@
 import React from 'react';
-import PageIntro from '../src/components/page-intro';
+import { PageIntro } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {

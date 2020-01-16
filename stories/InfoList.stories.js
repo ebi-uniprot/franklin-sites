@@ -1,6 +1,6 @@
 import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
-import InfoList from '../src/components/info-list';
+import { InfoList } from '../src/components';
 
 export default {
   title: 'Data view/Info List',

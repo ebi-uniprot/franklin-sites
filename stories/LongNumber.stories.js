@@ -1,5 +1,5 @@
 import React from 'react';
-import LongNumber from '../src/components/long-number';
+import { LongNumber } from '../src/components';
 
 export default {
   title: 'Atoms|Long number',

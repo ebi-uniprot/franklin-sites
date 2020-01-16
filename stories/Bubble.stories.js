@@ -1,5 +1,5 @@
 import React from 'react';
-import Bubble from '../src/components/bubble';
+import { Bubble } from '../src/components';
 
 export default {
   title: 'Atoms|Bubble',

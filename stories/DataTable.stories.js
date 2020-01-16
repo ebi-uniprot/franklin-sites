@@ -49,8 +49,8 @@ export const dataTable = ({
       hasMoreData,
       onLoadMoreItems,
     }}
-    onSelect={action()}
-    onHeaderClick={action()}
+    onSelect={action('onSelect')}
+    onHeaderClick={action('onHeaderClick')}
     selectable
   />
 );

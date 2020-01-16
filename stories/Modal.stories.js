@@ -1,6 +1,6 @@
 import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
-import ButtonModal from '../src/components/button-modal';
+import { ButtonModal } from '../src/components';
 
 export default {
   title: 'Atoms|Modal',
