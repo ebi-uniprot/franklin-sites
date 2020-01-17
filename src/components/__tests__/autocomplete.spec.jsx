@@ -1,11 +1,13 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Autocomplete from '../autocomplete';
-import { flattenedPaths } from '../../app/common/tree-data';
+import { flattenedPaths } from '../../mock-data/tree-data';
 
 describe('Autocomplete component', () => {
   test('should render', () => {
-    const { asFragment } = render(<Autocomplete data={flattenedPaths} onSelect={d => d} />);
+    const { asFragment } = render(
+      <Autocomplete data={flattenedPaths} onSelect={d => d} />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -16,7 +18,7 @@ describe('Autocomplete component', () => {
         onSelect={d => d}
         showDropdownUpdated={d => d}
         clearOnSelect
-      />,
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -56,7 +58,9 @@ describe('Autocomplete component', () => {
 
   test('should not submit if previously submitted text is the same as the current input text value', () => {
     const onSelect = jest.fn();
-    const { queryByTestId } = render(<Autocomplete data={flattenedPaths} onSelect={onSelect} />);
+    const { queryByTestId } = render(
+      <Autocomplete data={flattenedPaths} onSelect={onSelect} />
+    );
     const searchInput = queryByTestId('search-input');
     const autocompleteForm = queryByTestId('autocomplete-form');
     const value = { target: { value: 'foo' } };
@@ -75,7 +79,7 @@ describe('Autocomplete component', () => {
         selected: true,
         filter: true,
         minCharsToShowDropdown: 3,
-      }),
+      })
     ).toBe(false);
   });
 });

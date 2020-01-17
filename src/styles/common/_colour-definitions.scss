@@ -1,0 +1,83 @@
+@import '../colours';
+
+// PRIMARY
+.colour-sapphure-blue {
+  background: $colour-sapphure-blue;
+}
+.colour-sea-blue {
+  background: $colour-sea-blue;
+}
+.colour-vivid-cerulean {
+  background: $colour-vivid-cerulean;
+}
+.colour-medium-turquoise {
+  background: $colour-medium-turquoise;
+}
+// GREY
+.colour-yankees-blue {
+  background: $colour-yankees-blue;
+}
+.colour-charcoal {
+  background: $colour-charcoal;
+}
+.colour-weldon-blue {
+  background: $colour-weldon-blue;
+}
+.colour-pastel-blue {
+  background: $colour-pastel-blue;
+}
+.colour-azureish-white {
+  background: $colour-azureish-white;
+}
+.colour-sky-white {
+  background: $colour-sky-white;
+}
+// CURATION
+.colour-reviewed {
+  background: $colour-reviewed;
+}
+.colour-unreviewed {
+  background: $colour-unreviewed;
+}
+// NAMESPACE
+.colour-uniref {
+  background: $colour-uniref;
+}
+.colour-uniparc {
+  background: $colour-uniparc;
+}
+.colour-proteomes {
+  background: $colour-proteomes;
+}
+.colour-supporting-data {
+  background: $colour-supporting-data;
+}
+.colour-help {
+  background: $colour-help;
+}
+.colour-annotation-systems {
+  background: $colour-annotation-systems;
+}
+
+// svg fills
+.svg-colour-reviewed {
+  fill: $colour-reviewed;
+}
+.svg-colour-unreviewed {
+  fill: $colour-unreviewed;
+}
+
+.box-colour {
+  vertical-align: top;
+  display: inline-block;
+  width: 9em;
+  height: 9em;
+  margin-bottom: 4em;
+  font-size: $small-font-size;
+  &:before {
+    content: attr(data-name);
+    margin-top: 10em;
+    display: block;
+    text-align: center;
+  }
+}

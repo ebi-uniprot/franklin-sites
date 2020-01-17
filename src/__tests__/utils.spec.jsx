@@ -9,7 +9,7 @@ import {
   highlightSubstring,
   getClassNames,
 } from '../utils';
-import { treeData } from '../app/common/tree-data';
+import { treeData } from '../mock-data/tree-data';
 
 test('should get all paths', () => {
   const path = getFlattenedPaths(treeData);
@@ -176,13 +176,14 @@ describe('getClassNames', () => {
 
   test('should work with a nested array of mixed input values', () => {
     const input = [
-      'zero',                     // emited optional condition
-      ['one', true],              // standard format
-      ['not-this-one', false],    // should not be in the output
-      ['two'],                    // emited optional condition
-      [                           // nested array
-        ['three', !!1],           // casting truthy values to boolean
-        ['four', () => true],     // function call for the condition
+      'zero', // emited optional condition
+      ['one', true], // standard format
+      ['not-this-one', false], // should not be in the output
+      ['two'], // emited optional condition
+      [
+        // nested array
+        ['three', !!1], // casting truthy values to boolean
+        ['four', () => true], // function call for the condition
       ],
     ];
 

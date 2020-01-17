@@ -1,5 +1,5 @@
-@import "settings";
-@import "~foundation-sites/scss/foundation";
+@import 'settings';
+@import '~foundation-sites/scss/foundation';
 
 @include foundation-global-styles;
 // @include foundation-typography;
@@ -7,7 +7,8 @@
 @include foundation-button;
 @include foundation-button-group;
 
-@import "./common/action-bar";
-@import "./common/buttons";
-@import "./common/icons";
-@import "./common/typography";
+@import './common/action-bar';
+@import './common/colour-definitions';
+@import './common/buttons';
+@import './common/icons';
+@import './common/typography';

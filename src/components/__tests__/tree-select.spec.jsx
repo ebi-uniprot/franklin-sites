@@ -1,11 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import TreeSelect from '../tree-select';
-import { treeData } from '../../app/common/tree-data';
+import { treeData } from '../../mock-data/tree-data';
 
 describe('TreeSelect component', () => {
   test('should render', () => {
-    const component = renderer.create(<TreeSelect data={treeData} onSelect={d => d} />).toJSON();
+    const component = renderer
+      .create(<TreeSelect data={treeData} onSelect={d => d} />)
+      .toJSON();
     expect(component).toMatchSnapshot();
   });
 });
