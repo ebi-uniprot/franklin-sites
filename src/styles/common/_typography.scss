@@ -1,12 +1,14 @@
-@import "../franklin-settings";
-@import "../mixins";
+@import '../franklin-settings';
+@import '../mixins';
 
 // Font families
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Source+Sans+Pro:600,700&display=swap');
 
 // Body
-html, body {
+html,
+body {
   font-family: $fs-base-font-face;
+  background-color: $colour-sky-white;
 
   @include fs-breakpoints('small') {
     font-size: 10px;
@@ -19,61 +21,72 @@ html, body {
   @include fs-breakpoints('large') {
     font-size: 16px;
   }
-
-  @include fs-breakpoints('xlarge') {
-    font-size: 16px;
-  }
-
-  @include fs-breakpoints('xxlarge') {
-    font-size: 16px;
-  }
 }
 
 // Heading tag settings
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6,
-.h7 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $fs-headers-font-face;
 }
 
-h1, .h1 { @include fs-font-settings('H1'); }
-h2, .h2 { @include fs-font-settings('H2'); }
-h3, .h3 { @include fs-font-settings('H3'); }
-h4, .h4 {
+h1 {
+  @include fs-font-settings('H1');
+}
+h2 {
+  @include fs-font-settings('H2');
+}
+h3 {
+  @include fs-font-settings('H3');
   opacity: 78%;
+  &.bold {
+    font-weight: font-weight('bold');
+    opacity: 100%;
+  }
+}
+h4 {
   @include fs-font-settings('H4');
 }
-h5, .h5 { @include fs-font-settings('H5'); }
-h6, .h6 { @include fs-font-settings('H6'); }
-.h7 { @include fs-font-settings('H7'); }
-
-ul.no-bullet,
-ol.no-bullet {
-  margin-left: 0;
-  list-style: none;
+h5 {
+  @include fs-font-settings('H5');
+  &.bold {
+    font-weight: font-weight('bold');
+  }
+}
+p {
+  margin-bottom: 1.875rem;
 }
 
-ul, ol, dl {
-  list-style-position: outside;
-}
-
-ul {
-  margin-left: 1.25rem;
-  list-style-type: disc;
-}
- 
+ul,
 ol {
   margin-left: 1.25rem;
 }
 
-a, .a1 {
+ul.no-bullet,
+ol.no-bullet {
+  list-style: none;
+  margin-left: 0;
+}
+
+ul,
+ol,
+dl {
+  margin-bottom: 1rem;
+  list-style-position: outside;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+a {
   color: $colour-imperial-blue;
   text-decoration: none;
-  @include fs-font-settings('A1');
+  font-weight: font-weight('semi-bold');
 }
 
 .a2 {

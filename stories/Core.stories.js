@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import baseStyling from '../markdown/base-styling.md';
+import coloursFile from '../markdown/colours.md';
+import typographyFile from '../markdown/typography.md';
 
 export default {
   title: 'Atoms|Core',
 };
 
-export const core = () => (
-  <ReactMarkdown source={baseStyling} escapeHtml={false} />
+export const colours = () => (
+  <ReactMarkdown source={coloursFile} escapeHtml={false} />
+);
+
+export const typography = () => (
+  <ReactMarkdown source={typographyFile} escapeHtml={false} />
 );

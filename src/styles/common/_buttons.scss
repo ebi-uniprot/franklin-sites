@@ -1,5 +1,5 @@
-@import "../settings";
-@import "../colours";
+@import '../settings';
+@import '../colours';
 
 .button {
   svg {
@@ -24,22 +24,20 @@
       fill: $colour-sea-blue;
     }
   }
-  &.link-button {
-    background-color: $colour-white;
-    color: $colour-sea-blue;
+  &.tertiary {
+    background: none;
+    color: $colour-dark-imperial-blue;
     font-weight: $global-weight-bold;
-    padding: $global-padding/2;
-    &:hover {
-      background-color: $colour-azureish-white;
-    }
+    padding: 0;
+    text-align: left;
     &.disabled:hover {
       color: $colour-azureish-white;
       background-color: $colour-white;
     }
     svg {
-      fill: $colour-sea-blue;
+      fill: $colour-dark-imperial-blue;
     }
-    & .link-button-icon__active {
+    &.tertiary-icon__active {
       svg {
         fill: $colour-azureish-white;
       }
