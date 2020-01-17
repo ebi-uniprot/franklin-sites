@@ -5,20 +5,20 @@ const Colours = () => (
     <h1>Colours</h1>
     <div>
       <h4>Primary palette</h4>
-      <div className="box-colour colour-dark-blue" data-name="$colour-dark-blue" />
-      <div className="box-colour colour-uniprot-blue" data-name="$colour-uniprot-blue" />
-      <div className="box-colour colour-medium-blue" data-name="$colour-medium-blue" />
-      <div className="box-colour colour-light-blue" data-name="$colour-light-blue" />
+      <div className="box-colour colour-sapphure-blue" data-name="$colour-sapphure-blue" />
+      <div className="box-colour colour-sea-blue" data-name="$colour-sea-blue" />
+      <div className="box-colour colour-vivid-cerulean" data-name="$colour-vivid-cerulean" />
+      <div className="box-colour colour-medium-turquoise" data-name="$colour-medium-turquoise" />
     </div>
 
     <div>
       <h4>Grey palette</h4>
-      <div className="box-colour colour-black" data-name="$colour-black" />
-      <div className="box-colour colour-dark-grey" data-name="$colour-dark-grey" />
-      <div className="box-colour colour-cool-grey" data-name="$colour-cool-grey" />
-      <div className="box-colour colour-medium-grey" data-name="$colour-medium-grey" />
-      <div className="box-colour colour-light-grey" data-name="$colour-light-grey" />
-      <div className="box-colour colour-seashell-grey" data-name="$colour-seashell-grey" />
+      <div className="box-colour colour-yankees-blue" data-name="$colour-yankees-blue" />
+      <div className="box-colour colour-charcoal" data-name="$colour-charcoal" />
+      <div className="box-colour colour-weldon-blue" data-name="$colour-weldon-blue" />
+      <div className="box-colour colour-pastel-blue" data-name="$colour-pastel-blue" />
+      <div className="box-colour colour-azureish-white" data-name="$colour-azureish-white" />
+      <div className="box-colour colour-sky-white" data-name="$colour-sky-white" />
     </div>
 
     <div>

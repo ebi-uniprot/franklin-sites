@@ -1,0 +1,102 @@
+// Font families
+$fs-base-font-face: 'Lato', sans-serif;
+$fs-headers-font-face: 'Source Sans Pro', sans-serif;
+
+// Font sizes
+$fs-base-font-size: 1rem;
+
+// Font weights
+$fs-font-weights: (
+  'regular': 400,
+  'semi-bold': 600,
+  'bold': 700,
+  'extra-bold': 900
+);
+
+// Regular text values:
+// 1: fallback fixed font-size in pixels
+// 2: responsive font-size
+// 3: unitless line-height
+// 4: letter-spacing
+// 5: font-weight
+$fs-font-values: (
+  'H1': (
+    'small': (56.5px, 3.531 * 0.5rem, 1.5, -0.141rem, 'bold'),
+    'medium': (56.5px, 3.531 * 0.8rem, 1.5, -0.141rem, 'bold'),
+    'large': (56.5px, 3.531rem, 1.5, -0.141rem, 'bold'),
+    'xlarge': (56.5px, 3.531rem, 1.5, -0.141rem, 'bold'),
+    'xxlarge': (56.5px, 3.531rem, 1.5, -0.141rem, 'bold')
+  ),
+  'H2': (
+    'small': (46.2px, 2.888 * 0.5rem, 1.5, -0.076rem, 'semi-bold'),
+    'medium': (46.2px, 2.888 * 0.8rem, 1.5, -0.076rem, 'semi-bold'),
+    'large': (46.2px, 2.888rem, 1.5, -0.076rem, 'semi-bold'),
+    'xlarge': (46.2px, 2.888rem, 1.5, -0.076rem, 'semi-bold'),
+    'xxlarge': (46.2px, 2.888rem, 1.5, -0.076rem, 'semi-bold')
+  ),
+  'H3': (
+    'small': (29.8px, 1.863 * 0.5rem, 1.5, -0.038rem, 'bold'),
+    'medium': (29.8px, 1.863 * 0.8rem, 1.5, -0.038rem, 'bold'),
+    'large': (29.8px, 1.863rem, 1.5, -0.038rem, 'bold'),
+    'xlarge': (29.8px, 1.863rem, 1.5, -0.038rem, 'bold'),
+    'xxlarge': (29.8px, 1.863rem, 1.5, -0.038rem, 'bold')
+  ),
+  'H4': (
+    'small': (29.8px, 1.863 * 0.5rem, 1.5, -0.038rem, 'semi-bold'),
+    'medium': (29.8px, 1.863 * 0.8rem, 1.5, -0.038rem, 'semi-bold'),
+    'large': (29.8px, 1.863rem, 1.5, -0.038rem, 'semi-bold'),
+    'xlarge': (29.8px, 1.863rem, 1.5, -0.038rem, 'semi-bold'),
+    'xxlarge': (29.8px, 1.863rem, 1.5, -0.038rem, 'semi-bold')
+  ),
+  'H5': (
+    'small': (25.0px, 1.563 * 0.5rem, 1.5, -0.031rem, 'semi-bold'),
+    'medium': (25.0px, 1.563 * 0.8rem, 1.5, -0.031rem, 'semi-bold'),
+    'large': (25.0px, 1.563rem, 1.5, -0.031rem, 'semi-bold'),
+    'xlarge': (25.0px, 1.563rem, 1.5, -0.031rem, 'semi-bold'),
+    'xxlarge': (25.0px, 1.563rem, 1.5, -0.031rem, 'semi-bold')
+  ),
+  'H6': (
+    'small': (20.0px, 1.250 * 0.5rem, 1.7, -0.047rem, 'bold'),
+    'medium': (20.0px, 1.250 * 0.8rem, 1.7, -0.047rem, 'bold'),
+    'large': (20.0px, 1.250rem, 1.7, -0.047rem, 'bold'),
+    'xlarge': (20.0px, 1.250rem, 1.7, -0.047rem, 'bold'),
+    'xxlarge': (20.0px, 1.250rem, 1.7, -0.047rem, 'bold')
+  ),
+  'H7': (
+    'small': (20.0px, 1.250 * 0.5rem, 1.7, -0.047rem, 'semi-bold'),
+    'medium': (20.0px, 1.250 * 0.8rem, 1.7, -0.047rem, 'semi-bold'),
+    'large': (20.0px, 1.250rem, 1.7, -0.047rem, 'semi-bold'),
+    'xlarge': (20.0px, 1.250rem, 1.7, -0.047rem, 'semi-bold'),
+    'xxlarge': (20.0px, 1.250rem, 1.7, -0.047rem, 'semi-bold')
+  ),
+  'A1': (
+    'small': (16px, 1 * 0.5rem, 1.6, -0.031rem, 'semi-bold'),
+    'medium': (16px, 1 * 0.8rem, 1.6, -0.031rem, 'semi-bold'),
+    'large': (16px, 1rem, 1.6, -0.031rem, 'semi-bold'),
+    'xlarge': (16px, 1rem, 1.6, -0.031rem, 'semi-bold'),
+    'xxlarge': (16px, 1rem, 1.6, -0.031rem, 'semi-bold')
+  ),
+  'A2': (
+    'small': (16px, 1 * 0.5rem, 1.6, -0.027rem, 'bold'),
+    'medium': (16px, 1 * 0.8rem, 1.6, -0.027rem, 'bold'),
+    'large': (16px, 1rem, 1.6, -0.027rem, 'bold'),
+    'xlarge': (16px, 1rem, 1.6, -0.027rem, 'bold'),
+    'xxlarge': (16px, 1rem, 1.6, -0.027rem, 'bold')
+  ),
+  'normal': (
+    'small': (16px, 1 * 0.5rem, 1.7, -0.006rem, 'regular'),
+    'medium': (16px, 1 * 0.8rem, 1.7, -0.006rem, 'regular'),
+    'large': (16px, 1rem, 1.7, -0.006rem, 'regular'),
+    'xlarge': (16px, 1rem, 1.7, -0.006rem, 'regular'),
+    'xxlarge': (16px, 1rem, 1.7, -0.006rem, 'regular')
+  )
+);
+
+// Breakpoints
+$fs-breakpoint-values: (
+  'small': (min-width: 0),
+  'medium': (min-width: 640px),
+  'large': (min-width: 1024px),
+  'xlarge': (min-width: 1200px),
+  'xxlarge': (min-width: 1440px)
+);

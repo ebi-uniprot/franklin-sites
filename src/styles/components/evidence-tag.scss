@@ -7,9 +7,9 @@
   white-space: nowrap;
   margin-left: ($global-margin/2);
   border-radius: $global-padding/2;
-  background-color: $colour-seashell-grey;
+  background-color: $colour-azureish-white;
   padding: $global-padding/4 $global-padding/2;
-  color: $colour-black;
+  color: $colour-yankees-blue;
   &__label {
     padding-left: ($global-padding / 4);
     text-transform: capitalize;
@@ -19,7 +19,7 @@
 .evidence-tag-content {
   opacity: 0;
   max-height: 0;
-  background-color: $colour-seashell-grey;
+  background-color: $colour-azureish-white;
   overflow: hidden;
   transition: none;
   display: inline;

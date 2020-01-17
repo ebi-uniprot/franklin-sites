@@ -6,19 +6,21 @@
 @import "./settings";
 
 // PRIMARY COLOURS
-$colour-dark-blue: #004864;
-$colour-uniprot-blue: #006e9a;
-$colour-medium-blue: #3ca3ca;
-$colour-light-blue: #93d4ee;
+$colour-sapphure-blue: #014371;
+$colour-sea-blue: #00639a;
+$colour-vivid-cerulean: #00a6d5;
+$colour-medium-turquoise: #46d6fa;
 
 // GREYSCALE
-$colour-black: #3a343a;
-$colour-dark-grey: #393b42;
-$colour-cool-grey: #4a4d55;
-$colour-medium-grey: #727376;
-$colour-light-grey: #c2c4c4;
-$colour-seashell-grey: #f1f1f1;
+$colour-yankees-blue: #161d39;
+$colour-charcoal: #333f56;
+$colour-weldon-blue: #8194a1;
+$colour-pastel-blue: #abc7d6;
+$colour-azureish-white: #e1edf3;
+$colour-sky-white: #fbfeff;
 $colour-white: #fefefe;
+$colour-dark-imperial-blue: #0c476a;
+$colour-imperial-blue: #126a9f;
 
 // CURATION
 $colour-reviewed: #c39b00;
@@ -33,36 +35,36 @@ $colour-help: #6bad69;
 $colour-annotation-systems: #f8982e;
 
 // PRIMARY
-.colour-dark-blue {
-  background: $colour-dark-blue;
+.colour-sapphure-blue {
+  background: $colour-sapphure-blue;
 }
-.colour-uniprot-blue {
-  background: $colour-uniprot-blue;
+.colour-sea-blue {
+  background: $colour-sea-blue;
 }
-.colour-medium-blue {
-  background: $colour-medium-blue;
+.colour-vivid-cerulean {
+  background: $colour-vivid-cerulean;
 }
-.colour-light-blue {
-  background: $colour-light-blue;
+.colour-medium-turquoise {
+  background: $colour-medium-turquoise;
 }
 // GREY
-.colour-black {
-  background: $colour-black;
+.colour-yankees-blue {
+  background: $colour-yankees-blue;
 }
-.colour-dark-grey {
-  background: $colour-dark-grey;
+.colour-charcoal {
+  background: $colour-charcoal;
 }
-.colour-cool-grey {
-  background: $colour-cool-grey;
+.colour-weldon-blue {
+  background: $colour-weldon-blue;
 }
-.colour-medium-grey {
-  background: $colour-medium-grey;
+.colour-pastel-blue {
+  background: $colour-pastel-blue;
 }
-.colour-light-grey {
-  background: $colour-light-grey;
+.colour-azureish-white {
+  background: $colour-azureish-white;
 }
-.colour-seashell-grey {
-  background: $colour-seashell-grey;
+.colour-sky-white {
+  background: $colour-sky-white;
 }
 // CURATION
 .colour-reviewed {

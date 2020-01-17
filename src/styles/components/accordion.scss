@@ -1,6 +1,7 @@
+@import "../franklin-settings";
 @import '../colours';
 
-$border-color: $colour-light-grey;
+$border-color: $colour-azureish-white;
 
 .accordion {
   width: 100%;
@@ -10,7 +11,7 @@ $border-color: $colour-light-grey;
     padding: 0.25rem 0.5rem;
     width: 100%;
     outline: 0;
-    background-color: $colour-seashell-grey;
+    background-color: $colour-sky-white;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
@@ -18,6 +19,7 @@ $border-color: $colour-light-grey;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: $fs-headers-font-face;
 
     &__text {
       margin: 0;

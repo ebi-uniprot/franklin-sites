@@ -17,7 +17,7 @@
           font-weight: bold;
           white-space: nowrap;
           color: $colour-white;
-          background-color: $colour-uniprot-blue;
+          background-color: $colour-sea-blue;
           top: 0;
           z-index: 2;
           position: sticky;
@@ -43,7 +43,7 @@
           &--sortable {
             cursor: pointer;
             &::after {
-              @include chevron(down, $colour-light-grey);
+              @include chevron(down, $colour-azureish-white);
             }
             &:hover:after {
               @include chevron(down, $colour-white);
@@ -65,11 +65,11 @@
         }
 
         &--odd {
-          background-color: $colour-seashell-grey;
+          background-color: $colour-sky-white;
         }
 
         &--selected {
-          background-color: $colour-light-blue;
+          background-color: $colour-medium-turquoise;
         }
 
         &--checkbox {

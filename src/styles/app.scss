@@ -1,6 +1,12 @@
+@import './franklin-reset';
 @import './settings';
+@import './colours';
 @import '~foundation-sites/scss/foundation';
 @include foundation-xy-grid-classes;
+
+html, body {
+  background-color: $colour-sky-white;
+}
 
 section {
   margin-bottom: 1.5rem;
