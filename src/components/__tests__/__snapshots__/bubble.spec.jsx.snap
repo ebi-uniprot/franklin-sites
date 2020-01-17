@@ -2,7 +2,7 @@
 
 exports[`Long number component should render bigger than 100 1`] = `
 <span
-  className="bubble--medium colour-uniprot-blue"
+  className="bubble--medium colour-sea-blue"
 >
   99+
 </span>
@@ -18,7 +18,7 @@ exports[`Long number component should render different size and colour 1`] = `
 
 exports[`Long number component should render with defaults 1`] = `
 <span
-  className="bubble--medium colour-uniprot-blue"
+  className="bubble--medium colour-sea-blue"
 >
   10
 </span>

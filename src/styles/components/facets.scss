@@ -3,7 +3,7 @@
 
 .facets {
   .facet-name {
-    color: $colour-dark-grey;
+    color: $colour-charcoal;
     font-weight: 800;
     margin-bottom: $global-margin / 4;
   }
@@ -11,7 +11,7 @@
   & > ul > li {
     padding-bottom: $global-margin / 2;
     margin-bottom: $global-margin / 2;
-    border-bottom: 1px solid $colour-seashell-grey;
+    border-bottom: 1px solid $colour-azureish-white;
     position: relative;
     button {
       cursor: pointer;
@@ -21,14 +21,14 @@
       text-align: left;
       padding: $global-margin / 3;
       &:hover {
-        background: $colour-seashell-grey;
+        background: $colour-azureish-white;
       }
     }
     button.facet-active {
       font-weight: bold;
-      background: $colour-light-blue;
+      background: $colour-medium-turquoise;
       &:hover {
-        background: $colour-medium-blue;
+        background: $colour-vivid-cerulean;
         &:after {
           display: inline-block;
           position: absolute;

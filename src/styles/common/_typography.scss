@@ -1,0 +1,83 @@
+@import "../franklin-settings";
+@import "../mixins";
+
+// Font families
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Source+Sans+Pro:600,700&display=swap');
+
+// Body
+html, body {
+  font-family: $fs-base-font-face;
+
+  @include fs-breakpoints('small') {
+    font-size: 10px;
+  }
+
+  @include fs-breakpoints('medium') {
+    font-size: 14px;
+  }
+
+  @include fs-breakpoints('large') {
+    font-size: 16px;
+  }
+
+  @include fs-breakpoints('xlarge') {
+    font-size: 16px;
+  }
+
+  @include fs-breakpoints('xxlarge') {
+    font-size: 16px;
+  }
+}
+
+// Heading tag settings
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6,
+.h7 {
+  font-family: $fs-headers-font-face;
+}
+
+h1, .h1 { @include fs-font-settings('H1'); }
+h2, .h2 { @include fs-font-settings('H2'); }
+h3, .h3 { @include fs-font-settings('H3'); }
+h4, .h4 {
+  opacity: 78%;
+  @include fs-font-settings('H4');
+}
+h5, .h5 { @include fs-font-settings('H5'); }
+h6, .h6 { @include fs-font-settings('H6'); }
+.h7 { @include fs-font-settings('H7'); }
+
+ul.no-bullet,
+ol.no-bullet {
+  margin-left: 0;
+  list-style: none;
+}
+
+ul, ol, dl {
+  list-style-position: outside;
+}
+
+ul {
+  margin-left: 1.25rem;
+  list-style-type: disc;
+}
+ 
+ol {
+  margin-left: 1.25rem;
+}
+
+a, .a1 {
+  color: $colour-imperial-blue;
+  text-decoration: none;
+  @include fs-font-settings('A1');
+}
+
+.a2 {
+  color: $colour-dark-imperial-blue;
+  text-decoration: none;
+  @include fs-font-settings('A2');
+}

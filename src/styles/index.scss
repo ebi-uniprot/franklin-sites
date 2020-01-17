@@ -2,7 +2,7 @@
 @import '~foundation-sites/scss/foundation';
 
 @include foundation-global-styles;
-@include foundation-typography;
+// @include foundation-typography;
 @include foundation-forms;
 @include foundation-button;
 @include foundation-button-group;
@@ -11,3 +11,4 @@
 @import './common/colour-definitions';
 @import './common/buttons';
 @import './common/icons';
+@import './common/typography';

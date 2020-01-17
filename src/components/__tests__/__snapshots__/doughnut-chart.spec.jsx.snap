@@ -2,13 +2,13 @@
 
 exports[`DoughnutChart component should render 1`] = `
 <span
-  className="doughnut-chart--medium colour-light-grey"
+  className="doughnut-chart--medium colour-azureish-white"
 >
   <span
     className="doughnut-chart--medium__left-wrap"
   >
     <span
-      className="doughnut-chart--medium__left-wrap__loader colour-uniprot-blue"
+      className="doughnut-chart--medium__left-wrap__loader colour-sea-blue"
       style={
         Object {
           "transform": "rotate(0deg)",
@@ -20,7 +20,7 @@ exports[`DoughnutChart component should render 1`] = `
     className="doughnut-chart--medium__right-wrap"
   >
     <span
-      className="doughnut-chart--medium__right-wrap__loader colour-uniprot-blue"
+      className="doughnut-chart--medium__right-wrap__loader colour-sea-blue"
       style={
         Object {
           "transform": "rotate(144deg)",
