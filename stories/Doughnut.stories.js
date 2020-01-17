@@ -22,7 +22,7 @@ export const regularDoughnut = () => (
     percent={60}
     borderWidth={10}
     colorClass="colour-uniref"
-    bgColorClass="colour-seashell-grey"
+    bgColorClass="colour-sky-white"
   >
     3/5
   </DoughnutChart>

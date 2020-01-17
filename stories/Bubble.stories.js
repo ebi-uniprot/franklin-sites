@@ -11,7 +11,9 @@ export default {
   },
 };
 
-export const smallBubble = () => <Bubble size="small" value={56} />;
+export const smallBubble = () => (
+  <Bubble size="small" value={56} colourClass="colour-charcoal" />
+);
 export const regularBubble = () => <Bubble value={1000} />;
 export const largeBubble = () => (
   <Bubble size="large" value={22.5} colourClass="colour-proteomes" />

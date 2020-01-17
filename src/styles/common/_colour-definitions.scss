@@ -1,36 +1,36 @@
 @import '../colours';
 
 // PRIMARY
-.colour-dark-blue {
-  background: $colour-dark-blue;
+.colour-sapphure-blue {
+  background: $colour-sapphure-blue;
 }
-.colour-uniprot-blue {
-  background: $colour-uniprot-blue;
+.colour-sea-blue {
+  background: $colour-sea-blue;
 }
-.colour-medium-blue {
-  background: $colour-medium-blue;
+.colour-vivid-cerulean {
+  background: $colour-vivid-cerulean;
 }
-.colour-light-blue {
-  background: $colour-light-blue;
+.colour-medium-turquoise {
+  background: $colour-medium-turquoise;
 }
 // GREY
-.colour-black {
-  background: $colour-black;
+.colour-yankees-blue {
+  background: $colour-yankees-blue;
 }
-.colour-dark-grey {
-  background: $colour-dark-grey;
+.colour-charcoal {
+  background: $colour-charcoal;
 }
-.colour-cool-grey {
-  background: $colour-cool-grey;
+.colour-weldon-blue {
+  background: $colour-weldon-blue;
 }
-.colour-medium-grey {
-  background: $colour-medium-grey;
+.colour-pastel-blue {
+  background: $colour-pastel-blue;
 }
-.colour-light-grey {
-  background: $colour-light-grey;
+.colour-azureish-white {
+  background: $colour-azureish-white;
 }
-.colour-seashell-grey {
-  background: $colour-seashell-grey;
+.colour-sky-white {
+  background: $colour-sky-white;
 }
 // CURATION
 .colour-reviewed {
@@ -74,6 +74,10 @@
   height: 9em;
   margin-bottom: 4em;
   font-size: $small-font-size;
-  text-align: center;
-  padding-top: 8rem;
+  &:before {
+    content: attr(data-name);
+    margin-top: 10em;
+    display: block;
+    text-align: center;
+  }
 }
