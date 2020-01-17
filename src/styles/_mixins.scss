@@ -48,6 +48,7 @@ $global-right: if($global-text-direction == rtl, left, right);
         line-height: nth($settings, 3);
         letter-spacing: nth($settings, 4);
         font-weight: map-get($fs-font-weights, nth($settings, 5));
+        margin-bottom: nth($settings, 6);
       }
     }
   }

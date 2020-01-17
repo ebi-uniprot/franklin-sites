@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const ExpandableMessage = ({ descriptionString, expanded, setExpanded }) => (
+export const ExpandableMessage = ({
+  descriptionString,
+  expanded,
+  setExpanded,
+}) => (
   <button
     data-testid="expandable-message"
-    className="button link-button"
+    className="button tertiary"
     type="button"
     onClick={() => setExpanded(!expanded)}
   >
@@ -23,12 +27,18 @@ ExpandableMessage.defaultProps = {
 };
 
 const ExpandableList = ({
-  children, numberCollapsedItems, descriptionString, showBullets,
+  children,
+  numberCollapsedItems,
+  descriptionString,
+  showBullets,
 }) => {
   const [expanded, setExpanded] = useState(false);
   const enoughChildren = children.length > numberCollapsedItems + 1;
   const itemNodes = children
-    .slice(0, expanded || !enoughChildren ? children.length : numberCollapsedItems)
+    .slice(
+      0,
+      expanded || !enoughChildren ? children.length : numberCollapsedItems
+    )
     .map(item => <li key={item.id}>{item.content}</li>);
   return (
     <ul className={showBullets ? '' : 'no-bullet'}>
@@ -49,7 +59,7 @@ ExpandableList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       content: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-    }),
+    })
   ).isRequired,
   numberCollapsedItems: PropTypes.number,
   descriptionString: PropTypes.string,

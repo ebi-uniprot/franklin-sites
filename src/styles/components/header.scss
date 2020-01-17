@@ -1,6 +1,6 @@
-@import "../settings";
-@import "../colours";
-@import "../mixins";
+@import '../settings';
+@import '../colours';
+@import '../mixins';
 
 .header,
 .hero-header {
@@ -10,13 +10,13 @@
   color: $colour-white;
   &.header--negative {
     justify-content: space-between;
-    color: $colour-sapphure-blue;
+    color: $colour-sapphire-blue;
     a,
     a:link,
     a:visited,
     a:hover,
     a:active {
-      color: $colour-sapphure-blue;
+      color: $colour-sapphire-blue;
     }
     background: $colour-white;
     .header__logo {
@@ -43,10 +43,10 @@
   }
   background: linear-gradient(
     45deg,
-    $colour-sapphure-blue,
-    rgba($colour-sapphure-blue, 0.7),
-    $colour-sapphure-blue,
-    $colour-sapphure-blue
+    $colour-sapphire-blue,
+    rgba($colour-sapphire-blue, 0.7),
+    $colour-sapphire-blue,
+    $colour-sapphire-blue
   );
   &__logo {
     display: inline-block;

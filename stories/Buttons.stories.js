@@ -23,9 +23,16 @@ export const secondary = () => (
   </button>
 );
 
-export const linkButton = () => (
-  <button className="button link-button" type="button">
-    Link button
+export const tertiary = () => (
+  <button className="button tertiary" type="button">
+    Tertiary
+  </button>
+);
+
+export const tertiaryWithIcon = () => (
+  <button className="button tertiary" type="button">
+    <DownloadIcon />
+    Tertiary
   </button>
 );
 
@@ -49,7 +56,7 @@ export const disabledButton = () => (
   </button>
 );
 
-export const buttonWithIcon = () => (
+export const primaryWithIcon = () => (
   <button className="button" type="button">
     <DownloadIcon />
     Download
