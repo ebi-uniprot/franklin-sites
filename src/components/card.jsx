@@ -50,7 +50,7 @@ const Card = ({
           {selectable && (
             <div className="card__header__checkbox">{checkbox}</div>
           )}
-          <h3 className="card__title">{title}</h3>
+          <h2 className="card__title">{title}</h2>
           {subtitle && <div className="card__subtitle">{subtitle}</div>}
         </div>
       )}

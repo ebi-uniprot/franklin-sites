@@ -16,7 +16,7 @@
   }
 
   &__header {
-    padding: $global-padding;
+    padding-left: $global-padding;
     &__checkbox {
       input[type='checkbox'] {
         margin: 0 0.75rem 0.5rem 0;

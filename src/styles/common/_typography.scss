@@ -31,6 +31,7 @@ h4,
 h5,
 h6 {
   font-family: $fs-headers-font-face;
+  color: $colour-yankees-blue;
 }
 
 h1 {
@@ -41,7 +42,7 @@ h2 {
 }
 h3 {
   @include fs-font-settings('H3');
-  opacity: 78%;
+  opacity: 90%;
   &.bold {
     font-weight: font-weight('bold');
     opacity: 100%;

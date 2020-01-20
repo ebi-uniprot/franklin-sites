@@ -6,17 +6,19 @@
   margin: $global-margin 0 2 * $global-margin 0;
   &__item {
     display: flex;
-    margin-bottom: $global-margin;
+    margin-bottom: 0.75rem;
     &__title {
       flex-basis: 10vw;
       flex-shrink: 0;
-      font-weight: 700;
-      margin-right: $global-margin;
+      margin-right: 1.625rem;
       text-align: right;
+      h5 {
+        line-height: 1.2;
+      }
     }
     &__content {
-      border-left: 0.1rem solid $colour-vivid-cerulean;
-      padding-left: $global-padding;
+      border-left: 0.05rem solid $colour-vivid-cerulean;
+      padding-left: 0.7rem;
       ul {
         margin-bottom: 0;
       }
