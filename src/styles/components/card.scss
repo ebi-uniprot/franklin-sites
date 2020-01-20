@@ -1,6 +1,6 @@
-@import "../settings";
-@import "../colours";
-@import "../mixins";
+@import '../settings';
+@import '../colours';
+@import '../mixins';
 
 .card {
   @include box-shadow(0.125rem);
@@ -18,7 +18,7 @@
   &__header {
     padding: $global-padding;
     &__checkbox {
-      input[type="checkbox"] {
+      input[type='checkbox'] {
         margin: 0 0.75rem 0.5rem 0;
         vertical-align: middle;
       }
@@ -28,7 +28,7 @@
   &__content {
     padding: $global-padding;
     &__checkbox {
-      input[type="checkbox"] {
+      input[type='checkbox'] {
         margin: 0.25rem 0.5rem 0 0;
         float: left;
       }
@@ -42,7 +42,7 @@
     display: flex;
     align-items: baseline;
     border-bottom: 0.125rem solid;
-    border-color: $colour-sky-white;
+    border-color: $colour-azureish-white;
   }
   &__actions {
     display: flex;

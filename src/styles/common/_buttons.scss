@@ -48,4 +48,7 @@
 
 .button-group {
   margin-bottom: $global-margin/2;
+  .tertiary {
+    margin-right: 1rem;
+  }
 }

@@ -3,7 +3,7 @@
 exports[`ExpandableList should render 1`] = `
 <DocumentFragment>
   <ul
-    class="no-bullet"
+    class="expandable-list no-bullet"
   >
     <li>
       some content 0

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { DownloadIcon } from '../src/components';
 
 export default {
@@ -36,18 +36,42 @@ export const tertiaryWithIcon = () => (
   </button>
 );
 
-export const buttonGroup = () => (
-  <div className="button-group">
-    <button className="button" type="button">
-      One
-    </button>
-    <button className="button" type="button">
-      Two
-    </button>
-    <button className="button" type="button">
-      Three
-    </button>
-  </div>
+export const buttonGroups = () => (
+  <Fragment>
+    <div className="button-group">
+      <button className="button" type="button">
+        One
+      </button>
+      <button className="button" type="button">
+        Two
+      </button>
+      <button className="button" type="button">
+        Three
+      </button>
+    </div>
+    <div className="button-group">
+      <button className="button secondary" type="button">
+        One
+      </button>
+      <button className="button secondary" type="button">
+        Two
+      </button>
+      <button className="button secondary" type="button">
+        Three
+      </button>
+    </div>
+    <div className="button-group">
+      <button className="button tertiary" type="button">
+        One
+      </button>
+      <button className="button tertiary" type="button">
+        Two
+      </button>
+      <button className="button tertiary" type="button">
+        Three
+      </button>
+    </div>
+  </Fragment>
 );
 
 export const disabledButton = () => (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/components/expandable-list.scss';
 
 export const ExpandableMessage = ({
   descriptionString,
@@ -41,7 +42,7 @@ const ExpandableList = ({
     )
     .map(item => <li key={item.id}>{item.content}</li>);
   return (
-    <ul className={showBullets ? '' : 'no-bullet'}>
+    <ul className={`expandable-list ${showBullets ? '' : 'no-bullet'}`}>
       {itemNodes}
       {enoughChildren && (
         <li>
