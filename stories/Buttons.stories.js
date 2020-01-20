@@ -11,29 +11,24 @@ export default {
   },
 };
 
-export const primary = () => (
-  <button className="button" type="button">
-    Primary
-  </button>
-);
-
-export const secondary = () => (
-  <button className="button secondary" type="button">
-    Secondary
-  </button>
-);
-
-export const tertiary = () => (
-  <button className="button tertiary" type="button">
-    Tertiary
-  </button>
-);
-
-export const tertiaryWithIcon = () => (
-  <button className="button tertiary" type="button">
-    <DownloadIcon />
-    Tertiary
-  </button>
+export const buttons = () => (
+  <Fragment>
+    <div>
+      <button className="button" type="button">
+        Primary
+      </button>
+    </div>
+    <div>
+      <button className="button secondary" type="button">
+        Secondary
+      </button>
+    </div>
+    <div>
+      <button className="button tertiary" type="button">
+        Tertiary
+      </button>
+    </div>
+  </Fragment>
 );
 
 export const buttonGroups = () => (
@@ -74,15 +69,45 @@ export const buttonGroups = () => (
   </Fragment>
 );
 
-export const disabledButton = () => (
-  <button className="button disabled" type="button">
-    One
-  </button>
+export const disabled = () => (
+  <Fragment>
+    <div>
+      <button className="button disabled" type="button">
+        Primary
+      </button>
+    </div>
+    <div>
+      <button className="button secondary disabled" type="button">
+        Secondary
+      </button>
+    </div>
+    <div>
+      <button className="button tertiary disabled" type="button">
+        Tertiary
+      </button>
+    </div>
+  </Fragment>
 );
 
-export const primaryWithIcon = () => (
-  <button className="button" type="button">
-    <DownloadIcon />
-    Download
-  </button>
+export const withIcon = () => (
+  <Fragment>
+    <div>
+      <button className="button" type="button">
+        <DownloadIcon />
+        Primary
+      </button>
+    </div>
+    <div>
+      <button className="button secondary" type="button">
+        <DownloadIcon />
+        Secondary
+      </button>
+    </div>
+    <div>
+      <button className="button tertiary" type="button">
+        <DownloadIcon />
+        Tertiary
+      </button>
+    </div>
+  </Fragment>
 );
