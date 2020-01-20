@@ -20,13 +20,15 @@ exports[`ExpandableList should render 1`] = `
     <li>
       some content 4
     </li>
-    <button
-      class="button tertiary"
-      data-testid="expandable-message"
-      type="button"
-    >
-      More foo
-    </button>
+    <li>
+      <button
+        class="button tertiary"
+        data-testid="expandable-message"
+        type="button"
+      >
+        More foo
+      </button>
+    </li>
   </ul>
 </DocumentFragment>
 `;

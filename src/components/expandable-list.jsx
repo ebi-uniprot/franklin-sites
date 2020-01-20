@@ -44,11 +44,13 @@ const ExpandableList = ({
     <ul className={showBullets ? '' : 'no-bullet'}>
       {itemNodes}
       {enoughChildren && (
-        <ExpandableMessage
-          expanded={expanded}
-          setExpanded={setExpanded}
-          descriptionString={descriptionString}
-        />
+        <li>
+          <ExpandableMessage
+            expanded={expanded}
+            setExpanded={setExpanded}
+            descriptionString={descriptionString}
+          />
+        </li>
       )}
     </ul>
   );

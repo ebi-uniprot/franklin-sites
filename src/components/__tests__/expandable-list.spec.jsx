@@ -19,7 +19,7 @@ describe('ExpandableMessage', () => {
         expanded={false}
         setExpanded={setExpanded}
         descriptionString={descriptionString}
-      />,
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -30,7 +30,7 @@ describe('ExpandableMessage', () => {
         expanded={false}
         setExpanded={setExpanded}
         descriptionString={descriptionString}
-      />,
+      />
     );
     const button = container.querySelector('button');
     fireEvent.click(button);
@@ -44,7 +44,7 @@ describe('ExpandableMessage', () => {
         expanded
         setExpanded={setExpanded}
         descriptionString={descriptionString}
-      />,
+      />
     );
     const button = container.querySelector('button');
     fireEvent.click(button);
@@ -68,7 +68,7 @@ describe('ExpandableList', () => {
         descriptionString={descriptionString}
       >
         {items}
-      </ExpandableList>,
+      </ExpandableList>
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -80,7 +80,7 @@ describe('ExpandableList', () => {
         descriptionString={descriptionString}
       >
         {items.slice(0, numberCollapsedItems + 1)}
-      </ExpandableList>,
+      </ExpandableList>
     );
     expect(queryByTestId('expandable-message')).toBeNull();
   });
@@ -92,7 +92,7 @@ describe('ExpandableList', () => {
         descriptionString={descriptionString}
       >
         {items}
-      </ExpandableList>,
+      </ExpandableList>
     );
     expect(getByTestId('expandable-message')).toBeTruthy();
   });
@@ -104,13 +104,13 @@ describe('ExpandableList', () => {
         descriptionString={descriptionString}
       >
         {items}
-      </ExpandableList>,
+      </ExpandableList>
     );
     let listItems = container.querySelectorAll('li');
-    expect(listItems).toHaveLength(numberCollapsedItems);
+    expect(listItems).toHaveLength(numberCollapsedItems + 1);
     const button = container.querySelector('button');
     fireEvent.click(button);
     listItems = container.querySelectorAll('li');
-    expect(listItems).toHaveLength(numberItems);
+    expect(listItems).toHaveLength(numberItems + 1);
   });
 });
