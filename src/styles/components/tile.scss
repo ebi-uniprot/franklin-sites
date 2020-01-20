@@ -1,5 +1,5 @@
-@import "../settings";
-@import "../colours";
+@import '../settings';
+@import '../colours';
 
 $hover-lightness-value: -15%;
 
@@ -11,7 +11,7 @@ $size: 15rem;
   display: inline-block;
   margin: $global-margin / 2;
   text-align: center;
-  color: $colour-white;
+  color: $colour-sky-white;
   width: $size;
   height: $size;
   padding: $global-padding 0;
@@ -22,7 +22,7 @@ $size: 15rem;
       $colour-sea-blue,
       $lightness: $hover-lightness-value
     );
-    color: $colour-white;
+    color: $colour-sky-white;
   }
   &__header {
     display: block;
@@ -30,7 +30,7 @@ $size: 15rem;
   &__content {
     padding: 0.7em;
     width: 100%;
-    background-color: rgba($colour-white, 0.1);
+    background-color: rgba($colour-sky-white, 0.1);
     height: 7em;
     font-size: 80%;
     position: absolute;

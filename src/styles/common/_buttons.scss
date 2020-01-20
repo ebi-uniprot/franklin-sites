@@ -8,7 +8,7 @@
     margin-top: -0.2rem;
     margin-right: 0.5rem;
     vertical-align: middle;
-    fill: $colour-white;
+    fill: $colour-sky-white;
   }
   &.large-icon svg {
     width: 1.2rem;
@@ -33,7 +33,7 @@
     text-align: left;
     &.disabled:hover {
       color: $colour-azureish-white;
-      background-color: $colour-white;
+      background-color: $colour-sky-white;
     }
     svg {
       fill: $colour-dark-imperial-blue;

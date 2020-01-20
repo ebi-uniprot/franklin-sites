@@ -4,7 +4,7 @@
 
 .card {
   @include box-shadow(0.125rem);
-  background-color: $colour-white;
+  background-color: $colour-sky-white;
   border-radius: 0.2rem;
   margin: $global-margin;
   &--selected {

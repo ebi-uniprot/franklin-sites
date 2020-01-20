@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   align-content: center;
-  color: $colour-white;
+  color: $colour-sky-white;
   &.header--negative {
     justify-content: space-between;
     color: $colour-sapphire-blue;
@@ -18,7 +18,7 @@
     a:active {
       color: $colour-sapphire-blue;
     }
-    background: $colour-white;
+    background: $colour-sky-white;
     .header__logo {
       svg {
         stroke: $colour-sea-blue;
@@ -39,7 +39,7 @@
   a:hover,
   a:active,
   button {
-    color: $colour-white;
+    color: $colour-sky-white;
   }
   background: linear-gradient(
     45deg,
@@ -52,13 +52,13 @@
     display: inline-block;
     svg {
       // margin-bottom: -1em;
-      stroke: $colour-white;
-      fill: $colour-white;
+      stroke: $colour-sky-white;
+      fill: $colour-sky-white;
       circle {
-        stroke: $colour-white;
+        stroke: $colour-sky-white;
       }
       path {
-        fill: $colour-white;
+        fill: $colour-sky-white;
       }
     }
   }
@@ -67,7 +67,7 @@
     display: inline-block;
     margin: 0;
     a:hover {
-      border-bottom: 1px solid $colour-white;
+      border-bottom: 1px solid $colour-sky-white;
     }
     li {
       display: inline-block;
@@ -111,6 +111,6 @@
     flex: 0 1 auto;
   }
   label {
-    color: $colour-white;
+    color: $colour-sky-white;
   }
 }

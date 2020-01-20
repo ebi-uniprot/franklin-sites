@@ -1,6 +1,6 @@
-@import "../settings";
-@import "../colours";
-@import "../mixins";
+@import '../settings';
+@import '../colours';
+@import '../mixins';
 
 .data-table {
   &__table {
@@ -16,7 +16,7 @@
           padding: 0.25rem 0.5rem;
           font-weight: bold;
           white-space: nowrap;
-          color: $colour-white;
+          color: $colour-sky-white;
           background-color: $colour-sea-blue;
           top: 0;
           z-index: 2;
@@ -29,14 +29,14 @@
           &--ascend {
             cursor: pointer;
             &::after {
-              @include chevron(up, $colour-white);
+              @include chevron(up, $colour-sky-white);
             }
           }
 
           &--descend {
             cursor: pointer;
             &::after {
-              @include chevron(down, $colour-white);
+              @include chevron(down, $colour-sky-white);
             }
           }
 
@@ -46,7 +46,7 @@
               @include chevron(down, $colour-azureish-white);
             }
             &:hover:after {
-              @include chevron(down, $colour-white);
+              @include chevron(down, $colour-sky-white);
             }
           }
         }
@@ -58,14 +58,14 @@
         padding: 0.5rem;
         vertical-align: top;
         border: 0;
-        border-bottom: 1px solid $colour-white;
+        border-bottom: 1px solid $colour-sky-white;
 
         &--warning {
           background-color: map-get($foundation-palette, warning);
         }
 
         &--odd {
-          background-color: $colour-sky-white;
+          background-color: $colour-azureish-white;
         }
 
         &--selected {
