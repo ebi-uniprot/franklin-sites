@@ -7,11 +7,11 @@ exports[`Card component should render 1`] = `
   <div
     className="card__header"
   >
-    <h3
+    <h2
       className="card__title"
     >
       Title
-    </h3>
+    </h2>
     
   </div>
   <div
@@ -31,11 +31,11 @@ exports[`Card component should render card with links 1`] = `
   <div
     className="card__header"
   >
-    <h3
+    <h2
       className="card__title"
     >
       Title
-    </h3>
+    </h2>
     <div
       className="card__subtitle"
     >
@@ -82,11 +82,11 @@ exports[`Card component should render card with onclick 1`] = `
   <div
     className="card__header"
   >
-    <h3
+    <h2
       className="card__title"
     >
       Title
-    </h3>
+    </h2>
     <div
       className="card__subtitle"
     >
@@ -110,11 +110,11 @@ exports[`Card component should render card with subtitle 1`] = `
   <div
     className="card__header"
   >
-    <h3
+    <h2
       className="card__title"
     >
       Title
-    </h3>
+    </h2>
     <div
       className="card__subtitle"
     >
