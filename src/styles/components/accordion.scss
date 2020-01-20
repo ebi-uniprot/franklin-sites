@@ -1,7 +1,7 @@
 @import '../franklin-settings';
 @import '../colours';
 
-$border-color: $colour-azureish-white;
+$border-color: $colour-pastel-blue;
 
 .accordion {
   width: 100%;
@@ -11,7 +11,7 @@ $border-color: $colour-azureish-white;
     padding: 0.25rem 0.5rem;
     width: 100%;
     outline: 0;
-    background-color: $colour-sky-white;
+    background-color: $colour-azureish-white;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
