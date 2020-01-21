@@ -12,6 +12,12 @@ $size: 15rem;
   margin: $global-margin / 2;
   text-align: center;
   color: $colour-sky-white;
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $colour-sky-white;
+  }
   width: $size;
   height: $size;
   padding: $global-padding 0;
