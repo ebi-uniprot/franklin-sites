@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 import { HeroHeader } from '../src/components';
 
@@ -13,7 +14,12 @@ export default {
 };
 
 export const heroHeader = () => (
-  <HeroHeader title="Title" footer={loremIpsum({ count: 25, units: 'words' })}>
-    <input type="text" />
-  </HeroHeader>
+  <Router>
+    <HeroHeader
+      title="Title"
+      footer={loremIpsum({ count: 25, units: 'words' })}
+    >
+      <input type="text" />
+    </HeroHeader>
+  </Router>
 );
