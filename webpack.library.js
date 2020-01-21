@@ -58,13 +58,6 @@ module.exports = [
           use: [
             {
               loader: '@svgr/webpack',
-              options: {
-                svgoConfig: {
-                  plugins: {
-                    removeViewBox: false,
-                  },
-                },
-              },
             },
           ],
         },
