@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "main": "./dist/franklin-components.js",
   "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
@@ -12,7 +12,7 @@
     "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
     "test": "yarn jslint && jest",
     "test-watch": "jest --watch",
-    "release": "yarn build && git add doc/doc.json && yarn publish && git push --follow-tags origin master",
+    "release": "yarn build && yarn publish && git push --follow-tags origin master",
     "start": "start-storybook -p 6006 -s ./assets",
     "build-storybook": "build-storybook -c .storybook -o .out -s ./assets"
   },
