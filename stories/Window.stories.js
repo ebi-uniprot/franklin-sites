@@ -3,7 +3,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { Window } from '../src/components';
 
 export default {
-  title: 'Navigation/Window',
+  title: 'Layout|Window',
   parameters: {
     purposeFunction: {
       purpose:

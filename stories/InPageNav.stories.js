@@ -18,7 +18,7 @@ const sections = [
 ];
 
 export default {
-  title: 'Navigation/In Page Navigation',
+  title: 'Navigation|In Page Navigation',
   parameters: {
     purposeFunction: {
       purpose:

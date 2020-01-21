@@ -2,7 +2,7 @@ import React from 'react';
 import { DoughnutChart } from '../src/components';
 
 export default {
-  title: 'Atoms|Doughnut',
+  title: 'Visualisation|Doughnut',
   parameters: {
     purposeFunction: {
       purpose: 'Highlight a ratio.',

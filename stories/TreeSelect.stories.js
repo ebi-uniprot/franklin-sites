@@ -4,7 +4,7 @@ import { TreeSelect } from '../src/components';
 import { treeData } from '../src/mock-data/tree-data';
 
 export default {
-  title: 'Data view/Tree Select',
+  title: 'Forms|Tree Select',
   parameters: {
     purposeFunction: {
       purpose: 'Allow selection of item(s) from nested data set',

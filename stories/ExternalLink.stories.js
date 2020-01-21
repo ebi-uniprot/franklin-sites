@@ -2,7 +2,7 @@ import React from 'react';
 import { ExternalLink } from '../src/components';
 
 export default {
-  title: 'Atoms|External link',
+  title: 'Core|External link',
   parameters: {
     purposeFunction: {
       purpose:

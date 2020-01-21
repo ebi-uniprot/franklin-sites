@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchInput } from '../src/components';
 
 export default {
-  title: 'Navigation/Search Input',
+  title: 'Forms|Search Input',
   parameters: {
     purposeFunction: {
       function:

@@ -3,7 +3,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { InfoList } from '../src/components';
 
 export default {
-  title: 'Data view/Info List',
+  title: 'Data|Info List',
   parameters: {
     purposeFunction: {
       purpose:

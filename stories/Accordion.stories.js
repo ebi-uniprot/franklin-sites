@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Accordion, AccordionSearch } from '../src/components';
 
 export default {
-  title: 'Data view/Accordion',
+  title: 'Layout|Accordion',
   parameters: {
     purposeFunction: {
       function: 'Show/hide blocks of content',

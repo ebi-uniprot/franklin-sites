@@ -2,7 +2,7 @@ import React from 'react';
 import { Loader } from '../src/components';
 
 export default {
-  title: 'Data view/Loader',
+  title: 'Core|Loader',
   parameters: {
     purposeFunction: {
       purpose: '',

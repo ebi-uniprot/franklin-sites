@@ -30,7 +30,7 @@ const tabData = [
 ];
 
 export default {
-  title: 'Navigation/Tabs',
+  title: 'Layout|Tabs',
   parameters: {
     purposeFunction: {
       purpose:

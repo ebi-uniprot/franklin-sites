@@ -20,7 +20,7 @@ import {
 } from '../src/components';
 
 export default {
-  title: 'Atoms|Icons',
+  title: 'Core|Icons',
 };
 
 const size = 30;

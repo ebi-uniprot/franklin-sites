@@ -4,7 +4,7 @@ import { DataTable } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
 
 export default {
-  title: 'Data view/Data Table',
+  title: 'Data|Data Table',
   parameters: {
     purposeFunction: {
       purpose: '',

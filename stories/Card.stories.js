@@ -27,7 +27,7 @@ const links = [
 ];
 
 export default {
-  title: 'Data view/Card',
+  title: 'Layout|Card',
   parameters: {
     purposeFunction: {
       function:

@@ -4,7 +4,7 @@ import { Autocomplete } from '../src/components';
 import { flattenedPaths } from '../src/mock-data/tree-data';
 
 export default {
-  title: 'Forms/Autocomplete',
+  title: 'Forms|Autocomplete',
   parameters: {
     purposeFunction: {
       function: 'Search through an array to make a selection',

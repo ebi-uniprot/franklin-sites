@@ -6,7 +6,7 @@ import facetData from '../src/mock-data/facetData';
 const selectedFacets = [{ name: 'facet_2', value: 'value_2' }];
 
 export default {
-  title: 'Navigation/Facets',
+  title: 'Data|Facets',
   parameters: {
     purposeFunction: {
       purpose:

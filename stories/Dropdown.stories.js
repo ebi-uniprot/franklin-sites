@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { DropdownButton } from '../src/components';
 
 export default {
-  title: 'Atoms|Dropdown button',
+  title: 'Forms|Dropdown button',
   parameters: {
     purposeFunction: {
       function: 'Shows a dropdown area when clicked',

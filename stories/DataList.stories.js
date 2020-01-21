@@ -4,7 +4,7 @@ import { DataList } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
 
 export default {
-  title: 'Data view/Data List',
+  title: 'Data|Data List',
   parameters: {
     purposeFunction: {
       purpose: '',

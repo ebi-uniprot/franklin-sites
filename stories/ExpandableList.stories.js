@@ -3,7 +3,7 @@ import { ExpandableList } from '../src/components';
 import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 
 export default {
-  title: 'Data view/Expandable List',
+  title: 'Data|Expandable List',
   parameters: {
     purposeFunction: {
       purpose: 'Provide a way of truncating long unordered lists of items.',

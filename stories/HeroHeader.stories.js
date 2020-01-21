@@ -4,7 +4,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { HeroHeader } from '../src/components';
 
 export default {
-  title: 'Forms/Hero header',
+  title: 'Layout|Hero header',
   parameters: {
     purposeFunction: {
       purpose: 'Provide an entry point',

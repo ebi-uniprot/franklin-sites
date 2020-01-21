@@ -2,7 +2,7 @@ import React from 'react';
 import { Tile } from '../src/components';
 
 export default {
-  title: 'Navigation/Tile',
+  title: 'Navigation|Tile',
   parameters: {
     purposeFunction: {
       purpose:
