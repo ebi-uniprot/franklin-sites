@@ -9,14 +9,25 @@ const Authors = ({ authors, limit }) => {
   const [open, setOpen] = useState(false);
   return (
     <section className="publication__authors">
-      {authors
-        .filter((author, i) => open || authors.length <= limit || i < limit - 1)
-        .map(author => (
-          <Link to="/" key={author}>
-            {author}
-          </Link>
-        ))
-        .reduce((prev, curr) => [prev, ', ', curr])}
+      {authors.reduce(
+        (prev, currentAuthor, i) =>
+          open || authors.length <= limit || i < limit - 1 ? (
+            <Fragment>
+              {prev && (
+                <Fragment>
+                  {prev}
+                  {', '}
+                </Fragment>
+              )}
+              <Link to="/" key={currentAuthor}>
+                {currentAuthor}
+              </Link>
+            </Fragment>
+          ) : (
+            prev
+          ),
+        ''
+      )}
       {!open && authors.length > limit && (
         <Fragment>
           <button

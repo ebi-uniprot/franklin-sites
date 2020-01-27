@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, waitForElement } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Publication from '../publication';
-import { publicationData } from '../../../stories/Publication.stories';
+import publicationData from '../__mocks__/publications';
 
 let rendered;
 
@@ -54,3 +54,5 @@ describe('Publication component', () => {
     expect(abstract).toBeTruthy();
   });
 });
+
+export default publicationData;
