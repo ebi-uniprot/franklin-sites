@@ -1,0 +1,19 @@
+.publication {
+  &__authors {
+    margin-bottom: 1rem;
+    .button.tertiary {
+      margin: 0;
+      padding: 0 0.5rem;
+    }
+  }
+  &__columns {
+    display: flex;
+    &__main {
+      flex-grow: 0;
+      margin-right: 1rem;
+    }
+    &__side {
+      flex: 0 0 20vw;
+    }
+  }
+}
