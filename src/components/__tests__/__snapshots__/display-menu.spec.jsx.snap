@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Publication component should render 1`] = `
+<DocumentFragment>
+  <nav
+    class="display-menu"
+  >
+    <ul
+      class="no-bullet"
+    >
+      <li>
+        <a
+          href="/main"
+        >
+          Item 1
+        </a>
+        <div
+          class="display-menu__item_content display-menu__item_content--visible"
+        >
+          <ul
+            class="no-bullet"
+          >
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a
+          href="/item2"
+        >
+          Item 2
+        </a>
+        <div
+          class="display-menu__item_content "
+        >
+          <div>
+            Something else
+          </div>
+        </div>
+      </li>
+      <li>
+        <a
+          href="/item3"
+        >
+          Item 3
+        </a>
+        <div
+          class="display-menu__item_content "
+        />
+      </li>
+    </ul>
+  </nav>
+  <section>
+    <div>
+      Page 1 main content
+    </div>
+  </section>
+</DocumentFragment>
+`;

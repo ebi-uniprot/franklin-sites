@@ -1,0 +1,26 @@
+@import '../colours';
+@import '../settings';
+
+.display-menu {
+  & > ul > li > h5 {
+    color: $colour-dark-imperial-blue;
+  }
+  &__item_content {
+    margin-left: $global-margin;
+    opacity: 0;
+    max-height: 0;
+    display: inline;
+    & > * {
+      display: none;
+    }
+    &--visible {
+      opacity: 1;
+      max-height: 100vh;
+      display: block;
+      transition: opacity 0.5s ease-out;
+      & > * {
+        display: block;
+      }
+    }
+  }
+}
