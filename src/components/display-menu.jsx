@@ -16,7 +16,15 @@ const DisplayMenu = ({ data }) => {
               <Link
                 to={`${displayItem.path}`}
                 onClick={() => setOpenItem(displayItem.name)}
+                className={`display-menu__item_title ${
+                  openItem === displayItem.name
+                    ? 'display-menu__item_title--active'
+                    : ''
+                }`}
               >
+                <span className="display-menu__item_icon">
+                  {displayItem.icon && displayItem.icon}
+                </span>
                 {displayItem.name}
               </Link>
               <div

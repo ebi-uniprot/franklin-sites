@@ -1,4 +1,5 @@
 import React from 'react';
+import { SwissProtIcon } from '..';
 
 export const displayMenuDummyContent1 = 'Page 1 main content';
 export const displayMenuDummyContent2 = 'Page 2 main content';
@@ -8,7 +9,7 @@ export const displayMenuDummyLeft2 = 'Something else';
 export default [
   {
     name: 'Item 1',
-    icon: null,
+    icon: <SwissProtIcon />,
     itemContent: (
       <ul className="no-bullet">
         <li>{displayMenuDummyLeft1}</li>

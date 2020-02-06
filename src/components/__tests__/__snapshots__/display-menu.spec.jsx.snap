@@ -10,8 +10,14 @@ exports[`Publication component should render 1`] = `
     >
       <li>
         <a
+          class="display-menu__item_title display-menu__item_title--active"
           href="/main"
         >
+          <span
+            class="display-menu__item_icon"
+          >
+            <test-file-stub />
+          </span>
           Item 1
         </a>
         <div
@@ -40,8 +46,12 @@ exports[`Publication component should render 1`] = `
       </li>
       <li>
         <a
+          class="display-menu__item_title "
           href="/item2"
         >
+          <span
+            class="display-menu__item_icon"
+          />
           Item 2
         </a>
         <div
@@ -54,8 +64,12 @@ exports[`Publication component should render 1`] = `
       </li>
       <li>
         <a
+          class="display-menu__item_title "
           href="/item3"
         >
+          <span
+            class="display-menu__item_icon"
+          />
           Item 3
         </a>
         <div
