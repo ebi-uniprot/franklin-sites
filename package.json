@@ -73,6 +73,7 @@
     "@storybook/addon-links": "^5.3.6",
     "@storybook/react": "^5.3.6",
     "@svgr/webpack": "^5.0.0",
+    "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.1.4",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
