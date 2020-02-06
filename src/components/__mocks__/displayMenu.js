@@ -1,27 +1,32 @@
 import React from 'react';
 
+export const displayMenuDummyContent1 = 'Page 1 main content';
+export const displayMenuDummyContent2 = 'Page 2 main content';
+export const displayMenuDummyLeft1 = 'Something';
+export const displayMenuDummyLeft2 = 'Something else';
+
 export default [
   {
     name: 'Item 1',
     icon: null,
     itemContent: (
       <ul className="no-bullet">
-        <li>Something</li>
-        <li>Something</li>
-        <li>Something</li>
-        <li>Something</li>
-        <li>Something</li>
+        <li>{displayMenuDummyLeft1}</li>
+        <li>{displayMenuDummyLeft1}</li>
+        <li>{displayMenuDummyLeft1}</li>
+        <li>{displayMenuDummyLeft1}</li>
+        <li>{displayMenuDummyLeft1}</li>
       </ul>
     ),
     path: '/main',
-    mainContent: <div>Page 1 main content</div>,
+    mainContent: <div>{displayMenuDummyContent1}</div>,
   },
   {
     name: 'Item 2',
     icon: null,
-    itemContent: <div>Something else</div>,
+    itemContent: <div>{displayMenuDummyLeft2}</div>,
     path: '/item2',
-    mainContent: <div>Page 2 main content</div>,
+    mainContent: <div>{displayMenuDummyContent2}</div>,
   },
   {
     name: 'Item 3',

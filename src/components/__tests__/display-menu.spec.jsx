@@ -4,13 +4,14 @@ import '@testing-library/jest-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import DisplayMenu from '../display-menu';
-import displayMenuData from '../__mocks__/displayMenu';
+import displayMenuData, {
+  displayMenuDummyLeft1,
+  displayMenuDummyLeft2,
+  displayMenuDummyContent2,
+  displayMenuDummyContent1,
+} from '../__mocks__/displayMenu';
 
 let rendered;
-const content1 = 'Page 1 main content';
-const content2 = 'Page 2 main content';
-const itemContent1 = 'Something';
-const itemContent2 = 'Something else';
 
 describe('Publication component', () => {
   beforeEach(() => {
@@ -28,27 +29,31 @@ describe('Publication component', () => {
 
   test('should toggle main content', async () => {
     const { getByText, queryByText } = rendered;
-    expect(getByText(content1)).toBeTruthy();
-    expect(queryByText(content2)).toBeNull();
+    expect(getByText(displayMenuDummyContent1)).toBeTruthy();
+    expect(queryByText(displayMenuDummyContent2)).toBeNull();
     fireEvent.click(getByText(displayMenuData[1].name));
-    const newContent2 = await waitForElement(() => getByText(content2));
+    const newContent2 = await waitForElement(() =>
+      getByText(displayMenuDummyContent2)
+    );
     expect(newContent2).toBeTruthy();
   });
 
   test('should toggle item content', async () => {
     const { getByText, getAllByText } = rendered;
-    expect(getAllByText(itemContent1)[0]).toBeVisible();
-
     expect(
-      getAllByText(itemContent1)[0].closest('.display-menu__item_content')
+      getAllByText(displayMenuDummyLeft1)[0].closest(
+        '.display-menu__item_content'
+      )
     ).toHaveClass('display-menu__item_content--visible');
 
     expect(
-      getByText(itemContent2).closest('.display-menu__item_content')
+      getByText(displayMenuDummyLeft2).closest('.display-menu__item_content')
     ).not.toHaveClass('display-menu__item_content--visible');
 
     fireEvent.click(getByText(displayMenuData[1].name));
-    const newContent2 = await waitForElement(() => getByText(itemContent2));
+    const newContent2 = await waitForElement(() =>
+      getByText(displayMenuDummyLeft2)
+    );
     expect(newContent2.closest('.display-menu__item_content')).toHaveClass(
       'display-menu__item_content--visible'
     );
