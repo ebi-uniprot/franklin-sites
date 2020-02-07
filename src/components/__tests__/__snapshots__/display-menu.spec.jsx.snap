@@ -1,87 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Publication component should render 1`] = `
+exports[`Display menu component should render 1`] = `
 <DocumentFragment>
-  <nav
-    class="display-menu"
+  <section
+    class="sidebar-layout false"
+    data-layout="left-sidebar-layout"
   >
-    <ul
-      class="no-bullet"
+    <section
+      class="sidebar-layout__sidebar"
     >
-      <li>
-        <a
-          class="display-menu__item_title display-menu__item_title--active"
-          href="/main"
+      <ul
+        class="display-menu"
+      >
+        <ul
+          class="no-bullet"
         >
-          <span
-            class="display-menu__item_icon"
-          >
-            <test-file-stub />
-          </span>
-          Item 1
-        </a>
-        <div
-          class="display-menu__item_content display-menu__item_content--visible"
-        >
-          <ul
-            class="no-bullet"
-          >
-            <li>
-              Something
-            </li>
-            <li>
-              Something
-            </li>
-            <li>
-              Something
-            </li>
-            <li>
-              Something
-            </li>
-            <li>
-              Something
-            </li>
-          </ul>
+          <li>
+            <h5>
+              <a
+                aria-current="page"
+                class="display-menu__item_title display-menu__item_title--active"
+                href="///main"
+              >
+                <span
+                  class="display-menu__item_icon"
+                >
+                  <test-file-stub />
+                </span>
+                Item 1
+              </a>
+            </h5>
+            <div
+              class="display-menu__item_content"
+            >
+              <ul
+                class="no-bullet"
+              >
+                <li>
+                  Something
+                </li>
+                <li>
+                  Something
+                </li>
+                <li>
+                  Something
+                </li>
+                <li>
+                  Something
+                </li>
+                <li>
+                  Something
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <h5>
+              <a
+                class="display-menu__item_title"
+                href="///item2"
+              >
+                <span
+                  class="display-menu__item_icon"
+                />
+                Item 2
+              </a>
+            </h5>
+          </li>
+          <li>
+            <h5>
+              <a
+                class="display-menu__item_title"
+                href="///item3"
+              >
+                <span
+                  class="display-menu__item_icon"
+                />
+                Item 3
+              </a>
+            </h5>
+          </li>
+        </ul>
+      </ul>
+    </section>
+    <section
+      class="sidebar-layout__content"
+    >
+      <section>
+        <div>
+          Page 1 main content
         </div>
-      </li>
-      <li>
-        <a
-          class="display-menu__item_title "
-          href="/item2"
-        >
-          <span
-            class="display-menu__item_icon"
-          />
-          Item 2
-        </a>
-        <div
-          class="display-menu__item_content "
-        >
-          <div>
-            Something else
-          </div>
-        </div>
-      </li>
-      <li>
-        <a
-          class="display-menu__item_title "
-          href="/item3"
-        >
-          <span
-            class="display-menu__item_icon"
-          />
-          Item 3
-        </a>
-        <div
-          class="display-menu__item_content "
-        />
-      </li>
-    </ul>
-  </nav>
-  <section>
-    <div>
-      Page 1 main content
-    </div>
+      </section>
+    </section>
   </section>
 </DocumentFragment>
 `;

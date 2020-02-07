@@ -1,40 +1,42 @@
-import React, { useState, Fragment } from 'react';
-import { Link, Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import {
+  NavLink,
+  Route,
+  Switch,
+  Redirect,
+  useRouteMatch,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/components/display-menu.scss';
 import SideBarLayout from '../layouts/SideBarLayout';
 
-const DisplaySideBar = ({ data, defaultItemName, url }) => {
-  const [openItem, setOpenItem] = useState(defaultItemName);
-
+const DisplaySideBar = ({ data, url, path }) => {
   return (
     <ul className="display-menu">
       <ul className="no-bullet">
         {data.map(displayItem => (
           <li key={displayItem.name}>
-            <Link
-              to={`${url}/${displayItem.path}`}
-              onClick={() => setOpenItem(displayItem.name)}
-              className={`display-menu__item_title ${
-                openItem === displayItem.name
-                  ? 'display-menu__item_title--active'
-                  : ''
-              }`}
-            >
-              <span className="display-menu__item_icon">
-                {displayItem.icon && displayItem.icon}
-              </span>
-              {displayItem.name}
-            </Link>
-            <div
-              className={`display-menu__item_content ${
-                openItem === displayItem.name
-                  ? 'display-menu__item_content--visible'
-                  : ''
-              }`}
-            >
-              {displayItem.itemContent}
-            </div>
+            <h5>
+              <NavLink
+                to={`${url}/${displayItem.path}`}
+                activeClassName="display-menu__item_title--active"
+                className="display-menu__item_title"
+              >
+                <span className="display-menu__item_icon">
+                  {displayItem.icon && displayItem.icon}
+                </span>
+                {displayItem.name}
+              </NavLink>
+            </h5>
+            <Route
+              path={`${path}/${displayItem.path}`}
+              render={() => (
+                <div className="display-menu__item_content">
+                  {displayItem.itemContent}
+                </div>
+              )}
+              exact={displayItem.exact}
+            />
           </li>
         ))}
       </ul>
@@ -51,6 +53,7 @@ const DisplayMenu = ({ data }) => {
       data={data}
       defaultItemName={defaultItem && defaultItem.name}
       url={url}
+      path={path}
     />
   );
 
@@ -93,8 +96,8 @@ DisplayMenu.propTypes = {
 
 DisplaySideBar.propTypes = {
   data: dataPropTypes.isRequired,
-  defaultItemName: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
 };
 
 export default DisplayMenu;

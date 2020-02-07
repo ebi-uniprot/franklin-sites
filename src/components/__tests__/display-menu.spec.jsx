@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { fireEvent, waitForElement } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import DisplayMenu from '../display-menu';
 import displayMenuData, {
@@ -10,16 +9,13 @@ import displayMenuData, {
   displayMenuDummyContent2,
   displayMenuDummyContent1,
 } from '../__mocks__/displayMenu';
+import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 let rendered;
 
-describe('Publication component', () => {
+describe('Display menu component', () => {
   beforeEach(() => {
-    rendered = render(
-      <Router>
-        <DisplayMenu data={displayMenuData} />
-      </Router>
-    );
+    rendered = renderWithRouter(<DisplayMenu data={displayMenuData} />);
   });
 
   test('should render', () => {
@@ -39,23 +35,19 @@ describe('Publication component', () => {
   });
 
   test('should toggle item content', async () => {
-    const { getByText, getAllByText } = rendered;
+    const { getByText, queryByText, getAllByText } = rendered;
     expect(
       getAllByText(displayMenuDummyLeft1)[0].closest(
         '.display-menu__item_content'
       )
-    ).toHaveClass('display-menu__item_content--visible');
+    ).toBeTruthy();
 
-    expect(
-      getByText(displayMenuDummyLeft2).closest('.display-menu__item_content')
-    ).not.toHaveClass('display-menu__item_content--visible');
+    expect(queryByText(displayMenuDummyLeft2)).toBeNull();
 
     fireEvent.click(getByText(displayMenuData[1].name));
     const newContent2 = await waitForElement(() =>
       getByText(displayMenuDummyLeft2)
     );
-    expect(newContent2.closest('.display-menu__item_content')).toHaveClass(
-      'display-menu__item_content--visible'
-    );
+    expect(newContent2).toBeTruthy();
   });
 });
