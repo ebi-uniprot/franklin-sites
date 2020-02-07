@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Card } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
@@ -45,13 +44,11 @@ export const card = () => (
 );
 
 export const cardWithLinks = () => (
-  <Router>
-    <Card
-      title="Title"
-      subtitle={<a to="/#">APOE_HUMAN - P02649</a>}
-      links={links}
-    >
-      {getLipsumSentences()}
-    </Card>
-  </Router>
+  <Card
+    title="Title"
+    subtitle={<a to="/#">APOE_HUMAN - P02649</a>}
+    links={links}
+  >
+    {getLipsumSentences()}
+  </Card>
 );

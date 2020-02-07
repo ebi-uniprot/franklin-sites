@@ -1,0 +1,24 @@
+@import '../_franklin-settings';
+
+.sidebar-layout {
+  padding-left: 0.5rem;
+  display: grid;
+  grid-gap: $gutter-size;
+  grid-template-columns: 16.6vw 83.4vw;
+  // grid-template-rows: auto 75vh;
+  grid-template-areas: 'sidebar content';
+  &--inverted {
+    grid-template-areas: 'content sidebar';
+    grid-template-columns: 6fr 1fr;
+  }
+
+  &__sidebar {
+    position: fixed;
+    grid-area: sidebar;
+    overflow-y: auto;
+  }
+
+  &__content {
+    grid-area: content;
+  }
+}

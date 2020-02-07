@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { DisplayMenu } from '../src/components';
 import displayMenuData from '../src/components/__mocks__/displayMenu';
 
@@ -13,8 +12,4 @@ export default {
   },
 };
 
-export const displayMenu = () => (
-  <Router>
-    <DisplayMenu data={displayMenuData} />
-  </Router>
-);
+export const displayMenu = () => <DisplayMenu data={displayMenuData} />;

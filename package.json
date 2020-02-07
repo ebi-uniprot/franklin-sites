@@ -49,6 +49,7 @@
     "@storybook/addons": "^5.3.6",
     "@storybook/api": "^5.3.6",
     "@storybook/components": "^5.3.6",
+    "storybook-react-router": "^1.0.8",
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.0-rc.3",
     "lorem-ipsum": "^2.0.2",

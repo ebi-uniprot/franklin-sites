@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Publication } from '../src/components';
 import publicationData from '../src/components/__mocks__/publications';
 
@@ -24,16 +23,14 @@ export const publication = () => {
     statistics,
   } = publicationData;
   return (
-    <Router>
-      <Publication
-        title={title}
-        authors={authors}
-        abstract={abstract}
-        infoData={infoData}
-        journalInfo={journalInfo}
-        pubmedId={pubmedId}
-        statistics={statistics}
-      />
-    </Router>
+    <Publication
+      title={title}
+      authors={authors}
+      abstract={abstract}
+      infoData={infoData}
+      journalInfo={journalInfo}
+      pubmedId={pubmedId}
+      statistics={statistics}
+    />
   );
 };
