@@ -1,16 +1,11 @@
-import React, { Fragment } from 'react';
-import {
-  NavLink,
-  Route,
-  Switch,
-  Redirect,
-  useRouteMatch,
-} from 'react-router-dom';
+import React from 'react';
+import { NavLink, Route, Redirect, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/components/display-menu.scss';
-import SideBarLayout from '../layouts/SideBarLayout';
 
-const DisplaySideBar = ({ data, url, path }) => {
+const DisplayMenu = ({ data }) => {
+  const { path, url } = useRouteMatch();
+  const defaultItem = data[0];
   return (
     <ul className="display-menu">
       <ul className="no-bullet">
@@ -39,44 +34,11 @@ const DisplaySideBar = ({ data, url, path }) => {
             />
           </li>
         ))}
+        <Route path="/">
+          <Redirect to={`${url}/${defaultItem.path}`} />
+        </Route>
       </ul>
     </ul>
-  );
-};
-
-const DisplayMenu = ({ data }) => {
-  const defaultItem = data[0];
-  const { path, url } = useRouteMatch();
-
-  const sidebar = (
-    <DisplaySideBar
-      data={data}
-      defaultItemName={defaultItem && defaultItem.name}
-      url={url}
-      path={path}
-    />
-  );
-
-  return (
-    <Fragment>
-      <SideBarLayout sidebar={sidebar}>
-        <section>
-          <Switch>
-            {data.map(displayItem => (
-              <Route
-                path={`${path}/${displayItem.path}`}
-                render={() => <Fragment>{displayItem.mainContent}</Fragment>}
-                key={displayItem.name}
-                exact={displayItem.exact}
-              />
-            ))}
-            <Route path="/">
-              <Redirect to={`${url}/${defaultItem.path}`} />
-            </Route>
-          </Switch>
-        </section>
-      </SideBarLayout>
-    </Fragment>
   );
 };
 
@@ -92,12 +54,6 @@ const dataPropTypes = PropTypes.arrayOf(
 
 DisplayMenu.propTypes = {
   data: dataPropTypes.isRequired,
-};
-
-DisplaySideBar.propTypes = {
-  data: dataPropTypes.isRequired,
-  url: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
 };
 
 export default DisplayMenu;

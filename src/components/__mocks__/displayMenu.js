@@ -20,18 +20,15 @@ export default [
       </ul>
     ),
     path: '/main',
-    mainContent: <div>{displayMenuDummyContent1}</div>,
   },
   {
     name: 'Item 2',
     icon: null,
     itemContent: <div>{displayMenuDummyLeft2}</div>,
     path: '/item2',
-    mainContent: <div>{displayMenuDummyContent2}</div>,
   },
   {
     name: 'Item 3',
     path: '/item3',
-    mainContent: <div>Page 3 main content</div>,
   },
 ];

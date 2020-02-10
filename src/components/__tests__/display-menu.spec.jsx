@@ -6,8 +6,6 @@ import DisplayMenu from '../display-menu';
 import displayMenuData, {
   displayMenuDummyLeft1,
   displayMenuDummyLeft2,
-  displayMenuDummyContent2,
-  displayMenuDummyContent1,
 } from '../__mocks__/displayMenu';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
@@ -21,17 +19,6 @@ describe('Display menu component', () => {
   test('should render', () => {
     const { asFragment } = rendered;
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  test('should toggle main content', async () => {
-    const { getByText, queryByText } = rendered;
-    expect(getByText(displayMenuDummyContent1)).toBeTruthy();
-    expect(queryByText(displayMenuDummyContent2)).toBeNull();
-    fireEvent.click(getByText(displayMenuData[1].name));
-    const newContent2 = await waitForElement(() =>
-      getByText(displayMenuDummyContent2)
-    );
-    expect(newContent2).toBeTruthy();
   });
 
   test('should toggle item content', async () => {

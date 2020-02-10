@@ -2,96 +2,78 @@
 
 exports[`Display menu component should render 1`] = `
 <DocumentFragment>
-  <section
-    class="sidebar-layout false"
-    data-layout="left-sidebar-layout"
+  <ul
+    class="display-menu"
   >
-    <section
-      class="sidebar-layout__sidebar"
+    <ul
+      class="no-bullet"
     >
-      <ul
-        class="display-menu"
-      >
-        <ul
-          class="no-bullet"
-        >
-          <li>
-            <h5>
-              <a
-                aria-current="page"
-                class="display-menu__item_title display-menu__item_title--active"
-                href="///main"
-              >
-                <span
-                  class="display-menu__item_icon"
-                >
-                  <test-file-stub />
-                </span>
-                Item 1
-              </a>
-            </h5>
-            <div
-              class="display-menu__item_content"
+      <li>
+        <h5>
+          <a
+            aria-current="page"
+            class="display-menu__item_title display-menu__item_title--active"
+            href="///main"
+          >
+            <span
+              class="display-menu__item_icon"
             >
-              <ul
-                class="no-bullet"
-              >
-                <li>
-                  Something
-                </li>
-                <li>
-                  Something
-                </li>
-                <li>
-                  Something
-                </li>
-                <li>
-                  Something
-                </li>
-                <li>
-                  Something
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <h5>
-              <a
-                class="display-menu__item_title"
-                href="///item2"
-              >
-                <span
-                  class="display-menu__item_icon"
-                />
-                Item 2
-              </a>
-            </h5>
-          </li>
-          <li>
-            <h5>
-              <a
-                class="display-menu__item_title"
-                href="///item3"
-              >
-                <span
-                  class="display-menu__item_icon"
-                />
-                Item 3
-              </a>
-            </h5>
-          </li>
-        </ul>
-      </ul>
-    </section>
-    <section
-      class="sidebar-layout__content"
-    >
-      <section>
-        <div>
-          Page 1 main content
+              <test-file-stub />
+            </span>
+            Item 1
+          </a>
+        </h5>
+        <div
+          class="display-menu__item_content"
+        >
+          <ul
+            class="no-bullet"
+          >
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+            <li>
+              Something
+            </li>
+          </ul>
         </div>
-      </section>
-    </section>
-  </section>
+      </li>
+      <li>
+        <h5>
+          <a
+            class="display-menu__item_title"
+            href="///item2"
+          >
+            <span
+              class="display-menu__item_icon"
+            />
+            Item 2
+          </a>
+        </h5>
+      </li>
+      <li>
+        <h5>
+          <a
+            class="display-menu__item_title"
+            href="///item3"
+          >
+            <span
+              class="display-menu__item_icon"
+            />
+            Item 3
+          </a>
+        </h5>
+      </li>
+    </ul>
+  </ul>
 </DocumentFragment>
 `;
