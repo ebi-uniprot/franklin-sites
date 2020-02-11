@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, fireEvent, waitForElement } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { fireEvent, waitForElement } from '@testing-library/react';
 import Publication from '../publication';
 import publicationData from '../__mocks__/publications';
+import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 let rendered;
 
@@ -18,18 +18,16 @@ describe('Publication component', () => {
       statistics,
     } = publicationData;
 
-    rendered = render(
-      <Router>
-        <Publication
-          title={title}
-          authors={authors}
-          abstract={abstract}
-          infoData={infoData}
-          journalInfo={journalInfo}
-          pubmedId={pubmedId}
-          statistics={statistics}
-        />
-      </Router>
+    rendered = renderWithRouter(
+      <Publication
+        title={title}
+        authors={authors}
+        abstract={abstract}
+        infoData={infoData}
+        journalInfo={journalInfo}
+        pubmedId={pubmedId}
+        statistics={statistics}
+      />
     );
   });
 

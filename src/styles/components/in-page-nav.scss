@@ -12,10 +12,6 @@
     margin-bottom: $global-margin;
   }
 
-  &--sticky {
-    position: fixed;
-  }
-
   &--active a {
     color: $colour-sapphire-blue;
     font-weight: 700;

@@ -32,6 +32,7 @@ export { default as ModalBackdrop } from './modal-backdrop';
 export { default as useModal } from '../hooks/modal';
 export { default as ButtonModal } from './button-modal';
 export { default as Publication } from './publication';
+export { default as DisplayMenu } from './display-menu';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
