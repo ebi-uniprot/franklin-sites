@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
@@ -46,7 +47,7 @@ export const card = () => (
 export const cardWithLinks = () => (
   <Card
     title="Title"
-    subtitle={<a to="/#">APOE_HUMAN - P02649</a>}
+    subtitle={<Link to="/#">APOE_HUMAN - P02649</Link>}
     links={links}
   >
     {getLipsumSentences()}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import Card from '../card';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
@@ -39,11 +40,14 @@ describe('Card component', () => {
   });
 
   test('should render card with onclick', () => {
-    const { asFragment } = renderWithRouter(
-      <Card title="Title" subtitle="Subtitle" onClick={() => {}}>
+    const onClickMock = jest.fn();
+    const { getByRole, asFragment } = renderWithRouter(
+      <Card title="Title" subtitle="Subtitle" onClick={onClickMock}>
         <span>Some content</span>
       </Card>
     );
+    fireEvent.click(getByRole('button'));
+    expect(onClickMock).toHaveBeenCalled();
     expect(asFragment()).toMatchSnapshot();
   });
 });

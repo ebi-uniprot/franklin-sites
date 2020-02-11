@@ -11,11 +11,10 @@ const DisplayMenu = ({ data }) => {
       <ul className="no-bullet">
         {data.map(displayItem => (
           <li key={displayItem.name}>
-            <h5>
+            <h5 className="display-menu__item_title">
               <NavLink
                 to={`${url}/${displayItem.path}`}
                 activeClassName="display-menu__item_title--active"
-                className="display-menu__item_title"
               >
                 <span className="display-menu__item_icon">
                   {displayItem.icon && displayItem.icon}
