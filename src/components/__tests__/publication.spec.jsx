@@ -47,7 +47,7 @@ describe('Publication component', () => {
   test('should expand abstract', async () => {
     const { queryByText, getByText } = rendered;
     expect(queryByText(/Captain Fitzroy/)).toBeNull();
-    fireEvent.click(getByText('Show abstract'));
+    fireEvent.click(getByText('View abstract [...]'));
     const abstract = await waitForElement(() => queryByText(/Captain Fitzroy/));
     expect(abstract).toBeTruthy();
   });

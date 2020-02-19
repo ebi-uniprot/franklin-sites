@@ -51,3 +51,8 @@ export { default as ConfigureIcon } from '../svg/cog.svg';
 export { default as SearchIcon } from '../svg/search.svg';
 export { default as CloseIcon } from '../svg/times.svg';
 export { default as EditIcon } from '../svg/pen.svg';
+export { default as PublicationIcon } from '../svg/publication.svg';
+export { default as CitedIcon } from '../svg/cited.svg';
+export { default as CitedSpeechIcon } from '../svg/cited-speech.svg';
+export { default as ComputerMappedIcon } from '../svg/computer-mapped.svg';
+export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';

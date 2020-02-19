@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import InfoList from './info-list';
+import { InfoList } from './index';
 import Bubble from './bubble';
+import PublicationIcon from '../svg/publication.svg';
+import ComputerMappedIcon from '../svg/computer-mapped.svg';
+import CitedIcon from '../svg/cited.svg';
 import '../styles/components/publication.scss';
 
 const Authors = ({ authors, limit }) => {
@@ -59,7 +62,7 @@ const Abstract = ({ abstract }) => {
           type="button"
           onClick={() => setOpen(true)}
         >
-          Show abstract
+          View abstract [...]
         </button>
       )}
     </section>
@@ -83,10 +86,48 @@ const JournalInfo = ({ journalInfo }) => {
 };
 
 const Statistics = ({ statistics }) => {
+  const {
+    reviewedProteinCount,
+    unreviewedProteinCount,
+    mappedProteinCount,
+  } = statistics;
+  const citedCount = reviewedProteinCount + unreviewedProteinCount;
   return (
     <section className="publication__statistics">
-      <div>Cited in other entries:</div>
-      <Bubble colourClass="colour-sea-blue" size="medium" value={statistics} />
+      {mappedProteinCount > 0 && (
+        <section className="publication__statistics__item">
+          <Link to="/">
+            <section>
+              <small>Mapped to</small>
+            </section>
+            <section className="publication__statistics__bubble">
+              <Bubble
+                colourClass="colour-pastel-blue"
+                size="small"
+                value={mappedProteinCount}
+              />
+              <ComputerMappedIcon width={15} height={15} />
+            </section>
+          </Link>
+        </section>
+      )}
+      {citedCount && (
+        <section className="publication__statistics__item">
+          <Link to="/">
+            <section>
+              <small>Cited in</small>
+            </section>
+            <section className="publication__statistics__bubble">
+              <Bubble
+                colourClass="colour-pastel-blue"
+                size="small"
+                value={citedCount}
+              />
+              <CitedIcon width={15} height={15} />
+            </section>
+          </Link>
+        </section>
+      )}
     </section>
   );
 };
@@ -103,46 +144,49 @@ const Publication = ({
   <section className="publication">
     <h4>{title}</h4>
     {authors && <Authors authors={authors} />}
+    {abstract && <Abstract abstract={abstract} />}
     <section className="publication__columns">
       <section className="publication__columns__main">
-        {abstract && <Abstract abstract={abstract} />}
         {infoData && <InfoList infoData={infoData} />}
       </section>
       <section className="publication__columns__side">
-        <ul className="no-bullet">
-          {journalInfo && (
-            <li>
-              <JournalInfo journalInfo={journalInfo} />
-            </li>
-          )}
-          {pubmedId && (
-            <Fragment>
+        <section className="publication__columns__side__item">
+          <PublicationIcon width="1.875rem" height="2rem" />
+          <ul className="no-bullet">
+            {pubmedId && (
+              <Fragment>
+                <li>
+                  <a
+                    href={`//www.ncbi.nlm.nih.gov/pubmed/${pubmedId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    PubMed
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`//europepmc.org/article/MED/${pubmedId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Europe PMC
+                  </a>
+                </li>
+              </Fragment>
+            )}
+            {journalInfo && (
               <li>
-                <a
-                  href={`//www.ncbi.nlm.nih.gov/pubmed/${pubmedId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  PubMed
-                </a>
+                <small>
+                  <JournalInfo journalInfo={journalInfo} />
+                </small>
               </li>
-              <li>
-                <a
-                  href={`//europepmc.org/article/MED/${pubmedId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Europe PMC
-                </a>
-              </li>
-            </Fragment>
-          )}
-          {statistics > 0 && (
-            <li>
-              <Statistics statistics={statistics} />
-            </li>
-          )}
-        </ul>
+            )}
+          </ul>
+        </section>
+        <section className="publication__columns__side__item">
+          {statistics && <Statistics statistics={statistics} />}
+        </section>
       </section>
     </section>
   </section>
@@ -173,7 +217,11 @@ JournalInfo.propTypes = {
 };
 
 Statistics.propTypes = {
-  statistics: PropTypes.number.isRequired,
+  statistics: PropTypes.shape({
+    reviewedProteinCount: PropTypes.number,
+    unreviewedProteinCount: PropTypes.number,
+    mappedProteinCount: PropTypes.number,
+  }).isRequired,
 };
 
 Publication.propTypes = {
@@ -209,7 +257,7 @@ Publication.propTypes = {
   /**
    * Number of other entries this publication is cited in
    */
-  statistics: PropTypes.number,
+  statistics: Statistics.propTypes.statistics,
 };
 
 Publication.defaultProps = {
@@ -218,7 +266,7 @@ Publication.defaultProps = {
   infoData: null,
   journalInfo: null,
   pubmedId: null,
-  statistics: 0,
+  statistics: {},
 };
 
 export default Publication;
