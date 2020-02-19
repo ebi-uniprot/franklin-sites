@@ -2,7 +2,11 @@ import React from 'react';
 
 export default {
   pubmedId: 123456,
-  statistics: 1234,
+  statistics: {
+    reviewedProteinCount: 1,
+    unreviewedProteinCount: 0,
+    mappedProteinCount: 3,
+  },
   title: 'The Zoology of the Voyage of H.M.S. Beagle.',
   authors: [
     'Darwin C.',

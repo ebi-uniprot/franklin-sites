@@ -1,6 +1,9 @@
+@import '../colours';
+@import '../settings';
+
 .publication {
   &__authors {
-    margin-bottom: 1rem;
+    margin-bottom: $global-margin;
     .button.tertiary {
       margin: 0;
       padding: 0 0.5rem;
@@ -9,11 +12,31 @@
   &__columns {
     display: flex;
     &__main {
-      flex-grow: 0;
-      margin-right: 1rem;
+      flex: 1.5;
+      margin-right: $global-margin;
     }
     &__side {
-      flex: 0 0 20vw;
+      flex: 1;
+      &__item {
+        border-left: 0.125rem solid $colour-vivid-cerulean;
+        padding-left: 0.7rem;
+        a {
+          color: $colour-dark-imperial-blue;
+        }
+        svg {
+          stroke: $colour-dark-imperial-blue;
+          fill: $colour-dark-imperial-blue;
+        }
+      }
     }
+  }
+  &__statistics {
+    display: flex;
+    &__item {
+      margin-right: $global-margin;
+    }
+  }
+  .info-list {
+    margin-top: 0;
   }
 }
