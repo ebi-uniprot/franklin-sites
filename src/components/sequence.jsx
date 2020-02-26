@@ -2,12 +2,38 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import DownloadIcon from '../svg/download.svg';
+import BasketIcon from '../svg/basket.svg';
 import SequenceChunk from './sequence-chunk';
 
 import aminoAcidsProps from './data/amino-acid-properties.json';
 
 import '../styles/components/sequence.scss';
 import DropdownButton from './dropdown-button';
+
+const expasyPrefixUrl = '//web.expasy.org/cgi-bin/';
+const sequenceTools = [
+  {
+    name: 'ProtParam',
+    url: '/protparam/protparam?',
+  },
+  {
+    name: 'ProtScale',
+    url: '/protscale/protscale.pl?',
+  },
+  {
+    name: 'Compute pI/Mw',
+    url: '/compute_pi/pi_tool?',
+  },
+  {
+    name: 'PeptideMass',
+    url: '/peptide_mass/peptide-mass.pl?',
+  },
+  {
+    name: 'PeptideCutter',
+    url: '/peptide_cutter/peptidecutter.pl?',
+  },
+];
 
 class Sequence extends Component {
   constructor(props) {
@@ -42,7 +68,7 @@ class Sequence extends Component {
     return chunks;
   };
 
-  handleToggleHighlight = (aaProp) => {
+  handleToggleHighlight = aaProp => {
     const { highlights } = this.state;
     let highlightsToUpdate = [...highlights];
     if (highlightsToUpdate.includes(aaProp)) {
@@ -62,7 +88,7 @@ class Sequence extends Component {
     return (
       <DropdownButton label="Highlight">
         <div className="dropdown-menu__content">
-          {aminoAcidsProps.map((aaProp) => {
+          {aminoAcidsProps.map(aaProp => {
             const inputId = `${id || v1()}-${aaProp.name}`;
             return (
               <label key={aaProp.name} htmlFor={inputId}>
@@ -83,7 +109,7 @@ class Sequence extends Component {
   };
 
   render() {
-    const { sequence, chunkSize } = this.props;
+    const { sequence, chunkSize, accession } = this.props;
     const { textSize, copied } = this.state;
     const chunks = this.getChunks(sequence, chunkSize, textSize);
     let content;
@@ -93,7 +119,7 @@ class Sequence extends Component {
       content = (
         <svg>
           <text
-            ref={(t) => {
+            ref={t => {
               this.text = t;
             }}
           >
@@ -116,9 +142,38 @@ class Sequence extends Component {
     return (
       <Fragment>
         <div className="action-bar">
+          <DropdownButton label="Tools">
+            <ul className="no-bullet">
+              <li>
+                <a href={`/blast/accession/${accession}`}>BLAST</a>
+              </li>
+              {sequenceTools.map(sequenceTool => (
+                <li>
+                  <a
+                    href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {sequenceTool.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </DropdownButton>
+          <button type="button" className="button">
+            <DownloadIcon />
+            Download
+          </button>
+          <button type="button" className="button">
+            <BasketIcon />
+            Add
+          </button>
           {this.getSelectors()}
-          <CopyToClipboard text={sequence} onCopy={() => this.setState({ copied: true })}>
-            <button type="button" className="button sequence__copy-button">
+          <CopyToClipboard
+            text={sequence}
+            onCopy={() => this.setState({ copied: true })}
+          >
+            <button type="button" className="button">
               {copied ? 'Copied' : 'Copy sequence'}
             </button>
           </CopyToClipboard>
@@ -137,9 +192,16 @@ Sequence.propTypes = {
    */
   sequence: PropTypes.string.isRequired,
   /**
+   * The accession corresponding to the sequence
+   */
+  accession: PropTypes.string.isRequired,
+  /**
    * The width and height of a letter. Will be calculated if left blank
    */
-  textSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }),
+  textSize: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
   /**
    * The number of items to include in a sequence chunk. Default 10
    */
