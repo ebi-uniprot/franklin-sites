@@ -10,7 +10,7 @@ describe('Sequence component', () => {
     rendered = render(
       <Sequence
         sequence={sequenceData}
-        textSize={{ width: 10, height: 10 }}
+        initialTextSize={{ width: 10, height: 10 }}
         id="isoformId-1"
       />
     );

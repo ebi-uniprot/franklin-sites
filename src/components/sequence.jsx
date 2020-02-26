@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -35,23 +35,22 @@ const sequenceTools = [
   },
 ];
 
-class Sequence extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { textSize: props.textSize, highlights: [], copied: false };
-  }
+const Sequence = ({ id, sequence, chunkSize, accession, initialTextSize }) => {
+  const [textSize, setTextSize] = useState(initialTextSize);
+  const [highlights, setHighlights] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const text = useRef(null);
 
-  componentDidMount() {
-    if (!this.text) {
+  useEffect(() => {
+    if (!text || initialTextSize) {
       return;
     }
     // Measure height and width of the dummy element
-    const box = this.text.getBBox();
-    this.setState({ textSize: { width: box.width, height: box.height } });
-  }
+    const box = text.current.getBBox();
+    setTextSize({ width: box.width, height: box.height });
+  }, [initialTextSize]);
 
-  getChunks = (str, size) => {
-    const { textSize, highlights } = this.state;
+  const getChunks = (str, size) => {
     const numChunks = Math.ceil(str.length / size);
     const chunks = new Array(numChunks);
     for (let i = 0, chunkStart = 0; i < numChunks; i += 1, chunkStart += size) {
@@ -68,23 +67,17 @@ class Sequence extends Component {
     return chunks;
   };
 
-  handleToggleHighlight = aaProp => {
-    const { highlights } = this.state;
+  const handleToggleHighlight = aaProp => {
     let highlightsToUpdate = [...highlights];
     if (highlightsToUpdate.includes(aaProp)) {
       highlightsToUpdate = highlightsToUpdate.filter(h => h !== aaProp);
     } else {
       highlightsToUpdate.push(aaProp);
     }
-    this.setState({
-      highlights: highlightsToUpdate,
-    });
+    setHighlights(highlightsToUpdate);
   };
 
-  getSelectors = () => {
-    const { highlights } = this.state;
-    const { id } = this.props;
-
+  const getSelectors = () => {
     return (
       <DropdownButton label="Highlight">
         <div className="dropdown-menu__content">
@@ -96,7 +89,7 @@ class Sequence extends Component {
                   type="checkbox"
                   id={inputId}
                   data-testid="sequence-highlight-checkbox"
-                  onChange={() => this.handleToggleHighlight(aaProp)}
+                  onChange={() => handleToggleHighlight(aaProp)}
                   checked={highlights.includes(aaProp)}
                 />
                 {aaProp.name}
@@ -107,84 +100,68 @@ class Sequence extends Component {
       </DropdownButton>
     );
   };
+  const chunks = getChunks(sequence, chunkSize, textSize);
 
-  render() {
-    const { sequence, chunkSize, accession } = this.props;
-    const { textSize, copied } = this.state;
-    const chunks = this.getChunks(sequence, chunkSize, textSize);
-    let content;
-    // If textSize was not provided, add a text element so it can be measured
-    // in componentDidMount
-    if (textSize === null) {
-      content = (
-        <svg>
-          <text
-            ref={t => {
-              this.text = t;
-            }}
-          >
-            M
-          </text>
-        </svg>
-      );
-    } else {
-      content = (
-        <Fragment>
-          {chunks.map(chunk => (
-            <span className="sequence__sequence__chunk" key={`chunk_${v1()}`}>
-              {chunk}
-            </span>
-          ))}
-        </Fragment>
-      );
-    }
-
-    return (
-      <Fragment>
-        <div className="action-bar">
-          <DropdownButton label="Tools">
-            <ul className="no-bullet">
-              <li>
-                <a href={`/blast/accession/${accession}`}>BLAST</a>
+  return (
+    <Fragment>
+      <div className="action-bar">
+        <DropdownButton label="Tools">
+          <ul className="no-bullet">
+            <li>
+              <a href={`/blast/accession/${accession}`}>BLAST</a>
+            </li>
+            {sequenceTools.map(sequenceTool => (
+              <li key={sequenceTool.name}>
+                <a
+                  href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {sequenceTool.name}
+                </a>
               </li>
-              {sequenceTools.map(sequenceTool => (
-                <li>
-                  <a
-                    href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {sequenceTool.name}
-                  </a>
-                </li>
+            ))}
+          </ul>
+        </DropdownButton>
+        <button type="button" className="button">
+          <DownloadIcon />
+          Download
+        </button>
+        <button type="button" className="button">
+          <BasketIcon />
+          Add
+        </button>
+        {getSelectors()}
+        <CopyToClipboard text={sequence} onCopy={() => setCopied(true)}>
+          <button type="button" className="button">
+            {copied ? 'Copied' : 'Copy sequence'}
+          </button>
+        </CopyToClipboard>
+      </div>
+      <div className="sequence">
+        <div className="sequence__sequence">
+          {/* If textSize was not provided, add a text element so it can be measured */}
+          {textSize === null ? (
+            <svg>
+              <text ref={text}>M</text>
+            </svg>
+          ) : (
+            <Fragment>
+              {chunks.map(chunk => (
+                <span
+                  className="sequence__sequence__chunk"
+                  key={`chunk_${v1()}`}
+                >
+                  {chunk}
+                </span>
               ))}
-            </ul>
-          </DropdownButton>
-          <button type="button" className="button">
-            <DownloadIcon />
-            Download
-          </button>
-          <button type="button" className="button">
-            <BasketIcon />
-            Add
-          </button>
-          {this.getSelectors()}
-          <CopyToClipboard
-            text={sequence}
-            onCopy={() => this.setState({ copied: true })}
-          >
-            <button type="button" className="button">
-              {copied ? 'Copied' : 'Copy sequence'}
-            </button>
-          </CopyToClipboard>
+            </Fragment>
+          )}
         </div>
-        <div className="sequence">
-          <div className="sequence__sequence">{content}</div>
-        </div>
-      </Fragment>
-    );
-  }
-}
+      </div>
+    </Fragment>
+  );
+};
 
 Sequence.propTypes = {
   /**
@@ -198,7 +175,7 @@ Sequence.propTypes = {
   /**
    * The width and height of a letter. Will be calculated if left blank
    */
-  textSize: PropTypes.shape({
+  initialTextSize: PropTypes.shape({
     width: PropTypes.number,
     height: PropTypes.number,
   }),
@@ -214,7 +191,7 @@ Sequence.propTypes = {
 
 Sequence.defaultProps = {
   chunkSize: 10,
-  textSize: null,
+  initialTextSize: null,
   id: '',
 };
 
