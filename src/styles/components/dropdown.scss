@@ -6,12 +6,10 @@
 .dropdown-container {
   position: relative;
   display: inline-block;
-  & > .button {
-    margin: 0;
-  }
   button {
     outline: 0;
     white-space: nowrap;
+    margin-bottom: 0;
   }
   &__trigger {
     cursor: pointer;

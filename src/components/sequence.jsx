@@ -104,7 +104,7 @@ const Sequence = ({ id, sequence, chunkSize, accession, initialTextSize }) => {
 
   return (
     <Fragment>
-      <div className="action-bar">
+      <div className="action-bar button-group">
         <DropdownButton label="Tools">
           <ul className="no-bullet">
             <li>
