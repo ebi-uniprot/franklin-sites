@@ -35,7 +35,14 @@ const sequenceTools = [
   },
 ];
 
-const Sequence = ({ id, sequence, chunkSize, accession, initialTextSize }) => {
+const Sequence = ({
+  id,
+  sequence,
+  chunkSize,
+  accession,
+  initialTextSize,
+  blastPath = '/blast/accession/',
+}) => {
   const [textSize, setTextSize] = useState(initialTextSize);
   const [highlights, setHighlights] = useState([]);
   const [copied, setCopied] = useState(false);
@@ -46,8 +53,8 @@ const Sequence = ({ id, sequence, chunkSize, accession, initialTextSize }) => {
       return;
     }
     // Measure height and width of the dummy element
-    const box = text.current.getBBox();
-    setTextSize({ width: box.width, height: box.height });
+    const { width, height } = text.current.getBBox();
+    setTextSize({ width, height });
   }, [initialTextSize]);
 
   const getChunks = (str, size) => {
@@ -108,7 +115,7 @@ const Sequence = ({ id, sequence, chunkSize, accession, initialTextSize }) => {
         <DropdownButton label="Tools">
           <ul className="no-bullet">
             <li>
-              <a href={`/blast/accession/${accession}`}>BLAST</a>
+              <a href={`${blastPath}${accession}`}>BLAST</a>
             </li>
             {sequenceTools.map(sequenceTool => (
               <li key={sequenceTool.name}>
@@ -187,12 +194,18 @@ Sequence.propTypes = {
    * An ID used to form the highlight options IDs. Default uuid/v1
    */
   id: PropTypes.string,
+  /**
+   * Path to the BLAST service you would like to use. Accession will be
+   * appended to the end. Uses UniProt by default
+   */
+  blastPath: PropTypes.string,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
   initialTextSize: null,
   id: '',
+  blastPath: '/blast/accession/',
 };
 
 export default Sequence;
