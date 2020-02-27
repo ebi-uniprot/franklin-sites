@@ -3,8 +3,92 @@
 exports[`Sequence component should render 1`] = `
 <DocumentFragment>
   <div
-    class="action-bar"
+    class="action-bar button-group"
   >
+    <div
+      class="dropdown-container"
+    >
+      <button
+        class="button dropdown"
+        type="button"
+      >
+        Tools
+      </button>
+      <div
+        class="dropdown-menu"
+      >
+        <ul
+          class="no-bullet"
+        >
+          <li>
+            <a
+              href="/blast/accession/undefined"
+            >
+              BLAST
+            </a>
+          </li>
+          <li>
+            <a
+              href="//web.expasy.org/cgi-bin//protparam/protparam?undefined"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              ProtParam
+            </a>
+          </li>
+          <li>
+            <a
+              href="//web.expasy.org/cgi-bin//protscale/protscale.pl?undefined"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              ProtScale
+            </a>
+          </li>
+          <li>
+            <a
+              href="//web.expasy.org/cgi-bin//compute_pi/pi_tool?undefined"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Compute pI/Mw
+            </a>
+          </li>
+          <li>
+            <a
+              href="//web.expasy.org/cgi-bin//peptide_mass/peptide-mass.pl?undefined"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              PeptideMass
+            </a>
+          </li>
+          <li>
+            <a
+              href="//web.expasy.org/cgi-bin//peptide_cutter/peptidecutter.pl?undefined"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              PeptideCutter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button
+      class="button"
+      type="button"
+    >
+      <test-file-stub />
+      Download
+    </button>
+    <button
+      class="button"
+      type="button"
+    >
+      <test-file-stub />
+      Add
+    </button>
     <div
       class="dropdown-container"
     >
@@ -44,7 +128,7 @@ exports[`Sequence component should render 1`] = `
       </div>
     </div>
     <button
-      class="button sequence__copy-button"
+      class="button"
       type="button"
     >
       Copy sequence

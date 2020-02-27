@@ -1,7 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import DownloadIcon from '../svg/download.svg';
+import BasketIcon from '../svg/basket.svg';
 import SequenceChunk from './sequence-chunk';
 
 import aminoAcidsProps from './data/amino-acid-properties.json';
@@ -9,23 +11,53 @@ import aminoAcidsProps from './data/amino-acid-properties.json';
 import '../styles/components/sequence.scss';
 import DropdownButton from './dropdown-button';
 
-class Sequence extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { textSize: props.textSize, highlights: [], copied: false };
-  }
+const expasyPrefixUrl = '//web.expasy.org/cgi-bin/';
+const sequenceTools = [
+  {
+    name: 'ProtParam',
+    url: '/protparam/protparam?',
+  },
+  {
+    name: 'ProtScale',
+    url: '/protscale/protscale.pl?',
+  },
+  {
+    name: 'Compute pI/Mw',
+    url: '/compute_pi/pi_tool?',
+  },
+  {
+    name: 'PeptideMass',
+    url: '/peptide_mass/peptide-mass.pl?',
+  },
+  {
+    name: 'PeptideCutter',
+    url: '/peptide_cutter/peptidecutter.pl?',
+  },
+];
 
-  componentDidMount() {
-    if (!this.text) {
+const Sequence = ({
+  id,
+  sequence,
+  chunkSize,
+  accession,
+  initialTextSize,
+  blastPath = '/blast/accession/',
+}) => {
+  const [textSize, setTextSize] = useState(initialTextSize);
+  const [highlights, setHighlights] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const text = useRef(null);
+
+  useEffect(() => {
+    if (!text || initialTextSize) {
       return;
     }
     // Measure height and width of the dummy element
-    const box = this.text.getBBox();
-    this.setState({ textSize: { width: box.width, height: box.height } });
-  }
+    const { width, height } = text.current.getBBox();
+    setTextSize({ width, height });
+  }, [initialTextSize]);
 
-  getChunks = (str, size) => {
-    const { textSize, highlights } = this.state;
+  const getChunks = (str, size) => {
     const numChunks = Math.ceil(str.length / size);
     const chunks = new Array(numChunks);
     for (let i = 0, chunkStart = 0; i < numChunks; i += 1, chunkStart += size) {
@@ -42,27 +74,21 @@ class Sequence extends Component {
     return chunks;
   };
 
-  handleToggleHighlight = (aaProp) => {
-    const { highlights } = this.state;
+  const handleToggleHighlight = aaProp => {
     let highlightsToUpdate = [...highlights];
     if (highlightsToUpdate.includes(aaProp)) {
       highlightsToUpdate = highlightsToUpdate.filter(h => h !== aaProp);
     } else {
       highlightsToUpdate.push(aaProp);
     }
-    this.setState({
-      highlights: highlightsToUpdate,
-    });
+    setHighlights(highlightsToUpdate);
   };
 
-  getSelectors = () => {
-    const { highlights } = this.state;
-    const { id } = this.props;
-
+  const getSelectors = () => {
     return (
       <DropdownButton label="Highlight">
         <div className="dropdown-menu__content">
-          {aminoAcidsProps.map((aaProp) => {
+          {aminoAcidsProps.map(aaProp => {
             const inputId = `${id || v1()}-${aaProp.name}`;
             return (
               <label key={aaProp.name} htmlFor={inputId}>
@@ -70,7 +96,7 @@ class Sequence extends Component {
                   type="checkbox"
                   id={inputId}
                   data-testid="sequence-highlight-checkbox"
-                  onChange={() => this.handleToggleHighlight(aaProp)}
+                  onChange={() => handleToggleHighlight(aaProp)}
                   checked={highlights.includes(aaProp)}
                 />
                 {aaProp.name}
@@ -81,55 +107,68 @@ class Sequence extends Component {
       </DropdownButton>
     );
   };
+  const chunks = getChunks(sequence, chunkSize, textSize);
 
-  render() {
-    const { sequence, chunkSize } = this.props;
-    const { textSize, copied } = this.state;
-    const chunks = this.getChunks(sequence, chunkSize, textSize);
-    let content;
-    // If textSize was not provided, add a text element so it can be measured
-    // in componentDidMount
-    if (textSize === null) {
-      content = (
-        <svg>
-          <text
-            ref={(t) => {
-              this.text = t;
-            }}
-          >
-            M
-          </text>
-        </svg>
-      );
-    } else {
-      content = (
-        <Fragment>
-          {chunks.map(chunk => (
-            <span className="sequence__sequence__chunk" key={`chunk_${v1()}`}>
-              {chunk}
-            </span>
-          ))}
-        </Fragment>
-      );
-    }
-
-    return (
-      <Fragment>
-        <div className="action-bar">
-          {this.getSelectors()}
-          <CopyToClipboard text={sequence} onCopy={() => this.setState({ copied: true })}>
-            <button type="button" className="button sequence__copy-button">
-              {copied ? 'Copied' : 'Copy sequence'}
-            </button>
-          </CopyToClipboard>
+  return (
+    <Fragment>
+      <div className="action-bar button-group">
+        <DropdownButton label="Tools">
+          <ul className="no-bullet">
+            <li>
+              <a href={`${blastPath}${accession}`}>BLAST</a>
+            </li>
+            {sequenceTools.map(sequenceTool => (
+              <li key={sequenceTool.name}>
+                <a
+                  href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {sequenceTool.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </DropdownButton>
+        <button type="button" className="button">
+          <DownloadIcon />
+          Download
+        </button>
+        <button type="button" className="button">
+          <BasketIcon />
+          Add
+        </button>
+        {getSelectors()}
+        <CopyToClipboard text={sequence} onCopy={() => setCopied(true)}>
+          <button type="button" className="button">
+            {copied ? 'Copied' : 'Copy sequence'}
+          </button>
+        </CopyToClipboard>
+      </div>
+      <div className="sequence">
+        <div className="sequence__sequence">
+          {/* If textSize was not provided, add a text element so it can be measured */}
+          {textSize === null ? (
+            <svg>
+              <text ref={text}>M</text>
+            </svg>
+          ) : (
+            <Fragment>
+              {chunks.map(chunk => (
+                <span
+                  className="sequence__sequence__chunk"
+                  key={`chunk_${v1()}`}
+                >
+                  {chunk}
+                </span>
+              ))}
+            </Fragment>
+          )}
         </div>
-        <div className="sequence">
-          <div className="sequence__sequence">{content}</div>
-        </div>
-      </Fragment>
-    );
-  }
-}
+      </div>
+    </Fragment>
+  );
+};
 
 Sequence.propTypes = {
   /**
@@ -137,9 +176,16 @@ Sequence.propTypes = {
    */
   sequence: PropTypes.string.isRequired,
   /**
+   * The accession corresponding to the sequence
+   */
+  accession: PropTypes.string.isRequired,
+  /**
    * The width and height of a letter. Will be calculated if left blank
    */
-  textSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }),
+  initialTextSize: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
   /**
    * The number of items to include in a sequence chunk. Default 10
    */
@@ -148,12 +194,18 @@ Sequence.propTypes = {
    * An ID used to form the highlight options IDs. Default uuid/v1
    */
   id: PropTypes.string,
+  /**
+   * Path to the BLAST service you would like to use. Accession will be
+   * appended to the end. Uses UniProt by default
+   */
+  blastPath: PropTypes.string,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
-  textSize: null,
+  initialTextSize: null,
   id: '',
+  blastPath: '/blast/accession/',
 };
 
 export default Sequence;

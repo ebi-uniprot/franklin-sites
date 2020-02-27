@@ -13,5 +13,5 @@ export default {
 };
 
 export const sequence = () => (
-  <Sequence sequence={sequenceData} id="isoform_1" />
+  <Sequence sequence={sequenceData} id="isoform_1" accession="P05067" />
 );
