@@ -5,7 +5,7 @@ exports[`TreeSelect component should render 1`] = `
   className="dropdown-container"
 >
   <button
-    className="button dropdown"
+    className="button dropdown "
     onClick={[Function]}
     type="button"
   >
@@ -105,7 +105,7 @@ exports[`TreeSelect component with filter should render 1`] = `
   className="dropdown-container"
 >
   <button
-    className="button dropdown"
+    className="button dropdown "
     onClick={[Function]}
     type="button"
   >

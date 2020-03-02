@@ -44,14 +44,22 @@ class DropdownButton extends Component {
   }
 
   render() {
-    const { children, label } = this.props;
+    const { children, label, className } = this.props;
     const { showMenu } = this.state;
     return (
       <div className="dropdown-container" ref={this.setContainerRef}>
-        <button type="button" className="button dropdown" onClick={() => this.toggleDropdown()}>
+        <button
+          type="button"
+          className={`button dropdown ${className}`}
+          onClick={() => this.toggleDropdown()}
+        >
           {label}
         </button>
-        <div className={showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'}>
+        <div
+          className={
+            showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'
+          }
+        >
           {children}
         </div>
       </div>
@@ -68,6 +76,14 @@ DropdownButton.propTypes = {
    * Label to be display by the button
    */
   label: PropTypes.string.isRequired,
+  /**
+   * Additional CSS classnames to apply to button (eg secondary, tertiary)
+   */
+  className: PropTypes.string,
+};
+
+DropdownButton.defaultProps = {
+  className: '',
 };
 
 export default DropdownButton;

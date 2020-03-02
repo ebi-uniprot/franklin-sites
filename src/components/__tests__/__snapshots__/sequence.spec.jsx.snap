@@ -9,7 +9,7 @@ exports[`Sequence component should render 1`] = `
       class="dropdown-container"
     >
       <button
-        class="button dropdown"
+        class="button dropdown "
         type="button"
       >
         Tools
@@ -93,7 +93,7 @@ exports[`Sequence component should render 1`] = `
       class="dropdown-container"
     >
       <button
-        class="button dropdown"
+        class="button dropdown "
         type="button"
       >
         Highlight
