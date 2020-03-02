@@ -12,6 +12,7 @@ describe('Sequence component', () => {
         sequence={sequenceData}
         initialTextSize={{ width: 10, height: 10 }}
         id="isoformId-1"
+        accession="P05067"
       />
     );
   });
