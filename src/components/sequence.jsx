@@ -35,13 +35,16 @@ const sequenceTools = [
   },
 ];
 
+const uniProtIsoformDownload = accession =>
+  `https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/${accession}.fasta`;
+
 const Sequence = ({
   id,
   sequence,
   chunkSize,
   accession,
   initialTextSize,
-  blastPath = '/blast/accession/',
+  blastPath,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
   const [highlights, setHighlights] = useState([]);
@@ -130,10 +133,16 @@ const Sequence = ({
             ))}
           </ul>
         </DropdownButton>
-        <button type="button" className="button">
+        <a
+          type="button"
+          className="button"
+          href={uniProtIsoformDownload(accession)}
+          download
+        >
           <DownloadIcon />
           Download
-        </button>
+        </a>
+
         <button type="button" className="button">
           <BasketIcon />
           Add
