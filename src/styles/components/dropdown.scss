@@ -6,15 +6,34 @@
 .dropdown-container {
   position: relative;
   display: inline-block;
+
   button {
     outline: 0;
     white-space: nowrap;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
+
+  .button {
+    &.secondary {
+      &.dropdown::after {
+        border-color: $colour-sea-blue transparent transparent;
+      }
+    }
+
+    &.tertiary {
+      &.dropdown::after {
+        border-color: $colour-dark-imperial-blue transparent transparent;
+        top: 0.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
   &__trigger {
     cursor: pointer;
     position: relative;
     padding-right: 1rem;
+
     &::after {
       border-color: $colour-sky-white transparent transparent transparent;
       border-width: 0.3rem;
@@ -28,10 +47,12 @@
       top: 50%;
       width: 0;
     }
+
     &--negative::after {
       border-color: $colour-sea-blue transparent transparent transparent;
     }
   }
+
   &--hover:hover .dropdown-menu {
     display: block;
   }
@@ -47,12 +68,14 @@
   input {
     margin: 0;
   }
+
   @include box-shadow();
   display: none;
   white-space: nowrap;
   position: absolute;
   background: #fff;
   z-index: $z-index-high;
+  margin-top: -1rem;
 
   .dropdown-menu__content {
     padding: 1rem;
@@ -68,6 +91,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
     // overflow-y: hidden;
     // height: auto !important;
     li {
@@ -75,6 +99,7 @@
       display: block;
       line-height: 1.6rem;
       background-color: $white !important;
+
       button,
       a {
         line-height: 1.6rem;
@@ -89,9 +114,11 @@
         padding-right: 1rem;
         color: $colour-yankees-blue !important;
         text-decoration: none;
+
         &:hover {
           @extend .hover;
         }
+
         &.active {
           font-weight: bold;
         }

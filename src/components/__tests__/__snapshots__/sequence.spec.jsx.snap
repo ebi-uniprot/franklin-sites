@@ -9,7 +9,7 @@ exports[`Sequence component should render 1`] = `
       class="dropdown-container"
     >
       <button
-        class="button dropdown"
+        class="button dropdown "
         type="button"
       >
         Tools
@@ -22,14 +22,14 @@ exports[`Sequence component should render 1`] = `
         >
           <li>
             <a
-              href="/blast/accession/undefined"
+              href="/blast/accession/P05067"
             >
               BLAST
             </a>
           </li>
           <li>
             <a
-              href="//web.expasy.org/cgi-bin//protparam/protparam?undefined"
+              href="//web.expasy.org/cgi-bin//protparam/protparam?P05067"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -38,7 +38,7 @@ exports[`Sequence component should render 1`] = `
           </li>
           <li>
             <a
-              href="//web.expasy.org/cgi-bin//protscale/protscale.pl?undefined"
+              href="//web.expasy.org/cgi-bin//protscale/protscale.pl?P05067"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -47,7 +47,7 @@ exports[`Sequence component should render 1`] = `
           </li>
           <li>
             <a
-              href="//web.expasy.org/cgi-bin//compute_pi/pi_tool?undefined"
+              href="//web.expasy.org/cgi-bin//compute_pi/pi_tool?P05067"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -56,7 +56,7 @@ exports[`Sequence component should render 1`] = `
           </li>
           <li>
             <a
-              href="//web.expasy.org/cgi-bin//peptide_mass/peptide-mass.pl?undefined"
+              href="//web.expasy.org/cgi-bin//peptide_mass/peptide-mass.pl?P05067"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -65,7 +65,7 @@ exports[`Sequence component should render 1`] = `
           </li>
           <li>
             <a
-              href="//web.expasy.org/cgi-bin//peptide_cutter/peptidecutter.pl?undefined"
+              href="//web.expasy.org/cgi-bin//peptide_cutter/peptidecutter.pl?P05067"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -93,7 +93,7 @@ exports[`Sequence component should render 1`] = `
       class="dropdown-container"
     >
       <button
-        class="button dropdown"
+        class="button dropdown "
         type="button"
       >
         Highlight
