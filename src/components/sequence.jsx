@@ -133,12 +133,7 @@ const Sequence = ({
             ))}
           </ul>
         </DropdownButton>
-        <a
-          type="button"
-          className="button"
-          href={uniProtIsoformDownload(accession)}
-          download
-        >
+        <a className="button" href={uniProtIsoformDownload(accession)} download>
           <DownloadIcon />
           Download
         </a>
