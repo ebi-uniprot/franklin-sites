@@ -79,7 +79,6 @@ exports[`Sequence component should render 1`] = `
       class="button"
       download=""
       href="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
-      type="button"
     >
       <test-file-stub />
       Download

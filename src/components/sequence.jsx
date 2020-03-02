@@ -35,7 +35,7 @@ const sequenceTools = [
   },
 ];
 
-const uniProtIsoformDownload = accession =>
+const uniProtSequenceDownload = accession =>
   `https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/${accession}.fasta`;
 
 const Sequence = ({
@@ -133,7 +133,11 @@ const Sequence = ({
             ))}
           </ul>
         </DropdownButton>
-        <a className="button" href={uniProtIsoformDownload(accession)} download>
+        <a
+          className="button"
+          href={uniProtSequenceDownload(accession)}
+          download
+        >
           <DownloadIcon />
           Download
         </a>
