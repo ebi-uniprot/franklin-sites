@@ -6,6 +6,7 @@ import '../styles/components/card.scss';
 
 const CardLink = ({ name, link, color }) => (
   <div className="card__link" style={color ? { borderColor: color } : {}}>
+    {'· '}
     <Link to={link}>{name}</Link>
   </div>
 );
@@ -31,10 +32,15 @@ const Card = ({
   onClick,
 }) => {
   const checkbox = (
-    <input type="checkbox" checked={selected} onChange={onSelect} />
+    <input
+      type="checkbox"
+      checked={selected}
+      onClick={e => e.stopPropagation()}
+      onChange={onSelect}
+    />
   );
   const containerAttributes = {
-    className: `card ${selected ? 'card--selected' : ''}`,
+    className: `${selected ? 'card--selected' : ''}`,
   };
   if (onClick) {
     containerAttributes.className += ' card--has-hover';
@@ -44,29 +50,31 @@ const Card = ({
     containerAttributes.tabIndex = 0;
   }
   return (
-    <div {...containerAttributes}>
-      {title && (
-        <div className="card__header">
-          {selectable && (
-            <div className="card__header__checkbox">{checkbox}</div>
+    <div className="card">
+      <section {...containerAttributes}>
+        {title && (
+          <div className="card__header">
+            {selectable && (
+              <div className="card__header__checkbox">{checkbox}</div>
+            )}
+            <h2 className="card__title">{title}</h2>
+            {subtitle && <div className="card__subtitle">{subtitle}</div>}
+          </div>
+        )}
+        <div className="card__content">
+          {selectable && !title && (
+            <div className="card__content__checkbox">{checkbox}</div>
           )}
-          <h2 className="card__title">{title}</h2>
-          {subtitle && <div className="card__subtitle">{subtitle}</div>}
+          {children}
         </div>
-      )}
+      </section>
       {links.length > 0 && (
-        <div className="card__actions">
+        <section className="card__actions">
           {links.map(l => (
             <CardLink key={l.name} {...l} />
           ))}
-        </div>
+        </section>
       )}
-      <div className="card__content">
-        {selectable && !title && (
-          <div className="card__content__checkbox">{checkbox}</div>
-        )}
-        {children}
-      </div>
     </div>
   );
 };

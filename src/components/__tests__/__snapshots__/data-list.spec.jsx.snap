@@ -9,114 +9,154 @@ exports[`DataList should render 1`] = `
       class="data-loader__scroll-container"
     >
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            0
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              0
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            1
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              1
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            2
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              2
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            3
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              3
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            4
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              4
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            5
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              5
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            6
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              6
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            7
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              7
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            8
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              8
+            </p>
+          </div>
+        </section>
       </div>
       <div
-        class="card "
+        class="card"
       >
-        <div
-          class="card__content"
+        <section
+          class=""
         >
-          <p>
-            9
-          </p>
-        </div>
+          <div
+            class="card__content"
+          >
+            <p>
+              9
+            </p>
+          </div>
+        </section>
       </div>
       <div
         class="data-loader__loading"

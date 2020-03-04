@@ -114,6 +114,7 @@
   font-size: $small-font-size;
   &:before {
     content: attr(data-name);
+    color: $colour-yankees-blue;
     margin-top: 10em;
     display: block;
     text-align: center;

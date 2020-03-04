@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { action } from '@storybook/addon-actions';
 import { Card } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
@@ -40,6 +41,24 @@ export default {
 
 export const card = () => (
   <Card title="Title" subtitle={<a to="/#">APOE_HUMAN - P02649</a>}>
+    {getLipsumSentences()}
+  </Card>
+);
+
+export const cardWithSelect = () => (
+  <Card title="Title" selectable onSelect={action('checked')} selected>
+    {getLipsumSentences()}
+  </Card>
+);
+
+export const cardWithOnClick = () => (
+  <Card
+    title="Title"
+    selectable
+    onSelect={action('checked')}
+    onClick={action('click')}
+    links={links}
+  >
     {getLipsumSentences()}
   </Card>
 );
