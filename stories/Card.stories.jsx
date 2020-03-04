@@ -45,20 +45,8 @@ export const card = () => (
   </Card>
 );
 
-export const cardWithSelect = () => (
-  <Card title="Title" selectable onSelect={action('checked')} selected>
-    {getLipsumSentences()}
-  </Card>
-);
-
 export const cardWithOnClick = () => (
-  <Card
-    title="Title"
-    selectable
-    onSelect={action('checked')}
-    onClick={action('click')}
-    links={links}
-  >
+  <Card title="Title" onClick={action('click')} links={links}>
     {getLipsumSentences()}
   </Card>
 );

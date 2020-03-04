@@ -21,27 +21,8 @@ CardLink.defaultProps = {
   color: '',
 };
 
-const Card = ({
-  title,
-  subtitle,
-  children,
-  links,
-  selectable,
-  selected,
-  onSelect,
-  onClick,
-}) => {
-  const checkbox = (
-    <input
-      type="checkbox"
-      checked={selected}
-      onClick={e => e.stopPropagation()}
-      onChange={onSelect}
-    />
-  );
-  const containerAttributes = {
-    className: `${selected ? 'card--selected' : ''}`,
-  };
+const Card = ({ title, subtitle, children, links, onClick }) => {
+  const containerAttributes = { className: '' };
   if (onClick) {
     containerAttributes.className += ' card--has-hover';
     containerAttributes.onClick = onClick;
@@ -54,19 +35,11 @@ const Card = ({
       <section {...containerAttributes}>
         {title && (
           <div className="card__header">
-            {selectable && (
-              <div className="card__header__checkbox">{checkbox}</div>
-            )}
             <h2 className="card__title">{title}</h2>
             {subtitle && <div className="card__subtitle">{subtitle}</div>}
           </div>
         )}
-        <div className="card__content">
-          {selectable && !title && (
-            <div className="card__content__checkbox">{checkbox}</div>
-          )}
-          {children}
-        </div>
+        <div className="card__content">{children}</div>
       </section>
       {links.length > 0 && (
         <section className="card__actions">
@@ -106,9 +79,6 @@ Card.propTypes = {
       color: PropTypes.string,
     })
   ),
-  selectable: PropTypes.bool,
-  selected: PropTypes.bool,
-  onSelect: PropTypes.func,
   onClick: PropTypes.func,
 };
 
@@ -116,9 +86,6 @@ Card.defaultProps = {
   title: '',
   subtitle: '',
   links: [],
-  selectable: false,
-  selected: false,
-  onSelect: null,
   onClick: null,
 };
 
