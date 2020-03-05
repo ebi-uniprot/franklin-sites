@@ -62,9 +62,9 @@ exports[`Card component should render card with links 1`] = `
     <section
       class="card__actions"
     >
-      <div
+      <span
         class="card__link"
-        style="border-color: red;"
+        style="border-color: red; border-bottom: 0.125rem solid;"
       >
         · 
         <a
@@ -72,7 +72,7 @@ exports[`Card component should render card with links 1`] = `
         >
           link
         </a>
-      </div>
+      </span>
     </section>
   </div>
 </DocumentFragment>

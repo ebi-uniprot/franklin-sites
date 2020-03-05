@@ -2,11 +2,14 @@
 @import '../colours';
 @import '../mixins';
 
+$shadow-padding: 0.125rem;
+
 .card {
-  @include box-shadow(0.125rem);
+  @include box-shadow($shadow-padding);
   background-color: $colour-sky-white;
   border-radius: 0.2rem;
-  margin: $global-margin;
+  margin: $global-margin $shadow-padding;
+  width: calc(100% - #{$global-padding});
 
   &--has-hover:hover {
     background-color: $colour-azureish-white;
@@ -39,9 +42,10 @@
   }
   &__actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     padding: 0;
-    background-color: $colour-pastel-blue;
+    background-color: $colour-diamond;
   }
 }
 
@@ -49,11 +53,10 @@
   margin: 0;
   padding: 0.5rem;
   font-weight: 600;
-  border-bottom: 0.125rem solid;
-  border-color: $colour-sky-white;
-  background-color: $colour-pastel-blue;
+  white-space: nowrap;
+  background-color: $colour-diamond;
   &:hover {
     transition: 0.5s background-color ease;
-    background-color: lighten($colour-pastel-blue, 10);
+    background-color: lighten($colour-diamond, 10);
   }
 }

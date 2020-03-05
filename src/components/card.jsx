@@ -5,10 +5,13 @@ import { Link } from 'react-router-dom';
 import '../styles/components/card.scss';
 
 const CardLink = ({ name, link, color }) => (
-  <div className="card__link" style={color ? { borderColor: color } : {}}>
+  <span
+    className="card__link"
+    style={color ? { borderColor: color, borderBottom: '0.125rem solid' } : {}}
+  >
     {'· '}
     <Link to={link}>{name}</Link>
-  </div>
+  </span>
 );
 
 CardLink.propTypes = {
@@ -18,7 +21,7 @@ CardLink.propTypes = {
 };
 
 CardLink.defaultProps = {
-  color: '',
+  color: null,
 };
 
 const Card = ({ title, subtitle, children, links, onClick }) => {
