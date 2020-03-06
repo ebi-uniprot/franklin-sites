@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import Header from '../src/components/header';
 import { MainSearch } from '../src/components/index';
 import UniProtLogo from '../src/svg/swissprot.svg';
@@ -14,7 +15,7 @@ export default {
 };
 
 const links = [
-  { label: 'Link 1' },
+  { label: 'Link 1', path: '/' },
   {
     label: 'Links 2',
     links: [
@@ -23,22 +24,31 @@ const links = [
       { label: 'sublink 3', path: '/' },
     ],
   },
-  { label: 'Link 3' },
+  { label: 'Link 3', path: '/' },
 ];
 
+const Search = () => {
+  const [value, setValue] = useState('');
+  return (
+    <MainSearch
+      onChange={v => setValue(v)}
+      searchTerm={value}
+      onSubmit={() => {
+        action('Submitted');
+      }}
+    />
+  );
+};
+
 export const header = () => (
-  <Header
-    logo={<UniProtLogo width={30} />}
-    links={links}
-    search={<MainSearch />}
-  />
+  <Header logo={<UniProtLogo width={30} />} links={links} search={<Search />} />
 );
 
 export const headerNegative = () => (
   <Header
     logo={<UniProtLogo width={30} />}
     links={links}
-    search={<MainSearch />}
+    search={<Search />}
     isNegative
   />
 );

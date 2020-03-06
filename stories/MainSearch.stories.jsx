@@ -28,15 +28,13 @@ export default {
   },
 };
 
-export const mainSearch = ({ state, setState }) => {
-  return (
-    <MainSearch
-      searchTerm={state.value}
-      onChange={value => setState({ value })}
-      onSubmit={action('Submitted')}
-    />
-  );
-};
+export const mainSearch = ({ state, setState }) => (
+  <MainSearch
+    searchTerm={state.value}
+    onChange={value => setState({ value })}
+    onSubmit={action('Submitted')}
+  />
+);
 
 mainSearch.propTypes = {
   state: PropTypes.shape({ value: PropTypes.string }).isRequired,
