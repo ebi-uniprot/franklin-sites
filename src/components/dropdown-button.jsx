@@ -62,7 +62,7 @@ DropdownButton.propTypes = {
   /**
    * Label to be display by the button
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   /**
    * Additional CSS classnames to apply to button (eg secondary, tertiary)
    */
