@@ -1,4 +1,4 @@
-@import "./dropdown";
+@import './dropdown';
 
 .autocomplete-menu {
   @extend .dropdown-menu;
@@ -9,8 +9,4 @@
 .autocomplete-container {
   width: 100%;
   position: relative;
-
-  .dropdown-menu {
-    margin-top: 0;
-  }
 }
