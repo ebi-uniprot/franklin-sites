@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 import '../styles/components/header.scss';
 import '../styles/components/dropdown.scss';
 
-const Header = ({
-  logo, links, search, isNegative,
-}) => (
+const Header = ({ logo, links, search, isNegative }) => (
   <div className={isNegative ? 'header header--negative' : 'header'}>
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>
     <ul className="header__navigation">
       {links.map(link =>
-        (link.links ? (
-          <li className="dropdown-container dropdown-container--hover" key={link.label}>
+        link.links ? (
+          <li
+            className="dropdown-container dropdown-container--hover"
+            key={link.label}
+          >
             <span
               className={
                 isNegative
@@ -38,7 +39,8 @@ const Header = ({
           <li key={link.label}>
             <Link to={link.path}>{link.label}</Link>
           </li>
-        )))}
+        )
+      )}
     </ul>
     <div className="header__search">{search}</div>
   </div>

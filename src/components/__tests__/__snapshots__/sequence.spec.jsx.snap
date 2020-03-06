@@ -16,6 +16,7 @@ exports[`Sequence component should render 1`] = `
       </button>
       <div
         class="dropdown-menu"
+        style="top: 0px;"
       >
         <ul
           class="no-bullet"
@@ -100,6 +101,7 @@ exports[`Sequence component should render 1`] = `
       </button>
       <div
         class="dropdown-menu"
+        style="top: 0px;"
       >
         <div
           class="dropdown-menu__content"
