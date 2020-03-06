@@ -1,15 +1,22 @@
 .main-search {
   display: flex;
+
   input,
   button {
     margin: 0;
   }
+
   .button {
     border: none;
   }
+
   .dropdown-container {
     .button {
       display: flex;
     }
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
   }
 }

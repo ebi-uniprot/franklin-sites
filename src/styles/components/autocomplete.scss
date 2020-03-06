@@ -9,4 +9,8 @@
 .autocomplete-container {
   width: 100%;
   position: relative;
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
 }
