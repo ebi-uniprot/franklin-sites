@@ -51,7 +51,7 @@ export const dataList = ({
     }}
     onSelect={action('onSelect')}
     onHeaderClick={action('onHeaderClick')}
-    dataRenderer={content => <section>{Object.values(content)}</section>}
+    dataRenderer={content => <Fragment>{Object.values(content)}</Fragment>}
     selectable
   />
 );
@@ -80,3 +80,4 @@ export const dataListWithCards = ({
 );
 
 dataList.propTypes = DataList.propTypes;
+dataListWithCards.propTypes = DataList.propTypes;

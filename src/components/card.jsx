@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 
 import '../styles/components/card.scss';
 
-const CardLink = ({ name, link, color }) => (
+const CardLink = ({ name, link, color, includeSeparator }) => (
   <span
-    className="card__link"
+    className={`card__link ${includeSeparator && 'card__link--separator'}`}
     style={color ? { borderColor: color, borderBottom: '0.125rem solid' } : {}}
   >
-    {'· '}
     <Link to={link}>{name}</Link>
   </span>
 );
@@ -18,21 +17,24 @@ CardLink.propTypes = {
   name: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   color: PropTypes.string,
+  includeSeparator: PropTypes.bool,
 };
 
 CardLink.defaultProps = {
   color: null,
+  includeSeparator: false,
 };
 
 const Card = ({ title, subtitle, children, links, onClick }) => {
-  const containerAttributes = { className: '' };
-  if (onClick) {
-    containerAttributes.className += ' card--has-hover';
-    containerAttributes.onClick = onClick;
-    containerAttributes.onKeyDown = onClick;
-    containerAttributes.role = 'button';
-    containerAttributes.tabIndex = 0;
-  }
+  const containerAttributes = onClick
+    ? {
+        className: ' card--has-hover',
+        onClick,
+        onKeyDown: onClick,
+        role: 'button',
+        tabIndex: 0,
+      }
+    : {};
   return (
     <div className="card">
       <section {...containerAttributes}>
@@ -46,8 +48,8 @@ const Card = ({ title, subtitle, children, links, onClick }) => {
       </section>
       {links.length > 0 && (
         <section className="card__actions">
-          {links.map(l => (
-            <CardLink key={l.name} {...l} />
+          {links.map((l, i) => (
+            <CardLink key={l.name} {...l} includeSeparator={i > 0} />
           ))}
         </section>
       )}

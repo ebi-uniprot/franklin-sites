@@ -5,9 +5,7 @@ exports[`Card component should render 1`] = `
   <div
     class="card"
   >
-    <section
-      class=""
-    >
+    <section>
       <div
         class="card__header"
       >
@@ -34,9 +32,7 @@ exports[`Card component should render card with links 1`] = `
   <div
     class="card"
   >
-    <section
-      class=""
-    >
+    <section>
       <div
         class="card__header"
       >
@@ -63,10 +59,9 @@ exports[`Card component should render card with links 1`] = `
       class="card__actions"
     >
       <span
-        class="card__link"
+        class="card__link false"
         style="border-color: red; border-bottom: 0.125rem solid;"
       >
-        · 
         <a
           href="/example.com"
         >
@@ -119,9 +114,7 @@ exports[`Card component should render card with subtitle 1`] = `
   <div
     class="card"
   >
-    <section
-      class=""
-    >
+    <section>
       <div
         class="card__header"
       >

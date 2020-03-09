@@ -79,7 +79,7 @@ const DataDecorator = ({ children, ...props }) => {
 };
 
 DataDecorator.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 export default DataDecorator;
