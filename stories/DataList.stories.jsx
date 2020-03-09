@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { action } from '@storybook/addon-actions';
-import { DataList } from '../src/components';
+import { DataList, Card } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
 
 export default {
@@ -56,4 +56,28 @@ export const dataList = ({
   />
 );
 
+export const dataListWithCards = ({
+  data,
+  idKey,
+  columns,
+  hasMoreData,
+  onLoadMoreItems,
+}) => (
+  <DataList
+    {...{
+      data,
+      idKey,
+      columns,
+      hasMoreData,
+      onLoadMoreItems,
+    }}
+    onHeaderClick={action('onHeaderClick')}
+    dataRenderer={content => (
+      <Card onSelect={action('onSelect')}>{Object.values(content)}</Card>
+    )}
+    selectable
+  />
+);
+
 dataList.propTypes = DataList.propTypes;
+dataListWithCards.propTypes = DataList.propTypes;

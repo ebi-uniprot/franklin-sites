@@ -4,69 +4,55 @@ import { Link } from 'react-router-dom';
 
 import '../styles/components/card.scss';
 
-const CardLink = ({ name, link, color }) => (
-  <div className="card__link" style={color ? { borderColor: color } : {}}>
+const CardLink = ({ name, link, color, includeSeparator }) => (
+  <span
+    className={`card__link ${includeSeparator && 'card__link--separator'}`}
+    style={color ? { borderColor: color, borderBottom: '0.125rem solid' } : {}}
+  >
     <Link to={link}>{name}</Link>
-  </div>
+  </span>
 );
 
 CardLink.propTypes = {
   name: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   color: PropTypes.string,
+  includeSeparator: PropTypes.bool,
 };
 
 CardLink.defaultProps = {
-  color: '',
+  color: null,
+  includeSeparator: false,
 };
 
-const Card = ({
-  title,
-  subtitle,
-  children,
-  links,
-  selectable,
-  selected,
-  onSelect,
-  onClick,
-}) => {
-  const checkbox = (
-    <input type="checkbox" checked={selected} onChange={onSelect} />
-  );
-  const containerAttributes = {
-    className: `card ${selected ? 'card--selected' : ''}`,
-  };
-  if (onClick) {
-    containerAttributes.className += ' card--has-hover';
-    containerAttributes.onClick = onClick;
-    containerAttributes.onKeyDown = onClick;
-    containerAttributes.role = 'button';
-    containerAttributes.tabIndex = 0;
-  }
+const Card = ({ title, subtitle, children, links, onClick }) => {
+  const containerAttributes = onClick
+    ? {
+        className: ' card--has-hover',
+        onClick,
+        onKeyDown: onClick,
+        role: 'button',
+        tabIndex: 0,
+      }
+    : {};
   return (
-    <div {...containerAttributes}>
-      {title && (
-        <div className="card__header">
-          {selectable && (
-            <div className="card__header__checkbox">{checkbox}</div>
-          )}
-          <h2 className="card__title">{title}</h2>
-          {subtitle && <div className="card__subtitle">{subtitle}</div>}
-        </div>
-      )}
-      {links.length > 0 && (
-        <div className="card__actions">
-          {links.map(l => (
-            <CardLink key={l.name} {...l} />
-          ))}
-        </div>
-      )}
-      <div className="card__content">
-        {selectable && !title && (
-          <div className="card__content__checkbox">{checkbox}</div>
+    <div className="card">
+      <section {...containerAttributes}>
+        {title && (
+          <div className="card__header">
+            <h2 className="card__title">{title}</h2>
+            {subtitle && <div className="card__subtitle">{subtitle}</div>}
+          </div>
         )}
-        {children}
-      </div>
+        <div className="card__content">{children}</div>
+      </section>
+      {links.length > 0 && (
+        <section className="card__actions">
+          {links.map((l, i) => (
+            <CardLink key={l.name} {...l} includeSeparator={i > 0} />
+          ))}
+        </section>
+      )}
     </div>
   );
 };
@@ -98,9 +84,6 @@ Card.propTypes = {
       color: PropTypes.string,
     })
   ),
-  selectable: PropTypes.bool,
-  selected: PropTypes.bool,
-  onSelect: PropTypes.func,
   onClick: PropTypes.func,
 };
 
@@ -108,9 +91,6 @@ Card.defaultProps = {
   title: '',
   subtitle: '',
   links: [],
-  selectable: false,
-  selected: false,
-  onSelect: null,
   onClick: null,
 };
 

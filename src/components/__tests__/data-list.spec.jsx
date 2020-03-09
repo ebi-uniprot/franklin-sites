@@ -23,8 +23,7 @@ describe('DataList', () => {
         hasMoreData
         data={data}
         dataRenderer={dataRenderer}
-        onCardClick={null}
-      />,
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -37,9 +36,11 @@ describe('DataList', () => {
         data={data}
         dataRenderer={dataRenderer}
         onCardClick={null}
-      />,
+      />
     );
-    const scrollContainer = container.querySelector('.data-loader__scroll-container');
+    const scrollContainer = container.querySelector(
+      '.data-loader__scroll-container'
+    );
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
@@ -52,27 +53,12 @@ describe('DataList', () => {
         data={data}
         dataRenderer={dataRenderer}
         onCardClick={null}
-      />,
+      />
     );
-    const scrollContainer = container.querySelector('.data-loader__scroll-container');
+    const scrollContainer = container.querySelector(
+      '.data-loader__scroll-container'
+    );
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalledTimes(0);
-  });
-
-  test('should allow selection', () => {
-    const onSelect = jest.fn();
-    const { container } = render(
-      <DataList
-        onLoadMoreItems={onLoadMoreItems}
-        hasMoreData={false}
-        data={data}
-        selectable
-        onSelect={onSelect}
-        dataRenderer={dataRenderer}
-        onCardClick={null}
-      />,
-    );
-    fireEvent.click(container.querySelector('input'));
-    expect(onSelect).toHaveBeenCalled();
   });
 });
