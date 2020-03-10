@@ -111,7 +111,7 @@ const Statistics = ({ statistics }) => {
           </Link>
         </section>
       )}
-      {citedCount && (
+      {citedCount > 0 && (
         <section className="publication__statistics__item">
           <Link to="/">
             <section>
@@ -142,12 +142,12 @@ const Publication = ({
   statistics,
 }) => (
   <section className="publication">
-    <h4>{title}</h4>
-    {authors && <Authors authors={authors} />}
-    {abstract && <Abstract abstract={abstract} />}
     <section className="publication__columns">
       <section className="publication__columns__main">
-        {infoData && <InfoList infoData={infoData} />}
+        <h4>{title}</h4>
+        {authors && <Authors authors={authors} />}
+        {abstract && <Abstract abstract={abstract} />}
+        {infoData && <InfoList infoData={infoData} isCompact />}
       </section>
       <section className="publication__columns__side">
         <section className="publication__columns__side__item">
