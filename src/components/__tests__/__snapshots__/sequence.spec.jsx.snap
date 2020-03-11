@@ -108,21 +108,21 @@ exports[`Sequence component should render 1`] = `
           class="dropdown-menu__content"
         >
           <label
-            for="isoformId-1-Polar"
+            for="P05067-Polar"
           >
             <input
               data-testid="sequence-highlight-checkbox"
-              id="isoformId-1-Polar"
+              id="P05067-Polar"
               type="checkbox"
             />
             Polar
           </label>
           <label
-            for="isoformId-1-Hydrophobic"
+            for="P05067-Hydrophobic"
           >
             <input
               data-testid="sequence-highlight-checkbox"
-              id="isoformId-1-Hydrophobic"
+              id="P05067-Hydrophobic"
               type="checkbox"
             />
             Hydrophobic

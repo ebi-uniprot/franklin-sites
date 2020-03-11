@@ -39,7 +39,6 @@ const uniProtSequenceDownload = accession =>
   `https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/${accession}.fasta`;
 
 const Sequence = ({
-  id,
   sequence,
   chunkSize,
   accession,
@@ -92,7 +91,7 @@ const Sequence = ({
       <DropdownButton label="Highlight">
         <div className="dropdown-menu__content">
           {aminoAcidsProps.map(aaProp => {
-            const inputId = `${id || v1()}-${aaProp.name}`;
+            const inputId = `${accession}-${aaProp.name}`;
             return (
               <label key={aaProp.name} htmlFor={inputId}>
                 <input
@@ -199,10 +198,6 @@ Sequence.propTypes = {
    */
   chunkSize: PropTypes.number,
   /**
-   * An ID used to form the highlight options IDs. Default uuid/v1
-   */
-  id: PropTypes.string,
-  /**
    * Path to the BLAST service you would like to use. Accession will be
    * appended to the end. Uses UniProt by default
    */
@@ -212,7 +207,6 @@ Sequence.propTypes = {
 Sequence.defaultProps = {
   chunkSize: 10,
   initialTextSize: null,
-  id: '',
   blastPath: '/blast/accession/',
 };
 
