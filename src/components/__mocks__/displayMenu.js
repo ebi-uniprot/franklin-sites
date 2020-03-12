@@ -19,7 +19,8 @@ export default [
         <li>{displayMenuDummyLeft1}</li>
       </ul>
     ),
-    path: '/main',
+    path: '',
+    exact: true,
   },
   {
     name: 'Item 2',

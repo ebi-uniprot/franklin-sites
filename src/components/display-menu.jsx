@@ -1,11 +1,10 @@
 import React from 'react';
-import { NavLink, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import { NavLink, Route, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/components/display-menu.scss';
 
 const DisplayMenu = ({ data }) => {
   const { path, url } = useRouteMatch();
-  const defaultItem = data[0];
   return (
     <ul className="display-menu">
       <ul className="no-bullet">
@@ -13,8 +12,13 @@ const DisplayMenu = ({ data }) => {
           <li key={displayItem.name}>
             <h5 className="display-menu__item_title">
               <NavLink
-                to={`${url}/${displayItem.path}`}
+                to={`${url}${
+                  displayItem.path.length > 0
+                    ? `/${displayItem.path}`
+                    : displayItem.path
+                }`}
                 activeClassName="display-menu__item_title--active"
+                exact={displayItem.exact}
               >
                 <span className="display-menu__item_icon">
                   {displayItem.icon && displayItem.icon}
@@ -33,9 +37,6 @@ const DisplayMenu = ({ data }) => {
             />
           </li>
         ))}
-        <Route path="/">
-          <Redirect to={`${url}/${defaultItem.path}`} />
-        </Route>
       </ul>
     </ul>
   );
