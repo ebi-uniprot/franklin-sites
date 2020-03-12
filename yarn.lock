@@ -10239,7 +10239,7 @@ react-router@5.1.2:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-scrollspy@^3.4.0:
+react-scrollspy@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/react-scrollspy/-/react-scrollspy-3.4.2.tgz#0303e9a5d2fc4ee833b6729962bbb3b32375454c"
   integrity sha512-mFev6IBPPGdn0WsAiS0eCoHGUUet0ZRZUHHUw3qLcsvsQZPlubik0N9cf8CcgIbdVzNd04K9L9A0inHhPt7drw==

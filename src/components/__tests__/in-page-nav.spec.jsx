@@ -1,6 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-
+import renderWithRouter from '../../testHelpers/renderWithRouter';
 import InPageNav from '../in-page-nav';
 
 describe('InPageNav component', () => {
@@ -20,7 +19,8 @@ describe('InPageNav component', () => {
         disabled: true,
       },
     ];
-    const component = renderer.create(<InPageNav sections={sections} />).toJSON();
-    expect(component).toMatchSnapshot();
+
+    const { asFragment } = renderWithRouter(<InPageNav sections={sections} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
