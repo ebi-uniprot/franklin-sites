@@ -21,14 +21,14 @@
       text-align: left;
       padding: $global-margin / 3;
       &:hover {
-        background: $colour-platinum;
+        background: $colour-hover;
       }
     }
     button.facet-active {
       font-weight: bold;
-      background: $colour-medium-turquoise;
+      background: $colour-selected;
       &:hover {
-        background: $colour-vivid-cerulean;
+        background: $colour-hover;
         &:after {
           display: inline-block;
           position: absolute;

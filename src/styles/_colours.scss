@@ -34,5 +34,5 @@ $colour-annotation-systems: #f8982e;
 
 // COLOUR VARIABLES
 $colour-link: $colour-sapphire-blue;
-$colour-highlight: $colour-medium-turquoise;
-// $colour-hover:
+$colour-selected: $colour-gainsborough;
+$colour-hover: lighten($colour-platinum, 5%);

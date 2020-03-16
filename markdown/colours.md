@@ -33,3 +33,9 @@
   class="box-colour colour-annotation-systems"
   data-name="$colour-annotation-systems"
 ></div>
+
+### Variables
+
+- `$colour-link`: the colour of something clickable
+- `$colour-selected`: the colour of something "active" or "selected"
+- `$colour-hover`: the colour of something selectable on mouse hover

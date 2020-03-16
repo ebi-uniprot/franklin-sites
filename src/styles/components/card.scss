@@ -46,7 +46,7 @@ $card-link-padding: 0.5rem;
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 0;
-    background-color: $colour-gainsborough;
+    background-color: $colour-selected;
   }
 }
 
@@ -58,7 +58,7 @@ $card-link-padding: 0.5rem;
   background-color: $colour-gainsborough;
   &:hover {
     transition: 0.5s background-color ease;
-    background-color: lighten($colour-gainsborough, 10);
+    background-color: $colour-hover;
   }
 }
 

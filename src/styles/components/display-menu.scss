@@ -7,11 +7,22 @@ $line-height: 2rem;
   &__item_title {
     width: 100%;
     line-height: $line-height;
+    a {
+      width: 100%;
+      display: block;
+      padding-left: 1rem;
+    }
+    &--active {
+      background-color: lighten($colour-selected, 5%);
+    }
+    &:hover {
+      background-color: $colour-hover;
+    }
     &--active:before {
       content: '';
       position: absolute;
       width: 0.2rem;
-      left: 1rem;
+      margin-left: -1rem;
       height: $line-height;
       border-left: 0.2rem solid $colour-link;
     }
