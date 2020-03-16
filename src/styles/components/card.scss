@@ -13,7 +13,7 @@ $card-link-padding: 0.5rem;
   width: calc(100% - #{$global-padding});
 
   &--has-hover:hover {
-    background-color: $colour-azureish-white;
+    background-color: $colour-platinum;
     transition: 0.5s background-color ease;
     cursor: pointer;
   }
@@ -39,14 +39,14 @@ $card-link-padding: 0.5rem;
     display: flex;
     align-items: baseline;
     border-bottom: 0.125rem solid;
-    border-color: $colour-azureish-white;
+    border-color: $colour-platinum;
   }
   &__actions {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     padding: 0;
-    background-color: $colour-diamond;
+    background-color: $colour-gainsborough;
   }
 }
 
@@ -55,10 +55,10 @@ $card-link-padding: 0.5rem;
   padding: $card-link-padding;
   font-weight: 600;
   white-space: nowrap;
-  background-color: $colour-diamond;
+  background-color: $colour-gainsborough;
   &:hover {
     transition: 0.5s background-color ease;
-    background-color: lighten($colour-diamond, 10);
+    background-color: lighten($colour-gainsborough, 10);
   }
 }
 

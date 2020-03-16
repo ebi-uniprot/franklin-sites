@@ -43,7 +43,7 @@
           &--sortable {
             cursor: pointer;
             &::after {
-              @include chevron(down, $colour-azureish-white);
+              @include chevron(down, $colour-platinum);
             }
             &:hover:after {
               @include chevron(down, $colour-sky-white);
@@ -65,7 +65,7 @@
         }
 
         &--odd {
-          background-color: $colour-azureish-white;
+          background-color: $colour-platinum;
         }
 
         &--selected {

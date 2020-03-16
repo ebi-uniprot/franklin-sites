@@ -6,23 +6,16 @@
 <div class="box-colour colour-sea-blue" data-name="$colour-sea-blue" ></div>
 <div class="box-colour colour-vivid-cerulean" data-name="$colour-vivid-cerulean" ></div>
 <div class="box-colour colour-medium-turquoise" data-name="$colour-medium-turquoise" ></div>
-<div class="box-colour colour-diamond" data-name="$colour-diamond" ></div>
-<div class="box-colour colour-bubbles" data-name="$colour-bubbles" ></div>
+<div class="box-colour colour-gainsborough" data-name="$colour-gainsborough" ></div>
 
 ### Grey Palette
 
 <div class="box-colour colour-yankees-blue" data-name="$colour-yankees-blue" ></div>
-<div class="box-colour colour-charcoal" data-name="$colour-charcoal" ></div>
 <div class="box-colour colour-independence" data-name="$colour-independence" ></div>
 <div class="box-colour colour-weldon-blue" data-name="$colour-weldon-blue" ></div>
 <div class="box-colour colour-pastel-blue" data-name="$colour-pastel-blue" ></div>
-<div class="box-colour colour-azureish-white" data-name="$colour-azureish-white" ></div>
+<div class="box-colour colour-platinum" data-name="$colour-platinum" ></div>
 <div class="box-colour colour-sky-white" data-name="$colour-sky-white" ></div>
-
-### Links
-
-<div class="box-colour colour-dark-imperial-blue" data-name="$colour-dark-imperial-blue" ></div>
-<div class="box-colour colour-imperial-blue" data-name="$colour-imperial-blue" ></div>
 
 ### Curation palette
 
