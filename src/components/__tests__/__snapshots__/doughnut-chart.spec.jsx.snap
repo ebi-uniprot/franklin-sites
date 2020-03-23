@@ -2,7 +2,7 @@
 
 exports[`DoughnutChart component should render 1`] = `
 <span
-  className="doughnut-chart--medium colour-azureish-white"
+  className="doughnut-chart--medium colour-platinum"
 >
   <span
     className="doughnut-chart--medium__left-wrap"

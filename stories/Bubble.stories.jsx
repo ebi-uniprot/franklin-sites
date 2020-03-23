@@ -12,7 +12,7 @@ export default {
 };
 
 export const smallBubble = () => (
-  <Bubble size="small" value={56} colourClass="colour-charcoal" />
+  <Bubble size="small" value={56} colourClass="colour-yankees-blue" />
 );
 export const regularBubble = () => <Bubble value={1000} />;
 export const largeBubble = () => (

@@ -22,7 +22,7 @@
 
     &.tertiary {
       &.dropdown::after {
-        border-color: $colour-dark-imperial-blue transparent transparent;
+        border-color: $colour-sapphire-blue transparent transparent;
         top: 0.5rem;
         margin-left: 0.5rem;
       }
@@ -61,7 +61,7 @@
 .hover {
   color: $colour-yankees-blue;
   border: none;
-  background: $colour-azureish-white;
+  background: $colour-platinum;
 }
 
 .dropdown-menu {
@@ -111,7 +111,6 @@
         display: block;
         border: none;
         padding-right: 1rem;
-        color: $colour-yankees-blue !important;
         text-decoration: none;
 
         &:hover {

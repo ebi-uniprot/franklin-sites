@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import '../styles/components/doughnut-chart.scss';
 
 const DoughnutChart = ({
-  size, percent, bgColorClass, colorClass, children,
+  size,
+  percent,
+  bgColorClass,
+  colorClass,
+  children,
 }) => {
   let leftTransformerDegree;
   let rightTransformerDegree;
@@ -34,12 +38,7 @@ const DoughnutChart = ({
         />
       </span>
       <span className={`doughnut-chart--${size}__inner-circle`} style={{}}>
-        {children || (
-        <span>
-          {percent}
-%
-        </span>
-        )}
+        {children || <span>{`${percent}%`}</span>}
       </span>
     </span>
   );
@@ -65,13 +64,16 @@ DoughnutChart.propTypes = {
   /**
    * The component(s) to display inside as an alternative to the percentage
    */
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 DoughnutChart.defaultProps = {
   size: 'medium',
   colorClass: 'colour-sea-blue',
-  bgColorClass: 'colour-azureish-white',
+  bgColorClass: 'colour-platinum',
   percent: 0,
   children: null,
 };

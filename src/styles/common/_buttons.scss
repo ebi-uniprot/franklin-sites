@@ -26,21 +26,21 @@
   }
   &.tertiary {
     background: none;
-    color: $colour-dark-imperial-blue;
+    color: $colour-sapphire-blue;
     font-weight: $global-weight-bold;
     padding: 0;
     line-height: 1.6;
     text-align: left;
     &.disabled:hover {
-      color: $colour-azureish-white;
+      color: $colour-platinum;
       background-color: $colour-sky-white;
     }
     svg {
-      fill: $colour-dark-imperial-blue;
+      fill: $colour-sapphire-blue;
     }
     &.tertiary-icon__active {
       svg {
-        fill: $colour-azureish-white;
+        fill: $colour-platinum;
       }
     }
   }
