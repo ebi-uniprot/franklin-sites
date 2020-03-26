@@ -35,15 +35,13 @@ const sequenceTools = [
   },
 ];
 
-const uniProtSequenceDownload = accession =>
-  `https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/${accession}.fasta`;
-
 const Sequence = ({
   sequence,
   chunkSize,
   accession,
   initialTextSize,
   blastPath,
+  downloadUrl,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
   const [highlights, setHighlights] = useState([]);
@@ -132,14 +130,12 @@ const Sequence = ({
             ))}
           </ul>
         </DropdownButton>
-        <a
-          className="button"
-          href={uniProtSequenceDownload(accession)}
-          download
-        >
-          <DownloadIcon />
-          Download
-        </a>
+        {downloadUrl && (
+          <a className="button" href={downloadUrl} download>
+            <DownloadIcon />
+            Download
+          </a>
+        )}
 
         <button type="button" className="button">
           <BasketIcon />
@@ -202,12 +198,17 @@ Sequence.propTypes = {
    * appended to the end. Uses UniProt by default
    */
   blastPath: PropTypes.string,
+  /**
+   * The URL to download the isoform sequence
+   */
+  downloadUrl: PropTypes.string,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
   initialTextSize: null,
   blastPath: '/blast/accession/',
+  downloadUrl: null,
 };
 
 export default Sequence;
