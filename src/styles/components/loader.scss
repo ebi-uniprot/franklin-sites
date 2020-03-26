@@ -1,9 +1,3 @@
-@mixin animation() {
-  animation-duration: 3s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
-}
-
 .loader-container {
   width: 100%;
   text-align: center;
@@ -13,27 +7,21 @@ $path-length: 110;
 
 svg.loader {
   animation: dash 2s ease infinite;
-  #circle1 {
   stroke-dasharray: $path-length;
-    animation-name: circle1-hide;
-    @include animation();
+  circle {
+    animation: circle1-hide 3s ease infinite alternate;
   }
-  #circle2 {
+  circle:nth-of-type(2) {
     animation-name: circle2-hide;
-    @include animation();
   }
-  #circle3 {
+  circle:nth-of-type(3) {
     animation-name: circle3-hide;
-    @include animation();
   }
-
-  #circle4 {
+  circle:nth-of-type(4) {
     animation-name: circle4-hide;
-    @include animation();
   }
-  #circle5 {
+  circle:nth-of-type(5) {
     animation-name: circle5-hide;
-    @include animation();
   }
 }
 
