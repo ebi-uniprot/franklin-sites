@@ -9,10 +9,12 @@
   text-align: center;
 }
 
+$path-length: 110;
+
 svg.loader {
   animation: dash 2s ease infinite;
-  stroke-dasharray: 110;
   #circle1 {
+  stroke-dasharray: $path-length;
     animation-name: circle1-hide;
     @include animation();
   }
@@ -40,7 +42,7 @@ svg.loader {
     stroke-dashoffset: 0;
   }
   100% {
-    stroke-dashoffset: -200;
+    stroke-dashoffset: -2 * $path-length;
   }
 }
 
