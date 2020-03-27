@@ -4,6 +4,15 @@ import { action } from '@storybook/addon-actions';
 import { MainSearch } from '../src/components';
 import StateDecorator from '../src/decorators/StateDecorator';
 
+const namespaces = [
+  'UniProtKB - the UniProt knowledgebase',
+  'UniRef',
+  'UniParc',
+  'Proteomes',
+  'Publications',
+  'Keywords'
+];
+
 // Custom decorator
 export default {
   title: 'Forms|Main Search',
@@ -31,6 +40,15 @@ export default {
 export const mainSearch = ({ state, setState }) => (
   <MainSearch
     searchTerm={state.value}
+    onChange={value => setState({ value })}
+    onSubmit={action('Submitted')}
+  />
+);
+
+export const mainSearchWithNamespaces = ({ state, setState }) => (
+  <MainSearch
+    searchTerm={state.value}
+    namespaces={namespaces}
     onChange={value => setState({ value })}
     onSubmit={action('Submitted')}
   />
