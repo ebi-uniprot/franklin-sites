@@ -21,3 +21,63 @@ exports[`MainSearch component should render 1`] = `
   </form>
 </DocumentFragment>
 `;
+
+exports[`MainSearch component should render with namespaces selector 1`] = `
+<DocumentFragment>
+  <form
+    class="main-search"
+    data-testid="main-search-form"
+  >
+    <div
+      class="dropdown-container"
+    >
+      <button
+        class="button dropdown "
+        type="button"
+      >
+        UniProtKB
+      </button>
+      <div
+        class="dropdown-menu"
+        style="top: 0px;"
+      >
+        <ul>
+          <li>
+            <button
+              type="button"
+            >
+              one
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+            >
+              two
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+            >
+              three
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <input
+      class="main-search__input"
+      data-testid="main-search-input"
+      type="text"
+      value=""
+    />
+    <button
+      class="button"
+      type="submit"
+    >
+      Search
+    </button>
+  </form>
+</DocumentFragment>
+`;

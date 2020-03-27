@@ -6,8 +6,15 @@ describe('MainSearch component', () => {
   const handleSubmit = jest.fn();
   const handleChange = jest.fn();
   const props = { onChange: handleChange, onSubmit: handleSubmit };
+  const namespaces = ['one', 'two', 'three'];
+
   test('should render', () => {
     const { asFragment } = render(<MainSearch {...props} />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render with namespaces selector', () => {
+    const { asFragment } = render(<MainSearch {...props} namespaces={namespaces} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
