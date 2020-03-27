@@ -6,6 +6,28 @@ exports[`MainSearch component should render 1`] = `
     class="main-search"
     data-testid="main-search-form"
   >
+    <input
+      class="main-search__input"
+      data-testid="main-search-input"
+      type="text"
+      value=""
+    />
+    <button
+      class="button"
+      type="submit"
+    >
+      Search
+    </button>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`MainSearch component should render with namespaces selector 1`] = `
+<DocumentFragment>
+  <form
+    class="main-search"
+    data-testid="main-search-form"
+  >
     <div
       class="dropdown-container"
     >
@@ -24,42 +46,21 @@ exports[`MainSearch component should render 1`] = `
             <button
               type="button"
             >
-              UniProtKB - the UniProt knowledgebase
+              one
             </button>
           </li>
           <li>
             <button
               type="button"
             >
-              UniRef
+              two
             </button>
           </li>
           <li>
             <button
               type="button"
             >
-              UniParc
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-            >
-              Proteomes
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-            >
-              Publications
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-            >
-              Keywords
+              three
             </button>
           </li>
         </ul>
