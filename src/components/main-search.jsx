@@ -9,18 +9,22 @@ const MainSearch = ({
   onChange,
   onSubmit,
 }) => (
-  <form onSubmit={onSubmit} className="main-search" data-testid="main-search-form">
-    {namespaces.length > 0 &&
+  <form
+    onSubmit={onSubmit}
+    className="main-search"
+    data-testid="main-search-form"
+  >
+    {namespaces.length > 0 && (
       <DropdownButton label="UniProtKB">
         <ul>
           {namespaces.map(ns => (
-            <li>
+            <li key={ns}>
               <button type="button">{ns}</button>
             </li>
           ))}
         </ul>
       </DropdownButton>
-    }
+    )}
     <input
       type="text"
       className="main-search__input"

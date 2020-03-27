@@ -10,7 +10,7 @@ const namespaces = [
   'UniParc',
   'Proteomes',
   'Publications',
-  'Keywords'
+  'Keywords',
 ];
 
 // Custom decorator
