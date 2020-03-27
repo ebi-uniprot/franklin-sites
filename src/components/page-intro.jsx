@@ -76,7 +76,7 @@ PageIntro.propTypes = {
   /**
    * To show the content by default or not
    */
-  showContent: PropTypes.boolean,
+  showContent: PropTypes.bool,
 };
 
 PageIntro.defaultProps = {
