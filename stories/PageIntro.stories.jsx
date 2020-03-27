@@ -15,7 +15,7 @@ export default {
 };
 
 export const pageIntro = () => (
-  <PageIntro title="UniProt" resultsCount={1000}>
+  <PageIntro title="UniProt" resultsCount={1000} showContent={true}>
     {getLipsumSentences()}
   </PageIntro>
 );
