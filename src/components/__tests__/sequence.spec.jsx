@@ -12,6 +12,7 @@ describe('Sequence component', () => {
         sequence={sequenceData}
         initialTextSize={{ width: 10, height: 10 }}
         accession="P05067"
+        downloadUrl="https://url-to-P05067.fasta"
       />
     );
   });

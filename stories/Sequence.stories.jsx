@@ -13,5 +13,9 @@ export default {
 };
 
 export const sequence = () => (
-  <Sequence sequence={sequenceData} accession="P05067" />
+  <Sequence
+    sequence={sequenceData}
+    accession="P05067"
+    downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
+  />
 );
