@@ -40,7 +40,8 @@ const Sequence = ({
   chunkSize,
   accession,
   initialTextSize,
-  blastPath,
+  blastCallback,
+  addCallback,
   downloadUrl,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
@@ -114,9 +115,17 @@ const Sequence = ({
       <div className="action-bar button-group">
         <DropdownButton label="Tools">
           <ul className="no-bullet">
-            <li>
-              <a href={`${blastPath}${accession}`}>BLAST</a>
-            </li>
+            {blastCallback && (
+              <li>
+                <button
+                  className="button tertiary"
+                  type="button"
+                  onClick={blastCallback}
+                >
+                  BLAST
+                </button>
+              </li>
+            )}
             {sequenceTools.map(sequenceTool => (
               <li key={sequenceTool.name}>
                 <a
@@ -137,10 +146,13 @@ const Sequence = ({
           </a>
         )}
 
-        <button type="button" className="button">
-          <BasketIcon />
-          Add
-        </button>
+        {addCallback && (
+          <button type="button" className="button" onClick={addCallback}>
+            <BasketIcon />
+            Add
+          </button>
+        )}
+
         {getSelectors()}
         <CopyToClipboard text={sequence} onCopy={() => setCopied(true)}>
           <button type="button" className="button">
@@ -194,21 +206,26 @@ Sequence.propTypes = {
    */
   chunkSize: PropTypes.number,
   /**
-   * Path to the BLAST service you would like to use. Accession will be
-   * appended to the end. Uses UniProt by default
-   */
-  blastPath: PropTypes.string,
-  /**
    * The URL to download the isoform sequence
    */
   downloadUrl: PropTypes.string,
+  /**
+   * Callback which is fired when the BLAST button is clicked. If no callback
+   * is provided then no BLAST button will be displayed.
+   */
+  blastCallback: PropTypes.func,
+  /** Callback which is fired when the Add button is clicked. If no callback
+   * is provided then no Add button will be displayed.
+   */
+  addCallback: PropTypes.func,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
   initialTextSize: null,
-  blastPath: '/blast/accession/',
   downloadUrl: null,
+  blastCallback: null,
+  addCallback: null,
 };
 
 export default Sequence;

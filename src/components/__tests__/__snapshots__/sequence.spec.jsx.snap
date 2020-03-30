@@ -23,13 +23,6 @@ exports[`Sequence component should render 1`] = `
         >
           <li>
             <a
-              href="/blast/accession/P05067"
-            >
-              BLAST
-            </a>
-          </li>
-          <li>
-            <a
               href="//web.expasy.org/cgi-bin//protparam/protparam?P05067"
               rel="noopener noreferrer"
               target="_blank"
@@ -84,13 +77,6 @@ exports[`Sequence component should render 1`] = `
       <test-file-stub />
       Download
     </a>
-    <button
-      class="button"
-      type="button"
-    >
-      <test-file-stub />
-      Add
-    </button>
     <div
       class="dropdown-container"
     >
