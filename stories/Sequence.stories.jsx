@@ -18,7 +18,7 @@ export const sequence = () => (
     sequence={sequenceData}
     accession="P05067"
     downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
-    blastCallback={() => action('blastCallback')}
-    addCallback={() => action('addCallback')}
+    onBlastClick={() => action('onBlastClick')}
+    onAddToBasketClick={() => action('onAddToBasketClick')}
   />
 );

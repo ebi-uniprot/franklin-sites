@@ -40,8 +40,8 @@ const Sequence = ({
   chunkSize,
   accession,
   initialTextSize,
-  blastCallback,
-  addCallback,
+  onBlastClick,
+  onAddToBasketClick,
   downloadUrl,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
@@ -115,12 +115,12 @@ const Sequence = ({
       <div className="action-bar button-group">
         <DropdownButton label="Tools">
           <ul className="no-bullet">
-            {blastCallback && (
+            {onBlastClick && (
               <li>
                 <button
                   className="button tertiary"
                   type="button"
-                  onClick={blastCallback}
+                  onClick={onBlastClick}
                 >
                   BLAST
                 </button>
@@ -146,8 +146,8 @@ const Sequence = ({
           </a>
         )}
 
-        {addCallback && (
-          <button type="button" className="button" onClick={addCallback}>
+        {onAddToBasketClick && (
+          <button type="button" className="button" onClick={onAddToBasketClick}>
             <BasketIcon />
             Add
           </button>
@@ -213,19 +213,19 @@ Sequence.propTypes = {
    * Callback which is fired when the BLAST button is clicked. If no callback
    * is provided then no BLAST button will be displayed.
    */
-  blastCallback: PropTypes.func,
+  onBlastClick: PropTypes.func,
   /** Callback which is fired when the Add button is clicked. If no callback
    * is provided then no Add button will be displayed.
    */
-  addCallback: PropTypes.func,
+  onAddToBasketClick: PropTypes.func,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
   initialTextSize: null,
   downloadUrl: null,
-  blastCallback: null,
-  addCallback: null,
+  onBlastClick: null,
+  onAddToBasketClick: null,
 };
 
 export default Sequence;
