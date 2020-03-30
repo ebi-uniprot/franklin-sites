@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { Sequence } from '../src/components';
 import sequenceData from '../src/mock-data/sequence-data';
 
@@ -17,5 +18,7 @@ export const sequence = () => (
     sequence={sequenceData}
     accession="P05067"
     downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
+    onBlastClick={() => action('onBlastClick')}
+    onAddToBasketClick={() => action('onAddToBasketClick')}
   />
 );
