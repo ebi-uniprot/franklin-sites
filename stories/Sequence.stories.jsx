@@ -22,3 +22,6 @@ export const sequence = () => (
     onAddToBasketClick={() => action('onAddToBasketClick')}
   />
 );
+export const sequenceWithoutActionBar = () => (
+  <Sequence sequence={sequenceData} showActionBar={false} />
+);

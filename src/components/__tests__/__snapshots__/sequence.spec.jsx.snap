@@ -2086,3 +2086,21 @@ exports[`Sequence component should render 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`Sequence component should render without tools 1`] = `
+<DocumentFragment>
+  <div
+    class="sequence"
+  >
+    <div
+      class="sequence__sequence"
+    >
+      <svg>
+        <text>
+          M
+        </text>
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
