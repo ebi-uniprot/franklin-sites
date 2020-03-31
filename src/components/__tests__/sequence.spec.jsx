@@ -22,6 +22,13 @@ describe('Sequence component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  test('should render without tools', () => {
+    const { asFragment } = render(
+      <Sequence sequence={sequenceData} showActionBar={false} />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   test('should toggle highlight on', () => {
     const { getAllByTestId } = rendered;
     const propertyIndex = 0;
