@@ -43,6 +43,7 @@ const Sequence = ({
   onBlastClick,
   onAddToBasketClick,
   downloadUrl,
+  showActionBar,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
   const [highlights, setHighlights] = useState([]);
@@ -112,54 +113,60 @@ const Sequence = ({
 
   return (
     <Fragment>
-      <div className="action-bar button-group">
-        <DropdownButton label="Tools">
-          <ul className="no-bullet">
-            {onBlastClick && (
-              <li>
-                <button
-                  className="button tertiary"
-                  type="button"
-                  onClick={onBlastClick}
-                >
-                  BLAST
-                </button>
-              </li>
-            )}
-            {sequenceTools.map(sequenceTool => (
-              <li key={sequenceTool.name}>
-                <a
-                  href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {sequenceTool.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </DropdownButton>
-        {downloadUrl && (
-          <a className="button" href={downloadUrl} download>
-            <DownloadIcon />
-            Download
-          </a>
-        )}
+      {showActionBar && (
+        <div className="action-bar button-group">
+          <DropdownButton label="Tools">
+            <ul className="no-bullet">
+              {onBlastClick && (
+                <li>
+                  <button
+                    className="button tertiary"
+                    type="button"
+                    onClick={onBlastClick}
+                  >
+                    BLAST
+                  </button>
+                </li>
+              )}
+              {sequenceTools.map(sequenceTool => (
+                <li key={sequenceTool.name}>
+                  <a
+                    href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {sequenceTool.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </DropdownButton>
+          {downloadUrl && (
+            <a className="button" href={downloadUrl} download>
+              <DownloadIcon />
+              Download
+            </a>
+          )}
 
-        {onAddToBasketClick && (
-          <button type="button" className="button" onClick={onAddToBasketClick}>
-            <BasketIcon />
-            Add
-          </button>
-        )}
+          {onAddToBasketClick && (
+            <button
+              type="button"
+              className="button"
+              onClick={onAddToBasketClick}
+            >
+              <BasketIcon />
+              Add
+            </button>
+          )}
 
-        {getSelectors()}
-        <CopyToClipboard text={sequence} onCopy={() => setCopied(true)}>
-          <button type="button" className="button">
-            {copied ? 'Copied' : 'Copy sequence'}
-          </button>
-        </CopyToClipboard>
-      </div>
+          {getSelectors()}
+          <CopyToClipboard text={sequence} onCopy={() => setCopied(true)}>
+            <button type="button" className="button">
+              {copied ? 'Copied' : 'Copy sequence'}
+            </button>
+          </CopyToClipboard>
+        </div>
+      )}
       <div className="sequence">
         <div className="sequence__sequence">
           {/* If textSize was not provided, add a text element so it can be measured */}
@@ -193,7 +200,7 @@ Sequence.propTypes = {
   /**
    * The accession corresponding to the sequence
    */
-  accession: PropTypes.string.isRequired,
+  accession: PropTypes.string,
   /**
    * The width and height of a letter. Will be calculated if left blank
    */
@@ -218,14 +225,17 @@ Sequence.propTypes = {
    * is provided then no Add button will be displayed.
    */
   onAddToBasketClick: PropTypes.func,
+  showActionBar: PropTypes.bool,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
+  accession: null,
   initialTextSize: null,
   downloadUrl: null,
   onBlastClick: null,
   onAddToBasketClick: null,
+  showActionBar: true,
 };
 
 export default Sequence;
