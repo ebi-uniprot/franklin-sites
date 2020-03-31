@@ -51,13 +51,13 @@ const Sequence = ({
   const text = useRef(null);
 
   useEffect(() => {
-    if (!text || initialTextSize) {
+    if (!text || !text.current || !text.current.getBBox || initialTextSize) {
       return;
     }
     // Measure height and width of the dummy element
     const { width, height } = text.current.getBBox();
     setTextSize({ width, height });
-  }, [initialTextSize]);
+  }, [initialTextSize, showActionBar]);
 
   const getChunks = (str, size) => {
     const numChunks = Math.ceil(str.length / size);
