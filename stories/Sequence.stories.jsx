@@ -18,8 +18,8 @@ export const sequence = () => (
     sequence={sequenceData}
     accession="P05067"
     downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
-    onBlastClick={() => action('onBlastClick')}
-    onAddToBasketClick={() => action('onAddToBasketClick')}
+    onBlastClick={action('onBlastClick')}
+    onAddToBasketClick={action('onAddToBasketClick')}
   />
 );
 export const sequenceWithoutActionBar = () => (
