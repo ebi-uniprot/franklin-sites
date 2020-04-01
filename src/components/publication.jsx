@@ -53,7 +53,7 @@ const Authors = ({ authors, limit }) => {
 const Abstract = ({ abstract }) => {
   const [open, setOpen] = useState(false);
   return (
-    <section>
+    <section className="publication__abstract">
       {open ? (
         <p>{abstract}</p>
       ) : (
@@ -78,6 +78,9 @@ const JournalInfo = ({ journalInfo }) => {
     publicationDate,
     doiId,
   } = journalInfo;
+  if (!doiId) {
+    return null;
+  }
   return (
     <a href={`//dx.doi.org/${doiId}`}>
       {`${journal} ${volume}:${firstPage}-${lastPage}(${publicationDate})`}
@@ -144,14 +147,14 @@ const Publication = ({
   <section className="publication">
     <section className="publication__columns">
       <section className="publication__columns__main">
-        <h4>{title}</h4>
+        <h5>{title}</h5>
         {authors && <Authors authors={authors} />}
         {abstract && <Abstract abstract={abstract} />}
         {infoData && <InfoList infoData={infoData} isCompact />}
       </section>
       <section className="publication__columns__side">
         <section className="publication__columns__side__item">
-          <PublicationIcon width="1.875rem" height="2rem" />
+          {pubmedId && <PublicationIcon width="1.875em" height="2em" />}
           <ul className="no-bullet">
             {pubmedId && (
               <Fragment>

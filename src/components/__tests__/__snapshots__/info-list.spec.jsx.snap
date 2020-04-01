@@ -2,7 +2,7 @@
 
 exports[`InfoList component should render 1`] = `
 <div
-  className="info-list"
+  className="info-list "
 >
   <div
     className="info-list__item"
