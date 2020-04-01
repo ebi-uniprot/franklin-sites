@@ -22,7 +22,7 @@
 
     &.tertiary {
       &.dropdown::after {
-        border-color: $colour-dark-imperial-blue transparent transparent;
+        border-color: $colour-sapphire-blue transparent transparent;
         top: 0.5rem;
         margin-left: 0.5rem;
       }
@@ -61,7 +61,7 @@
 .hover {
   color: $colour-yankees-blue;
   border: none;
-  background: $colour-azureish-white;
+  background: $colour-platinum;
 }
 
 .dropdown-menu {
@@ -105,13 +105,13 @@
         cursor: pointer;
         width: 100%;
         text-align: left;
-        padding: 0.5rem;
+        padding: 0.5rem !important; // These two !important's are required to ensure the BLAST button is ...
+        margin-bottom: 0 !important; // styled in the same way as the <a> tags in the Sequence component
         margin-right: 2rem;
         position: relative;
         display: block;
         border: none;
         padding-right: 1rem;
-        color: $colour-yankees-blue !important;
         text-decoration: none;
 
         &:hover {

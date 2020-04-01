@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { Sequence } from '../src/components';
 import sequenceData from '../src/mock-data/sequence-data';
 
@@ -13,5 +14,14 @@ export default {
 };
 
 export const sequence = () => (
-  <Sequence sequence={sequenceData} id="isoform_1" accession="P05067" />
+  <Sequence
+    sequence={sequenceData}
+    accession="P05067"
+    downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
+    onBlastClick={() => action('onBlastClick')}
+    onAddToBasketClick={() => action('onAddToBasketClick')}
+  />
+);
+export const sequenceWithoutActionBar = () => (
+  <Sequence sequence={sequenceData} showActionBar={false} />
 );

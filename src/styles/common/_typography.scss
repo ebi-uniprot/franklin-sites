@@ -85,13 +85,10 @@ ul {
 }
 
 a {
-  color: $colour-imperial-blue;
+  color: $colour-link;
   text-decoration: none;
   font-weight: font-weight('semi-bold');
-}
-
-.a2 {
-  color: $colour-dark-imperial-blue;
-  text-decoration: none;
-  @include fs-font-settings('A2');
+  &:hover {
+    color: lighten($colour-link, 10);
+  }
 }

@@ -1,6 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { getFlattenedPaths, restructureFlattenedTreeDataForAutocomplete } from '../utils';
+import {
+  getFlattenedPaths,
+  restructureFlattenedTreeDataForAutocomplete,
+} from '../utils';
 import DropdownButton from './dropdown-button';
 import Autocomplete from './autocomplete';
 import '../styles/components/tree-select.scss';
@@ -15,10 +18,11 @@ const TreeSelect = ({
 }) => {
   const [activeNodes, setActiveNodes] = useState([]);
   const [openNodes, setOpenNodes] = useState([]);
-  const [autocompleteShowDropdown, setAutocompleteShowDropdown] = useState(false);
-  const dropdownElemnent = useRef();
+  const [autocompleteShowDropdown, setAutocompleteShowDropdown] = useState(
+    false
+  );
 
-  const toggleNode = (node) => {
+  const toggleNode = node => {
     if (openNodes.includes(node.id)) {
       setOpenNodes(openNodes.slice(0, openNodes.indexOf(node.id)));
     } else {
@@ -26,7 +30,7 @@ const TreeSelect = ({
     }
   };
 
-  const handleNodeClick = (node) => {
+  const handleNodeClick = (node, setShowDropdownMenu) => {
     if (node.items) {
       toggleNode(node);
     } else {
@@ -35,50 +39,55 @@ const TreeSelect = ({
       setActiveNodes(path.map(d => d.id));
       setOpenNodes(path.map(d => d.id));
       onSelect(leafNode);
-      dropdownElemnent.current.close();
+      setShowDropdownMenu(false);
     }
   };
 
-  const buildTree = (items, open) => (
+  const buildTree = (items, setShowDropdownMenu, open) => (
     <ul className={open ? 'open' : ''}>
       {items.map(node => (
         <li key={node.id} className={node.items ? 'branch' : ''}>
           <button
             type="button"
-            onClick={e => handleNodeClick(node, e)}
+            onClick={e => handleNodeClick(node, setShowDropdownMenu, e)}
             className={activeNodes.includes(node.id) ? 'active' : ''}
           >
             {node.label}
           </button>
-          {node.items && buildTree(node.items, openNodes.includes(node.id))}
+          {node.items &&
+            buildTree(
+              node.items,
+              setShowDropdownMenu,
+              openNodes.includes(node.id)
+            )}
         </li>
       ))}
     </ul>
   );
 
-  let autocompleteNode;
-  if (autocomplete) {
-    const flattenedPaths = getFlattenedPaths(data);
-    const squashedPaths = restructureFlattenedTreeDataForAutocomplete(flattenedPaths);
-    autocompleteNode = (
-      <Autocomplete
-        data={squashedPaths}
-        showDropdownUpdated={show => setAutocompleteShowDropdown(show)}
-        onSelect={node => handleNodeClick(node)}
-        placeholder={autocompletePlaceholder}
-        filter={autocompleteFilter}
-        clearOnSelect
-      />
-    );
-  }
-  let treeNode;
-  if (!autocompleteShowDropdown) {
-    treeNode = buildTree(data);
-  }
   return (
-    <DropdownButton label={value ? value.label : 'Select'} ref={dropdownElemnent}>
-      {autocompleteNode}
-      <div className="dropdown-menu__panel">{treeNode}</div>
+    <DropdownButton label={value ? value.label : 'Select'}>
+      {setShowDropdownMenu => (
+        <Fragment>
+          {autocomplete && (
+            <Autocomplete
+              data={restructureFlattenedTreeDataForAutocomplete(
+                getFlattenedPaths(data)
+              )}
+              showDropdownUpdated={show => setAutocompleteShowDropdown(show)}
+              onSelect={node => handleNodeClick(node, setShowDropdownMenu)}
+              placeholder={autocompletePlaceholder}
+              filter={autocompleteFilter}
+              clearOnSelect
+            />
+          )}
+          {!autocompleteShowDropdown && (
+            <div className="dropdown-menu__panel">
+              {buildTree(data, setShowDropdownMenu)}
+            </div>
+          )}
+        </Fragment>
+      )}
     </DropdownButton>
   );
 };

@@ -23,13 +23,6 @@ exports[`Sequence component should render 1`] = `
         >
           <li>
             <a
-              href="/blast/accession/P05067"
-            >
-              BLAST
-            </a>
-          </li>
-          <li>
-            <a
               href="//web.expasy.org/cgi-bin//protparam/protparam?P05067"
               rel="noopener noreferrer"
               target="_blank"
@@ -79,18 +72,11 @@ exports[`Sequence component should render 1`] = `
     <a
       class="button"
       download=""
-      href="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
+      href="https://url-to-P05067.fasta"
     >
       <test-file-stub />
       Download
     </a>
-    <button
-      class="button"
-      type="button"
-    >
-      <test-file-stub />
-      Add
-    </button>
     <div
       class="dropdown-container"
     >
@@ -108,21 +94,21 @@ exports[`Sequence component should render 1`] = `
           class="dropdown-menu__content"
         >
           <label
-            for="isoformId-1-Polar"
+            for="P05067-Polar"
           >
             <input
               data-testid="sequence-highlight-checkbox"
-              id="isoformId-1-Polar"
+              id="P05067-Polar"
               type="checkbox"
             />
             Polar
           </label>
           <label
-            for="isoformId-1-Hydrophobic"
+            for="P05067-Hydrophobic"
           >
             <input
               data-testid="sequence-highlight-checkbox"
-              id="isoformId-1-Hydrophobic"
+              id="P05067-Hydrophobic"
               type="checkbox"
             />
             Hydrophobic
@@ -2096,6 +2082,24 @@ exports[`Sequence component should render 1`] = `
           </text>
         </svg>
       </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Sequence component should render without tools 1`] = `
+<DocumentFragment>
+  <div
+    class="sequence"
+  >
+    <div
+      class="sequence__sequence"
+    >
+      <svg>
+        <text>
+          M
+        </text>
+      </svg>
     </div>
   </div>
 </DocumentFragment>

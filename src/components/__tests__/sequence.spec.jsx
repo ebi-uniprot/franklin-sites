@@ -11,14 +11,21 @@ describe('Sequence component', () => {
       <Sequence
         sequence={sequenceData}
         initialTextSize={{ width: 10, height: 10 }}
-        id="isoformId-1"
         accession="P05067"
+        downloadUrl="https://url-to-P05067.fasta"
       />
     );
   });
 
   test('should render', () => {
     const { asFragment } = rendered;
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render without tools', () => {
+    const { asFragment } = render(
+      <Sequence sequence={sequenceData} showActionBar={false} />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 

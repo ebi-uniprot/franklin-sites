@@ -35,16 +35,15 @@ const sequenceTools = [
   },
 ];
 
-const uniProtSequenceDownload = accession =>
-  `https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/${accession}.fasta`;
-
 const Sequence = ({
-  id,
   sequence,
   chunkSize,
   accession,
   initialTextSize,
-  blastPath,
+  onBlastClick,
+  onAddToBasketClick,
+  downloadUrl,
+  showActionBar,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
   const [highlights, setHighlights] = useState([]);
@@ -52,13 +51,13 @@ const Sequence = ({
   const text = useRef(null);
 
   useEffect(() => {
-    if (!text || initialTextSize) {
+    if (!text || !text.current || !text.current.getBBox || initialTextSize) {
       return;
     }
     // Measure height and width of the dummy element
     const { width, height } = text.current.getBBox();
     setTextSize({ width, height });
-  }, [initialTextSize]);
+  }, [initialTextSize, showActionBar]);
 
   const getChunks = (str, size) => {
     const numChunks = Math.ceil(str.length / size);
@@ -92,7 +91,7 @@ const Sequence = ({
       <DropdownButton label="Highlight">
         <div className="dropdown-menu__content">
           {aminoAcidsProps.map(aaProp => {
-            const inputId = `${id || v1()}-${aaProp.name}`;
+            const inputId = `${accession}-${aaProp.name}`;
             return (
               <label key={aaProp.name} htmlFor={inputId}>
                 <input
@@ -114,45 +113,60 @@ const Sequence = ({
 
   return (
     <Fragment>
-      <div className="action-bar button-group">
-        <DropdownButton label="Tools">
-          <ul className="no-bullet">
-            <li>
-              <a href={`${blastPath}${accession}`}>BLAST</a>
-            </li>
-            {sequenceTools.map(sequenceTool => (
-              <li key={sequenceTool.name}>
-                <a
-                  href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {sequenceTool.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </DropdownButton>
-        <a
-          className="button"
-          href={uniProtSequenceDownload(accession)}
-          download
-        >
-          <DownloadIcon />
-          Download
-        </a>
+      {showActionBar && (
+        <div className="action-bar button-group">
+          <DropdownButton label="Tools">
+            <ul className="no-bullet">
+              {onBlastClick && (
+                <li>
+                  <button
+                    className="button tertiary"
+                    type="button"
+                    onClick={onBlastClick}
+                  >
+                    BLAST
+                  </button>
+                </li>
+              )}
+              {sequenceTools.map(sequenceTool => (
+                <li key={sequenceTool.name}>
+                  <a
+                    href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {sequenceTool.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </DropdownButton>
+          {downloadUrl && (
+            <a className="button" href={downloadUrl} download>
+              <DownloadIcon />
+              Download
+            </a>
+          )}
 
-        <button type="button" className="button">
-          <BasketIcon />
-          Add
-        </button>
-        {getSelectors()}
-        <CopyToClipboard text={sequence} onCopy={() => setCopied(true)}>
-          <button type="button" className="button">
-            {copied ? 'Copied' : 'Copy sequence'}
-          </button>
-        </CopyToClipboard>
-      </div>
+          {onAddToBasketClick && (
+            <button
+              type="button"
+              className="button"
+              onClick={onAddToBasketClick}
+            >
+              <BasketIcon />
+              Add
+            </button>
+          )}
+
+          {getSelectors()}
+          <CopyToClipboard text={sequence} onCopy={() => setCopied(true)}>
+            <button type="button" className="button">
+              {copied ? 'Copied' : 'Copy sequence'}
+            </button>
+          </CopyToClipboard>
+        </div>
+      )}
       <div className="sequence">
         <div className="sequence__sequence">
           {/* If textSize was not provided, add a text element so it can be measured */}
@@ -186,7 +200,7 @@ Sequence.propTypes = {
   /**
    * The accession corresponding to the sequence
    */
-  accession: PropTypes.string.isRequired,
+  accession: PropTypes.string,
   /**
    * The width and height of a letter. Will be calculated if left blank
    */
@@ -199,21 +213,29 @@ Sequence.propTypes = {
    */
   chunkSize: PropTypes.number,
   /**
-   * An ID used to form the highlight options IDs. Default uuid/v1
+   * The URL to download the isoform sequence
    */
-  id: PropTypes.string,
+  downloadUrl: PropTypes.string,
   /**
-   * Path to the BLAST service you would like to use. Accession will be
-   * appended to the end. Uses UniProt by default
+   * Callback which is fired when the BLAST button is clicked. If no callback
+   * is provided then no BLAST button will be displayed.
    */
-  blastPath: PropTypes.string,
+  onBlastClick: PropTypes.func,
+  /** Callback which is fired when the Add button is clicked. If no callback
+   * is provided then no Add button will be displayed.
+   */
+  onAddToBasketClick: PropTypes.func,
+  showActionBar: PropTypes.bool,
 };
 
 Sequence.defaultProps = {
   chunkSize: 10,
+  accession: null,
   initialTextSize: null,
-  id: '',
-  blastPath: '/blast/accession/',
+  downloadUrl: null,
+  onBlastClick: null,
+  onAddToBasketClick: null,
+  showActionBar: true,
 };
 
 export default Sequence;

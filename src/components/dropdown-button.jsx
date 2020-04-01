@@ -48,7 +48,7 @@ const DropdownButton = ({ children, label, className }) => {
         }
         style={{ top: buttonHeight }}
       >
-        {children}
+        {typeof children === 'function' ? children(setShowMenu) : children}
       </div>
     </div>
   );
@@ -56,9 +56,11 @@ const DropdownButton = ({ children, label, className }) => {
 
 DropdownButton.propTypes = {
   /**
-   * Content revealed on click
+   * Content revealed on click. If the children need to control the open/close state of
+   * the dropdown menu then the child can be a function with setShowDropdownMenu as the
+   * argument.
    */
-  children: PropTypes.instanceOf(Object).isRequired,
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
   /**
    * Label to be display by the button
    */

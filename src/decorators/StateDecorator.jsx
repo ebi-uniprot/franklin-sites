@@ -7,7 +7,7 @@ const StateDecorator = ({ children, ...props }) => {
 };
 
 StateDecorator.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 export default StateDecorator;
