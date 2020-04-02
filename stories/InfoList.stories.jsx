@@ -31,6 +31,8 @@ const data = [
 
 export const infoList = () => <InfoList infoData={data} />;
 
+export const infoListCompact = () => <InfoList infoData={data} isCompact />;
+
 infoList.story = {
   name: 'Simple data',
 };

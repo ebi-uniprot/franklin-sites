@@ -2,21 +2,32 @@
 @import '../settings';
 
 .publication {
+  border-bottom: 1px solid $colour-pastel-blue;
+  margin-bottom: $global-margin;
+  padding-bottom: $global-margin;
+  h5 {
+    line-height: 1.2;
+  }
+  .button.tertiary {
+    margin: 0;
+  }
   &__authors {
-    margin-bottom: $global-margin;
+    margin-bottom: $global-margin/2;
     .button.tertiary {
-      margin: 0;
       padding: 0 0.5rem;
     }
   }
+  &__abstract {
+    margin-bottom: $global-margin/2;
+  }
   &__columns {
     display: flex;
+    justify-content: space-between;
     &__main {
-      flex: 1.5;
       margin-right: $global-margin;
     }
     &__side {
-      flex: 1;
+      flex: 0 0 15rem;
       &__item {
         border-left: 0.125rem solid $colour-vivid-cerulean;
         padding-left: 0.7rem;
@@ -34,6 +45,6 @@
     }
   }
   .info-list {
-    margin-top: 0;
+    margin: 0;
   }
 }
