@@ -90,6 +90,20 @@
   fill: $colour-unreviewed;
 }
 
+// messages
+.colour-warning {
+  background: $colour-warning;
+}
+.colour-failure {
+  background: $colour-failure;
+}
+.colour-success {
+  background: $colour-success;
+}
+.colour-info {
+  background: $colour-info;
+}
+
 .box-colour {
   vertical-align: top;
   display: inline-block;
