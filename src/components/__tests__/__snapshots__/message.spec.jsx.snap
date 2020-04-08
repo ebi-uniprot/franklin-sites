@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message component should render 1`] = `
+<DocumentFragment>
+  <section
+    class="alert alert--info"
+  >
+    <section
+      class="alert__content"
+    >
+      <test-file-stub
+        height="1.125em"
+        width="1.125em"
+      />
+      <small>
+        <div>
+          Some content
+        </div>
+      </small>
+    </section>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`Message component should render with a different level 1`] = `
+<DocumentFragment>
+  <section
+    class="alert alert--failure"
+  >
+    <section
+      class="alert__content"
+    >
+      <test-file-stub
+        height="1.125em"
+        width="1.125em"
+      />
+      <small>
+        <div>
+          Some content
+        </div>
+      </small>
+    </section>
+  </section>
+</DocumentFragment>
+`;

@@ -24,8 +24,10 @@
   -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 1rem 0.5rem 0.5rem;
+  display: flex;
   &__content {
     padding-left: 0.5rem;
+    flex: 1 1 auto;
     display: flex;
     svg {
       margin-right: 0.5rem;
@@ -43,5 +45,10 @@
   }
   &--info {
     @include getWarningCSS($colour-info);
+  }
+
+  &__dismiss {
+    text-align: center;
+    flex: 0 1 1rem;
   }
 }

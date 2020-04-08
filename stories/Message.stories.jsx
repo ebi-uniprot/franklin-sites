@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { Message } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
@@ -12,7 +13,9 @@ export default {
   },
 };
 
-export const defaultMessage = () => <Message>{getLipsumSentences()}</Message>;
+export const defaultMessage = () => (
+  <Message onDismiss={action('Dismiss')}>{getLipsumSentences()}</Message>
+);
 export const warningMessage = () => (
   <Message level="warning">{getLipsumSentences()}</Message>
 );
