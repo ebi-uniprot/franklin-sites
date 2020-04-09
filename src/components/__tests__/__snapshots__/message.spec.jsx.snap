@@ -2,8 +2,9 @@
 
 exports[`Message component should render 1`] = `
 <DocumentFragment>
-  <section
+  <div
     class="alert alert--info"
+    role="status"
   >
     <section
       class="alert__content"
@@ -18,14 +19,15 @@ exports[`Message component should render 1`] = `
         </div>
       </small>
     </section>
-  </section>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`Message component should render with a different level 1`] = `
 <DocumentFragment>
-  <section
+  <div
     class="alert alert--failure"
+    role="status"
   >
     <section
       class="alert__content"
@@ -40,6 +42,6 @@ exports[`Message component should render with a different level 1`] = `
         </div>
       </small>
     </section>
-  </section>
+  </div>
 </DocumentFragment>
 `;

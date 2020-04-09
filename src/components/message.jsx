@@ -14,7 +14,7 @@ const MessageLevel = {
 const iconSize = '1.125em';
 
 const Message = ({ children, level, onDismiss }) => (
-  <section className={`alert alert--${level}`} role="status">
+  <div className={`alert alert--${level}`} role="status">
     <section className="alert__content">
       <WarningIcon width={iconSize} height={iconSize} />
       <small>{children}</small>
@@ -24,7 +24,7 @@ const Message = ({ children, level, onDismiss }) => (
         <CloseIcon width="10" height="10" />
       </button>
     )}
-  </section>
+  </div>
 );
 
 Message.propTypes = {
