@@ -33,6 +33,7 @@ export { default as useModal } from '../hooks/modal';
 export { default as ButtonModal } from './button-modal';
 export { default as Publication } from './publication';
 export { default as DisplayMenu } from './display-menu';
+export { default as Message } from './message';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
@@ -56,3 +57,4 @@ export { default as CitedIcon } from '../svg/cited.svg';
 export { default as CitedSpeechIcon } from '../svg/cited-speech.svg';
 export { default as ComputerMappedIcon } from '../svg/computer-mapped.svg';
 export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';
+export { default as WarningIcon } from '../svg/warning.svg';

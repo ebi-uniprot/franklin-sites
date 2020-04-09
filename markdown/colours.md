@@ -34,6 +34,13 @@
   data-name="$colour-annotation-systems"
 ></div>
 
+### Messages
+
+<div class="box-colour colour-warning" data-name="$colour-warning" ></div>
+<div class="box-colour colour-failure" data-name="$colour-failure" ></div>
+<div class="box-colour colour-success" data-name="$colour-success" ></div>
+<div class="box-colour colour-info" data-name="$colour-info" ></div>
+
 ### Variables
 
 - `$colour-link`: the colour of something clickable
