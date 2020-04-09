@@ -7,8 +7,10 @@ export default {
   title: 'Layout|Message',
   parameters: {
     purposeFunction: {
-      function: '',
-      purpose: '',
+      function:
+        'Give the user some feedback about something happening (tool running, error) or time-boxed information about the website (downtime, etc.)',
+      purpose:
+        'They are noticeable but do not disrup the user experience. Some can be dismissed.',
     },
   },
 };
