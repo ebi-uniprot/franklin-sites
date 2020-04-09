@@ -31,7 +31,7 @@ Message.propTypes = {
   /**
    * The message body
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   /**
    * The message level: 'warning', 'failure', 'success', 'info' (default)
    */
