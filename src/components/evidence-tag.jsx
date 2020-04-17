@@ -29,7 +29,7 @@ const EvidenceTag = ({ label, title, className, iconComponent, children }) => {
           }`}
           data-testid="evidence-tag-content"
         >
-          {children}
+          {contentDisplay && children}
         </div>
       )}
     </Fragment>
