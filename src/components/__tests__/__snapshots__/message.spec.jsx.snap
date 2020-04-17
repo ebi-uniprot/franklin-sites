@@ -3,11 +3,11 @@
 exports[`Message component should render 1`] = `
 <DocumentFragment>
   <div
-    class="alert alert--info"
+    class="message message--info"
     role="status"
   >
     <section
-      class="alert__content"
+      class="message__content"
     >
       <test-file-stub
         height="1.125em"
@@ -26,11 +26,11 @@ exports[`Message component should render 1`] = `
 exports[`Message component should render with a different level 1`] = `
 <DocumentFragment>
   <div
-    class="alert alert--failure"
+    class="message message--failure"
     role="status"
   >
     <section
-      class="alert__content"
+      class="message__content"
     >
       <test-file-stub
         height="1.125em"

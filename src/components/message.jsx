@@ -14,13 +14,13 @@ const MessageLevel = {
 const iconSize = '1.125em';
 
 const Message = ({ children, level, onDismiss }) => (
-  <div className={`alert alert--${level}`} role="status">
-    <section className="alert__content">
+  <div className={`message message--${level}`} role="status">
+    <section className="message__content">
       <WarningIcon width={iconSize} height={iconSize} />
       <small>{children}</small>
     </section>
     {onDismiss && (
-      <button type="button" className="alert__dismiss" onClick={onDismiss}>
+      <button type="button" className="message__dismiss" onClick={onDismiss}>
         <CloseIcon width="10" height="10" />
       </button>
     )}

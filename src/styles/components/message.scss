@@ -14,14 +14,16 @@
 
 @mixin getWarningCSS($level) {
   @include SVGDefinition(($level));
-  .alert__content {
+  .message__content {
     border-left: getMessageBorder($level);
   }
 }
 
-.alert {
+.message {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 1rem 0.5rem 0.5rem;
+  background-color: $colour-sky-white;
+  margin-bottom: $global-margin/2;
   display: flex;
   &__content {
     padding-left: 0.5rem;
@@ -47,6 +49,7 @@
 
   &__dismiss {
     text-align: center;
+    cursor: pointer;
     flex: 0 1 1rem;
   }
 }
