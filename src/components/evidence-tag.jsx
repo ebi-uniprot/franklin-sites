@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useRef, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import v1 from 'uuid';
+import { v1 } from 'uuid';
 import EvidenceTagIcon from '../svg/evidence-tag.svg';
 import '../styles/components/evidence-tag.scss';
 
