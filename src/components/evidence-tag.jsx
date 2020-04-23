@@ -1,35 +1,38 @@
-import React, { Fragment, useState, cloneElement } from 'react';
+import React, { Fragment, useState, useRef, cloneElement } from 'react';
 import PropTypes from 'prop-types';
+import { v1 } from 'uuid';
 import EvidenceTagIcon from '../svg/evidence-tag.svg';
 import '../styles/components/evidence-tag.scss';
 
 const size = 12;
 
 const EvidenceTag = ({ label, title, className, iconComponent, children }) => {
+  const idRef = useRef(v1());
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
     <Fragment>
-      <span
+      <button
         className={`evidence-tag ${className}`}
         onClick={() => setContentDisplay(!contentDisplay)}
-        onKeyDown={() => setContentDisplay(!contentDisplay)}
-        role="button"
-        tabIndex={0}
+        type="button"
         data-testid="evidence-tag-trigger"
+        aria-expanded={contentDisplay}
+        aria-controls={idRef.current}
       >
         {cloneElement(iconComponent, { width: size, height: size })}
         <span className="evidence-tag__label" title={title}>
           {label}
         </span>
-      </span>
+      </button>
       {children && (
         <div
           className={`evidence-tag-content ${
             contentDisplay ? 'evidence-tag-content--visible' : ''
           }`}
           data-testid="evidence-tag-content"
+          id={idRef.current}
         >
-          {children}
+          {contentDisplay && children}
         </div>
       )}
     </Fragment>

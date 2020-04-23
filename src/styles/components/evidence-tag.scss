@@ -27,10 +27,54 @@
 .evidence-tag-content {
   opacity: 0;
   max-height: 0;
-  background-color: $colour-platinum;
   overflow: hidden;
   transition: none;
   display: inline;
+  /* shadow trick from http://lea.verou.me/2012/04/background-attachment-local/ */
+  background:
+    /* Shadow covers */ linear-gradient(
+      $colour-platinum 30%,
+      rgba(255, 255, 255, 0)
+    ),
+    linear-gradient(rgba(255, 255, 255, 0), $colour-platinum 70%) 0 100%,
+    /* Shadows */
+      radial-gradient(
+        50% 0,
+        farthest-side,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      ),
+    radial-gradient(
+        50% 100%,
+        farthest-side,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
+  background:
+  /* Shadow covers */ linear-gradient(
+      $colour-platinum 30%,
+      rgba(255, 255, 255, 0)
+    ),
+    linear-gradient(rgba(255, 255, 255, 0), $colour-platinum 70%) 0 100%,
+    /* Shadows */
+      radial-gradient(
+        farthest-side at 50% 0,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
+  background-repeat: no-repeat;
+  background-color: $colour-platinum;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  /* Opera doesn't support this in the shorthand */
+  background-attachment: local, local, scroll, scroll;
+
   div {
     display: none;
   }
