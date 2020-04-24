@@ -22,6 +22,7 @@ import {
   CitedSpeechIcon,
   ComputerMappedIcon,
   EvidenceTagIcon,
+  ProtVistaIcon,
 } from '../src/components';
 
 export default {
@@ -140,6 +141,11 @@ const iconDefinition = [
     name: 'evidence-tag.svg',
     description: 'Evidence Tag',
     icon: <EvidenceTagIcon width={size} height={size} />,
+  },
+  {
+    name: 'protvista.svg',
+    description: 'ProtVista',
+    icon: <ProtVistaIcon width={size} height={size} />,
   },
 ];
 
