@@ -1,11 +1,11 @@
-@import "../settings";
-@import "../colours";
+@import '../settings';
+@import '../colours';
 
 .icon {
   &--reviewed {
-    fill: $colour-reviewed;
+    color: $colour-reviewed;
   }
   &--unreviewed {
-    fill: $colour-unreviewed;
+    color: $colour-unreviewed;
   }
 }
