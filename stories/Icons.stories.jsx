@@ -23,6 +23,7 @@ import {
   ComputerMappedIcon,
   EvidenceTagIcon,
   ProtVistaIcon,
+  WarningIcon,
 } from '../src/components';
 
 export default {
@@ -146,6 +147,11 @@ const iconDefinition = [
     name: 'protvista.svg',
     description: 'ProtVista',
     icon: <ProtVistaIcon width={size} height={size} />,
+  },
+  {
+    name: 'warning.svg',
+    description: 'Warning',
+    icon: <WarningIcon width={size} height={size} />,
   },
 ];
 
