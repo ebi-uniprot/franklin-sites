@@ -17,7 +17,7 @@ const sharedPropTypes = {
       label: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
-    }),
+    })
   ).isRequired,
   /**
    * A callback function that is called whenever a user clicks the header. The column name is
@@ -33,21 +33,22 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
   <thead className="data-table__table__header">
     <tr className="data-table__table__header__row">
       {selectable && (
-        <th key="selectable-column" className="data-table__table__header__row__cell">
+        <th
+          key="selectable-column"
+          className="data-table__table__header__row__cell"
+        >
           {' '}
         </th>
       )}
-      {columns.map((column) => {
+      {columns.map(column => {
         let className = 'data-table__table__header__row__cell ';
         let onClick;
-        const {
-          sorted, name, label, sortable,
-        } = column;
+        const { sorted, name, label, sortable } = column;
         if (sortable) {
           onClick = () => onHeaderClick(column.name);
           if (sorted) {
-            className
-              += column.sorted === 'ascend'
+            className +=
+              column.sorted === 'ascend'
                 ? 'data-table__table__header__row__cell--ascend'
                 : 'data-table__table__header__row__cell--descend';
           } else {
@@ -86,18 +87,27 @@ const getCellClassName = (index, selectable, isSelected) => {
 };
 
 const DataTableBody = ({
-  data, columns, onSelect, selected, idKey, selectable,
+  data,
+  columns,
+  onSelect,
+  selected,
+  getIdKey,
+  selectable,
 }) => (
   <tbody className="data-table__table__body">
     {data.map((row, index) => {
-      const { [idKey]: id } = row;
+      const id = getIdKey(row);
       const isSelected = !!selected[id];
       const className = getCellClassName(index, selectable, isSelected);
       return (
         <tr key={id}>
           {selectable && (
             <td key={`${id}-select-column`} className={className}>
-              <input type="checkbox" onChange={() => onSelect(id)} checked={isSelected} />
+              <input
+                type="checkbox"
+                onChange={() => onSelect(id)}
+                checked={isSelected}
+              />
             </td>
           )}
           {columns.map(column => (
@@ -118,9 +128,9 @@ DataTableBody.propTypes = {
    */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
-   * The name of an attribute in each of the data objects which serves as a unique ID
+   * A function that returns a unique ID for each of the data objects. Defaults to return the "id" attribute.
    */
-  idKey: PropTypes.string,
+  getIdKey: PropTypes.func,
   /**
    * A callback function that is called whenever a user selects a row. The row ID is returned upon
    * callback.
@@ -133,22 +143,32 @@ DataTableBody.propTypes = {
 };
 
 DataTableBody.defaultProps = {
-  idKey: 'id',
   selected: {},
+  getIdKey: ({ id }) => id,
 };
 
 const DataTable = ({
-  data, columns, onSelect, selected, idKey, selectable, onHeaderClick,
+  data,
+  columns,
+  onSelect,
+  selected,
+  getIdKey,
+  selectable,
+  onHeaderClick,
 }) => (
   <Fragment>
     <table className="data-table__table">
-      <DataTableHead selectable={selectable} columns={columns} onHeaderClick={onHeaderClick} />
+      <DataTableHead
+        selectable={selectable}
+        columns={columns}
+        onHeaderClick={onHeaderClick}
+      />
       <DataTableBody
         data={data}
         columns={columns}
         onSelect={onSelect}
         selected={selected}
-        idKey={idKey}
+        getIdKey={getIdKey}
         selectable={selectable}
       />
     </table>

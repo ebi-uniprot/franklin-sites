@@ -4,7 +4,7 @@ import { getLipsumObjectArray } from '../mock-data/lipsum';
 
 const DataDecorator = ({ children, ...props }) => {
   let loadingData = false;
-  const idKey = 'id';
+  const getIdKey = ({ id }) => id;
   const numberDataPointsPerRequest = 6;
   const totalNumberDataPoints = 50;
   const sleepDuration = 0.75;
@@ -45,7 +45,6 @@ const DataDecorator = ({ children, ...props }) => {
   function generateData(numberElements) {
     return getLipsumObjectArray({
       keys: columns.map(column => column.name),
-      idKey,
       numberElements,
     });
   }
@@ -73,7 +72,7 @@ const DataDecorator = ({ children, ...props }) => {
   const hasMoreData = data.length < totalNumberDataPoints;
   return (
     <div {...props}>
-      {children(data, idKey, columns, hasMoreData, onLoadMoreItems)}
+      {children(data, getIdKey, columns, hasMoreData, onLoadMoreItems)}
     </div>
   );
 };
