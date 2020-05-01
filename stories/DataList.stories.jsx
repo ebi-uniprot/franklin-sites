@@ -12,31 +12,27 @@ export default {
     },
   },
   decorators: [
-    story => {
-      return (
-        <DataDecorator>
-          {(data, idKey, columns, hasMoreData, onLoadMoreItems) => {
-            return (
-              <div style={{ height: '65vh' }}>
-                {story({
-                  data,
-                  idKey,
-                  columns,
-                  hasMoreData,
-                  onLoadMoreItems,
-                })}
-              </div>
-            );
-          }}
-        </DataDecorator>
-      );
-    },
+    story => (
+      <DataDecorator>
+        {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => (
+          <div style={{ height: '65vh' }}>
+            {story({
+              data,
+              getIdKey,
+              columns,
+              hasMoreData,
+              onLoadMoreItems,
+            })}
+          </div>
+        )}
+      </DataDecorator>
+    ),
   ],
 };
 
 export const dataList = ({
   data,
-  idKey,
+  getIdKey,
   columns,
   hasMoreData,
   onLoadMoreItems,
@@ -44,7 +40,7 @@ export const dataList = ({
   <DataList
     {...{
       data,
-      idKey,
+      getIdKey,
       columns,
       hasMoreData,
       onLoadMoreItems,
@@ -58,7 +54,7 @@ export const dataList = ({
 
 export const dataListWithCards = ({
   data,
-  idKey,
+  getIdKey,
   columns,
   hasMoreData,
   onLoadMoreItems,
@@ -66,7 +62,7 @@ export const dataListWithCards = ({
   <DataList
     {...{
       data,
-      idKey,
+      getIdKey,
       columns,
       hasMoreData,
       onLoadMoreItems,

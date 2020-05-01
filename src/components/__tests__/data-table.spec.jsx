@@ -4,7 +4,7 @@ import DataTable from '../data-table';
 import { fillArray } from '../../utils';
 
 describe('DataTable', () => {
-  const idKey = 'id';
+  const getIdKey = ({ id }) => id;
   const onSelect = jest.fn();
   const onHeaderClick = jest.fn();
   const selectable = true;
@@ -31,7 +31,7 @@ describe('DataTable', () => {
     },
   ];
   const data = fillArray(10, (element, index) => ({
-    [idKey]: `id${index}`,
+    id: `id${index}`,
     content1: 'foo',
     content2: 'bar',
     content3: 'baz',
@@ -45,7 +45,7 @@ describe('DataTable', () => {
       onLoadMoreItems,
       hasMoreData,
       data,
-      idKey,
+      getIdKey,
       columns,
       onSelect,
       selected,
@@ -82,7 +82,9 @@ describe('DataTable', () => {
 
   test('should fire onHeaderClick when header is clicked', () => {
     const { container } = render(<DataTable {...props} />);
-    const sortableHeader = container.querySelector('.data-table__table__header__row__cell--ascend');
+    const sortableHeader = container.querySelector(
+      '.data-table__table__header__row__cell--ascend'
+    );
     fireEvent.click(sortableHeader);
     expect(onHeaderClick).toHaveBeenCalled();
   });

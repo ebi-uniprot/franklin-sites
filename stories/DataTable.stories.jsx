@@ -15,12 +15,12 @@ export default {
     story => {
       return (
         <DataDecorator>
-          {(data, idKey, columns, hasMoreData, onLoadMoreItems) => {
+          {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
             return (
               <div style={{ height: '65vh' }}>
                 {story({
                   data,
-                  idKey,
+                  getIdKey,
                   columns,
                   hasMoreData,
                   onLoadMoreItems,
@@ -36,7 +36,7 @@ export default {
 
 export const dataTable = ({
   data,
-  idKey,
+  getIdKey,
   columns,
   hasMoreData,
   onLoadMoreItems,
@@ -44,7 +44,7 @@ export const dataTable = ({
   <DataTable
     {...{
       data,
-      idKey,
+      getIdKey,
       columns,
       hasMoreData,
       onLoadMoreItems,
