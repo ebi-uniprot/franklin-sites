@@ -8,9 +8,20 @@
   align-items: center;
   align-content: center;
   color: $colour-sky-white;
+  padding: 0.5em 1em;
+  background: linear-gradient(
+    45deg,
+    $colour-sapphire-blue,
+    rgba($colour-sapphire-blue, 0.7),
+    $colour-sapphire-blue,
+    $colour-sapphire-blue
+  );
+
   &.header--negative {
     justify-content: space-between;
     color: $colour-sapphire-blue;
+    background: $colour-sky-white;
+
     a,
     a:link,
     a:visited,
@@ -18,21 +29,8 @@
     a:active {
       color: $colour-sapphire-blue;
     }
-    background: $colour-sky-white;
-    .header__logo {
-      svg {
-        stroke: $colour-sea-blue;
-        fill: $colour-sea-blue;
-        circle {
-          stroke: $colour-sea-blue;
-        }
-        path {
-          fill: $colour-sea-blue;
-        }
-      }
-    }
   }
-  padding: 0.5em 1em;
+
   a,
   a:link,
   a:visited,
@@ -41,39 +39,36 @@
   button {
     color: $colour-sky-white;
   }
-  background: linear-gradient(
-    45deg,
-    $colour-sapphire-blue,
-    rgba($colour-sapphire-blue, 0.7),
-    $colour-sapphire-blue,
-    $colour-sapphire-blue
-  );
-  &__logo {
-    display: inline-block;
-    svg {
-      // margin-bottom: -1em;
-      stroke: $colour-sky-white;
-      fill: $colour-sky-white;
-      circle {
-        stroke: $colour-sky-white;
-      }
-      path {
-        fill: $colour-sky-white;
-      }
+
+  .dropdown-menu {
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: $colour-sapphire-blue;
     }
   }
+
+  &__logo {
+    display: inline-block;
+  }
+
   &__navigation {
     list-style: none;
     display: inline-block;
     margin: 0;
+
     a:hover {
       border-bottom: 1px solid $colour-sky-white;
     }
+
     li {
       display: inline-block;
       margin: 0 0.7em;
     }
   }
+
   &__search {
     flex: 4 4 auto;
     input,
@@ -94,12 +89,13 @@
   margin-bottom: 2em;
 
   .hero-header__title {
-    h1 {
-      color: $colour-sky-white;
-    }
     display: flex;
     align-items: flex-end;
     flex: 2 1 auto;
+
+    h1 {
+      color: $colour-sky-white;
+    }
   }
 
   .hero-header__content {
@@ -110,6 +106,7 @@
   .hero-header__footer {
     flex: 0 1 auto;
   }
+
   label {
     color: $colour-sky-white;
   }
