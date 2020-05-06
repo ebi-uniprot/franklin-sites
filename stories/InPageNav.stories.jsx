@@ -1,4 +1,6 @@
 import React from 'react';
+import { MemoryRouter, useLocation, useHistory } from 'react-router-dom';
+import { loremIpsum } from 'lorem-ipsum';
 import { InPageNav } from '../src/components';
 
 const sections = [
@@ -15,6 +17,10 @@ const sections = [
     label: 'Third link',
     disabled: true,
   },
+  {
+    id: 'id4',
+    label: 'Fourth link',
+  },
 ];
 
 export default {
@@ -28,4 +34,80 @@ export default {
   },
 };
 
-export const inPageNav = () => <InPageNav sections={sections} />;
+const content = [
+  <>
+    <p>{loremIpsum()}</p>
+    <p>{loremIpsum()}</p>
+    <p>{loremIpsum()}</p>
+    <p>{loremIpsum()}</p>
+  </>,
+  <>
+    <p>{loremIpsum()}</p>
+    <p>{loremIpsum()}</p>
+    <p>{loremIpsum()}</p>
+  </>,
+  <>
+    <p>{loremIpsum()}</p>
+    <p>{loremIpsum()}</p>
+  </>,
+];
+
+const Demo = () => {
+  const history = useHistory();
+
+  return (
+    <>
+      <button
+        disabled={history.index === 0}
+        type="button"
+        className="button"
+        onClick={history.goBack}
+      >
+        Browser back
+      </button>
+      <code style={{ margin: '0 1ch' }}>
+        pathname:
+        {history.location.pathname}
+      </code>
+      <button
+        disabled={history.index + 1 === history.length}
+        type="button"
+        className="button"
+        onClick={history.goForward}
+      >
+        Browser forward
+      </button>
+      <div style={{ border: '1px solid black' }}>
+        <div style={{ height: '200px', display: 'flex' }}>
+          <div style={{ width: '200px' }}>
+            <InPageNav
+              sections={sections}
+              path="/initial/path/:section"
+              slug="section"
+            />
+          </div>
+          <main style={{ overflow: 'scroll' }}>
+            <section data-location="id1">
+              <h1>first section</h1>
+              {content[0]}
+            </section>
+            <section data-location="id2">
+              <h1>second section</h1>
+              {content[1]}
+            </section>
+            <section data-location="id4">
+              <h1>fourth section</h1>
+              {content[2]}
+            </section>
+          </main>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const inPageNav = () => (
+  <MemoryRouter initialEntries={['/initial/path/id1']}>
+    <Demo />
+  </MemoryRouter>
+);
