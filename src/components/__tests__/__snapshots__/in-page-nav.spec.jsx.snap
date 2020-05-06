@@ -2,7 +2,7 @@
 
 exports[`InPageNav component should render 1`] = `
 <DocumentFragment>
-  <div
+  <ul
     class="in-page-nav"
   >
     <li>
@@ -20,7 +20,7 @@ exports[`InPageNav component should render 1`] = `
       </a>
     </li>
     <li
-      class="in-page-nav--disabled"
+      class="disabled"
     >
       <a
         href="/id3"
@@ -28,6 +28,6 @@ exports[`InPageNav component should render 1`] = `
         Third link
       </a>
     </li>
-  </div>
+  </ul>
 </DocumentFragment>
 `;

@@ -51,18 +51,15 @@ const InPageNav = ({ sections, path, slug }) => {
   }, [sectionName]);
 
   return (
-    <div className="in-page-nav">
+    <ul className="in-page-nav">
       {sections.map(section => (
-        <li
-          className={section.disabled && 'in-page-nav--disabled'}
-          key={section.label}
-        >
-          <NavLink to={`${section.id}`} activeClassName="in-page-nav--active">
+        <li key={section.label} className={section.disabled && 'disabled'}>
+          <NavLink to={`${section.id}`} activeClassName="active">
             {section.label}
           </NavLink>
         </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

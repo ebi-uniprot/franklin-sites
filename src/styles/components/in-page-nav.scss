@@ -4,21 +4,39 @@
 .in-page-nav {
   padding: 0;
   margin: 0;
-  ul {
-    margin: 0;
-  }
+
   li {
     list-style: none;
     margin-bottom: $global-margin;
+
+    &.disabled {
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.4;
+    }
   }
 
-  &--active {
-    color: $colour-yankees-blue;
-    border-bottom: 1px solid $colour-yankees-blue;
-    font-weight: 700;
-  }
+  a {
+    position: relative;
 
-  &--disabled {
-    opacity: 0.4;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-bottom: 1px solid currentColor;
+      opacity: 0;
+      transition: opacity ease-in-out 500ms;
+    }
+
+    &:hover::after {
+      opacity: 0.25;
+    }
+
+    &.active::after {
+      opacity: 1;
+    }
   }
 }
