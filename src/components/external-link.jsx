@@ -4,9 +4,13 @@ import '../styles/components/external-link.scss';
 import ExternalLinkIcon from '../svg/external-link.svg';
 
 const ExternalLink = ({ children, url, newTab = true }) => {
-  const props = { className: 'external-link', href: url, ...(newTab && { target: '_blank' }) };
+  const props = {
+    className: 'external-link',
+    href: url,
+    ...(newTab && { target: '_blank' }),
+  };
   return (
-    <a {...props}>
+    <a {...props} rel="noopener">
       {children}
       <ExternalLinkIcon width={12.5} />
     </a>

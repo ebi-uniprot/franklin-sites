@@ -4,6 +4,7 @@ exports[`ExternalLink component should render external link 1`] = `
 <a
   className="external-link"
   href="#"
+  rel="noopener"
   target="_blank"
 >
   <span>
@@ -19,6 +20,7 @@ exports[`ExternalLink component should render external link without target: _bla
 <a
   className="external-link"
   href="#"
+  rel="noopener"
 >
   <span>
     Link text
