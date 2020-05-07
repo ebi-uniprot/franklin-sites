@@ -5,6 +5,9 @@ exports[`InPageNav component should render 1`] = `
   <ul
     class="in-page-nav"
   >
+    <div
+      class="marker"
+    />
     <li>
       <a
         href="/id1"
