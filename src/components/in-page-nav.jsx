@@ -76,11 +76,15 @@ const InPageNav = ({ sections, path, slug }) => {
     // get measurements
     const containerRect = marker.current.parentElement.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
+    const currentMarkerRec = marker.current.getBoundingClientRect();
 
     marker.current.style.display = 'block';
     marker.current.animate(
       {
         transform: [
+          `translateY(${currentMarkerRec.y - containerRect.y}px) scaleY(${
+            currentMarkerRec.height
+          })`,
           `translateY(${targetRect.y - containerRect.y}px) scaleY(${
             targetRect.height
           })`,
