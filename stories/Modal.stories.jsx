@@ -14,7 +14,7 @@ export default {
 };
 
 export const modal = () => (
-  <ButtonModal buttonText="click me" title="My great modal window">
+  <ButtonModal buttonText="click me" title="Example modal window">
     {loremIpsum(45)}
   </ButtonModal>
 );
