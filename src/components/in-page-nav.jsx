@@ -13,6 +13,14 @@ const InPageNav = ({ sections, path, slug }) => {
 
   const sectionName = match.params[slug];
 
+  // set a flag to ignore scroll-related events for 500ms
+  const markScrolling = useCallback(() => {
+    if (clickFlag.current) clearTimeout(clickFlag.current);
+    clickFlag.current = setTimeout(() => {
+      clickFlag.current = false;
+    }, 500);
+  }, []);
+
   // effect to connect user changes in scroll to browser history
   useEffect(() => {
     // get elements to watch from configured sections
@@ -96,15 +104,9 @@ const InPageNav = ({ sections, path, slug }) => {
         fill: 'both',
       }
     );
-  }, [history.location.pathname]);
 
-  // set a flag to ignore scroll-related events for 500ms
-  const handleClick = useCallback(() => {
-    clickFlag.current = true;
-    setTimeout(() => {
-      clickFlag.current = false;
-    }, 500);
-  }, []);
+    markScrolling();
+  }, [history.location.pathname, markScrolling]);
 
   return (
     <ul className="in-page-nav">
@@ -114,7 +116,7 @@ const InPageNav = ({ sections, path, slug }) => {
           <NavLink
             to={`${section.id}`}
             activeClassName="active"
-            onClick={handleClick}
+            onClick={markScrolling}
           >
             {section.label}
           </NavLink>
