@@ -69,8 +69,8 @@ const Window = ({
 };
 
 Window.propTypes = {
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string,
   title: PropTypes.string,
   withHeaderCloseButton: PropTypes.bool,
   withFooterCloseButton: PropTypes.bool,
@@ -87,6 +87,8 @@ Window.propTypes = {
 };
 
 Window.defaultProps = {
+  width: '50vw',
+  height: '50vh',
   title: null,
   withHeaderCloseButton: false,
   withFooterCloseButton: false,

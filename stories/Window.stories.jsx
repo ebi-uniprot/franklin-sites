@@ -16,8 +16,6 @@ export default {
 
 export const window = () => (
   <Window
-    width="20rem"
-    heigh="15rem"
     title="Alert"
     key="full-featured-window"
     withHeaderCloseButton
