@@ -62,5 +62,3 @@ export default function useModal(Backdrop, Content) {
     Modal,
   };
 }
-
-
