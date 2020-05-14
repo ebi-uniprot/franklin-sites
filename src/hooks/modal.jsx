@@ -7,6 +7,7 @@ export default function useModal(Backdrop, Content) {
   const [displayModal, setDisplayModal] = useState(false);
   const Modal = ({
     children,
+    layout,
     ...props
   }) => (
     <div className="modal">
@@ -21,6 +22,7 @@ export default function useModal(Backdrop, Content) {
     children: PropTypes.oneOfType(
       [PropTypes.arrayOf(PropTypes.node), PropTypes.node],
     ).isRequired,
+    layout: PropTypes.string.isRequired,
   };
 
   return {
