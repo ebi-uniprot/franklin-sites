@@ -22,7 +22,11 @@ export default function useModal(Backdrop, Content) {
     children: PropTypes.oneOfType(
       [PropTypes.arrayOf(PropTypes.node), PropTypes.node],
     ).isRequired,
-    layout: PropTypes.string.isRequired,
+    layout: PropTypes.string,
+  };
+
+  Modal.defaultProps = {
+    layout: undefined,
   };
 
   return {
