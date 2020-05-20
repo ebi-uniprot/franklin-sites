@@ -97,7 +97,7 @@ const DataTableBody = ({
   <tbody className="data-table__table__body">
     {data.map((row, index) => {
       const id = getIdKey(row);
-      const isSelected = !!selected[id];
+      const isSelected = selected.includes(id);
       const className = getCellClassName(index, selectable, isSelected);
       return (
         <tr key={id}>
@@ -139,11 +139,11 @@ DataTableBody.propTypes = {
   /**
    * An object which indicates which rows have been selected by the user.
    */
-  selected: PropTypes.objectOf(PropTypes.bool),
+  selected: PropTypes.arrayOf(PropTypes.string),
 };
 
 DataTableBody.defaultProps = {
-  selected: {},
+  selected: [],
   getIdKey: ({ id }) => id,
 };
 
