@@ -54,7 +54,7 @@ const validCharacters = /^[A-NP-Z*.-]+$/i;
 // e.g. with 'threshold' set to 90
 // sample sequence: AAAAAZZZZZ -> AA
 // sample sequence: AAAAAAAAAZ -> NA
-function guessSeuquenceType(sequence, threshold) {
+function guessSequenceType(sequence, threshold) {
   const typeAA = 'aa';
   const typeNA = 'na';
 
@@ -134,7 +134,7 @@ function findLikelyType(sequence) {
   const cleanSequence = sequence.replace(cleanUpRegEx, '');
   const nucleicAcidBaseThreshold = 90;
 
-  return guessSeuquenceType(cleanSequence, nucleicAcidBaseThreshold);
+  return guessSequenceType(cleanSequence, nucleicAcidBaseThreshold);
 }
 
 // Main validation function
