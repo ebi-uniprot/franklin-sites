@@ -8,7 +8,7 @@ describe('DataTable', () => {
   const onSelect = jest.fn();
   const onHeaderClick = jest.fn();
   const selectable = true;
-  const selected = { id0: true };
+  const selected = ['id0'];
   const hasMoreData = true;
   const columns = [
     {
