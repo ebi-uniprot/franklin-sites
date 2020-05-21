@@ -44,16 +44,43 @@ export const validResponse = {
 // Accepts * . -
 const validCharacters = /^[A-NP-Z*.-]+$/i;
 
-// Accepts a sequence of characters and makes a guess if
-// the sequence is an AA or NA sequence.
-// Note: This function will always return a guess.
-// Note: The argument 'threshold' is the frequency of nucliec-acid
-// bases that has to be repeated in the sequence in order to consider
-// it a NA sequence. This is a percentage value, represented in
-// values from 0 to 100.
-// e.g. with 'threshold' set to 90
-// sample sequence: AAAAAZZZZZ -> AA
-// sample sequence: AAAAAAAAAZ -> NA
+/**
+ * Very basic check on if a string is likely to be a FASTA-formatted string
+ *
+ * @param {string} seq - Sequence
+ * @return {Boolean} True if it is likely to be FASTA
+ */
+const isFASTA = seq => /.*[>]+/gm.test(seq);
+
+/**
+ * Prepares a string to be digested by the core validation function.
+ *
+ * @param {string} fasta - A FASTA-formatted string
+ * @return {Array<string>} An array of clean sequences
+ */
+function prepareFASTAString(fasta) {
+  return fasta
+    .split(/^>.*\n?$/gm)  // split and remove the 'Description' line
+    .map(s => s.replace(/\s/g,''))  // remove all of the white-space
+    .filter(Boolean);  // remove all non-truthy values e.g. null, '', false.
+}
+
+/* 
+ * Accepts a sequence of characters and makes a guess if
+ * the sequence is an AA or NA sequence.
+ * Note: This function will always return a guess.
+ * Note: The argument 'threshold' is the frequency of nucliec-acid
+ * bases that has to be repeated in the sequence in order to consider
+ * it a NA sequence. This is a percentage value, represented in
+ * values from 1 to 100.
+ * e.g. with 'threshold' set to 90
+ * sample sequence: AAAAAZZZZZ -> AA
+ * sample sequence: AAAAAAAAAZ -> NA
+ *
+ * @param {string} sequence - A sequence
+ * @param {Number} threshold - NA threshold from 1 to 100
+ * @return {string} The likely type either 'aa' or 'na'
+ */
 function guessSequenceType(sequence, threshold) {
   const typeAA = 'aa';
   const typeNA = 'na';
@@ -119,8 +146,13 @@ function guessSequenceType(sequence, threshold) {
   return typeAA;
 }
 
-// Does some ground work before passing the sequence to the
-// 'guess' function
+/* 
+ * Does some ground work before passing the sequence to the
+ * 'guess' function.
+ *
+ * @param {string} sequence - A sequence
+ * @return {string} The likely type either 'aa' or 'na'
+ */
 function findLikelyType(sequence) {
   // 1. Remove all of the non-letter characters, plus N and X
   // 2. If less than 11 usable characters left: unable to guess
@@ -137,9 +169,11 @@ function findLikelyType(sequence) {
   return guessSequenceType(cleanSequence, nucleicAcidBaseThreshold);
 }
 
-
 /**
- * Internal validation function
+ * Core internal validation function for a single sequence
+ *
+ * @param {string} sequence - A sequence
+ * @return {object} The result
  */
 function sequenceValidator(sequence) {
   // Sequence was not passed at all
@@ -147,10 +181,10 @@ function sequenceValidator(sequence) {
     return errorResponses.missingSequence;
   }
 
-  // Remove FASTA description lines and all white-spaces
-  const cleanSequence = sequence
-    .replace(/^>.*\n?$/gm, '')
-    .replace(/\s/g,'');
+  // Remove all white-spaces and FASTA bits
+  const cleanSequence = (isFASTA(sequence))
+    ? prepareFASTAString(sequence)[0]  // Extract the first and only item
+    : sequence.replace(/\s/g,'');
 
   // Nothing left?
   if (!cleanSequence.length > 0) {
@@ -186,15 +220,30 @@ function sequenceValidator(sequence) {
 /**
  * Main validation function
  * 
- * @param {Array<string>} sequences - An array of sequences
+ * @param {Array<string>|string} sequences - An array of sequences or a string
  * @return {Array<object|null>} The result of validating each sequence
  * while keeping order intact.
  */
-function validateSequences(sequences) {
-  const invalidInputException =
-    `Sequence Validiation function expects an Array<string>, but received ${typeof sequences}`;
+function validateSequences(input) {
+  let sequences = input;
+  // Is this a string?
+  if (typeof input === 'string') {
+    // Is this a FASTA format?
+    if (isFASTA(input)) {
+      // This is important to happen here, otherwise you will get a result
+      // similar to [[a], [b]] instead of [a, b]
+      sequences = prepareFASTAString(input);
+    } else {
+      // We only work with arrays, so create an array
+      sequences = [input];
+    }
+  }
 
-  // Make sure we have an array to work with
+  // This works based on the value of 'sequence', so keep it here instead of top
+  const invalidInputException =
+    `Sequence Validiation function expects an Array<string>|string, but received ${typeof sequence}`;
+
+  // Otherwise, make sure we have an array to work with
   if (Array.isArray) {
     if (!Array.isArray(sequences)) {
       throw new Error(invalidInputException);

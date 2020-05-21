@@ -13,12 +13,23 @@ const validNucleicAcidSequence = 'ACGTUACGTUACGTUACGTU';
 const invalidNucleicAcidSequence = 'ACGTUACGTUACGTUACGTU_';
 const validAmbiguousNucleicAcidSequence = 'ACGTWSMKRYBDHVNZ';
 const junkSequence = 'A1!B2"C3£D4$F5%G6^H7&';
-const withFASTA = [
+const fastaSingle = `
+>FBgn0046814 type=gene; loc=2L:complement(9950437..9950455); ID=FBgn0046814; name=mir-87; dbxref=FlyBase:FBgn0046814,FlyBase:FBan0032981,FlyBase_Annotation_IDs:CR32981,GB:AE003626,MIR:MI0000382,flight:FBgn0046814,flymine:FBgn0046814,hdri:FBgn0046814,ihop:1478786; derived_computed_cyto=30F1-30F1%3B Limits computationally determined from genome sequence between @P{EP}CG5899<up>EP701</up>@ and @P{EP}CG4747<up>EP594</up>@%26@P{lacW}l(2)k13305<up>k13305</up>@; gbunit=AE014134; MD5=10a65ff8961e4823bad6c34e37813302; length=19; release=r5.21; species=Dmel;
+ARNDCEQGHILKMFPSTWYVXBZJ
+`;
+const fastaArray = [
   `>FBgn0046814 type=gene; loc=2L:complement(9950437..9950455); ID=FBgn0046814; name=mir-87; dbxref=FlyBase:FBgn0046814,FlyBase:FBan0032981,FlyBase_Annotation_IDs:CR32981,GB:AE003626,MIR:MI0000382,flight:FBgn0046814,flymine:FBgn0046814,hdri:FBgn0046814,ihop:1478786; derived_computed_cyto=30F1-30F1%3B Limits computationally determined from genome sequence between @P{EP}CG5899<up>EP701</up>@ and @P{EP}CG4747<up>EP594</up>@%26@P{lacW}l(2)k13305<up>k13305</up>@; gbunit=AE014134; MD5=10a65ff8961e4823bad6c34e37813302; length=19; release=r5.21; species=Dmel;
   ARNDCEQGHILKMFPSTWYVXBZJ`,
   `>AT1G01140.1 (version 1)
   ACGTUACGTUACGTUACGTU`,
 ];
+const fastaString = `
+>FBgn0046814 type=gene; loc=2L:complement(9950437..9950455); ID=FBgn0046814; name=mir-87; dbxref=FlyBase:FBgn0046814,FlyBase:FBan0032981,FlyBase_Annotation_IDs:CR32981,GB:AE003626,MIR:MI0000382,flight:FBgn0046814,flymine:FBgn0046814,hdri:FBgn0046814,ihop:1478786; derived_computed_cyto=30F1-30F1%3B Limits computationally determined from genome sequence between @P{EP}CG5899<up>EP701</up>@ and @P{EP}CG4747<up>EP594</up>@%26@P{lacW}l(2)k13305<up>k13305</up>@; gbunit=AE014134; MD5=10a65ff8961e4823bad6c34e37813302; length=19; release=r5.21; species=Dmel;
+ARNDCEQGHILKMFPSTWYVXBZJ
+
+>AT1G01140.1 (version 1)
+ACGTUACGTUACGTUACGTU
+`;
 
 beforeEach(() => {
   results = null;
@@ -89,7 +100,33 @@ test('should indicate AA for an NA sequence with ambiguous codes', () => {
 });
 
 test('should remove all FASTA description lines', () => {
-  results = validateSequences(withFASTA);
+  results = validateSequences(fastaSingle);
+  expectedResult = [{
+    ...validResponse,
+    likelyType: 'aa',
+  }];
+
+  expect(results)
+    .toEqual(expectedResult);
+});
+
+test('should validate an array of multiple sequences', () => {
+  results = validateSequences(fastaArray);
+  expectedResult = [{
+    ...validResponse,
+    likelyType: 'aa',
+  }, {
+    ...validResponse,
+    likelyType: 'na',
+  }];
+
+  expect(results)
+    .toEqual(expectedResult);
+});
+
+
+test('should validate a string that contains multiple sequences', () => {
+  results = validateSequences(fastaString);
   expectedResult = [{
     ...validResponse,
     likelyType: 'aa',
