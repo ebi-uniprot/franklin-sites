@@ -137,7 +137,10 @@ function findLikelyType(sequence) {
   return guessSequenceType(cleanSequence, nucleicAcidBaseThreshold);
 }
 
-// Main validation function
+
+/**
+ * Internal validation function
+ */
 function sequenceValidator(sequence) {
   // Sequence was not passed at all
   if (!sequence) {
@@ -180,4 +183,34 @@ function sequenceValidator(sequence) {
   };
 }
 
-export default sequenceValidator;
+/**
+ * Main validation function
+ * 
+ * @param {Array<string>} sequences - An array of sequences
+ * @return {Array<object|null>} The result of validating each sequence
+ * while keeping order intact.
+ */
+function validateSequences(sequences) {
+  const invalidInputException =
+    `Sequence Validiation function expects an Array<string>, but received ${typeof sequences}`;
+
+  // Make sure we have an array to work with
+  if (Array.isArray) {
+    if (!Array.isArray(sequences)) {
+      throw new Error(invalidInputException);
+    }
+  } else if (!Object.prototype.toString.call(sequences) === '[object Array]') {
+    throw new Error(invalidInputException);
+  }
+
+  // If the input is empty, return empty results
+  if (sequences.length === 0) {
+    return [];
+  }
+
+  // Validate each sequence separately, compile and return the results
+  return sequences
+    .map(sequence => sequenceValidator(sequence));
+}
+
+export default validateSequences;
