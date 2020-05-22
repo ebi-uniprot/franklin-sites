@@ -31,6 +31,11 @@ export const errorResponses = {
     likelyType: null,
     message: 'The sequence is invalid',
   },
+  shortSequence: {
+    valid: false,
+    likelyType: null,
+    message: 'The sequence is too short',
+  },
 };
 
 export const validResponse = {
@@ -192,8 +197,8 @@ function sequenceValidator(sequence) {
   }
 
   // Minimum length from: https://www.ebi.ac.uk/ipd/imgt/hla/blast.html
-  if (!cleanSequence.length > 11) {
-    return errorResponses.invalidSequence;
+  if (cleanSequence.length < 11) {
+    return errorResponses.shortSequence;
   }
 
   // Check and fail if there are any invalid characters in the sequence
