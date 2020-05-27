@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SequenceSubmission } from '../src/components';
 
 export default {
@@ -31,3 +31,33 @@ export const withMissingSequenceError = () => <SequenceSubmission
     placeholder="Enter a sequence..."
     value="      "
   />;
+
+export const dynamicallyChangeValue = () => {
+  const [sequence, setSequence] = useState('ACTG');
+
+  return (
+    <form>
+      <SequenceSubmission
+        placeholder="Enter a sequence..."
+        value={sequence}
+        onChange={e => setSequence(e.sequence)}
+      />
+      <label>
+        Sequence:
+        <output>{sequence}</output>
+      </label>
+      <input
+        type="reset"
+        onClick={e => {
+          e.preventDefault();
+          setSequence('');
+        }}
+      />
+      <input
+        type="button"
+        value="async load sequence"
+        onClick={() => setSequence('ACTGUACTGUACTGU')}
+      />
+    </form>
+  );
+};

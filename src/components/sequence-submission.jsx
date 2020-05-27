@@ -51,7 +51,7 @@ const SequenceSubmission = ({
     <Fragment>
       <textarea
         className="sequence-submission-input"
-        defaultValue={value}
+        value={value}
         onChange={e => onChangeWithValidation(e.target.value)}
         placeholder={placeholder}
         data-testid="sequence-submission-input"
