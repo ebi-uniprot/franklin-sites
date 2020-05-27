@@ -2,7 +2,6 @@ import React, {
   useState,
   useEffect,
   useCallback,
-  useRef,
   Fragment,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -16,19 +15,8 @@ const SequenceSubmission = ({
   placeholder,
 }) => {
   const [error, setError] = useState('');
-  const ref = useRef();
-  const autoFocus = () => {
-    ref.current.focus();
-  };
-
-  useEffect(() => autoFocus(), []);
 
   const onChangeWithValidation = useCallback((newValue) => {
-    // Calling the custom 'onChange' callback first
-    if (onChange instanceof Function) {
-      onChange(newValue);
-    }
-
     // Reset the error value before starting the validation    
     setError('');
 
@@ -37,8 +25,19 @@ const SequenceSubmission = ({
     // and extracting the first result object off the returned results.
     const result = validateSequences([newValue])[0];
 
-    if (!result.valid) {
+    // If the sequence is shorter than 10-characters, then do not display
+    // ANY error messages, but still include the actual validation results
+    // in the callback response.
+    if (newValue.length > 10 && !result.valid) {
       setError(result.message);
+    }
+
+    // Calling the custom 'onChange' callback first
+    if (onChange instanceof Function) {
+      onChange({
+        ...result,
+        sequence: newValue,
+      });
     }
   }, [onChange]);
 
@@ -55,7 +54,6 @@ const SequenceSubmission = ({
         defaultValue={value}
         onChange={e => onChangeWithValidation(e.target.value)}
         placeholder={placeholder}
-        ref={ref}
         data-testid="sequence-submission-input"
       />
       {(error) && (

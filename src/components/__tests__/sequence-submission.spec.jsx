@@ -1,17 +1,13 @@
 import React from 'react';
 import { render, fireEvent, cleanup, waitForElement } from '@testing-library/react';
 import SequenceSubmission from '../sequence-submission';
+import { validResponse } from '../../validators/sequenceValidator';
 
 afterEach(cleanup);
 
 describe('SequenceSubmission', () => {
   test('should render', () => {
     const { asFragment } = render(<SequenceSubmission />);
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  test('should render with sequence is too short error', () => {
-    const { asFragment } = render(<SequenceSubmission value="ACTG" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -23,14 +19,14 @@ describe('SequenceSubmission', () => {
   });
 
   test('should render with sequence is missing error', () => {
-    const { asFragment } = render(<SequenceSubmission value="  " />);
+    const { asFragment } = render(<SequenceSubmission value="            " />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('should validate after onChange event', async () => {
     const { queryByTestId } = render(<SequenceSubmission />);
     const textarea = queryByTestId('sequence-submission-input');
-    fireEvent.change(textarea, { target: { value: 'ACTG' } });
+    fireEvent.change(textarea, { target: { value: 'ACTGUACTGUACTGU+' } });
     const error = await waitForElement(() =>
       queryByTestId('sequence-submission-error')
     );
@@ -39,13 +35,17 @@ describe('SequenceSubmission', () => {
 
   test('should call custom onChange callback once', async () => {
     const onChange = jest.fn();
-    const value = 'A';
+    const value = 'ACTGUACTGUACTGU';
     const { queryByTestId } = render(<SequenceSubmission
       onChange={e => onChange(e)}
     />);
     const textarea = queryByTestId('sequence-submission-input');
     fireEvent.change(textarea, { target: { value } });
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith(value);
+    expect(onChange).toHaveBeenCalledWith({
+      ...validResponse,
+      likelyType: 'na',
+      sequence: value,
+    });
   });
 });

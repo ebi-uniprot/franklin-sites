@@ -43,7 +43,7 @@ exports[`SequenceSubmission should render with sequence is missing error 1`] = `
     class="sequence-submission-input"
     data-testid="sequence-submission-input"
   >
-      
+                
   </textarea>
   <div
     class="message message--failure"
@@ -59,34 +59,6 @@ exports[`SequenceSubmission should render with sequence is missing error 1`] = `
       />
       <small>
         The sequence is missing
-      </small>
-    </section>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`SequenceSubmission should render with sequence is too short error 1`] = `
-<DocumentFragment>
-  <textarea
-    class="sequence-submission-input"
-    data-testid="sequence-submission-input"
-  >
-    ACTG
-  </textarea>
-  <div
-    class="message message--failure"
-    data-testid="sequence-submission-error"
-    role="status"
-  >
-    <section
-      class="message__content"
-    >
-      <test-file-stub
-        height="1.125em"
-        width="1.125em"
-      />
-      <small>
-        The sequence is too short
       </small>
     </section>
   </div>
