@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseIcon from '../svg/times.svg';
+import RemoveIcon from '../svg/times.svg';
 import '../styles/components/chip.scss';
 
 const Chip = ({ children, onRemove, className, disabled }) => (
   <span className={`chip ${disabled ? 'chip--disabled' : ''} ${className}`}>
     {children}
-    {onRemove && !disabled && <CloseIcon onClick={onRemove} />}
+    {onRemove && !disabled && (
+      <RemoveIcon data-testid="remove-icon" onClick={onRemove} />
+    )}
   </span>
 );
 
