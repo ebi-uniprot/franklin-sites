@@ -62,12 +62,11 @@ describe('Autocomplete component', () => {
       <Autocomplete data={flattenedPaths} onSelect={onSelect} />
     );
     const searchInput = queryByTestId('search-input');
-    const autocompleteForm = queryByTestId('autocomplete-form');
     const value = { target: { value: 'foo' } };
     fireEvent.change(searchInput, value);
-    fireEvent.submit(autocompleteForm);
+    fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
     fireEvent.change(searchInput, value);
-    fireEvent.submit(autocompleteForm);
+    fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
     expect(onSelect).toHaveBeenCalledTimes(1);
   });
 
