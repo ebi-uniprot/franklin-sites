@@ -34,6 +34,7 @@ export { default as ButtonModal } from './button-modal';
 export { default as Publication } from './publication';
 export { default as DisplayMenu } from './display-menu';
 export { default as Message } from './message';
+export { default as SequenceSubmission } from './sequence-submission';
 
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';

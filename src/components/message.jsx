@@ -13,8 +13,17 @@ const MessageLevel = {
 
 const iconSize = '1.125em';
 
-const Message = ({ children, level, onDismiss }) => (
-  <div className={`message message--${level}`} role="status">
+const Message = ({
+  children,
+  level,
+  onDismiss,
+  'data-testid': dataTestId,
+}) => (
+  <div
+    className={`message message--${level}`}
+    role="status"
+    data-testid={dataTestId}
+  >
     <section className="message__content">
       <WarningIcon width={iconSize} height={iconSize} />
       <small>{children}</small>
@@ -40,11 +49,16 @@ Message.propTypes = {
    * Whether the message can be closed or not
    */
   onDismiss: PropTypes.func,
+  /**
+   * Custom Test ID
+   */
+   'data-testid': PropTypes.string,
 };
 
 Message.defaultProps = {
   level: MessageLevel.info,
   onDismiss: null,
+  'data-testid': null,
 };
 
 export default Message;
