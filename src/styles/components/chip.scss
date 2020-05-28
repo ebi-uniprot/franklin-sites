@@ -1,0 +1,30 @@
+@import '../settings';
+@import '../colours';
+@import '../mixins';
+@import '../common/buttons';
+
+.chip {
+  @extend .button;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25rem;
+  padding: 0.5em 0.7em;
+  background-color: $primary-color;
+  color: $colour-sky-white;
+  cursor: default;
+
+  &.secondary {
+    background-color: map-get($foundation-palette, secondary);
+  }
+
+  &--disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  svg {
+    margin-left: 0.5rem;
+    margin-right: 0;
+    cursor: pointer;
+  }
+}
