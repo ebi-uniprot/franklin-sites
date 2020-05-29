@@ -62,3 +62,4 @@ export { default as WarningIcon } from '../svg/warning.svg';
 export { default as ProtVistaIcon } from '../svg/protvista.svg';
 export { default as RefreshIcon } from '../svg/refresh.svg';
 export { default as BinIcon } from '../svg/bin.svg';
+export { default as CopyIcon } from '../svg/copy.svg';

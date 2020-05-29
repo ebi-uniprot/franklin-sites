@@ -26,6 +26,7 @@ import {
   WarningIcon,
   RefreshIcon,
   BinIcon,
+  CopyIcon,
 } from '../src/components';
 
 export default {
@@ -164,6 +165,11 @@ const iconDefinition = [
     name: 'bin.svg',
     description: 'Bin',
     icon: <BinIcon width={size} height={size} />,
+  },
+  {
+    name: 'copy.svg',
+    description: 'Copy',
+    icon: <CopyIcon width={size} height={size} />,
   },
 ];
 
