@@ -25,12 +25,12 @@ CardLink.defaultProps = {
   includeSeparator: false,
 };
 
-const Card = ({ title, subtitle, children, links, onClick }) => {
+const Card = ({ title, subtitle, children, links, onClick, onKeyDown }) => {
   const containerAttributes = onClick
     ? {
         className: ' card--has-hover',
         onClick,
-        onKeyDown: onClick,
+        onKeyDown,
         role: 'button',
         tabIndex: 0,
       }
@@ -85,6 +85,7 @@ Card.propTypes = {
     })
   ),
   onClick: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
 
 Card.defaultProps = {
@@ -92,6 +93,7 @@ Card.defaultProps = {
   subtitle: '',
   links: [],
   onClick: null,
+  onKeyDown: null,
 };
 
 export default Card;
