@@ -1,0 +1,41 @@
+@import '../colours';
+@import '../common/utils';
+
+.chip {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25rem;
+  padding: pxToRem(0.1) pxToRem(5);
+  background-color: $colour-vivid-cerulean;
+  color: $colour-sky-white;
+  font-weight: $global-weight-bold;
+  border-radius: pxToRem(4);
+  border: pxToRem(1) solid $colour-vivid-cerulean;
+  cursor: default;
+
+  svg {
+    margin-top: -0.2rem;
+    margin-left: 0.2rem;
+    margin-right: 0;
+    width: 0.7rem;
+    height: 0.7rem;
+    vertical-align: middle;
+    fill: $colour-sky-white;
+    cursor: pointer;
+  }
+
+  &--disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  &.secondary {
+    background-color: map-get($foundation-palette, secondary);
+    border: pxToRem(1) solid $colour-weldon-blue;
+    color: $colour-yankees-blue;
+
+    svg {
+      fill: $colour-yankees-blue;
+    }
+  }
+}
