@@ -60,3 +60,5 @@ export { default as ComputerMappedIcon } from '../svg/computer-mapped.svg';
 export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';
 export { default as WarningIcon } from '../svg/warning.svg';
 export { default as ProtVistaIcon } from '../svg/protvista.svg';
+export { default as RefreshIcon } from '../svg/refresh.svg';
+export { default as BinIcon } from '../svg/bin.svg';

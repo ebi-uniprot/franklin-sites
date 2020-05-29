@@ -24,6 +24,8 @@ import {
   EvidenceTagIcon,
   ProtVistaIcon,
   WarningIcon,
+  RefreshIcon,
+  BinIcon,
 } from '../src/components';
 
 export default {
@@ -152,6 +154,16 @@ const iconDefinition = [
     name: 'warning.svg',
     description: 'Warning',
     icon: <WarningIcon width={size} height={size} />,
+  },
+  {
+    name: 'refresh.svg',
+    description: 'Refresh',
+    icon: <RefreshIcon width={size} height={size} />,
+  },
+  {
+    name: 'bin.svg',
+    description: 'Bin',
+    icon: <BinIcon width={size} height={size} />,
   },
 ];
 
