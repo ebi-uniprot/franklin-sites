@@ -4,8 +4,14 @@ $small-bubble: 1.6rem;
 $medium-bubble: 3rem;
 $large-bubble: 5rem;
 
+$rootPx: 16px;
+
 @function remToPx($rem) {
-  @return unitless-calc($rem) * 16px;
+  @return unitless-calc($rem) * $rootPx;
+}
+
+@function pxToRem($px) {
+  @return (unitless-calc($px) / unitless-calc($rootPx)) + 0px;
 }
 
 @function bubbleFontSize($size) {

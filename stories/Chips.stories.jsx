@@ -20,9 +20,6 @@ export const chips = () => (
     <div>
       <Chip className="secondary">Secondary</Chip>
     </div>
-    <div>
-      <Chip className="tertiary">Tertiary</Chip>
-    </div>
   </Fragment>
 );
 
@@ -36,11 +33,6 @@ export const disabled = () => (
         Secondary
       </Chip>
     </div>
-    <div>
-      <Chip className="tertiary" disabled>
-        Tertiary
-      </Chip>
-    </div>
   </Fragment>
 );
 
@@ -52,11 +44,6 @@ export const removable = () => (
     <div>
       <Chip onRemove={action('Remove chip')} className="secondary">
         Secondary
-      </Chip>
-    </div>
-    <div>
-      <Chip onRemove={action('Remove chip')} className="tertiary">
-        Tertiary
       </Chip>
     </div>
   </Fragment>
