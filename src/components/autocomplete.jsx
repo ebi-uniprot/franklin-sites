@@ -98,7 +98,7 @@ class Autocomplete extends Component {
     const { submittedInputValue } = this.state;
     const textInputValue = item && item.pathLabel ? item.pathLabel : item;
     // If the same value has already been submitted, don't resubmit
-    if (submittedInputValue === textInputValue) {
+    if (!clearOnSelect && submittedInputValue === textInputValue) {
       this.setState({
         textInputValue: clearOnSelect ? '' : textInputValue,
       });
