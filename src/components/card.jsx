@@ -25,37 +25,39 @@ CardLink.defaultProps = {
   includeSeparator: false,
 };
 
-const Card = ({ title, subtitle, children, links, onClick, onKeyDown }) => {
-  const containerAttributes = onClick
-    ? {
-        className: ' card--has-hover',
-        onClick,
-        onKeyDown,
-        role: 'button',
-        tabIndex: 0,
-      }
-    : {};
-  return (
-    <div className="card">
-      <section {...containerAttributes}>
-        {title && (
-          <div className="card__header">
-            <h2 className="card__title">{title}</h2>
-            {subtitle && <div className="card__subtitle">{subtitle}</div>}
-          </div>
-        )}
-        <div className="card__content">{children}</div>
-      </section>
-      {links.length > 0 && (
-        <section className="card__actions">
-          {links.map((l, i) => (
-            <CardLink key={l.name} {...l} includeSeparator={i > 0} />
-          ))}
+const Card = React.forwardRef(
+  ({ title, subtitle, children, links, onClick, onKeyDown, ...props }, ref) => {
+    const containerAttributes = onClick
+      ? {
+          className: ' card--has-hover',
+          onClick,
+          onKeyDown,
+          role: 'button',
+          tabIndex: 0,
+        }
+      : {};
+    return (
+      <div className="card" ref={ref} {...props}>
+        <section {...containerAttributes}>
+          {title && (
+            <div className="card__header">
+              <h2 className="card__title">{title}</h2>
+              {subtitle && <div className="card__subtitle">{subtitle}</div>}
+            </div>
+          )}
+          <div className="card__content">{children}</div>
         </section>
-      )}
-    </div>
-  );
-};
+        {links.length > 0 && (
+          <section className="card__actions">
+            {links.map((l, i) => (
+              <CardLink key={l.name} {...l} includeSeparator={i > 0} />
+            ))}
+          </section>
+        )}
+      </div>
+    );
+  }
+);
 
 Card.propTypes = {
   /**
