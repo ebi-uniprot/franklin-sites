@@ -24,9 +24,11 @@ import {
   EvidenceTagIcon,
   ProtVistaIcon,
   WarningIcon,
+  WarningTriangleIcon,
   RefreshIcon,
   BinIcon,
   CopyIcon,
+  ClockIcon,
 } from '../src/components';
 
 export default {
@@ -157,6 +159,11 @@ const iconDefinition = [
     icon: <WarningIcon width={size} height={size} />,
   },
   {
+    name: 'warning-triangle.svg',
+    description: 'Warning Triangle',
+    icon: <WarningTriangleIcon width={size} height={size} />,
+  },
+  {
     name: 'refresh.svg',
     description: 'Refresh',
     icon: <RefreshIcon width={size} height={size} />,
@@ -170,6 +177,11 @@ const iconDefinition = [
     name: 'copy.svg',
     description: 'Copy',
     icon: <CopyIcon width={size} height={size} />,
+  },
+  {
+    name: 'clock.svg',
+    description: 'Clock',
+    icon: <ClockIcon width={size} height={size} />,
   },
 ];
 

@@ -37,6 +37,7 @@ export { default as Message } from './message';
 export { default as SequenceSubmission } from './sequence-submission';
 export { default as Chip } from './chip';
 
+// Icons
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as SwissProtIcon } from '../svg/swissprot.svg';
 export { default as TremblIcon } from '../svg/trembl.svg';
@@ -60,7 +61,9 @@ export { default as CitedSpeechIcon } from '../svg/cited-speech.svg';
 export { default as ComputerMappedIcon } from '../svg/computer-mapped.svg';
 export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';
 export { default as WarningIcon } from '../svg/warning.svg';
+export { default as WarningTriangleIcon } from '../svg/warning-triangle.svg';
 export { default as ProtVistaIcon } from '../svg/protvista.svg';
 export { default as RefreshIcon } from '../svg/refresh.svg';
 export { default as BinIcon } from '../svg/bin.svg';
 export { default as CopyIcon } from '../svg/copy.svg';
+export { default as ClockIcon } from '../svg/clock.svg';
