@@ -67,4 +67,4 @@ export { default as RefreshIcon } from '../svg/refresh.svg';
 export { default as BinIcon } from '../svg/bin.svg';
 export { default as CopyIcon } from '../svg/copy.svg';
 export { default as ClockIcon } from '../svg/clock.svg';
-export { default as Spinner } from '../svg/spinner.svg';
+export { default as SpinnerIcon } from '../svg/spinner.svg';

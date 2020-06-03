@@ -21,3 +21,13 @@ export const autocomplete = () => (
     filter
   />
 );
+
+export const loadingAutocomplete = () => (
+  <Autocomplete
+    data={flattenedPaths}
+    onSelect={action('onSelect')}
+    placeholder="Item A"
+    filter
+    isLoading
+  />
+);

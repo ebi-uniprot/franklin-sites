@@ -29,7 +29,7 @@ import {
   BinIcon,
   CopyIcon,
   ClockIcon,
-  Spinner,
+  SpinnerIcon,
 } from '../src/components';
 
 export default {
@@ -187,7 +187,7 @@ const iconDefinition = [
   {
     name: 'spinner.svg',
     description: 'Spinner',
-    icon: <Spinner width={size} height={size} />,
+    icon: <SpinnerIcon width={size} height={size} />,
   },
 ];
 

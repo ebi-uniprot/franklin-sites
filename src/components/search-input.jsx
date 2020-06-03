@@ -1,10 +1,15 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '../svg/search.svg';
+import SpinnerIcon from '../svg/spinner.svg';
 import '../styles/components/search-input.scss';
 
 const SearchInput = ({
-  value, onChange, onKeyDown, placeholder,
+  value,
+  onChange,
+  onKeyDown,
+  placeholder,
+  isLoading = false,
 }) => {
   const inputRef = useRef();
   const focusOnInput = () => {
@@ -28,7 +33,11 @@ const SearchInput = ({
         onKeyPress={focusOnInput}
         onClick={focusOnInput}
       >
-        <SearchIcon width={14} height={14} />
+        {isLoading ? (
+          <SpinnerIcon width={14} height={14} />
+        ) : (
+          <SearchIcon width={14} height={14} />
+        )}
       </span>
     </span>
   );
@@ -51,6 +60,10 @@ SearchInput.propTypes = {
    * Text to place in the text input component in the absence of value.
    */
   placeholder: PropTypes.string,
+  /**
+   * Text to place in the text input component in the absence of value.
+   */
+  isLoading: PropTypes.bool,
 };
 
 SearchInput.defaultProps = {
@@ -58,6 +71,7 @@ SearchInput.defaultProps = {
   onChange: undefined,
   onKeyDown: undefined,
   placeholder: undefined,
+  isLoading: false,
 };
 
 export default SearchInput;
