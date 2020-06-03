@@ -161,7 +161,13 @@ class Autocomplete extends Component {
 
   render() {
     const { textInputValue, hoverIndex, selected } = this.state;
-    const { data, placeholder, filter, minCharsToShowDropdown } = this.props;
+    const {
+      data,
+      placeholder,
+      filter,
+      minCharsToShowDropdown,
+      isLoading,
+    } = this.props;
     const showDropdown = Autocomplete.shouldShowDropdown({
       textInputValue,
       data,
@@ -185,6 +191,7 @@ class Autocomplete extends Component {
           onChange={this.handleInputChange}
           onKeyDown={this.handleOnKeyDown}
           placeholder={placeholder}
+          isLoading={isLoading}
         />
         <div
           className={
@@ -208,6 +215,7 @@ Autocomplete.defaultProps = {
   filter: true,
   value: '',
   minCharsToShowDropdown: 0,
+  isLoading: false,
 };
 
 Autocomplete.propTypes = {
@@ -220,6 +228,7 @@ Autocomplete.propTypes = {
   filter: PropTypes.bool,
   value: PropTypes.string,
   minCharsToShowDropdown: PropTypes.number,
+  isLoading: PropTypes.bool,
 };
 
 export default Autocomplete;
