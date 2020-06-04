@@ -4,14 +4,14 @@ const baseNucleicAcids = 'ACGTU';
 const ambiguousNucleicAcids = 'WSMKRYBDHVNZ';
 
 // Characters unique only to their subset e.g. 'U' is not a valid AA.
-const aminoAcidsOnly = /[EQILFPXJ]/ig;
-const nucleicAcidsOnly = /U/ig;
+const aminoAcidsOnly = /[EQILFPXJ]/gi;
+const nucleicAcidsOnly = /U/gi;
 
 export const validAminoAcids = [
   naturalAminoAcids,
   ambiguousAminoAcids,
-  '*',  // Stop
-  '.-',  // Gaps
+  '*', // Stop
+  '.-', // Gaps
 ].join('');
 
 export const validNucleicAcids = [
@@ -65,12 +65,12 @@ const isFASTA = seq => /.*[>]+/gm.test(seq);
  */
 function prepareFASTAString(fasta) {
   return fasta
-    .split(/^>.*\n?$/gm)  // split and remove the 'Description' line
-    .map(s => s.replace(/\s/g,''))  // remove all of the white-space
-    .filter(Boolean);  // remove all non-truthy values e.g. null, '', false.
+    .split(/^>.*\n?$/gm) // split and remove the 'Description' line
+    .map(s => s.replace(/\s/g, '')) // remove all of the white-space
+    .filter(Boolean); // remove all non-truthy values e.g. null, '', false.
 }
 
-/* 
+/*
  * Accepts a sequence of characters and makes a guess if
  * the sequence is an AA or NA sequence.
  * Note: This function will always return a guess.
@@ -125,21 +125,23 @@ function guessSequenceType(sequence, threshold) {
   // utilised in the future.
   const percentagePerChar = 100 / sequence.length;
 
-  const percentages = Object.keys(counts)
-    .reduce((acc, current) => {
+  const percentages = Object.keys(counts).reduce(
+    (acc, current) => {
       if (naturalAminoAcids.includes(current)) {
-        acc.aa += (counts[current] * percentagePerChar);
+        acc.aa += counts[current] * percentagePerChar;
       }
 
       if (baseNucleicAcids.includes(current)) {
-        acc.na += (counts[current] * percentagePerChar);
+        acc.na += counts[current] * percentagePerChar;
       }
 
       return acc;
-    }, {
-      aa: 0,  // Amino-Acids
-      na: 0,  // Nucleic-Acids
-    });
+    },
+    {
+      aa: 0, // Amino-Acids
+      na: 0, // Nucleic-Acids
+    }
+  );
 
   // Is this above our arbitrary threshold?
   if (percentages.na > threshold) {
@@ -151,7 +153,7 @@ function guessSequenceType(sequence, threshold) {
   return typeAA;
 }
 
-/* 
+/*
  * Does some ground work before passing the sequence to the
  * 'guess' function.
  *
@@ -167,7 +169,7 @@ function findLikelyType(sequence) {
   // therefore, removing it should equally reduce the sequence length, regardless of the
   // type of sequence. 'X' can be safely removed since it only exists in AA sequences
   // and not a valid character in NA sequences.
-  const cleanUpRegEx = /[^A-Z]|[NX]/ig;
+  const cleanUpRegEx = /[^A-Z]|[NX]/gi;
   const cleanSequence = sequence.replace(cleanUpRegEx, '');
   const nucleicAcidBaseThreshold = 90;
 
@@ -187,9 +189,9 @@ function sequenceValidator(sequence) {
   }
 
   // Remove all white-spaces and FASTA bits
-  const cleanSequence = (isFASTA(sequence))
-    ? prepareFASTAString(sequence)[0]  // Extract the first and only item
-    : sequence.replace(/\s/g,'');
+  const cleanSequence = isFASTA(sequence)
+    ? prepareFASTAString(sequence)[0] // Extract the first and only item
+    : sequence.replace(/\s/g, '');
 
   // Nothing left?
   if (!cleanSequence.length > 0) {
@@ -224,7 +226,7 @@ function sequenceValidator(sequence) {
 
 /**
  * Main validation function
- * 
+ *
  * @param {Array<string>|string} sequences - An array of sequences or a string
  * @return {Array<object|null>} The result of validating each sequence
  * while keeping order intact.
@@ -245,8 +247,7 @@ function validateSequences(input) {
   }
 
   // This works based on the value of 'sequence', so keep it here instead of top
-  const invalidInputException =
-    `Sequence Validiation function expects an Array<string>|string, but received ${typeof sequence}`;
+  const invalidInputException = `Sequence Validiation function expects an Array<string>|string, but received ${typeof sequence}`;
 
   // Otherwise, make sure we have an array to work with
   if (Array.isArray) {
@@ -263,8 +264,7 @@ function validateSequences(input) {
   }
 
   // Validate each sequence separately, compile and return the results
-  return sequences
-    .map(sequence => sequenceValidator(sequence));
+  return sequences.map(sequence => sequenceValidator(sequence));
 }
 
 export default validateSequences;
