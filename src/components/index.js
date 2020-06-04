@@ -56,6 +56,7 @@ export { default as SearchIcon } from '../svg/search.svg';
 export { default as CloseIcon } from '../svg/times.svg';
 export { default as EditIcon } from '../svg/pen.svg';
 export { default as PublicationIcon } from '../svg/publication.svg';
+export { default as PublicationLineIcon } from '../svg/publication-line.svg';
 export { default as CitedIcon } from '../svg/cited.svg';
 export { default as CitedSpeechIcon } from '../svg/cited-speech.svg';
 export { default as ComputerMappedIcon } from '../svg/computer-mapped.svg';
@@ -68,6 +69,8 @@ export { default as BinIcon } from '../svg/bin.svg';
 export { default as CopyIcon } from '../svg/copy.svg';
 export { default as ClockIcon } from '../svg/clock.svg';
 export { default as SpinnerIcon } from '../svg/spinner.svg';
+export { default as ReSubmitIcon } from '../svg/re-submit.svg';
+export { default as SuccessIcon } from '../svg/success.svg';
 
 // Sequence Utilities
 export { default as formatFASTA } from '../sequence-utils';
