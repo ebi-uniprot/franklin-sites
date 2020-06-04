@@ -4,7 +4,7 @@ import validateSequences from '../sequence-utils/sequenceValidator';
 import Message from './message';
 import '../styles/components/sequence-submission.scss';
 
-const SequenceSubmission = ({ value, onChange, placeholder }) => {
+const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
   const [error, setError] = useState('');
 
   const onChangeWithValidation = useCallback(
@@ -38,8 +38,10 @@ const SequenceSubmission = ({ value, onChange, placeholder }) => {
   useEffect(() => {
     if (value) {
       onChangeWithValidation(value);
+    } else if (defaultValue) {
+      onChangeWithValidation(defaultValue);
     }
-  }, [value, onChangeWithValidation]);
+  }, [value, defaultValue, onChangeWithValidation ]);
 
   return (
     <Fragment>
@@ -49,6 +51,7 @@ const SequenceSubmission = ({ value, onChange, placeholder }) => {
         onChange={e => onChangeWithValidation(e.target.value)}
         placeholder={placeholder}
         data-testid="sequence-submission-input"
+        defaultValue={defaultValue}
       />
       {error && (
         <Message level="failure" data-testid="sequence-submission-error">

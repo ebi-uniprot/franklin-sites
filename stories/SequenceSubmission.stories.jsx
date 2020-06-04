@@ -19,17 +19,17 @@ export const sequenceSubmission = () => <SequenceSubmission
 
 export const withTooShortSequenceError = () => <SequenceSubmission
     placeholder="Enter a sequence..."
-    value="ACTG"
+    defaultValue="ACTG"
   />;
 
 export const withInvalidSequenceError = () => <SequenceSubmission
     placeholder="Enter a sequence..."
-    value="ACTGUACTGUACTGU+"
+    defaultValue="ACTGUACTGUACTGU+"
   />;
 
 export const withMissingSequenceError = () => <SequenceSubmission
     placeholder="Enter a sequence..."
-    value="      "
+    defaultValue="      "
   />;
 
 export const dynamicallyChangeValue = () => {
