@@ -64,9 +64,13 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
 
 SequenceSubmission.propTypes = {
   /**
-   * The pre-loaded value, if needed.
+   * The value, if needed.
    */
   value: PropTypes.string,
+  /**
+   * The default value, if needed.
+   */
+  defaultValue: PropTypes.string,
   /**
    * Triggers when the value is changed.
    */
@@ -79,6 +83,7 @@ SequenceSubmission.propTypes = {
 
 SequenceSubmission.defaultProps = {
   value: undefined,
+  defaultValue: undefined,
   onChange: undefined,
   placeholder: undefined,
 };
