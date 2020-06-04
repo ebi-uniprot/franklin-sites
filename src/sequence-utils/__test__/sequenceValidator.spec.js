@@ -6,7 +6,7 @@ import validateSequences, {
 let results;
 let expectedResult;
 const missingSequence = null;
-const emptySequence = '   ';  // empty spaces...
+const emptySequence = '   '; // empty spaces...
 const validAminoAcidSequence = 'ARNDCEQGHILKMFPSTWYVXBZJ';
 const invalidAminoAcidSequence = 'ARNDCEQGHILKMFPSTWYVXBZJO';
 const validNucleicAcidSequence = 'ACGTUACGTUACGTUACGTU';
@@ -39,114 +39,117 @@ beforeEach(() => {
 
 test('validation should fail when sequence is missing', () => {
   results = validateSequences([missingSequence]);
-  expect(results)
-    .toEqual([errorResponses.missingSequence]);
+  expect(results).toEqual([errorResponses.missingSequence]);
 });
 
 test('validation should fail when sequence is an empty string', () => {
   results = validateSequences([emptySequence]);
-  expect(results)
-    .toEqual([errorResponses.missingSequence]);
+  expect(results).toEqual([errorResponses.missingSequence]);
 });
 
 test('should fail if a sequence is too short', () => {
   results = validateSequences([shortSequence]);
-  expect(results)
-    .toEqual([errorResponses.shortSequence]);
+  expect(results).toEqual([errorResponses.shortSequence]);
 });
 
 test('should NOT fail if a sequence is too short after clean-up', () => {
   results = validateSequences([shortSequenceAfterCleanUp]);
-  expectedResult = [{
-    ...validResponse,
-    likelyType: 'na',
-  }];
+  expectedResult = [
+    {
+      ...validResponse,
+      likelyType: 'na',
+    },
+  ];
 
-  expect(results)
-    .toEqual(expectedResult);
+  expect(results).toEqual(expectedResult);
 });
 
 test('should indicate a valid AA sequence', () => {
   results = validateSequences([validAminoAcidSequence]);
-  expectedResult = [{
-    ...validResponse,
-    likelyType: 'aa',
-  }];
+  expectedResult = [
+    {
+      ...validResponse,
+      likelyType: 'aa',
+    },
+  ];
 
-  expect(results)
-    .toEqual(expectedResult);
+  expect(results).toEqual(expectedResult);
 });
 
 test('should indicate invalid for an AA sequence with invalid characters', () => {
   results = validateSequences([invalidAminoAcidSequence]);
-  expect(results)
-    .toEqual([errorResponses.invalidSequence]);
+  expect(results).toEqual([errorResponses.invalidSequence]);
 });
 
 test('should indicate a valid NA sequence', () => {
   results = validateSequences([validNucleicAcidSequence]);
-  expectedResult = [{
-    ...validResponse,
-    likelyType: 'na',
-  }];
+  expectedResult = [
+    {
+      ...validResponse,
+      likelyType: 'na',
+    },
+  ];
 
-  expect(results)
-    .toEqual(expectedResult);
+  expect(results).toEqual(expectedResult);
 });
 
 test('should indicate invalid for an NA sequence with invalid characters', () => {
   results = validateSequences([invalidNucleicAcidSequence]);
-  expect(results)
-    .toEqual([errorResponses.invalidSequence]);
+  expect(results).toEqual([errorResponses.invalidSequence]);
 });
 
 test('should indicate AA for an NA sequence with ambiguous codes', () => {
   results = validateSequences([validAmbiguousNucleicAcidSequence]);
-  expectedResult = [{
-    ...validResponse,
-    likelyType: 'aa',
-  }];
+  expectedResult = [
+    {
+      ...validResponse,
+      likelyType: 'aa',
+    },
+  ];
 
-  expect(results)
-    .toEqual(expectedResult);
+  expect(results).toEqual(expectedResult);
 });
 
 test('should remove all FASTA description lines', () => {
   results = validateSequences(fastaSingle);
-  expectedResult = [{
-    ...validResponse,
-    likelyType: 'aa',
-  }];
+  expectedResult = [
+    {
+      ...validResponse,
+      likelyType: 'aa',
+    },
+  ];
 
-  expect(results)
-    .toEqual(expectedResult);
+  expect(results).toEqual(expectedResult);
 });
 
 test('should validate an array of multiple sequences', () => {
   results = validateSequences(fastaArray);
-  expectedResult = [{
-    ...validResponse,
-    likelyType: 'aa',
-  }, {
-    ...validResponse,
-    likelyType: 'na',
-  }];
+  expectedResult = [
+    {
+      ...validResponse,
+      likelyType: 'aa',
+    },
+    {
+      ...validResponse,
+      likelyType: 'na',
+    },
+  ];
 
-  expect(results)
-    .toEqual(expectedResult);
+  expect(results).toEqual(expectedResult);
 });
-
 
 test('should validate a string that contains multiple sequences', () => {
   results = validateSequences(fastaString);
-  expectedResult = [{
-    ...validResponse,
-    likelyType: 'aa',
-  }, {
-    ...validResponse,
-    likelyType: 'na',
-  }];
+  expectedResult = [
+    {
+      ...validResponse,
+      likelyType: 'aa',
+    },
+    {
+      ...validResponse,
+      likelyType: 'na',
+    },
+  ];
 
-  expect(results)
-    .toEqual(expectedResult);
+  expect(results).toEqual(expectedResult);
 });

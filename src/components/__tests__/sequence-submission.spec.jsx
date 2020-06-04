@@ -1,7 +1,12 @@
 import React from 'react';
-import { render, fireEvent, cleanup, waitForElement } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  cleanup,
+  waitForElement,
+} from '@testing-library/react';
 import SequenceSubmission from '../sequence-submission';
-import { validResponse } from '../../validators/sequenceValidator';
+import { validResponse } from '../../sequence-utils/sequenceValidator';
 
 afterEach(cleanup);
 
@@ -12,9 +17,9 @@ describe('SequenceSubmission', () => {
   });
 
   test('should render with sequence is invalid error', () => {
-    const { asFragment } = render(<SequenceSubmission
-      value="ACTGUACTGUACTGU+"
-    />);
+    const { asFragment } = render(
+      <SequenceSubmission value="ACTGUACTGUACTGU+" />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -36,9 +41,9 @@ describe('SequenceSubmission', () => {
   test('should call custom onChange callback once', async () => {
     const onChange = jest.fn();
     const value = 'ACTGUACTGUACTGU';
-    const { queryByTestId } = render(<SequenceSubmission
-      onChange={e => onChange(e)}
-    />);
+    const { queryByTestId } = render(
+      <SequenceSubmission onChange={e => onChange(e)} />
+    );
     const textarea = queryByTestId('sequence-submission-input');
     fireEvent.change(textarea, { target: { value } });
     expect(onChange).toHaveBeenCalledTimes(1);

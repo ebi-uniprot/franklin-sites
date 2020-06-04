@@ -1,45 +1,39 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  Fragment,
-} from 'react';
+import React, { useState, useEffect, useCallback, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import validateSequences from '../validators/sequenceValidator';
+import validateSequences from '../sequence-utils/sequenceValidator';
 import Message from './message';
 import '../styles/components/sequence-submission.scss';
 
-const SequenceSubmission = ({
-  value,
-  onChange,
-  placeholder,
-}) => {
+const SequenceSubmission = ({ value, onChange, placeholder }) => {
   const [error, setError] = useState('');
 
-  const onChangeWithValidation = useCallback((newValue) => {
-    // Reset the error value before starting the validation    
-    setError('');
+  const onChangeWithValidation = useCallback(
+    newValue => {
+      // Reset the error value before starting the validation
+      setError('');
 
-    // At the moment we are only supporting one sequence, but we need
-    // to send an array to the validator. Here we are sending an array
-    // and extracting the first result object off the returned results.
-    const result = validateSequences([newValue])[0];
+      // At the moment we are only supporting one sequence, but we need
+      // to send an array to the validator. Here we are sending an array
+      // and extracting the first result object off the returned results.
+      const result = validateSequences([newValue])[0];
 
-    // If the sequence is shorter than 10-characters, then do not display
-    // ANY error messages, but still include the actual validation results
-    // in the callback response.
-    if (newValue.length > 10 && !result.valid) {
-      setError(result.message);
-    }
+      // If the sequence is shorter than 10-characters, then do not display
+      // ANY error messages, but still include the actual validation results
+      // in the callback response.
+      if (newValue.length > 10 && !result.valid) {
+        setError(result.message);
+      }
 
-    // Calling the custom 'onChange' callback first
-    if (onChange instanceof Function) {
-      onChange({
-        ...result,
-        sequence: newValue,
-      });
-    }
-  }, [onChange]);
+      // Calling the custom 'onChange' callback first
+      if (onChange instanceof Function) {
+        onChange({
+          ...result,
+          sequence: newValue,
+        });
+      }
+    },
+    [onChange]
+  );
 
   useEffect(() => {
     if (value) {
@@ -56,11 +50,8 @@ const SequenceSubmission = ({
         placeholder={placeholder}
         data-testid="sequence-submission-input"
       />
-      {(error) && (
-        <Message
-          level='failure'
-          data-testid='sequence-submission-error'
-        >
+      {error && (
+        <Message level="failure" data-testid="sequence-submission-error">
           {error}
         </Message>
       )}

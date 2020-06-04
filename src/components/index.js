@@ -68,3 +68,6 @@ export { default as BinIcon } from '../svg/bin.svg';
 export { default as CopyIcon } from '../svg/copy.svg';
 export { default as ClockIcon } from '../svg/clock.svg';
 export { default as SpinnerIcon } from '../svg/spinner.svg';
+
+// Sequence Utilities
+export { default as formatFASTA } from '../sequence-utils';
