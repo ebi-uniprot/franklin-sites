@@ -189,9 +189,18 @@ function sequenceValidator(sequence) {
   }
 
   // Remove all white-spaces and FASTA bits
-  const cleanSequence = isFASTA(sequence)
-    ? prepareFASTAString(sequence)[0] // Extract the first and only item
-    : sequence.replace(/\s/g, '');
+  let cleanSequence;
+
+  if (isFASTA(sequence)) {
+    cleanSequence = prepareFASTAString(sequence);
+
+    if (cleanSequence.length > 0) {
+      /* eslint-disable prefer-destructuring */
+      cleanSequence = cleanSequence[0];
+    }
+  } else {
+    cleanSequence = sequence.replace(/\s/g, '');
+  }
 
   // Nothing left?
   if (!cleanSequence.length > 0) {

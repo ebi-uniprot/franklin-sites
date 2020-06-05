@@ -18,6 +18,7 @@ import {
   CloseIcon,
   EditIcon,
   PublicationIcon,
+  PublicationLineIcon,
   CitedIcon,
   CitedSpeechIcon,
   ComputerMappedIcon,
@@ -30,6 +31,8 @@ import {
   CopyIcon,
   ClockIcon,
   SpinnerIcon,
+  ReSubmitIcon,
+  SuccessIcon,
 } from '../src/components';
 
 export default {
@@ -130,6 +133,11 @@ const iconDefinition = [
     icon: <PublicationIcon width={size} height={size} />,
   },
   {
+    name: 'publication-line.svg',
+    description: 'Publication Line',
+    icon: <PublicationLineIcon width={size} height={size} />,
+  },
+  {
     name: 'cited.svg',
     description: 'Cited',
     icon: <CitedIcon width={size} height={size} />,
@@ -188,6 +196,16 @@ const iconDefinition = [
     name: 'spinner.svg',
     description: 'Spinner',
     icon: <SpinnerIcon width={size} height={size} />,
+  },
+  {
+    name: 're-submit.svg',
+    description: 'Re-submit',
+    icon: <ReSubmitIcon width={size} height={size} />,
+  },
+  {
+    name: 'success.svg',
+    description: 'Success',
+    icon: <SuccessIcon width={size} height={size} />,
   },
 ];
 
