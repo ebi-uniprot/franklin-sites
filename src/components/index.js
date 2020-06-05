@@ -73,4 +73,4 @@ export { default as ReSubmitIcon } from '../svg/re-submit.svg';
 export { default as SuccessIcon } from '../svg/success.svg';
 
 // Sequence Utilities
-export { default as formatFASTA } from '../sequence-utils';
+export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
