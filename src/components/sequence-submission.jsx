@@ -36,9 +36,9 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
   );
 
   useEffect(() => {
-    if (value) {
+    if (value || value === '') {
       onChangeWithValidation(value);
-    } else if (defaultValue) {
+    } else if (defaultValue || defaultValue === '') {
       onChangeWithValidation(defaultValue);
     }
   }, [value, defaultValue, onChangeWithValidation ]);
