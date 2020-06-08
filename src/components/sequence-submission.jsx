@@ -4,7 +4,7 @@ import validateSequences from '../sequence-utils/sequenceValidator';
 import Message from './message';
 import '../styles/components/sequence-submission.scss';
 
-const SequenceSubmission = ({ value, onChange, placeholder }) => {
+const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
   const [error, setError] = useState('');
 
   const onChangeWithValidation = useCallback(
@@ -36,10 +36,12 @@ const SequenceSubmission = ({ value, onChange, placeholder }) => {
   );
 
   useEffect(() => {
-    if (value) {
+    if (value || value === '') {
       onChangeWithValidation(value);
+    } else if (defaultValue || defaultValue === '') {
+      onChangeWithValidation(defaultValue);
     }
-  }, [value, onChangeWithValidation]);
+  }, [value, defaultValue, onChangeWithValidation ]);
 
   return (
     <Fragment>
@@ -49,6 +51,7 @@ const SequenceSubmission = ({ value, onChange, placeholder }) => {
         onChange={e => onChangeWithValidation(e.target.value)}
         placeholder={placeholder}
         data-testid="sequence-submission-input"
+        defaultValue={defaultValue}
       />
       {error && (
         <Message level="failure" data-testid="sequence-submission-error">
@@ -61,9 +64,13 @@ const SequenceSubmission = ({ value, onChange, placeholder }) => {
 
 SequenceSubmission.propTypes = {
   /**
-   * The pre-loaded value, if needed.
+   * The value, if needed.
    */
   value: PropTypes.string,
+  /**
+   * The default value, if needed.
+   */
+  defaultValue: PropTypes.string,
   /**
    * Triggers when the value is changed.
    */
@@ -76,6 +83,7 @@ SequenceSubmission.propTypes = {
 
 SequenceSubmission.defaultProps = {
   value: undefined,
+  defaultValue: undefined,
   onChange: undefined,
   placeholder: undefined,
 };
