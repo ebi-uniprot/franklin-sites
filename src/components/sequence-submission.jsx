@@ -41,7 +41,7 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
     } else if (defaultValue || defaultValue === '') {
       onChangeWithValidation(defaultValue);
     }
-  }, [value, defaultValue, onChangeWithValidation ]);
+  }, [value, defaultValue, onChangeWithValidation]);
 
   return (
     <Fragment>
