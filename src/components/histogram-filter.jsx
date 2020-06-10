@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import PropTypes from 'prop-types';
 import 'rheostat/initialize';
 import Rheostat from 'rheostat';
 import 'rheostat/css/rheostat.css';
@@ -12,8 +13,8 @@ const HistogramFilter = ({
   values,
   selectedRange,
   onChange,
-  nBins = 50,
-  height = 300,
+  nBins,
+  height,
 }) => {
   const binSize = (max - min) / nBins;
   const getIndex = getIndexForBinSize(binSize);
@@ -56,5 +57,33 @@ const HistogramFilter = ({
     </Fragment>
   );
 };
+HistogramFilter.propTypes = {
+  /**
+   * The left-most, smallest, value the histogram starts at irrespective of the array values. Defaults to min(values).
+   */
+  min: PropTypes.number,
+  /**
+   * The right-most, largest, value the histogram ends at irrespective of the array values. Defaults to max(values).
+   */
+  max: PropTypes.number,
+  /**
+   * An array of values which the histogram is based on.
+   */
+  values: PropTypes.arrayOf(PropTypes.number).isRequired,
+  /**
+   * Additional CSS classnames to apply (eg secondary, tertiary)
+   */
+  selectedRange: PropTypes.arrayOf(PropTypes.number),
+  onChange: PropTypes.func.isRequired,
+  nBins: PropTypes.number,
+  height: PropTypes.number,
+};
 
+HistogramFilter.defaultProps = {
+  min: null,
+  max: null,
+  selectedRange: null,
+  nBins: 50,
+  height: 300,
+};
 export default HistogramFilter;
