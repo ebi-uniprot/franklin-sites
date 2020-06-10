@@ -15,17 +15,17 @@ export default {
 
 const [min, max] = [0, 100];
 const normal = random.normal(50, 10);
-const randomNumbers = fillArray(100, normal).map(number => {
-  if (number < min) {
-    return min;
-  }
-  if (number > max) {
-    return max;
-  }
-  return number;
-});
+// const randomNumbers = fillArray(100, normal).map(number => {
+//   if (number < min) {
+//     return min;
+//   }
+//   if (number > max) {
+//     return max;
+//   }
+//   return number;
+// });
 
-console.log(randomNumbers);
+const randomNumbers = [...Array(100).keys()];
 
 export const heroHeader = () => {
   const [range, setRange] = useState([min, max]);
