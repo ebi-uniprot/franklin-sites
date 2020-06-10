@@ -36,6 +36,7 @@ export { default as DisplayMenu } from './display-menu';
 export { default as Message } from './message';
 export { default as SequenceSubmission } from './sequence-submission';
 export { default as Chip } from './chip';
+export { default as HistogramFilter } from './histogram-filter';
 
 // Icons
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';

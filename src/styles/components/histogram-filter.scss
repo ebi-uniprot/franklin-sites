@@ -1,0 +1,17 @@
+@import '../colours';
+
+.histogram {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 2rem 0.1rem 0.2rem;
+
+  &__bar {
+    background-color: $colour-weldon-blue;
+    display: inline-block;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    margin-right: 1px;
+    flex: 1 1 0%;
+  }
+}

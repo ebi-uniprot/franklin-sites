@@ -58,6 +58,7 @@
     "react-router-dom": "^5.0.1",
     "react-router-hash-link": "^1.2.2",
     "react-scrollspy": "^3.4.2",
+    "rheostat": "^4.1.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -101,6 +102,7 @@
     "mkdirp": "^0.5.1",
     "node-sass": "^4.9.1",
     "prettier": "^1.19.1",
+    "random": "^2.2.0",
     "react-docgen": "^4.1.0",
     "react-test-renderer": "^16.9.0",
     "regenerator-runtime": "^0.12.1",
