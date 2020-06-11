@@ -1,30 +1,45 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import 'rheostat/initialize';
 import Rheostat from 'rheostat';
 import 'rheostat/css/rheostat.css';
 import '../styles/components/histogram-filter.scss';
 
-const getIndexForBinSize = binSize => value => Math.floor(value / binSize);
-
 const HistogramFilter = ({
-  min,
-  max,
+  min: minOrNull,
+  max: maxOrNull,
   values,
   selectedRange,
   onChange,
   nBins,
   height,
 }) => {
-  const binSize = (max - min) / nBins;
-  const getIndex = getIndexForBinSize(binSize);
-  const [rangeIndex, setRangeIndex] = useState([getIndex(min), getIndex(max)]);
-  const bins = Array(nBins).fill(0);
-  values.forEach(value => {
-    bins[getIndex(value)] += 1;
-  });
-  const [startIndex, endIndex] = rangeIndex;
-  const maxCount = Math.max(...bins);
+  const [min, max, getIndex] = useMemo(() => {
+    // Assign sensible default values if not provided
+    const innerMin = minOrNull === null ? Math.min(...values) : minOrNull;
+    const innerMax = maxOrNull === null ? Math.max(...values) : maxOrNull;
+    // Create a convenience getIndex function
+    const innerGetIndex = value =>
+      Math.floor(value / ((innerMax - innerMin) / nBins));
+    return [innerMin, innerMax, innerGetIndex];
+  }, [maxOrNull, minOrNull, nBins, values]);
+
+  // The start and end indices that correspond to the current selected range values
+  const [[startIndex, endIndex], setRangeIndex] = useState([
+    getIndex(min),
+    getIndex(max),
+  ]);
+
+  // Construct bins
+  const [bins, maxCount] = useMemo(() => {
+    const innerBins = Array(nBins).fill(0);
+    values.forEach(value => {
+      innerBins[getIndex(value)] += 1;
+    });
+    const innerMaxCount = Math.max(...innerBins);
+    return [innerBins, innerMaxCount];
+  }, [getIndex, nBins, values]);
+
   return (
     <Fragment>
       <div className="histogram">
@@ -71,18 +86,26 @@ HistogramFilter.propTypes = {
    */
   values: PropTypes.arrayOf(PropTypes.number).isRequired,
   /**
-   * Additional CSS classnames to apply (eg secondary, tertiary)
+   * A 2-element array which specifies the [start, end] points selected by the user. Defaults to [min, max].
    */
-  selectedRange: PropTypes.arrayOf(PropTypes.number),
+  selectedRange: PropTypes.arrayOf(PropTypes.number).isRequired,
+  /**
+   * A callback that returns the selected and final (ie after drag) range.
+   */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Number of bins (intervals) which the values are allocated to. Each interval is of the size (max - min) / nBins. Defaults to 50.
+   */
   nBins: PropTypes.number,
+  /**
+   * The height in pixels of the bin with the most values. Defaults to 300.
+   */
   height: PropTypes.number,
 };
 
 HistogramFilter.defaultProps = {
   min: null,
   max: null,
-  selectedRange: null,
   nBins: 50,
   height: 300,
 };
