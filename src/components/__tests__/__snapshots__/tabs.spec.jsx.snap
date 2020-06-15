@@ -7,11 +7,14 @@ exports[`Tabs should render 1`] = `
   >
     <div
       class="tabs__header"
+      role="tablist"
     >
       <div
+        aria-controls="abcd"
         class="tabs__header__item tabs__header__item--active"
+        data-target="0"
         data-testid="tab-title"
-        role="button"
+        role="tab"
         tabindex="0"
       >
         <div>
@@ -19,42 +22,86 @@ exports[`Tabs should render 1`] = `
         </div>
       </div>
       <div
-        class="tabs__header__item "
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="1"
         data-testid="tab-title"
-        role="button"
+        role="tab"
         tabindex="0"
       >
         Title 2
       </div>
       <div
-        class="tabs__header__item "
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="2"
         data-testid="tab-title"
-        role="button"
+        role="tab"
         tabindex="0"
       >
         Title 3
       </div>
     </div>
   </div>
-  <div>
+  <div
+    data-testid="tab-content"
+    id="abcd"
+    role="tabpanel"
+  >
+    blah
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Tabs should render other default tab 1`] = `
+<DocumentFragment>
+  <div
+    class="tabs"
+  >
     <div
-      class="tabs__content tabs__content--active"
-      data-testid="tab-content"
+      class="tabs__header"
+      role="tablist"
     >
-      blah
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="0"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        <div>
+          Title 1
+        </div>
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="1"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 2
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item tabs__header__item--active"
+        data-target="2"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 3
+      </div>
     </div>
-    <div
-      class="tabs__content "
-      data-testid="tab-content"
-    >
-      blaher
-    </div>
-    <div
-      class="tabs__content "
-      data-testid="tab-content"
-    >
-      blahest
-    </div>
+  </div>
+  <div
+    data-testid="tab-content"
+    id="abcd"
+    role="tabpanel"
+  >
+    blahest
   </div>
 </DocumentFragment>
 `;

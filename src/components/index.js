@@ -22,7 +22,7 @@ export { default as DoughnutChart } from './doughnut-chart';
 export { default as Bubble } from './bubble';
 export { default as LongNumber } from './long-number';
 export { default as Accordion } from './accordion';
-export { default as Tabs } from './tabs';
+export { Tabs, Tab } from './tabs';
 export { default as DropdownButton } from './dropdown-button';
 export { default as SearchInput } from './search-input';
 export { default as AccordionSearch } from './accordion-search';

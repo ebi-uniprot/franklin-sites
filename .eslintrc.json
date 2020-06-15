@@ -16,7 +16,9 @@
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
     ],
+    "react/jsx-wrap-multilines": "off",
     "react/no-did-update-set-state": "off",
+    "react/jsx-one-expression-per-line": "off",
     "implicit-arrow-linebreak": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
