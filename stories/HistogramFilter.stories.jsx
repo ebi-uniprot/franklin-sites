@@ -14,7 +14,7 @@ export default {
 };
 
 const [min, max] = [0, 100];
-const normal = random.normal(50, 10);
+const normal = random.normal((max - min) / 2, max / 8);
 const gaussianValues = fillArray(100, normal).map(number => {
   if (number < min) {
     return min;
@@ -28,9 +28,9 @@ const uniformValues = [...Array(100).keys()];
 
 export const Gaussian = () => {
   const [range, setRange] = useState([min, max]);
-  const handleChange = ({ values }) => {
-    console.log(values);
-    setRange(values);
+  const handleChange = newRange => {
+    console.log(newRange);
+    setRange(newRange);
   };
   return (
     <HistogramFilter
@@ -46,9 +46,9 @@ export const Gaussian = () => {
 export const Uniform = () => {
   const [range, setRange] = useState([min, max]);
 
-  const handleChange = ({ values }) => {
-    console.log(values);
-    setRange(values);
+  const handleChange = newRange => {
+    console.log(newRange);
+    setRange(newRange);
   };
   return (
     <HistogramFilter

@@ -11,12 +11,23 @@
     display: inline-block;
     border-top-left-radius: 1px;
     border-top-right-radius: 1px;
-    margin-right: 1px;
+    margin-right: 2px;
     flex: 1 1 0%;
     transform-origin: bottom left;
 
     &--within-range {
       background-color: $colour-weldon-blue;
     }
+  }
+}
+
+.text-input {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  input {
+    border-radius: 0.5rem;
+    display: inline-block;
+    color: $colour-weldon-blue;
   }
 }
