@@ -6,7 +6,7 @@ import '../styles/components/code-block.scss';
 const CodeBlock = ({ lightMode, children, className, ...props }) => (
   <pre
     className={`codeblock${lightMode ? ' codeblock-light' : ''}${
-      className ? ' props.className' : ''
+      className ? ` ${className}` : ''
     }`}
     {...props}
   >
