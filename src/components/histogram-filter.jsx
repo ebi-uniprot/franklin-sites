@@ -45,8 +45,8 @@ const HistogramFilter = ({
     const innerGetIndex = value =>
       Math.floor(value / ((innerMax - innerMin) / nBins));
     // Use the number of digits in the maximum number to determine the width (rem) of the
-    // text input boxes. Add a bit more (2.3) for up/down html input controls.
-    const innerInputWidth = Math.floor(Math.log10(innerMax)) + 2.3;
+    // text input boxes. Add a bit more (2.25) for up/down html input controls.
+    const innerInputWidth = Math.floor(Math.log10(innerMax)) + 2.25;
     return [innerMin, innerMax, innerGetIndex, innerInputWidth];
   }, [maxOrNull, minOrNull, nBins, values]);
 
