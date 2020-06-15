@@ -9,31 +9,31 @@ exports[`DataTable should render 1`] = `
       class="data-loader__scroll-container"
     >
       <table
-        class="data-table__table"
+        class="data-table "
       >
         <thead
-          class="data-table__table__header"
+          class="data-table__header"
         >
           <tr
-            class="data-table__table__header__row"
+            class="data-table__row"
           >
             <th
-              class="data-table__table__header__row__cell"
+              class="data-table__header-cell"
             >
                
             </th>
             <th
-              class="data-table__table__header__row__cell data-table__table__header__row__cell--ascend"
+              class="data-table__header-cell data-table__header-cell--ascend"
             >
               Column 1
             </th>
             <th
-              class="data-table__table__header__row__cell "
+              class="data-table__header-cell "
             >
               Column 2
             </th>
             <th
-              class="data-table__table__header__row__cell data-table__table__header__row__cell--sortable"
+              class="data-table__header-cell data-table__header-cell--sortable"
             >
               Column 3
             </th>
@@ -44,7 +44,7 @@ exports[`DataTable should render 1`] = `
         >
           <tr>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--selected"
+              class="data-table__cell data-table__cell--selected"
             >
               <input
                 checked=""
@@ -52,233 +52,233 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--selected"
+              class="data-table__cell data-table__cell--selected"
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--selected"
+              class="data-table__cell data-table__cell--selected"
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--selected"
+              class="data-table__cell data-table__cell--selected"
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell "
+              class="data-table__cell "
             >
               baz
             </td>
           </tr>
           <tr>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               <input
                 type="checkbox"
               />
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               foo
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               bar
             </td>
             <td
-              class="data-table__table__body__cell data-table__table__body__cell--odd "
+              class="data-table__cell data-table__cell--odd "
             >
               baz
             </td>

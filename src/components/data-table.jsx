@@ -30,18 +30,15 @@ const sharedDefaultProps = {
 };
 
 const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
-  <thead className="data-table__table__header">
-    <tr className="data-table__table__header__row">
+  <thead className="data-table__header">
+    <tr className="data-table__row">
       {selectable && (
-        <th
-          key="selectable-column"
-          className="data-table__table__header__row__cell"
-        >
+        <th key="selectable-column" className="data-table__header-cell">
           {' '}
         </th>
       )}
       {columns.map(column => {
-        let className = 'data-table__table__header__row__cell ';
+        let className = 'data-table__header-cell ';
         let onClick;
         const { sorted, name, label, sortable } = column;
         if (sortable) {
@@ -49,10 +46,10 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
           if (sorted) {
             className +=
               column.sorted === 'ascend'
-                ? 'data-table__table__header__row__cell--ascend'
-                : 'data-table__table__header__row__cell--descend';
+                ? 'data-table__header-cell--ascend'
+                : 'data-table__header-cell--descend';
           } else {
-            className += 'data-table__table__header__row__cell--sortable';
+            className += 'data-table__header-cell--sortable';
           }
         }
         return (
@@ -76,12 +73,12 @@ DataTableHead.defaultProps = {
 };
 
 const getCellClassName = (index, selectable, isSelected) => {
-  let className = 'data-table__table__body__cell ';
+  let className = 'data-table__cell ';
   if (index % 2 === 1) {
-    className += 'data-table__table__body__cell--odd ';
+    className += 'data-table__cell--odd ';
   }
   if (selectable && isSelected) {
-    className += 'data-table__table__body__cell--selected';
+    className += 'data-table__cell--selected';
   }
   return className;
 };
@@ -155,9 +152,10 @@ const DataTable = ({
   getIdKey,
   selectable,
   onHeaderClick,
+  compact,
 }) => (
   <Fragment>
-    <table className="data-table__table">
+    <table className={`data-table ${compact ? 'data-table--compact' : ''}`}>
       <DataTableHead
         selectable={selectable}
         columns={columns}
@@ -178,11 +176,16 @@ const DataTable = ({
 DataTable.propTypes = {
   ...DataTableHead.propTypes,
   ...DataTableBody.propTypes,
+  /**
+   * Whether the table is compact
+   */
+  compact: PropTypes.bool,
 };
 
 DataTable.defaultProps = {
   ...sharedDefaultProps,
   ...DataTableBody.defaultProps,
+  compact: false,
 };
 
 export default withDataLoader(DataTable);

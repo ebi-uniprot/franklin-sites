@@ -55,4 +55,26 @@ export const dataTable = ({
   />
 );
 
+export const dataTableCompact = ({
+  data,
+  getIdKey,
+  columns,
+  hasMoreData,
+  onLoadMoreItems,
+}) => (
+  <DataTable
+    {...{
+      data,
+      getIdKey,
+      columns,
+      hasMoreData,
+      onLoadMoreItems,
+    }}
+    onSelect={action('onSelect')}
+    onHeaderClick={action('onHeaderClick')}
+    selectable
+    compact
+  />
+);
+
 dataTable.propTypes = DataTable.propTypes;

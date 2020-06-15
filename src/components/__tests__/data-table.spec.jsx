@@ -83,7 +83,7 @@ describe('DataTable', () => {
   test('should fire onHeaderClick when header is clicked', () => {
     const { container } = render(<DataTable {...props} />);
     const sortableHeader = container.querySelector(
-      '.data-table__table__header__row__cell--ascend'
+      '.data-table__header-cell--ascend'
     );
     fireEvent.click(sortableHeader);
     expect(onHeaderClick).toHaveBeenCalled();
