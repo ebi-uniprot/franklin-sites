@@ -15,8 +15,17 @@ const CodeBlock = ({ lightMode, children, className, ...props }) => (
 );
 
 CodeBlock.propTypes = {
+  /**
+   * Activate light mode or defaults to dark mode
+   */
   lightMode: PropTypes.bool,
+  /**
+   * The content of the code block
+   */
   children: PropTypes.string.isRequired,
+  /**
+   * Optional class names to merge into the component
+   */
   className: PropTypes.string,
 };
 
