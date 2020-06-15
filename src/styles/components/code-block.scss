@@ -1,0 +1,17 @@
+@import '../settings';
+@import '../colours';
+
+.codeblock {
+  display: inline-block;
+  background: $colour-yankees-blue;
+  color: $white;
+  font-family: $code-font-family;
+  font-weight: $code-font-weight;
+  border: $code-border;
+  padding: $code-padding;
+
+  &-light {
+    background-color: $code-background;
+    color: $code-color;
+  }
+}
