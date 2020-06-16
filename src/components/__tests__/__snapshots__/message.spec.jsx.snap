@@ -51,3 +51,58 @@ exports[`Message component should render with a different level 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`Message component should render with a subtitle 1`] = `
+<DocumentFragment>
+  <div
+    class="message message--info false"
+    role="status"
+  >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
+    <section
+      class="message__content"
+    >
+      <h3>
+        <div>
+          Some content
+        </div>
+      </h3>
+    </section>
+    <div
+      class="message__subtitle"
+    >
+      <div>
+        test
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Message component should render without default icon 1`] = `
+<DocumentFragment>
+  <div
+    class="message message--info message--no-icon"
+    role="status"
+  >
+    <div
+      class="message__side-border"
+    />
+    <section
+      class="message__content"
+    >
+      <h3>
+        <div>
+          Some content
+        </div>
+      </h3>
+    </section>
+  </div>
+</DocumentFragment>
+`;
