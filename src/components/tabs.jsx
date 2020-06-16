@@ -63,7 +63,7 @@ export const Tabs = ({ children, active }) => {
       }
       return defaultSelected[0].id;
     }
-    return '0';
+    return tabs[0].id;
   });
 
   useEffect(() => {
@@ -91,6 +91,9 @@ export const Tabs = ({ children, active }) => {
   );
 
   const selectedTab = tabs.find(tab => tab.id === selectedState);
+  if (!selectedState) {
+    throw new Error(`Could not find a tab with the id: "${selectedState}"`);
+  }
   const content = selectedTab.children;
 
   let unmanagedProps = {};
