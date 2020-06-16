@@ -56,6 +56,7 @@ export const Tabs = ({ children, active }) => {
     const defaultSelected = tabs.filter(tab => tab.defaultSelected);
     if (defaultSelected.length) {
       if (defaultSelected.length > 1) {
+        // eslint-disable-next-line no-console
         console.warn(
           `a <Tabs> component has been rendered with ${defaultSelected.length} <Tab defaultSelected> children. There should be a maximum of 1 default selected child.`
         );
