@@ -3,44 +3,40 @@
 exports[`Tabs should render 1`] = `
 <DocumentFragment>
   <div
-    class="tabs"
+    class="tabs__header"
+    role="tablist"
   >
     <div
-      class="tabs__header"
-      role="tablist"
+      aria-controls="abcd"
+      class="tabs__header__item tabs__header__item--active"
+      data-target="0"
+      data-testid="tab-title"
+      role="tab"
+      tabindex="0"
     >
-      <div
-        aria-controls="abcd"
-        class="tabs__header__item tabs__header__item--active"
-        data-target="0"
-        data-testid="tab-title"
-        role="tab"
-        tabindex="0"
-      >
-        <div>
-          Title 1
-        </div>
+      <div>
+        Title 1
       </div>
-      <div
-        aria-controls="abcd"
-        class="tabs__header__item"
-        data-target="1"
-        data-testid="tab-title"
-        role="tab"
-        tabindex="0"
-      >
-        Title 2
-      </div>
-      <div
-        aria-controls="abcd"
-        class="tabs__header__item"
-        data-target="2"
-        data-testid="tab-title"
-        role="tab"
-        tabindex="0"
-      >
-        Title 3
-      </div>
+    </div>
+    <div
+      aria-controls="abcd"
+      class="tabs__header__item"
+      data-target="1"
+      data-testid="tab-title"
+      role="tab"
+      tabindex="0"
+    >
+      Title 2
+    </div>
+    <div
+      aria-controls="abcd"
+      class="tabs__header__item"
+      data-target="2"
+      data-testid="tab-title"
+      role="tab"
+      tabindex="0"
+    >
+      Title 3
     </div>
   </div>
   <div
@@ -56,44 +52,40 @@ exports[`Tabs should render 1`] = `
 exports[`Tabs should render other default tab 1`] = `
 <DocumentFragment>
   <div
-    class="tabs"
+    class="tabs__header"
+    role="tablist"
   >
     <div
-      class="tabs__header"
-      role="tablist"
+      aria-controls="abcd"
+      class="tabs__header__item"
+      data-target="0"
+      data-testid="tab-title"
+      role="tab"
+      tabindex="0"
     >
-      <div
-        aria-controls="abcd"
-        class="tabs__header__item"
-        data-target="0"
-        data-testid="tab-title"
-        role="tab"
-        tabindex="0"
-      >
-        <div>
-          Title 1
-        </div>
+      <div>
+        Title 1
       </div>
-      <div
-        aria-controls="abcd"
-        class="tabs__header__item"
-        data-target="1"
-        data-testid="tab-title"
-        role="tab"
-        tabindex="0"
-      >
-        Title 2
-      </div>
-      <div
-        aria-controls="abcd"
-        class="tabs__header__item tabs__header__item--active"
-        data-target="2"
-        data-testid="tab-title"
-        role="tab"
-        tabindex="0"
-      >
-        Title 3
-      </div>
+    </div>
+    <div
+      aria-controls="abcd"
+      class="tabs__header__item"
+      data-target="1"
+      data-testid="tab-title"
+      role="tab"
+      tabindex="0"
+    >
+      Title 2
+    </div>
+    <div
+      aria-controls="abcd"
+      class="tabs__header__item tabs__header__item--active"
+      data-target="2"
+      data-testid="tab-title"
+      role="tab"
+      tabindex="0"
+    >
+      Title 3
     </div>
   </div>
   <div

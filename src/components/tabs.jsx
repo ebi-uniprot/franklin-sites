@@ -108,24 +108,22 @@ export const Tabs = ({ children, active }) => {
 
   return (
     <>
-      <div className="tabs">
-        <div className="tabs__header" role="tablist">
-          {tabs.map(({ title, id }) => (
-            <div
-              key={id}
-              data-testid="tab-title"
-              data-target={id}
-              role="tab"
-              aria-controls={idRef.current}
-              className={`tabs__header__item${
-                id === selectedState ? ' tabs__header__item--active' : ''
-              }`}
-              {...unmanagedProps}
-            >
-              {title}
-            </div>
-          ))}
-        </div>
+      <div className="tabs__header" role="tablist">
+        {tabs.map(({ title, id }) => (
+          <div
+            key={id}
+            data-testid="tab-title"
+            data-target={id}
+            role="tab"
+            aria-controls={idRef.current}
+            className={`tabs__header__item${
+              id === selectedState ? ' tabs__header__item--active' : ''
+            }`}
+            {...unmanagedProps}
+          >
+            {title}
+          </div>
+        ))}
       </div>
       <div role="tabpanel" id={idRef.current} data-testid="tab-content">
         {content}

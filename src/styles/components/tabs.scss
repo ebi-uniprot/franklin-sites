@@ -4,6 +4,8 @@
 .tabs {
   &__header {
     width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
     border-bottom: 0.0625rem solid $colour-platinum;
     margin-bottom: $global-margin;
 
