@@ -1,9 +1,5 @@
 @import '../colours';
 
-@function getMessageBorder($level) {
-  @return 0.25rem solid $level;
-}
-
 @mixin SVGDefinition($level) {
   svg {
     path {
@@ -14,8 +10,8 @@
 
 @mixin getWarningCSS($level) {
   @include SVGDefinition(($level));
-  .message__content {
-    border-left: getMessageBorder($level);
+  .message__side-border {
+    background-color: $level;
   }
 }
 
@@ -24,32 +20,65 @@
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   background-color: $colour-sky-white;
   margin-bottom: $global-margin/2;
-  display: flex;
+
+  display: grid;
+  grid-template-areas:
+    "border icon message dismiss"
+    ". . subtitle .";
+  grid-template-columns: 1rem 1.5rem auto 1rem;
+
+  svg {
+    margin-top: 0.5rem;
+    grid-area: icon;
+  }
+
+  &--no-icon {
+    grid-template-areas:
+    "border  message dismiss"
+    ". subtitle .";
+    grid-template-columns: 1rem auto 1rem;
+  }
+
+  &__side-border {
+    width: 0.25rem;
+    height: auto;
+  }
+
   &__content {
     padding-left: 0.5rem;
-    flex: 1 1 auto;
-    display: flex;
-    svg {
-      margin-right: 0.5rem;
+
+    h3 {
+      color: $colour-weldon-blue;
+      grid-area: message;
     }
+  }
+
+  &__subtitle {
+    margin-left: 1rem;
+    color: $colour-weldon-blue;
+    grid-area: subtitle;
+  }
+
+  &__dismiss {
+    cursor: pointer;
+    grid-area: dismiss;
+    display: flex;
+    padding-top: 0.5rem;
   }
 
   &--warning {
     @include getWarningCSS($colour-warning);
   }
+
   &--failure {
     @include getWarningCSS($colour-failure);
   }
+
   &--success {
     @include getWarningCSS($colour-success);
   }
+
   &--info {
     @include getWarningCSS($colour-info);
-  }
-
-  &__dismiss {
-    text-align: center;
-    cursor: pointer;
-    flex: 0 1 1rem;
   }
 }

@@ -16,23 +16,31 @@ const iconSize = '1.125em';
 const Message = ({
   children,
   level,
+  subtitle,
   onDismiss,
+  noIcon,
   'data-testid': dataTestId,
 }) => (
   <div
-    className={`message message--${level}`}
+    className={`message message--${level} ${noIcon && 'message--no-icon'}`}
     role="status"
     data-testid={dataTestId}
   >
+    <div className="message__side-border" />
+
+    {!noIcon && <WarningIcon width={iconSize} height={iconSize} />}
+
     <section className="message__content">
-      <WarningIcon width={iconSize} height={iconSize} />
-      <small>{children}</small>
+      <h3>{children}</h3>
     </section>
+
     {onDismiss && (
       <button type="button" className="message__dismiss" onClick={onDismiss}>
         <CloseIcon width="10" height="10" />
       </button>
     )}
+
+    {subtitle && <div className="message__subtitle">{subtitle}</div>}
   </div>
 );
 
@@ -46,6 +54,10 @@ Message.propTypes = {
    */
   level: PropTypes.oneOf(['warning', 'failure', 'success', 'info']),
   /**
+   * The content to appear underneath of the main message
+   */
+  subtitle: PropTypes.node,
+  /**
    * Whether the message can be closed or not
    */
   onDismiss: PropTypes.func,
@@ -53,12 +65,18 @@ Message.propTypes = {
    * Custom Test ID
    */
    'data-testid': PropTypes.string,
+  /**
+   * To hide the default message icon
+   */
+  noIcon: PropTypes.bool,
 };
 
 Message.defaultProps = {
   level: MessageLevel.info,
+  subtitle: null,
   onDismiss: null,
   'data-testid': null,
+  noIcon: false,
 };
 
 export default Message;
