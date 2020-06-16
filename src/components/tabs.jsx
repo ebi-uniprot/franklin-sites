@@ -42,32 +42,25 @@ export const Tabs = ({ children, active }) => {
 
   const isManaged = typeof active !== 'undefined';
 
-  let defaultSelectedCount = 0;
-  const tabs = Children.toArray(children).map((child, index) => {
-    if (child.props.defaultSelected) {
-      defaultSelectedCount += 1;
-    }
-    return {
-      title: child.props.title,
-      id: typeof child.props.id === 'undefined' ? `${index}` : child.props.id,
-      children: child.props.children,
-      defaultSelected: child.props.defaultSelected,
-    };
-  });
-
-  if (defaultSelectedCount > 1) {
-    console.warn(
-      `a <Tabs> component has been rendered with ${defaultSelectedCount} <Tab defaultSelected> children. There should be a maximum of 1 default selected child.`
-    );
-  }
+  const tabs = Children.toArray(children).map((child, index) => ({
+    title: child.props.title,
+    id: typeof child.props.id === 'undefined' ? `${index}` : child.props.id,
+    children: child.props.children,
+    defaultSelected: child.props.defaultSelected,
+  }));
 
   const [selectedState, setSelectedState] = useState(() => {
     if (isManaged) {
       return active;
     }
-    const defaultSelected = tabs.find(tab => tab.defaultSelected);
-    if (defaultSelected) {
-      return defaultSelected.id;
+    const defaultSelected = tabs.filter(tab => tab.defaultSelected);
+    if (defaultSelected.length) {
+      if (defaultSelected.length > 1) {
+        console.warn(
+          `a <Tabs> component has been rendered with ${defaultSelected.length} <Tab defaultSelected> children. There should be a maximum of 1 default selected child.`
+        );
+      }
+      return defaultSelected[0].id;
     }
     return '0';
   });
