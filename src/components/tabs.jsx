@@ -41,12 +41,25 @@ export const Tabs = ({ children, active }) => {
   const idRef = useRef(v1());
 
   const isManaged = typeof active !== 'undefined';
-  const tabs = Children.toArray(children).map((child, index) => ({
-    title: child.props.title,
-    id: typeof child.props.id === 'undefined' ? `${index}` : child.props.id,
-    children: child.props.children,
-    defaultSelected: child.props.defaultSelected,
-  }));
+
+  let defaultSelectedCount = 0;
+  const tabs = Children.toArray(children).map((child, index) => {
+    if (child.props.defaultSelected) {
+      defaultSelectedCount += 1;
+    }
+    return {
+      title: child.props.title,
+      id: typeof child.props.id === 'undefined' ? `${index}` : child.props.id,
+      children: child.props.children,
+      defaultSelected: child.props.defaultSelected,
+    };
+  });
+
+  if (defaultSelectedCount > 1) {
+    console.warn(
+      `a <Tabs> component has been rendered with ${defaultSelectedCount} <Tab defaultSelected> children. There should be a maximum of 1 default selected child.`
+    );
+  }
 
   const [selectedState, setSelectedState] = useState(() => {
     if (isManaged) {

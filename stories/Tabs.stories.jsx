@@ -52,7 +52,7 @@ export const unmanagedTabsWithDifferentDefault = () => (
       {loremIpsum({ count: 2 })}
     </Tab>
     <Tab title="Title 2">{loremIpsum({ count: 2 })}</Tab>
-    <Tab title="Title 3" defaultSelected>
+    <Tab title="Title 3 (default)" defaultSelected>
       {loremIpsum({ count: 2 })}
     </Tab>
   </Tabs>
