@@ -9,7 +9,7 @@ exports[`DataTable should render 1`] = `
       class="data-loader__scroll-container"
     >
       <table
-        class="data-table "
+        class="data-table  "
       >
         <thead
           class="data-table__header"

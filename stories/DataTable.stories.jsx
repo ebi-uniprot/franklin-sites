@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { DataTable } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
+import { DENSITY_COMPACT } from '../src/components/data-table';
 
 export default {
   title: 'Data|Data Table',
@@ -73,7 +74,7 @@ export const dataTableCompact = ({
     onSelect={action('onSelect')}
     onHeaderClick={action('onHeaderClick')}
     selectable
-    compact
+    density={DENSITY_COMPACT}
   />
 );
 

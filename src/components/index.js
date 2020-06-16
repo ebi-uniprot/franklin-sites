@@ -11,7 +11,11 @@ export { default as PageIntro } from './page-intro';
 export { default as InfoList } from './info-list';
 export { default as Card } from './card';
 export { default as EvidenceTag } from './evidence-tag';
-export { default as DataTable } from './data-table';
+export {
+  default as DataTable,
+  DENSITY_COMPACT,
+  DENSITY_NORMAL,
+} from './data-table';
 export { default as DataList } from './data-list';
 export { default as Sequence } from './sequence';
 export { default as ExternalLink } from './external-link';

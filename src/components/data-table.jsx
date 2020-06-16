@@ -1,7 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withDataLoader from './data-loader';
 import '../styles/components/data-table.scss';
+
+export const DENSITY_COMPACT = Symbol('DENSITY_COMPACT');
+export const DENSITY_NORMAL = Symbol('DENSITY_NORMAL');
 
 const sharedPropTypes = {
   /**
@@ -152,40 +155,53 @@ const DataTable = ({
   getIdKey,
   selectable,
   onHeaderClick,
-  compact,
+  density,
+  propsForTable,
 }) => (
-  <Fragment>
-    <table className={`data-table ${compact ? 'data-table--compact' : ''}`}>
-      <DataTableHead
-        selectable={selectable}
-        columns={columns}
-        onHeaderClick={onHeaderClick}
-      />
-      <DataTableBody
-        data={data}
-        columns={columns}
-        onSelect={onSelect}
-        selected={selected}
-        getIdKey={getIdKey}
-        selectable={selectable}
-      />
-    </table>
-  </Fragment>
+  <table
+    className={`data-table ${
+      density === DENSITY_COMPACT ? 'data-table--compact' : ''
+    } ${
+      propsForTable && propsForTable.className
+        ? ` ${propsForTable.className}`
+        : ''
+    }`}
+    {...propsForTable}
+  >
+    <DataTableHead
+      selectable={selectable}
+      columns={columns}
+      onHeaderClick={onHeaderClick}
+    />
+    <DataTableBody
+      data={data}
+      columns={columns}
+      onSelect={onSelect}
+      selected={selected}
+      getIdKey={getIdKey}
+      selectable={selectable}
+    />
+  </table>
 );
 
 DataTable.propTypes = {
   ...DataTableHead.propTypes,
   ...DataTableBody.propTypes,
   /**
-   * Whether the table is compact
+   * Display density of the table (default is DENSITY_NORMAL)
    */
-  compact: PropTypes.bool,
+  density: PropTypes.oneOf([DENSITY_COMPACT, DENSITY_NORMAL]),
+  /**
+   * Optional props
+   */
+  propsForTable: PropTypes.arrayOf(PropTypes.any),
 };
 
 DataTable.defaultProps = {
   ...sharedDefaultProps,
   ...DataTableBody.defaultProps,
-  compact: false,
+  density: DENSITY_NORMAL,
+  propsForTable: null,
 };
 
 export default withDataLoader(DataTable);
