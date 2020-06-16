@@ -11,15 +11,15 @@ body {
   background-color: $colour-sky-white;
 
   @include fs-breakpoints('small') {
-    font-size: 10px;
+    font-size: $font-size-small;
   }
 
   @include fs-breakpoints('medium') {
-    font-size: 14px;
+    font-size: $font-size-medium;
   }
 
   @include fs-breakpoints('large') {
-    font-size: 16px;
+    font-size: $font-size-large;
   }
 }
 
