@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  Children,
-} from 'react';
+import React, { useState, useCallback, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 
@@ -66,12 +60,6 @@ export const Tabs = ({ children, active }) => {
     return tabs[0].id;
   });
 
-  useEffect(() => {
-    if (isManaged) {
-      setSelectedState(active);
-    }
-  }, [active, isManaged]);
-
   const handleClick = useCallback(
     event => {
       if (isManaged) {
@@ -90,8 +78,10 @@ export const Tabs = ({ children, active }) => {
     [isManaged]
   );
 
-  const selectedTab = tabs.find(tab => tab.id === selectedState);
-  if (!selectedState) {
+  const activeFromPropsOrState = isManaged ? active : selectedState;
+
+  const selectedTab = tabs.find(tab => tab.id === activeFromPropsOrState);
+  if (!selectedTab) {
     throw new Error(`Could not find a tab with the id: "${selectedState}"`);
   }
   const content = selectedTab.children;
@@ -117,7 +107,7 @@ export const Tabs = ({ children, active }) => {
             role="tab"
             aria-controls={idRef.current}
             className={`tabs__header__item${
-              id === selectedState ? ' tabs__header__item--active' : ''
+              id === activeFromPropsOrState ? ' tabs__header__item--active' : ''
             }`}
             {...unmanagedProps}
           >
