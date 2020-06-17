@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { HistogramFilter } from '../src/components';
-import { getUniformSample, getGaussianSample } from './utils';
+import {
+  getUniformSample,
+  getGaussianSample,
+} from '../src/mock-data/probability-distribution-sample';
 
 export default {
   title: 'Forms|Histogram Filter',

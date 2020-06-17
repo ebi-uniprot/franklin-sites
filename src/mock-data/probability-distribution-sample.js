@@ -1,5 +1,5 @@
 import random from 'random';
-import { fillArray } from '../src/utils';
+import { fillArray } from '../utils';
 
 export const getGaussianSample = (mu, sigma, n, min = null, max = null) => {
   const normal = fillArray(n, random.normal(mu, sigma));
