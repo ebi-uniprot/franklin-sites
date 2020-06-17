@@ -42,15 +42,13 @@ const Histogram = ({
     <div className="histogram">
       {bins.map((count, index) => {
         const withinRange =
-          selectedRange !== null && startIndex <= index && index <= endIndex;
+          selectedRange === null || (startIndex <= index && index <= endIndex);
         const key = `bin${index}`;
         return (
           <div
             key={key}
             className={`histogram histogram__bar ${
-              withinRange || selectedRange === null
-                ? 'histogram__bar--within-range'
-                : ''
+              withinRange ? 'histogram__bar--within-range' : ''
             }`}
             style={{
               height,
