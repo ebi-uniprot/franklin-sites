@@ -10,13 +10,13 @@ const Histogram = ({
   max: maxOrNull,
   height,
 }) => {
+  // Create a convenience getIndex function
   const getIndex = useMemo(() => {
     // Assign sensible default values if not provided
     const min = minOrNull === null ? Math.min(...values) : minOrNull;
     const max = maxOrNull === null ? Math.max(...values) : maxOrNull;
-    // Create a convenience getIndex function
-    const innerGetIndex = value => Math.floor(value / ((max - min) / nBins));
-    return innerGetIndex;
+    const binSize = (max - min) / nBins;
+    return value => Math.min(Math.floor((value - min) / binSize), nBins - 1);
   }, [maxOrNull, minOrNull, nBins, values]);
 
   // Construct bins
@@ -29,21 +29,28 @@ const Histogram = ({
     return [innerBins, innerMaxCount];
   }, [getIndex, nBins, values]);
 
-  const [startIndex, endIndex] = [
-    getIndex(selectedRange[0]),
-    getIndex(selectedRange[1]),
-  ];
+  let startIndex;
+  let endIndex;
+  if (selectedRange !== null) {
+    [startIndex, endIndex] = [
+      getIndex(selectedRange[0]),
+      getIndex(selectedRange[1]),
+    ];
+  }
 
   return (
     <div className="histogram">
       {bins.map((count, index) => {
-        const withinRange = startIndex <= index && index < endIndex;
+        const withinRange =
+          selectedRange !== null && startIndex <= index && index <= endIndex;
         const key = `bin${index}`;
         return (
           <div
             key={key}
             className={`histogram histogram__bar ${
-              withinRange ? 'histogram__bar--within-range' : ''
+              withinRange || selectedRange === null
+                ? 'histogram__bar--within-range'
+                : ''
             }`}
             style={{
               height,
@@ -72,7 +79,7 @@ Histogram.propTypes = {
   /**
    * A 2-element array which specifies the [start, end] points selected by the user. Defaults to [min, max].
    */
-  selectedRange: PropTypes.arrayOf(PropTypes.number).isRequired,
+  selectedRange: PropTypes.arrayOf(PropTypes.number),
   /**
    * Number of bins (intervals) which the values are allocated to. Each interval is of the size (max - min) / nBins. Defaults to 50.
    */
@@ -86,8 +93,9 @@ Histogram.propTypes = {
 Histogram.defaultProps = {
   min: null,
   max: null,
-  nBins: 50,
+  nBins: 30,
   height: 300,
+  selectedRange: null,
 };
 
 export default Histogram;

@@ -152,7 +152,7 @@ HistogramFilter.propTypes = {
 HistogramFilter.defaultProps = {
   min: null,
   max: null,
-  nBins: 50,
+  nBins: 30,
   height: 50,
 };
 
