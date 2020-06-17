@@ -22,13 +22,16 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
     data-testid="sequence-submission-error"
     role="status"
   >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
     <section
       class="message__content"
     >
-      <test-file-stub
-        height="1.125em"
-        width="1.125em"
-      />
       <small>
         The sequence is invalid
       </small>
@@ -50,13 +53,16 @@ exports[`SequenceSubmission should render with sequence is missing error 1`] = `
     data-testid="sequence-submission-error"
     role="status"
   >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
     <section
       class="message__content"
     >
-      <test-file-stub
-        height="1.125em"
-        width="1.125em"
-      />
       <small>
         The sequence is missing
       </small>

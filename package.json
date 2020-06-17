@@ -45,6 +45,7 @@
     "react-router-dom": "^5.0.1"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.3",
     "history": "^4.10.1",
