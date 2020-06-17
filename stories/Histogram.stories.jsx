@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import random from 'random';
-import { HistogramFilter } from '../src/components';
+import { Histogram } from '../src/components';
 import { fillArray } from '../src/utils';
 
 export default {
-  title: 'Forms|Histogram Filter',
+  title: 'Visualisation|Histogram',
   parameters: {
     purposeFunction: {
       purpose: 'purpose',
@@ -13,7 +13,7 @@ export default {
   },
 };
 
-const [min, max] = [0, 100];
+const [min, max] = [0, 10000];
 const normal = random.normal((max - min) / 2, max / 8);
 const gaussianValues = fillArray(100, normal).map(number => {
   if (number < min) {
@@ -34,7 +34,7 @@ export const Gaussian = () => {
   };
   return (
     <div style={{ width: '20rem' }}>
-      <HistogramFilter
+      <Histogram
         min={min}
         max={max}
         selectedRange={range}
@@ -54,7 +54,7 @@ export const Uniform = () => {
   };
   return (
     <div style={{ width: '20rem' }}>
-      <HistogramFilter
+      <Histogram
         min={min}
         max={max}
         selectedRange={range}

@@ -4,6 +4,7 @@ import 'rheostat/initialize';
 import Rheostat from 'rheostat';
 import 'rheostat/css/rheostat.css';
 import '../styles/components/histogram-filter.scss';
+import Histogram from './histogram';
 
 const isNumberString = string => {
   try {
@@ -37,18 +38,15 @@ const HistogramFilter = ({
   nBins,
   height,
 }) => {
-  const [min, max, getIndex, inputWidth] = useMemo(() => {
+  const [min, max, inputWidth] = useMemo(() => {
     // Assign sensible default values if not provided
     const innerMin = minOrNull === null ? Math.min(...values) : minOrNull;
     const innerMax = maxOrNull === null ? Math.max(...values) : maxOrNull;
-    // Create a convenience getIndex function
-    const innerGetIndex = value =>
-      Math.floor(value / ((innerMax - innerMin) / nBins));
-    // Use the number of digits in the maximum number to determine the width (rem) of the
-    // text input boxes. Add a bit more (2.25) for up/down html input controls.
-    const innerInputWidth = Math.floor(Math.log10(innerMax)) + 2.25;
-    return [innerMin, innerMax, innerGetIndex, innerInputWidth];
-  }, [maxOrNull, minOrNull, nBins, values]);
+    // Use the number of digits in the maximum number to determine the width (ch) of the
+    // text input boxes. Add a bit more (5.25) for up/down html input controls & padding.
+    const innerInputWidth = Math.floor(Math.log10(innerMax)) + 5.25;
+    return [innerMin, innerMax, innerInputWidth];
+  }, [maxOrNull, minOrNull, values]);
 
   const [range, setRange] = useState(
     selectedRange && Array.isArray(selectedRange) && selectedRange.length === 2
@@ -57,17 +55,6 @@ const HistogramFilter = ({
   );
 
   const [startValue, endValue] = range;
-  const [startIndex, endIndex] = [getIndex(startValue), getIndex(endValue)];
-
-  // Construct bins
-  const [bins, maxCount] = useMemo(() => {
-    const innerBins = Array(nBins).fill(0);
-    values.forEach(value => {
-      innerBins[getIndex(value)] += 1;
-    });
-    const innerMaxCount = Math.max(...innerBins);
-    return [innerBins, innerMaxCount];
-  }, [getIndex, nBins, values]);
 
   const cleanedRange = cleanRange(startValue, endValue, min, max);
 
@@ -83,24 +70,14 @@ const HistogramFilter = ({
   };
   return (
     <Fragment>
-      <div className="histogram">
-        {bins.map((count, index) => {
-          const withinRange = startIndex <= index && index < endIndex;
-          const key = `bin${index}`;
-          return (
-            <div
-              key={key}
-              className={`histogram histogram__bar ${
-                withinRange ? 'histogram__bar--within-range' : ''
-              }`}
-              style={{
-                height,
-                transform: `scaleY(${count / maxCount})`,
-              }}
-            />
-          );
-        })}
-      </div>
+      <Histogram
+        values={values}
+        selectedRange={cleanedRange}
+        nBins={nBins}
+        min={min}
+        max={max}
+        height={height}
+      />
       <Rheostat
         min={min}
         max={max}
@@ -122,7 +99,7 @@ const HistogramFilter = ({
           }}
           value={startValue}
           onBlur={handleTextInputBlur}
-          style={{ width: `${inputWidth}rem` }}
+          style={{ width: `${inputWidth}ch` }}
         />
         <input
           type="number"
@@ -133,7 +110,7 @@ const HistogramFilter = ({
           }}
           value={endValue}
           onBlur={handleTextInputBlur}
-          style={{ width: `${inputWidth}rem` }}
+          style={{ width: `${inputWidth}ch` }}
         />
       </div>
     </Fragment>
@@ -176,4 +153,5 @@ HistogramFilter.defaultProps = {
   nBins: 50,
   height: 300,
 };
+
 export default HistogramFilter;
