@@ -3,7 +3,7 @@
 exports[`Message component should render 1`] = `
 <DocumentFragment>
   <div
-    class="message message--info false"
+    class="message message--info"
     role="status"
   >
     <div
@@ -16,11 +16,11 @@ exports[`Message component should render 1`] = `
     <section
       class="message__content"
     >
-      <h3>
+      <small>
         <div>
           Some content
         </div>
-      </h3>
+      </small>
     </section>
   </div>
 </DocumentFragment>
@@ -29,7 +29,7 @@ exports[`Message component should render 1`] = `
 exports[`Message component should render with a different level 1`] = `
 <DocumentFragment>
   <div
-    class="message message--failure false"
+    class="message message--failure"
     role="status"
   >
     <div
@@ -42,11 +42,11 @@ exports[`Message component should render with a different level 1`] = `
     <section
       class="message__content"
     >
-      <h3>
+      <small>
         <div>
           Some content
         </div>
-      </h3>
+      </small>
     </section>
   </div>
 </DocumentFragment>
@@ -55,7 +55,7 @@ exports[`Message component should render with a different level 1`] = `
 exports[`Message component should render with a subtitle 1`] = `
 <DocumentFragment>
   <div
-    class="message message--info false"
+    class="message message--info"
     role="status"
   >
     <div
@@ -68,11 +68,11 @@ exports[`Message component should render with a subtitle 1`] = `
     <section
       class="message__content"
     >
-      <h3>
+      <small>
         <div>
           Some content
         </div>
-      </h3>
+      </small>
     </section>
     <div
       class="message__subtitle"
@@ -97,11 +97,11 @@ exports[`Message component should render without default icon 1`] = `
     <section
       class="message__content"
     >
-      <h3>
+      <small>
         <div>
           Some content
         </div>
-      </h3>
+      </small>
     </section>
   </div>
 </DocumentFragment>

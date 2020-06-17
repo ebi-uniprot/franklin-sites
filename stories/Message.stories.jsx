@@ -36,11 +36,11 @@ const subtitle = (
   </Fragment>
 );
 
-export const withSubtitle = () => (
+export const forFullPageErrors = () => (
   <Message
     level="warning"
     subtitle={subtitle}
-    noIcon
+    forFullPage
   >
     {getLipsumSentences()}
   </Message>

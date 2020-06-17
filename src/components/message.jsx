@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import '../styles/components/message.scss';
 import WarningIcon from '../svg/warning.svg';
 import CloseIcon from '../svg/times.svg';
@@ -19,19 +20,30 @@ const Message = ({
   subtitle,
   onDismiss,
   noIcon,
+  noShadow,
+  forFullPage,
   'data-testid': dataTestId,
 }) => (
   <div
-    className={`message message--${level} ${noIcon && 'message--no-icon'}`}
+    className={classNames(
+      'message',
+      `message--${level}`,
+      { 'message--no-icon': noIcon || forFullPage },
+      { 'message--no-shadow': noShadow || forFullPage},
+      { 'message--for-full-page': forFullPage },
+    )}
     role="status"
     data-testid={dataTestId}
   >
     <div className="message__side-border" />
 
-    {!noIcon && <WarningIcon width={iconSize} height={iconSize} />}
+    {(!noIcon && !forFullPage) && <WarningIcon width={iconSize} height={iconSize} />}
 
     <section className="message__content">
-      <h3>{children}</h3>
+      {forFullPage
+        ? <h3>{children}</h3>
+        : <small>{children}</small>
+      }
     </section>
 
     {onDismiss && (
@@ -62,21 +74,32 @@ Message.propTypes = {
    */
   onDismiss: PropTypes.func,
   /**
-   * Custom Test ID
-   */
-   'data-testid': PropTypes.string,
-  /**
    * To hide the default message icon
    */
   noIcon: PropTypes.bool,
+  /**
+   * To hide the default box shadow
+   */
+  noShadow: PropTypes.bool,
+  /**
+   * To apply any specific styles required for messages shown in
+   * full-page error pages
+   */
+  forFullPage: PropTypes.bool,
+  /**
+   * Custom Test ID
+   */
+   'data-testid': PropTypes.string,
 };
 
 Message.defaultProps = {
   level: MessageLevel.info,
   subtitle: null,
   onDismiss: null,
-  'data-testid': null,
   noIcon: false,
+  noShadow: false,
+  forFullPage: false,
+  'data-testid': null,
 };
 
 export default Message;

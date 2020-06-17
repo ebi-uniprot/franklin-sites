@@ -18,7 +18,7 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
     ACTGUACTGUACTGU+
   </textarea>
   <div
-    class="message message--failure false"
+    class="message message--failure"
     data-testid="sequence-submission-error"
     role="status"
   >
@@ -32,9 +32,9 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
     <section
       class="message__content"
     >
-      <h3>
+      <small>
         The sequence is invalid
-      </h3>
+      </small>
     </section>
   </div>
 </DocumentFragment>
@@ -49,7 +49,7 @@ exports[`SequenceSubmission should render with sequence is missing error 1`] = `
                 
   </textarea>
   <div
-    class="message message--failure false"
+    class="message message--failure"
     data-testid="sequence-submission-error"
     role="status"
   >
@@ -63,9 +63,9 @@ exports[`SequenceSubmission should render with sequence is missing error 1`] = `
     <section
       class="message__content"
     >
-      <h3>
+      <small>
         The sequence is missing
-      </h3>
+      </small>
     </section>
   </div>
 </DocumentFragment>
