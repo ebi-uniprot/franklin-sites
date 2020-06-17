@@ -88,7 +88,7 @@ exports[`Message component should render with a subtitle 1`] = `
 exports[`Message component should render without default icon 1`] = `
 <DocumentFragment>
   <div
-    class="message message--info message--no-icon"
+    class="message message--info"
     role="status"
   >
     <div

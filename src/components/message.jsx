@@ -28,22 +28,20 @@ const Message = ({
     className={classNames(
       'message',
       `message--${level}`,
-      { 'message--no-icon': noIcon || forFullPage },
-      { 'message--no-shadow': noShadow || forFullPage},
-      { 'message--for-full-page': forFullPage },
+      { 'message--no-shadow': noShadow || forFullPage },
+      { 'message--for-full-page': forFullPage }
     )}
     role="status"
     data-testid={dataTestId}
   >
     <div className="message__side-border" />
 
-    {(!noIcon && !forFullPage) && <WarningIcon width={iconSize} height={iconSize} />}
+    {!noIcon && !forFullPage && (
+      <WarningIcon width={iconSize} height={iconSize} />
+    )}
 
     <section className="message__content">
-      {forFullPage
-        ? <h3>{children}</h3>
-        : <small>{children}</small>
-      }
+      {forFullPage ? <h3>{children}</h3> : <small>{children}</small>}
     </section>
 
     {onDismiss && (
@@ -89,7 +87,7 @@ Message.propTypes = {
   /**
    * Custom Test ID
    */
-   'data-testid': PropTypes.string,
+  'data-testid': PropTypes.string,
 };
 
 Message.defaultProps = {
