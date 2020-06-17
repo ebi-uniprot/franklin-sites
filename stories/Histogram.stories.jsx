@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import random from 'random';
+import { action } from '@storybook/addon-actions';
 import { Histogram } from '../src/components';
-import { fillArray } from '../src/utils';
+import { getUniformSample, getGaussianSample } from './utils';
 
 export default {
   title: 'Visualisation|Histogram',
@@ -14,34 +14,31 @@ export default {
 };
 
 const [min, max] = [0, 10000];
-const normal = random.normal((max - min) / 2, max / 8);
-const gaussianValues = fillArray(100, normal).map(number => {
-  if (number < min) {
-    return min;
-  }
-  if (number > max) {
-    return max;
-  }
-  return number;
-});
-const uniformValues = [...Array(max).keys()];
+const nValues = 1000;
+const gaussianSample = getGaussianSample(
+  (max - min) / 2,
+  max / 8,
+  nValues,
+  min,
+  max
+);
+const uniformSample = getUniformSample(min, max, nValues);
 
 export const Gaussian = () => {
   const [range, setRange] = useState([min, max]);
   const handleChange = newRange => {
     console.log(newRange);
+    action(`range selected: ${newRange}`);
     setRange(newRange);
   };
   return (
-    <div style={{ width: '20rem' }}>
-      <Histogram
-        min={min}
-        max={max}
-        selectedRange={range}
-        onChange={handleChange}
-        values={gaussianValues}
-      />
-    </div>
+    <Histogram
+      min={min}
+      max={max}
+      selectedRange={range}
+      onChange={handleChange}
+      values={gaussianSample}
+    />
   );
 };
 
@@ -50,17 +47,16 @@ export const Uniform = () => {
 
   const handleChange = newRange => {
     console.log(newRange);
+    action(`range selected: ${newRange}`);
     setRange(newRange);
   };
   return (
-    <div style={{ width: '20rem' }}>
-      <Histogram
-        min={min}
-        max={max}
-        selectedRange={range}
-        onChange={handleChange}
-        values={uniformValues}
-      />
-    </div>
+    <Histogram
+      min={min}
+      max={max}
+      selectedRange={range}
+      onChange={handleChange}
+      values={uniformSample}
+    />
   );
 };
