@@ -3,48 +3,52 @@
 exports[`Tabs should render 1`] = `
 <DocumentFragment>
   <div
-    class="tabs__header"
-    role="tablist"
+    class="tabs"
   >
     <div
-      aria-controls="abcd"
-      class="tabs__header__item tabs__header__item--active"
-      data-target="0"
-      data-testid="tab-title"
-      role="tab"
-      tabindex="0"
+      class="tabs__header"
+      role="tablist"
     >
-      <div>
-        Title 1
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item tabs__header__item--active"
+        data-target="0"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        <div>
+          Title 1
+        </div>
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="1"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 2
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="2"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 3
       </div>
     </div>
     <div
-      aria-controls="abcd"
-      class="tabs__header__item"
-      data-target="1"
-      data-testid="tab-title"
-      role="tab"
-      tabindex="0"
+      data-testid="tab-content"
+      id="abcd"
+      role="tabpanel"
     >
-      Title 2
+      blah
     </div>
-    <div
-      aria-controls="abcd"
-      class="tabs__header__item"
-      data-target="2"
-      data-testid="tab-title"
-      role="tab"
-      tabindex="0"
-    >
-      Title 3
-    </div>
-  </div>
-  <div
-    data-testid="tab-content"
-    id="abcd"
-    role="tabpanel"
-  >
-    blah
   </div>
 </DocumentFragment>
 `;
@@ -52,48 +56,108 @@ exports[`Tabs should render 1`] = `
 exports[`Tabs should render other default tab 1`] = `
 <DocumentFragment>
   <div
-    class="tabs__header"
-    role="tablist"
+    class="tabs"
   >
     <div
-      aria-controls="abcd"
-      class="tabs__header__item"
-      data-target="0"
-      data-testid="tab-title"
-      role="tab"
-      tabindex="0"
+      class="tabs__header"
+      role="tablist"
     >
-      <div>
-        Title 1
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="0"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        <div>
+          Title 1
+        </div>
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="1"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 2
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item tabs__header__item--active"
+        data-target="2"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 3
       </div>
     </div>
     <div
-      aria-controls="abcd"
-      class="tabs__header__item"
-      data-target="1"
-      data-testid="tab-title"
-      role="tab"
-      tabindex="0"
+      data-testid="tab-content"
+      id="abcd"
+      role="tabpanel"
     >
-      Title 2
-    </div>
-    <div
-      aria-controls="abcd"
-      class="tabs__header__item tabs__header__item--active"
-      data-target="2"
-      data-testid="tab-title"
-      role="tab"
-      tabindex="0"
-    >
-      Title 3
+      blahest
     </div>
   </div>
+</DocumentFragment>
+`;
+
+exports[`Tabs should render tabs and pass extra props 1`] = `
+<DocumentFragment>
   <div
-    data-testid="tab-content"
-    id="abcd"
-    role="tabpanel"
+    class="tabs"
+    data-value="value"
   >
-    blahest
+    <div
+      class="tabs__header"
+      role="tablist"
+    >
+      <div
+        aria-controls="abcd"
+        aria-label="blah!"
+        class="tabs__header__item tabs__header__item--active"
+        data-target="0"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        <div>
+          Title 1
+        </div>
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item"
+        data-target="1"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 2
+      </div>
+      <div
+        aria-controls="abcd"
+        class="tabs__header__item merged-class"
+        data-key="3"
+        data-target="2"
+        data-testid="tab-title"
+        role="tab"
+        tabindex="0"
+      >
+        Title 3
+      </div>
+    </div>
+    <div
+      data-testid="tab-content"
+      id="abcd"
+      role="tabpanel"
+    >
+      blah
+    </div>
   </div>
 </DocumentFragment>
 `;

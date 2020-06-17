@@ -37,6 +37,21 @@ describe('Tabs', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  test('should render tabs and pass extra props', () => {
+    const { asFragment } = render(
+      <Tabs data-value="value">
+        <Tab title={<div>Title 1</div>} aria-label="blah!">
+          blah
+        </Tab>
+        <Tab title="Title 2">blaher</Tab>
+        <Tab title="Title 3" className="merged-class" data-key="3">
+          blahest
+        </Tab>
+      </Tabs>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   test('should show corresponding content when 2nd tab title is clicked', () => {
     const { queryAllByTestId, queryByTestId } = render(
       <Tabs active="b">

@@ -25,24 +25,37 @@ Tab.propTypes = {
    * Choose that tab as the default to be displayed
    */
   defaultSelected: PropTypes.bool,
+  /**
+   * Optional className to be passed to the title of the tab
+   */
+  className: PropTypes.string,
+  /**
+   * Optional extra props to pass to the title of the tab
+   */
+  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types, react/require-default-props
 };
 
 const tabType = PropTypes.shape({
   type: PropTypes.oneOf([Tab]),
 });
 
-export const Tabs = ({ children, active }) => {
+export const Tabs = ({ children, active, className, ...props }) => {
   const idRef = useRef(v1());
 
   const isManaged = typeof active !== 'undefined';
 
-  const tabs = Children.toArray(children).map((child, index) => ({
-    title: child.props.title,
-    id: typeof child.props.id === 'undefined' ? `${index}` : child.props.id,
-    children: child.props.children,
-    defaultSelected: child.props.defaultSelected,
-  }));
+  // create an array of tab description objects out of the children's props
+  const tabs = Children.toArray(children).map(
+    // eslint-disable-next-line no-shadow
+    ({ props: { id, ...props } }, index) => ({
+      // set a default value for id depending on their index if needed
+      id: typeof id === 'undefined' ? `${index}` : id,
+      // and get the rest of the props as they are
+      ...props,
+    })
+  );
 
+  // state to use to decide which tab to render if this component is not managed
   const [selectedState, setSelectedState] = useState(() => {
     if (isManaged) {
       return active;
@@ -97,28 +110,40 @@ export const Tabs = ({ children, active }) => {
   }
 
   return (
-    <>
+    <div className={`tabs${className ? ` ${className}` : ''}`} {...props}>
       <div className="tabs__header" role="tablist">
-        {tabs.map(({ title, id }) => (
-          <div
-            key={id}
-            data-testid="tab-title"
-            data-target={id}
-            role="tab"
-            aria-controls={idRef.current}
-            className={`tabs__header__item${
-              id === activeFromPropsOrState ? ' tabs__header__item--active' : ''
-            }`}
-            {...unmanagedProps}
-          >
-            {title}
-          </div>
-        ))}
+        {tabs.map(
+          ({
+            title,
+            id,
+            className, // eslint-disable-line no-shadow
+            children: _,
+            defaultSelected: __,
+            ...props // eslint-disable-line no-shadow
+          }) => (
+            <div
+              key={id}
+              data-testid="tab-title"
+              data-target={id}
+              role="tab"
+              aria-controls={idRef.current}
+              className={`tabs__header__item${
+                id === activeFromPropsOrState
+                  ? ' tabs__header__item--active'
+                  : ''
+              }${className ? ` ${className}` : ''}`}
+              {...unmanagedProps}
+              {...props}
+            >
+              {title}
+            </div>
+          )
+        )}
       </div>
       <div role="tabpanel" id={idRef.current} data-testid="tab-content">
         {content}
       </div>
-    </>
+    </div>
   );
 };
 Tabs.propTypes = {
@@ -133,7 +158,16 @@ Tabs.propTypes = {
    * <Tab>
    */
   active: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Optional className to be passed to the container of the tabs
+   */
+  className: PropTypes.string,
+  /**
+   * Optional extra props to pass to the container of the tabs
+   */
+  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types, react/require-default-props
 };
 Tabs.defaultProps = {
   active: undefined,
+  className: undefined,
 };
