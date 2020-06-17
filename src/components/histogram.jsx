@@ -12,11 +12,10 @@ const Histogram = ({
 }) => {
   const getIndex = useMemo(() => {
     // Assign sensible default values if not provided
-    const innerMin = minOrNull === null ? Math.min(...values) : minOrNull;
-    const innerMax = maxOrNull === null ? Math.max(...values) : maxOrNull;
+    const min = minOrNull === null ? Math.min(...values) : minOrNull;
+    const max = maxOrNull === null ? Math.max(...values) : maxOrNull;
     // Create a convenience getIndex function
-    const innerGetIndex = value =>
-      Math.floor(value / ((innerMax - innerMin) / nBins));
+    const innerGetIndex = value => Math.floor(value / ((max - min) / nBins));
     return innerGetIndex;
   }, [maxOrNull, minOrNull, nBins, values]);
 

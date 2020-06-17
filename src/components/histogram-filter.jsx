@@ -2,9 +2,9 @@ import React, { Fragment, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import 'rheostat/initialize';
 import Rheostat from 'rheostat';
+import Histogram from './histogram';
 import 'rheostat/css/rheostat.css';
 import '../styles/components/histogram-filter.scss';
-import Histogram from './histogram';
 
 const isNumberString = string => {
   try {
@@ -43,8 +43,8 @@ const HistogramFilter = ({
     const innerMin = minOrNull === null ? Math.min(...values) : minOrNull;
     const innerMax = maxOrNull === null ? Math.max(...values) : maxOrNull;
     // Use the number of digits in the maximum number to determine the width (ch) of the
-    // text input boxes. Add a bit more (5.25) for up/down html input controls & padding.
-    const innerInputWidth = Math.floor(Math.log10(innerMax)) + 5.25;
+    // text input boxes. Add a bit more (4) for padding.
+    const innerInputWidth = Math.floor(Math.log10(innerMax)) + 4;
     return [innerMin, innerMax, innerInputWidth];
   }, [maxOrNull, minOrNull, values]);
 
@@ -69,27 +69,29 @@ const HistogramFilter = ({
     setRange([start, end]);
   };
   return (
-    <Fragment>
-      <Histogram
-        values={values}
-        selectedRange={cleanedRange}
-        nBins={nBins}
-        min={min}
-        max={max}
-        height={height}
-      />
-      <Rheostat
-        min={min}
-        max={max}
-        values={cleanedRange}
-        onChange={e => {
-          onChange(e.values);
-        }}
-        onValuesUpdated={({ values: [start, end] }) => {
-          setRange([start, end]);
-        }}
-      />
-      <div className="text-input">
+    <div className="histogram-filter">
+      <div className="histogram-filter__histogram-rheostat-container">
+        <Histogram
+          values={values}
+          selectedRange={cleanedRange}
+          nBins={nBins}
+          min={min}
+          max={max}
+          height={height}
+        />
+        <Rheostat
+          min={min}
+          max={max}
+          values={cleanedRange}
+          onChange={e => {
+            onChange(e.values);
+          }}
+          onValuesUpdated={({ values: [start, end] }) => {
+            setRange([start, end]);
+          }}
+        />
+      </div>
+      <div className="histogram-filter__text-input-container">
         <input
           type="number"
           min={min}
@@ -113,7 +115,7 @@ const HistogramFilter = ({
           style={{ width: `${inputWidth}ch` }}
         />
       </div>
-    </Fragment>
+    </div>
   );
 };
 HistogramFilter.propTypes = {
@@ -151,7 +153,7 @@ HistogramFilter.defaultProps = {
   min: null,
   max: null,
   nBins: 50,
-  height: 300,
+  height: 50,
 };
 
 export default HistogramFilter;

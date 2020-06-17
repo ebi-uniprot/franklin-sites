@@ -13,7 +13,7 @@ export default {
   },
 };
 
-const [min, max] = [0, 10000];
+const [min, max] = [0, 1000];
 const nValues = 1000;
 const gaussianSample = getGaussianSample(
   (max - min) / 2,
