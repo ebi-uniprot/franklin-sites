@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import 'rheostat/initialize';
 import Rheostat from 'rheostat';
@@ -78,6 +78,7 @@ const HistogramFilter = ({
           min={min}
           max={max}
           height={height}
+          showAxes={false}
         />
         <Rheostat
           min={min}

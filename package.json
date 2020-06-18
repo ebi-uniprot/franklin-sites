@@ -45,6 +45,10 @@
     "react-router-dom": "^5.0.1"
   },
   "dependencies": {
+    "d3-array": "^2.4.0",
+    "d3-axis": "^1.0.12",
+    "d3-scale": "^3.2.1",
+    "d3-selection": "^1.4.1",
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.3",
     "history": "^4.10.1",

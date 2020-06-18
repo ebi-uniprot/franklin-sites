@@ -30,12 +30,11 @@ const uniformSample = getUniformSample(min, max, nValues);
 export const Gaussian = () => {
   const [range, setRange] = useState([min, max]);
   const handleChange = newRange => {
-    console.log(newRange);
     action(`range selected: ${newRange}`);
     setRange(newRange);
   };
   return (
-    <div style={{ width: '20rem' }}>
+    <div style={{ width: '25rem' }}>
       <HistogramFilter
         min={min}
         max={max}
@@ -51,12 +50,11 @@ export const Uniform = () => {
   const [range, setRange] = useState([min, max]);
 
   const handleChange = newRange => {
-    console.log(newRange);
     action(`range selected: ${newRange}`);
     setRange(newRange);
   };
   return (
-    <div style={{ width: '20rem' }}>
+    <div style={{ width: '25rem' }}>
       <HistogramFilter
         min={min}
         max={max}
@@ -65,5 +63,16 @@ export const Uniform = () => {
         values={uniformSample}
       />
     </div>
+  );
+};
+
+export const test = () => {
+  return (
+    <HistogramFilter
+      onChange={() => {}}
+      values={[...Array(10).keys()]}
+      nBins={2}
+      selectedRange={[0, 9]}
+    />
   );
 };

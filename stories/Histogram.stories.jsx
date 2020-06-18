@@ -15,14 +15,20 @@ export default {
   },
 };
 
-const [min, max] = [0, 10];
+const [min, max] = [0, 100];
 const nValues = 1000;
-const gaussianSample = getGaussianSample(0, 1, nValues);
+const gaussianSample = getGaussianSample(
+  (max - min) / 2,
+  max / 8,
+  nValues,
+  min,
+  max
+);
 
 const uniformSample = getUniformSample(min, max, nValues);
 
-export const Gaussian = () => <Histogram values={gaussianSample} />;
-
-export const Uniform = () => (
-  <Histogram min={min} max={max} values={uniformSample} />
+export const Gaussian = () => (
+  <Histogram min={min} max={max} values={gaussianSample} binSize={5} />
 );
+
+export const Uniform = () => <Histogram nBins={10} values={uniformSample} />;
