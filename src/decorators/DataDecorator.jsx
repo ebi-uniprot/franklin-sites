@@ -33,6 +33,7 @@ const DataDecorator = ({ children, ...props }) => {
       label: 'Column 4',
       name: 'content4',
       render: row => row.content4,
+      width: '40vw',
       sortable: true,
     },
     {

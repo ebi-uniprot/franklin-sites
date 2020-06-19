@@ -78,4 +78,24 @@ export const dataTableCompact = ({
   />
 );
 
+export const fixedTable = ({
+  data,
+  getIdKey,
+  columns,
+  hasMoreData,
+  onLoadMoreItems,
+}) => (
+  <DataTable
+    {...{
+      data,
+      getIdKey,
+      columns,
+      hasMoreData,
+      onLoadMoreItems,
+    }}
+    selectable
+    fixedLayout
+  />
+);
+
 dataTable.propTypes = DataTable.propTypes;

@@ -5,11 +5,18 @@
 
 .data-table {
   $self: &;
-
   border: 0;
   border-collapse: collapse;
   text-align: left;
   width: 100%;
+
+  input[type='checkbox'] {
+    margin: 0;
+  }
+
+  &--fixed {
+    table-layout: fixed;
+  }
 
   &__header-cell {
     border: 0;
@@ -49,6 +56,11 @@
         @include chevron(down, $colour-sky-white);
       }
     }
+
+    &--checkbox {
+      // This doesn't have an effect unless `table-layout: fixed`
+      width: 1.5rem;
+    }
   }
 
   &__cell {
@@ -70,6 +82,7 @@
     }
 
     &--checkbox {
+      // Is this still used?
       box-sizing: border-box;
       width: 0;
       padding: 0.8em 1.2em;
@@ -78,6 +91,10 @@
 
     &--loading {
       text-align: center;
+    }
+
+    &--ellipsis {
+      @include ellipsis();
     }
   }
 

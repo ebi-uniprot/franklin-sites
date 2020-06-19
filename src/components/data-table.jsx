@@ -23,20 +23,24 @@ const sharedPropTypes = {
     })
   ).isRequired,
   /**
-   * A callback function that is called whenever a user clicks the header. The column name is
-   * returned upon callback.
+   * Table fixed layout
    */
+  fixedLayout: PropTypes.bool,
 };
 
 const sharedDefaultProps = {
   selectable: false,
+  fixedLayout: false,
 };
 
 const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
   <thead className="data-table__header">
     <tr className="data-table__row">
       {selectable && (
-        <th key="selectable-column" className="data-table__header-cell">
+        <th
+          key="selectable-column"
+          className="data-table__header-cell data-table__header-cell--checkbox"
+        >
           {' '}
         </th>
       )}
@@ -56,7 +60,12 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
           }
         }
         return (
-          <th key={name} className={className} onClick={onClick}>
+          <th
+            key={name}
+            className={className}
+            onClick={onClick}
+            style={{ width: column.width ? column.width : 'auto' }}
+          >
             {label}
           </th>
         );
@@ -93,6 +102,7 @@ const DataTableBody = ({
   selected,
   getIdKey,
   selectable,
+  fixedLayout,
 }) => (
   <tbody className="data-table__table__body">
     {data.map((row, index) => {
@@ -111,7 +121,12 @@ const DataTableBody = ({
             </td>
           )}
           {columns.map(column => (
-            <td key={`${id}-${column.name}`} className={className}>
+            <td
+              key={`${id}-${column.name}`}
+              className={`${className} ${
+                fixedLayout ? 'data-table__cell--ellipsis' : ''
+              }`}
+            >
               {column.render(row)}
             </td>
           ))}
@@ -157,6 +172,7 @@ const DataTable = ({
   onHeaderClick,
   density,
   propsForTable,
+  fixedLayout,
 }) => (
   <table
     className={`data-table ${
@@ -165,7 +181,7 @@ const DataTable = ({
       propsForTable && propsForTable.className
         ? ` ${propsForTable.className}`
         : ''
-    }`}
+    } ${fixedLayout ? 'data-table--fixed' : ''}`}
     {...propsForTable}
   >
     <DataTableHead
@@ -180,6 +196,7 @@ const DataTable = ({
       selected={selected}
       getIdKey={getIdKey}
       selectable={selectable}
+      fixedLayout={fixedLayout}
     />
   </table>
 );
