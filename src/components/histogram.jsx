@@ -15,6 +15,8 @@ const Histogram = ({
   height,
   binSize: binSizeOrNull,
   showAxes,
+  xLabel,
+  yLabel,
 }) => {
   const [getIndex, nBins, binSize, min, max] = useMemo(() => {
     // Assign sensible default values if not provided
@@ -75,8 +77,9 @@ const Histogram = ({
                 interval={binSize}
                 yPos={height}
                 width={size.width}
+                label={xLabel}
               />
-              <YAxis scale={yScale} height={height} />
+              <YAxis scale={yScale} height={height} label={yLabel} />
             </Fragment>
           )}
           {bins.map((count, index) => {
@@ -137,6 +140,14 @@ Histogram.propTypes = {
    * Optional flag to show x (bins) and y (counts) axis
    */
   showAxes: PropTypes.bool,
+  /**
+   * Label to appear to the left of the axis
+   */
+  yLabel: PropTypes.string,
+  /**
+   * Label to appear under the axis
+   */
+  xLabel: PropTypes.string,
 };
 
 Histogram.defaultProps = {
@@ -147,6 +158,8 @@ Histogram.defaultProps = {
   selectedRange: null,
   binSize: null,
   showAxes: true,
+  xLabel: null,
+  yLabel: null,
 };
 
 export default Histogram;

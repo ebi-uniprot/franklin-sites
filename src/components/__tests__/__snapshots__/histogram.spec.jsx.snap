@@ -7,14 +7,14 @@ exports[`HistogramFilter component should render when binSize prop is provided a
     data-testid="histogram"
   >
     <svg
-      height="100"
+      height="80"
       style="top: 300px; position: absolute;"
       width="0"
     />
     <svg
       height="300"
       style="left: -50px; position: absolute;"
-      width="100"
+      width="80"
     >
       <g
         fill="none"
@@ -283,14 +283,14 @@ exports[`HistogramFilter component should render when nBins prop is provided and
     data-testid="histogram"
   >
     <svg
-      height="100"
+      height="80"
       style="top: 300px; position: absolute;"
       width="0"
     />
     <svg
       height="300"
       style="left: -50px; position: absolute;"
-      width="100"
+      width="80"
     >
       <g
         fill="none"

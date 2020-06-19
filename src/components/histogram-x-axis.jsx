@@ -5,7 +5,8 @@ import { axisBottom } from 'd3-axis';
 import { select } from 'd3-selection';
 import { range } from 'd3-array';
 
-const XAxis = ({ min, max, interval, yPos, width }) => {
+const XAxis = ({ min, max, interval, yPos, width, label }) => {
+  const height = 80;
   const d3Container = useRef(null);
   useEffect(() => {
     if (width && d3Container.current) {
@@ -19,14 +20,21 @@ const XAxis = ({ min, max, interval, yPos, width }) => {
       const svg = select(d3Container.current);
       svg.selectAll('*').remove();
       svg.append('g').call(axis);
+      if (label) {
+        svg
+          .append('text')
+          .attr('transform', `translate(${width / 2},${height / 2})`)
+          .style('text-anchor', 'middle')
+          .text(label);
+      }
     }
-  }, [interval, max, min, width]);
+  }, [interval, label, max, min, width]);
 
   return (
     <svg
       style={{ top: yPos, position: 'absolute' }}
       width={width}
-      height={100}
+      height={height}
       ref={d3Container}
     />
   );
@@ -53,9 +61,14 @@ XAxis.propTypes = {
    * The width of the axis
    */
   width: PropTypes.number,
+  /**
+   * Label to appear under the axis
+   */
+  label: PropTypes.string,
 };
 
 XAxis.defaultProps = {
   width: null,
+  label: null,
 };
 export default XAxis;

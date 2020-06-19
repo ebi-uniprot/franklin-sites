@@ -47,10 +47,26 @@ const ChangingGaussianComponent = () => {
       nBins={20}
       min={gaussianMin}
       max={gaussianMax}
+      xLabel="Value"
+      yLabel="Frequency"
     />
   );
 };
 
-export const Gaussian = () => <Histogram values={gaussianSample} nBins={20} />;
-export const Uniform = () => <Histogram nBins={10} values={uniformSample} />;
+export const Gaussian = () => (
+  <Histogram
+    values={gaussianSample}
+    nBins={20}
+    xLabel="Value"
+    yLabel="Frequency"
+  />
+);
+export const Uniform = () => (
+  <Histogram
+    values={uniformSample}
+    binSize={1}
+    xLabel="Value"
+    yLabel="Frequency"
+  />
+);
 export const ChangingGaussian = () => <ChangingGaussianComponent />;

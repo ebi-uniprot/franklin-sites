@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { axisLeft } from 'd3-axis';
 import { select } from 'd3-selection';
 
-const YAxis = ({ scale, height }) => {
+const YAxis = ({ scale, height, label }) => {
+  const width = 80;
   const d3Container = useRef(null);
   useEffect(() => {
     if (d3Container.current) {
@@ -15,13 +16,23 @@ const YAxis = ({ scale, height }) => {
         .append('g')
         .attr('transform', 'translate(50, 0)')
         .call(axis);
+
+      if (label) {
+        svg
+          .append('text')
+          .attr('transform', 'rotate(-90)')
+          .attr('y', width / 4)
+          .attr('x', -height / 2)
+          .style('text-anchor', 'middle')
+          .text(label);
+      }
     }
-  }, [scale]);
+  }, [height, label, scale]);
 
   return (
     <svg
       style={{ left: -50, position: 'absolute' }}
-      width={100}
+      width={width}
       height={height}
       ref={d3Container}
     />
@@ -37,6 +48,14 @@ YAxis.propTypes = {
    * The height of axis component
    */
   height: PropTypes.number.isRequired,
+  /**
+   * Label to appear to the left of the axis
+   */
+  label: PropTypes.string,
+};
+
+YAxis.defaultProps = {
+  label: null,
 };
 
 export default YAxis;
