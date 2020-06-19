@@ -31,4 +31,22 @@ describe('Message component', () => {
     fireEvent.click(getByRole('button'));
     expect(dismissFn).toHaveBeenCalled();
   });
+
+  test('should render with a subtitle', () => {
+    const { asFragment } = render(
+      <Message subtitle={<div>test</div>}>
+        <div>Some content</div>
+      </Message>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render without default icon', () => {
+    const { asFragment } = render(
+      <Message noIcon>
+        <div>Some content</div>
+      </Message>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

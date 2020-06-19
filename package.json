@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.56",
+  "version": "0.0.58",
   "main": "./dist/franklin-components.js",
   "files": [
     "src",
@@ -49,6 +49,7 @@
     "d3-axis": "^1.0.12",
     "d3-scale": "^3.2.1",
     "d3-selection": "^1.4.1",
+    "classnames": "^2.2.6",
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.3",
     "history": "^4.10.1",
