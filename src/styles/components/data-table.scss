@@ -10,6 +10,14 @@
   text-align: left;
   width: 100%;
 
+  input[type='checkbox'] {
+    margin: 0;
+  }
+
+  &--fixed {
+    table-layout: fixed;
+  }
+
   &__header-cell {
     border: 0;
     padding: 0.25rem 0.5rem;
@@ -48,6 +56,11 @@
         @include chevron(down, $colour-sky-white);
       }
     }
+
+    &--checkbox {
+      // This doesn't have an effect unless `table-layout: fixed`
+      width: 1.5rem;
+    }
   }
 
   &__cell {
@@ -69,6 +82,7 @@
     }
 
     &--checkbox {
+      // Is this still used?
       box-sizing: border-box;
       width: 0;
       padding: 0.8em 1.2em;

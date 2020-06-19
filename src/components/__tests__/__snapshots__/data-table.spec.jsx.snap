@@ -9,8 +9,7 @@ exports[`DataTable should render 1`] = `
       class="data-loader__scroll-container"
     >
       <table
-        class="data-table  "
-        style="table-layout: auto;"
+        class="data-table   "
       >
         <thead
           class="data-table__header"
@@ -19,8 +18,7 @@ exports[`DataTable should render 1`] = `
             class="data-table__row"
           >
             <th
-              class="data-table__header-cell"
-              style="width: 1.5rem;"
+              class="data-table__header-cell data-table__header-cell--checkbox"
             >
                
             </th>

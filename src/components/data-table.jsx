@@ -39,8 +39,7 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
       {selectable && (
         <th
           key="selectable-column"
-          className="data-table__header-cell"
-          style={{ width: '1.5rem' }}
+          className="data-table__header-cell data-table__header-cell--checkbox"
         >
           {' '}
         </th>
@@ -182,8 +181,7 @@ const DataTable = ({
       propsForTable && propsForTable.className
         ? ` ${propsForTable.className}`
         : ''
-    }`}
-    style={{ tableLayout: fixedLayout ? 'fixed' : 'auto' }}
+    } ${fixedLayout ? 'data-table--fixed' : ''}`}
     {...propsForTable}
   >
     <DataTableHead
