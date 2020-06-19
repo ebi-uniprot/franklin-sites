@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HistogramFilter component should render 1`] = `
+<DocumentFragment>
+  <div
+    class="histogram-filter"
+  >
+    <div
+      class="histogram-filter__histogram-rheostat-container"
+    >
+      <div
+        class="histogram"
+        data-testid="histogram"
+      >
+        <div
+          class="histogram histogram__bar histogram__bar--within-range"
+          data-testid="histogram-bar"
+          style="height: 50px; transform: scaleY(0.4);"
+        />
+        <div
+          class="histogram histogram__bar histogram__bar--within-range"
+          data-testid="histogram-bar"
+          style="height: 50px; transform: scaleY(0.4);"
+        />
+        <div
+          class="histogram histogram__bar histogram__bar--within-range"
+          data-testid="histogram-bar"
+          style="height: 50px; transform: scaleY(0.4);"
+        />
+        <div
+          class="histogram histogram__bar histogram__bar--within-range"
+          data-testid="histogram-bar"
+          style="height: 50px; transform: scaleY(0.4);"
+        />
+        <div
+          class="histogram histogram__bar histogram__bar--within-range"
+          data-testid="histogram-bar"
+          style="height: 50px; transform: scaleY(0.4);"
+        />
+        <div
+          class="erd_scroll_detection_container erd_scroll_detection_container_animation_active"
+          style="visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0px; padding: 0px;"
+        >
+          <div
+            class="erd_scroll_detection_container"
+            dir="ltr"
+            style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px;"
+          >
+            <div
+              class="erd_scroll_detection_container"
+              style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; left: -501px; top: -501px; right: -500px; bottom: -500px;"
+            >
+              <div
+                style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;"
+              >
+                <div
+                  style="position: absolute; left: 0px; top: 0px; width: 1011px; height: 1011px;"
+                />
+              </div>
+              <div
+                style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;"
+              >
+                <div
+                  style="position: absolute; width: 200%; height: 200%;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="rheostat rheostat_1"
+      >
+        <div
+          class="DefaultBackground DefaultBackground_1 DefaultBackground_background__horizontal DefaultBackground_background__horizontal_2"
+        />
+        <div
+          class="handleContainer handleContainer_1"
+        >
+          <button
+            aria-disabled="false"
+            aria-valuemax="9"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            class="DefaultHandle_handle DefaultHandle_handle_1 DefaultHandle_handle__horizontal DefaultHandle_handle__horizontal_2"
+            data-handle-key="0"
+            role="slider"
+            style="left: 0%; position: absolute;"
+            tabindex="0"
+            type="button"
+          />
+          <button
+            aria-disabled="false"
+            aria-valuemax="9"
+            aria-valuemin="0"
+            aria-valuenow="9"
+            class="DefaultHandle_handle DefaultHandle_handle_1 DefaultHandle_handle__horizontal DefaultHandle_handle__horizontal_2"
+            data-handle-key="1"
+            role="slider"
+            style="left: 100%; position: absolute;"
+            tabindex="0"
+            type="button"
+          />
+        </div>
+        <div
+          class="DefaultProgressBar_progressBar DefaultProgressBar_progressBar_1 DefaultProgressBar_background__horizontal DefaultProgressBar_background__horizontal_2"
+          style="left: 0%; width: 100%;"
+        />
+      </div>
+    </div>
+    <div
+      class="histogram-filter__text-input-container"
+    >
+      <input
+        max="9"
+        min="0"
+        type="number"
+        value="0"
+      />
+      <input
+        max="9"
+        min="0"
+        type="number"
+        value="9"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

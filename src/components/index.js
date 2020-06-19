@@ -40,6 +40,8 @@ export { default as DisplayMenu } from './display-menu';
 export { default as Message } from './message';
 export { default as SequenceSubmission } from './sequence-submission';
 export { default as Chip } from './chip';
+export { default as HistogramFilter } from './histogram-filter';
+export { default as Histogram } from './histogram';
 export { default as CodeBlock } from './code-block';
 
 // Icons
