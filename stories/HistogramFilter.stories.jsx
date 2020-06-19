@@ -65,14 +65,3 @@ export const Uniform = () => {
     </div>
   );
 };
-
-export const test = () => {
-  return (
-    <HistogramFilter
-      onChange={() => {}}
-      values={[...Array(10).keys()]}
-      nBins={2}
-      selectedRange={[0, 9]}
-    />
-  );
-};

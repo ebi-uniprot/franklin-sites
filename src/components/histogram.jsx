@@ -2,8 +2,8 @@ import React, { useMemo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { SizeMe } from 'react-sizeme';
 import { scaleLinear } from 'd3-scale';
-import XAxis from './XAxis';
-import YAxis from './YAxis';
+import XAxis from './histogram-x-axis';
+import YAxis from './histogram-y-axis';
 import '../styles/components/histogram.scss';
 
 const Histogram = ({
@@ -87,6 +87,7 @@ const Histogram = ({
             return (
               <div
                 key={key}
+                data-testid="histogram-bar"
                 className={`histogram histogram__bar ${
                   withinRange ? 'histogram__bar--within-range' : ''
                 }`}
@@ -117,7 +118,7 @@ Histogram.propTypes = {
    */
   values: PropTypes.arrayOf(PropTypes.number).isRequired,
   /**
-   * A 2-element array which specifies the [start, end] points selected by the user. Defaults to [min, max].
+   * A 2-element array which specifies [start, end] points to shade the bars to indicate selection.
    */
   selectedRange: PropTypes.arrayOf(PropTypes.number),
   /**
