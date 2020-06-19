@@ -6,8 +6,8 @@ export default {
   title: 'Core|Chip',
   parameters: {
     purposeFunction: {
-      function: 'Shows a dropdown area when clicked',
-      purpose: 'Allow the user to perform actions',
+      function: 'Can be used to make selections or trigger actions',
+      purpose: 'Display compact discrete information',
     },
   },
 };

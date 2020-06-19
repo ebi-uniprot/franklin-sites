@@ -21,6 +21,7 @@ const DataDecorator = ({ children, ...props }) => {
     {
       label: 'Column 2',
       name: 'content2',
+      ellipsis: true,
       render: row => row.content2,
     },
     {

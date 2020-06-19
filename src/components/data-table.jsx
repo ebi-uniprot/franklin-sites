@@ -111,8 +111,16 @@ const DataTableBody = ({
             </td>
           )}
           {columns.map(column => (
-            <td key={`${id}-${column.name}`} className={className}>
-              {column.render(row)}
+            <td key={`${id}-${column.name}`} className={`${className}`}>
+              {/* Here we can't apply the ellipsis styling directly to the td
+                because of table-layout */
+              column.ellipsis ? (
+                <section className="data-table__ellipsis">
+                  {column.render(row)}
+                </section>
+              ) : (
+                column.render(row)
+              )}
             </td>
           ))}
         </tr>

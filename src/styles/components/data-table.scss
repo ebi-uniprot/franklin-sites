@@ -5,7 +5,6 @@
 
 .data-table {
   $self: &;
-
   border: 0;
   border-collapse: collapse;
   text-align: left;
@@ -78,6 +77,21 @@
 
     &--loading {
       text-align: center;
+    }
+
+    section.data-table__ellipsis {
+      // Magic numbers to be fine tuned over time
+      @include fs-breakpoints('small') {
+        @include ellipsis(5rem);
+      }
+
+      @include fs-breakpoints('medium') {
+        @include ellipsis(10rem);
+      }
+
+      @include fs-breakpoints('large') {
+        @include ellipsis(20rem);
+      }
     }
   }
 

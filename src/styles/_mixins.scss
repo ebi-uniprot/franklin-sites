@@ -61,3 +61,10 @@ $global-right: if($global-text-direction == rtl, left, right);
     }
   }
 }
+
+@mixin ellipsis($max-width) {
+  max-width: $max-width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
