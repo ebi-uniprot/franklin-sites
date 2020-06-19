@@ -10,6 +10,7 @@ exports[`DataTable should render 1`] = `
     >
       <table
         class="data-table  "
+        style="table-layout: auto;"
       >
         <thead
           class="data-table__header"
@@ -19,21 +20,25 @@ exports[`DataTable should render 1`] = `
           >
             <th
               class="data-table__header-cell"
+              style="width: 1.5rem;"
             >
                
             </th>
             <th
               class="data-table__header-cell data-table__header-cell--ascend"
+              style="width: auto;"
             >
               Column 1
             </th>
             <th
               class="data-table__header-cell "
+              style="width: auto;"
             >
               Column 2
             </th>
             <th
               class="data-table__header-cell data-table__header-cell--sortable"
+              style="width: auto;"
             >
               Column 3
             </th>
@@ -52,17 +57,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell data-table__cell--selected"
+              class="data-table__cell data-table__cell--selected "
             >
               foo
             </td>
             <td
-              class="data-table__cell data-table__cell--selected"
+              class="data-table__cell data-table__cell--selected "
             >
               bar
             </td>
             <td
-              class="data-table__cell data-table__cell--selected"
+              class="data-table__cell data-table__cell--selected "
             >
               baz
             </td>
@@ -76,17 +81,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               foo
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               bar
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               baz
             </td>
@@ -100,17 +105,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               foo
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               bar
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               baz
             </td>
@@ -124,17 +129,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               foo
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               bar
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               baz
             </td>
@@ -148,17 +153,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               foo
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               bar
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               baz
             </td>
@@ -172,17 +177,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               foo
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               bar
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               baz
             </td>
@@ -196,17 +201,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               foo
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               bar
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               baz
             </td>
@@ -220,17 +225,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               foo
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               bar
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               baz
             </td>
@@ -244,17 +249,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               foo
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               bar
             </td>
             <td
-              class="data-table__cell "
+              class="data-table__cell  "
             >
               baz
             </td>
@@ -268,17 +273,17 @@ exports[`DataTable should render 1`] = `
               />
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               foo
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               bar
             </td>
             <td
-              class="data-table__cell data-table__cell--odd "
+              class="data-table__cell data-table__cell--odd  "
             >
               baz
             </td>
