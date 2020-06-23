@@ -3,7 +3,7 @@
 exports[`Chip component should render 1`] = `
 <DocumentFragment>
   <span
-    class="chip  "
+    class="chip   "
   >
     Some content
   </span>
