@@ -50,6 +50,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell data-table__cell--selected"
             >
               <input
+                aria-label="id0"
                 checked=""
                 type="checkbox"
               />
@@ -75,6 +76,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell data-table__cell--odd "
             >
               <input
+                aria-label="id1"
                 type="checkbox"
               />
             </td>
@@ -99,6 +101,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell "
             >
               <input
+                aria-label="id2"
                 type="checkbox"
               />
             </td>
@@ -123,6 +126,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell data-table__cell--odd "
             >
               <input
+                aria-label="id3"
                 type="checkbox"
               />
             </td>
@@ -147,6 +151,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell "
             >
               <input
+                aria-label="id4"
                 type="checkbox"
               />
             </td>
@@ -171,6 +176,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell data-table__cell--odd "
             >
               <input
+                aria-label="id5"
                 type="checkbox"
               />
             </td>
@@ -195,6 +201,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell "
             >
               <input
+                aria-label="id6"
                 type="checkbox"
               />
             </td>
@@ -219,6 +226,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell data-table__cell--odd "
             >
               <input
+                aria-label="id7"
                 type="checkbox"
               />
             </td>
@@ -243,6 +251,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell "
             >
               <input
+                aria-label="id8"
                 type="checkbox"
               />
             </td>
@@ -267,6 +276,7 @@ exports[`DataTable should render 1`] = `
               class="data-table__cell data-table__cell--odd "
             >
               <input
+                aria-label="id9"
                 type="checkbox"
               />
             </td>

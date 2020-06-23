@@ -116,6 +116,7 @@ const DataTableBody = ({
               <input
                 type="checkbox"
                 onChange={() => onSelect(id)}
+                aria-label={id}
                 checked={isSelected}
               />
             </td>
