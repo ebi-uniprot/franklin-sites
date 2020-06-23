@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import RemoveIcon from '../svg/times.svg';
 import '../styles/components/chip.scss';
 
-const Chip = ({ children, onRemove, className, disabled, compact }) => (
+const Chip = ({ children, onRemove, className, disabled, compact, title }) => (
   <span
     className={`chip ${disabled ? 'chip--disabled' : ''} ${
       compact ? 'chip--compact' : ''
     } ${className}`}
+    title={title}
   >
     {children}
     {onRemove && !disabled && (
@@ -37,6 +38,10 @@ Chip.propTypes = {
    * Compact styling for chip
    */
   compact: PropTypes.bool,
+  /**
+   * Title to display on mouse over
+   */
+  title: PropTypes.string,
 };
 
 Chip.defaultProps = {
@@ -44,6 +49,7 @@ Chip.defaultProps = {
   className: '',
   disabled: false,
   compact: false,
+  title: null,
 };
 
 export default Chip;

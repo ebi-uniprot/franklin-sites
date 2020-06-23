@@ -15,7 +15,7 @@ export default {
 export const chips = () => (
   <Fragment>
     <div>
-      <Chip>Primary</Chip>
+      <Chip title="this is a primary chip">Primary</Chip>
     </div>
     <div>
       <Chip className="secondary">Secondary</Chip>
