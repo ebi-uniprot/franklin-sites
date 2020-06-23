@@ -40,10 +40,10 @@
 
   &.secondary {
     background-color: map-get($foundation-palette, secondary);
-    color: $colour-weldon-blue;
+    color: $colour-sea-blue;
 
     svg {
-      fill: $colour-weldon-blue;
+      fill: $colour-sea-blue;
     }
   }
 }

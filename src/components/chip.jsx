@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import RemoveIcon from '../svg/times.svg';
 import '../styles/components/chip.scss';
 
 const Chip = ({ children, onRemove, className, disabled, compact, title }) => (
   <span
-    className={`chip ${disabled ? 'chip--disabled' : ''} ${
-      compact ? 'chip--compact' : ''
-    } ${className}`}
+    className={classNames(
+      'chip',
+      { 'chip--disabled': disabled },
+      { 'chip--compact': compact },
+      className
+    )}
     title={title}
   >
     {children}
