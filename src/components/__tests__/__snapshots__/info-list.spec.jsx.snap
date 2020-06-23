@@ -2,13 +2,13 @@
 
 exports[`InfoList component should render 1`] = `
 <div
-  className="info-list "
+  className="info-list"
 >
   <div
     className="info-list__item"
   >
     <div
-      className="info-list__item__title"
+      className="info-list__title"
     >
       <h5
         className="bold"
@@ -17,7 +17,7 @@ exports[`InfoList component should render 1`] = `
       </h5>
     </div>
     <div
-      className="info-list__item__content"
+      className="info-list__content"
     >
       <div>
         Some content
@@ -28,7 +28,7 @@ exports[`InfoList component should render 1`] = `
     className="info-list__item"
   >
     <div
-      className="info-list__item__title"
+      className="info-list__title"
     >
       <h5
         className="bold"
@@ -37,7 +37,7 @@ exports[`InfoList component should render 1`] = `
       </h5>
     </div>
     <div
-      className="info-list__item__content"
+      className="info-list__content"
     >
       <div>
         Some more content

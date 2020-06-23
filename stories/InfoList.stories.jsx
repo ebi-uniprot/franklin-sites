@@ -31,7 +31,13 @@ const data = [
 
 export const infoList = () => <InfoList infoData={data} />;
 
-export const infoListCompact = () => <InfoList infoData={data} isCompact />;
+export const highlightFirstItem = () => (
+  <InfoList infoData={data} highlightFirstItem />
+);
+
+export const compact = () => <InfoList infoData={data} isCompact />;
+
+export const noTitles = () => <InfoList infoData={data} noTitles />;
 
 infoList.story = {
   name: 'Simple data',
