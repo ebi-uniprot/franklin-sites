@@ -48,3 +48,16 @@ export const removable = () => (
     </div>
   </Fragment>
 );
+
+export const compact = () => (
+  <Fragment>
+    <div>
+      <Chip compact>Primary</Chip>
+    </div>
+    <div>
+      <Chip compact className="secondary">
+        Secondary
+      </Chip>
+    </div>
+  </Fragment>
+);

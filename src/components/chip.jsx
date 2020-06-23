@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import RemoveIcon from '../svg/times.svg';
 import '../styles/components/chip.scss';
 
-const Chip = ({ children, onRemove, className, disabled }) => (
-  <span className={`chip ${disabled ? 'chip--disabled' : ''} ${className}`}>
+const Chip = ({ children, onRemove, className, disabled, compact }) => (
+  <span
+    className={`chip ${disabled ? 'chip--disabled' : ''} ${
+      compact ? 'chip--compact' : ''
+    } ${className}`}
+  >
     {children}
     {onRemove && !disabled && (
       <RemoveIcon data-testid="remove-icon" onClick={onRemove} />
@@ -29,12 +33,17 @@ Chip.propTypes = {
    * Additional CSS classnames to apply (eg secondary, tertiary)
    */
   className: PropTypes.string,
+  /**
+   * Compact styling for chip
+   */
+  compact: PropTypes.bool,
 };
 
 Chip.defaultProps = {
   onRemove: null,
   className: '',
   disabled: false,
+  compact: false,
 };
 
 export default Chip;
