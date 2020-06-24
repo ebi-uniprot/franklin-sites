@@ -15,7 +15,7 @@ export default {
 export const chips = () => (
   <Fragment>
     <div>
-      <Chip>Primary</Chip>
+      <Chip title="this is a primary chip">Primary</Chip>
     </div>
     <div>
       <Chip className="secondary">Secondary</Chip>
@@ -43,6 +43,19 @@ export const removable = () => (
     </div>
     <div>
       <Chip onRemove={action('Remove chip')} className="secondary">
+        Secondary
+      </Chip>
+    </div>
+  </Fragment>
+);
+
+export const compact = () => (
+  <Fragment>
+    <div>
+      <Chip compact>Primary</Chip>
+    </div>
+    <div>
+      <Chip compact className="secondary">
         Secondary
       </Chip>
     </div>
