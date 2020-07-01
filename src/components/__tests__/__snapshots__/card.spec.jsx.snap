@@ -59,8 +59,8 @@ exports[`Card component should render card with links 1`] = `
       class="card__actions"
     >
       <span
-        class="card__link false"
-        style="border-color: red; border-bottom: 0.125rem solid;"
+        class="card__link"
+        style="border-bottom: 0.125rem solid red;"
       >
         <a
           href="/example.com"
