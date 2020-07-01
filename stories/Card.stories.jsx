@@ -7,22 +7,22 @@ import { getLipsumSentences } from '../src/mock-data/lipsum';
 const links = [
   {
     name: '10 Protein Interactions',
-    link: '#',
+    link: '/red',
     color: 'red',
   },
   {
     name: '9 Pathways',
-    link: '#',
+    link: '/blue',
     color: 'blue',
   },
   {
     name: '5 Diseases',
-    link: '#',
+    link: '/diseases',
     color: '#bada55',
   },
   {
     name: '72 Variants',
-    link: '#',
+    link: '/burlywood',
     color: 'burlywood',
   },
 ];
@@ -57,6 +57,12 @@ export const cardWithLinks = () => (
     subtitle={<Link to="/#">APOE_HUMAN - P02649</Link>}
     links={links}
   >
+    {getLipsumSentences()}
+  </Card>
+);
+
+export const activeCard = () => (
+  <Card title="Title" onClick={action('click')} active>
     {getLipsumSentences()}
   </Card>
 );
