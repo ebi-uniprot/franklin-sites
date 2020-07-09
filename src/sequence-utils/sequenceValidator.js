@@ -20,29 +20,29 @@ export const validNucleicAcids = [
   // No gaps e.g. - and . are not allowed
 ].join('');
 
-export const errorResponses = {
-  missingSequence: {
+export const errorResponses = Object.freeze({
+  missingSequence: Object.freeze({
     valid: false,
     likelyType: null,
     message: 'The sequence is missing',
-  },
-  invalidSequence: {
+  }),
+  invalidSequence: Object.freeze({
     valid: false,
     likelyType: null,
     message: 'The sequence is invalid',
-  },
-  shortSequence: {
+  }),
+  shortSequence: Object.freeze({
     valid: false,
     likelyType: null,
     message: 'The sequence is too short',
-  },
-};
+  }),
+});
 
-export const validResponse = {
+export const validResponse = Object.freeze({
   valid: true,
   likelyType: null,
   message: null,
-};
+});
 
 // Keep start ^ and end $ anchors in the regex
 // Matches all alphabet letters, except for the letter O (case-insensitive)
@@ -55,7 +55,7 @@ const validCharacters = /^[A-NP-Z*.-]+$/i;
  * @param {string} seq - Sequence
  * @return {Boolean} True if it is likely to be FASTA
  */
-const isFASTA = seq => /.*[>]+/gm.test(seq);
+const isFASTA = seq => /.*[>;]+/gm.test(seq);
 
 /**
  * Prepares a string to be digested by the core validation function.
@@ -65,7 +65,7 @@ const isFASTA = seq => /.*[>]+/gm.test(seq);
  */
 function prepareFASTAString(fasta) {
   return fasta
-    .split(/^>.*\n?$/gm) // split and remove the 'Description' line
+    .split(/^[>;].*\n?$/gm) // split and remove the 'Description' line
     .map(s => s.replace(/\s/g, '')) // remove all of the white-space
     .filter(Boolean); // remove all non-truthy values e.g. null, '', false.
 }
@@ -160,7 +160,7 @@ function guessSequenceType(sequence, threshold) {
  * @param {string} sequence - A sequence
  * @return {string} The likely type either 'aa' or 'na'
  */
-function findLikelyType(sequence) {
+export function findLikelyType(sequence) {
   // 1. Remove all of the non-letter characters, plus N and X
   // 2. If less than 11 usable characters left: unable to guess
   // 3. If more than (by default) 90% ACGTU: Nucleic-Acids
@@ -182,7 +182,7 @@ function findLikelyType(sequence) {
  * @param {string} sequence - A sequence
  * @return {object} The result
  */
-function sequenceValidator(sequence) {
+export function sequenceValidator(sequence) {
   // Sequence was not passed at all
   if (!sequence) {
     return errorResponses.missingSequence;
@@ -230,6 +230,7 @@ function sequenceValidator(sequence) {
   return {
     ...validResponse,
     likelyType,
+    sequence,
   };
 }
 
@@ -256,7 +257,7 @@ function validateSequences(input) {
   }
 
   // This works based on the value of 'sequence', so keep it here instead of top
-  const invalidInputException = `Sequence Validiation function expects an Array<string>|string, but received ${typeof sequence}`;
+  const invalidInputException = `Sequence Validation function expects an Array<string>|string, but received ${typeof sequence}`;
 
   // Otherwise, make sure we have an array to work with
   if (Array.isArray) {

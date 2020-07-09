@@ -5,3 +5,9 @@
   height: 30vh;
   font-family: $font-family-monospace;
 }
+
+@media (min-width: 500px) {
+  .sequence-submission-input {
+    white-space: nowrap;
+  }
+}
