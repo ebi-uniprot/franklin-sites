@@ -22,6 +22,32 @@ export const withInvalidSequenceError = () => (
   />
 );
 
+const multipleSequences1 = `> sequence_1
+ACTGUACTGUACTGU
+> sequence_2
+ACTGAUTTGUATTGUUUGU
+`;
+export const withMultipleSequences = () => (
+  <SequenceSubmission
+    placeholder="Enter a sequence..."
+    defaultValue={multipleSequences1}
+  />
+);
+
+const multipleSequences2 = `> sequence_1
+ACTGUACTGUACTGU
+> sequence_2
+ACTGAUTTGUATTGUUUGU
+> sequence_3
+ACTGUACTGUACTGU
+`;
+export const withMultipleSequencesWarning = () => (
+  <SequenceSubmission
+    placeholder="Enter a sequence..."
+    defaultValue={multipleSequences2}
+  />
+);
+
 export const dynamicallyChangeValue = () => {
   const [sequence, setSequence] = useState('ACTG');
   const [likelyType, setLikelyType] = useState(null);

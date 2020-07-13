@@ -53,6 +53,33 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
       .filter(Boolean);
   }
 
+  const warningMessages = [];
+  if (processed.length > 1) {
+    // loop and match all the sequences together, only once
+    for (let i = 0; i < processed.length; i += 1) {
+      for (let j = i + 1; j < processed.length; j += 1) {
+        const a = processed[i];
+        const b = processed[j];
+        if (a.sequence.toLowerCase() === b.sequence.toLowerCase()) {
+          // use index to name the sequences, because name might be the same
+          warningMessages.push(
+            <Message
+              level="info"
+              data-testid="sequence-submission-warning"
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${i}-${j}`}
+            >
+              Sequences {i + 1}
+              {a.name ? ` (${a.name})` : ''} and {j + 1}
+              {b.name ? ` (${b.name})` : ''} are identical, this might be
+              unintended.
+            </Message>
+          );
+        }
+      }
+    }
+  }
+
   return (
     <>
       <textarea
@@ -71,6 +98,7 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
         </Message>
       )}
       {errorMessages}
+      {warningMessages}
     </>
   );
 };

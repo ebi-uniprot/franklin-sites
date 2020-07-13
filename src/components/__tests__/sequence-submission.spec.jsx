@@ -47,10 +47,15 @@ describe('SequenceSubmission', () => {
     const textarea = queryByTestId('sequence-submission-input');
     fireEvent.change(textarea, { target: { value } });
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith({
-      ...validResponse,
-      likelyType: 'na',
-      sequence: value,
-    });
+    expect(onChange).toHaveBeenCalledWith([
+      {
+        ...validResponse,
+        header: '',
+        name: '',
+        sequence: value,
+        likelyType: 'na',
+        raw: value,
+      },
+    ]);
   });
 });
