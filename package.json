@@ -14,8 +14,9 @@
   "scripts": {
     "build": "yarn build-library && yarn build-storybook",
     "build-library": "webpack --config webpack.library.js",
-    "jslint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
-    "test": "yarn jslint && jest",
+    "test:lint": "eslint -c .eslintrc.json --ext .js --ext .jsx src",
+    "test:unit": "jest",
+    "test": "yarn test:lint && yarn test:unit",
     "test-watch": "jest --watch",
     "release": "yarn build && yarn publish && git push --follow-tags origin master",
     "start": "start-storybook -p 6006 -s ./assets",
