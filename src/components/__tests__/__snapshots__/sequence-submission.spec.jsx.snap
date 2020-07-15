@@ -34,7 +34,7 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
       class="message__content"
     >
       <small>
-        Identified 1 sequence to be submitted
+        Your input contains 1 sequence
       </small>
     </section>
   </div>
