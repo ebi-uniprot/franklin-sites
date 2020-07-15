@@ -93,8 +93,8 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
       />
       {processed[0] && processed[0].sequence.length > 10 && (
         <Message level="info">
-          Identified {processed.length} sequence
-          {processed.length === 1 ? '' : 's'} to be submitted
+          Your input contains {processed.length} sequence
+          {processed.length === 1 ? '' : 's'}
         </Message>
       )}
       {errorMessages}
