@@ -2,9 +2,7 @@
 
 @mixin SVGDefinition($level) {
   svg {
-    path {
-      fill: $level;
-    }
+    color: $level;
   }
 }
 
@@ -31,6 +29,7 @@
   svg {
     grid-area: icon;
     height: 1.5rem;
+    align-self: center;
   }
 
   &--no-shadow {
@@ -60,6 +59,7 @@
   &__dismiss {
     cursor: pointer;
     grid-area: dismiss;
+    align-self: start;
   }
 
   &--warning {

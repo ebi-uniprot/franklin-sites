@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import '../styles/components/message.scss';
+
 import WarningIcon from '../svg/warning.svg';
+import WarningTriangleIcon from '../svg/warning-triangle.svg';
+import ErrorIcon from '../svg/error.svg';
 import CloseIcon from '../svg/times.svg';
+
+import '../styles/components/message.scss';
 
 const MessageLevel = {
   warning: 'warning',
@@ -23,36 +27,46 @@ const Message = ({
   noShadow,
   forFullPage,
   'data-testid': dataTestId,
-}) => (
-  <div
-    className={classNames(
-      'message',
-      `message--${level}`,
-      { 'message--no-shadow': noShadow || forFullPage },
-      { 'message--for-full-page': forFullPage }
-    )}
-    role="status"
-    data-testid={dataTestId}
-  >
-    <div className="message__side-border" />
+}) => {
+  let maybeIcon = null;
+  if (!noIcon && !forFullPage) {
+    maybeIcon = <WarningIcon width={iconSize} height={iconSize} />;
+    if (level === 'warning') {
+      maybeIcon = <WarningTriangleIcon width={iconSize} height={iconSize} />;
+    } else if (level === 'failure') {
+      maybeIcon = <ErrorIcon width={iconSize} height={iconSize} />;
+    }
+  }
 
-    {!noIcon && !forFullPage && (
-      <WarningIcon width={iconSize} height={iconSize} />
-    )}
+  return (
+    <div
+      className={classNames(
+        'message',
+        `message--${level}`,
+        { 'message--no-shadow': noShadow || forFullPage },
+        { 'message--for-full-page': forFullPage }
+      )}
+      role="status"
+      data-testid={dataTestId}
+    >
+      <div className="message__side-border" />
 
-    <section className="message__content">
-      {forFullPage ? <h3>{children}</h3> : <small>{children}</small>}
-    </section>
+      {maybeIcon}
 
-    {onDismiss && (
-      <button type="button" className="message__dismiss" onClick={onDismiss}>
-        <CloseIcon width="10" height="10" />
-      </button>
-    )}
+      <section className="message__content">
+        {forFullPage ? <h3>{children}</h3> : <small>{children}</small>}
+      </section>
 
-    {subtitle && <div className="message__subtitle">{subtitle}</div>}
-  </div>
-);
+      {onDismiss && (
+        <button type="button" className="message__dismiss" onClick={onDismiss}>
+          <CloseIcon width="10" height="10" />
+        </button>
+      )}
+
+      {subtitle && <div className="message__subtitle">{subtitle}</div>}
+    </div>
+  );
+};
 
 Message.propTypes = {
   /**

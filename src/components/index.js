@@ -68,6 +68,7 @@ export { default as CitedIcon } from '../svg/cited.svg';
 export { default as CitedSpeechIcon } from '../svg/cited-speech.svg';
 export { default as ComputerMappedIcon } from '../svg/computer-mapped.svg';
 export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';
+export { default as ErrorIcon } from '../svg/error.svg';
 export { default as WarningIcon } from '../svg/warning.svg';
 export { default as WarningTriangleIcon } from '../svg/warning-triangle.svg';
 export { default as ProtVistaIcon } from '../svg/protvista.svg';

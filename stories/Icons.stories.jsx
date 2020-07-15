@@ -24,6 +24,7 @@ import {
   ComputerMappedIcon,
   EvidenceTagIcon,
   ProtVistaIcon,
+  ErrorIcon,
   WarningIcon,
   WarningTriangleIcon,
   RefreshIcon,
@@ -161,6 +162,11 @@ const iconDefinition = [
     name: 'protvista.svg',
     description: 'ProtVista',
     icon: <ProtVistaIcon width={size} height={size} />,
+  },
+  {
+    name: 'error.svg',
+    description: 'Error',
+    icon: <ErrorIcon width={size} height={size} />,
   },
   {
     name: 'warning.svg',
