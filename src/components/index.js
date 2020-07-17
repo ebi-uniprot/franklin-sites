@@ -82,3 +82,4 @@ export { default as SuccessIcon } from '../svg/success.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
+export { default as sequenceProcessor } from '../sequence-utils/sequence-processor';

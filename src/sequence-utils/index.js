@@ -1,30 +1,52 @@
-export function formatFASTA(fasta, chunkSize = 10) {
-  const chunkRE = new RegExp(`.{1,${chunkSize}}`, 'g');
-  const commentRE = new RegExp(`>`, 'g');
-  return fasta
+export const commentLineRE = /^\s*[>;](.*)$/m;
+const whitespacesRE = /\s+/g;
+
+export function formatFASTA(fasta, chunkSize = 10, chunksPerLine = 6) {
+  const aaPerChunkRE = new RegExp(`(.{1,${chunkSize}})`, 'g');
+  const chunksPerLineRE = new RegExp(
+    `(.{1,${chunkSize * chunksPerLine}})`,
+    'g'
+  );
+
+  let header = '';
+  let sequence = '';
+  // eslint-disable-next-line no-restricted-syntax, 🙄
+  for (const line of fasta.split('\n')) {
+    const trimmedLine = line.trim();
+    if (commentLineRE.test(trimmedLine)) {
+      header += `\n${trimmedLine}`;
+    } else {
+      // concatenate all the sequence lines into a single one
+      sequence += trimmedLine;
+    }
+  }
+
+  let output = sequence
+    .replace(whitespacesRE, '')
+    // split the sequence per requested aa per lines
+    .replace(chunksPerLineRE, '$1\n')
     .split('\n')
-    .filter(Boolean)
-    .map(line => (line.match(commentRE) ? line : line.match(chunkRE).join(' ')))
+    // separate aa per chunk size within the lines themselves
+    .map(line => line.replace(aaPerChunkRE, '$1 ').trim())
     .join('\n');
+  if (header) {
+    output = `${header}\n${output}`;
+  }
+  return output.trim();
 }
 
+// extract a name as an NCBI identifier from a FASTA header
+// See: https://en.wikipedia.org/wiki/FASTA_format#NCBI_identifiers
 export function extractNameFromFASTAHeader(fasta) {
   if (!fasta) {
-    return null;
+    return;
   }
 
-  const headers = fasta
-    .split('\n')
-    .map(line => (line.match(/>/g) ? line : null))
-    .filter(Boolean)
-    .map(line => line.replace(/\s/gi, '').split('|'));
+  const [, header = ''] = fasta.match(commentLineRE) || [];
 
-  if (!headers || !headers.length) {
-    return null;
-  }
+  // separate by space, first word will be the extracted name
+  const [name] = header.split(' ').filter(Boolean);
 
-  // TODO assert that headers[0][1] exists
-  const accession = headers[0][1];
-
-  return accession;
+  // eslint-disable-next-line consistent-return
+  return name;
 }

@@ -10,6 +10,7 @@ const SearchInput = ({
   onKeyDown,
   placeholder,
   isLoading = false,
+  ...props
 }) => {
   const inputRef = useRef();
   const focusOnInput = () => {
@@ -25,6 +26,7 @@ const SearchInput = ({
         onKeyDown={onKeyDown}
         placeholder={placeholder}
         ref={inputRef}
+        {...props}
       />
       <span
         data-testid="search-input-suffix"

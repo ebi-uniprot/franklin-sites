@@ -58,6 +58,7 @@ test('should NOT fail if a sequence is too short after clean-up', () => {
     {
       ...validResponse,
       likelyType: 'na',
+      sequence: 'A**C**G**T**U**',
     },
   ];
 
@@ -70,6 +71,7 @@ test('should indicate a valid AA sequence', () => {
     {
       ...validResponse,
       likelyType: 'aa',
+      sequence: 'ARNDCEQGHILKMFPSTWYVXBZJ',
     },
   ];
 
@@ -87,6 +89,7 @@ test('should indicate a valid NA sequence', () => {
     {
       ...validResponse,
       likelyType: 'na',
+      sequence: 'ACGTUACGTUACGTUACGTU',
     },
   ];
 
@@ -104,6 +107,7 @@ test('should indicate AA for an NA sequence with ambiguous codes', () => {
     {
       ...validResponse,
       likelyType: 'aa',
+      sequence: 'ACGTWSMKRYBDHVNZ',
     },
   ];
 
@@ -116,6 +120,7 @@ test('should remove all FASTA description lines', () => {
     {
       ...validResponse,
       likelyType: 'aa',
+      sequence: 'ARNDCEQGHILKMFPSTWYVXBZJ',
     },
   ];
 
@@ -128,10 +133,12 @@ test('should validate an array of multiple sequences', () => {
     {
       ...validResponse,
       likelyType: 'aa',
+      sequence: fastaArray[0],
     },
     {
       ...validResponse,
       likelyType: 'na',
+      sequence: fastaArray[1],
     },
   ];
 
@@ -144,10 +151,12 @@ test('should validate a string that contains multiple sequences', () => {
     {
       ...validResponse,
       likelyType: 'aa',
+      sequence: 'ARNDCEQGHILKMFPSTWYVXBZJ',
     },
     {
       ...validResponse,
       likelyType: 'na',
+      sequence: 'ACGTUACGTUACGTUACGTU',
     },
   ];
 
