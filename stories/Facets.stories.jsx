@@ -1,9 +1,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+import { MemoryRouter, useHistory, useLocation } from 'react-router-dom';
+
 import { Facets } from '../src/components';
 import facetData from '../src/mock-data/facetData';
-
-const selectedFacets = [{ name: 'facet_2', value: 'value_2' }];
 
 export default {
   title: 'Data|Facets',
@@ -17,11 +17,46 @@ export default {
   },
 };
 
+const Demo = () => {
+  const history = useHistory();
+  const location = useLocation();
+
+  return (
+    <>
+      <button
+        disabled={history.index === 0}
+        type="button"
+        className="button"
+        onClick={history.goBack}
+      >
+        Browser back
+      </button>{' '}
+      <button
+        disabled={history.index + 1 === history.length}
+        type="button"
+        className="button"
+        onClick={history.goForward}
+      >
+        Browser forward
+      </button>
+      <br />
+      <code style={{ margin: '0 1ch' }}>
+        pathname:
+        {location.pathname + location.search}
+      </code>
+      <div style={{ border: '1px solid black', padding: '1ch' }}>
+        <Facets data={facetData} />
+      </div>
+    </>
+  );
+};
+
 export const facets = () => (
-  <Facets
-    data={facetData}
-    selectedFacets={selectedFacets}
-    addFacet={action('addFacet')}
-    removeFacet={action('removeFacet')}
-  />
+  <MemoryRouter
+    initialEntries={[
+      '/initial/path/id1?facets=facet_2:value_2&other_field&yet_another=value',
+    ]}
+  >
+    <Demo />
+  </MemoryRouter>
 );

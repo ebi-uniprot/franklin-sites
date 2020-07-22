@@ -13,7 +13,7 @@
     margin-bottom: $global-margin / 2;
     border-bottom: 1px solid $colour-platinum;
     position: relative;
-    button {
+    a {
       cursor: pointer;
       display: block;
       width: 100%;
@@ -24,7 +24,7 @@
         background: $colour-hover;
       }
     }
-    button.facet-active {
+    a.facet-active {
       font-weight: bold;
       background: $colour-selected;
       &:hover {
