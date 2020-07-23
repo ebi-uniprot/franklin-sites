@@ -1,5 +1,14 @@
 .expandable-list {
-  button {
-    margin-top: 0.5rem;
+  button,
+  a {
+    &.expandable-list__action {
+      display: inline-block;
+      width: auto;
+      margin: 0.5rem 2ch 0.5rem 0;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }

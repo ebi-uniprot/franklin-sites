@@ -40,6 +40,7 @@ const facetData = [
   {
     label: 'Long facet shown',
     name: 'long_facet',
+    allowMultipleSelection: true,
     values: [
       {
         label: 'Value 1',

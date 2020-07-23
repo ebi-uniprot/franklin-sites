@@ -1,6 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { MemoryRouter, useHistory, useLocation } from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 
 import { Facets } from '../src/components';
 import facetData from '../src/mock-data/facetData';
@@ -18,34 +17,25 @@ export default {
 };
 
 const Demo = () => {
-  const history = useHistory();
   const location = useLocation();
+
+  const extraActionsFor = new Map([
+    [
+      'long_facet',
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
+      <a className="button tertiary expandable-list__action">
+        Link to somewhere
+      </a>,
+    ],
+  ]);
 
   return (
     <>
-      <button
-        disabled={history.index === 0}
-        type="button"
-        className="button"
-        onClick={history.goBack}
-      >
-        Browser back
-      </button>{' '}
-      <button
-        disabled={history.index + 1 === history.length}
-        type="button"
-        className="button"
-        onClick={history.goForward}
-      >
-        Browser forward
-      </button>
-      <br />
       <code style={{ margin: '0 1ch' }}>
-        pathname:
-        {location.pathname + location.search}
+        pathname: {location.pathname + location.search}
       </code>
       <div style={{ border: '1px solid black', padding: '1ch' }}>
-        <Facets data={facetData} />
+        <Facets data={facetData} extraActionsFor={extraActionsFor} />
       </div>
     </>
   );
