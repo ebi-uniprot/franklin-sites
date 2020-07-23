@@ -44,7 +44,7 @@ const Demo = () => {
 export const facets = () => (
   <MemoryRouter
     initialEntries={[
-      '/initial/path/id1?facets=facet_2:value_2&other_field&yet_another=value',
+      '/initial/path/id1?facets=facet_2%3Avalue_2&other_field&yet_another=value',
     ]}
   >
     <Demo />

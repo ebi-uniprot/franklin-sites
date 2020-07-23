@@ -46,9 +46,9 @@ const stringify = ({ facets = {}, ...rest }) => {
     .flat()
     .join(',');
   if (!facetString) {
-    return qs.stringify(rest, { encode: false });
+    return qs.stringify(rest);
   }
-  return qs.stringify({ ...rest, facets: facetString }, { encode: false });
+  return qs.stringify({ ...rest, facets: facetString });
 };
 
 const Facets = ({ data, extraActionsFor }) => {
