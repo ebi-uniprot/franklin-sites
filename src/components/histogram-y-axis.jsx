@@ -30,12 +30,7 @@ const YAxis = ({ scale, height, label }) => {
   }, [height, label, scale]);
 
   return (
-    <svg
-      style={{ left: -50, position: 'absolute' }}
-      width={width}
-      height={height}
-      ref={d3Container}
-    />
+    <svg width={width} height={height} ref={d3Container} className="y-axis" />
   );
 };
 

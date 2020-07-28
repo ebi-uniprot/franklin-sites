@@ -9,7 +9,7 @@ export const ExpandableMessage = ({
 }) => (
   <button
     data-testid="expandable-message"
-    className="button tertiary"
+    className="button tertiary expandable-list__action"
     type="button"
     onClick={() => setExpanded(!expanded)}
   >
@@ -32,6 +32,7 @@ const ExpandableList = ({
   numberCollapsedItems,
   descriptionString,
   showBullets,
+  extraActions,
 }) => {
   const [expanded, setExpanded] = useState(false);
   const enoughChildren = children.length > numberCollapsedItems + 1;
@@ -41,18 +42,27 @@ const ExpandableList = ({
       expanded || !enoughChildren ? children.length : numberCollapsedItems
     )
     .map(item => <li key={item.id}>{item.content}</li>);
-  return (
-    <ul className={`expandable-list ${showBullets ? '' : 'no-bullet'}`}>
-      {itemNodes}
-      {enoughChildren && (
-        <li>
+
+  let actions = null;
+  if (enoughChildren || extraActions) {
+    actions = (
+      <li>
+        {enoughChildren && (
           <ExpandableMessage
             expanded={expanded}
             setExpanded={setExpanded}
             descriptionString={descriptionString}
           />
-        </li>
-      )}
+        )}
+        {extraActions}
+      </li>
+    );
+  }
+
+  return (
+    <ul className={`expandable-list ${showBullets ? '' : 'no-bullet'}`}>
+      {itemNodes}
+      {actions}
     </ul>
   );
 };
@@ -67,12 +77,14 @@ ExpandableList.propTypes = {
   numberCollapsedItems: PropTypes.number,
   descriptionString: PropTypes.string,
   showBullets: PropTypes.bool,
+  extraActions: PropTypes.element,
 };
 
 ExpandableList.defaultProps = {
   numberCollapsedItems: 5,
   descriptionString: 'items',
   showBullets: false,
+  extraActions: null,
 };
 
 export default ExpandableList;

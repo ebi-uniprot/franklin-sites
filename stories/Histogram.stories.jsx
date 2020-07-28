@@ -24,6 +24,7 @@ const uniformSample = getUniformSample(-10, 10, nValues);
 const gaussianMin = Math.min(...gaussianSample);
 const gaussianMax = Math.max(...gaussianSample);
 
+// take about half of the values
 const randomFilter = () => Math.random() > 0.5;
 
 const ChangingGaussianComponent = () => {
@@ -44,6 +45,7 @@ const ChangingGaussianComponent = () => {
   return (
     <Histogram
       values={filteredSample}
+      unfilteredValues={gaussianSample}
       nBins={20}
       min={gaussianMin}
       max={gaussianMax}

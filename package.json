@@ -57,6 +57,7 @@
     "lorem-ipsum": "^2.0.2",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
+    "query-string": "^6.13.1",
     "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.9.0",

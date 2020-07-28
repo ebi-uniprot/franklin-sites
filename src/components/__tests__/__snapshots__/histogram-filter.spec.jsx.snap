@@ -13,30 +13,35 @@ exports[`HistogramFilter component should render 1`] = `
         data-testid="histogram"
       >
         <div
-          class="histogram histogram__bar histogram__bar--within-range"
-          data-testid="histogram-bar"
-          style="height: 50px; transform: scaleY(0.4);"
-        />
-        <div
-          class="histogram histogram__bar histogram__bar--within-range"
-          data-testid="histogram-bar"
-          style="height: 50px; transform: scaleY(0.4);"
-        />
-        <div
-          class="histogram histogram__bar histogram__bar--within-range"
-          data-testid="histogram-bar"
-          style="height: 50px; transform: scaleY(0.4);"
-        />
-        <div
-          class="histogram histogram__bar histogram__bar--within-range"
-          data-testid="histogram-bar"
-          style="height: 50px; transform: scaleY(0.4);"
-        />
-        <div
-          class="histogram histogram__bar histogram__bar--within-range"
-          data-testid="histogram-bar"
-          style="height: 50px; transform: scaleY(0.4);"
-        />
+          class="histogram__bar-container"
+          style="height: 50px;"
+        >
+          <div
+            class="histogram histogram__bar histogram__bar--within-range"
+            data-testid="histogram-bar"
+            style="transform: scaleY(0.4); transition-delay: 0ms;"
+          />
+          <div
+            class="histogram histogram__bar histogram__bar--within-range"
+            data-testid="histogram-bar"
+            style="transform: scaleY(0.4); transition-delay: 100ms;"
+          />
+          <div
+            class="histogram histogram__bar histogram__bar--within-range"
+            data-testid="histogram-bar"
+            style="transform: scaleY(0.4); transition-delay: 200ms;"
+          />
+          <div
+            class="histogram histogram__bar histogram__bar--within-range"
+            data-testid="histogram-bar"
+            style="transform: scaleY(0.4); transition-delay: 300ms;"
+          />
+          <div
+            class="histogram histogram__bar histogram__bar--within-range"
+            data-testid="histogram-bar"
+            style="transform: scaleY(0.4); transition-delay: 400ms;"
+          />
+        </div>
         <div
           class="erd_scroll_detection_container erd_scroll_detection_container_animation_active"
           style="visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0px; padding: 0px;"

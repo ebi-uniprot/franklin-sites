@@ -25,3 +25,20 @@ export const expandableList = () => (
     })}
   </ExpandableList>
 );
+
+export const expandableListWithExtraAction = () => (
+  <ExpandableList
+    numberCollapsedItems={5}
+    descriptionString="Lorem ipsum items"
+    extraActions={
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
+      <a className="button tertiary expandable-list__action">some link</a>
+    }
+  >
+    {getLipsumObjectArray({
+      numberElements: 10,
+      keys: ['content'],
+      type: 'words',
+    })}
+  </ExpandableList>
+);

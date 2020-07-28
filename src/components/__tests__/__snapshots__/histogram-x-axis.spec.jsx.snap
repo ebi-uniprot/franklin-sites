@@ -4,7 +4,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
 <DocumentFragment>
   <svg
     height="80"
-    style="top: 0px; position: absolute;"
+    style="top: 0px;"
     width="100"
   >
     <g

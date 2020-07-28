@@ -2,13 +2,17 @@ import React, { useMemo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { SizeMe } from 'react-sizeme';
 import { scaleLinear } from 'd3-scale';
+import cn from 'classnames';
+
 import XAxis from './histogram-x-axis';
 import YAxis from './histogram-y-axis';
+
 import '../styles/components/histogram.scss';
 
 const Histogram = ({
   selectedRange,
   values,
+  unfilteredValues,
   nBins: nBinsOrNull,
   min: minOrNull,
   max: maxOrNull,
@@ -18,6 +22,8 @@ const Histogram = ({
   xLabel,
   yLabel,
 }) => {
+  const allValues = unfilteredValues || values;
+
   const [getIndex, nBins, binSize, min, max] = useMemo(() => {
     // Assign sensible default values if not provided
     const innerMin = minOrNull === null ? Math.min(...values) : minOrNull;
@@ -44,17 +50,23 @@ const Histogram = ({
   // Construct bins
   const [bins, yScale, transformScaleY] = useMemo(() => {
     const innerBins = Array(nBins).fill(0);
+    const allDataBins = Array(nBins).fill(0);
     values.forEach(value => {
       innerBins[getIndex(value)] += 1;
     });
-    const maxCount = Math.max(...innerBins);
+    allValues.forEach(value => {
+      allDataBins[getIndex(value)] += 1;
+    });
+    const maxCount = Math.max(...allDataBins);
     const domainMax = Math.ceil(maxCount / 5) * 5;
     const innerYScale = scaleLinear()
       .domain([0, domainMax])
       .range([height, 0]);
     const innerTransformScaleY = count => yScale(domainMax - count) / height;
     return [innerBins, innerYScale, innerTransformScaleY];
-  }, [getIndex, height, nBins, values]);
+  }, [getIndex, height, nBins, values, allValues]);
+
+  window.yScale = yScale;
 
   let startIndex;
   let endIndex;
@@ -82,25 +94,27 @@ const Histogram = ({
               <YAxis scale={yScale} height={height} label={yLabel} />
             </Fragment>
           )}
-          {bins.map((count, index) => {
-            const withinRange =
-              selectedRange === null ||
-              (startIndex <= index && index <= endIndex);
-            const key = `bin${index}`;
-            return (
-              <div
-                key={key}
-                data-testid="histogram-bar"
-                className={`histogram histogram__bar ${
-                  withinRange ? 'histogram__bar--within-range' : ''
-                }`}
-                style={{
-                  height,
-                  transform: `scaleY(${transformScaleY(count)})`,
-                }}
-              />
-            );
-          })}
+          <div className="histogram__bar-container" style={{ height }}>
+            {bins.map((count, index) => {
+              const withinRange =
+                selectedRange === null ||
+                (startIndex <= index && index <= endIndex);
+              return (
+                <div
+                  key={index} // eslint-disable-line react/no-array-index-key
+                  data-testid="histogram-bar"
+                  className={cn(
+                    'histogram histogram__bar',
+                    withinRange && 'histogram__bar--within-range'
+                  )}
+                  style={{
+                    transform: `scaleY(${transformScaleY(count)})`,
+                    transitionDelay: `${Math.floor((500 * index) / nBins)}ms`,
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
       )}
     </SizeMe>
@@ -120,6 +134,11 @@ Histogram.propTypes = {
    * An array of values which the histogram is based on.
    */
   values: PropTypes.arrayOf(PropTypes.number).isRequired,
+  /**
+   * An array of unfiltered values which the histogram is based on.
+   * (useful to calculated max bin height)
+   */
+  unfilteredValues: PropTypes.arrayOf(PropTypes.number),
   /**
    * A 2-element array which specifies [start, end] points to shade the bars to indicate selection.
    */
@@ -160,6 +179,7 @@ Histogram.defaultProps = {
   showAxes: true,
   xLabel: null,
   yLabel: null,
+  unfilteredValues: undefined,
 };
 
 export default Histogram;
