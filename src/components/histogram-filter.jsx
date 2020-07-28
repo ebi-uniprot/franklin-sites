@@ -33,6 +33,7 @@ const HistogramFilter = ({
   min: minOrNull,
   max: maxOrNull,
   values,
+  unfilteredValues,
   selectedRange,
   onChange,
   nBins,
@@ -73,6 +74,7 @@ const HistogramFilter = ({
       <div className="histogram-filter__histogram-rheostat-container">
         <Histogram
           values={values}
+          unfilteredValues={unfilteredValues}
           selectedRange={cleanedRange}
           nBins={nBins}
           min={min}
@@ -133,6 +135,11 @@ HistogramFilter.propTypes = {
    */
   values: PropTypes.arrayOf(PropTypes.number).isRequired,
   /**
+   * An array of unfiltered values which the histogram is based on.
+   * (useful to calculated max bin height)
+   */
+  unfilteredValues: PropTypes.arrayOf(PropTypes.number),
+  /**
    * A 2-element array which specifies the [start, end] points selected by the user. Defaults to [min, max].
    */
   selectedRange: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -155,6 +162,7 @@ HistogramFilter.defaultProps = {
   max: null,
   nBins: 30,
   height: 50,
+  unfilteredValues: undefined,
 };
 
 export default HistogramFilter;

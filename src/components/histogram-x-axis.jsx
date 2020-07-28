@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { scaleLinear } from 'd3-scale';
 import { axisBottom } from 'd3-axis';
@@ -30,14 +30,9 @@ const XAxis = ({ min, max, interval, yPos, width, label }) => {
     }
   }, [interval, label, max, min, width]);
 
-  return (
-    <svg
-      style={{ top: yPos, position: 'absolute' }}
-      width={width}
-      height={height}
-      ref={d3Container}
-    />
-  );
+  const style = useMemo(() => ({ top: yPos }), [yPos]);
+
+  return <svg style={style} width={width} height={height} ref={d3Container} />;
 };
 
 XAxis.propTypes = {
