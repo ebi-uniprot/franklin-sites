@@ -1,4 +1,4 @@
-import React, { useMemo, Fragment } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { SizeMe } from 'react-sizeme';
 import { scaleLinear } from 'd3-scale';
@@ -82,19 +82,6 @@ const Histogram = ({
     <SizeMe>
       {({ size }) => (
         <div className="histogram" data-testid="histogram">
-          {showAxes && (
-            <Fragment>
-              <XAxis
-                min={min}
-                max={max}
-                interval={binSize}
-                yPos={height}
-                width={size.width}
-                label={xLabel}
-              />
-              <YAxis scale={yScale} height={height} label={yLabel} />
-            </Fragment>
-          )}
           {unfilteredValuesShadow ? (
             <div
               className="histogram__bar-shadow-container"
@@ -139,6 +126,19 @@ const Histogram = ({
               );
             })}
           </div>
+          {showAxes && (
+            <>
+              <XAxis
+                min={min}
+                max={max}
+                interval={binSize}
+                yPos={height}
+                width={size.width}
+                label={xLabel}
+              />
+              <YAxis scale={yScale} height={height} label={yLabel} />
+            </>
+          )}
         </div>
       )}
     </SizeMe>
