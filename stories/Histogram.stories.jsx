@@ -51,6 +51,7 @@ const ChangingGaussianComponent = () => {
       max={gaussianMax}
       xLabel="Value"
       yLabel="Frequency"
+      unfilteredValuesShadow={0.1}
     />
   );
 };

@@ -15,11 +15,13 @@ const XAxis = ({ min, max, interval, yPos, width, label }) => {
         .range([0, width]);
       const axis = axisBottom()
         .scale(scale)
-        .tickValues(range(min, max + interval, interval));
+        .tickValues(range(min, max + interval, interval))
+        .tickPadding(6);
       axis.tickSize(0);
       const svg = select(d3Container.current);
       svg.selectAll('*').remove();
       svg.append('g').call(axis);
+
       if (label) {
         svg
           .append('text')

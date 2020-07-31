@@ -8,7 +8,9 @@ const YAxis = ({ scale, height, label }) => {
   const d3Container = useRef(null);
   useEffect(() => {
     if (d3Container.current) {
-      const axis = axisLeft().scale(scale);
+      const axis = axisLeft()
+        .scale(scale)
+        .tickPadding(6);
       axis.tickSize(0);
       const svg = select(d3Container.current);
       svg.selectAll('*').remove();

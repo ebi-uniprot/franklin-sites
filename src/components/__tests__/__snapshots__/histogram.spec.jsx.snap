@@ -6,6 +6,36 @@ exports[`HistogramFilter component should render when binSize prop is provided a
     class="histogram"
     data-testid="histogram"
   >
+    <div
+      class="histogram__bar-container"
+      style="height: 300px;"
+    >
+      <div
+        class="histogram histogram__bar histogram__bar--within-range"
+        data-testid="histogram-bar"
+        style="transform: scaleY(0.4); transition-delay: 0ms;"
+      />
+      <div
+        class="histogram histogram__bar histogram__bar--within-range"
+        data-testid="histogram-bar"
+        style="transform: scaleY(0.4); transition-delay: 100ms;"
+      />
+      <div
+        class="histogram histogram__bar histogram__bar--within-range"
+        data-testid="histogram-bar"
+        style="transform: scaleY(0.4); transition-delay: 200ms;"
+      />
+      <div
+        class="histogram histogram__bar histogram__bar--within-range"
+        data-testid="histogram-bar"
+        style="transform: scaleY(0.4); transition-delay: 300ms;"
+      />
+      <div
+        class="histogram histogram__bar histogram__bar--within-range"
+        data-testid="histogram-bar"
+        style="transform: scaleY(0.4); transition-delay: 400ms;"
+      />
+    </div>
     <svg
       height="80"
       style="top: 300px;"
@@ -40,7 +70,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             0.0
           </text>
@@ -57,7 +87,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             0.5
           </text>
@@ -74,7 +104,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             1.0
           </text>
@@ -91,7 +121,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             1.5
           </text>
@@ -108,7 +138,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             2.0
           </text>
@@ -125,7 +155,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             2.5
           </text>
@@ -142,7 +172,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             3.0
           </text>
@@ -159,7 +189,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             3.5
           </text>
@@ -176,7 +206,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             4.0
           </text>
@@ -193,7 +223,7 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             4.5
           </text>
@@ -210,43 +240,13 @@ exports[`HistogramFilter component should render when binSize prop is provided a
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             5.0
           </text>
         </g>
       </g>
     </svg>
-    <div
-      class="histogram__bar-container"
-      style="height: 300px;"
-    >
-      <div
-        class="histogram histogram__bar histogram__bar--within-range"
-        data-testid="histogram-bar"
-        style="transform: scaleY(0.4); transition-delay: 0ms;"
-      />
-      <div
-        class="histogram histogram__bar histogram__bar--within-range"
-        data-testid="histogram-bar"
-        style="transform: scaleY(0.4); transition-delay: 100ms;"
-      />
-      <div
-        class="histogram histogram__bar histogram__bar--within-range"
-        data-testid="histogram-bar"
-        style="transform: scaleY(0.4); transition-delay: 200ms;"
-      />
-      <div
-        class="histogram histogram__bar histogram__bar--within-range"
-        data-testid="histogram-bar"
-        style="transform: scaleY(0.4); transition-delay: 300ms;"
-      />
-      <div
-        class="histogram histogram__bar histogram__bar--within-range"
-        data-testid="histogram-bar"
-        style="transform: scaleY(0.4); transition-delay: 400ms;"
-      />
-    </div>
     <div
       class="erd_scroll_detection_container erd_scroll_detection_container_animation_active"
       style="visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0px; padding: 0px;"
@@ -287,6 +287,21 @@ exports[`HistogramFilter component should render when nBins prop is provided and
     class="histogram"
     data-testid="histogram"
   >
+    <div
+      class="histogram__bar-container"
+      style="height: 300px;"
+    >
+      <div
+        class="histogram histogram__bar histogram__bar--within-range"
+        data-testid="histogram-bar"
+        style="transform: scaleY(1); transition-delay: 0ms;"
+      />
+      <div
+        class="histogram histogram__bar histogram__bar--within-range"
+        data-testid="histogram-bar"
+        style="transform: scaleY(1); transition-delay: 250ms;"
+      />
+    </div>
     <svg
       height="80"
       style="top: 300px;"
@@ -321,7 +336,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             0.0
           </text>
@@ -338,7 +353,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             0.5
           </text>
@@ -355,7 +370,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             1.0
           </text>
@@ -372,7 +387,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             1.5
           </text>
@@ -389,7 +404,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             2.0
           </text>
@@ -406,7 +421,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             2.5
           </text>
@@ -423,7 +438,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             3.0
           </text>
@@ -440,7 +455,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             3.5
           </text>
@@ -457,7 +472,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             4.0
           </text>
@@ -474,7 +489,7 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             4.5
           </text>
@@ -491,28 +506,13 @@ exports[`HistogramFilter component should render when nBins prop is provided and
           <text
             dy="0.32em"
             fill="currentColor"
-            x="-3"
+            x="-6"
           >
             5.0
           </text>
         </g>
       </g>
     </svg>
-    <div
-      class="histogram__bar-container"
-      style="height: 300px;"
-    >
-      <div
-        class="histogram histogram__bar histogram__bar--within-range"
-        data-testid="histogram-bar"
-        style="transform: scaleY(1); transition-delay: 0ms;"
-      />
-      <div
-        class="histogram histogram__bar histogram__bar--within-range"
-        data-testid="histogram-bar"
-        style="transform: scaleY(1); transition-delay: 250ms;"
-      />
-    </div>
     <div
       class="erd_scroll_detection_container erd_scroll_detection_container_animation_active"
       style="visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0px; padding: 0px;"

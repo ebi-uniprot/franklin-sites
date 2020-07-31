@@ -1,4 +1,4 @@
-import React, { useMemo, Fragment } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { SizeMe } from 'react-sizeme';
 import { scaleLinear } from 'd3-scale';
@@ -21,6 +21,7 @@ const Histogram = ({
   showAxes,
   xLabel,
   yLabel,
+  unfilteredValuesShadow,
 }) => {
   const allValues = unfilteredValues || values;
 
@@ -48,7 +49,7 @@ const Histogram = ({
   }, [binSizeOrNull, maxOrNull, minOrNull, nBinsOrNull, values]);
 
   // Construct bins
-  const [bins, yScale, transformScaleY] = useMemo(() => {
+  const [bins, allBins, yScale, transformScaleY] = useMemo(() => {
     const innerBins = Array(nBins).fill(0);
     const allDataBins = Array(nBins).fill(0);
     values.forEach(value => {
@@ -63,7 +64,7 @@ const Histogram = ({
       .domain([0, domainMax])
       .range([height, 0]);
     const innerTransformScaleY = count => yScale(domainMax - count) / height;
-    return [innerBins, innerYScale, innerTransformScaleY];
+    return [innerBins, allDataBins, innerYScale, innerTransformScaleY];
   }, [getIndex, height, nBins, values, allValues]);
 
   window.yScale = yScale;
@@ -81,19 +82,29 @@ const Histogram = ({
     <SizeMe>
       {({ size }) => (
         <div className="histogram" data-testid="histogram">
-          {showAxes && (
-            <Fragment>
-              <XAxis
-                min={min}
-                max={max}
-                interval={binSize}
-                yPos={height}
-                width={size.width}
-                label={xLabel}
-              />
-              <YAxis scale={yScale} height={height} label={yLabel} />
-            </Fragment>
-          )}
+          {unfilteredValuesShadow ? (
+            <div
+              className="histogram__bar-shadow-container"
+              style={{ height, opacity: unfilteredValuesShadow }}
+            >
+              {allBins.map((count, index) => {
+                const withinRange =
+                  selectedRange === null ||
+                  (startIndex <= index && index <= endIndex);
+                return (
+                  <div
+                    key={index} // eslint-disable-line react/no-array-index-key
+                    data-testid="histogram-bar"
+                    className={cn(
+                      'histogram histogram__bar',
+                      withinRange && 'histogram__bar--within-range'
+                    )}
+                    style={{ transform: `scaleY(${transformScaleY(count)})` }}
+                  />
+                );
+              })}
+            </div>
+          ) : null}
           <div className="histogram__bar-container" style={{ height }}>
             {bins.map((count, index) => {
               const withinRange =
@@ -115,6 +126,19 @@ const Histogram = ({
               );
             })}
           </div>
+          {showAxes && (
+            <>
+              <XAxis
+                min={min}
+                max={max}
+                interval={binSize}
+                yPos={height}
+                width={size.width}
+                label={xLabel}
+              />
+              <YAxis scale={yScale} height={height} label={yLabel} />
+            </>
+          )}
         </div>
       )}
     </SizeMe>
@@ -167,6 +191,10 @@ Histogram.propTypes = {
    * Label to appear under the axis
    */
   xLabel: PropTypes.string,
+  /**
+   * Display a shadow of the unfiltered data (opacity value)
+   */
+  unfilteredValuesShadow: PropTypes.number,
 };
 
 Histogram.defaultProps = {
@@ -180,6 +208,7 @@ Histogram.defaultProps = {
   xLabel: null,
   yLabel: null,
   unfilteredValues: undefined,
+  unfilteredValuesShadow: 0,
 };
 
 export default Histogram;

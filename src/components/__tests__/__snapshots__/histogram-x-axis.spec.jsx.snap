@@ -30,7 +30,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
         <text
           dy="0.71em"
           fill="currentColor"
-          y="3"
+          y="6"
         >
           0
         </text>
@@ -47,7 +47,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
         <text
           dy="0.71em"
           fill="currentColor"
-          y="3"
+          y="6"
         >
           5
         </text>
@@ -64,7 +64,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
         <text
           dy="0.71em"
           fill="currentColor"
-          y="3"
+          y="6"
         >
           10
         </text>
