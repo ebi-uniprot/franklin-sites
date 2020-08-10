@@ -47,10 +47,10 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "d3-array": "^2.4.0",
+    "d3-array": "^2.5.0",
     "d3-axis": "^1.0.12",
     "d3-scale": "^3.2.1",
-    "d3-selection": "^1.4.1",
+    "d3-selection": "^1.4.2",
     "file-loader": "^2.0.0",
     "foundation-sites": "^6.5.3",
     "history": "^4.10.1",
@@ -67,7 +67,7 @@
     "react-scrollspy": "^3.4.2",
     "react-sizeme": "^2.6.12",
     "rheostat": "^4.1.1",
-    "uuid": "^3.3.2"
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
