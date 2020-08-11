@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 export function getLastIndexOfSubstringIgnoreCase(string, substring) {
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
@@ -21,16 +21,21 @@ export const getFlattenedPaths = (currentItems, id, path = []) => {
   return flattened;
 };
 
-export function restructureFlattenedTreeItemsForAutocomplete(items, sep = ' / ') {
+export function restructureFlattenedTreeItemsForAutocomplete(
+  items,
+  sep = ' / '
+) {
   return {
     id: items[items.length - 1].id,
-    pathLabel: items.map(item => item.label).join(sep),
+    pathLabel: items.map((item) => item.label).join(sep),
     itemLabel: items[items.length - 1].label,
   };
 }
 
 export function restructureFlattenedTreeDataForAutocomplete(flattenedTreeData) {
-  return flattenedTreeData.map(items => restructureFlattenedTreeItemsForAutocomplete(items));
+  return flattenedTreeData.map((items) =>
+    restructureFlattenedTreeItemsForAutocomplete(items)
+  );
 }
 
 export function formatLargeNumber(x) {
@@ -57,11 +62,11 @@ export function highlightSubstring(string, substring) {
   const highlight = string.slice(i, i + substring.length);
   const poststring = string.slice(i + substring.length);
   return (
-    <Fragment>
+    <>
       {prestring}
       <b>{highlight}</b>
       {poststring}
-    </Fragment>
+    </>
   );
 }
 
@@ -80,8 +85,8 @@ export function getClassNames(mixedInput, optionalCondition, output = '') {
     }
 
     return mixedInput
-      .map(item => getClassNames(item, optionalCondition, output))
-      .filter(x => x) // removes nulls, undefineds, empty strings, etc.
+      .map((item) => getClassNames(item, optionalCondition, output))
+      .filter((x) => x) // removes nulls, undefineds, empty strings, etc.
       .join(' ');
   }
 

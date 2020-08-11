@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { formatLargeNumber } from '../utils';
 
-const LongNumber = ({ children }) => <Fragment>{formatLargeNumber(children)}</Fragment>;
+const LongNumber = ({ children }) => <>{formatLargeNumber(children)}</>;
 
 LongNumber.propTypes = {
   /**

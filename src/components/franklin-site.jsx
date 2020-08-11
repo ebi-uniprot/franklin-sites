@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/index.scss';
 
-const FranklinSite = ({ children }) => <Fragment>{children}</Fragment>;
+const FranklinSite = ({ children }) => <>{children}</>;
 
 FranklinSite.propTypes = {
   children: PropTypes.element.isRequired,

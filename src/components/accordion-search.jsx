@@ -1,13 +1,22 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Accordion from './accordion';
 import SearchInput from './search-input';
 import Loader from './loader';
-import { getLastIndexOfSubstringIgnoreCase, highlightSubstring } from '../utils';
+import {
+  getLastIndexOfSubstringIgnoreCase,
+  highlightSubstring,
+} from '../utils';
 import '../styles/components/accordion-search.scss';
 
 const AccordionSearchItem = ({
-  title, alwaysOpen, items, selected, columns, onSelect, id,
+  title,
+  alwaysOpen,
+  items,
+  selected,
+  columns,
+  onSelect,
+  id,
 }) => (
   <Accordion title={title} count={selected.length} alwaysOpen={alwaysOpen}>
     <ul
@@ -27,7 +36,7 @@ const AccordionSearchItem = ({
               id={`checkbox-${itemId}`}
               className="accordion-search__list__item-checkbox"
               onChange={() => onSelect(id, itemId)}
-              checked={selected.some(item => item.itemId === itemId)}
+              checked={selected.some((item) => item.itemId === itemId)}
             />
             {label}
           </label>
@@ -43,9 +52,10 @@ AccordionSearchItem.propTypes = {
    */
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+        .isRequired,
       id: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   /**
    * String used to fill in the search input when empty
@@ -80,7 +90,10 @@ AccordionSearchItem.defaultProps = {
 };
 
 const highlightItems = (items, query) =>
-  items.map(item => ({ ...item, label: highlightSubstring(item.label, query) }));
+  items.map((item) => ({
+    ...item,
+    label: highlightSubstring(item.label, query),
+  }));
 
 export const filterAccordionData = (accordionData, query) => {
   if (!query) {
@@ -97,7 +110,7 @@ export const filterAccordionData = (accordionData, query) => {
         });
       } else {
         const filteredItems = items.filter(
-          ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0,
+          ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0
         );
         if (filteredItems.length > 0) {
           filteredAccordionDataAccum.push({
@@ -108,7 +121,7 @@ export const filterAccordionData = (accordionData, query) => {
       }
       return filteredAccordionDataAccum;
     },
-    [],
+    []
   );
   return filteredAccordionData;
 };
@@ -143,7 +156,9 @@ const AccordionSearch = ({
             id={accordionId}
             alwaysOpen={!!inputValue}
             items={items}
-            selected={selected.filter(item => item.accordionId === accordionId)}
+            selected={selected.filter(
+              (item) => item.accordionId === accordionId
+            )}
             columns={columns}
             onSelect={onSelect}
           />
@@ -156,17 +171,17 @@ const AccordionSearch = ({
     searchInputStyle.width = searchInputWidth;
   }
   return (
-    <Fragment>
+    <>
       <div style={searchInputStyle}>
         <SearchInput
           type="text"
           value={inputValue}
-          onChange={event => setInputValue(event.target.value)}
+          onChange={(event) => setInputValue(event.target.value)}
           placeholder={placeholder}
         />
       </div>
       {accordionGroupNode}
-    </Fragment>
+    </>
   );
 };
 
@@ -182,9 +197,9 @@ AccordionSearch.propTypes = {
         PropTypes.shape({
           label: PropTypes.string.isRequired,
           id: PropTypes.string.isRequired,
-        }),
+        })
       ),
-    }),
+    })
   ).isRequired,
   /**
    * String used to fill in the search input when empty

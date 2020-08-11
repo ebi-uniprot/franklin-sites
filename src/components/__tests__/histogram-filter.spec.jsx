@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { HistogramFilter } from '..';
 
 describe('HistogramFilter component', () => {
@@ -15,7 +15,8 @@ describe('HistogramFilter component', () => {
         selectedRange={[0, 9]}
       />
     );
-    await waitForElement(() => rendered.getByTestId('histogram'));
+    const { findByTestId } = rendered;
+    await findByTestId('histogram');
   });
 
   it('should render', () => {

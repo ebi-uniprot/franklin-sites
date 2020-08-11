@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 import DownloadIcon from '../svg/download.svg';
@@ -75,10 +75,10 @@ const Sequence = ({
     return chunks;
   };
 
-  const handleToggleHighlight = aaProp => {
+  const handleToggleHighlight = (aaProp) => {
     let highlightsToUpdate = [...highlights];
     if (highlightsToUpdate.includes(aaProp)) {
-      highlightsToUpdate = highlightsToUpdate.filter(h => h !== aaProp);
+      highlightsToUpdate = highlightsToUpdate.filter((h) => h !== aaProp);
     } else {
       highlightsToUpdate.push(aaProp);
     }
@@ -89,7 +89,7 @@ const Sequence = ({
     return (
       <DropdownButton label="Highlight">
         <div className="dropdown-menu__content">
-          {aminoAcidsProps.map(aaProp => {
+          {aminoAcidsProps.map((aaProp) => {
             const inputId = `${accession}-${aaProp.name}`;
             return (
               <label key={aaProp.name} htmlFor={inputId}>
@@ -111,7 +111,7 @@ const Sequence = ({
   const chunks = getChunks(sequence, chunkSize, textSize);
 
   return (
-    <Fragment>
+    <>
       {showActionBar && (
         <div className="action-bar button-group">
           <DropdownButton label="Tools">
@@ -127,7 +127,7 @@ const Sequence = ({
                   </button>
                 </li>
               )}
-              {sequenceTools.map(sequenceTool => (
+              {sequenceTools.map((sequenceTool) => (
                 <li key={sequenceTool.name}>
                   <a
                     href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
@@ -174,8 +174,8 @@ const Sequence = ({
               <text ref={text}>M</text>
             </svg>
           ) : (
-            <Fragment>
-              {chunks.map(chunk => (
+            <>
+              {chunks.map((chunk) => (
                 <span
                   className="sequence__sequence__chunk"
                   key={`chunk_${v1()}`}
@@ -183,11 +183,11 @@ const Sequence = ({
                   {chunk}
                 </span>
               ))}
-            </Fragment>
+            </>
           )}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 
