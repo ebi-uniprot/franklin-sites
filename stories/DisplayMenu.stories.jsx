@@ -3,7 +3,7 @@ import { DisplayMenu } from '../src/components';
 import displayMenuData from '../src/components/__mocks__/displayMenu';
 
 export default {
-  title: 'Layout|Display Menu',
+  title: 'Layout/Display Menu',
   parameters: {
     purposeFunction: {
       purpose: '',

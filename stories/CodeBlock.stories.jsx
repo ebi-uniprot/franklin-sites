@@ -4,7 +4,7 @@ import { LoremIpsum } from 'lorem-ipsum';
 import { CodeBlock } from '../src/components';
 
 export default {
-  title: 'Layout|CodeBlock',
+  title: 'Layout/CodeBlock',
   parameters: {
     purposeFunction: {
       function: 'Display of preformatted text/code',

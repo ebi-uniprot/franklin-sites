@@ -37,7 +37,7 @@ import {
 } from '../src/components';
 
 export default {
-  title: 'Core|Icons',
+  title: 'Core/Icons',
 };
 
 const size = 30;

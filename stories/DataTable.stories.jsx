@@ -5,7 +5,7 @@ import DataDecorator from '../src/decorators/DataDecorator';
 import { DENSITY_COMPACT } from '../src/components/data-table';
 
 export default {
-  title: 'Data|Data Table',
+  title: 'Data/Data Table',
   parameters: {
     purposeFunction: {
       purpose: '',

@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { Chip } from '../src/components';
 
 export default {
-  title: 'Core|Chip',
+  title: 'Core/Chip',
   parameters: {
     purposeFunction: {
       function: 'Can be used to make selections or trigger actions',

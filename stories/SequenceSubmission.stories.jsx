@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SequenceSubmission } from '../src/components';
 
 export default {
-  title: 'Forms|Sequence Submission',
+  title: 'Forms/Sequence Submission',
   parameters: {
     purposeFunction: {
       function: 'Accepts a sequence from user',

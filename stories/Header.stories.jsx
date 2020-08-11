@@ -5,7 +5,7 @@ import { MainSearch } from '../src/components/index';
 import UniProtLogo from '../src/svg/swissprot.svg';
 
 export default {
-  title: 'Layout|Header',
+  title: 'Layout/Header',
   parameters: {
     purposeFunction: {
       purpose: '',

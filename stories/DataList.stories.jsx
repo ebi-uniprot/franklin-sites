@@ -4,7 +4,7 @@ import { DataList, Card } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
 
 export default {
-  title: 'Data|Data List',
+  title: 'Data/Data List',
   parameters: {
     purposeFunction: {
       purpose: '',

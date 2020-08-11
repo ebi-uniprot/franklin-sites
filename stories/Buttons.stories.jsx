@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { DownloadIcon } from '../src/components';
 
 export default {
-  title: 'Forms|Button',
+  title: 'Forms/Button',
   parameters: {
     purposeFunction: {
       purpose: '',

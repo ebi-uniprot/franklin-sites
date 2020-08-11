@@ -7,7 +7,7 @@ import {
 } from '../src/mock-data/probability-distribution-sample';
 
 export default {
-  title: 'Forms|Histogram Filter',
+  title: 'Forms/Histogram Filter',
   parameters: {
     purposeFunction: {
       purpose: 'purpose',

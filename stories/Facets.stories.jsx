@@ -5,7 +5,7 @@ import { Facets } from '../src/components';
 import facetData from '../src/mock-data/facetData';
 
 export default {
-  title: 'Data|Facets',
+  title: 'Data/Facets',
   parameters: {
     purposeFunction: {
       purpose:

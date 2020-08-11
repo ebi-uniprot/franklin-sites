@@ -3,7 +3,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { ButtonModal } from '../src/components';
 
 export default {
-  title: 'Layout|Modal',
+  title: 'Layout/Modal',
   parameters: {
     purposeFunction: {
       purpose: 'Display extra contextual information, offer the user choices',

@@ -15,7 +15,7 @@ const namespaces = [
 
 // Custom decorator
 export default {
-  title: 'Forms|Main Search',
+  title: 'Forms/Main Search',
   decorators: [
     story => {
       return (
