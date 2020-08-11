@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, addDecorator, addParameters } from '@storybook/react';
+import { addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import StoryRouter from 'storybook-react-router';
 import franklinTheme from './franklin-theme';
@@ -9,7 +9,7 @@ addDecorator(withInfo);
 
 addDecorator(StoryRouter());
 
-addDecorator(storyFn => (
+addDecorator((storyFn) => (
   <div
     style={{
       padding: '2rem 10rem',
@@ -20,10 +20,7 @@ addDecorator(storyFn => (
 ));
 
 addParameters({
-  options: {
+  docs: {
     theme: franklinTheme,
   },
 });
-
-// automatically import all files ending in *.stories.jsx
-configure(require.context('../stories', true, /\.stories\.jsx$/), module);

@@ -39,6 +39,4 @@ export const compact = () => <InfoList infoData={data} isCompact />;
 
 export const noTitles = () => <InfoList infoData={data} noTitles />;
 
-infoList.story = {
-  name: 'Simple data',
-};
+infoList.storyName = 'Simple data';
