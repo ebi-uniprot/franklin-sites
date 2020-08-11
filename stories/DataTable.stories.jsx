@@ -13,13 +13,13 @@ export default {
     },
   },
   decorators: [
-    story => {
+    (story) => {
       return (
         <DataDecorator>
           {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
             return (
               <div style={{ height: '65vh' }}>
-                {story({
+                {React.cloneElement(story(), {
                   data,
                   getIdKey,
                   columns,
