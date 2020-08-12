@@ -3,7 +3,7 @@ import { PageIntro } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
-  title: 'Layout|Page Intro',
+  title: 'Layout/Page Intro',
   parameters: {
     purposeFunction: {
       function:

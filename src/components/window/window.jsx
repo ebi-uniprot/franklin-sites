@@ -40,10 +40,7 @@ const Window = ({
   }
 
   return (
-    <div
-      className={cssClasses}
-      style={styles}
-    >
+    <div className={cssClasses} style={styles}>
       {title && (
         <WindowHeader
           title={title}
@@ -54,16 +51,14 @@ const Window = ({
 
       <div className="window__content">{children}</div>
 
-      {(withFooterCloseButton || actionButtons)
-        && (
-          <WindowFooter
-            withCloseButton={withFooterCloseButton}
-            onWindowClose={onWindowClose}
-          >
-            {actionButtons && actionButtons}
-          </WindowFooter>
-        )
-      }
+      {(withFooterCloseButton || actionButtons) && (
+        <WindowFooter
+          withCloseButton={withFooterCloseButton}
+          onWindowClose={onWindowClose}
+        >
+          {actionButtons && actionButtons}
+        </WindowFooter>
+      )}
     </div>
   );
 };
@@ -78,12 +73,14 @@ Window.propTypes = {
   onWindowClose: PropTypes.func,
   withShadow: PropTypes.bool,
   className: PropTypes.string,
-  actionButtons: PropTypes.oneOfType(
-    [PropTypes.arrayOf(PropTypes.node), PropTypes.node],
-  ),
-  children: PropTypes.oneOfType(
-    [PropTypes.arrayOf(PropTypes.node), PropTypes.node],
-  ),
+  actionButtons: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 Window.defaultProps = {

@@ -4,7 +4,7 @@ import { Message } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
-  title: 'Layout|Message',
+  title: 'Layout/Message',
   parameters: {
     purposeFunction: {
       function:

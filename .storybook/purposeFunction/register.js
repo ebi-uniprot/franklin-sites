@@ -26,6 +26,8 @@ const PurposeFunctionPanel = () => {
   );
 };
 
+export default PurposeFunctionPanel;
+
 addons.register(ADDON_ID, () => {
   // eslint-disable-next-line react/prop-types
   const render = ({ active, key }) => (

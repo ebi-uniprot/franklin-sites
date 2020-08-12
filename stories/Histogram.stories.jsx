@@ -8,7 +8,7 @@ import {
 } from '../src/mock-data/probability-distribution-sample';
 
 export default {
-  title: 'Visualisation|Histogram',
+  title: 'Visualisation/Histogram',
   parameters: {
     purposeFunction: {
       purpose: 'purpose',

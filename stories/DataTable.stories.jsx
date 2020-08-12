@@ -5,7 +5,7 @@ import DataDecorator from '../src/decorators/DataDecorator';
 import { DENSITY_COMPACT } from '../src/components/data-table';
 
 export default {
-  title: 'Data|Data Table',
+  title: 'Data/Data Table',
   parameters: {
     purposeFunction: {
       purpose: '',
@@ -13,13 +13,13 @@ export default {
     },
   },
   decorators: [
-    story => {
+    (story) => {
       return (
         <DataDecorator>
           {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
             return (
               <div style={{ height: '65vh' }}>
-                {story({
+                {React.cloneElement(story(), {
                   data,
                   getIdKey,
                   columns,

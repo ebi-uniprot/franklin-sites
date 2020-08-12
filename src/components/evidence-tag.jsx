@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef, cloneElement } from 'react';
+import React, { useState, useRef, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 import EvidenceTagIcon from '../svg/evidence-tag.svg';
@@ -10,7 +10,7 @@ const EvidenceTag = ({ label, title, className, iconComponent, children }) => {
   const idRef = useRef(v1());
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
-    <Fragment>
+    <>
       <button
         className={`evidence-tag ${className}`}
         onClick={() => setContentDisplay(!contentDisplay)}
@@ -35,7 +35,7 @@ const EvidenceTag = ({ label, title, className, iconComponent, children }) => {
           {contentDisplay && children}
         </div>
       )}
-    </Fragment>
+    </>
   );
 };
 

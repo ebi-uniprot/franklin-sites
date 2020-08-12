@@ -2,7 +2,7 @@ import React from 'react';
 import { LongNumber } from '../src/components';
 
 export default {
-  title: 'Visualisation|Long number',
+  title: 'Visualisation/Long number',
 };
 
 export const longNumber = () => {

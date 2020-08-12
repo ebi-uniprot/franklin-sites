@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   getFlattenedPaths,
@@ -22,7 +22,7 @@ const TreeSelect = ({
     false
   );
 
-  const toggleNode = node => {
+  const toggleNode = (node) => {
     if (openNodes.includes(node.id)) {
       setOpenNodes(openNodes.slice(0, openNodes.indexOf(node.id)));
     } else {
@@ -36,8 +36,8 @@ const TreeSelect = ({
     } else {
       const path = getFlattenedPaths(data, node.id)[0];
       const leafNode = path[path.length - 1];
-      setActiveNodes(path.map(d => d.id));
-      setOpenNodes(path.map(d => d.id));
+      setActiveNodes(path.map((d) => d.id));
+      setOpenNodes(path.map((d) => d.id));
       onSelect(leafNode);
       setShowDropdownMenu(false);
     }
@@ -45,11 +45,11 @@ const TreeSelect = ({
 
   const buildTree = (items, setShowDropdownMenu, open) => (
     <ul className={open ? 'open' : ''}>
-      {items.map(node => (
+      {items.map((node) => (
         <li key={node.id} className={node.items ? 'branch' : ''}>
           <button
             type="button"
-            onClick={e => handleNodeClick(node, setShowDropdownMenu, e)}
+            onClick={(e) => handleNodeClick(node, setShowDropdownMenu, e)}
             className={activeNodes.includes(node.id) ? 'active' : ''}
           >
             {node.label}
@@ -67,15 +67,15 @@ const TreeSelect = ({
 
   return (
     <DropdownButton label={value ? value.label : 'Select'}>
-      {setShowDropdownMenu => (
-        <Fragment>
+      {(setShowDropdownMenu) => (
+        <>
           {autocomplete && (
             <Autocomplete
               data={restructureFlattenedTreeDataForAutocomplete(
                 getFlattenedPaths(data)
               )}
-              showDropdownUpdated={show => setAutocompleteShowDropdown(show)}
-              onSelect={node => handleNodeClick(node, setShowDropdownMenu)}
+              showDropdownUpdated={(show) => setAutocompleteShowDropdown(show)}
+              onSelect={(node) => handleNodeClick(node, setShowDropdownMenu)}
               placeholder={autocompletePlaceholder}
               filter={autocompleteFilter}
               clearOnSelect
@@ -86,7 +86,7 @@ const TreeSelect = ({
               {buildTree(data, setShowDropdownMenu)}
             </div>
           )}
-        </Fragment>
+        </>
       )}
     </DropdownButton>
   );

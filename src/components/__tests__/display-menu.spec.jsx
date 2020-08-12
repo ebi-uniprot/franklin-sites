@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, waitForElement } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import DisplayMenu from '../display-menu';
@@ -22,7 +22,7 @@ describe('Display menu component', () => {
   });
 
   test('should toggle item content', async () => {
-    const { getByText, queryByText, getAllByText } = rendered;
+    const { getByText, queryByText, getAllByText, findByText } = rendered;
     expect(
       getAllByText(displayMenuDummyLeft1)[0].closest(
         '.display-menu__item_content'
@@ -32,9 +32,7 @@ describe('Display menu component', () => {
     expect(queryByText(displayMenuDummyLeft2)).toBeNull();
 
     fireEvent.click(getByText(displayMenuData[1].name));
-    const newContent2 = await waitForElement(() =>
-      getByText(displayMenuDummyLeft2)
-    );
+    const newContent2 = await findByText(displayMenuDummyLeft2);
     expect(newContent2).toBeTruthy();
   });
 });

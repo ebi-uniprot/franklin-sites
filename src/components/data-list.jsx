@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withDataLoader from './data-loader';
 
 const DataList = ({ data, getIdKey, dataRenderer }) => (
-  <Fragment>
-    {data.map(content => (
+  <>
+    {data.map((content) => (
       <section key={getIdKey(content)}>{dataRenderer(content)}</section>
     ))}
-  </Fragment>
+  </>
 );
 
 DataList.propTypes = {

@@ -3,7 +3,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { HeroContainer } from '../src/components';
 
 export default {
-  title: 'Layout|Hero Container',
+  title: 'Layout/Hero Container',
   parameters: {
     purposeFunction: {
       purpose: 'Differentiate section from others',

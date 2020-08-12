@@ -1,5 +1,5 @@
 import { loremIpsum } from 'lorem-ipsum';
-import v1 from 'uuid';
+import { v1 } from 'uuid';
 import { fillArray, capitaliseFirstLetter } from '../utils';
 
 export const getLipsumWords = () =>
@@ -19,7 +19,7 @@ export const getLipsumObjectArray = ({
 }) =>
   fillArray(numberElements, () => {
     const dataPoint = { [idKey]: v1() };
-    keys.forEach(key => {
+    keys.forEach((key) => {
       const text =
         type === 'sentences' ? getLipsumSentences() : getLipsumWords();
       dataPoint[key] = text;

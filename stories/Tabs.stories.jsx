@@ -4,7 +4,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { Tabs, Tab, ConfigureIcon } from '../src/components';
 
 export default {
-  title: 'Layout|Tabs',
+  title: 'Layout/Tabs',
   parameters: {
     purposeFunction: {
       purpose:

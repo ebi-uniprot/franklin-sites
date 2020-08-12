@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForElement,
-} from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import SequenceSubmission from '../sequence-submission';
 import { validResponse } from '../../sequence-utils/sequenceValidator';
 
@@ -29,12 +24,10 @@ describe('SequenceSubmission', () => {
   });
 
   test('should validate after onChange event', async () => {
-    const { queryByTestId } = render(<SequenceSubmission />);
+    const { queryByTestId, findByTestId } = render(<SequenceSubmission />);
     const textarea = queryByTestId('sequence-submission-input');
     fireEvent.change(textarea, { target: { value: 'ACTGUACTGUACTGU+' } });
-    const error = await waitForElement(() =>
-      queryByTestId('sequence-submission-error')
-    );
+    const error = await findByTestId('sequence-submission-error');
     expect(error).toBeTruthy();
   });
 
@@ -42,7 +35,7 @@ describe('SequenceSubmission', () => {
     const onChange = jest.fn();
     const value = 'ACTGUACTGUACTGU';
     const { queryByTestId } = render(
-      <SequenceSubmission onChange={e => onChange(e)} />
+      <SequenceSubmission onChange={(e) => onChange(e)} />
     );
     const textarea = queryByTestId('sequence-submission-input');
     fireEvent.change(textarea, { target: { value } });
