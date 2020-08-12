@@ -6,7 +6,7 @@ import Histogram from './histogram';
 import 'rheostat/css/rheostat.css';
 import '../styles/components/histogram-filter.scss';
 
-const isNumberString = string => {
+const isNumberString = (string) => {
   try {
     const number = parseInt(string, 10);
     return Number.isFinite(number);
@@ -15,9 +15,9 @@ const isNumberString = string => {
   }
 };
 
-const cleanNumber = string => {
+const cleanNumber = (string) => {
   try {
-    const number = parseInt(string, 10);
+    const number = parseFloat(string);
     return Number.isFinite(number) && number;
   } catch (error) {
     return false;
@@ -29,6 +29,11 @@ const cleanRange = (start, end, min, max) => [
   Math.min(cleanNumber(end) || max, max),
 ];
 
+const round = (value) =>
+  value === 0 || value > 0.1
+    ? Math.round(value * 100) / 100
+    : value.toExponential(2);
+
 const HistogramFilter = ({
   min: minOrNull,
   max: maxOrNull,
@@ -39,14 +44,11 @@ const HistogramFilter = ({
   nBins,
   height,
 }) => {
-  const [min, max, inputWidth] = useMemo(() => {
+  const [min, max] = useMemo(() => {
     // Assign sensible default values if not provided
     const innerMin = minOrNull === null ? Math.min(...values) : minOrNull;
     const innerMax = maxOrNull === null ? Math.max(...values) : maxOrNull;
-    // Use the number of digits in the maximum number to determine the width (ch) of the
-    // text input boxes. Add a bit more (4) for padding.
-    const innerInputWidth = Math.floor(Math.log10(innerMax)) + 4;
-    return [innerMin, innerMax, innerInputWidth];
+    return [innerMin, innerMax];
   }, [maxOrNull, minOrNull, values]);
 
   const [range, setRange] = useState(
@@ -55,7 +57,36 @@ const HistogramFilter = ({
       : [min, max]
   );
 
+  // algorithm used by Rheostat component
+  const algorithm = useMemo(() => {
+    // find needed precision depending on spread of bounds, minimum precision: 1
+    const precision = Math.max(1, 100 / (max - min));
+    return {
+      getPosition(value, min, max) {
+        return ((value - min) / (max - min)) * 100;
+      },
+
+      getValue(pos, min, max) {
+        const decimal = pos / 100;
+
+        if (pos === 0) {
+          return min;
+        }
+
+        if (pos === 100) {
+          return max;
+        }
+
+        return (
+          Math.round(((max - min) * decimal + min) * precision) / precision
+        );
+      },
+    };
+  }, [max, min]);
+
   const [startValue, endValue] = range;
+  const startTextValue = `${round(startValue)}`;
+  const endTextValue = `${round(endValue)}`;
 
   const cleanedRange = cleanRange(startValue, endValue, min, max);
 
@@ -85,9 +116,10 @@ const HistogramFilter = ({
         <Rheostat
           min={min}
           max={max}
+          algorithm={algorithm}
           values={cleanedRange}
-          onChange={e => {
-            onChange(e.values);
+          onChange={(e) => {
+            onChange(e.values.map(round));
           }}
           onValuesUpdated={({ values: [start, end] }) => {
             setRange([start, end]);
@@ -99,23 +131,23 @@ const HistogramFilter = ({
           type="number"
           min={min}
           max={max}
-          onChange={e => {
+          onChange={(e) => {
             handleTextInputChange([e.target.value, endValue]);
           }}
-          value={startValue}
+          value={startTextValue}
           onBlur={handleTextInputBlur}
-          style={{ width: `${inputWidth}ch` }}
+          style={{ width: `${startTextValue.length + 2}ch` }}
         />
         <input
           type="number"
           min={min}
           max={max}
-          onChange={e => {
+          onChange={(e) => {
             handleTextInputChange([startValue, e.target.value]);
           }}
-          value={endValue}
+          value={endTextValue}
           onBlur={handleTextInputBlur}
-          style={{ width: `${inputWidth}ch` }}
+          style={{ width: `${endTextValue.length + 2}ch` }}
         />
       </div>
     </div>

@@ -119,14 +119,14 @@ exports[`HistogramFilter component should render 1`] = `
       <input
         max="9"
         min="0"
-        style="width: 4ch;"
+        style="width: 3ch;"
         type="number"
         value="0"
       />
       <input
         max="9"
         min="0"
-        style="width: 4ch;"
+        style="width: 3ch;"
         type="number"
         value="9"
       />
