@@ -1,33 +1,35 @@
 /* eslint react/prop-types: 0 */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { throttle } from 'lodash-es';
 import '../styles/components/data-loader.scss';
 
 const scrollOffsetPercentage = 10;
 const scrollOffsetFactor = 1 + scrollOffsetPercentage / 100;
+const handleScrollWait = 500;
 
-const withDataLoader = BaseComponent => (props) => {
+const withDataLoader = (BaseComponent) => (props) => {
   const {
-    onLoadMoreItems, hasMoreData, data, loaderComponent = 'Loading...',
+    onLoadMoreItems,
+    hasMoreData,
+    data,
+    scrollRef,
+    loaderComponent = 'Loading...',
   } = props;
   const [loading, setLoading] = useState(false);
   const [loadMoreItems, setLoadMoreItems] = useState(false);
-  const ref = useRef();
-
-  const isNotScrollable = () => {
-    const { scrollHeight, offsetHeight } = ref.current;
-    return scrollHeight <= offsetHeight * scrollOffsetFactor;
-  };
 
   useEffect(() => {
-    if (hasMoreData && isNotScrollable()) {
+    const { scrollHeight, offsetHeight } = scrollRef.current;
+    const isNotScrollable = scrollHeight < offsetHeight * scrollOffsetFactor;
+    if (hasMoreData && isNotScrollable) {
       setLoading(true);
       onLoadMoreItems();
     } else {
       setLoading(false);
       setLoadMoreItems(false);
     }
-  }, [data.length, hasMoreData, onLoadMoreItems]);
+  }, [data.length, hasMoreData, onLoadMoreItems, scrollRef]);
 
   useEffect(() => {
     if (loadMoreItems) {
@@ -36,27 +38,33 @@ const withDataLoader = BaseComponent => (props) => {
     }
   }, [loadMoreItems, onLoadMoreItems]);
 
-  const isBottom = () => {
-    const { scrollHeight, scrollTop, offsetHeight } = ref.current;
-    return scrollHeight - Math.ceil(scrollTop) <= offsetHeight * scrollOffsetFactor;
-  };
+  useEffect(() => {
+    const ref = scrollRef.current;
+    const isBottom = () => {
+      const { scrollHeight, scrollTop, offsetHeight } = ref;
+      return (
+        scrollHeight - Math.ceil(scrollTop) <= offsetHeight * scrollOffsetFactor
+      );
+    };
+    const handleScroll = throttle(() => {
+      if (!loading && hasMoreData && isBottom(ref)) {
+        setLoadMoreItems(true);
+      }
+    }, handleScrollWait);
+    ref.addEventListener('scroll', handleScroll, {
+      capture: true,
+    });
 
-  const checkLoadMoreItems = () => {
-    if (!loading && hasMoreData && isBottom(ref)) {
-      setLoadMoreItems(true);
-    }
-  };
+    // Cleanup
+    return () => {
+      ref.removeEventListener('scroll', handleScroll);
+    };
+  }, [hasMoreData, loading, scrollRef]);
 
   return (
     <div className="data-loader__wrapper">
-      <div
-        className="data-loader__scroll-container"
-        onScroll={() => checkLoadMoreItems()}
-        ref={ref}
-      >
-        <BaseComponent {...props} />
-        {loading && <div className="data-loader__loading">{loaderComponent}</div>}
-      </div>
+      <BaseComponent {...props} />
+      {loading && <div className="data-loader__loading">{loaderComponent}</div>}
     </div>
   );
 };
@@ -75,6 +83,12 @@ withDataLoader.propTypes = {
    * A custom loader component
    */
   loaderComponent: PropTypes.element,
+  /**
+   * A ref to a parent component which withDataLoader inspects through scrollHeight and offsetHeight
+   * to determine if more data can be loaded.
+   */
+  scrollRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    .isRequired,
 };
 
 export default withDataLoader;

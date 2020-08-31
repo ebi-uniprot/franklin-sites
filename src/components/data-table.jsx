@@ -44,7 +44,7 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
           {' '}
         </th>
       )}
-      {columns.map(column => {
+      {columns.map((column) => {
         let className = 'data-table__header-cell ';
         let onClick;
         const { sorted, name, label, sortable } = column;
@@ -121,7 +121,7 @@ const DataTableBody = ({
               />
             </td>
           )}
-          {columns.map(column => (
+          {columns.map((column) => (
             <td
               key={`${id}-${column.name}`}
               className={`${className} ${

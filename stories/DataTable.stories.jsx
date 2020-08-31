@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { action } from '@storybook/addon-actions';
-import { DataTable } from '../src/components';
+import { DataTable as DataTableComponent } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
 import { DENSITY_COMPACT } from '../src/components/data-table';
 
@@ -17,14 +17,19 @@ export default {
       return (
         <DataDecorator>
           {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
+            const scrollRef = useRef();
             return (
-              <div style={{ height: '65vh' }}>
+              <div
+                style={{ height: '65vh', overflowY: 'auto' }}
+                ref={scrollRef}
+              >
                 {React.cloneElement(story(), {
                   data,
                   getIdKey,
                   columns,
                   hasMoreData,
                   onLoadMoreItems,
+                  scrollRef,
                 })}
               </div>
             );
@@ -42,7 +47,7 @@ export const dataTable = ({
   hasMoreData,
   onLoadMoreItems,
 }) => (
-  <DataTable
+  <DataTableComponent
     {...{
       data,
       getIdKey,
@@ -63,7 +68,7 @@ export const dataTableCompact = ({
   hasMoreData,
   onLoadMoreItems,
 }) => (
-  <DataTable
+  <DataTableComponent
     {...{
       data,
       getIdKey,
@@ -85,7 +90,7 @@ export const fixedTable = ({
   hasMoreData,
   onLoadMoreItems,
 }) => (
-  <DataTable
+  <DataTableComponent
     {...{
       data,
       getIdKey,
@@ -98,4 +103,4 @@ export const fixedTable = ({
   />
 );
 
-dataTable.propTypes = DataTable.propTypes;
+dataTableCompact.propTypes = DataTableComponent.propTypes;
