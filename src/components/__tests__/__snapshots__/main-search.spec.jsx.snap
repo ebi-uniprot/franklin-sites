@@ -39,7 +39,31 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
       </button>
       <div
         class="dropdown-menu"
-      />
+      >
+        <ul>
+          <li>
+            <button
+              type="button"
+            >
+              one
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+            >
+              two
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+            >
+              three
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
     <input
       class="main-search__input"

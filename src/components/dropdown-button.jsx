@@ -70,8 +70,7 @@ const DropdownButton = ({ children, label, className }) => {
         ref={dropdownRef}
         style={style}
       >
-        {showMenu &&
-          (childType === 'function' ? children(setShowMenu) : children)}
+        {childType === 'function' ? children(setShowMenu) : children}
       </div>
     </div>
   );
