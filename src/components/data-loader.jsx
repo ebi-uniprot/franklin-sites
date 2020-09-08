@@ -31,10 +31,6 @@ const withDataLoader = (BaseComponent) => (props) => {
     [scrollRef.current] = elements;
   }, [scrollDataAttribute]);
 
-  if (!scrollRef) {
-    return null;
-  }
-
   useEffect(() => {
     const { scrollHeight, offsetHeight } = scrollRef.current;
     const isNotScrollable = scrollHeight < offsetHeight * scrollOffsetFactor;
@@ -81,7 +77,7 @@ const withDataLoader = (BaseComponent) => (props) => {
         ref.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [hasMoreData, isMounted, loading, scrollRef]);
+  }, [hasMoreData, loading, scrollRef]);
 
   return (
     <div className="data-loader__wrapper">
