@@ -1,8 +1,6 @@
 /* eslint react/prop-types: 0 */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import useIsMounted from 'react-is-mounted-hook';
-
 import { throttle } from 'lodash-es';
 import '../styles/components/data-loader.scss';
 
@@ -18,7 +16,6 @@ const withDataLoader = (BaseComponent) => (props) => {
     scrollDataAttribute,
     loaderComponent = 'Loading...',
   } = props;
-  const isMounted = useIsMounted();
   const [loading, setLoading] = useState(false);
   const [loadMoreItems, setLoadMoreItems] = useState(false);
   const scrollRef = useRef(null);
