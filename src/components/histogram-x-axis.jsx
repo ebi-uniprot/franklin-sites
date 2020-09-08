@@ -1,18 +1,13 @@
 import React, { useRef, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { scaleLinear } from 'd3-scale';
-import { axisBottom } from 'd3-axis';
-import { select } from 'd3-selection';
-import { range } from 'd3-array';
+import { scaleLinear, axisBottom, select, range } from 'd3';
 
 const XAxis = ({ min, max, interval, yPos, width, label }) => {
   const height = 80;
   const d3Container = useRef(null);
   useEffect(() => {
     if (width && d3Container.current) {
-      const scale = scaleLinear()
-        .domain([min, max])
-        .range([0, width]);
+      const scale = scaleLinear().domain([min, max]).range([0, width]);
       const axis = axisBottom()
         .scale(scale)
         .tickValues(range(min, max + interval, interval))

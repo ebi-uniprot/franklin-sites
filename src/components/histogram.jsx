@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { SizeMe } from 'react-sizeme';
-import { scaleLinear } from 'd3-scale';
+import { scaleLinear } from 'd3';
 import cn from 'classnames';
 
 import XAxis from './histogram-x-axis';
@@ -43,7 +43,7 @@ const Histogram = ({
       );
     }
     // Create a convenience getIndex function
-    const innerGetIndex = value =>
+    const innerGetIndex = (value) =>
       Math.min(Math.floor((value - innerMin) / innerBinSize), nBins - 1);
     return [innerGetIndex, innerNBins, innerBinSize, innerMin, innerMax];
   }, [binSizeOrNull, maxOrNull, minOrNull, nBinsOrNull, values]);
@@ -52,18 +52,16 @@ const Histogram = ({
   const [bins, allBins, yScale, transformScaleY] = useMemo(() => {
     const innerBins = Array(nBins).fill(0);
     const allDataBins = Array(nBins).fill(0);
-    values.forEach(value => {
+    values.forEach((value) => {
       innerBins[getIndex(value)] += 1;
     });
-    allValues.forEach(value => {
+    allValues.forEach((value) => {
       allDataBins[getIndex(value)] += 1;
     });
     const maxCount = Math.max(...allDataBins);
     const domainMax = Math.ceil(maxCount / 5) * 5;
-    const innerYScale = scaleLinear()
-      .domain([0, domainMax])
-      .range([height, 0]);
-    const innerTransformScaleY = count => yScale(domainMax - count) / height;
+    const innerYScale = scaleLinear().domain([0, domainMax]).range([height, 0]);
+    const innerTransformScaleY = (count) => yScale(domainMax - count) / height;
     return [innerBins, allDataBins, innerYScale, innerTransformScaleY];
   }, [getIndex, height, nBins, values, allValues]);
 

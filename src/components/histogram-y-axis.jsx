@@ -1,23 +1,17 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { axisLeft } from 'd3-axis';
-import { select } from 'd3-selection';
+import { axisLeft, select } from 'd3';
 
 const YAxis = ({ scale, height, label }) => {
   const width = 80;
   const d3Container = useRef(null);
   useEffect(() => {
     if (d3Container.current) {
-      const axis = axisLeft()
-        .scale(scale)
-        .tickPadding(6);
+      const axis = axisLeft().scale(scale).tickPadding(6);
       axis.tickSize(0);
       const svg = select(d3Container.current);
       svg.selectAll('*').remove();
-      svg
-        .append('g')
-        .attr('transform', 'translate(50, 0)')
-        .call(axis);
+      svg.append('g').attr('transform', 'translate(50, 0)').call(axis);
 
       if (label) {
         svg

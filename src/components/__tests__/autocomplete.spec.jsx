@@ -70,7 +70,7 @@ describe('Autocomplete component', () => {
     expect(onSelect).toHaveBeenCalledTimes(1);
   });
 
-  test('shouldShowDropdown should return false if length of text input is less than minCharsToShowDropdown ', () => {
+  test('shouldShowDropdown should return false if length of text input is less than minCharsToShowDropdown', () => {
     expect(
       Autocomplete.shouldShowDropdown({
         textInputValue: 'fo',
