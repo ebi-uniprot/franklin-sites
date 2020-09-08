@@ -16,11 +16,11 @@ export default {
       return (
         <DataDecorator>
           {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
-            const scrollRef = useRef();
+            const scrollDataAttribute = 'data-list';
             return (
               <div
                 style={{ height: '65vh', overflowY: 'auto' }}
-                ref={scrollRef}
+                data-loader-scroll={scrollDataAttribute}
               >
                 {React.cloneElement(story(), {
                   data,
@@ -28,7 +28,7 @@ export default {
                   columns,
                   hasMoreData,
                   onLoadMoreItems,
-                  scrollRef,
+                  scrollDataAttribute,
                 })}
               </div>
             );
