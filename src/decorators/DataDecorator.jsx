@@ -14,38 +14,38 @@ const DataDecorator = ({ children, ...props }) => {
     {
       label: 'Column 1',
       name: 'content1',
-      render: row => row.content1,
+      render: (row) => row.content1,
       sortable: true,
       sorted: 'ascend',
     },
     {
       label: 'Column 2',
       name: 'content2',
-      render: row => row.content2,
+      render: (row) => row.content2,
     },
     {
       label: 'Column 3',
       name: 'content3',
-      render: row => row.content3,
+      render: (row) => row.content3,
       sortable: true,
     },
     {
       label: 'Column 4',
       name: 'content4',
-      render: row => row.content4,
+      render: (row) => row.content4,
       width: '40vw',
       sortable: true,
     },
     {
       label: 'Column 5',
       name: 'content5',
-      render: row => row.content5,
+      render: (row) => row.content5,
     },
   ];
 
   function generateData(numberElements) {
     return getLipsumObjectArray({
-      keys: columns.map(column => column.name),
+      keys: columns.map((column) => column.name),
       numberElements,
     });
   }

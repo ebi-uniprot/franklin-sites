@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { DataList, Card } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';

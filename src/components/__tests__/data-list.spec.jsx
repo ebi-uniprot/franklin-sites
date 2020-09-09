@@ -4,60 +4,50 @@ import DataList from '../data-list';
 import { fillArray } from '../../utils';
 
 describe('DataList', () => {
-  const data = fillArray(10, (element, index) => ({
+  const data = fillArray(10, (_, index) => ({
     id: `id${index}`,
     content: index,
   }));
 
   let onLoadMoreItems;
-  let dataRenderer;
+  const scrollDataAttribute = 'data-list';
+  const getRender = (hasMoreData = true) =>
+    render(
+      <div
+        style={{ height: '65vh', overflowY: 'auto' }}
+        data-loader-scroll={scrollDataAttribute}
+        data-testid="scroll-container"
+      >
+        <DataList
+          onLoadMoreItems={onLoadMoreItems}
+          hasMoreData={hasMoreData}
+          data={data}
+          dataRenderer={(item) => <p>{item.content}</p>}
+          onCardClick={null}
+          scrollDataAttribute={scrollDataAttribute}
+        />
+      </div>
+    );
   beforeEach(() => {
     onLoadMoreItems = jest.fn();
-    dataRenderer = item => <p>{item.content}</p>;
   });
 
   test('should render', () => {
-    const { asFragment } = render(
-      <DataList
-        onLoadMoreItems={onLoadMoreItems}
-        hasMoreData
-        data={data}
-        dataRenderer={dataRenderer}
-      />
-    );
+    const { asFragment } = getRender();
+    // await findByText(/loading/)
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('should request more data', () => {
-    const { container } = render(
-      <DataList
-        onLoadMoreItems={onLoadMoreItems}
-        hasMoreData
-        data={data}
-        dataRenderer={dataRenderer}
-        onCardClick={null}
-      />
-    );
-    const scrollContainer = container.querySelector(
-      '.data-loader__scroll-container'
-    );
+    const { getByTestId } = getRender();
+    const scrollContainer = getByTestId('scroll-container');
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
 
   test('should not request more data', () => {
-    const { container } = render(
-      <DataList
-        onLoadMoreItems={onLoadMoreItems}
-        hasMoreData={false}
-        data={data}
-        dataRenderer={dataRenderer}
-        onCardClick={null}
-      />
-    );
-    const scrollContainer = container.querySelector(
-      '.data-loader__scroll-container'
-    );
+    const { getByTestId } = getRender(false);
+    const scrollContainer = getByTestId('scroll-container');
     fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
     expect(onLoadMoreItems).toHaveBeenCalledTimes(0);
   });

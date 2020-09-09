@@ -31,28 +31,26 @@ const withDataLoader = (BaseComponent) => (props) => {
     [scrollRef.current] = elements;
   }, [scrollDataAttribute]);
 
-  useEffect(() => {
+  const isNotScrollable = () => {
     const { scrollHeight, offsetHeight } = scrollRef.current;
-    const isNotScrollable = scrollHeight < offsetHeight * scrollOffsetFactor;
-    if (hasMoreData && isNotScrollable) {
-      setLoading(true);
-      onLoadMoreItems();
-    }
-  }, [hasMoreData, onLoadMoreItems, scrollRef]);
+    return scrollHeight <= offsetHeight * scrollOffsetFactor;
+  };
 
   useEffect(() => {
-    if (data.length) {
+    if (hasMoreData && isNotScrollable()) {
+      setLoadMoreItems(true);
+    } else {
       setLoading(false);
       setLoadMoreItems(false);
     }
-  }, [data.length]);
+  }, [data.length, hasMoreData]);
 
   useEffect(() => {
-    if (loadMoreItems && !loading) {
+    if (loadMoreItems) {
       setLoading(true);
       onLoadMoreItems();
     }
-  }, [loadMoreItems, loading, onLoadMoreItems]);
+  }, [loadMoreItems, onLoadMoreItems]);
 
   useEffect(() => {
     const ref = scrollRef.current;
@@ -63,9 +61,7 @@ const withDataLoader = (BaseComponent) => (props) => {
       );
     };
     const handleScroll = throttle(() => {
-      if (!loading && hasMoreData && ref && isBottom(ref)) {
-        setLoadMoreItems(true);
-      }
+      setLoadMoreItems(!loading && hasMoreData && ref && isBottom(ref));
     }, handleScrollWait);
     ref.addEventListener('scroll', handleScroll, {
       passive: false,
@@ -77,8 +73,7 @@ const withDataLoader = (BaseComponent) => (props) => {
         ref.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [hasMoreData, loading, scrollRef]);
-
+  }, [hasMoreData, loading]);
   return (
     <div className="data-loader__wrapper">
       <BaseComponent {...props} />
@@ -102,11 +97,10 @@ withDataLoader.propTypes = {
    */
   loaderComponent: PropTypes.element,
   /**
-   * A ref to a parent component which withDataLoader inspects through scrollHeight and offsetHeight
-   * to determine if more data can be loaded.
+   * The value of the data-loader-scroll attribute set on a parent element which withDataLoader inspects
+   * through scrollHeight and offsetHeight to determine if more data can be loaded.
    */
-  scrollRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-    .isRequired,
+  scrollDataAttribute: PropTypes.string.isRequired,
 };
 
 export default withDataLoader;
