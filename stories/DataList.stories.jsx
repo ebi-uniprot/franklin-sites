@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { DataList, Card } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
@@ -16,14 +16,19 @@ export default {
       return (
         <DataDecorator>
           {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
+            const scrollDataAttribute = 'data-list';
             return (
-              <div style={{ height: '65vh' }}>
+              <div
+                style={{ height: '65vh', overflowY: 'auto' }}
+                data-loader-scroll={scrollDataAttribute}
+              >
                 {React.cloneElement(story(), {
                   data,
                   getIdKey,
                   columns,
                   hasMoreData,
                   onLoadMoreItems,
+                  scrollDataAttribute,
                 })}
               </div>
             );
@@ -52,7 +57,7 @@ export const dataList = ({
       }}
       onSelect={action('onSelect')}
       onHeaderClick={action('onHeaderClick')}
-      dataRenderer={(content) => <Fragment>{Object.values(content)}</Fragment>}
+      dataRenderer={(content) => <>{Object.values(content)}</>}
       selectable
     />
   );

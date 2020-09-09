@@ -3,306 +3,304 @@
 exports[`DataTable should render 1`] = `
 <DocumentFragment>
   <div
-    class="data-loader__wrapper"
+    data-loader-scroll="data-table"
+    data-testid="scroll-container"
+    style="height: 65vh; overflow-y: auto;"
   >
-    <div
-      class="data-loader__scroll-container"
+    <table
+      class="data-table   "
     >
-      <table
-        class="data-table   "
+      <thead
+        class="data-table__header"
       >
-        <thead
-          class="data-table__header"
+        <tr
+          class="data-table__row"
         >
-          <tr
-            class="data-table__row"
+          <th
+            class="data-table__header-cell data-table__header-cell--checkbox"
           >
-            <th
-              class="data-table__header-cell data-table__header-cell--checkbox"
-            >
-               
-            </th>
-            <th
-              class="data-table__header-cell data-table__header-cell--ascend"
-              style="width: auto;"
-            >
-              Column 1
-            </th>
-            <th
-              class="data-table__header-cell "
-              style="width: auto;"
-            >
-              Column 2
-            </th>
-            <th
-              class="data-table__header-cell data-table__header-cell--sortable"
-              style="width: auto;"
-            >
-              Column 3
-            </th>
-          </tr>
-        </thead>
-        <tbody
-          class="data-table__table__body"
-        >
-          <tr>
-            <td
-              class="data-table__cell data-table__cell--selected"
-            >
-              <input
-                aria-label="id0"
-                checked=""
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell data-table__cell--selected "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell data-table__cell--selected "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell data-table__cell--selected "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell data-table__cell--odd "
-            >
-              <input
-                aria-label="id1"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell "
-            >
-              <input
-                aria-label="id2"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell data-table__cell--odd "
-            >
-              <input
-                aria-label="id3"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell "
-            >
-              <input
-                aria-label="id4"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell data-table__cell--odd "
-            >
-              <input
-                aria-label="id5"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell "
-            >
-              <input
-                aria-label="id6"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell data-table__cell--odd "
-            >
-              <input
-                aria-label="id7"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell "
-            >
-              <input
-                aria-label="id8"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell  "
-            >
-              baz
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="data-table__cell data-table__cell--odd "
-            >
-              <input
-                aria-label="id9"
-                type="checkbox"
-              />
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              foo
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              bar
-            </td>
-            <td
-              class="data-table__cell data-table__cell--odd  "
-            >
-              baz
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div
-        class="data-loader__loading"
+             
+          </th>
+          <th
+            class="data-table__header-cell data-table__header-cell--ascend"
+            style="width: auto;"
+          >
+            Column 1
+          </th>
+          <th
+            class="data-table__header-cell "
+            style="width: auto;"
+          >
+            Column 2
+          </th>
+          <th
+            class="data-table__header-cell data-table__header-cell--sortable"
+            style="width: auto;"
+          >
+            Column 3
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="data-table__table__body"
       >
-        Loading...
-      </div>
+        <tr>
+          <td
+            class="data-table__cell data-table__cell--selected"
+          >
+            <input
+              aria-label="id0"
+              checked=""
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell data-table__cell--selected "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell data-table__cell--selected "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell data-table__cell--selected "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell data-table__cell--odd "
+          >
+            <input
+              aria-label="id1"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell "
+          >
+            <input
+              aria-label="id2"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell data-table__cell--odd "
+          >
+            <input
+              aria-label="id3"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell "
+          >
+            <input
+              aria-label="id4"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell data-table__cell--odd "
+          >
+            <input
+              aria-label="id5"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell "
+          >
+            <input
+              aria-label="id6"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell data-table__cell--odd "
+          >
+            <input
+              aria-label="id7"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell "
+          >
+            <input
+              aria-label="id8"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell  "
+          >
+            baz
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="data-table__cell data-table__cell--odd "
+          >
+            <input
+              aria-label="id9"
+              type="checkbox"
+            />
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            foo
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            bar
+          </td>
+          <td
+            class="data-table__cell data-table__cell--odd  "
+          >
+            baz
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      class="data-loader__loading"
+    >
+      Loading...
     </div>
   </div>
 </DocumentFragment>

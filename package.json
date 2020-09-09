@@ -40,7 +40,8 @@
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
+      "\\.(css|scss|sass)$": "<rootDir>/__mocks__/styleMock.js",
+      "^lodash-es$": "lodash"
     }
   },
   "peerDependencies": {
@@ -53,6 +54,7 @@
     "d3": "5.16.0",
     "foundation-sites": "^6.5.3",
     "history": "^4.10.1",
+    "lodash-es": "^4.17.15",
     "lorem-ipsum": "^2.0.2",
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
