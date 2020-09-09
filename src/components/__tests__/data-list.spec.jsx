@@ -34,7 +34,6 @@ describe('DataList', () => {
 
   test('should render', () => {
     const { asFragment } = getRender();
-    // await findByText(/loading/)
     expect(asFragment()).toMatchSnapshot();
   });
 

@@ -3,10 +3,12 @@
 exports[`DataTable should render 1`] = `
 <DocumentFragment>
   <div
-    class="data-loader__wrapper"
+    data-loader-scroll="data-table"
+    data-testid="scroll-container"
+    style="height: 65vh; overflow-y: auto;"
   >
     <div
-      class="data-loader__scroll-container"
+      class="data-loader__wrapper"
     >
       <table
         class="data-table   "
