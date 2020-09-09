@@ -54,6 +54,9 @@ const withDataLoader = (BaseComponent) => (props) => {
 
   useEffect(() => {
     const ref = scrollRef.current;
+    if (!ref) {
+      return null;
+    }
     const isBottom = () => {
       const { scrollHeight, scrollTop, offsetHeight } = ref;
       return (
@@ -74,6 +77,7 @@ const withDataLoader = (BaseComponent) => (props) => {
       }
     };
   }, [hasMoreData, loading]);
+
   return (
     <>
       <BaseComponent {...props} />
