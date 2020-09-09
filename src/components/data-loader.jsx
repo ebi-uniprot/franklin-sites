@@ -75,10 +75,10 @@ const withDataLoader = (BaseComponent) => (props) => {
     };
   }, [hasMoreData, loading]);
   return (
-    <div className="data-loader__wrapper">
+    <>
       <BaseComponent {...props} />
       {loading && <div className="data-loader__loading">{loaderComponent}</div>}
-    </div>
+    </>
   );
 };
 
