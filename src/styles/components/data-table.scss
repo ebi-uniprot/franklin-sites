@@ -2,6 +2,7 @@
 @import '../colours';
 @import '../mixins';
 @import '../franklin-settings';
+@import '../common/z-index';
 
 .data-table {
   $self: &;
@@ -26,7 +27,7 @@
     color: $colour-sky-white;
     background-color: $colour-sea-blue;
     top: 0;
-    z-index: 1;
+    z-index: $z-index-low;
     position: sticky;
     position: -webkit-sticky;
     position: -moz-sticky;
