@@ -5,21 +5,28 @@ import '../styles/components/main-search.scss';
 
 const MainSearch = ({
   searchTerm = '',
-  namespaces = [],
+  namespaces = {},
   onChange,
   onSubmit,
+  onNamespaceChange = () => null,
+  selectedNamespace = 'uniprotkb',
 }) => (
   <form
     onSubmit={onSubmit}
     className="main-search"
     data-testid="main-search-form"
   >
-    {namespaces.length > 0 && (
-      <DropdownButton label="UniProtKB">
+    {Object.keys(namespaces).length > 0 && (
+      <DropdownButton label={namespaces[selectedNamespace]}>
         <ul>
-          {namespaces.map(ns => (
-            <li key={ns}>
-              <button type="button">{ns}</button>
+          {Object.keys(namespaces).map(key => (
+            <li key={key}>
+              <button
+                type="button"
+                onClick={() => onNamespaceChange(key)}
+              >
+                {namespaces[key]}
+              </button>
             </li>
           ))}
         </ul>
@@ -42,12 +49,16 @@ MainSearch.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   searchTerm: PropTypes.string,
-  namespaces: PropTypes.arrayOf(PropTypes.string),
+  namespaces: PropTypes.objectOf(PropTypes.string),
+  onNamespaceChange: PropTypes.func,
+  selectedNamespace: PropTypes.string,
 };
 
 MainSearch.defaultProps = {
   searchTerm: '',
-  namespaces: [],
+  namespaces: {},
+  onNamespaceChange: () => null,
+  selectedNamespace: '',
 };
 
 export default MainSearch;
