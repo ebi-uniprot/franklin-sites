@@ -17,7 +17,9 @@ const MainSearch = ({
     data-testid="main-search-form"
   >
     {Object.keys(namespaces).length > 0 && (
-      <DropdownButton label={namespaces[selectedNamespace]}>
+      <DropdownButton
+        label={namespaces[selectedNamespace]}
+      >
         <ul>
           {Object.keys(namespaces).map(key => (
             <li key={key}>
