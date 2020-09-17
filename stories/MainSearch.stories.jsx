@@ -6,7 +6,7 @@ import { MainSearch } from '../src/components';
 import StateDecorator from '../src/decorators/StateDecorator';
 
 const namespaces = {
-  'uniprotkb': 'UniProtKB - the UniProt knowledgebase',
+  'uniprotkb': 'UniProtKB',
   'uniref': 'UniRef',
   'uniparc': 'UniParc',
   'proteomes': 'Proteomes',
