@@ -1,5 +1,7 @@
 import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
+import { action } from '@storybook/addon-actions';
+
 import { ButtonModal } from '../src/components';
 
 export default {
@@ -14,7 +16,11 @@ export default {
 };
 
 export const modal = () => (
-  <ButtonModal buttonText="click me" title="Example modal window">
+  <ButtonModal
+    buttonText="click me"
+    title="Example modal window"
+    onWindowOpen={action('hello')}
+  >
     {loremIpsum(45)}
   </ButtonModal>
 );
