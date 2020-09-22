@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const ModalBackdrop = ({
   className,
   handleExitModal,
+  onWindowOpen,
   ...otherProps
 }) => {
   const bodyTag = document.body;
@@ -26,10 +27,12 @@ const ModalBackdrop = ({
 ModalBackdrop.propTypes = {
   className: PropTypes.string,
   handleExitModal: PropTypes.func.isRequired,
+  onWindowOpen: PropTypes.func,
 };
 
 ModalBackdrop.defaultProps = {
   className: null,
+  onWindowOpen: () => null,
 };
 
 export default ModalBackdrop;
