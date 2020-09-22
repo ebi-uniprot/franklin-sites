@@ -10,6 +10,9 @@ const ModalBackdrop = ({
   const bodyTag = document.body;
   bodyTag.classList.add('modal__body');
 
+  // onWindowOpen not used but leads to console warning as added as
+  // attribute. Long term should probably rename prop
+
   // clean-up, when component unmounts.
   useEffect(() => () => bodyTag.classList.remove('modal__body'));
 
