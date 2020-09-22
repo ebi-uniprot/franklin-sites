@@ -10,6 +10,7 @@ const DialogWindow = ({
   height,
   className,
   handleExitModal,
+  onWindowOpen,
   withHeaderCloseButton,
   withFooterCloseButton,
   children,
@@ -20,7 +21,7 @@ const DialogWindow = ({
     title={title}
     withHeaderCloseButton={withHeaderCloseButton}
     withFooterCloseButton={withFooterCloseButton}
-    onWindowOpen={() => null}
+    onWindowOpen={onWindowOpen}
     onWindowClose={handleExitModal}
     withShadow
     className={className}
@@ -35,6 +36,7 @@ DialogWindow.propTypes = {
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
   handleExitModal: PropTypes.func.isRequired,
+  onWindowOpen: PropTypes.func,
   withHeaderCloseButton: PropTypes.bool.isRequired,
   withFooterCloseButton: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
@@ -45,6 +47,7 @@ DialogWindow.propTypes = {
 
 DialogWindow.defaultProps = {
   className: null,
+  onWindowOpen: () => null,
 };
 
 const ButtonModal = ({
@@ -54,6 +57,7 @@ const ButtonModal = ({
   height,
   withHeaderCloseButton,
   withFooterCloseButton,
+  onWindowOpen,
   children,
 }) => {
   const { displayModal, setDisplayModal, Modal } = useModal(
@@ -77,6 +81,7 @@ const ButtonModal = ({
           height={height}
           withHeaderCloseButton={withHeaderCloseButton}
           withFooterCloseButton={withFooterCloseButton}
+          onWindowOpen={onWindowOpen}
         >
           {children}
         </Modal>
@@ -103,6 +108,8 @@ ButtonModal.propTypes = {
   withHeaderCloseButton: PropTypes.bool,
   /** Display the close button in the footer */
   withFooterCloseButton: PropTypes.bool,
+  /** Executed when the modal opens */
+  onWindowOpen: PropTypes.func,
 };
 
 ButtonModal.defaultProps = {
@@ -110,6 +117,7 @@ ButtonModal.defaultProps = {
   height: '70vh',
   withHeaderCloseButton: false,
   withFooterCloseButton: true,
+  onWindowOpen: () => null,
 };
 
 export default ButtonModal;
