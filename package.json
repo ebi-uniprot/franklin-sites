@@ -31,6 +31,9 @@
     "transform": {
       "^.+\\.(jsx|js)?$": "babel-jest"
     },
+    "testPathIgnorePatterns": [
+      "/src/__tests__/expectsToThrow.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "jsx"

@@ -22,6 +22,7 @@ const links = [
       { label: 'sublink 1', path: '/' },
       { label: 'sublink 2', path: '/' },
       { label: 'sublink 3', path: '/' },
+      { label: 'external link', href: '//www.uniprot.org' },
     ],
   },
   { label: 'Link 3', path: '/' },
@@ -31,7 +32,7 @@ const Search = () => {
   const [value, setValue] = useState('');
   return (
     <MainSearch
-      onChange={v => setValue(v)}
+      onChange={(v) => setValue(v)}
       searchTerm={value}
       onSubmit={() => {
         action('Submitted');
