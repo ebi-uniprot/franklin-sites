@@ -32,7 +32,7 @@ const Search = () => {
   const [value, setValue] = useState('');
   return (
     <MainSearch
-      onChange={(v) => setValue(v)}
+      onChange={setValue}
       searchTerm={value}
       onSubmit={() => {
         action('Submitted');

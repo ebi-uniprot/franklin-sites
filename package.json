@@ -32,7 +32,7 @@
       "^.+\\.(jsx|js)?$": "babel-jest"
     },
     "testPathIgnorePatterns": [
-      "/src/__tests__/expectsToThrow.js"
+      "/src/testHelpers/expectToThrowNoConsole.js"
     ],
     "moduleFileExtensions": [
       "js",

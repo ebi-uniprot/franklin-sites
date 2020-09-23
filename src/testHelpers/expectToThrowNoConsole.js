@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const expectToThrow = (func) => {
+const expectToThrowNoConsole = (func) => {
   // The error still gets printed to the console
   // so mock it before throwing the error
   jest.spyOn(console, 'error');
@@ -10,4 +10,4 @@ const expectToThrow = (func) => {
   console.error.mockRestore();
 };
 
-export default expectToThrow;
+export default expectToThrowNoConsole;

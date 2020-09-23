@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../header';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
-import expectToThrow from '../../__tests__/expectsToThrow';
+import expectToThrowNoConsole from '../../testHelpers/expectToThrowNoConsole';
 
 describe('Header component', () => {
   test('should render', () => {
@@ -15,7 +15,7 @@ describe('Header component', () => {
 
   // eslint-disable-next-line jest/expect-expect
   test('should throw error', () => {
-    expectToThrow(() => {
+    expectToThrowNoConsole(() => {
       renderWithRouter(
         <Header links={[{ path: '/there', href: '/here', label: 'there' }]} />
       );
