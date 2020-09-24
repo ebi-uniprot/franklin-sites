@@ -4,13 +4,38 @@ import { Link } from 'react-router-dom';
 import '../styles/components/header.scss';
 import '../styles/components/dropdown.scss';
 
+const HeaderLink = ({ link }) => {
+  if (link.path && link.href) {
+    throw new Error('Only specify "path" or "href" not both.');
+  }
+  return (
+    <>
+      {link.path ? (
+        <Link to={link.path}>{link.label}</Link>
+      ) : (
+        <a href={link.href} target="_blank" rel="noopener noreferrer">
+          {link.label}
+        </a>
+      )}
+    </>
+  );
+};
+
+HeaderLink.propTypes = {
+  link: PropTypes.shape({
+    label: PropTypes.string,
+    path: PropTypes.string,
+    href: PropTypes.string,
+  }).isRequired,
+};
+
 const Header = ({ logo, links, search, isNegative }) => (
   <div className={isNegative ? 'header header--negative' : 'header'}>
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>
     <ul className="header__navigation">
-      {links.map(link =>
+      {links.map((link) =>
         link.links ? (
           <li
             className="dropdown-container dropdown-container--hover"
@@ -27,9 +52,9 @@ const Header = ({ logo, links, search, isNegative }) => (
             </span>
             <div className="dropdown-menu">
               <ul>
-                {link.links.map(link2 => (
+                {link.links.map((link2) => (
                   <li key={link2.label}>
-                    <Link to={link2.path}>{link2.label}</Link>
+                    <HeaderLink link={link2} />
                   </li>
                 ))}
               </ul>
@@ -37,7 +62,7 @@ const Header = ({ logo, links, search, isNegative }) => (
           </li>
         ) : (
           <li key={link.label}>
-            <Link to={link.path}>{link.label}</Link>
+            <HeaderLink link={link} />
           </li>
         )
       )}
