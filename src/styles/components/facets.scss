@@ -27,7 +27,8 @@
     a.facet-active {
       font-weight: bold;
       background: $colour-selected;
-      &:hover {
+      &:hover,
+      &:focus {
         background: $colour-hover;
         &:after {
           display: inline-block;
