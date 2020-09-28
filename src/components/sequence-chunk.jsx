@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import v1 from 'uuid';
+import { v1 } from 'uuid';
 
 // Gaps in px
 const highlightHeight = 2;
@@ -20,7 +20,7 @@ const generateHighlights = (sequence, highlights, textSize) => {
             fill={highlight.colour}
             key={v1()}
             data-testid="sequence-highlight-rect"
-          />,
+          />
         );
       }
     });
@@ -29,9 +29,13 @@ const generateHighlights = (sequence, highlights, textSize) => {
 };
 
 const SequenceChunk = ({
-  sequence, textSize, chunkSize, chunkNumber, highlights,
+  sequence,
+  textSize,
+  chunkSize,
+  chunkNumber,
+  highlights,
 }) => (
-  <Fragment>
+  <>
     <svg height={3 * textSize.height} width={textSize.width * chunkSize}>
       <text
         x={textSize.width * chunkSize}
@@ -40,12 +44,16 @@ const SequenceChunk = ({
       >
         {sequence.length === chunkSize && chunkNumber * chunkSize + chunkSize}
       </text>
-      <text x="0" y={2 * textSize.height} className="sequence__sequence__chunk__sequence">
+      <text
+        x="0"
+        y={2 * textSize.height}
+        className="sequence__sequence__chunk__sequence"
+      >
         {sequence}
       </text>
       {generateHighlights(sequence, highlights, textSize)}
     </svg>
-  </Fragment>
+  </>
 );
 
 SequenceChunk.propTypes = {
@@ -54,9 +62,12 @@ SequenceChunk.propTypes = {
     PropTypes.shape({
       aminoAcids: PropTypes.arrayOf(PropTypes.string),
       colour: PropTypes.string,
-    }),
+    })
   ),
-  textSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }),
+  textSize: PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  }),
   chunkSize: PropTypes.number.isRequired,
   chunkNumber: PropTypes.number.isRequired,
 };

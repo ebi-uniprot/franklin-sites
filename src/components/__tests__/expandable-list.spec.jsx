@@ -97,7 +97,7 @@ describe('ExpandableList', () => {
     expect(getByTestId('expandable-message')).toBeTruthy();
   });
 
-  test('should initially have numberCollapsedItems and then total number of items after More button click ', () => {
+  test('should initially have numberCollapsedItems and then total number of items after More button click', () => {
     const { container } = render(
       <ExpandableList
         numberCollapsedItems={numberCollapsedItems}

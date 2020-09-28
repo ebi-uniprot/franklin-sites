@@ -1,0 +1,49 @@
+@import '../colours';
+@import '../common/utils';
+@import '../settings';
+@import '../franklin-settings';
+
+.chip {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25rem;
+  padding: pxToRem(2) pxToRem(5);
+  background-color: $colour-sea-blue;
+  color: $colour-sky-white;
+  border-radius: pxToRem(4);
+  border: pxToRem(1) solid $colour-sea-blue;
+  cursor: default;
+  white-space: nowrap;
+
+  svg {
+    margin-top: -0.2rem;
+    margin-left: 0.2rem;
+    margin-right: 0;
+    width: 0.7rem;
+    height: 0.7rem;
+    vertical-align: middle;
+    fill: $colour-sky-white;
+    cursor: pointer;
+  }
+
+  &--disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  &--compact {
+    font-size: $font-size-small;
+    border-radius: pxToRem(3);
+    padding: pxToRem(1) pxToRem(2);
+    line-height: $font-size-small;
+  }
+
+  &.secondary {
+    background-color: map-get($foundation-palette, secondary);
+    color: $colour-sea-blue;
+
+    svg {
+      fill: $colour-sea-blue;
+    }
+  }
+}

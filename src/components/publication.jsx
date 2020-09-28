@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { InfoList } from './index';
 import Bubble from './bubble';
 import PublicationIcon from '../svg/publication.svg';
 import ComputerMappedIcon from '../svg/computer-mapped.svg';
 import CitedIcon from '../svg/cited.svg';
 import '../styles/components/publication.scss';
+import InfoList from './info-list';
 
 const Authors = ({ authors, limit }) => {
   const [open, setOpen] = useState(false);
@@ -15,24 +15,24 @@ const Authors = ({ authors, limit }) => {
       {authors.reduce(
         (prev, currentAuthor, i) =>
           open || authors.length <= limit || i < limit - 1 ? (
-            <Fragment>
+            <>
               {prev && (
-                <Fragment>
+                <>
                   {prev}
                   {', '}
-                </Fragment>
+                </>
               )}
               <Link to="/" key={currentAuthor}>
                 {currentAuthor}
               </Link>
-            </Fragment>
+            </>
           ) : (
             prev
           ),
         ''
       )}
       {!open && authors.length > limit && (
-        <Fragment>
+        <>
           <button
             className="button tertiary"
             type="button"
@@ -44,7 +44,7 @@ const Authors = ({ authors, limit }) => {
           <Link to="/" key={authors[authors.length - 1]}>
             {authors[authors.length - 1]}
           </Link>
-        </Fragment>
+        </>
       )}
     </section>
   );
@@ -157,7 +157,7 @@ const Publication = ({
           {pubmedId && <PublicationIcon width="1.875em" height="2em" />}
           <ul className="no-bullet">
             {pubmedId && (
-              <Fragment>
+              <>
                 <li>
                   <a
                     href={`//www.ncbi.nlm.nih.gov/pubmed/${pubmedId}`}
@@ -176,7 +176,7 @@ const Publication = ({
                     Europe PMC
                   </a>
                 </li>
-              </Fragment>
+              </>
             )}
             {journalInfo && (
               <li>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+
+import Sequence from '../sequence';
+
 import sequenceData from '../../mock-data/sequence-data';
 import aminoAcidsProps from '../data/amino-acid-properties.json';
-import Sequence from '../sequence';
 
 describe('Sequence component', () => {
   let rendered;
@@ -30,7 +32,8 @@ describe('Sequence component', () => {
   });
 
   test('should toggle highlight on', () => {
-    const { getAllByTestId } = rendered;
+    const { getAllByTestId, getByText } = rendered;
+    fireEvent.click(getByText('Highlight'));
     const propertyIndex = 0;
     fireEvent.click(
       getAllByTestId('sequence-highlight-checkbox')[propertyIndex]
@@ -44,7 +47,8 @@ describe('Sequence component', () => {
   });
 
   test('should toggle highlight off', () => {
-    const { getAllByTestId, queryByTestId } = rendered;
+    const { getAllByTestId, queryByTestId, getByText } = rendered;
+    fireEvent.click(getByText('Highlight'));
     const propertyIndex = 0;
     fireEvent.click(
       getAllByTestId('sequence-highlight-checkbox')[propertyIndex]

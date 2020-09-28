@@ -2,7 +2,7 @@ import React from 'react';
 import { Bubble } from '../src/components';
 
 export default {
-  title: 'Visualisation|Bubble',
+  title: 'Visualisation/Bubble',
   parameters: {
     purposeFunction: {
       purpose: 'Highlight numbers.',

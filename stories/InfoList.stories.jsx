@@ -3,7 +3,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { InfoList } from '../src/components';
 
 export default {
-  title: 'Data|Info List',
+  title: 'Data/Info List',
   parameters: {
     purposeFunction: {
       purpose:
@@ -31,8 +31,12 @@ const data = [
 
 export const infoList = () => <InfoList infoData={data} />;
 
-export const infoListCompact = () => <InfoList infoData={data} isCompact />;
+export const highlightFirstItem = () => (
+  <InfoList infoData={data} highlightFirstItem />
+);
 
-infoList.story = {
-  name: 'Simple data',
-};
+export const compact = () => <InfoList infoData={data} isCompact />;
+
+export const noTitles = () => <InfoList infoData={data} noTitles />;
+
+infoList.storyName = 'Simple data';

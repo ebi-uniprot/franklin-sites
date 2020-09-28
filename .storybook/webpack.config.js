@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = async ({ config, mode }) => {
   // Remove default svg loader
-  config.module.rules = config.module.rules.map(rule => {
+  config.module.rules = config.module.rules.map((rule) => {
     if (
       String(rule.test) ===
       String(
@@ -25,10 +25,12 @@ module.exports = async ({ config, mode }) => {
       {
         loader: 'sass-loader',
         options: {
-          includePaths: [
-            path.resolve(__dirname, '../src/styles'),
-            path.resolve(__dirname, '../src/app/styles'),
-          ],
+          sassOptions: {
+            includePaths: [
+              path.resolve(__dirname, '../src/styles'),
+              path.resolve(__dirname, '../src/app/styles'),
+            ],
+          },
         },
       },
     ],

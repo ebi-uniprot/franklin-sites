@@ -18,16 +18,26 @@ import {
   CloseIcon,
   EditIcon,
   PublicationIcon,
+  PublicationLineIcon,
   CitedIcon,
   CitedSpeechIcon,
   ComputerMappedIcon,
   EvidenceTagIcon,
   ProtVistaIcon,
+  ErrorIcon,
   WarningIcon,
+  WarningTriangleIcon,
+  RefreshIcon,
+  BinIcon,
+  CopyIcon,
+  ClockIcon,
+  SpinnerIcon,
+  ReSubmitIcon,
+  SuccessIcon,
 } from '../src/components';
 
 export default {
-  title: 'Core|Icons',
+  title: 'Core/Icons',
 };
 
 const size = 30;
@@ -124,6 +134,11 @@ const iconDefinition = [
     icon: <PublicationIcon width={size} height={size} />,
   },
   {
+    name: 'publication-line.svg',
+    description: 'Publication Line',
+    icon: <PublicationLineIcon width={size} height={size} />,
+  },
+  {
     name: 'cited.svg',
     description: 'Cited',
     icon: <CitedIcon width={size} height={size} />,
@@ -149,9 +164,54 @@ const iconDefinition = [
     icon: <ProtVistaIcon width={size} height={size} />,
   },
   {
+    name: 'error.svg',
+    description: 'Error',
+    icon: <ErrorIcon width={size} height={size} />,
+  },
+  {
     name: 'warning.svg',
     description: 'Warning',
     icon: <WarningIcon width={size} height={size} />,
+  },
+  {
+    name: 'warning-triangle.svg',
+    description: 'Warning Triangle',
+    icon: <WarningTriangleIcon width={size} height={size} />,
+  },
+  {
+    name: 'refresh.svg',
+    description: 'Refresh',
+    icon: <RefreshIcon width={size} height={size} />,
+  },
+  {
+    name: 'bin.svg',
+    description: 'Bin',
+    icon: <BinIcon width={size} height={size} />,
+  },
+  {
+    name: 'copy.svg',
+    description: 'Copy',
+    icon: <CopyIcon width={size} height={size} />,
+  },
+  {
+    name: 'clock.svg',
+    description: 'Clock',
+    icon: <ClockIcon width={size} height={size} />,
+  },
+  {
+    name: 'spinner.svg',
+    description: 'Spinner',
+    icon: <SpinnerIcon width={size} height={size} />,
+  },
+  {
+    name: 're-submit.svg',
+    description: 'Re-submit',
+    icon: <ReSubmitIcon width={size} height={size} />,
+  },
+  {
+    name: 'success.svg',
+    description: 'Success',
+    icon: <SuccessIcon width={size} height={size} />,
   },
 ];
 

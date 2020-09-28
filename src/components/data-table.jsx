@@ -1,7 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withDataLoader from './data-loader';
 import '../styles/components/data-table.scss';
+
+export const DENSITY_COMPACT = Symbol('DENSITY_COMPACT');
+export const DENSITY_NORMAL = Symbol('DENSITY_NORMAL');
 
 const sharedPropTypes = {
   /**
@@ -20,28 +23,29 @@ const sharedPropTypes = {
     })
   ).isRequired,
   /**
-   * A callback function that is called whenever a user clicks the header. The column name is
-   * returned upon callback.
+   * Table fixed layout
    */
+  fixedLayout: PropTypes.bool,
 };
 
 const sharedDefaultProps = {
   selectable: false,
+  fixedLayout: false,
 };
 
 const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
-  <thead className="data-table__table__header">
-    <tr className="data-table__table__header__row">
+  <thead className="data-table__header">
+    <tr className="data-table__row">
       {selectable && (
         <th
           key="selectable-column"
-          className="data-table__table__header__row__cell"
+          className="data-table__header-cell data-table__header-cell--checkbox"
         >
           {' '}
         </th>
       )}
-      {columns.map(column => {
-        let className = 'data-table__table__header__row__cell ';
+      {columns.map((column) => {
+        let className = 'data-table__header-cell ';
         let onClick;
         const { sorted, name, label, sortable } = column;
         if (sortable) {
@@ -49,14 +53,19 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
           if (sorted) {
             className +=
               column.sorted === 'ascend'
-                ? 'data-table__table__header__row__cell--ascend'
-                : 'data-table__table__header__row__cell--descend';
+                ? 'data-table__header-cell--ascend'
+                : 'data-table__header-cell--descend';
           } else {
-            className += 'data-table__table__header__row__cell--sortable';
+            className += 'data-table__header-cell--sortable';
           }
         }
         return (
-          <th key={name} className={className} onClick={onClick}>
+          <th
+            key={name}
+            className={className}
+            onClick={onClick}
+            style={{ width: column.width ? column.width : 'auto' }}
+          >
             {label}
           </th>
         );
@@ -76,12 +85,12 @@ DataTableHead.defaultProps = {
 };
 
 const getCellClassName = (index, selectable, isSelected) => {
-  let className = 'data-table__table__body__cell ';
+  let className = 'data-table__cell ';
   if (index % 2 === 1) {
-    className += 'data-table__table__body__cell--odd ';
+    className += 'data-table__cell--odd ';
   }
   if (selectable && isSelected) {
-    className += 'data-table__table__body__cell--selected';
+    className += 'data-table__cell--selected';
   }
   return className;
 };
@@ -93,11 +102,12 @@ const DataTableBody = ({
   selected,
   getIdKey,
   selectable,
+  fixedLayout,
 }) => (
   <tbody className="data-table__table__body">
     {data.map((row, index) => {
       const id = getIdKey(row);
-      const isSelected = !!selected[id];
+      const isSelected = selected.includes(id);
       const className = getCellClassName(index, selectable, isSelected);
       return (
         <tr key={id}>
@@ -106,12 +116,18 @@ const DataTableBody = ({
               <input
                 type="checkbox"
                 onChange={() => onSelect(id)}
+                aria-label={id}
                 checked={isSelected}
               />
             </td>
           )}
-          {columns.map(column => (
-            <td key={`${id}-${column.name}`} className={className}>
+          {columns.map((column) => (
+            <td
+              key={`${id}-${column.name}`}
+              className={`${className} ${
+                fixedLayout ? 'data-table__cell--ellipsis' : ''
+              }`}
+            >
               {column.render(row)}
             </td>
           ))}
@@ -139,11 +155,11 @@ DataTableBody.propTypes = {
   /**
    * An object which indicates which rows have been selected by the user.
    */
-  selected: PropTypes.objectOf(PropTypes.bool),
+  selected: PropTypes.arrayOf(PropTypes.string),
 };
 
 DataTableBody.defaultProps = {
-  selected: {},
+  selected: [],
   getIdKey: ({ id }) => id,
 };
 
@@ -155,34 +171,55 @@ const DataTable = ({
   getIdKey,
   selectable,
   onHeaderClick,
+  density,
+  propsForTable,
+  fixedLayout,
 }) => (
-  <Fragment>
-    <table className="data-table__table">
-      <DataTableHead
-        selectable={selectable}
-        columns={columns}
-        onHeaderClick={onHeaderClick}
-      />
-      <DataTableBody
-        data={data}
-        columns={columns}
-        onSelect={onSelect}
-        selected={selected}
-        getIdKey={getIdKey}
-        selectable={selectable}
-      />
-    </table>
-  </Fragment>
+  <table
+    className={`data-table ${
+      density === DENSITY_COMPACT ? 'data-table--compact' : ''
+    } ${
+      propsForTable && propsForTable.className
+        ? ` ${propsForTable.className}`
+        : ''
+    } ${fixedLayout ? 'data-table--fixed' : ''}`}
+    {...propsForTable}
+  >
+    <DataTableHead
+      selectable={selectable}
+      columns={columns}
+      onHeaderClick={onHeaderClick}
+    />
+    <DataTableBody
+      data={data}
+      columns={columns}
+      onSelect={onSelect}
+      selected={selected}
+      getIdKey={getIdKey}
+      selectable={selectable}
+      fixedLayout={fixedLayout}
+    />
+  </table>
 );
 
 DataTable.propTypes = {
   ...DataTableHead.propTypes,
   ...DataTableBody.propTypes,
+  /**
+   * Display density of the table (default is DENSITY_NORMAL)
+   */
+  density: PropTypes.oneOf([DENSITY_COMPACT, DENSITY_NORMAL]),
+  /**
+   * Optional props
+   */
+  propsForTable: PropTypes.arrayOf(PropTypes.any),
 };
 
 DataTable.defaultProps = {
   ...sharedDefaultProps,
   ...DataTableBody.defaultProps,
+  density: DENSITY_NORMAL,
+  propsForTable: null,
 };
 
 export default withDataLoader(DataTable);

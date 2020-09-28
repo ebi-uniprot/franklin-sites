@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, waitForElement } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Publication from '../publication';
 import publicationData from '../__mocks__/publications';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
@@ -37,20 +37,18 @@ describe('Publication component', () => {
   });
 
   test('should expand authors', async () => {
-    const { queryByText, getByText } = rendered;
+    const { queryByText, getByText, findByText } = rendered;
     expect(queryByText('Darwin K.')).toBeNull();
     fireEvent.click(getByText('[...]'));
-    const author = await waitForElement(() => queryByText('Darwin K.'));
+    const author = await findByText('Darwin K.');
     expect(author).toBeTruthy();
   });
 
   test('should expand abstract', async () => {
-    const { queryByText, getByText } = rendered;
+    const { queryByText, getByText, findByText } = rendered;
     expect(queryByText(/Captain Fitzroy/)).toBeNull();
     fireEvent.click(getByText('View abstract [...]'));
-    const abstract = await waitForElement(() => queryByText(/Captain Fitzroy/));
+    const abstract = await findByText(/Captain Fitzroy/);
     expect(abstract).toBeTruthy();
   });
 });
-
-export default publicationData;

@@ -13,11 +13,6 @@ exports[`TreeSelect component should render 1`] = `
   </button>
   <div
     className="dropdown-menu"
-    style={
-      Object {
-        "top": 0,
-      }
-    }
   >
     <div
       className="dropdown-menu__panel"
@@ -118,44 +113,34 @@ exports[`TreeSelect component with filter should render 1`] = `
   </button>
   <div
     className="dropdown-menu"
-    style={
-      Object {
-        "top": 0,
-      }
-    }
   >
     <div
       className="autocomplete-container"
     >
-      <form
-        data-testid="autocomplete-form"
-        onSubmit={[Function]}
+      <span
+        className="search-input"
       >
+        <input
+          data-testid="search-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder=""
+          type="text"
+          value=""
+        />
         <span
-          className="search-input"
+          className="search-input__suffix"
+          data-testid="search-input-suffix"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="presentation"
         >
-          <input
-            data-testid="search-input"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder=""
-            type="text"
-            value=""
+          <test-file-stub
+            height={14}
+            width={14}
           />
-          <span
-            className="search-input__suffix"
-            data-testid="search-input-suffix"
-            onClick={[Function]}
-            onKeyPress={[Function]}
-            role="presentation"
-          >
-            <test-file-stub
-              height={14}
-              width={14}
-            />
-          </span>
         </span>
-      </form>
+      </span>
       <div
         className="autocomplete-menu"
       >

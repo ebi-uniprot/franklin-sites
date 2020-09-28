@@ -3,7 +3,7 @@ import { EvidenceTag } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
-  title: 'Biocomponents|Evidence Tag',
+  title: 'Biocomponents/Evidence Tag',
   parameters: {
     purposeFunction: {
       function:

@@ -34,12 +34,9 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
       <button
         class="button dropdown "
         type="button"
-      >
-        UniProtKB
-      </button>
+      />
       <div
         class="dropdown-menu"
-        style="top: 0px;"
       >
         <ul>
           <li>

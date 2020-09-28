@@ -100,7 +100,7 @@ exports[`Publication component should render 1`] = `
             class="info-list__item"
           >
             <div
-              class="info-list__item__title"
+              class="info-list__title"
             >
               <h5
                 class="bold"
@@ -109,7 +109,7 @@ exports[`Publication component should render 1`] = `
               </h5>
             </div>
             <div
-              class="info-list__item__content"
+              class="info-list__content"
             >
               <em>
                 Reptile species of the family Testudinidae of the order Testudines (the turtles).
@@ -120,7 +120,7 @@ exports[`Publication component should render 1`] = `
             class="info-list__item"
           >
             <div
-              class="info-list__item__title"
+              class="info-list__title"
             >
               <h5
                 class="bold"
@@ -129,7 +129,7 @@ exports[`Publication component should render 1`] = `
               </h5>
             </div>
             <div
-              class="info-list__item__content"
+              class="info-list__content"
             >
               Charles really liked them.
             </div>

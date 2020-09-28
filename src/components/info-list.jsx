@@ -1,23 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import '../styles/components/info-list.scss';
 
-const InfoList = ({ infoData, columns, isCompact, highlightFirstItem }) => (
+const InfoList = ({
+  infoData,
+  columns,
+  isCompact,
+  highlightFirstItem,
+  noTitles,
+}) => (
   <div
-    className={`info-list${columns ? ' info-list--columns' : ''} ${
-      isCompact ? 'info-list--compact' : ''
-    }`}
+    className={classNames(
+      'info-list',
+      { 'info-list--columns': columns },
+      { 'info-list--compact': isCompact },
+      { 'info-list--no-title': noTitles }
+    )}
   >
     {infoData.map(
       // Only draw if there is content
       (item, index) =>
         item.content && (
           <div className="info-list__item" key={item.title}>
-            <div className="info-list__item__title">
+            <div className="info-list__title">
               <h5 className="bold">{item.title}</h5>
             </div>
-            <div className="info-list__item__content">
+
+            <div className="info-list__content">
               {index === 0 && highlightFirstItem ? (
                 <strong>{item.content}</strong>
               ) : (
@@ -50,12 +61,20 @@ InfoList.propTypes = {
    * as a compact list
    */
   isCompact: PropTypes.bool,
+  /**
+   * Should the first content item in the InfoList be bold
+   */
   highlightFirstItem: PropTypes.bool,
+  /**
+   * Display titles or not
+   */
+  noTitles: PropTypes.bool,
 };
 
 InfoList.defaultProps = {
   columns: false,
   isCompact: false,
+  noTitles: false,
   highlightFirstItem: false,
 };
 

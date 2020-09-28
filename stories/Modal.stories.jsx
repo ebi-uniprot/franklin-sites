@@ -1,9 +1,11 @@
 import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
+import { action } from '@storybook/addon-actions';
+
 import { ButtonModal } from '../src/components';
 
 export default {
-  title: 'Layout|Modal',
+  title: 'Layout/Modal',
   parameters: {
     purposeFunction: {
       purpose: 'Display extra contextual information, offer the user choices',
@@ -14,7 +16,11 @@ export default {
 };
 
 export const modal = () => (
-  <ButtonModal buttonText="click me" title="My great modal window">
+  <ButtonModal
+    buttonText="click me"
+    title="Example modal window"
+    onWindowOpen={action('hello')}
+  >
     {loremIpsum(45)}
   </ButtonModal>
 );

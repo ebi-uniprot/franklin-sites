@@ -1,17 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
+import classNames from 'classnames';
 
 import '../styles/components/card.scss';
 
-const CardLink = ({ name, link, color, includeSeparator }) => (
-  <span
-    className={`card__link ${includeSeparator && 'card__link--separator'}`}
-    style={color ? { borderColor: color, borderBottom: '0.125rem solid' } : {}}
-  >
-    <Link to={link}>{name}</Link>
-  </span>
-);
+const CardLink = ({ name, link, color, includeSeparator }) => {
+  const match = useRouteMatch(link);
+  return (
+    <span
+      className={classNames('card__link', {
+        'card__link--separator': includeSeparator,
+        'card__link--active': match,
+      })}
+      style={color ? { borderBottom: `0.125rem solid ${color}` } : {}}
+    >
+      <Link to={link}>{name}</Link>
+    </span>
+  );
+};
 
 CardLink.propTypes = {
   name: PropTypes.string.isRequired,
@@ -25,37 +32,46 @@ CardLink.defaultProps = {
   includeSeparator: false,
 };
 
-const Card = ({ title, subtitle, children, links, onClick }) => {
-  const containerAttributes = onClick
-    ? {
-        className: ' card--has-hover',
-        onClick,
-        onKeyDown: onClick,
-        role: 'button',
-        tabIndex: 0,
-      }
-    : {};
-  return (
-    <div className="card">
-      <section {...containerAttributes}>
-        {title && (
-          <div className="card__header">
-            <h2 className="card__title">{title}</h2>
-            {subtitle && <div className="card__subtitle">{subtitle}</div>}
-          </div>
-        )}
-        <div className="card__content">{children}</div>
-      </section>
-      {links.length > 0 && (
-        <section className="card__actions">
-          {links.map((l, i) => (
-            <CardLink key={l.name} {...l} includeSeparator={i > 0} />
-          ))}
+const Card = React.forwardRef(
+  (
+    { title, subtitle, children, links, onClick, onKeyDown, active, ...props },
+    ref
+  ) => {
+    const containerAttributes = onClick
+      ? {
+          className: ' card--has-hover',
+          onClick,
+          onKeyDown,
+          role: 'button',
+          tabIndex: 0,
+        }
+      : {};
+    return (
+      <div
+        className={classNames('card', { 'card--active': active })}
+        ref={ref}
+        {...props}
+      >
+        <section {...containerAttributes}>
+          {title && (
+            <div className="card__header">
+              <h2 className="card__title">{title}</h2>
+              {subtitle && <div className="card__subtitle">{subtitle}</div>}
+            </div>
+          )}
+          <div className="card__content">{children}</div>
         </section>
-      )}
-    </div>
-  );
-};
+        {links.length > 0 && (
+          <section className="card__actions">
+            {links.map((l, i) => (
+              <CardLink key={l.name} {...l} includeSeparator={i > 0} />
+            ))}
+          </section>
+        )}
+      </div>
+    );
+  }
+);
 
 Card.propTypes = {
   /**
@@ -85,6 +101,11 @@ Card.propTypes = {
     })
   ),
   onClick: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  /**
+   * Should the card styling show it as active or not
+   */
+  active: PropTypes.bool,
 };
 
 Card.defaultProps = {
@@ -92,6 +113,8 @@ Card.defaultProps = {
   subtitle: '',
   links: [],
   onClick: null,
+  onKeyDown: null,
+  active: false,
 };
 
 export default Card;

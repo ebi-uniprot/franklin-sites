@@ -71,6 +71,7 @@
 
   @include box-shadow();
   display: none;
+  overflow-y: auto;
   white-space: nowrap;
   position: absolute;
   background: #fff;
@@ -136,4 +137,14 @@
 
 .dropdown-menu-open {
   display: block;
+  animation: 200ms reveal;
+}
+
+@keyframes reveal {
+  from {
+    clip-path: circle(0% at 50% 0%);
+  }
+  to {
+    clip-path: circle(100% at 50% 0%);
+  }
 }

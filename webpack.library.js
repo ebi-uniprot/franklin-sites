@@ -1,7 +1,9 @@
 const webpack = require('webpack');
+
 const path = require('path');
+
+// what are those doing here?
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -47,7 +49,9 @@ module.exports = [
             {
               loader: 'sass-loader',
               options: {
-                includePaths: [path.resolve(__dirname, 'src/styles')],
+                sassOptions: {
+                  includePaths: [path.resolve(__dirname, 'src/styles')],
+                },
               },
             },
           ],

@@ -1,54 +1,76 @@
-import React, { createRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
+
 import '../styles/components/dropdown.scss';
 
 const DropdownButton = ({ children, label, className }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [buttonHeight, setButtonHeight] = useState(0);
-  const buttonRef = createRef();
-  const containerRef = createRef();
+  const [size, setSize] = useState();
 
-  const handleClick = useCallback(
-    e => {
-      if (containerRef.current && containerRef.current.contains(e.target)) {
+  const ref = useRef();
+  const dropdownRef = useRef();
+
+  const childType = typeof children;
+
+  // effect to handle a click on anything closing the dropdown
+  useEffect(() => {
+    if (!showMenu) {
+      return;
+    }
+
+    const listener = (event) => {
+      if (
+        !ref.current ||
+        ref.current.contains(event.target) ||
+        (childType === 'function' && dropdownRef.current.contains(event.target))
+      ) {
         return;
       }
       setShowMenu(false);
-    },
-    [containerRef]
-  );
+    };
+
+    window.document.addEventListener('mouseup', listener);
+    window.document.addEventListener('touchend', listener);
+    // eslint-disable-next-line consistent-return
+    return () => {
+      window.document.removeEventListener('mouseup', listener);
+      window.document.removeEventListener('touchend', listener);
+    };
+  }, [showMenu, childType]);
 
   useEffect(() => {
-    if (buttonRef.current) {
-      const { height } = buttonRef.current.getBoundingClientRect();
-      setButtonHeight(height);
+    if (ref.current && showMenu) {
+      setSize(ref.current.getBoundingClientRect());
     }
-    if (containerRef.current) {
-      document.addEventListener('mousedown', handleClick, false);
+  }, [showMenu]);
+
+  const style = useMemo(() => {
+    if (!size) {
+      return undefined;
     }
-    const cleanUp = () => {
-      document.removeEventListener('mousedown', handleClick);
-    };
-    return cleanUp;
-  }, [buttonRef, containerRef, handleClick]);
+    const availableHeight = window.innerHeight - size.bottom;
+    return { top: size.height, maxHeight: availableHeight };
+  }, [size]);
 
   return (
-    <div className="dropdown-container" ref={containerRef}>
+    <div className="dropdown-container">
       <button
         type="button"
         className={`button dropdown ${className}`}
-        onClick={() => setShowMenu(!showMenu)}
-        ref={buttonRef}
+        onClick={() => setShowMenu((showMenu) => !showMenu)}
+        ref={ref}
       >
         {label}
       </button>
       <div
-        className={
-          showMenu ? 'dropdown-menu dropdown-menu-open' : 'dropdown-menu'
-        }
-        style={{ top: buttonHeight }}
+        className={cn('dropdown-menu', {
+          'dropdown-menu-open': showMenu,
+        })}
+        ref={dropdownRef}
+        style={style}
       >
-        {typeof children === 'function' ? children(setShowMenu) : children}
+        {childType === 'function' ? children(setShowMenu) : children}
       </div>
     </div>
   );
@@ -56,9 +78,7 @@ const DropdownButton = ({ children, label, className }) => {
 
 DropdownButton.propTypes = {
   /**
-   * Content revealed on click. If the children need to control the open/close state of
-   * the dropdown menu then the child can be a function with setShowDropdownMenu as the
-   * argument.
+   * Content revealed on click.
    */
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
   /**

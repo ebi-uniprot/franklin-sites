@@ -3,7 +3,7 @@ import { loremIpsum } from 'lorem-ipsum';
 import { Window } from '../src/components';
 
 export default {
-  title: 'Layout|Window',
+  title: 'Layout/Window',
   parameters: {
     purposeFunction: {
       purpose:
@@ -16,8 +16,6 @@ export default {
 
 export const window = () => (
   <Window
-    width="20rem"
-    heigh="15rem"
     title="Alert"
     key="full-featured-window"
     withHeaderCloseButton

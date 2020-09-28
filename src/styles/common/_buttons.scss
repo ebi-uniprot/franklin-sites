@@ -31,8 +31,8 @@
     padding: 0;
     line-height: 1.6;
     text-align: left;
-    &.disabled:hover {
-      color: $colour-platinum;
+    &:hover:disabled {
+      color: $colour-sapphire-blue;
       background-color: $colour-sky-white;
     }
     svg {

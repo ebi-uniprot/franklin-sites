@@ -19,9 +19,7 @@ class AutocompleteItem extends Component {
   }
 
   render() {
-    const {
-      item, active, substringToHighlight, handleOnClick,
-    } = this.props;
+    const { item, active, substringToHighlight, handleOnClick } = this.props;
     return (
       <li
         ref={(node) => {
@@ -31,7 +29,7 @@ class AutocompleteItem extends Component {
       >
         <button
           type="button"
-          onClick={e => handleOnClick(item, e)}
+          onClick={(e) => handleOnClick(item, e)}
           className={active ? 'hover' : ''}
         >
           {substringToHighlight
@@ -47,6 +45,7 @@ AutocompleteItem.propTypes = {
   item: PropTypes.shape({
     pathLabel: PropTypes.string.isRequired,
     itemLabel: PropTypes.string.isRequired,
+    // eslint-disable-next-line react/forbid-prop-types
     items: PropTypes.array,
   }).isRequired,
   active: PropTypes.bool.isRequired,

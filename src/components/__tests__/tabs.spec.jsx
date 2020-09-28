@@ -1,45 +1,74 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
-import Tabs from '../tabs';
+import '@testing-library/jest-dom/extend-expect';
+
+import { Tabs, Tab } from '../tabs';
+
+jest.mock('uuid', () => {
+  return {
+    v1: jest.fn(() => 'abcd'),
+  };
+});
 
 afterEach(cleanup);
 
-const props = {
-  tabData: [
-    {
-      title: <div>Title 1</div>,
-      content: 'blah',
-      id: 'id1',
-    },
-    {
-      title: 'Title 2',
-      content: 'blaher',
-      id: 'id2',
-    },
-    {
-      title: 'Title 3',
-      content: 'blahest',
-      id: 'id3',
-    },
-  ],
-};
-
 describe('Tabs', () => {
   test('should render', () => {
-    const { asFragment } = render(<Tabs {...props} />);
+    const { asFragment } = render(
+      <Tabs>
+        <Tab title={<div>Title 1</div>}>blah</Tab>
+        <Tab title="Title 2">blaher</Tab>
+        <Tab title="Title 3">blahest</Tab>
+      </Tabs>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render other default tab', () => {
+    const { asFragment } = render(
+      <Tabs>
+        <Tab title={<div>Title 1</div>}>blah</Tab>
+        <Tab title="Title 2">blaher</Tab>
+        <Tab title="Title 3" defaultSelected>
+          blahest
+        </Tab>
+      </Tabs>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render tabs and pass extra props', () => {
+    const { asFragment } = render(
+      <Tabs data-value="value">
+        <Tab title={<div>Title 1</div>} aria-label="blah!">
+          blah
+        </Tab>
+        <Tab title="Title 2">blaher</Tab>
+        <Tab title="Title 3" className="merged-class" data-key="3">
+          blahest
+        </Tab>
+      </Tabs>
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('should show corresponding content when 2nd tab title is clicked', () => {
-    const { queryAllByTestId } = render(<Tabs {...props} />);
+    const { queryAllByTestId, queryByTestId } = render(
+      <Tabs active="b">
+        <Tab id="a" title={<div>Title 1</div>}>
+          blah
+        </Tab>
+        <Tab id="b" title="Title 2">
+          blaher
+        </Tab>
+        <Tab id="c" title="Title 3">
+          blahest
+        </Tab>
+      </Tabs>
+    );
     const title = queryAllByTestId('tab-title');
     fireEvent.click(title[1]);
-    const content = queryAllByTestId('tab-content');
-    const firstTabClasses = Object.values(content[0].classList);
-    const secondTabClasses = Object.values(content[1].classList);
-    const thirdTabClasses = Object.values(content[2].classList);
-    expect(firstTabClasses).toEqual(['tabs__content']);
-    expect(secondTabClasses).toEqual(['tabs__content', 'tabs__content--active']);
-    expect(thirdTabClasses).toEqual(['tabs__content']);
+    const content = queryByTestId('tab-content');
+    expect(content).toHaveTextContent('blaher');
   });
 });

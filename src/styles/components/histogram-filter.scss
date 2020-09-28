@@ -1,0 +1,51 @@
+@import '../colours';
+
+.histogram-filter {
+  &__histogram-rheostat-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .DefaultHandle_handle {
+      background-color: white;
+      border: 1px solid $colour-weldon-blue;
+      border-radius: 100%;
+      cursor: ew-resize;
+      top: -0.6rem;
+    }
+
+    .DefaultProgressBar_progressBar {
+      background-color: $colour-weldon-blue;
+      height: 0.1rem;
+    }
+
+    .DefaultBackground_background__horizontal {
+      height: 0.1rem;
+      top: 0;
+      left: -1px;
+    }
+  }
+
+  &__text-input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+
+    input {
+      text-align: center;
+      border-radius: 0.5rem;
+      border: 1px solid $colour-weldon-blue;
+      display: inline-block;
+      color: $colour-weldon-blue;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+}

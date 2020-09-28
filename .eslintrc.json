@@ -8,6 +8,20 @@
     "jest": true
   },
   "rules": {
+    "implicit-arrow-linebreak": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          ".storybook/**",
+          "stories/**",
+          "./src/addons/**",
+          "**/*.spec.jsx",
+          "./src/mock-data/**"
+        ]
+      }
+    ],
+    "no-shadow": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -16,21 +30,13 @@
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
     ],
+    "react/jsx-wrap-multilines": "off",
     "react/no-did-update-set-state": "off",
-    "implicit-arrow-linebreak": "off",
+    "react/jsx-one-expression-per-line": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-filename-extension": "disable",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          ".storybook/**",
-          "stories/**",
-          "./src/addons/**",
-          "**/*.spec.jsx"
-        ]
-      }
-    ]
+    "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
+    "jest/no-mocks-import": "off"
   }
 }

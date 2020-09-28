@@ -6,13 +6,16 @@ exports[`Message component should render 1`] = `
     class="message message--info"
     role="status"
   >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
     <section
       class="message__content"
     >
-      <test-file-stub
-        height="1.125em"
-        width="1.125em"
-      />
       <small>
         <div>
           Some content
@@ -29,13 +32,71 @@ exports[`Message component should render with a different level 1`] = `
     class="message message--failure"
     role="status"
   >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
     <section
       class="message__content"
     >
-      <test-file-stub
-        height="1.125em"
-        width="1.125em"
-      />
+      <small>
+        <div>
+          Some content
+        </div>
+      </small>
+    </section>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Message component should render with a subtitle 1`] = `
+<DocumentFragment>
+  <div
+    class="message message--info"
+    role="status"
+  >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
+    <section
+      class="message__content"
+    >
+      <small>
+        <div>
+          Some content
+        </div>
+      </small>
+    </section>
+    <div
+      class="message__subtitle"
+    >
+      <div>
+        test
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Message component should render without default icon 1`] = `
+<DocumentFragment>
+  <div
+    class="message message--info"
+    role="status"
+  >
+    <div
+      class="message__side-border"
+    />
+    <section
+      class="message__content"
+    >
       <small>
         <div>
           Some content

@@ -3,7 +3,7 @@ import { Publication } from '../src/components';
 import publicationData from '../src/components/__mocks__/publications';
 
 export default {
-  title: 'Biocomponents|Publication',
+  title: 'Biocomponents/Publication',
   parameters: {
     purposeFunction: {
       purpose: '',

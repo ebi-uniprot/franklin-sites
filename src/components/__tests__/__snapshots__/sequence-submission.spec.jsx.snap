@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SequenceSubmission should render 1`] = `
+<DocumentFragment>
+  <textarea
+    class="sequence-submission-input"
+    data-testid="sequence-submission-input"
+    spellcheck="false"
+  />
+</DocumentFragment>
+`;
+
+exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
+<DocumentFragment>
+  <textarea
+    class="sequence-submission-input"
+    data-testid="sequence-submission-input"
+    spellcheck="false"
+  >
+    ACTGUACTGUACTGU+
+  </textarea>
+  <div
+    class="message message--info"
+    role="status"
+  >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
+    <section
+      class="message__content"
+    >
+      <small>
+        Your input contains 1 sequence
+      </small>
+    </section>
+  </div>
+  <div
+    class="message message--failure"
+    data-testid="sequence-submission-error"
+    role="status"
+  >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      height="1.125em"
+      width="1.125em"
+    />
+    <section
+      class="message__content"
+    >
+      <small>
+        <code>
+          sequence 1
+        </code>
+        : The sequence is invalid
+      </small>
+    </section>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SequenceSubmission should render with sequence is missing error 1`] = `
+<DocumentFragment>
+  <textarea
+    class="sequence-submission-input"
+    data-testid="sequence-submission-input"
+    spellcheck="false"
+  >
+                
+  </textarea>
+</DocumentFragment>
+`;

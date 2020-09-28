@@ -1,12 +1,11 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { MemoryRouter, useLocation } from 'react-router-dom';
+
 import { Facets } from '../src/components';
 import facetData from '../src/mock-data/facetData';
 
-const selectedFacets = [{ name: 'facet_2', value: 'value_2' }];
-
 export default {
-  title: 'Data|Facets',
+  title: 'Data/Facets',
   parameters: {
     purposeFunction: {
       purpose:
@@ -17,11 +16,37 @@ export default {
   },
 };
 
+const Demo = () => {
+  const location = useLocation();
+
+  const extraActionsFor = new Map([
+    [
+      'long_facet',
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
+      <a className="button tertiary expandable-list__action">
+        Link to somewhere
+      </a>,
+    ],
+  ]);
+
+  return (
+    <>
+      <code style={{ margin: '0 1ch' }}>
+        pathname: {location.pathname + location.search}
+      </code>
+      <div style={{ border: '1px solid black', padding: '1ch' }}>
+        <Facets data={facetData} extraActionsFor={extraActionsFor} />
+      </div>
+    </>
+  );
+};
+
 export const facets = () => (
-  <Facets
-    data={facetData}
-    selectedFacets={selectedFacets}
-    addFacet={action('addFacet')}
-    removeFacet={action('removeFacet')}
-  />
+  <MemoryRouter
+    initialEntries={[
+      '/initial/path/id1?facets=facet_2%3Avalue_2&other_field&yet_another=value',
+    ]}
+  >
+    <Demo />
+  </MemoryRouter>
 );
