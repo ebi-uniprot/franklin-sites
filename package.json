@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.71",
+  "version": "0.0.74",
   "main": "./dist/franklin-components.js",
   "files": [
     "src",
@@ -31,6 +31,9 @@
     "transform": {
       "^.+\\.(jsx|js)?$": "babel-jest"
     },
+    "testPathIgnorePatterns": [
+      "/src/testHelpers/expectToThrowNoConsole.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "jsx"
