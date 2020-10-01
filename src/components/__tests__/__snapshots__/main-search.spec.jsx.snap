@@ -32,7 +32,7 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
       class="dropdown-container"
     >
       <button
-        class="button dropdown "
+        class="button dropdown"
         type="button"
       />
       <div
