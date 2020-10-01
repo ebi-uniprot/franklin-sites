@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 import '../styles/components/in-page-nav.scss';
 
-const GRANULARITY = 21;
+const GRANULARITY = 6;
 
 const InPageNav = ({ sections, rootElement }) => {
   const history = useHistory();
