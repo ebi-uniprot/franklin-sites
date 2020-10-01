@@ -10962,13 +10962,6 @@ react-router-dom@^5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router-hash-link@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-router-hash-link/-/react-router-hash-link-2.0.0.tgz#c0baade5cb0957f4c6da4519f7992c825f1b3b35"
-  integrity sha512-vAiiHUhPcT5NYwKutvbAgHR2HXoESkTyaeXQaW1cmVwZujhmHEfaXRh28uS52jQaja/S+Xrc0aFizfljY7rvAw==
-  dependencies:
-    prop-types "^15.6.0"
-
 react-router@5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.2.0.tgz#424e75641ca8747fbf76e5ecca69781aa37ea293"
@@ -12649,6 +12642,11 @@ timers-browserify@^2.0.4:
   integrity sha512-60aV6sgJ5YEbzUdn9c8kYGIqOubPoUdqQCul3SBAsRCZ40s6Y5cMcrW4dt3/k/EsbLVJNl9n6Vz3fTc+k2GeKQ==
   dependencies:
     setimmediate "^1.0.4"
+
+timing-functions@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/timing-functions/-/timing-functions-2.0.0.tgz#ce31caf2c87e6e99e6d7c1cb67226495f9934c50"
+  integrity sha512-UEGnoCxgmlttVetfXJz9gtmp/dDBnZTNcrniTfVDu8RQYMVoBGtY7fzew5kAzrqhi/dOrPRC2mlTC5CI6WIilA==
 
 tiny-emitter@^2.0.0:
   version "2.1.0"

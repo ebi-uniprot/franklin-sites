@@ -54,6 +54,7 @@ const content = [
 
 const Demo = () => {
   const history = useHistory();
+  const location = useLocation();
 
   return (
     <>
@@ -67,7 +68,8 @@ const Demo = () => {
       </button>
       <code style={{ margin: '0 1ch' }}>
         pathname:
-        {history.location.pathname}
+        {location.pathname}
+        {location.hash}
       </code>
       <button
         disabled={history.index + 1 === history.length}
@@ -80,22 +82,18 @@ const Demo = () => {
       <div style={{ border: '1px solid black' }}>
         <div style={{ height: '200px', display: 'flex' }}>
           <div style={{ width: '200px' }}>
-            <InPageNav
-              sections={sections}
-              path="/initial/path/:section"
-              slug="section"
-            />
+            <InPageNav sections={sections} rootElement=".main-content" />
           </div>
-          <main style={{ overflow: 'scroll' }}>
-            <section data-location="id1">
+          <main className="main-content" style={{ overflow: 'scroll' }}>
+            <section id="id1">
               <h1>first section</h1>
               {content[0]}
             </section>
-            <section data-location="id2">
+            <section id="id2">
               <h1>second section</h1>
               {content[1]}
             </section>
-            <section data-location="id4">
+            <section id="id4">
               <h1>fourth section</h1>
               {content[2]}
             </section>
@@ -107,7 +105,7 @@ const Demo = () => {
 };
 
 export const inPageNav = () => (
-  <MemoryRouter initialEntries={['/initial/path/id1']}>
+  <MemoryRouter initialEntries={['/initial/path']}>
     <Demo />
   </MemoryRouter>
 );

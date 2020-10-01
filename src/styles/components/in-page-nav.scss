@@ -47,9 +47,8 @@
     position: absolute;
     left: 0.25rem;
     top: 0;
-    bottom: 0;
-    background: currentColor;
     height: 1px;
+    background: currentColor;
     width: 0.1rem;
     transform-origin: top;
     display: none; /* feature check in javascript before displaying */

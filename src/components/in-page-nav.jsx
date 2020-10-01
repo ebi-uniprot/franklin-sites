@@ -1,82 +1,134 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, useHistory, useRouteMatch } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { sleep, schedule } from 'timing-functions';
+import cn from 'classnames';
+
 import '../styles/components/in-page-nav.scss';
 
-const InPageNav = ({ sections, path, slug }) => {
+const GRANULARITY = 21;
+
+const InPageNav = ({ sections, rootElement }) => {
   const history = useHistory();
-  const match = useRouteMatch(path);
 
-  const elementVisibility = useRef();
-  const clickFlag = useRef(false);
+  const [active, setActive] = useState(sections[0].id);
+
   const marker = useRef();
-
-  const sectionName = match.params[slug];
-
-  // set a flag to ignore scroll-related events for 500ms
-  const markScrolling = useCallback(() => {
-    if (clickFlag.current) clearTimeout(clickFlag.current);
-    clickFlag.current = setTimeout(() => {
-      clickFlag.current = false;
-    }, 500);
-  }, []);
+  const firstMarkerRender = useRef(true);
 
   // effect to connect user changes in scroll to browser history
   useEffect(() => {
     // get elements to watch from configured sections
-    const elements = sections
-      .map(section => document.querySelector(`[data-location="${section.id}"]`))
-      .filter(Boolean);
-    // add them to a map keeping there visibility state
-    elementVisibility.current = new Map(
-      elements.map(element => [element, true])
-    );
+    let elements = [];
 
-    const replaceSlugRE = new RegExp(`:${slug}`);
     // Intersection Observer to watch when sections appear/disappear
-    const io = new IntersectionObserver(entries => {
-      // update the visibility map
-      entries.forEach(entry =>
-        elementVisibility.current.set(entry.target, entry.isIntersecting)
-      );
-      // if we are still withing a small time after a click, we ignore
-      if (clickFlag.current) return;
-      // find the first section visible (even partially)
-      // eslint-disable-next-line no-restricted-syntax
-      const [firstVisible] =
-        Array.from(elementVisibility.current).find(([, visible]) => visible) ||
-        [];
-      if (!firstVisible) return; // 🤷🏽‍♂️
-      // get its location from "data-location" attribute
-      const { location } = firstVisible.dataset;
-      // calculate what would be the new path
-      const newPath = path.replace(replaceSlugRE, location);
-      // if it's the same than the current one, don't do anything
-      if (newPath === history.location.pathname) return;
-      // otherwise push a new entry in the browser history
-      history.push(newPath);
-    });
+    if (!('IntersectionObserver' in window)) {
+      // 🤷🏽‍♂️ too bad...
+      return;
+    }
 
-    // observe/unobserve logic
-    elements.forEach(element => io.observe(element));
-    return () => elements.forEach(element => io.unobserve(element));
-  }, [sections, path, slug, history]);
+    const visibilityMap = new Map();
 
-  // effect to connect user changes to history to sections displaying
-  useEffect(() => {
-    // find that scroll target section
-    const element = document.querySelector(
-      `[data-location="${decodeURI(sectionName)}"]`
+    const io = new window.IntersectionObserver(
+      (entries) => {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const entry of entries) {
+          // update the visibility map
+          visibilityMap.set(entry.target, entry.intersectionRatio);
+        }
+
+        let mostVisible;
+        let highestVisibility = 0;
+        // eslint-disable-next-line no-restricted-syntax
+        for (const [element, intersectionRatio] of visibilityMap.entries()) {
+          // find the most visible element
+          if (highestVisibility < intersectionRatio) {
+            highestVisibility = intersectionRatio;
+            mostVisible = element;
+          }
+          // stop at the first element completely visible
+          if (intersectionRatio === 1) {
+            break;
+          }
+        }
+
+        if (mostVisible) {
+          setActive(mostVisible.id);
+        }
+      },
+      {
+        threshold: Array.from({ length: GRANULARITY }).map(
+          (_, i) => i / (GRANULARITY - 1)
+        ),
+      }
     );
 
-    if (!element) return;
+    // sleep, to give the rest of the page a chance to start loading
+    // schedule, to trigger only when the page has finished doing work
+    // hopefully by then all the components are loaded
+    sleep(100)
+      .then(() => schedule(1000))
+      .then(() => {
+        // get elements to watch from configured sections
+        elements = sections
+          .map(({ id }) => document.querySelector(`#${id}`))
+          .filter(Boolean);
 
-    // scroll to its position
-    element.scrollIntoView({ behavior: 'smooth' });
-  }, [sectionName]);
+        // eslint-disable-next-line no-restricted-syntax
+        for (const element of elements) {
+          io.observe(element);
+          visibilityMap.set(element, 0);
+        }
+      });
 
+    // eslint-disable-next-line consistent-return
+    return () => elements.forEach((element) => io.unobserve(element));
+  }, [sections, history]);
+
+  // listen for changes in location hash to move corresponding element into view
   useEffect(() => {
-    if (!(marker.current && marker.current.animate)) return;
+    const unlisten = history.listen((location) => {
+      const hash = location.hash.replace('#', '');
+      if (hash) {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      } else if (rootElement) {
+        document
+          .querySelector(rootElement)
+          ?.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    return unlisten;
+  }, [history, rootElement]);
+
+  // move element into view on mount
+  useEffect(() => {
+    const hash = history.location.hash.replace('#', '');
+    if (!hash) {
+      // no hash to navigate to
+      return;
+    }
+    // sleep, to give the rest of the page a chance to start loading
+    // schedule, to trigger only when the page has finished doing work
+    // hopefully by then all the components are loaded and in their right space
+    sleep(100)
+      .then(() => schedule(1000))
+      .then(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      });
+  }, [history]); // history won't change, unlike location
+
+  // move active marker
+  useEffect(() => {
+    // don't display an active marker if browser support is bad
+    if (
+      !(
+        marker.current &&
+        marker.current.animate &&
+        'IntersectionObserver' in window
+      )
+    ) {
+      return;
+    }
 
     const target = marker.current.parentElement.querySelector('.active');
     if (!target) return;
@@ -99,27 +151,23 @@ const InPageNav = ({ sections, path, slug }) => {
         ],
       },
       {
-        duration: 500,
-        easing: 'cubic-bezier(.5,0,.35,1.25)',
+        duration: firstMarkerRender.current ? 0 : 250,
+        // easing: 'cubic-bezier(.5,0,.35,1.25)', // overshoot
+        easing: 'linear',
         fill: 'both',
       }
     );
-
-    markScrolling();
-  }, [history.location.pathname, markScrolling]);
+    firstMarkerRender.current = false;
+  }, [active]);
 
   return (
     <ul className="in-page-nav">
       <div ref={marker} className="marker" />
-      {sections.map(section => (
-        <li key={section.label} className={section.disabled && 'disabled'}>
-          <NavLink
-            to={`${section.id}`}
-            activeClassName="active"
-            onClick={markScrolling}
-          >
-            {section.label}
-          </NavLink>
+      {sections.map(({ id, label, disabled }) => (
+        <li key={label} className={cn({ disabled })}>
+          <Link to={`#${id}`} className={cn({ active: active === id })}>
+            {label}
+          </Link>
         </li>
       ))}
     </ul>
@@ -127,9 +175,18 @@ const InPageNav = ({ sections, path, slug }) => {
 };
 
 InPageNav.propTypes = {
-  sections: PropTypes.arrayOf(PropTypes.object).isRequired,
-  path: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      disabled: PropTypes.bool,
+    })
+  ).isRequired,
+  rootElement: PropTypes.string,
+};
+
+InPageNav.defaultProps = {
+  rootElement: undefined,
 };
 
 export default InPageNav;
