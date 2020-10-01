@@ -8,16 +8,22 @@ exports[`InPageNav component should render 1`] = `
     <div
       class="marker"
     />
-    <li>
+    <li
+      class=""
+    >
       <a
-        href="/id1"
+        class="active"
+        href="/#id1"
       >
         First link
       </a>
     </li>
-    <li>
+    <li
+      class=""
+    >
       <a
-        href="/id2"
+        class=""
+        href="/#id2"
       >
         Second link
       </a>
@@ -26,7 +32,8 @@ exports[`InPageNav component should render 1`] = `
       class="disabled"
     >
       <a
-        href="/id3"
+        class=""
+        href="/#id3"
       >
         Third link
       </a>
