@@ -5,8 +5,11 @@ import MainSearch from '../main-search';
 describe('MainSearch component', () => {
   const handleSubmit = jest.fn();
   const handleChange = jest.fn();
-  const props = { onChange: handleChange, onSubmit: handleSubmit };
-  const namespaces = ['one', 'two', 'three'];
+  const props = {
+    onChange: handleChange,
+    onSubmit: handleSubmit,
+  };
+  const namespaces = { one: 'One', two: 'Two', three: 'Three' };
 
   test('should render', () => {
     const { asFragment } = render(<MainSearch {...props} />);
@@ -14,7 +17,9 @@ describe('MainSearch component', () => {
   });
 
   test('should render with namespaces selector', () => {
-    const { asFragment } = render(<MainSearch {...props} namespaces={namespaces} />);
+    const { asFragment } = render(
+      <MainSearch {...props} namespaces={namespaces} selectedNamespace="one" />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
