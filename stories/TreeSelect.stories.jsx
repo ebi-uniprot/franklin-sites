@@ -1,6 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+
 import { TreeSelect } from '../src/components';
+
 import { treeData } from '../src/mock-data/tree-data';
 
 export default {
@@ -14,12 +16,7 @@ export default {
 };
 
 export const treeSelect = () => (
-  <TreeSelect
-    data={treeData}
-    onSelect={action('onSelect')}
-    autocompletePlaceholder="Search for item"
-    autocompleteFilter
-  />
+  <TreeSelect data={treeData} onSelect={action('onSelect')} />
 );
 
 export const treeSelectWithAutocomplete = () => (

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
+
 import {
   getFlattenedPaths,
   restructureFlattenedTreeDataForAutocomplete,
 } from '../utils';
 import DropdownButton from './dropdown-button';
 import Autocomplete from './autocomplete';
+
 import '../styles/components/tree-select.scss';
 
 const TreeSelect = ({
@@ -14,9 +17,11 @@ const TreeSelect = ({
   autocomplete,
   autocompletePlaceholder,
   autocompleteFilter,
-  value,
+  defaultActiveNodes,
+  label,
+  className,
 }) => {
-  const [activeNodes, setActiveNodes] = useState([]);
+  const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
   const [openNodes, setOpenNodes] = useState([]);
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] = useState(
     false
@@ -44,13 +49,13 @@ const TreeSelect = ({
   };
 
   const buildTree = (items, setShowDropdownMenu, open) => (
-    <ul className={open ? 'open' : ''}>
+    <ul className={cn({ open })}>
       {items.map((node) => (
-        <li key={node.id} className={node.items ? 'branch' : ''}>
+        <li key={node.id} className={cn({ branch: node.items })}>
           <button
             type="button"
             onClick={(e) => handleNodeClick(node, setShowDropdownMenu, e)}
-            className={activeNodes.includes(node.id) ? 'active' : ''}
+            className={cn({ active: activeNodes.includes(node.id) })}
           >
             {node.label}
           </button>
@@ -66,7 +71,7 @@ const TreeSelect = ({
   );
 
   return (
-    <DropdownButton label={value ? value.label : 'Select'}>
+    <DropdownButton label={label || 'Select'} className={className}>
       {(setShowDropdownMenu) => (
         <>
           {autocomplete && (
@@ -111,16 +116,26 @@ TreeSelect.propTypes = {
   autocompletePlaceholder: PropTypes.string,
   autocompleteFilter: PropTypes.bool,
   /**
-   * The selected value
+   * The displayed label on the button
    */
-  value: PropTypes.shape({ label: PropTypes.string }),
+  label: PropTypes.string,
+  /**
+   * Additional CSS classnames to apply to button (eg secondary, tertiary)
+   */
+  className: PropTypes.string,
+  /**
+   * Array of default active nodes for initialisation
+   */
+  defaultActiveNodes: PropTypes.arrayOf(PropTypes.string),
 };
 
 TreeSelect.defaultProps = {
   autocomplete: false,
   autocompletePlaceholder: '',
   autocompleteFilter: true,
-  value: undefined,
+  label: undefined,
+  className: undefined,
+  defaultActiveNodes: [],
 };
 
 export default TreeSelect;

@@ -57,7 +57,7 @@ const DropdownButton = ({ children, label, className }) => {
     <div className="dropdown-container">
       <button
         type="button"
-        className={`button dropdown ${className}`}
+        className={cn('button', 'dropdown', className)}
         onClick={() => setShowMenu((showMenu) => !showMenu)}
         ref={ref}
       >
@@ -92,7 +92,7 @@ DropdownButton.propTypes = {
 };
 
 DropdownButton.defaultProps = {
-  className: '',
+  className: undefined,
 };
 
 export default DropdownButton;

@@ -1,4 +1,4 @@
-@import "./dropdown";
+@import './dropdown';
 
 .dropdown-menu__panel ul {
   li {
@@ -6,13 +6,12 @@
       width: 0;
       height: 0;
       border: inset 0.4rem;
-      content: "";
+      content: '';
       border-right-width: 0;
       border-left-style: solid;
       border-color: transparent transparent transparent $colour-yankees-blue;
       position: relative;
       top: 0.4rem;
-      display: inline-block;
       float: right;
       margin-left: 1rem;
     }
