@@ -2,40 +2,42 @@
 
 exports[`InPageNav component should render 1`] = `
 <DocumentFragment>
-  <div
+  <ul
     class="in-page-nav"
   >
-    <ul
+    <div
+      class="marker"
+    />
+    <li
       class=""
     >
-      <li
+      <a
+        class="active"
+        href="/#id1"
+      >
+        First link
+      </a>
+    </li>
+    <li
+      class=""
+    >
+      <a
         class=""
+        href="/#id2"
       >
-        <a
-          href="/#id1"
-        >
-          First link
-        </a>
-      </li>
-      <li
+        Second link
+      </a>
+    </li>
+    <li
+      class="disabled"
+    >
+      <a
         class=""
+        href="/#id3"
       >
-        <a
-          href="/#id2"
-        >
-          Second link
-        </a>
-      </li>
-      <li
-        class="in-page-nav--disabled"
-      >
-        <a
-          href="/#id3"
-        >
-          Third link
-        </a>
-      </li>
-    </ul>
-  </div>
+        Third link
+      </a>
+    </li>
+  </ul>
 </DocumentFragment>
 `;
