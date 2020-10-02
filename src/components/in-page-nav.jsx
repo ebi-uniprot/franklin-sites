@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
-import { sleep, schedule } from 'timing-functions';
+import { sleep, schedule, frame } from 'timing-functions';
 import cn from 'classnames';
 
 import '../styles/components/in-page-nav.scss';
@@ -89,13 +89,15 @@ const InPageNav = ({ sections, rootElement }) => {
   useEffect(() => {
     const unlisten = history.listen((location) => {
       const hash = location.hash.replace('#', '');
-      if (hash) {
-        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-      } else if (rootElement) {
-        document
-          .querySelector(rootElement)
-          ?.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      frame().then(() => {
+        if (hash) {
+          document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+        } else if (rootElement) {
+          document
+            .querySelector(rootElement)
+            ?.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
     });
     return unlisten;
   }, [history, rootElement]);
