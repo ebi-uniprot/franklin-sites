@@ -22,7 +22,7 @@ const DropdownButton = ({ children, label, className }) => {
     const listener = (event) => {
       if (
         !ref.current ||
-        ref.current.contains(event.target) ||
+        ref.current.parentElement.contains(event.target) ||
         (childType === 'function' && dropdownRef.current.contains(event.target))
       ) {
         return;
