@@ -48,7 +48,7 @@ InfoList.propTypes = {
   infoData: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      content: PropTypes.oneOfType([PropTypes.node]),
+      content: PropTypes.node,
     })
   ).isRequired,
   /**
