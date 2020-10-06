@@ -19,8 +19,7 @@ Tab.propTypes = {
   /**
    * Content of that tab
    */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.oneOfType([PropTypes.node]).isRequired,
   /**
    * Choose that tab as the default to be displayed
    */
@@ -60,7 +59,7 @@ export const Tabs = ({ children, active, className, ...props }) => {
     if (isManaged) {
       return active;
     }
-    const defaultSelected = tabs.filter(tab => tab.defaultSelected);
+    const defaultSelected = tabs.filter((tab) => tab.defaultSelected);
     if (defaultSelected.length) {
       if (defaultSelected.length > 1) {
         // eslint-disable-next-line no-console
@@ -74,7 +73,7 @@ export const Tabs = ({ children, active, className, ...props }) => {
   });
 
   const handleClick = useCallback(
-    event => {
+    (event) => {
       if (isManaged) {
         return;
       }
@@ -93,7 +92,7 @@ export const Tabs = ({ children, active, className, ...props }) => {
 
   const activeFromPropsOrState = isManaged ? active : selectedState;
 
-  const selectedTab = tabs.find(tab => tab.id === activeFromPropsOrState);
+  const selectedTab = tabs.find((tab) => tab.id === activeFromPropsOrState);
   if (!selectedTab) {
     throw new Error(`Could not find a tab with the id: "${selectedState}"`);
   }

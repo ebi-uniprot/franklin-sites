@@ -17,7 +17,7 @@ const sharedPropTypes = {
    */
   columns: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
+      label: PropTypes.node.isRequired,
       name: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
     })
