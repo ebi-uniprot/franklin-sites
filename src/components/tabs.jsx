@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
+import cn from 'classnames';
 
 import '../styles/components/tabs.scss';
 
@@ -11,7 +12,11 @@ Tab.propTypes = {
   /**
    * Title of that tab
    */
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
   /**
    * Optional ID for that tab, one of the expected options for the parent <Tabs> component
    */
@@ -19,8 +24,11 @@ Tab.propTypes = {
   /**
    * Content of that tab
    */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
   /**
    * Choose that tab as the default to be displayed
    */
@@ -60,7 +68,7 @@ export const Tabs = ({ children, active, className, ...props }) => {
     if (isManaged) {
       return active;
     }
-    const defaultSelected = tabs.filter(tab => tab.defaultSelected);
+    const defaultSelected = tabs.filter((tab) => tab.defaultSelected);
     if (defaultSelected.length) {
       if (defaultSelected.length > 1) {
         // eslint-disable-next-line no-console
@@ -74,7 +82,7 @@ export const Tabs = ({ children, active, className, ...props }) => {
   });
 
   const handleClick = useCallback(
-    event => {
+    (event) => {
       if (isManaged) {
         return;
       }
@@ -93,7 +101,7 @@ export const Tabs = ({ children, active, className, ...props }) => {
 
   const activeFromPropsOrState = isManaged ? active : selectedState;
 
-  const selectedTab = tabs.find(tab => tab.id === activeFromPropsOrState);
+  const selectedTab = tabs.find((tab) => tab.id === activeFromPropsOrState);
   if (!selectedTab) {
     throw new Error(`Could not find a tab with the id: "${selectedState}"`);
   }
@@ -110,7 +118,7 @@ export const Tabs = ({ children, active, className, ...props }) => {
   }
 
   return (
-    <div className={`tabs${className ? ` ${className}` : ''}`} {...props}>
+    <div className={cn('tabs', className)} {...props}>
       <div className="tabs__header" role="tablist">
         {tabs.map(
           ({
@@ -127,11 +135,11 @@ export const Tabs = ({ children, active, className, ...props }) => {
               data-target={id}
               role="tab"
               aria-controls={idRef.current}
-              className={`tabs__header__item${
-                id === activeFromPropsOrState
-                  ? ' tabs__header__item--active'
-                  : ''
-              }${className ? ` ${className}` : ''}`}
+              className={cn(
+                'tabs__header__item',
+                { 'tabs__header__item--active': id === activeFromPropsOrState },
+                className
+              )}
               {...unmanagedProps}
               {...props}
             >

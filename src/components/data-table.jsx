@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withDataLoader from './data-loader';
+
 import '../styles/components/data-table.scss';
 
 export const DENSITY_COMPACT = Symbol('DENSITY_COMPACT');
@@ -17,7 +18,11 @@ const sharedPropTypes = {
    */
   columns: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
+      label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+        PropTypes.arrayOf(PropTypes.node),
+      ]).isRequired,
       name: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
     })
