@@ -4,14 +4,16 @@
 @import '../franklin-settings';
 
 .chip {
+  --main-color: var(--main-chip-color, #{$colour-sea-blue});
+
   display: inline-block;
   vertical-align: middle;
   margin: 0.25rem;
   padding: pxToRem(2) pxToRem(5);
-  background-color: $colour-sea-blue;
+  background-color: var(--main-color);
   color: $colour-sky-white;
   border-radius: pxToRem(4);
-  border: pxToRem(1) solid $colour-sea-blue;
+  border: pxToRem(1) solid var(--main-color);
   cursor: default;
   white-space: nowrap;
 
@@ -22,7 +24,7 @@
     width: 0.7rem;
     height: 0.7rem;
     vertical-align: middle;
-    fill: $colour-sky-white;
+    fill: currentColor;
     cursor: pointer;
   }
 
@@ -40,10 +42,10 @@
 
   &.secondary {
     background-color: map-get($foundation-palette, secondary);
-    color: $colour-sea-blue;
+    color: var(--main-color);
 
     svg {
-      fill: $colour-sea-blue;
+      fill: currentColor;
     }
   }
 }

@@ -49,7 +49,11 @@ Chip.propTypes = {
   /**
    * What is displayed within the chip
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
   /**
    * Call back which, if present, will display a remove icon and is fired when this is clicked
    */
