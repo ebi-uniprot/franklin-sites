@@ -2,10 +2,12 @@
 
 exports[`Chip component should render 1`] = `
 <DocumentFragment>
-  <span
+  <button
     class="chip"
+    disabled=""
+    type="button"
   >
     Some content
-  </span>
+  </button>
 </DocumentFragment>
 `;
