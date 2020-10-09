@@ -1,4 +1,5 @@
 const path = require('path');
+const jsonImporter = require('node-sass-json-importer');
 
 module.exports = async ({ config, mode }) => {
   // Remove default svg loader
@@ -30,6 +31,7 @@ module.exports = async ({ config, mode }) => {
               path.resolve(__dirname, '../src/styles'),
               path.resolve(__dirname, '../src/app/styles'),
             ],
+            importer: jsonImporter({ convertCase: true }),
           },
         },
       },

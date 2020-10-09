@@ -4,33 +4,34 @@
 ** @text-only
 */
 @import './settings';
+@import './colours.json';
 
 // PRIMARY COLOURS
-$colour-sapphire-blue: #014371;
-$colour-sea-blue: #00639a;
-$colour-vivid-cerulean: #00a6d5;
-$colour-medium-turquoise: #46d6fa;
-$colour-gainsborough: #d2dce3;
+$colour-sapphire-blue: $sapphire-blue;
+$colour-sea-blue: $sea-blue;
+$colour-vivid-cerulean: $vivid-cerulean;
+$colour-medium-turquoise: $medium-turquoise;
+$colour-gainsborough: $gainsborough;
 
 // GREYSCALE
-$colour-yankees-blue: #161d39;
-$colour-independence: #4e5a71;
-$colour-weldon-blue: #8194a1;
-$colour-pastel-blue: #abc7d6;
-$colour-platinum: #e4e8eb;
-$colour-sky-white: #fbfeff;
+$colour-yankees-blue: $yankees-blue;
+$colour-independence: $independence;
+$colour-weldon-blue: $weldon-blue;
+$colour-pastel-blue: $pastel-blue;
+$colour-platinum: $platinum;
+$colour-sky-white: $sky-white;
 
 // CURATION
-$colour-reviewed: #c39b00;
-$colour-unreviewed: #c0c0c0;
+$colour-reviewed: $reviewed;
+$colour-unreviewed: $unreviewed;
 
 // NAMESPACES
-$colour-uniref: #c08c5c;
-$colour-uniparc: #c3878d;
-$colour-proteomes: #990000;
-$colour-supporting-data: #aa8ebf;
-$colour-help: #6bad69;
-$colour-annotation-systems: #f8982e;
+$colour-uniref: $uniref;
+$colour-uniparc: $uniparc;
+$colour-proteomes: $proteomes;
+$colour-supporting-data: $supporting-data;
+$colour-help: $help;
+$colour-annotation-systems: $annotation-systems;
 
 // COLOUR VARIABLES
 $colour-link: $colour-sapphire-blue;
@@ -38,7 +39,11 @@ $colour-selected: $colour-gainsborough;
 $colour-hover: lighten($colour-platinum, 5%);
 
 // MESSAGE COLOURS
-$colour-warning: #ffcc33;
-$colour-failure: #f36968;
-$colour-success: #108f3b;
-$colour-info: #79cbf8;
+$colour-warning: $warning;
+$colour-failure: $failure;
+$colour-success: $success;
+$colour-info: $info;
+
+// DATA VISUALISATION
+$colour-coyote-brown: $coyote-brown;
+$colour-outer-space: $outer-space;

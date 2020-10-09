@@ -1,15 +1,11 @@
 import React from 'react';
 
-import {
-  withKnobs,
-  color,
-  select,
-  text,
-  boolean,
-} from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { Chip } from '../src/components';
+
+import colors from '../src/styles/colours.json';
 
 export default {
   title: 'Core/Chip',
@@ -26,8 +22,9 @@ export const chips = () => {
   return (
     <div
       style={{
-        '--main-chip-color': color(
+        '--main-chip-color': select(
           '--main-chip-color',
+          colors,
           undefined,
           'Custom Properties'
         ),
