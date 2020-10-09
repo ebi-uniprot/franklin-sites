@@ -1,8 +1,8 @@
 ---
 name: New modifer
 about: Request the addition of a modifier to an existing component
-title: NEW_MODIFIER
-labels: ''
+title: ''
+labels: new-modifier
 assignees: ''
 
 ---
@@ -19,4 +19,4 @@ Describe how the component with modifier behaves when the user interacts with it
 **Are the purpose and function of the component the same?**
 If they are changed by the modifier, it might be that we need a new component instead of a modifier.
 
-** Add Screenshots / Mockups**
+**Add Screenshots / Mockups**

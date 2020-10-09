@@ -1,8 +1,8 @@
 ---
 name: New component
 about: Ask for a new component
-title: NEW_COMPONENT
-labels: ''
+title: ''
+labels: new-component
 assignees: ''
 
 ---
