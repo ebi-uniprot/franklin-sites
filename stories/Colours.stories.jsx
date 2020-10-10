@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+
 import coloursFile from '../markdown/colours.md';
 
 export default {
