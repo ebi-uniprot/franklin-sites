@@ -1,11 +1,7 @@
-const webpack = require('webpack');
-
 const path = require('path');
 
-// what are those doing here?
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const jsonImporter = require('node-sass-json-importer');
 
 module.exports = [
   {
@@ -51,6 +47,7 @@ module.exports = [
               options: {
                 sassOptions: {
                   includePaths: [path.resolve(__dirname, 'src/styles')],
+                  importer: jsonImporter({ convertCase: true }),
                 },
               },
             },

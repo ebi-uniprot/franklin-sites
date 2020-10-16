@@ -41,6 +41,11 @@
 <div class="box-colour colour-success" data-name="$colour-success" ></div>
 <div class="box-colour colour-info" data-name="$colour-info" ></div>
 
+### Data visualisation
+
+<div class="box-colour colour-coyote-brown" data-name="$colour-coyote-brown" ></div>
+<div class="box-colour colour-outer-space" data-name="$colour-outer-space" ></div>
+
 ### Variables
 
 - `$colour-link`: the colour of something clickable

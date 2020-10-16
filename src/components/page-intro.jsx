@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
+
 import { formatLargeNumber } from '../utils';
-import '../styles/components/page-intro.scss';
+
 import ChevronDown from '../svg/chevron-down.svg';
 import ChevronUp from '../svg/chevron-up.svg';
 
+import '../styles/components/page-intro.scss';
+
 const chevronSize = 20;
-const PageIntro = ({
-  title,
-  resultsCount,
-  children,
-  links,
-  showContent,
-}) => {
+
+const PageIntro = ({ title, resultsCount, children, links, showContent }) => {
   const [displayContent, setDisplayContent] = useState(showContent);
 
   return (
@@ -28,24 +27,22 @@ const PageIntro = ({
             <ChevronUp width={chevronSize} height={chevronSize} />
           ) : (
             <ChevronDown width={chevronSize} height={chevronSize} />
-          )}
-          {' '}
+          )}{' '}
           {title}
         </button>
         {resultsCount > 0 && (
-        <small>
-          {' '}
-          {formatLargeNumber(resultsCount)}
-          {' '}
-          results
-        </small>
+          <small> {formatLargeNumber(resultsCount)} results</small>
         )}
       </h2>
 
-      <div className={`intro-content ${displayContent && 'intro-content--display-content'}`}>
+      <div
+        className={cn('intro-content', {
+          'intro-content--display-content': displayContent,
+        })}
+      >
         {children}
         <div className="intro-links">
-          {links.map(link => (
+          {links.map((link) => (
             <Link to={link.destination} key={link.title}>
               {link.title}
             </Link>
@@ -54,7 +51,7 @@ const PageIntro = ({
       </div>
     </div>
   );
-}
+};
 
 PageIntro.propTypes = {
   /**
@@ -68,7 +65,7 @@ PageIntro.propTypes = {
   /**
    * Content revealed on toggle
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Links revealed on toggle
    */
@@ -83,6 +80,7 @@ PageIntro.defaultProps = {
   resultsCount: 0,
   links: [],
   showContent: false,
+  children: undefined,
 };
 
 export default PageIntro;
