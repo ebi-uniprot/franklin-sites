@@ -39,4 +39,10 @@ export const compact = () => <InfoList infoData={data} isCompact />;
 
 export const noTitles = () => <InfoList infoData={data} noTitles />;
 
+export const columns = () => <InfoList infoData={data} columns />;
+
+export const columnsCompact = () => (
+  <InfoList infoData={data} columns isCompact />
+);
+
 infoList.storyName = 'Simple data';

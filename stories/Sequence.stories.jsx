@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Sequence } from '../src/components';
 import sequenceData from '../src/mock-data/sequence-data';
@@ -25,3 +25,36 @@ export const sequence = () => (
 export const sequenceWithoutActionBar = () => (
   <Sequence sequence={sequenceData} showActionBar={false} />
 );
+
+export const sequenceCollapsableWithInfoData = () => {
+  const data = [
+    {
+      title: 'Item 1',
+      content: <div>Some content</div>,
+    },
+    {
+      title: 'Another item',
+      content: <div>Some more content</div>,
+    },
+  ];
+  return <Sequence sequence={sequenceData} infoData={data} isCollapsible />;
+};
+
+export const sequenceAsyncLoad = () => {
+  const [sequence, setSequence] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const onShowSequence = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setSequence(sequenceData);
+      setIsLoading(false);
+    }, 2000);
+  };
+  return (
+    <Sequence
+      sequence={sequence}
+      isLoading={isLoading}
+      onShowSequence={onShowSequence}
+    />
+  );
+};
