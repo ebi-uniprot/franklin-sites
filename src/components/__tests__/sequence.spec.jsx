@@ -60,8 +60,20 @@ describe('Sequence component', () => {
   });
 });
 
-describe('Sequence component async loading', () => {
+describe('Sequence component show/hide', () => {
   const handleSequenceLoad = jest.fn();
+
+  test('should toggle view/hide on loaded sequence', () => {
+    const { getByText, queryByText } = render(
+      <Sequence sequence={sequenceData} accession="P05067" isCollapsible />
+    );
+    // Look for 'M' as it's used to measure
+    expect(queryByText('M')).toBeNull();
+    fireEvent.click(getByText(/Show sequence/));
+    expect('M').toBeTruthy();
+    fireEvent.click(getByText(/Hide sequence/));
+    expect(queryByText('M')).toBeNull();
+  });
 
   test('should be collapsed and trigger loading of sequence', () => {
     const { getByText } = render(

@@ -26,8 +26,18 @@ export const sequenceWithoutActionBar = () => (
   <Sequence sequence={sequenceData} showActionBar={false} />
 );
 
-export const sequenceCollapsable = () => {
-  return <Sequence sequence={sequenceData} isCollapsable />;
+export const sequenceCollapsableWithInfoData = () => {
+  const data = [
+    {
+      title: 'Item 1',
+      content: <div>Some content</div>,
+    },
+    {
+      title: 'Another item',
+      content: <div>Some more content</div>,
+    },
+  ];
+  return <Sequence sequence={sequenceData} infoData={data} isCollapsible />;
 };
 
 export const sequenceAsyncLoad = () => {
@@ -45,7 +55,6 @@ export const sequenceAsyncLoad = () => {
       sequence={sequence}
       isLoading={isLoading}
       onShowSequence={onShowSequence}
-      isCollapsable
     />
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import InfoList from './info-list';
 import DownloadIcon from '../svg/download.svg';
 import BasketIcon from '../svg/basket.svg';
 import Spinner from '../svg/spinner.svg';
@@ -39,8 +40,9 @@ const Sequence = ({
   sequence,
   accession,
   onShowSequence,
-  isCollapsable,
+  isCollapsible,
   isLoading,
+  infoData,
   chunkSize,
   initialTextSize,
   onBlastClick,
@@ -51,7 +53,7 @@ const Sequence = ({
   const [textSize, setTextSize] = useState(initialTextSize);
   const [highlights, setHighlights] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(
-    isCollapsable || (onShowSequence && !sequence)
+    isCollapsible || (onShowSequence && !sequence)
   );
   const text = useRef(null);
 
@@ -140,7 +142,7 @@ const Sequence = ({
 
   return (
     <>
-      {isCollapsable && (
+      {isCollapsible && (
         <button
           type="button"
           className="button secondary"
@@ -204,6 +206,7 @@ const Sequence = ({
           />
         </div>
       )}
+      {infoData && <InfoList infoData={infoData} isCompact columns />}
       <div className="sequence">
         <div className="sequence__sequence">
           {/* If textSize was not provided, add a text element so it can be measured */}
@@ -249,11 +252,20 @@ Sequence.propTypes = {
    * Display option to show/hide the sequence. If no sequence is
    * provided and `onShowSequence` is defined, this defaults to "true"
    */
-  isCollapsable: PropTypes.bool,
+  isCollapsible: PropTypes.bool,
   /**
    * If the sequence is loading, display a spinner in the button
    */
   isLoading: PropTypes.bool,
+  /**
+   * Data to be displayed in an InfoData component above the sequence
+   */
+  infoData: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      content: PropTypes.node,
+    })
+  ),
   /**
    * The width and height of a letter. Will be calculated if left blank
    */
@@ -285,7 +297,8 @@ Sequence.defaultProps = {
   sequence: null,
   onShowSequence: null,
   isLoading: false,
-  isCollapsable: false,
+  infoData: null,
+  isCollapsible: false,
   chunkSize: 10,
   accession: null,
   initialTextSize: null,
