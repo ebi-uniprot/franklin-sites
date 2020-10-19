@@ -59,3 +59,15 @@ describe('Sequence component', () => {
     expect(queryByTestId('sequence-highlight-rect')).toBeNull();
   });
 });
+
+describe('Sequence component async loading', () => {
+  const handleSequenceLoad = jest.fn();
+
+  test('should be collapsed and trigger loading of sequence', () => {
+    const { getByText } = render(
+      <Sequence onShowSequence={handleSequenceLoad} accession="P05067" />
+    );
+    fireEvent.click(getByText(/Show/));
+    expect(handleSequenceLoad).toBeCalled();
+  });
+});

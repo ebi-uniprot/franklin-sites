@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { v1 } from 'uuid';
 import DownloadIcon from '../svg/download.svg';
 import BasketIcon from '../svg/basket.svg';
+import Spinner from '../svg/spinner.svg';
 import SequenceChunk from './sequence-chunk';
 import CopyToClipboard from './copy-to-clipboard';
 
@@ -37,8 +37,11 @@ const sequenceTools = [
 
 const Sequence = ({
   sequence,
-  chunkSize,
   accession,
+  onShowSequence,
+  isCollapsable,
+  isLoading,
+  chunkSize,
   initialTextSize,
   onBlastClick,
   onAddToBasketClick,
@@ -47,6 +50,9 @@ const Sequence = ({
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
   const [highlights, setHighlights] = useState([]);
+  const [isCollapsed, setIsCollapsed] = useState(
+    isCollapsable || (onShowSequence && !sequence)
+  );
   const text = useRef(null);
 
   useEffect(() => {
@@ -56,7 +62,29 @@ const Sequence = ({
     // Measure height and width of the dummy element
     const { width, height } = text.current.getBBox();
     setTextSize({ width, height });
-  }, [initialTextSize, showActionBar]);
+  }, [initialTextSize, showActionBar, isCollapsed, sequence]);
+
+  const handleShowSequenceClick = () => {
+    setIsCollapsed(false);
+    // Request call of sequence
+    if (!sequence && onShowSequence) {
+      onShowSequence();
+    }
+  };
+
+  if (isCollapsed || !sequence) {
+    return (
+      <>
+        <button
+          type="button"
+          className="button secondary"
+          onClick={handleShowSequenceClick}
+        >
+          Show sequence {isLoading && <Spinner />}
+        </button>
+      </>
+    );
+  }
 
   const getChunks = (str, size) => {
     const numChunks = Math.ceil(str.length / size);
@@ -87,7 +115,7 @@ const Sequence = ({
 
   const getSelectors = () => {
     return (
-      <DropdownButton label="Highlight">
+      <DropdownButton label="Highlight" className="tertiary">
         <div className="dropdown-menu__content">
           {aminoAcidsProps.map((aaProp) => {
             const inputId = `${accession}-${aaProp.name}`;
@@ -112,9 +140,18 @@ const Sequence = ({
 
   return (
     <>
+      {isCollapsable && (
+        <button
+          type="button"
+          className="button secondary"
+          onClick={() => setIsCollapsed(true)}
+        >
+          Hide sequence
+        </button>
+      )}
       {showActionBar && (
         <div className="action-bar button-group">
-          <DropdownButton label="Tools">
+          <DropdownButton label="Tools" className="tertiary">
             <ul className="no-bullet">
               {onBlastClick && (
                 <li>
@@ -141,7 +178,7 @@ const Sequence = ({
             </ul>
           </DropdownButton>
           {downloadUrl && (
-            <a className="button" href={downloadUrl} download>
+            <a className="button tertiary" href={downloadUrl} download>
               <DownloadIcon />
               Download
             </a>
@@ -150,7 +187,7 @@ const Sequence = ({
           {onAddToBasketClick && (
             <button
               type="button"
-              className="button"
+              className="button tertiary"
               onClick={onAddToBasketClick}
             >
               <BasketIcon />
@@ -161,8 +198,9 @@ const Sequence = ({
           {getSelectors()}
           <CopyToClipboard
             toCopy={sequence}
-            beforeCopy="Copy sequence"
+            beforeCopy="Copy FASTA"
             afterCopy="Copied"
+            className="tertiary"
           />
         </div>
       )}
@@ -175,10 +213,11 @@ const Sequence = ({
             </svg>
           ) : (
             <>
-              {chunks.map((chunk) => (
+              {chunks.map((chunk, index) => (
                 <span
                   className="sequence__sequence__chunk"
-                  key={`chunk_${v1()}`}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`chunk_${index}`}
                 >
                   {chunk}
                 </span>
@@ -195,11 +234,26 @@ Sequence.propTypes = {
   /**
    * The sequence
    */
-  sequence: PropTypes.string.isRequired,
+  sequence: PropTypes.string,
   /**
    * The accession corresponding to the sequence
    */
   accession: PropTypes.string,
+  /**
+   * Action triggered when the "Show sequence" button is clicked.
+   * This button will be displayed by default if no sequence is passed
+   * down to the component.
+   */
+  onShowSequence: PropTypes.func,
+  /**
+   * Display option to show/hide the sequence. If no sequence is
+   * provided and `onShowSequence` is defined, this defaults to "true"
+   */
+  isCollapsable: PropTypes.bool,
+  /**
+   * If the sequence is loading, display a spinner in the button
+   */
+  isLoading: PropTypes.bool,
   /**
    * The width and height of a letter. Will be calculated if left blank
    */
@@ -228,6 +282,10 @@ Sequence.propTypes = {
 };
 
 Sequence.defaultProps = {
+  sequence: null,
+  onShowSequence: null,
+  isLoading: false,
+  isCollapsable: false,
   chunkSize: 10,
   accession: null,
   initialTextSize: null,

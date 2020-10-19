@@ -9,7 +9,7 @@ exports[`Sequence component should render 1`] = `
       class="dropdown-container"
     >
       <button
-        class="button dropdown"
+        class="button dropdown tertiary"
         type="button"
       >
         Tools
@@ -69,7 +69,7 @@ exports[`Sequence component should render 1`] = `
       </div>
     </div>
     <a
-      class="button"
+      class="button tertiary"
       download=""
       href="https://url-to-P05067.fasta"
     >
@@ -80,7 +80,7 @@ exports[`Sequence component should render 1`] = `
       class="dropdown-container"
     >
       <button
-        class="button dropdown"
+        class="button dropdown tertiary"
         type="button"
       >
         Highlight
@@ -115,10 +115,10 @@ exports[`Sequence component should render 1`] = `
       </div>
     </div>
     <button
-      class="button"
+      class="button tertiary"
       type="button"
     >
-      Copy sequence
+      Copy FASTA
     </button>
   </div>
   <div
