@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import { CopyToClipboard as ReactCopyToClipboard } from 'react-copy-to-clipboard';
 import PropTypes from 'prop-types';
 import '../styles/components/bubble.scss';
@@ -7,10 +8,7 @@ const CopyToClipboard = ({ toCopy, beforeCopy, afterCopy, className }) => {
   const [copied, setCopied] = useState(false);
   return (
     <ReactCopyToClipboard text={toCopy} onCopy={() => setCopied(true)}>
-      <button
-        type="button"
-        className={`button${className ? ` ${className}` : ''}`}
-      >
+      <button type="button" className={classNames('button', className)}>
         {copied ? afterCopy : beforeCopy}
       </button>
     </ReactCopyToClipboard>
