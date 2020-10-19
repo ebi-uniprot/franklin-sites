@@ -2,6 +2,8 @@
 @import '../colours';
 @import '../mixins.scss';
 
+$decorative-bar: 0.125rem solid $colour-vivid-cerulean;
+
 .info-list {
   $self: &;
   margin: $global-margin 0 2 * $global-margin 0;
@@ -16,7 +18,7 @@
     flex-shrink: 0;
     margin-right: 0.7rem;
     text-align: right;
-    border-right: 0.125rem solid $colour-vivid-cerulean;
+    border-right: $decorative-bar;
     padding-right: 0.7rem;
     h5 {
       line-height: 1.2;
@@ -30,8 +32,9 @@
 
   &--compact {
     .info-list__item {
+      border-left: $decorative-bar;
+      padding: 0 0 0 0.7rem;
       margin: 0;
-      padding: 0;
     }
     #{ $self }__title {
       font-size: 1rem;
