@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { withKnobs, select, text, number } from '@storybook/addon-knobs';
+
 import { Histogram } from '../src/components';
 
 import {
@@ -7,8 +9,11 @@ import {
   getGaussianSample,
 } from '../src/mock-data/probability-distribution-sample';
 
+import colors from '../src/styles/colours.json';
+
 export default {
   title: 'Visualisation/Histogram',
+  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose: 'purpose',
@@ -46,12 +51,25 @@ const ChangingGaussianComponent = () => {
     <Histogram
       values={filteredSample}
       unfilteredValues={gaussianSample}
-      nBins={20}
+      nBins={number('Number of bins', 20, { min: 1, step: 1 }, 'Props')}
       min={gaussianMin}
       max={gaussianMax}
-      xLabel="Value"
-      yLabel="Frequency"
+      xLabel={text('X label', 'Value', 'Props')}
+      yLabel={text('Y label', 'Frequency', 'Props')}
       unfilteredValuesShadow={0.1}
+      style={{
+        '--main-histogram-color': select(
+          '--main-histogram-color',
+          colors,
+          colors.weldonBlue,
+          'Custom Properties'
+        ),
+        '--histogram-bar-gap': text(
+          '--histogram-bar-gap',
+          '-1px',
+          'Custom Properties'
+        ),
+      }}
     />
   );
 };
@@ -59,17 +77,43 @@ const ChangingGaussianComponent = () => {
 export const Gaussian = () => (
   <Histogram
     values={gaussianSample}
-    nBins={20}
-    xLabel="Value"
-    yLabel="Frequency"
+    nBins={number('Number of bins', 20, { min: 1, step: 1 }, 'Props')}
+    xLabel={text('X label', 'Value', 'Props')}
+    yLabel={text('Y label', 'Frequency', 'Props')}
+    style={{
+      '--main-histogram-color': select(
+        '--main-histogram-color',
+        colors,
+        colors.weldonBlue,
+        'Custom Properties'
+      ),
+      '--histogram-bar-gap': text(
+        '--histogram-bar-gap',
+        '-1px',
+        'Custom Properties'
+      ),
+    }}
   />
 );
 export const Uniform = () => (
   <Histogram
     values={uniformSample}
-    binSize={1}
-    xLabel="Value"
-    yLabel="Frequency"
+    binSize={number('Bin size', 1, undefined, 'Props')}
+    xLabel={text('X label', 'Value', 'Props')}
+    yLabel={text('Y label', 'Frequency', 'Props')}
+    style={{
+      '--main-histogram-color': select(
+        '--main-histogram-color',
+        colors,
+        colors.weldonBlue,
+        'Custom Properties'
+      ),
+      '--histogram-bar-gap': text(
+        '--histogram-bar-gap',
+        '-1px',
+        'Custom Properties'
+      ),
+    }}
   />
 );
 export const ChangingGaussian = () => <ChangingGaussianComponent />;

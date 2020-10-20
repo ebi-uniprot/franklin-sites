@@ -1,8 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import 'rheostat/initialize';
 import Rheostat from 'rheostat';
+
 import Histogram from './histogram';
+
 import 'rheostat/css/rheostat.css';
 import '../styles/components/histogram-filter.scss';
 
@@ -43,6 +46,8 @@ const HistogramFilter = ({
   onChange,
   nBins,
   height,
+  className,
+  ...props
 }) => {
   const [min, max] = useMemo(() => {
     // Assign sensible default values if not provided
@@ -101,7 +106,7 @@ const HistogramFilter = ({
     setRange([start, end]);
   };
   return (
-    <div className="histogram-filter">
+    <div className={cn('histogram-filter', className)} {...props}>
       <div className="histogram-filter__histogram-rheostat-container">
         <Histogram
           values={values}
@@ -187,6 +192,14 @@ HistogramFilter.propTypes = {
    * The height in pixels of the bin with the most values. Defaults to 300.
    */
   height: PropTypes.number,
+  /**
+   * Additional CSS classnames to apply (eg secondary, tertiary)
+   */
+  className: PropTypes.string,
+  /**
+   * Optional extra props to pass to the chip
+   */
+  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types, react/require-default-props
 };
 
 HistogramFilter.defaultProps = {
@@ -195,6 +208,7 @@ HistogramFilter.defaultProps = {
   nBins: 30,
   height: 50,
   unfilteredValues: undefined,
+  className: undefined,
 };
 
 export default HistogramFilter;
