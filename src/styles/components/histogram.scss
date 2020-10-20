@@ -6,6 +6,7 @@
   // -1px to avoid artifacts by overlapping a bit
   --bar-margin: calc(var(--histogram-bar-gap, -1px) / 2);
 
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
