@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
+
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+
 import { HistogramFilter } from '../src/components';
+
 import {
   getUniformSample,
   getGaussianSample,
 } from '../src/mock-data/probability-distribution-sample';
 
+import colors from '../src/styles/colours.json';
+
 export default {
   title: 'Forms/Histogram Filter',
+  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose: 'purpose',
@@ -34,15 +41,33 @@ export const Gaussian = () => {
     setRange(newRange);
   };
   return (
-    <div style={{ width: '25rem' }}>
-      <HistogramFilter
-        min={min}
-        max={max}
-        selectedRange={range}
-        onChange={handleChange}
-        values={gaussianSample}
-      />
-    </div>
+    <HistogramFilter
+      min={min}
+      max={max}
+      selectedRange={range}
+      onChange={handleChange}
+      values={gaussianSample}
+      style={{
+        width: '25rem',
+        '--main-histogram-color': select(
+          '--main-histogram-color',
+          colors,
+          colors.weldonBlue,
+          'Custom Properties'
+        ),
+        '--out-range-histogram-color': select(
+          '--out-range-histogram-color',
+          colors,
+          colors.platinum,
+          'Custom Properties'
+        ),
+        '--histogram-bar-gap': text(
+          '--histogram-bar-gap',
+          '-1px',
+          'Custom Properties'
+        ),
+      }}
+    />
   );
 };
 
@@ -54,14 +79,32 @@ export const Uniform = () => {
     setRange(newRange);
   };
   return (
-    <div style={{ width: '25rem' }}>
-      <HistogramFilter
-        min={min}
-        max={max}
-        selectedRange={range}
-        onChange={handleChange}
-        values={uniformSample}
-      />
-    </div>
+    <HistogramFilter
+      min={min}
+      max={max}
+      selectedRange={range}
+      onChange={handleChange}
+      values={uniformSample}
+      style={{
+        width: '25rem',
+        '--main-histogram-color': select(
+          '--main-histogram-color',
+          colors,
+          colors.weldonBlue,
+          'Custom Properties'
+        ),
+        '--out-range-histogram-color': select(
+          '--out-range-histogram-color',
+          colors,
+          colors.platinum,
+          'Custom Properties'
+        ),
+        '--histogram-bar-gap': text(
+          '--histogram-bar-gap',
+          '-1px',
+          'Custom Properties'
+        ),
+      }}
+    />
   );
 };

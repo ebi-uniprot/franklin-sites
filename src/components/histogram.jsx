@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { SizeMe } from 'react-sizeme';
 import { scaleLinear } from 'd3';
 import cn from 'classnames';
+
+import useSize from '../hooks/useSize';
 
 import XAxis from './histogram-x-axis';
 import YAxis from './histogram-y-axis';
@@ -22,7 +23,14 @@ const Histogram = ({
   xLabel,
   yLabel,
   unfilteredValuesShadow,
+  className,
+  ...props
 }) => {
+  const containerRef = useRef();
+  const [size] = useSize(containerRef);
+
+  const width = size ? size.width : 0;
+
   const allValues = unfilteredValues || values;
 
   const [getIndex, nBins, binSize, min, max] = useMemo(() => {
@@ -77,69 +85,70 @@ const Histogram = ({
   }
 
   return (
-    <SizeMe>
-      {({ size }) => (
-        <div className="histogram" data-testid="histogram">
-          {unfilteredValuesShadow ? (
-            <div
-              className="histogram__bar-shadow-container"
-              style={{ height, opacity: unfilteredValuesShadow }}
-            >
-              {allBins.map((count, index) => {
-                const withinRange =
-                  selectedRange === null ||
-                  (startIndex <= index && index <= endIndex);
-                return (
-                  <div
-                    key={index} // eslint-disable-line react/no-array-index-key
-                    data-testid="histogram-bar"
-                    className={cn(
-                      'histogram histogram__bar',
-                      withinRange && 'histogram__bar--within-range'
-                    )}
-                    style={{ transform: `scaleY(${transformScaleY(count)})` }}
-                  />
-                );
-              })}
-            </div>
-          ) : null}
-          <div className="histogram__bar-container" style={{ height }}>
-            {bins.map((count, index) => {
-              const withinRange =
-                selectedRange === null ||
-                (startIndex <= index && index <= endIndex);
-              return (
-                <div
-                  key={index} // eslint-disable-line react/no-array-index-key
-                  data-testid="histogram-bar"
-                  className={cn(
-                    'histogram histogram__bar',
-                    withinRange && 'histogram__bar--within-range'
-                  )}
-                  style={{
-                    transform: `scaleY(${transformScaleY(count)})`,
-                    transitionDelay: `${Math.floor((500 * index) / nBins)}ms`,
-                  }}
-                />
-              );
-            })}
-          </div>
-          {showAxes && (
-            <>
-              <XAxis
-                min={min}
-                max={max}
-                interval={binSize}
-                yPos={height}
-                width={size.width}
-                label={xLabel}
+    <div
+      className={cn('histogram', className)}
+      data-testid="histogram"
+      ref={containerRef}
+      {...props}
+    >
+      {unfilteredValuesShadow ? (
+        <div
+          className="histogram__bar-shadow-container"
+          style={{ height, opacity: unfilteredValuesShadow }}
+        >
+          {allBins.map((count, index) => {
+            const withinRange =
+              selectedRange === null ||
+              (startIndex <= index && index <= endIndex);
+            return (
+              <div
+                key={index} // eslint-disable-line react/no-array-index-key
+                data-testid="histogram-bar"
+                className={cn(
+                  'histogram histogram__bar',
+                  withinRange && 'histogram__bar--within-range'
+                )}
+                style={{ transform: `scaleY(${transformScaleY(count)})` }}
               />
-              <YAxis scale={yScale} height={height} label={yLabel} />
-            </>
-          )}
+            );
+          })}
         </div>
+      ) : null}
+      <div className="histogram__bar-container" style={{ height }}>
+        {bins.map((count, index) => {
+          const withinRange =
+            selectedRange === null ||
+            (startIndex <= index && index <= endIndex);
+          return (
+            <div
+              key={index} // eslint-disable-line react/no-array-index-key
+              data-testid="histogram-bar"
+              className={cn(
+                'histogram histogram__bar',
+                withinRange && 'histogram__bar--within-range'
+              )}
+              style={{
+                transform: `scaleY(${transformScaleY(count)})`,
+                transitionDelay: `${Math.floor((500 * index) / nBins)}ms`,
+              }}
+            />
+          );
+        })}
+      </div>
+      {showAxes && (
+        <>
+          <XAxis
+            min={min}
+            max={max}
+            interval={binSize}
+            yPos={height}
+            width={width}
+            label={xLabel}
+          />
+          <YAxis scale={yScale} height={height} label={yLabel} />
+        </>
       )}
-    </SizeMe>
+    </div>
   );
 };
 
@@ -193,6 +202,14 @@ Histogram.propTypes = {
    * Display a shadow of the unfiltered data (opacity value)
    */
   unfilteredValuesShadow: PropTypes.number,
+  /**
+   * Additional CSS classnames to apply (eg secondary, tertiary)
+   */
+  className: PropTypes.string,
+  /**
+   * Optional extra props to pass to the chip
+   */
+  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types, react/require-default-props
 };
 
 Histogram.defaultProps = {
@@ -207,6 +224,7 @@ Histogram.defaultProps = {
   yLabel: null,
   unfilteredValues: undefined,
   unfilteredValuesShadow: 0,
+  className: undefined,
 };
 
 export default Histogram;

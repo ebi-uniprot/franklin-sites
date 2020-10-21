@@ -42,36 +42,6 @@ exports[`HistogramFilter component should render 1`] = `
             style="transform: scaleY(0.4); transition-delay: 400ms;"
           />
         </div>
-        <div
-          class="erd_scroll_detection_container erd_scroll_detection_container_animation_active"
-          style="visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0px; padding: 0px;"
-        >
-          <div
-            class="erd_scroll_detection_container"
-            dir="ltr"
-            style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px;"
-          >
-            <div
-              class="erd_scroll_detection_container"
-              style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; left: -501px; top: -501px; right: -500px; bottom: -500px;"
-            >
-              <div
-                style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;"
-              >
-                <div
-                  style="position: absolute; left: 0px; top: 0px; width: 1011px; height: 1011px;"
-                />
-              </div>
-              <div
-                style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;"
-              >
-                <div
-                  style="position: absolute; width: 200%; height: 200%;"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div
         class="rheostat rheostat_1"

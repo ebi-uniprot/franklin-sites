@@ -20,42 +20,39 @@ export default {
 
 export const chips = () => {
   return (
-    <div
+    <Chip
+      title={text('title', 'this is a chip', 'Props')}
+      compact={boolean('compact', false, 'Props')}
+      disabled={boolean('disabled', false, 'Props')}
+      className={select(
+        'className',
+        ['primary', 'secondary'],
+        'primary',
+        'Props'
+      )}
       style={{
         '--main-chip-color': select(
           '--main-chip-color',
           colors,
-          undefined,
+          colors.sapphireBlue,
           'Custom Properties'
         ),
       }}
     >
-      <Chip
-        title={text('title', 'this is a chip', 'Props')}
-        compact={boolean('compact', false, 'Props')}
-        disabled={boolean('disabled', false, 'Props')}
-        className={select(
-          'className',
-          ['primary', 'secondary'],
-          'primary',
-          'Props'
-        )}
-      >
-        Chip content
-      </Chip>
-    </div>
+      Chip content
+    </Chip>
   );
 };
 
 export const withClick = () => (
-  <div>
+  <>
     <Chip title="this is a primary chip" onClick={action('click on primary')}>
       Primary
     </Chip>
     <Chip className="secondary" onClick={action('click on secondary')}>
       Secondary
     </Chip>
-  </div>
+  </>
 );
 
 export const removable = () => (
