@@ -1,21 +1,32 @@
 @import '../settings';
 @import '../colours';
 
-.sequence {
-  display: flex;
-  align-items: flex-start;
+.sequence-container {
+  background-color: rgba($colour-platinum, 0.7);
+  .action-bar {
+    justify-content: flex-start;
+  }
+  .action-bar,
+  .info-list {
+    margin: ($global-margin / 2);
+  }
 
-  &__sequence {
-    font-family: $font-family-monospace;
+  .sequence {
     display: flex;
-    flex-wrap: wrap;
+    align-items: flex-start;
 
-    &__chunk {
-      margin: ($global-margin / 2);
+    &__sequence {
+      font-family: $font-family-monospace;
+      display: flex;
+      flex-wrap: wrap;
 
-      &__counter {
-        text-anchor: end;
-        user-select: none;
+      &__chunk {
+        margin: ($global-margin / 2);
+
+        &__counter {
+          text-anchor: end;
+          user-select: none;
+        }
       }
     }
   }
