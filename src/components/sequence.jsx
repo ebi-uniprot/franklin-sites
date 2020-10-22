@@ -151,84 +151,86 @@ const Sequence = ({
           Hide sequence
         </button>
       )}
-      {showActionBar && (
-        <div className="action-bar button-group">
-          <DropdownButton label="Tools" className="tertiary">
-            <ul className="no-bullet">
-              {onBlastClick && (
-                <li>
-                  <button
-                    className="button tertiary"
-                    type="button"
-                    onClick={onBlastClick}
-                  >
-                    BLAST
-                  </button>
-                </li>
-              )}
-              {sequenceTools.map((sequenceTool) => (
-                <li key={sequenceTool.name}>
-                  <a
-                    href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {sequenceTool.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </DropdownButton>
-          {downloadUrl && (
-            <a className="button tertiary" href={downloadUrl} download>
-              <DownloadIcon />
-              Download
-            </a>
-          )}
+      <section className="sequence-container">
+        {showActionBar && (
+          <div className="action-bar button-group">
+            <DropdownButton label="Tools" className="tertiary">
+              <ul className="no-bullet">
+                {onBlastClick && (
+                  <li>
+                    <button
+                      className="button tertiary"
+                      type="button"
+                      onClick={onBlastClick}
+                    >
+                      BLAST
+                    </button>
+                  </li>
+                )}
+                {sequenceTools.map((sequenceTool) => (
+                  <li key={sequenceTool.name}>
+                    <a
+                      href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {sequenceTool.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </DropdownButton>
+            {downloadUrl && (
+              <a className="button tertiary" href={downloadUrl} download>
+                <DownloadIcon />
+                Download
+              </a>
+            )}
 
-          {onAddToBasketClick && (
-            <button
-              type="button"
-              className="button tertiary"
-              onClick={onAddToBasketClick}
-            >
-              <BasketIcon />
-              Add
-            </button>
-          )}
+            {onAddToBasketClick && (
+              <button
+                type="button"
+                className="button tertiary"
+                onClick={onAddToBasketClick}
+              >
+                <BasketIcon />
+                Add
+              </button>
+            )}
 
-          {getSelectors()}
-          <CopyToClipboard
-            toCopy={sequence}
-            beforeCopy="Copy FASTA"
-            afterCopy="Copied"
-            className="tertiary"
-          />
+            {getSelectors()}
+            <CopyToClipboard
+              toCopy={sequence}
+              beforeCopy="Copy FASTA"
+              afterCopy="Copied"
+              className="tertiary"
+            />
+          </div>
+        )}
+        {infoData && <InfoList infoData={infoData} isCompact columns />}
+        <div className="sequence">
+          <div className="sequence__sequence">
+            {/* If textSize was not provided, add a text element so it can be measured */}
+            {textSize === null ? (
+              <svg>
+                <text ref={text}>M</text>
+              </svg>
+            ) : (
+              <>
+                {chunks.map((chunk, index) => (
+                  <span
+                    className="sequence__sequence__chunk"
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`chunk_${index}`}
+                  >
+                    {chunk}
+                  </span>
+                ))}
+              </>
+            )}
+          </div>
         </div>
-      )}
-      {infoData && <InfoList infoData={infoData} isCompact columns />}
-      <div className="sequence">
-        <div className="sequence__sequence">
-          {/* If textSize was not provided, add a text element so it can be measured */}
-          {textSize === null ? (
-            <svg>
-              <text ref={text}>M</text>
-            </svg>
-          ) : (
-            <>
-              {chunks.map((chunk, index) => (
-                <span
-                  className="sequence__sequence__chunk"
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`chunk_${index}`}
-                >
-                  {chunk}
-                </span>
-              ))}
-            </>
-          )}
-        </div>
-      </div>
+      </section>
     </>
   );
 };
