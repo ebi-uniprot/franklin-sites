@@ -83,11 +83,11 @@
 }
 
 // svg fills
-.svg-colour-reviewed {
-  fill: $colour-reviewed;
+.svg-colour-reviewed svg {
+  color: $colour-reviewed;
 }
-.svg-colour-unreviewed {
-  fill: $colour-unreviewed;
+.svg-colour-unreviewed svg {
+  color: $colour-unreviewed;
 }
 
 // messages
