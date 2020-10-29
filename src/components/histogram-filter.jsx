@@ -42,6 +42,7 @@ const HistogramFilter = ({
   max: maxOrNull,
   values,
   unfilteredValues,
+  unfilteredValuesShadow,
   selectedRange,
   onChange,
   nBins,
@@ -111,6 +112,7 @@ const HistogramFilter = ({
         <Histogram
           values={values}
           unfilteredValues={unfilteredValues}
+          unfilteredValuesShadow={unfilteredValuesShadow}
           selectedRange={cleanedRange}
           nBins={nBins}
           min={min}
@@ -193,6 +195,10 @@ HistogramFilter.propTypes = {
    */
   height: PropTypes.number,
   /**
+   * Display a shadow of the unfiltered data (opacity value)
+   */
+  unfilteredValuesShadow: PropTypes.number,
+  /**
    * Additional CSS classnames to apply (eg secondary, tertiary)
    */
   className: PropTypes.string,
@@ -208,6 +214,7 @@ HistogramFilter.defaultProps = {
   nBins: 30,
   height: 50,
   unfilteredValues: undefined,
+  unfilteredValuesShadow: undefined,
   className: undefined,
 };
 
