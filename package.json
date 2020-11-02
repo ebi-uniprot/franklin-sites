@@ -20,7 +20,7 @@
     "test-watch": "jest --watch",
     "release": "yarn build && yarn publish && git push --follow-tags origin master",
     "start": "start-storybook -p 6006 -s ./assets",
-    "build-storybook": "build-storybook -c .storybook -o .out -s ./assets"
+    "build-storybook": "build-storybook -c .storybook --no-dll -o .out -s ./assets"
   },
   "browserslist": [
     "last 2 version",
