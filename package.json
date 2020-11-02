@@ -19,7 +19,7 @@
     "test": "yarn test:lint && yarn test:unit",
     "test-watch": "jest --watch",
     "release": "yarn build && yarn publish && git push --follow-tags origin master",
-    "start": "start-storybook -p 6006 -s ./assets",
+    "start": "start-storybook -p 6006 --no-dll -s ./assets",
     "build-storybook": "build-storybook -c .storybook --no-dll -o .out -s ./assets"
   },
   "browserslist": [
@@ -81,7 +81,7 @@
     "@babel/preset-react": "^7.12.1",
     "@storybook/addon-actions": "^6.0.28",
     "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-knobs": "6.0.27",
+    "@storybook/addon-knobs": "6.0.28",
     "@storybook/addon-links": "^6.0.28",
     "@storybook/addons": "^6.0.28",
     "@storybook/api": "^6.0.28",
