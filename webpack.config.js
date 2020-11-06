@@ -2,6 +2,8 @@ const path = require('path');
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 const jsonImporter = require('node-sass-json-importer');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = [
   {
@@ -13,6 +15,7 @@ module.exports = [
       filename: 'franklin-components.js',
       libraryTarget: 'commonjs',
     },
+    devtool: 'source-map',
     externals: {
       react: { commonjs: 'react' },
       'react-dom': { commonjs: 'react-dom' },
@@ -68,6 +71,18 @@ module.exports = [
           loader: 'svg-url-loader',
         },
       ],
+    },
+    plugins: [
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'disabled',
+        generateStatsFile: true,
+        statsOptions: { source: false },
+      }),
+    ],
+    stats: {
+      children: false,
+      assetsSort: '!size',
+      // groupAssetsByChunk: true,
     },
   },
 ];
