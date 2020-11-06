@@ -41,7 +41,8 @@ const Header = ({ logo, links, search, isNegative }) => (
             className="dropdown-container dropdown-container--hover"
             key={link.label}
           >
-            <span
+            <button
+              type="button"
               className={
                 isNegative
                   ? 'dropdown-container__trigger dropdown-container__trigger--negative'
@@ -49,7 +50,7 @@ const Header = ({ logo, links, search, isNegative }) => (
               }
             >
               {link.label}
-            </span>
+            </button>
             <div className="dropdown-menu">
               <ul>
                 {link.links.map((link2) => (

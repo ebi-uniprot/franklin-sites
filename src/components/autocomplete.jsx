@@ -9,7 +9,7 @@ import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 class Autocomplete extends Component {
   static filterOptions(items, query) {
     return items.filter(
-      item => getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0
+      (item) => getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0
     );
   }
 
@@ -167,6 +167,7 @@ class Autocomplete extends Component {
       filter,
       minCharsToShowDropdown,
       isLoading,
+      autoFocus,
     } = this.props;
     const showDropdown = Autocomplete.shouldShowDropdown({
       textInputValue,
@@ -192,6 +193,7 @@ class Autocomplete extends Component {
           onKeyDown={this.handleOnKeyDown}
           placeholder={placeholder}
           isLoading={isLoading}
+          autoFocus={autoFocus}
         />
         <div
           className={
@@ -216,6 +218,7 @@ Autocomplete.defaultProps = {
   value: '',
   minCharsToShowDropdown: 0,
   isLoading: false,
+  autoFocus: false,
 };
 
 Autocomplete.propTypes = {
@@ -229,6 +232,7 @@ Autocomplete.propTypes = {
   value: PropTypes.string,
   minCharsToShowDropdown: PropTypes.number,
   isLoading: PropTypes.bool,
+  autoFocus: PropTypes.bool,
 };
 
 export default Autocomplete;
