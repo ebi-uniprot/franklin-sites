@@ -54,7 +54,10 @@ const DropdownButton = ({ children, label, className }) => {
   }, [size]);
 
   return (
-    <div className="dropdown-container">
+    <div
+      className="dropdown-container"
+      onBlur={(e) => setShowMenu(e.currentTarget.contains(e.relatedTarget))}
+    >
       <button
         type="button"
         className={cn('button', 'dropdown', className)}

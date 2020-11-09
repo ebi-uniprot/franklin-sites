@@ -3,6 +3,7 @@
 exports[`TreeSelect component should render 1`] = `
 <div
   className="dropdown-container"
+  onBlur={[Function]}
 >
   <button
     className="button dropdown"
@@ -20,6 +21,7 @@ exports[`TreeSelect component should render 1`] = `
 exports[`TreeSelect component with filter should render 1`] = `
 <div
   className="dropdown-container"
+  onBlur={[Function]}
 >
   <button
     className="button dropdown"
