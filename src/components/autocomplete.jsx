@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/dropdown.scss';
-import '../styles/components/autocomplete.scss';
+import { noop } from 'lodash-es';
+
 import AutocompleteItem from './autocomplete-item';
 import SearchInput from './search-input';
+
 import { getLastIndexOfSubstringIgnoreCase } from '../utils';
+
+import '../styles/components/dropdown.scss';
+import '../styles/components/autocomplete.scss';
 
 class Autocomplete extends Component {
   static filterOptions(items, query) {
@@ -210,8 +214,8 @@ class Autocomplete extends Component {
 }
 
 Autocomplete.defaultProps = {
-  showDropdownUpdated: () => {},
-  onChange: () => {},
+  showDropdownUpdated: noop,
+  onChange: noop,
   clearOnSelect: false,
   placeholder: '',
   filter: true,
