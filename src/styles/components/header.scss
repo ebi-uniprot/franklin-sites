@@ -29,10 +29,6 @@
     a:hover,
     a:active {
       color: $colour-sapphire-blue;
-
-      &.button.dropdown:after {
-        border-color: currentColor transparent transparent;
-      }
     }
   }
 
