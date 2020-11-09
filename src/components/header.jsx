@@ -48,13 +48,12 @@ const Header = ({ logo, links, search, isNegative }) => (
     <ul className="header__navigation">
       {links.map((link) =>
         link.links ? (
-          <li>
+          <li key={link.label}>
             <DropdownButton
               label={link.label}
               className={cn({
                 'dropdown-container__trigger--negative': isNegative,
               })}
-              key={link.label}
             >
               <ul>
                 {link.links.map((link2) => (
