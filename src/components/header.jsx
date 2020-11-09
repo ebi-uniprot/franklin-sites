@@ -46,9 +46,9 @@ const Header = ({ logo, links, search, isNegative }) => (
       <Link to="/">{logo}</Link>
     </div>
     <ul className="header__navigation">
-      {links.map((link) =>
-        link.links ? (
-          <li key={link.label}>
+      {links.map((link) => (
+        <li key={link.label}>
+          {link.links ? (
             <DropdownButton
               label={link.label}
               className={cn({
@@ -63,13 +63,11 @@ const Header = ({ logo, links, search, isNegative }) => (
                 ))}
               </ul>
             </DropdownButton>
-          </li>
-        ) : (
-          <li key={link.label}>
+          ) : (
             <HeaderLink link={link} />
-          </li>
-        )
-      )}
+          )}
+        </li>
+      ))}
     </ul>
     <div className="header__search">{search}</div>
   </div>
