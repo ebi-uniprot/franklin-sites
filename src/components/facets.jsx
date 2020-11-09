@@ -14,7 +14,7 @@ import '../styles/components/facets.scss';
  * as sets of values
  * @param {string} string
  */
-const parse = (string, queryStringKey) => {
+export const parse = (string, queryStringKey = 'facets') => {
   const parsed = qs.parse(string);
   if (!parsed[queryStringKey]) {
     return parsed;
@@ -38,7 +38,7 @@ const parse = (string, queryStringKey) => {
  * and generate a search string
  * @param {object} parsedSearch
  */
-const stringify = (query, queryStringKey) => {
+export const stringify = (query, queryStringKey = 'facets') => {
   const { [queryStringKey]: facets = {}, ...rest } = query;
   const facetString = Object.entries(facets)
     .map(([name, values]) =>
