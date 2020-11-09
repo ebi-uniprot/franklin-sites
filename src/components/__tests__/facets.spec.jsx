@@ -8,7 +8,7 @@ describe('parse facets and stringify', () => {
     expect(stringify(parse(twoFacets))).toBe(twoFacets);
   });
 
-  it('shoudl handle facets and something else', () => {
+  it('should handle facets and something else', () => {
     const query = 'facets=identity%3A1.0&query=glucose';
     expect(stringify(parse(query))).toBe(query);
   });
