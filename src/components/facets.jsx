@@ -14,21 +14,21 @@ import '../styles/components/facets.scss';
  * as sets of values
  * @param {string} string
  */
-const parse = string => {
+const parse = (string, queryStringKey) => {
   const parsed = qs.parse(string);
-  if (!parsed.facets) {
+  if (!parsed[queryStringKey]) {
     return parsed;
   }
-  const facets = (parsed.facets || '')
+  const facets = (parsed[queryStringKey] || '')
     .split(',')
-    .map(stringTuple => stringTuple.split(':'));
-  parsed.facets = {};
+    .map((stringTuple) => stringTuple.split(':'));
+  parsed[queryStringKey] = {};
   // eslint-disable-next-line no-restricted-syntax
   for (const [name, value] of facets) {
-    if (!parsed.facets[name]) {
-      parsed.facets[name] = new Set();
+    if (!parsed[queryStringKey][name]) {
+      parsed[queryStringKey][name] = new Set();
     }
-    parsed.facets[name].add(value);
+    parsed[queryStringKey][name].add(value);
   }
   return parsed;
 };
@@ -38,20 +38,21 @@ const parse = string => {
  * and generate a search string
  * @param {object} parsedSearch
  */
-const stringify = ({ facets = {}, ...rest }) => {
+const stringify = (query, queryStringKey) => {
+  const { [queryStringKey]: facets = {}, ...rest } = query;
   const facetString = Object.entries(facets)
     .map(([name, values]) =>
-      Array.from(values).map(value => `${name}:${value}`)
+      Array.from(values).map((value) => `${name}:${value}`)
     )
     .flat()
     .join(',');
   if (!facetString) {
     return qs.stringify(rest);
   }
-  return qs.stringify({ ...rest, facets: facetString });
+  return qs.stringify({ ...rest, [queryStringKey]: facetString });
 };
 
-const Facets = ({ data, extraActionsFor }) => {
+const Facets = ({ data, extraActionsFor, queryStringKey }) => {
   const location = useLocation();
 
   if (!(data && data.length)) {
@@ -59,37 +60,42 @@ const Facets = ({ data, extraActionsFor }) => {
   }
 
   const facetsToShow = data.filter(
-    facet => facet.values && facet.values.length
+    (facet) => facet.values && facet.values.length
   );
 
-  const search = parse(location.search);
+  const search = parse(location.search, queryStringKey);
 
   return (
     <div className="facets">
       <ul className="no-bullet">
-        {facetsToShow.map(facet => (
+        {facetsToShow.map((facet) => (
           <li key={facet.name}>
             <div className="facet-name">{facet.label || facet.name}</div>
             <ExpandableList extraActions={extraActionsFor.get(facet.name)}>
               {facet.values.map(({ value, label, count }) => {
-                const isActive =
-                  search.facets &&
-                  search.facets[facet.name] &&
-                  search.facets[facet.name].has(value);
+                const isActive = search[queryStringKey]?.[facet.name]?.has(
+                  value
+                );
 
                 const facetSet = new Set(
                   facet.allowMultipleSelection
-                    ? (search.facets || {})[facet.name]
+                    ? (search[queryStringKey] || {})[facet.name]
                     : null
                 );
                 facetSet[isActive ? 'delete' : 'add'](value);
 
                 const to = {
                   ...location,
-                  search: stringify({
-                    ...search,
-                    facets: { ...search.facets, [facet.name]: facetSet },
-                  }),
+                  search: stringify(
+                    {
+                      ...search,
+                      [queryStringKey]: {
+                        ...search[queryStringKey],
+                        [facet.name]: facetSet,
+                      },
+                    },
+                    queryStringKey
+                  ),
                 };
 
                 return {
@@ -122,10 +128,15 @@ Facets.propTypes = {
    * Extra components to be added in the "action" area, map of <facet name, component>
    */
   extraActionsFor: PropTypes.instanceOf(Map),
+  /**
+   * Key with which to add the facets in the querystring (defaults to "facets")
+   */
+  queryStringKey: PropTypes.string,
 };
 
 Facets.defaultProps = {
   extraActionsFor: new Map(),
+  queryStringKey: 'facets',
 };
 
 export default Facets;
