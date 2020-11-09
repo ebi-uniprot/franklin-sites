@@ -54,6 +54,7 @@ const Header = ({ logo, links, search, isNegative }) => (
               className={cn({
                 'dropdown-container__trigger--negative': isNegative,
               })}
+              openOnHover
             >
               <ul>
                 {link.links.map((link2) => (
