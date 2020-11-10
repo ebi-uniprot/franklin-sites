@@ -40,8 +40,12 @@
   a:active {
     color: $colour-sky-white;
 
-    &.button.dropdown:after {
-      margin-left: 0.25em;
+    &.button.dropdown {
+      margin-bottom: 0;
+
+      &:after {
+        margin-left: 0.25em;
+      }
     }
   }
 
