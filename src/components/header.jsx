@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
+
+import DropdownButton from './dropdown-button';
+
 import '../styles/components/header.scss';
 import '../styles/components/dropdown.scss';
 
@@ -11,9 +15,16 @@ const HeaderLink = ({ link }) => {
   return (
     <>
       {link.path ? (
-        <Link to={link.path}>{link.label}</Link>
+        <Link to={link.path} className="button tertiary">
+          {link.label}
+        </Link>
       ) : (
-        <a href={link.href} target="_blank" rel="noopener noreferrer">
+        <a
+          href={link.href}
+          className="button tertiary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {link.label}
         </a>
       )}
@@ -30,27 +41,21 @@ HeaderLink.propTypes = {
 };
 
 const Header = ({ logo, links, search, isNegative }) => (
-  <div className={isNegative ? 'header header--negative' : 'header'}>
+  <div className={cn('header', { 'header--negative': isNegative })}>
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>
     <ul className="header__navigation">
-      {links.map((link) =>
-        link.links ? (
-          <li
-            className="dropdown-container dropdown-container--hover"
-            key={link.label}
-          >
-            <span
-              className={
-                isNegative
-                  ? 'dropdown-container__trigger dropdown-container__trigger--negative'
-                  : 'dropdown-container__trigger'
-              }
+      {links.map((link) => (
+        <li key={link.label}>
+          {link.links ? (
+            <DropdownButton
+              label={link.label}
+              className={cn({
+                'dropdown-container__trigger--negative': isNegative,
+              })}
+              openOnHover
             >
-              {link.label}
-            </span>
-            <div className="dropdown-menu">
               <ul>
                 {link.links.map((link2) => (
                   <li key={link2.label}>
@@ -58,14 +63,12 @@ const Header = ({ logo, links, search, isNegative }) => (
                   </li>
                 ))}
               </ul>
-            </div>
-          </li>
-        ) : (
-          <li key={link.label}>
+            </DropdownButton>
+          ) : (
             <HeaderLink link={link} />
-          </li>
-        )
-      )}
+          )}
+        </li>
+      ))}
     </ul>
     <div className="header__search">{search}</div>
   </div>

@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 
 import '../styles/components/tile.scss';
 
-const Tile = ({
-  namespace, title, description, small,
-}) => {
+type Props = {
+  namespace?:
+    | 'uniref'
+    | 'uniparc'
+    | 'proteomes'
+    | 'uniprotkb'
+    | 'keywords'
+    | 'publications';
+  title: string;
+  description?: string;
+  small?: boolean;
+};
+
+const Tile: FC<Props> = ({ namespace, title, description, small }) => {
   let classNames = 'tile';
   classNames += namespace ? ` tile--${namespace}` : '';
   classNames += small ? ' tile--small' : '';
@@ -29,7 +40,14 @@ Tile.propTypes = {
   /**
    * The namespace, which decides the colour
    */
-  namespace: PropTypes.oneOf(['uniref', 'uniparc', 'proteomes']),
+  namespace: PropTypes.oneOf([
+    'uniref',
+    'uniparc',
+    'proteomes',
+    'uniprotkb',
+    'keywords',
+    'publications',
+  ]),
   /**
    * Small or normal version
    */
@@ -38,7 +56,7 @@ Tile.propTypes = {
 
 Tile.defaultProps = {
   description: 'This is a short description of what the resource is/provides.',
-  namespace: '',
+  namespace: undefined,
   small: false,
 };
 

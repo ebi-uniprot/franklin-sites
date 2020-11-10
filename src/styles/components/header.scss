@@ -23,6 +23,7 @@
     background: $colour-sky-white;
 
     a,
+    button,
     a:link,
     a:visited,
     a:hover,
@@ -32,15 +33,25 @@
   }
 
   a,
+  button,
   a:link,
   a:visited,
   a:hover,
   a:active {
     color: $colour-sky-white;
+
+    &.button.dropdown {
+      margin-bottom: 0;
+
+      &:after {
+        margin-left: 0.25em;
+      }
+    }
   }
 
   .dropdown-menu {
     a,
+    button,
     a:link,
     a:visited,
     a:hover,
@@ -55,7 +66,9 @@
 
   &__navigation {
     list-style: none;
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     margin: 0;
 
     a:hover {
@@ -63,8 +76,23 @@
     }
 
     li {
-      display: inline-block;
-      margin: 0 0.7em;
+      display: contents;
+
+      & > a {
+        margin: 0.1rem 0.25rem; // .1rem to align with dropdown
+        font-size: 1rem; // match font-size in dropdown button
+      }
+    }
+
+    button,
+    button:focus,
+    button:hover {
+      transition: none !important;
+      font-size: 1rem;
+      font-weight: bold;
+      background: none;
+      padding-left: 0.6em;
+      padding-right: 0.6em;
     }
   }
 

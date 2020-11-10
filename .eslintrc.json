@@ -1,14 +1,38 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:jest/recommended", "prettier"],
-  "plugins": ["jest", "react-hooks", "prettier"],
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-hooks"],
   "env": {
     "browser": true,
-    "node": true,
+    "es6": true,
     "jest": true
   },
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
   "rules": {
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/prefer-interface": "off",
     "implicit-arrow-linebreak": "off",
+    "import/extensions": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -22,6 +46,7 @@
       }
     ],
     "no-shadow": "off",
+    "no-use-before-define": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -38,5 +63,12 @@
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
     "jest/no-mocks-import": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

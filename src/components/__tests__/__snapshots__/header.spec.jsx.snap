@@ -17,6 +17,7 @@ exports[`Header component should render 1`] = `
     >
       <li>
         <a
+          class="button tertiary"
           href="/there"
         >
           there
