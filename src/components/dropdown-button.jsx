@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import '../styles/components/dropdown.scss';
 
-const DropdownButton = ({ children, label, className }) => {
+const DropdownButton = ({ children, label, className, openOnHover }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [size, setSize] = useState();
 
@@ -54,7 +54,12 @@ const DropdownButton = ({ children, label, className }) => {
   }, [size]);
 
   return (
-    <div className="dropdown-container">
+    <div
+      className="dropdown-container"
+      onBlur={(e) => setShowMenu(e.currentTarget.contains(e.relatedTarget))}
+      onPointerEnter={openOnHover ? () => setShowMenu(true) : undefined}
+      onPointerLeave={openOnHover ? () => setShowMenu(false) : undefined}
+    >
       <button
         type="button"
         className={cn('button', 'dropdown', className)}
@@ -70,7 +75,8 @@ const DropdownButton = ({ children, label, className }) => {
         ref={dropdownRef}
         style={style}
       >
-        {childType === 'function' ? children(setShowMenu) : children}
+        {showMenu &&
+          (childType === 'function' ? children(setShowMenu) : children)}
       </div>
     </div>
   );
@@ -89,10 +95,15 @@ DropdownButton.propTypes = {
    * Additional CSS classnames to apply to button (eg secondary, tertiary)
    */
   className: PropTypes.string,
+  /**
+   * open on pointer over (useful for dropdowns in header)
+   */
+  openOnHover: PropTypes.bool,
 };
 
 DropdownButton.defaultProps = {
   className: undefined,
+  openOnHover: undefined,
 };
 
 export default DropdownButton;

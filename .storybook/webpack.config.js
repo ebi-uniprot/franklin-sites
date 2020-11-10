@@ -42,7 +42,7 @@ module.exports = async ({ config, mode }) => {
   // use react-svg-loader for svg files in jsx
   config.module.rules.push({
     test: /\.svg$/i,
-    issuer: /\.jsx?$/,
+    issuer: /\.(j|t)sx?$/,
     use: [
       {
         loader: '@svgr/webpack',

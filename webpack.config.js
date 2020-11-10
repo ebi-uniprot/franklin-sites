@@ -9,7 +9,7 @@ module.exports = [
   {
     name: 'library',
     mode: 'production',
-    entry: [`${__dirname}/src/components/index.js`],
+    entry: [`${__dirname}/src/components/index.ts`],
     output: {
       path: `${__dirname}/dist`,
       filename: 'franklin-components.js',
@@ -22,17 +22,17 @@ module.exports = [
       'react-router-dom': { commonjs: 'react-router-dom' },
     },
     resolve: {
-      extensions: ['.jsx', '.js'],
+      extensions: ['.jsx', '.js', '.tsx', '.ts'],
     },
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.(j|t)sx?$/,
           exclude: /(node_modules)/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/react'],
+              cacheDirectory: true,
             },
           },
         },
@@ -58,7 +58,7 @@ module.exports = [
         },
         {
           test: /\.svg$/i,
-          issuer: /\.jsx?$/,
+          issuer: /\.(j|t)sx?$/,
           use: [
             {
               loader: '@svgr/webpack',

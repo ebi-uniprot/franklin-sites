@@ -84,6 +84,7 @@ const TreeSelect = ({
               placeholder={autocompletePlaceholder}
               filter={autocompleteFilter}
               clearOnSelect
+              autoFocus
             />
           )}
           {!autocompleteShowDropdown && (

@@ -1,8 +1,8 @@
 .main-search {
   display: flex;
 
-  input,
-  button {
+  & > input,
+  & > button {
     margin: 0;
   }
 

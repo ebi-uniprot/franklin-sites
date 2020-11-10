@@ -1,39 +1,41 @@
 import React from 'react';
+
 import {
-  SwissProtIcon,
-  TremblIcon,
-  ObsoleteIcon,
-  TagIcon,
-  ChevronUpIcon,
-  ChevronDownIcon,
-  ExternalLinkIcon,
-  DownloadIcon,
   BasketIcon,
-  StatisticsIcon,
-  ProteinIcon,
-  TableIcon,
-  ListIcon,
-  ConfigureIcon,
-  SearchIcon,
-  CloseIcon,
-  EditIcon,
-  PublicationIcon,
-  PublicationLineIcon,
+  BinIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
   CitedIcon,
   CitedSpeechIcon,
+  ClockIcon,
+  CloseIcon,
   ComputerMappedIcon,
-  EvidenceTagIcon,
-  ProtVistaIcon,
+  ConfigureIcon,
+  CopyIcon,
+  DownloadIcon,
+  EditIcon,
   ErrorIcon,
+  EvidenceTagIcon,
+  ExternalLinkIcon,
+  ListIcon,
+  ObsoleteIcon,
+  ProteinIcon,
+  ProtVistaIcon,
+  PublicationIcon,
+  PublicationLineIcon,
+  RefreshIcon,
+  ReSubmitIcon,
+  SearchIcon,
+  SpinnerIcon,
+  StatisticsIcon,
+  SuccessIcon,
+  SwissProtIcon,
+  TableIcon,
+  TagIcon,
+  TremblIcon,
+  UniParcIcon,
   WarningIcon,
   WarningTriangleIcon,
-  RefreshIcon,
-  BinIcon,
-  CopyIcon,
-  ClockIcon,
-  SpinnerIcon,
-  ReSubmitIcon,
-  SuccessIcon,
 } from '../src/components';
 
 export default {
@@ -52,6 +54,11 @@ const iconDefinition = [
     name: 'trembl.svg',
     description: 'Trembl unreviewed',
     icon: <TremblIcon width={size} height={size} />,
+  },
+  {
+    name: 'uniparc.svg',
+    description: 'UniParc',
+    icon: <UniParcIcon width={size} height={size} />,
   },
   {
     name: 'obsolete.svg',
@@ -218,7 +225,7 @@ const iconDefinition = [
 export const icons = () => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {iconDefinition.map(d => (
+      {iconDefinition.map((d) => (
         <div
           key={d.name}
           style={{

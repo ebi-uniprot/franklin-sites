@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/components/dropdown.scss';
-import '../styles/components/autocomplete.scss';
+import { noop } from 'lodash-es';
+
 import AutocompleteItem from './autocomplete-item';
 import SearchInput from './search-input';
+
 import { getLastIndexOfSubstringIgnoreCase } from '../utils';
+
+import '../styles/components/dropdown.scss';
+import '../styles/components/autocomplete.scss';
 
 class Autocomplete extends Component {
   static filterOptions(items, query) {
     return items.filter(
-      item => getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0
+      (item) => getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0
     );
   }
 
@@ -167,6 +171,7 @@ class Autocomplete extends Component {
       filter,
       minCharsToShowDropdown,
       isLoading,
+      autoFocus,
     } = this.props;
     const showDropdown = Autocomplete.shouldShowDropdown({
       textInputValue,
@@ -192,6 +197,7 @@ class Autocomplete extends Component {
           onKeyDown={this.handleOnKeyDown}
           placeholder={placeholder}
           isLoading={isLoading}
+          autoFocus={autoFocus}
         />
         <div
           className={
@@ -208,14 +214,15 @@ class Autocomplete extends Component {
 }
 
 Autocomplete.defaultProps = {
-  showDropdownUpdated: () => {},
-  onChange: () => {},
+  showDropdownUpdated: noop,
+  onChange: noop,
   clearOnSelect: false,
   placeholder: '',
   filter: true,
   value: '',
   minCharsToShowDropdown: 0,
   isLoading: false,
+  autoFocus: false,
 };
 
 Autocomplete.propTypes = {
@@ -229,6 +236,7 @@ Autocomplete.propTypes = {
   value: PropTypes.string,
   minCharsToShowDropdown: PropTypes.number,
   isLoading: PropTypes.bool,
+  autoFocus: PropTypes.bool,
 };
 
 export default Autocomplete;
