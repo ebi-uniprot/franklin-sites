@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import DropdownButton from './dropdown-button';
+
 import '../styles/components/main-search.scss';
 
 const MainSearch = ({
@@ -17,16 +19,11 @@ const MainSearch = ({
     data-testid="main-search-form"
   >
     {Object.keys(namespaces).length > 0 && (
-      <DropdownButton
-        label={namespaces[selectedNamespace]}
-      >
+      <DropdownButton label={namespaces[selectedNamespace]}>
         <ul>
-          {Object.keys(namespaces).map(key => (
+          {Object.keys(namespaces).map((key) => (
             <li key={key}>
-              <button
-                type="button"
-                onClick={() => onNamespaceChange(key)}
-              >
+              <button type="button" onClick={() => onNamespaceChange(key)}>
                 {namespaces[key]}
               </button>
             </li>
@@ -38,7 +35,7 @@ const MainSearch = ({
       type="text"
       className="main-search__input"
       data-testid="main-search-input"
-      onChange={e => onChange(e.target.value)}
+      onChange={(e) => onChange(e.target.value)}
       value={searchTerm}
     />
     <button type="submit" className="button">

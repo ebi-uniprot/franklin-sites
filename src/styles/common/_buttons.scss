@@ -2,6 +2,10 @@
 @import '../colours';
 
 .button {
+  --main-color: var(--main-button-color, #{$colour-sea-blue});
+
+  user-select: none;
+
   &.dropdown::after {
     border-color: currentColor transparent transparent;
   }
@@ -14,34 +18,41 @@
     vertical-align: middle;
     fill: $colour-sky-white;
   }
+
   &.large-icon svg {
     width: 1.2rem;
     height: 1.2rem;
     margin-top: -0.2rem;
     margin-right: 0.5rem;
   }
+
   &.secondary {
     color: $colour-sea-blue;
     border: 0.1rem solid $colour-sea-blue;
     font-weight: 700;
+
     svg {
       fill: $colour-sea-blue;
     }
   }
+
   &.tertiary {
     background: none;
-    color: $colour-sapphire-blue;
+    color: $colour-sea-blue;
     font-weight: $global-weight-bold;
     padding: 0;
     line-height: 1.6;
     text-align: left;
+
     &:hover:disabled {
-      color: $colour-sapphire-blue;
+      color: $colour-sea-blue;
       background-color: $colour-sky-white;
     }
+
     svg {
-      fill: $colour-sapphire-blue;
+      fill: $colour-sea-blue;
     }
+
     &.tertiary-icon__active {
       svg {
         fill: $colour-platinum;
@@ -52,6 +63,7 @@
 
 .button-group {
   margin-bottom: $global-margin/2;
+
   .tertiary {
     margin-right: 1rem;
   }

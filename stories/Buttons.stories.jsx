@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+
 import { DownloadIcon } from '../src/components';
 
 export default {
@@ -12,7 +13,7 @@ export default {
 };
 
 export const buttons = () => (
-  <Fragment>
+  <>
     <div>
       <button className="button" type="button">
         Primary
@@ -28,11 +29,11 @@ export const buttons = () => (
         Tertiary
       </button>
     </div>
-  </Fragment>
+  </>
 );
 
 export const buttonGroups = () => (
-  <Fragment>
+  <>
     <div className="button-group">
       <button className="button" type="button">
         One
@@ -66,31 +67,31 @@ export const buttonGroups = () => (
         Three
       </button>
     </div>
-  </Fragment>
+  </>
 );
 
 export const disabled = () => (
-  <Fragment>
+  <>
     <div>
-      <button className="button disabled" type="button">
+      <button className="button disabled" type="button" disabled>
         Primary
       </button>
     </div>
     <div>
-      <button className="button secondary disabled" type="button">
+      <button className="button secondary disabled" type="button" disabled>
         Secondary
       </button>
     </div>
     <div>
-      <button className="button tertiary disabled" type="button">
+      <button className="button tertiary disabled" type="button" disabled>
         Tertiary
       </button>
     </div>
-  </Fragment>
+  </>
 );
 
 export const withIcon = () => (
-  <Fragment>
+  <>
     <div>
       <button className="button" type="button">
         <DownloadIcon />
@@ -109,5 +110,5 @@ export const withIcon = () => (
         Tertiary
       </button>
     </div>
-  </Fragment>
+  </>
 );
