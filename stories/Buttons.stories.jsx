@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from '../src/components';
 import { DownloadIcon } from '../src/components';
 
 export default {
@@ -28,6 +29,19 @@ export const buttons = () => (
       <button className="button tertiary" type="button">
         Tertiary
       </button>
+    </div>
+    <div>
+      <Button type="button">Primary</Button>
+    </div>
+    <div>
+      <Button className="button secondary" type="button">
+        Secondary
+      </Button>
+    </div>
+    <div>
+      <Button className="button tertiary" type="button">
+        Tertiary
+      </Button>
     </div>
   </>
 );
