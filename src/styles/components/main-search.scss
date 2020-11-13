@@ -2,7 +2,8 @@
   display: flex;
 
   & > input,
-  & > button {
+  & > button,
+  & > .dropdown-container button {
     margin: 0;
   }
 
