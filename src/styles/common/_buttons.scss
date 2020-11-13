@@ -26,19 +26,28 @@
     margin-right: 0.5rem;
   }
 
-  &.secondary {
+  &.primary,
+  &.primary.disabled {
+    background-color: $colour-sea-blue;
+    background-color: var(--main-color);
+  }
+
+  &.secondary,
+  &.secondary.disabled {
     color: $colour-sea-blue;
-    border: 0.1rem solid $colour-sea-blue;
+    color: var(--main-color);
+    border: 0.1rem solid currentColor;
     font-weight: 700;
 
     svg {
-      fill: $colour-sea-blue;
+      fill: currentColor;
     }
   }
 
   &.tertiary {
     background: none;
     color: $colour-sea-blue;
+    color: var(--main-color);
     font-weight: $global-weight-bold;
     padding: 0;
     line-height: 1.6;
@@ -46,11 +55,12 @@
 
     &:hover:disabled {
       color: $colour-sea-blue;
+      color: var(--main-color);
       background-color: $colour-sky-white;
     }
 
     svg {
-      fill: $colour-sea-blue;
+      fill: currentColor;
     }
 
     &.tertiary-icon__active {

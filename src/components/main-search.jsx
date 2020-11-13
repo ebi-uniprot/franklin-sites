@@ -20,15 +20,23 @@ const MainSearch = ({
   >
     {Object.keys(namespaces).length > 0 && (
       <DropdownButton label={namespaces[selectedNamespace]}>
-        <ul>
-          {Object.keys(namespaces).map((key) => (
-            <li key={key}>
-              <button type="button" onClick={() => onNamespaceChange(key)}>
-                {namespaces[key]}
-              </button>
-            </li>
-          ))}
-        </ul>
+        {(setShowMenu) => (
+          <ul>
+            {Object.keys(namespaces).map((key) => (
+              <li key={key}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowMenu(false);
+                    onNamespaceChange(key);
+                  }}
+                >
+                  {namespaces[key]}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </DropdownButton>
     )}
     <input
