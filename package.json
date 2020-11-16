@@ -12,8 +12,7 @@
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
-    "prebuild": "yarn test",
-    "build": "ls -1a node_modules && yarn build-library && yarn build-storybook",
+    "build": "yarn build-library && yarn build-storybook",
     "build-library": "webpack",
     "analyse": "webpack-bundle-analyzer dist/stats.json",
     "jest-coverage-ratchet": "jest-coverage-ratchet",
@@ -23,7 +22,7 @@
     "test:types": "tsc",
     "test:unit": "jest --coverage",
     "test-watch": "jest --watch",
-    "prerelease": "yarn build",
+    "prerelease": "yarn test && yarn build",
     "release": "yarn publish && git push --follow-tags origin master",
     "start": "start-storybook -p 6006 --no-dll -s ./assets",
     "build-storybook": "build-storybook -c .storybook --no-dll -o .out -s ./assets"
