@@ -31,14 +31,14 @@ $primary: map-get($foundation-palette, secondary);
   &.primary {
     &,
     &.disabled {
-      background-color: $colour-sea-blue;
+      background-color: $primary;
       background-color: var(--main-color);
     }
 
     &:hover,
     &:focus,
     &:focus-within {
-      background-color: $colour-sea-blue;
+      background-color: $primary;
       background-color: var(--main-color);
       filter: brightness(90%);
     }
@@ -47,7 +47,7 @@ $primary: map-get($foundation-palette, secondary);
   &.secondary {
     &,
     &.disabled {
-      color: $colour-sea-blue;
+      color: $primary;
       color: var(--main-color);
       border: 0.1rem solid currentColor;
       font-weight: 700;
@@ -60,7 +60,7 @@ $primary: map-get($foundation-palette, secondary);
 
   &.tertiary {
     background: none;
-    color: $colour-sea-blue;
+    color: $primary;
     color: var(--main-color);
     font-weight: $global-weight-bold;
     padding: 0;
@@ -68,7 +68,7 @@ $primary: map-get($foundation-palette, secondary);
     text-align: left;
 
     &:hover:disabled {
-      color: $colour-sea-blue;
+      color: $primary;
       color: var(--main-color);
       background-color: $colour-sky-white;
     }
