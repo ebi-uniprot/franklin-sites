@@ -1,10 +1,8 @@
 @import '../settings';
 @import '../colours';
 
-$primary: map-get($foundation-palette, secondary);
-
 .button {
-  --main-color: var(--main-button-color, #{$primary});
+  --main-color: var(--main-button-color, #{$foundation-primary});
 
   user-select: none;
 
@@ -31,14 +29,14 @@ $primary: map-get($foundation-palette, secondary);
   &.primary {
     &,
     &.disabled {
-      background-color: $primary;
+      background-color: $foundation-primary;
       background-color: var(--main-color);
     }
 
     &:hover,
     &:focus,
     &:focus-within {
-      background-color: $primary;
+      background-color: $foundation-primary;
       background-color: var(--main-color);
       filter: brightness(90%);
     }
@@ -47,7 +45,7 @@ $primary: map-get($foundation-palette, secondary);
   &.secondary {
     &,
     &.disabled {
-      color: $primary;
+      color: $foundation-primary;
       color: var(--main-color);
       border: 0.1rem solid currentColor;
       font-weight: 700;
@@ -60,7 +58,7 @@ $primary: map-get($foundation-palette, secondary);
 
   &.tertiary {
     background: none;
-    color: $primary;
+    color: $foundation-primary;
     color: var(--main-color);
     font-weight: $global-weight-bold;
     padding: 0;
@@ -68,7 +66,7 @@ $primary: map-get($foundation-palette, secondary);
     text-align: left;
 
     &:hover:disabled {
-      color: $primary;
+      color: $foundation-primary;
       color: var(--main-color);
       background-color: $colour-sky-white;
     }
