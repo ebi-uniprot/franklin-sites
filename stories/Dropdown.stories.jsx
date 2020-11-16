@@ -14,12 +14,12 @@ export default {
 
 export const dropdownButton = () => (
   <div>
-    {['primary', 'secondary', 'tertiary'].map(level => (
-      <div key={level}>
+    {['primary', 'secondary', 'tertiary'].map((variant) => (
+      <div key={variant}>
         <DropdownButton
           label="Download"
           onSelect={action('onSelect')}
-          className={level}
+          variant={variant}
         >
           <div className="dropdown-menu__content">
             <p>Download content from:</p>

@@ -2,9 +2,17 @@ import React, { useRef, useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import Button from './button';
+
 import '../styles/components/dropdown.scss';
 
-const DropdownButton = ({ children, label, className, openOnHover }) => {
+const DropdownButton = ({
+  children,
+  label,
+  className,
+  openOnHover,
+  ...props
+}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [size, setSize] = useState();
 
@@ -60,14 +68,14 @@ const DropdownButton = ({ children, label, className, openOnHover }) => {
       onPointerEnter={openOnHover ? () => setShowMenu(true) : undefined}
       onPointerLeave={openOnHover ? () => setShowMenu(false) : undefined}
     >
-      <button
-        type="button"
-        className={cn('button', 'dropdown', className)}
+      <Button
+        className={cn('dropdown', className)}
         onClick={() => setShowMenu((showMenu) => !showMenu)}
         ref={ref}
+        {...props}
       >
         {label}
-      </button>
+      </Button>
       <div
         className={cn('dropdown-menu', {
           'dropdown-menu-open': showMenu,
@@ -92,9 +100,13 @@ DropdownButton.propTypes = {
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   /**
-   * Additional CSS classnames to apply to button (eg secondary, tertiary)
+   * Additional CSS classnames to apply to button
    */
   className: PropTypes.string,
+  /**
+   * Button variant to use
+   */
+  variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   /**
    * open on pointer over (useful for dropdowns in header)
    */
@@ -104,6 +116,7 @@ DropdownButton.propTypes = {
 DropdownButton.defaultProps = {
   className: undefined,
   openOnHover: undefined,
+  variant: undefined,
 };
 
 export default DropdownButton;

@@ -18,7 +18,12 @@ export default {
 };
 
 const useColor = () =>
-  select('--main-button-color', colors, colors.seaBlue, 'Custom Properties');
+  select(
+    '--main-button-color',
+    { ...colors, primary: '#1779ba' },
+    '#1779ba',
+    'Custom Properties'
+  );
 const useDisabled = () => boolean('disabled', false, 'Props');
 
 export const buttons = () => {

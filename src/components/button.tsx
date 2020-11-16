@@ -1,10 +1,4 @@
-import {
-  createElement,
-  ComponentClass,
-  FC,
-  FunctionComponent,
-  HTMLAttributes,
-} from 'react';
+import React, { forwardRef, ComponentClass, FunctionComponent } from 'react';
 import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';
@@ -42,25 +36,35 @@ type ButtonProps = {
   [key: string]: unknown;
 };
 
-export const Button: FC<ButtonProps> = ({
-  element = 'button',
-  className,
-  variant = 'primary',
-  children,
-  ...props
-}) => {
-  const rest = props;
-  if (element === 'button') {
-    rest.type = props.type || 'button';
+export const Button = forwardRef<PossibleElements, ButtonProps>(
+  (
+    { element = 'button', className, variant = 'primary', children, ...props },
+    ref
+  ) => {
+    const rest = props;
+
+    if (element === 'button') {
+      rest.type = props.type || 'button';
+    }
+
+    const Element = element;
+    return (
+      <Element
+        className={cn(
+          'button',
+          variant,
+          { disabled: props.disabled },
+          className
+        )}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Element>
+    );
   }
-  return createElement<HTMLAttributes<PossibleElements>>(
-    element,
-    {
-      className: cn('button', variant, { disabled: props.disabled }, className),
-      ...props,
-    },
-    children
-  );
-};
+);
 
 export default Button;

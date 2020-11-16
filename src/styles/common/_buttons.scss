@@ -1,8 +1,10 @@
 @import '../settings';
 @import '../colours';
 
+$primary: map-get($foundation-palette, secondary);
+
 .button {
-  --main-color: var(--main-button-color, #{$colour-sea-blue});
+  --main-color: var(--main-button-color, #{$primary});
 
   user-select: none;
 
@@ -26,21 +28,33 @@
     margin-right: 0.5rem;
   }
 
-  &.primary,
-  &.primary.disabled {
-    background-color: $colour-sea-blue;
-    background-color: var(--main-color);
+  &.primary {
+    &,
+    &.disabled {
+      background-color: $colour-sea-blue;
+      background-color: var(--main-color);
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background-color: $colour-sea-blue;
+      background-color: var(--main-color);
+      filter: brightness(90%);
+    }
   }
 
-  &.secondary,
-  &.secondary.disabled {
-    color: $colour-sea-blue;
-    color: var(--main-color);
-    border: 0.1rem solid currentColor;
-    font-weight: 700;
+  &.secondary {
+    &,
+    &.disabled {
+      color: $colour-sea-blue;
+      color: var(--main-color);
+      border: 0.1rem solid currentColor;
+      font-weight: 700;
 
-    svg {
-      fill: currentColor;
+      svg {
+        fill: currentColor;
+      }
     }
   }
 
