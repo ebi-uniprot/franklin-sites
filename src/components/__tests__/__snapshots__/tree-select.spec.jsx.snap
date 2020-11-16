@@ -6,7 +6,7 @@ exports[`TreeSelect component should render 1`] = `
   onBlur={[Function]}
 >
   <button
-    className="button dropdown"
+    className="button primary dropdown"
     onClick={[Function]}
     type="button"
   >
@@ -24,7 +24,7 @@ exports[`TreeSelect component with filter should render 1`] = `
   onBlur={[Function]}
 >
   <button
-    className="button dropdown"
+    className="button primary dropdown"
     onClick={[Function]}
     type="button"
   >
