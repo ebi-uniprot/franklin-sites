@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "yarn test",
-    "build": "pwd & find . -type d -name .cache -exec ls {} + && yarn build-library && yarn build-storybook",
+    "build": "ls -1a node_modules && yarn build-library && yarn build-storybook",
     "build-library": "webpack",
     "analyse": "webpack-bundle-analyzer dist/stats.json",
     "jest-coverage-ratchet": "jest-coverage-ratchet",
