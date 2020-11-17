@@ -3,6 +3,7 @@ export { default as Accordion } from './accordion';
 export { default as AccordionSearch } from './accordion-search';
 export { default as Autocomplete } from './autocomplete';
 export { default as Bubble } from './bubble';
+export { default as Button } from './button';
 export { default as ButtonModal } from './button-modal';
 export { default as Card } from './card';
 export { default as Chip } from './chip';

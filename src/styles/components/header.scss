@@ -72,7 +72,7 @@
     margin: 0;
 
     a:hover {
-      border-bottom: 1px solid $colour-sky-white;
+      border-bottom: 1px solid currentColor;
     }
 
     li {
@@ -84,15 +84,17 @@
       }
     }
 
-    button,
-    button:focus,
-    button:hover {
-      transition: none !important;
-      font-size: 1rem;
-      font-weight: bold;
-      background: none;
-      padding-left: 0.6em;
-      padding-right: 0.6em;
+    button.button {
+      &,
+      &:focus,
+      &:hover {
+        transition: none;
+        font-size: 1rem;
+        font-weight: bold;
+        background: none;
+        padding-left: 0.6em;
+        padding-right: 0.6em;
+      }
     }
   }
 
