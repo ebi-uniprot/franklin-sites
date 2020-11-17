@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero Header component should render 1`] = `
+<div
+  className="hero-header"
+>
+  <div
+    className="hero-header__top"
+  >
+    <div
+      className="hero-header__topLeft"
+    >
+      <i>
+        Top Left
+      </i>
+    </div>
+    <div
+      className="hero-header__topRight"
+    >
+      <b>
+        Top Right
+      </b>
+    </div>
+  </div>
+  <div
+    className="hero-header__title"
+  >
+    <h1>
+      Title
+    </h1>
+  </div>
+  <div
+    className="hero-header__content"
+  >
+    <input
+      type="text"
+    />
+  </div>
+  <div
+    className="hero-header__footer"
+  >
+    <span>
+      Footer
+    </span>
+  </div>
+</div>
+`;
