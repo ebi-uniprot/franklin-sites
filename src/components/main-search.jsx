@@ -8,8 +8,6 @@ import color from '../styles/colours.json';
 
 import '../styles/components/main-search.scss';
 
-const foundationDefault = '#1779ba';
-
 const MainSearch = ({
   searchTerm = '',
   namespaces = {},
@@ -20,7 +18,7 @@ const MainSearch = ({
 }) => {
   const style = useMemo(
     () => ({
-      '--main-button-color': color[selectedNamespace] || foundationDefault,
+      '--main-button-color': color[selectedNamespace] || color.seaBlue,
     }),
     [selectedNamespace]
   );

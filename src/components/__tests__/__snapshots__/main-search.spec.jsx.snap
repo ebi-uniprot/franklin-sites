@@ -5,7 +5,7 @@ exports[`MainSearch component should render 1`] = `
   <form
     class="main-search"
     data-testid="main-search-form"
-    style="--main-button-color: #1779ba;"
+    style="--main-button-color: #00639a;"
   >
     <input
       class="main-search__input"
@@ -28,7 +28,7 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
   <form
     class="main-search"
     data-testid="main-search-form"
-    style="--main-button-color: #1779ba;"
+    style="--main-button-color: #00639a;"
   >
     <div
       class="dropdown-container"

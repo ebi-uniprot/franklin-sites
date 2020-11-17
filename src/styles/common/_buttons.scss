@@ -2,7 +2,7 @@
 @import '../colours';
 
 .button {
-  --main-color: var(--main-button-color, #{$foundation-primary});
+  --main-color: var(--main-button-color, #{$colour-sea-blue});
 
   user-select: none;
 
@@ -29,14 +29,14 @@
   &.primary {
     &,
     &.disabled {
-      background-color: $foundation-primary;
+      background-color: $colour-sea-blue;
       background-color: var(--main-color);
     }
 
     &:hover,
     &:focus,
     &:focus-within {
-      background-color: $foundation-primary;
+      background-color: $colour-sea-blue;
       background-color: var(--main-color);
       filter: brightness(90%);
     }
@@ -45,7 +45,7 @@
   &.secondary {
     &,
     &.disabled {
-      color: $foundation-primary;
+      color: $colour-sea-blue;
       color: var(--main-color);
       border: 0.1rem solid currentColor;
       font-weight: 700;
@@ -58,7 +58,7 @@
 
   &.tertiary {
     background: none;
-    color: $foundation-primary;
+    color: $colour-sea-blue;
     color: var(--main-color);
     font-weight: $global-weight-bold;
     padding: 0;
@@ -66,7 +66,7 @@
     text-align: left;
 
     &:hover:disabled {
-      color: $foundation-primary;
+      color: $colour-sea-blue;
       color: var(--main-color);
       background-color: $colour-sky-white;
     }
