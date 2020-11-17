@@ -117,7 +117,15 @@
   flex-direction: column;
   margin-bottom: 2em;
 
-  .hero-header__title {
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 2 1 auto;
+    width: 90%;
+  }
+
+  &__title {
     display: flex;
     align-items: flex-end;
     flex: 2 1 auto;
@@ -127,12 +135,12 @@
     }
   }
 
-  .hero-header__content {
+  &__content {
     flex: 2 1 auto;
     width: 90%;
   }
 
-  .hero-header__footer {
+  &__footer {
     flex: 0 1 auto;
   }
 
