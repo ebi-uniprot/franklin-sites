@@ -13,7 +13,12 @@ export default {
 };
 
 export const heroHeader = () => (
-  <HeroHeader title="Title" footer={loremIpsum({ count: 25, units: 'words' })}>
+  <HeroHeader
+    topLeft={<i>Top Left</i>}
+    topRight={<b>Top Right</b>}
+    title="Title"
+    footer={<span>{loremIpsum({ count: 25, units: 'words' })}</span>}
+  >
     <input type="text" />
   </HeroHeader>
 );

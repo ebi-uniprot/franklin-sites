@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/header.scss';
 
-const HeroHeader = ({ title, children, footer }) => (
+const HeroHeader = ({ topLeft, topRight, title, children, footer }) => (
   <div className="hero-header">
+    <div className="hero-header__top">
+      <div>{topLeft}</div>
+      <div>{topRight}</div>
+    </div>
     <div className="hero-header__title">
       <h1>{title}</h1>
     </div>
@@ -13,14 +17,18 @@ const HeroHeader = ({ title, children, footer }) => (
 );
 
 HeroHeader.propTypes = {
+  topLeft: PropTypes.element,
+  topRight: PropTypes.element,
   title: PropTypes.string,
   children: PropTypes.element.isRequired,
-  footer: PropTypes.string,
+  footer: PropTypes.element,
 };
 
 HeroHeader.defaultProps = {
+  topLeft: null,
+  topRight: null,
   title: '',
-  footer: '',
+  footer: null,
 };
 
 export default HeroHeader;

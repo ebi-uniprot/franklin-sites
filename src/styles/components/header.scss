@@ -2,6 +2,8 @@
 @import '../colours';
 @import '../mixins';
 
+$content-width: 90%;
+
 .header,
 .hero-header {
   display: flex;
@@ -117,7 +119,15 @@
   flex-direction: column;
   margin-bottom: 2em;
 
-  .hero-header__title {
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 2 1 auto;
+    width: $content-width;
+  }
+
+  &__title {
     display: flex;
     align-items: flex-end;
     flex: 2 1 auto;
@@ -127,12 +137,12 @@
     }
   }
 
-  .hero-header__content {
+  &__content {
     flex: 2 1 auto;
-    width: 90%;
+    width: $content-width;
   }
 
-  .hero-header__footer {
+  &__footer {
     flex: 0 1 auto;
   }
 
