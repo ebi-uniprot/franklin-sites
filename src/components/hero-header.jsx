@@ -5,8 +5,8 @@ import '../styles/components/header.scss';
 const HeroHeader = ({ topLeft, topRight, title, children, footer }) => (
   <div className="hero-header">
     <div className="hero-header__top">
-      <div className="hero-header__topLeft">{topLeft}</div>
-      <div className="hero-header__topRight">{topRight}</div>
+      <div>{topLeft}</div>
+      <div>{topRight}</div>
     </div>
     <div className="hero-header__title">
       <h1>{title}</h1>
