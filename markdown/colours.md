@@ -21,6 +21,7 @@
 
 <div class="box-colour colour-reviewed" data-name="$colour-reviewed" ></div>
 <div class="box-colour colour-unreviewed" data-name="$colour-unreviewed" ></div>
+<div class="box-colour colour-uniparc" data-name="$colour-uniparc" ></div>
 
 ### Namespace palette
 
