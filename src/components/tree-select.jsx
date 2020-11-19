@@ -7,6 +7,7 @@ import {
   restructureFlattenedTreeDataForAutocomplete,
 } from '../utils';
 import DropdownButton from './dropdown-button';
+import { Button } from './button';
 import Autocomplete from './autocomplete';
 
 import '../styles/components/tree-select.scss';
@@ -19,7 +20,7 @@ const TreeSelect = ({
   autocompleteFilter,
   defaultActiveNodes,
   label,
-  className,
+  ...props
 }) => {
   const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
   const [openNodes, setOpenNodes] = useState([]);
@@ -52,13 +53,20 @@ const TreeSelect = ({
     <ul className={cn({ open })}>
       {items.map((node) => (
         <li key={node.id} className={cn({ branch: node.items })}>
-          <button
-            type="button"
+          <Button
             onClick={(e) => handleNodeClick(node, setShowDropdownMenu, e)}
             className={cn({ active: activeNodes.includes(node.id) })}
+            variant="secondary"
+            aria-label={
+              node.items?.length
+                ? `${node.label} (${node.items.length} nested option${
+                    node.items.length === 1 ? '' : 's'
+                  })`
+                : undefined
+            }
           >
             {node.label}
-          </button>
+          </Button>
           {node.items &&
             buildTree(
               node.items,
@@ -71,7 +79,7 @@ const TreeSelect = ({
   );
 
   return (
-    <DropdownButton label={label || 'Select'} className={className}>
+    <DropdownButton label={label || 'Select'} {...props}>
       {(setShowDropdownMenu) => (
         <>
           {autocomplete && (
@@ -121,13 +129,13 @@ TreeSelect.propTypes = {
    */
   label: PropTypes.string,
   /**
-   * Additional CSS classnames to apply to button (eg secondary, tertiary)
-   */
-  className: PropTypes.string,
-  /**
    * Array of default active nodes for initialisation
    */
   defaultActiveNodes: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Optional extra props to pass to the button
+   */
+  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types, react/require-default-props
 };
 
 TreeSelect.defaultProps = {
@@ -135,7 +143,6 @@ TreeSelect.defaultProps = {
   autocompletePlaceholder: '',
   autocompleteFilter: true,
   label: undefined,
-  className: undefined,
   defaultActiveNodes: [],
 };
 

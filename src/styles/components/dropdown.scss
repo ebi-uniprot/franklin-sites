@@ -20,6 +20,8 @@
 }
 
 .dropdown-menu {
+  --main-button-color: black;
+
   input {
     margin: 0;
   }
@@ -57,25 +59,31 @@
 
       button,
       a {
-        line-height: 1.6rem;
-        cursor: pointer;
-        width: 100%;
-        text-align: left;
-        padding: 0.5rem !important; // These two !important's are required to ensure the BLAST button is ...
-        margin-bottom: 0 !important; // styled in the same way as the <a> tags in the Sequence component
-        margin-right: 2rem;
-        position: relative;
-        display: block;
-        border: none;
-        padding-right: 1rem;
-        text-decoration: none;
+        &,
+        &.primary,
+        &.secondary,
+        &.tertiary {
+          cursor: pointer;
+          line-height: 1.6rem;
+          width: 100%;
+          text-align: left;
+          font-weight: normal;
+          padding: 0.5rem !important; // These two !important's are required to ensure the BLAST button is ...
+          margin-bottom: 0 !important; // styled in the same way as the <a> tags in the Sequence component
+          margin-right: 2rem;
+          position: relative;
+          display: block;
+          border: none;
+          padding-right: 1rem;
+          text-decoration: none;
 
-        &:hover {
-          @extend .hover;
-        }
+          &:hover {
+            @extend .hover;
+          }
 
-        &.active {
-          font-weight: bold;
+          &.active {
+            font-weight: bold;
+          }
         }
       }
     }

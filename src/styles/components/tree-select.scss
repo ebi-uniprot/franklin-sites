@@ -3,10 +3,10 @@
 .dropdown-menu__panel ul {
   li {
     &.branch > button::after {
+      content: '';
       width: 0;
       height: 0;
       border: inset 0.4rem;
-      content: '';
       border-right-width: 0;
       border-left-style: solid;
       border-color: transparent transparent transparent $colour-yankees-blue;
@@ -15,6 +15,7 @@
       float: right;
       margin-left: 1rem;
     }
+
     &.branch {
       ul {
         opacity: 0;
@@ -22,6 +23,7 @@
         -webkit-transition: none;
         /* Safari */
         transition: none;
+
         &.open {
           opacity: 1;
           position: relative;
@@ -30,6 +32,7 @@
           /* Safari */
           transition: all 0.5s;
         }
+
         li {
           padding-left: 1rem;
         }
