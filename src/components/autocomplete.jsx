@@ -81,22 +81,6 @@ class Autocomplete extends Component {
     onChange(textInputValue);
   }
 
-  buildOptions({ data, substringToHighlight, hoverIndex }) {
-    return (
-      <ul>
-        {data.map((item, index) => (
-          <AutocompleteItem
-            item={item}
-            active={hoverIndex === index}
-            substringToHighlight={substringToHighlight}
-            key={item.id}
-            handleOnClick={this.handleNodeSelect}
-          />
-        ))}
-      </ul>
-    );
-  }
-
   handleNodeSelect(item) {
     const { onSelect, clearOnSelect, showDropdownUpdated } = this.props;
     const { submittedInputValue } = this.state;
@@ -161,6 +145,22 @@ class Autocomplete extends Component {
     } else {
       this.handleNodeSelect(textInputValue);
     }
+  }
+
+  buildOptions({ data, substringToHighlight, hoverIndex }) {
+    return (
+      <ul>
+        {data.map((item, index) => (
+          <AutocompleteItem
+            item={item}
+            active={hoverIndex === index}
+            substringToHighlight={substringToHighlight}
+            key={item.id}
+            handleOnClick={this.handleNodeSelect}
+          />
+        ))}
+      </ul>
+    );
   }
 
   render() {
