@@ -35,7 +35,15 @@ const HeaderLink = ({ link }) => {
 HeaderLink.propTypes = {
   link: PropTypes.shape({
     label: PropTypes.string,
-    path: PropTypes.string,
+    path: PropTypes.oneOf([
+      PropTypes.string,
+      PropTypes.shape({
+        pathname: PropTypes.string,
+        search: PropTypes.string,
+        hash: PropTypes.string,
+        state: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+      }),
+    ]),
     href: PropTypes.string,
   }).isRequired,
 };
