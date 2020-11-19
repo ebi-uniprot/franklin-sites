@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 import '../styles/components/in-page-nav.scss';
 
-const GRANULARITY = 6;
+const GRANULARITY = 11;
 
 const InPageNav = ({ sections, rootElement }) => {
   const history = useHistory();
@@ -34,20 +34,24 @@ const InPageNav = ({ sections, rootElement }) => {
         // eslint-disable-next-line no-restricted-syntax
         for (const entry of entries) {
           // update the visibility map
-          visibilityMap.set(entry.target, entry.intersectionRatio);
+          visibilityMap.set(entry.target, {
+            height: entry.intersectionRect.height,
+            ratio: entry.intersectionRatio,
+          });
         }
 
         let mostVisible;
         let highestVisibility = 0;
         // eslint-disable-next-line no-restricted-syntax
-        for (const [element, intersectionRatio] of visibilityMap.entries()) {
+        for (const [element, { height, ratio }] of visibilityMap.entries()) {
           // find the most visible element
-          if (highestVisibility < intersectionRatio) {
-            highestVisibility = intersectionRatio;
+          if (highestVisibility < height) {
+            highestVisibility = height;
             mostVisible = element;
           }
           // stop at the first element completely visible
-          if (intersectionRatio === 1) {
+          // might happen when you have small sections
+          if (ratio === 1) {
             break;
           }
         }
@@ -66,7 +70,7 @@ const InPageNav = ({ sections, rootElement }) => {
     // sleep, to give the rest of the page a chance to start loading
     // schedule, to trigger only when the page has finished doing work
     // hopefully by then all the components are loaded
-    sleep(100)
+    sleep(250)
       .then(() => schedule(1000))
       .then(() => {
         // get elements to watch from configured sections
@@ -112,7 +116,7 @@ const InPageNav = ({ sections, rootElement }) => {
     // sleep, to give the rest of the page a chance to start loading
     // schedule, to trigger only when the page has finished doing work
     // hopefully by then all the components are loaded and in their right space
-    sleep(100)
+    sleep(250)
       .then(() => schedule(1000))
       .then(() => {
         document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
