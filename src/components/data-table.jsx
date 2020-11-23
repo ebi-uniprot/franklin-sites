@@ -22,7 +22,7 @@ const sharedPropTypes = {
         PropTypes.string,
         PropTypes.node,
         PropTypes.arrayOf(PropTypes.node),
-      ]).isRequired,
+      ]),
       name: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
     })
