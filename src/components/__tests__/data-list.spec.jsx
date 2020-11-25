@@ -1,50 +1,54 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+
+import { render, fireEvent, screen } from '@testing-library/react';
+
 import DataList from '../data-list';
-import { fillArray } from '../../utils';
 
 describe('DataList', () => {
-  const data = fillArray(10, (_, index) => ({
+  const data = Array.from({ length: 10 }, (_, index) => ({
     id: `id${index}`,
     content: index,
   }));
 
   let onLoadMoreItems;
-  const getRender = (hasMoreData = true) =>
+
+  const renderList = ({ hasMoreData = true, clickToLoad = true } = {}) =>
     render(
-      <div
-        style={{ height: '65vh', overflowY: 'auto' }}
-        data-testid="scroll-container"
-      >
-        <DataList
-          onLoadMoreItems={onLoadMoreItems}
-          hasMoreData={hasMoreData}
-          data={data}
-          dataRenderer={(item) => <p>{item.content}</p>}
-          onCardClick={null}
-        />
-      </div>
+      <DataList
+        onLoadMoreItems={onLoadMoreItems}
+        hasMoreData={hasMoreData}
+        data={data}
+        clickToLoad={clickToLoad}
+        dataRenderer={(item) => <p>{item.content}</p>}
+        onCardClick={null}
+      />
     );
+
   beforeEach(() => {
     onLoadMoreItems = jest.fn();
   });
 
-  test('should render', () => {
-    const { asFragment } = getRender();
+  test('should render autoload', () => {
+    const { asFragment } = renderList({ clickToLoad: false });
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render click-to-load', () => {
+    const { asFragment } = renderList();
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('should request more data', () => {
-    const { getByTestId } = getRender();
-    const scrollContainer = getByTestId('scroll-container');
-    fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
+    renderList();
+    expect(onLoadMoreItems).not.toHaveBeenCalled();
+    const clickToLoadMore = screen.getByTestId('click-to-load-more');
+    fireEvent.click(clickToLoadMore);
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
 
-  test('should not request more data', () => {
-    const { getByTestId } = getRender(false);
-    const scrollContainer = getByTestId('scroll-container');
-    fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
-    expect(onLoadMoreItems).toHaveBeenCalledTimes(0);
+  test('should not show the option to load more data', () => {
+    renderList({ hasMoreData: false });
+    const clickToLoadMore = screen.queryByTestId('click-to-load-more');
+    expect(clickToLoadMore).toBeNull();
   });
 });

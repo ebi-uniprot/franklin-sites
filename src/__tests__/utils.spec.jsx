@@ -1,14 +1,16 @@
 /* eslint-disable no-multi-spaces */
 import { render } from '@testing-library/react';
+
 import {
   getFlattenedPaths,
   getLastIndexOfSubstringIgnoreCase,
   restructureFlattenedTreeDataForAutocomplete,
   restructureFlattenedTreeItemsForAutocomplete,
-  fillArray,
   highlightSubstring,
   getClassNames,
+  capitaliseFirstLetter,
 } from '../utils';
+
 import { treeData } from '../mock-data/tree-data';
 
 test('should get all paths', () => {
@@ -142,9 +144,13 @@ test('should prepare flattened tree data items for autocomplete', () => {
   });
 });
 
-test('should fill array with objects', () => {
-  const array = fillArray(3, (element, index) => ({ index }));
-  expect(array).toEqual([{ index: 0 }, { index: 1 }, { index: 2 }]);
+describe('capitaliseFirstLetter', () => {
+  expect(capitaliseFirstLetter(null)).toBe(null);
+  expect(capitaliseFirstLetter('')).toBe('');
+  expect(capitaliseFirstLetter('a')).toBe('A');
+  expect(capitaliseFirstLetter('A')).toBe('A');
+  expect(capitaliseFirstLetter('hello')).toBe('Hello');
+  expect(capitaliseFirstLetter('Hello')).toBe('Hello');
 });
 
 describe('highlightSubstring', () => {

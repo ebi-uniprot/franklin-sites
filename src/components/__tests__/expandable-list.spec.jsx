@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { render, fireEvent, cleanup } from '@testing-library/react';
+
 import ExpandableList, { ExpandableMessage } from '../expandable-list';
-import { fillArray } from '../../utils';
 
 afterEach(cleanup);
 
@@ -56,7 +57,7 @@ describe('ExpandableMessage', () => {
 describe('ExpandableList', () => {
   const numberItems = 10;
   const numberCollapsedItems = 5;
-  const items = fillArray(numberItems, (element, index) => ({
+  const items = Array.from({ length: numberItems }, (_, index) => ({
     id: `id${index}`,
     content: `some content ${index}`,
   }));

@@ -1,40 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DoughnutChart component should render 1`] = `
-<span
-  className="doughnut-chart--medium colour-platinum"
->
+exports[`DoughnutChart component should render hight percent 1`] = `
+<DocumentFragment>
   <span
-    className="doughnut-chart--medium__left-wrap"
+    class="doughnut-chart--medium colour-platinum"
   >
     <span
-      className="doughnut-chart--medium__left-wrap__loader colour-sea-blue"
-      style={
-        Object {
-          "transform": "rotate(0deg)",
-        }
-      }
-    />
-  </span>
-  <span
-    className="doughnut-chart--medium__right-wrap"
-  >
+      class="doughnut-chart--medium__left-wrap"
+    >
+      <span
+        class="doughnut-chart--medium__left-wrap__loader colour-sea-blue"
+        style="transform: rotate(36deg);"
+      />
+    </span>
     <span
-      className="doughnut-chart--medium__right-wrap__loader colour-sea-blue"
-      style={
-        Object {
-          "transform": "rotate(144deg)",
-        }
-      }
-    />
-  </span>
-  <span
-    className="doughnut-chart--medium__inner-circle"
-    style={Object {}}
-  >
-    <span>
-      Some content
+      class="doughnut-chart--medium__right-wrap"
+    >
+      <span
+        class="doughnut-chart--medium__right-wrap__loader colour-sea-blue"
+        style="transform: rotate(180deg);"
+      />
+    </span>
+    <span
+      class="doughnut-chart--medium__inner-circle"
+    >
+      <span>
+        Some content
+      </span>
     </span>
   </span>
-</span>
+</DocumentFragment>
+`;
+
+exports[`DoughnutChart component should render low percent 1`] = `
+<DocumentFragment>
+  <span
+    class="doughnut-chart--medium colour-platinum"
+  >
+    <span
+      class="doughnut-chart--medium__left-wrap"
+    >
+      <span
+        class="doughnut-chart--medium__left-wrap__loader colour-sea-blue"
+        style="transform: rotate(0deg);"
+      />
+    </span>
+    <span
+      class="doughnut-chart--medium__right-wrap"
+    >
+      <span
+        class="doughnut-chart--medium__right-wrap__loader colour-sea-blue"
+        style="transform: rotate(144deg);"
+      />
+    </span>
+    <span
+      class="doughnut-chart--medium__inner-circle"
+    >
+      <span>
+        Some content
+      </span>
+    </span>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`DoughnutChart component should render without content 1`] = `
+<DocumentFragment>
+  <span
+    class="doughnut-chart--medium colour-platinum"
+  >
+    <span
+      class="doughnut-chart--medium__left-wrap"
+    >
+      <span
+        class="doughnut-chart--medium__left-wrap__loader colour-sea-blue"
+        style="transform: rotate(36deg);"
+      />
+    </span>
+    <span
+      class="doughnut-chart--medium__right-wrap"
+    >
+      <span
+        class="doughnut-chart--medium__right-wrap__loader colour-sea-blue"
+        style="transform: rotate(180deg);"
+      />
+    </span>
+    <span
+      class="doughnut-chart--medium__inner-circle"
+    >
+      <span>
+        60%
+      </span>
+    </span>
+  </span>
+</DocumentFragment>
 `;

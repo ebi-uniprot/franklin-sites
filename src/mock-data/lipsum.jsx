@@ -1,6 +1,7 @@
 import { loremIpsum } from 'lorem-ipsum';
 import { v1 } from 'uuid';
-import { fillArray, capitaliseFirstLetter } from '../utils';
+
+import { capitaliseFirstLetter } from '../utils';
 
 export const getLipsumWords = () =>
   capitaliseFirstLetter(loremIpsum({ count: 2, units: 'words' }));
@@ -17,7 +18,7 @@ export const getLipsumObjectArray = ({
   idKey = 'id',
   type = 'sentences',
 }) =>
-  fillArray(numberElements, () => {
+  Array.from({ length: numberElements }, () => {
     const dataPoint = { [idKey]: v1() };
     keys.forEach((key) => {
       const text =

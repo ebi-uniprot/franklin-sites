@@ -69,6 +69,7 @@ const DataTableHead = ({ selectable, columns, onHeaderClick }) => (
             key={name}
             className={className}
             onClick={onClick}
+            data-testid={sortable ? 'sortable-header' : undefined}
             style={{ width: column.width ? column.width : 'auto' }}
           >
             {label}

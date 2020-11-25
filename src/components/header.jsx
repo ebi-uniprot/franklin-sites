@@ -32,20 +32,22 @@ const HeaderLink = ({ link }) => {
   );
 };
 
+const linkProp = PropTypes.shape({
+  label: PropTypes.string,
+  path: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      pathname: PropTypes.string,
+      search: PropTypes.string,
+      hash: PropTypes.string,
+      state: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+    }),
+  ]),
+  href: PropTypes.string,
+});
+
 HeaderLink.propTypes = {
-  link: PropTypes.shape({
-    label: PropTypes.string,
-    path: PropTypes.oneOf([
-      PropTypes.string,
-      PropTypes.shape({
-        pathname: PropTypes.string,
-        search: PropTypes.string,
-        hash: PropTypes.string,
-        state: PropTypes.any, // eslint-disable-line react/forbid-prop-types
-      }),
-    ]),
-    href: PropTypes.string,
-  }).isRequired,
+  link: linkProp.isRequired,
 };
 
 const Header = ({ logo, links, search, isNegative }) => (
@@ -84,7 +86,7 @@ const Header = ({ logo, links, search, isNegative }) => (
 
 Header.propTypes = {
   logo: PropTypes.element,
-  links: PropTypes.arrayOf(PropTypes.object),
+  links: PropTypes.arrayOf(linkProp),
   search: PropTypes.element,
   isNegative: PropTypes.bool,
 };

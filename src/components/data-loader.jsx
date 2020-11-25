@@ -11,7 +11,6 @@ import Button from './button';
 import Loader from './loader';
 
 import '../styles/components/data-loader.scss';
-import LongNumber from './long-number';
 
 const ioSupport = 'IntersectionObserver' in window;
 
@@ -75,16 +74,13 @@ const withDataLoader = (BaseComponent) => {
     let sentinelContent = loaderComponent;
     if ((!ioSupport || clickToLoad) && !loading) {
       sentinelContent = (
-        <>
-          <div>
-            Showing <LongNumber>{data.length}</LongNumber> item
-            {data.length === 1 ? '' : 's'} out of{' '}
-            <LongNumber>{4384972}</LongNumber>
-          </div>
-          <Button variant="secondary" onClick={handleAskForMoreData}>
-            Load more data
-          </Button>
-        </>
+        <Button
+          variant="secondary"
+          onClick={handleAskForMoreData}
+          data-testid="click-to-load-more"
+        >
+          Load more data
+        </Button>
       );
     }
 
