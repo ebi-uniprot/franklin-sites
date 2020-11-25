@@ -53,7 +53,10 @@ const withDataLoader = (BaseComponent) => {
         return;
       }
       // eslint-disable-next-line consistent-return
-      return new window.IntersectionObserver(observerCallbackRef.current);
+      return new window.IntersectionObserver((...entries) =>
+        // use it inside an other function, otherwise will use the first version
+        observerCallbackRef.current(...entries)
+      );
     }, [clickToLoad]);
 
     // eslint-disable-next-line consistent-return
@@ -87,11 +90,9 @@ const withDataLoader = (BaseComponent) => {
     return (
       <>
         <BaseComponent {...props} />
-        {hasMoreData && (
-          <div className="data-loader__loading" ref={sentinelRef}>
-            {sentinelContent}
-          </div>
-        )}
+        <div className="data-loader__loading" ref={sentinelRef}>
+          {hasMoreData && sentinelContent}
+        </div>
       </>
     );
   };
