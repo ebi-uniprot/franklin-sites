@@ -55,16 +55,16 @@ const withDataLoader = (BaseComponent) => {
       }
       // eslint-disable-next-line consistent-return
       return new window.IntersectionObserver(observerCallbackRef.current);
-    }, []);
+    }, [clickToLoad]);
 
     // eslint-disable-next-line consistent-return
     useEffect(() => {
-      if (sentinelRef.current && observer) {
+      if (sentinelRef.current && observer && !loading) {
         const element = sentinelRef.current;
         observer.observe(element);
         return () => observer.unobserve(element);
       }
-    }, [observer]);
+    }, [observer, loading]);
 
     // reset loading flag when data length changes
     const length = data?.length;

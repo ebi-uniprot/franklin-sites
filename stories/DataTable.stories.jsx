@@ -19,17 +19,14 @@ export default {
   decorators: [(story) => <DataDecorator>{story}</DataDecorator>],
 };
 
-export const dataTable = (_, props) => {
-  console.log(props);
-  return (
-    <DataTableComponent
-      {...props}
-      onSelect={action('onSelect')}
-      onHeaderClick={action('onHeaderClick')}
-      selectable
-    />
-  );
-};
+export const dataTable = (_, props) => (
+  <DataTableComponent
+    {...props}
+    onSelect={action('onSelect')}
+    onHeaderClick={action('onHeaderClick')}
+    selectable
+  />
+);
 
 export const dataTableClickToLoad = (_, props) => (
   <DataTableComponent
@@ -52,7 +49,12 @@ export const dataTableCompact = (_, props) => (
 );
 
 export const fixedTable = (_, props) => (
-  <DataTableComponent {...props} selectable fixedLayout />
+  <DataTableComponent
+    {...props}
+    onSelect={action('onSelect')}
+    selectable
+    fixedLayout
+  />
 );
 
 dataTableCompact.propTypes = DataTableComponent.propTypes;
