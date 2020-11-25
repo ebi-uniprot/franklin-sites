@@ -1,8 +1,12 @@
 import React from 'react';
+
 import { action } from '@storybook/addon-actions';
-import { DataTable as DataTableComponent } from '../src/components';
+
+import {
+  DataTable as DataTableComponent,
+  DENSITY_COMPACT,
+} from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
-import { DENSITY_COMPACT } from '../src/components/data-table';
 
 export default {
   title: 'Data/Data Table',
@@ -12,70 +16,34 @@ export default {
       function: '',
     },
   },
-  decorators: [
-    (story) => {
-      return (
-        <DataDecorator>
-          {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
-            const scrollDataAttribute = 'data-table';
-            return (
-              <div
-                style={{ height: '65vh', overflowY: 'auto' }}
-                data-loader-scroll={scrollDataAttribute}
-              >
-                {React.cloneElement(story(), {
-                  data,
-                  getIdKey,
-                  columns,
-                  hasMoreData,
-                  onLoadMoreItems,
-                  scrollDataAttribute,
-                })}
-              </div>
-            );
-          }}
-        </DataDecorator>
-      );
-    },
-  ],
+  decorators: [(story) => <DataDecorator>{story}</DataDecorator>],
 };
 
-export const dataTable = ({
-  data,
-  getIdKey,
-  columns,
-  hasMoreData,
-  onLoadMoreItems,
-}) => (
+export const dataTable = (_, props) => {
+  console.log(props);
+  return (
+    <DataTableComponent
+      {...props}
+      onSelect={action('onSelect')}
+      onHeaderClick={action('onHeaderClick')}
+      selectable
+    />
+  );
+};
+
+export const dataTableClickToLoad = (_, props) => (
   <DataTableComponent
-    {...{
-      data,
-      getIdKey,
-      columns,
-      hasMoreData,
-      onLoadMoreItems,
-    }}
+    {...props}
+    clickToLoad
     onSelect={action('onSelect')}
     onHeaderClick={action('onHeaderClick')}
     selectable
   />
 );
 
-export const dataTableCompact = ({
-  data,
-  getIdKey,
-  columns,
-  hasMoreData,
-  onLoadMoreItems,
-}) => (
+export const dataTableCompact = (_, props) => (
   <DataTableComponent
-    {...{
-      data,
-      getIdKey,
-      columns,
-      hasMoreData,
-      onLoadMoreItems,
-    }}
+    {...props}
     onSelect={action('onSelect')}
     onHeaderClick={action('onHeaderClick')}
     selectable
@@ -83,24 +51,8 @@ export const dataTableCompact = ({
   />
 );
 
-export const fixedTable = ({
-  data,
-  getIdKey,
-  columns,
-  hasMoreData,
-  onLoadMoreItems,
-}) => (
-  <DataTableComponent
-    {...{
-      data,
-      getIdKey,
-      columns,
-      hasMoreData,
-      onLoadMoreItems,
-    }}
-    selectable
-    fixedLayout
-  />
+export const fixedTable = (_, props) => (
+  <DataTableComponent {...props} selectable fixedLayout />
 );
 
 dataTableCompact.propTypes = DataTableComponent.propTypes;

@@ -35,7 +35,6 @@ describe('DataTable', () => {
     content2: 'bar',
     content3: 'baz',
   }));
-  const scrollDataAttribute = 'data-table';
 
   let onLoadMoreItems;
 
@@ -43,7 +42,6 @@ describe('DataTable', () => {
     render(
       <div
         style={{ height: '65vh', overflowY: 'auto' }}
-        data-loader-scroll={scrollDataAttribute}
         data-testid="scroll-container"
       >
         <DataTable
@@ -56,7 +54,6 @@ describe('DataTable', () => {
           selected={selected}
           onHeaderClick={onHeaderClick}
           selectable={selectable}
-          scrollDataAttribute={scrollDataAttribute}
         />
       </div>
     );

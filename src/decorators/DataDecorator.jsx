@@ -73,7 +73,13 @@ const DataDecorator = ({ children, ...props }) => {
   const hasMoreData = data.length < totalNumberDataPoints;
   return (
     <div {...props}>
-      {children(data, getIdKey, columns, hasMoreData, onLoadMoreItems)}
+      {children({
+        data,
+        getIdKey,
+        columns,
+        hasMoreData,
+        onLoadMoreItems,
+      })}
     </div>
   );
 };

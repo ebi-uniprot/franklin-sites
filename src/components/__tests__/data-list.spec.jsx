@@ -10,12 +10,10 @@ describe('DataList', () => {
   }));
 
   let onLoadMoreItems;
-  const scrollDataAttribute = 'data-list';
   const getRender = (hasMoreData = true) =>
     render(
       <div
         style={{ height: '65vh', overflowY: 'auto' }}
-        data-loader-scroll={scrollDataAttribute}
         data-testid="scroll-container"
       >
         <DataList
@@ -24,7 +22,6 @@ describe('DataList', () => {
           data={data}
           dataRenderer={(item) => <p>{item.content}</p>}
           onCardClick={null}
-          scrollDataAttribute={scrollDataAttribute}
         />
       </div>
     );

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { action } from '@storybook/addon-actions';
+
 import { DataList, Card } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
 
@@ -11,50 +13,13 @@ export default {
       function: '',
     },
   },
-  decorators: [
-    (story) => {
-      return (
-        <DataDecorator>
-          {(data, getIdKey, columns, hasMoreData, onLoadMoreItems) => {
-            const scrollDataAttribute = 'data-list';
-            return (
-              <div
-                style={{ height: '65vh', overflowY: 'auto' }}
-                data-loader-scroll={scrollDataAttribute}
-              >
-                {React.cloneElement(story(), {
-                  data,
-                  getIdKey,
-                  columns,
-                  hasMoreData,
-                  onLoadMoreItems,
-                  scrollDataAttribute,
-                })}
-              </div>
-            );
-          }}
-        </DataDecorator>
-      );
-    },
-  ],
+  decorators: [(story) => <DataDecorator>{story}</DataDecorator>],
 };
 
-export const dataList = ({
-  data,
-  getIdKey,
-  columns,
-  hasMoreData,
-  onLoadMoreItems,
-}) => {
+export const dataList = (_, props) => {
   return (
     <DataList
-      {...{
-        data,
-        getIdKey,
-        columns,
-        hasMoreData,
-        onLoadMoreItems,
-      }}
+      {...props}
       onSelect={action('onSelect')}
       onHeaderClick={action('onHeaderClick')}
       dataRenderer={(content) => <>{Object.values(content)}</>}
@@ -63,21 +28,9 @@ export const dataList = ({
   );
 };
 
-export const dataListWithCards = ({
-  data,
-  getIdKey,
-  columns,
-  hasMoreData,
-  onLoadMoreItems,
-}) => (
+export const dataListWithCards = (_, props) => (
   <DataList
-    {...{
-      data,
-      getIdKey,
-      columns,
-      hasMoreData,
-      onLoadMoreItems,
-    }}
+    {...props}
     onHeaderClick={action('onHeaderClick')}
     dataRenderer={(content) => (
       <Card onSelect={action('onSelect')}>{Object.values(content)}</Card>
