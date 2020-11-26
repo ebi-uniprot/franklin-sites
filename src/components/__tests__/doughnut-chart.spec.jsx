@@ -15,7 +15,7 @@ describe('DoughnutChart component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render hight percent', () => {
+  test('should render high percent', () => {
     const { asFragment } = render(
       <DoughnutChart percent={60}>
         <span>Some content</span>

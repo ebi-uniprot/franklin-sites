@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DoughnutChart component should render hight percent 1`] = `
+exports[`DoughnutChart component should render high percent 1`] = `
 <DocumentFragment>
   <span
     class="doughnut-chart--medium colour-platinum"
