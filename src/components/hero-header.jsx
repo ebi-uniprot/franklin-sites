@@ -17,11 +17,12 @@ const HeroHeader = ({ topLeft, topRight, title, children, footer }) => (
 );
 
 HeroHeader.propTypes = {
-  topLeft: PropTypes.element,
-  topRight: PropTypes.element,
-  title: PropTypes.string,
-  children: PropTypes.element.isRequired,
-  footer: PropTypes.element,
+  topLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  topRight: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
+  footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 HeroHeader.defaultProps = {
