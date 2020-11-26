@@ -92,8 +92,8 @@ describe('DataTable', () => {
   test('should fire onHeaderClick when header is clicked', () => {
     renderTable();
     expect(onHeaderClick).not.toHaveBeenCalled();
-    const sortableHeader = screen.getAllByTestId('sortable-header');
-    fireEvent.click(sortableHeader[0]);
+    const header = screen.getByText(/Column 1/);
+    fireEvent.click(header);
     expect(onHeaderClick).toHaveBeenCalled();
   });
 });
