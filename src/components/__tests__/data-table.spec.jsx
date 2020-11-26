@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+
+import { render, fireEvent, screen } from '@testing-library/react';
+
 import DataTable from '../data-table';
-import { fillArray } from '../../utils';
 
 describe('DataTable', () => {
-  const getIdKey = ({ id }) => id;
   const onSelect = jest.fn();
   const onHeaderClick = jest.fn();
   const selectable = true;
@@ -29,74 +29,71 @@ describe('DataTable', () => {
       sortable: true,
     },
   ];
-  const data = fillArray(10, (_, index) => ({
+  const data = Array.from({ length: 10 }, (_, index) => ({
     id: `id${index}`,
     content1: 'foo',
     content2: 'bar',
     content3: 'baz',
   }));
-  const scrollDataAttribute = 'data-table';
 
   let onLoadMoreItems;
 
-  const getRender = (hasMoreData = true) =>
+  const renderTable = ({ hasMoreData = true, clickToLoad = true } = {}) =>
     render(
-      <div
-        style={{ height: '65vh', overflowY: 'auto' }}
-        data-loader-scroll={scrollDataAttribute}
-        data-testid="scroll-container"
-      >
-        <DataTable
-          onLoadMoreItems={onLoadMoreItems}
-          hasMoreData={hasMoreData}
-          data={data}
-          getIdKey={getIdKey}
-          columns={columns}
-          onSelect={onSelect}
-          selected={selected}
-          onHeaderClick={onHeaderClick}
-          selectable={selectable}
-          scrollDataAttribute={scrollDataAttribute}
-        />
-      </div>
+      <DataTable
+        onLoadMoreItems={onLoadMoreItems}
+        hasMoreData={hasMoreData}
+        data={data}
+        clickToLoad={clickToLoad}
+        columns={columns}
+        onSelect={onSelect}
+        selected={selected}
+        onHeaderClick={onHeaderClick}
+        selectable={selectable}
+      />
     );
 
   beforeEach(() => {
     onLoadMoreItems = jest.fn();
   });
 
-  test('should render', () => {
-    const { asFragment } = getRender();
+  test('should render autoload', () => {
+    const { asFragment } = renderTable({ clickToLoad: false });
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render click-to-load', () => {
+    const { asFragment } = renderTable();
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('should request more data', () => {
-    const { getByTestId } = getRender();
-    const scrollContainer = getByTestId('scroll-container');
-    fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
+    renderTable();
+    expect(onLoadMoreItems).not.toHaveBeenCalled();
+    const clickToLoadMore = screen.getByTestId('click-to-load-more');
+    fireEvent.click(clickToLoadMore);
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
 
-  test('should not request more data when hasMoreData is false', () => {
-    const { getByTestId } = getRender(false);
-    const scrollContainer = getByTestId('scroll-container');
-    fireEvent.scroll(scrollContainer, { target: { scrollY: 1000 } });
-    expect(onLoadMoreItems).toHaveBeenCalledTimes(0);
+  test('should not show the option to load more data', () => {
+    renderTable({ hasMoreData: false });
+    const clickToLoadMore = screen.queryByTestId('click-to-load-more');
+    expect(clickToLoadMore).toBeNull();
   });
 
   test('should fire onSelect when checkbox is clicked', () => {
-    const { container } = getRender();
-    const checkbox = container.querySelector('tbody tr td input');
-    fireEvent.click(checkbox);
+    renderTable();
+    expect(onSelect).not.toHaveBeenCalled();
+    const checkbox = screen.getAllByRole('checkbox');
+    fireEvent.click(checkbox[0]);
     expect(onSelect).toHaveBeenCalled();
   });
 
   test('should fire onHeaderClick when header is clicked', () => {
-    const { container } = getRender();
-    const sortableHeader = container.querySelector(
-      '.data-table__header-cell--ascend'
-    );
-    fireEvent.click(sortableHeader);
+    renderTable();
+    expect(onHeaderClick).not.toHaveBeenCalled();
+    const header = screen.getByText(/Column 1/);
+    fireEvent.click(header);
     expect(onHeaderClick).toHaveBeenCalled();
   });
 });

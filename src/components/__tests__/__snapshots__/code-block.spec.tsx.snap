@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DoughnutChart component should render in dark mode 1`] = `
+<DocumentFragment>
+  <pre
+    class="codeblock"
+  >
+    <code>
+      Some code
+    </code>
+  </pre>
+</DocumentFragment>
+`;
+
+exports[`DoughnutChart component should render in light mode 1`] = `
+<DocumentFragment>
+  <pre
+    class="codeblock codeblock-light"
+  >
+    <code>
+      Some code
+    </code>
+  </pre>
+</DocumentFragment>
+`;

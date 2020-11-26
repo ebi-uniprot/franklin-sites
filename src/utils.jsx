@@ -42,17 +42,8 @@ export function formatLargeNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-export function serializableDeepAreEqual(obj1, obj2) {
-  return JSON.stringify(obj1) === JSON.stringify(obj2);
-}
-
-export const fillArray = (numberElements, func) =>
-  Array(numberElements)
-    .fill(null)
-    .map((currentValue, index) => func(currentValue, index));
-
 export function capitaliseFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  return string && string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export function highlightSubstring(string, substring) {

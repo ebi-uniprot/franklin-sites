@@ -1,110 +1,132 @@
-/* eslint react/prop-types: 0 */
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
-import { throttle } from 'lodash-es';
+
+import Button from './button';
+import Loader from './loader';
+
 import '../styles/components/data-loader.scss';
 
-const scrollOffsetPercentage = 10;
-const scrollOffsetFactor = 1 + scrollOffsetPercentage / 100;
-const handleScrollWait = 500;
+const ioSupport = 'IntersectionObserver' in window;
 
-const withDataLoader = (BaseComponent) => (props) => {
-  const {
-    onLoadMoreItems,
-    hasMoreData,
-    data,
-    scrollDataAttribute,
-    loaderComponent = 'Loading...',
-  } = props;
-  const [loading, setLoading] = useState(false);
-  const [loadMoreItems, setLoadMoreItems] = useState(false);
-  const scrollRef = useRef(null);
+const withDataLoader = (BaseComponent) => {
+  const Wrapper = (props) => {
+    const {
+      onLoadMoreItems,
+      hasMoreData,
+      data,
+      loaderComponent,
+      clickToLoad,
+    } = props;
+    // store this prop in a ref to not trigger re-creation of observer if the user
+    // of this component forgot to memoize 'onLoadMoreItems' function.
+    const onLoadMoreItemsRef = useRef(onLoadMoreItems);
+    onLoadMoreItemsRef.current = onLoadMoreItems;
 
-  useEffect(() => {
-    const attribute = `*[data-loader-scroll="${scrollDataAttribute}"]`;
-    const elements = document.querySelectorAll(attribute);
-    if (!elements.length) {
-      throw Error(`Cannot find element with attribute :${attribute}`);
-    } else if (elements.length > 1) {
-      throw Error(`Found more than one element with attribute :${attribute}`);
+    const [loading, setLoading] = useState(false);
+    const sentinelRef = useRef(null);
+
+    const handleAskForMoreData = useCallback(() => {
+      setLoading(true);
+      onLoadMoreItemsRef.current();
+    }, []);
+
+    const observerCallbackRef = useRef();
+    observerCallbackRef.current = ([{ isIntersecting }]) => {
+      if (!isIntersecting || loading || !hasMoreData) {
+        // skip if
+        // - "Loading..." component not visible;
+        // - currently loading more data; or
+        // - no more data available
+        return;
+      }
+      handleAskForMoreData();
+    };
+
+    const observer = useMemo(() => {
+      if (!ioSupport || clickToLoad) {
+        return;
+      }
+      // eslint-disable-next-line consistent-return
+      return new window.IntersectionObserver((...entries) =>
+        // use it inside an other function, otherwise will use the first version
+        observerCallbackRef.current(...entries)
+      );
+    }, [clickToLoad]);
+
+    // eslint-disable-next-line consistent-return
+    useEffect(() => {
+      if (sentinelRef.current && observer && !loading) {
+        const element = sentinelRef.current;
+        observer.observe(element);
+        return () => observer.unobserve(element);
+      }
+    }, [observer, loading]);
+
+    // reset loading flag when data length changes
+    const length = data?.length;
+    useEffect(() => {
+      setLoading(false);
+    }, [length]);
+
+    let sentinelContent = loaderComponent;
+    if ((!ioSupport || clickToLoad) && !loading) {
+      sentinelContent = (
+        <Button
+          variant="secondary"
+          onClick={handleAskForMoreData}
+          data-testid="click-to-load-more"
+        >
+          Load more data
+        </Button>
+      );
     }
-    [scrollRef.current] = elements;
-  }, [scrollDataAttribute]);
 
-  const isNotScrollable = () => {
-    const { scrollHeight, offsetHeight } = scrollRef.current;
-    return scrollHeight <= offsetHeight * scrollOffsetFactor;
+    return (
+      <>
+        <BaseComponent {...props} />
+        <div className="data-loader__loading" ref={sentinelRef}>
+          {hasMoreData && sentinelContent}
+        </div>
+      </>
+    );
   };
 
-  useEffect(() => {
-    if (hasMoreData && isNotScrollable()) {
-      setLoadMoreItems(true);
-    } else {
-      setLoading(false);
-      setLoadMoreItems(false);
-    }
-  }, [data.length, hasMoreData]);
+  Wrapper.propTypes = {
+    /**
+     * Callback to request more items if user scrolled to the bottom of the scroll-container or if
+     * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
+     */
+    onLoadMoreItems: PropTypes.func.isRequired,
+    /**
+     * A boolean to indicate that the parent has more items to provide.
+     */
+    hasMoreData: PropTypes.bool.isRequired,
+    /**
+     * A custom loader component
+     */
+    loaderComponent: PropTypes.element,
+    /**
+     * Data that is being represented in the wrapped component
+     */
+    data: PropTypes.arrayOf(PropTypes.any).isRequired,
+    /**
+     * Use a button to load more data instead of having infinite scrolling
+     */
+    clickToLoad: PropTypes.bool,
+  };
 
-  useEffect(() => {
-    if (loadMoreItems) {
-      setLoading(true);
-      onLoadMoreItems();
-    }
-  }, [loadMoreItems, onLoadMoreItems]);
+  Wrapper.defaultProps = {
+    loaderComponent: <Loader />,
+    clickToLoad: false,
+  };
 
-  useEffect(() => {
-    const ref = scrollRef.current;
-    if (!ref) {
-      return null;
-    }
-    const isBottom = () => {
-      const { scrollHeight, scrollTop, offsetHeight } = ref;
-      return (
-        scrollHeight - Math.ceil(scrollTop) <= offsetHeight * scrollOffsetFactor
-      );
-    };
-    const handleScroll = throttle(() => {
-      setLoadMoreItems(!loading && hasMoreData && ref && isBottom(ref));
-    }, handleScrollWait);
-    ref.addEventListener('scroll', handleScroll, {
-      passive: false,
-    });
-    // Cleanup
-    return () => {
-      handleScroll.cancel();
-      if (ref) {
-        ref.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, [hasMoreData, loading]);
-
-  return (
-    <>
-      <BaseComponent {...props} />
-      {loading && <div className="data-loader__loading">{loaderComponent}</div>}
-    </>
-  );
-};
-
-withDataLoader.propTypes = {
-  /**
-   * Callback to request more items if user scrolled to the bottom of the scroll-container or if
-   * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
-   */
-  onLoadMoreItems: PropTypes.func.isRequired,
-  /**
-   * A boolean to indicate that the parent has more items to provide.
-   */
-  hasMoreData: PropTypes.bool.isRequired,
-  /**
-   * A custom loader component
-   */
-  loaderComponent: PropTypes.element,
-  /**
-   * The value of the data-loader-scroll attribute set on a parent element which withDataLoader inspects
-   * through scrollHeight and offsetHeight to determine if more data can be loaded.
-   */
-  scrollDataAttribute: PropTypes.string.isRequired,
+  return Wrapper;
 };
 
 export default withDataLoader;
