@@ -8,7 +8,6 @@
     "dist",
     "assets"
   ],
-  "sideEffects": false,
   "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
