@@ -22,6 +22,7 @@ module.exports = async ({ config, mode }) => {
 
   config.module.rules.push({
     test: /\.scss$/,
+    sideEffects: true,
     use: [
       'style-loader',
       'css-loader',

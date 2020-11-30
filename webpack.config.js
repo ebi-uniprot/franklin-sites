@@ -38,6 +38,7 @@ module.exports = [
         },
         {
           test: /\.(scss|sass|css)$/,
+          sideEffects: true,
           use: [
             {
               loader: 'style-loader', // creates style nodes from JS strings
