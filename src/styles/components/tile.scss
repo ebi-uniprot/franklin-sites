@@ -1,82 +1,83 @@
 @import '../settings';
 @import '../colours';
 
-$hover-lightness-value: -15%;
+$animation-time: 0.25s;
 
-$size: 15rem;
+$tile: '.tile';
 
-.tile {
+#{$tile} {
   position: relative;
-  background-color: $colour-sea-blue;
+  background: var(--tile-background, #{$colour-sea-blue});
+  &.tile-gradient {
+    background: linear-gradient(rgba(255, 255, 255, 0.5), transparent)
+      var(--tile-background, #{$colour-sea-blue});
+  }
   display: inline-block;
-  margin: $global-margin / 2;
   text-align: center;
   color: $colour-sky-white;
-  h1,
-  h2,
-  h3,
-  h4 {
+  &__header,
+  &__subtitle {
+    // hack for rendering before svg
+    opacity: 0.9;
     color: $colour-sky-white;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    margin: 0;
   }
-  width: $size;
-  height: $size;
-  padding: $global-padding 0;
+  padding: $global-padding/2 0 0 0;
   cursor: pointer;
-  transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  &:hover {
-    background-color: scale-color(
-      $colour-sea-blue,
-      $lightness: $hover-lightness-value
-    );
-    color: $colour-sky-white;
-  }
+
   &__header {
     display: block;
   }
-  &__content {
-    padding: 0.7em;
+  &__description {
+    transition: height $animation-time linear;
+    display: block;
+    padding: 0.7rem;
     width: 100%;
-    background-color: rgba($colour-sky-white, 0.1);
-    height: 7em;
-    font-size: 80%;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 33%;
     position: absolute;
-    bottom: 0.1em;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: hidden;
   }
 
-  &--small {
-    height: $size/4;
-    .tile__header {
-      font-size: 1.2rem;
+  &__background-image {
+    transition: background-color $animation-time ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: $global-padding/2;
+    svg {
+      transition: filter $animation-time ease-out;
+      width: 100%;
+      height: 100%;
     }
   }
 
-  &--uniref {
-    background-color: $colour-uniref !important;
-    &:hover {
-      background-color: scale-color(
-        $colour-uniref,
-        $lightness: $hover-lightness-value
-      ) !important;
+  // Animations
+  &:hover {
+    svg {
+      filter: blur(0.1rem);
+    }
+    #{$tile}__description {
+      height: 50%;
+      overflow-y: auto;
+    }
+    #{$tile}__background-image {
+      background-color: rgba(0, 0, 0, 0.1);
     }
   }
+}
 
-  &--uniparc {
-    background-color: $colour-uniparc !important;
-    &:hover {
-      background-color: scale-color(
-        $colour-uniparc,
-        $lightness: $hover-lightness-value
-      ) !important;
-    }
+@media (prefers-reduced-motion) {
+  #{$tile} #{$tile}__description {
+    height: 50%;
   }
-
-  &--proteomes {
-    background-color: $colour-proteomes !important;
-    &:hover {
-      background-color: scale-color(
-        $colour-proteomes,
-        $lightness: $hover-lightness-value
-      ) !important;
-    }
+  #{$tile}:hover #{$tile}__description {
+    overflow-y: auto;
   }
 }
