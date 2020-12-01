@@ -54,7 +54,7 @@ describe('Tabs', () => {
 
   test('should show corresponding content when 2nd tab title is clicked', () => {
     const { queryAllByTestId, queryByTestId } = render(
-      <Tabs active="b">
+      <Tabs>
         <Tab id="a" title={<div>Title 1</div>}>
           blah
         </Tab>
@@ -66,9 +66,11 @@ describe('Tabs', () => {
         </Tab>
       </Tabs>
     );
+    let content = queryByTestId('tab-content');
+    expect(content).not.toHaveTextContent('blaher');
     const title = queryAllByTestId('tab-title');
     fireEvent.click(title[1]);
-    const content = queryByTestId('tab-content');
+    content = queryByTestId('tab-content');
     expect(content).toHaveTextContent('blaher');
   });
 });
