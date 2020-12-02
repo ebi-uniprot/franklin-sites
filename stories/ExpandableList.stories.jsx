@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+
+import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
+
 import { ExpandableList } from '../src/components';
+
 import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 
 export default {
   title: 'Data/Expandable List',
+  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose: 'Provide a way of truncating long unordered lists of items.',
@@ -15,14 +20,26 @@ export default {
 
 export const expandableList = () => (
   <ExpandableList
-    numberCollapsedItems={5}
-    descriptionString="Lorem ipsum items"
+    numberCollapsedItems={number(
+      'Number of displayed items',
+      5,
+      { min: 1, step: 1 },
+      'Props'
+    )}
+    descriptionString={text('Description string', 'lorem ipsum items', 'Props')}
+    displayNumberOfHiddenItems={boolean(
+      'Display number of hidden items',
+      false,
+      'Props'
+    )}
   >
     {getLipsumObjectArray({
       numberElements: 10,
       keys: ['content'],
       type: 'words',
-    })}
+    }).map(({ id, content }) => (
+      <span key={id}>{content}</span>
+    ))}
   </ExpandableList>
 );
 
@@ -39,6 +56,8 @@ export const expandableListWithExtraAction = () => (
       numberElements: 10,
       keys: ['content'],
       type: 'words',
-    })}
+    }).map(({ id, content }) => (
+      <span key={id}>{content}</span>
+    ))}
   </ExpandableList>
 );

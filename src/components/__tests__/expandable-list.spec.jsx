@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
@@ -52,15 +52,28 @@ describe('ExpandableMessage', () => {
     expect(setExpanded).toHaveBeenCalled();
     expect(button.textContent).toEqual(`Less ${descriptionString}`);
   });
+
+  test('button text should include the number of hidden items', () => {
+    const { container } = render(
+      <ExpandableMessage
+        setExpanded={setExpanded}
+        descriptionString={descriptionString}
+        nHiddenItems={4}
+      />
+    );
+    const button = container.querySelector('button');
+    fireEvent.click(button);
+    expect(setExpanded).toHaveBeenCalled();
+    expect(button.textContent).toEqual(`4 more ${descriptionString}`);
+  });
 });
 
 describe('ExpandableList', () => {
   const numberItems = 10;
   const numberCollapsedItems = 5;
-  const items = Array.from({ length: numberItems }, (_, index) => ({
-    id: `id${index}`,
-    content: `some content ${index}`,
-  }));
+  const items = Array.from({ length: numberItems }, (_, index) => (
+    <Fragment key={index}>some content {index}</Fragment>
+  ));
 
   test('should render', () => {
     const { asFragment } = render(
