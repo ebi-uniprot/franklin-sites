@@ -7,6 +7,7 @@ $tile: '.tile';
 
 #{$tile} {
   position: relative;
+  overflow: hidden;
   background: var(--tile-background, #{$colour-sea-blue});
   &.tile-gradient {
     background: linear-gradient(rgba(255, 255, 255, 0.5), transparent)
@@ -30,17 +31,18 @@ $tile: '.tile';
     display: block;
   }
   &__description {
-    transition: height $animation-time linear;
+    transition: transform $animation-time linear;
     display: block;
     padding: 0.7rem;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.3);
-    height: 33%;
+    height: 50%;
     position: absolute;
     margin: 0;
     bottom: 0;
     left: 0;
     overflow-y: hidden;
+    transform: translateY(33%);
   }
 
   &__background-image {
@@ -59,12 +61,14 @@ $tile: '.tile';
   }
 
   // Animations
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-within {
     svg {
       filter: blur(0.1rem);
     }
     #{$tile}__description {
-      height: 50%;
+      transform: translateY(0);
       overflow-y: auto;
     }
     #{$tile}__background-image {
@@ -75,9 +79,7 @@ $tile: '.tile';
 
 @media (prefers-reduced-motion) {
   #{$tile} #{$tile}__description {
-    height: 50%;
-  }
-  #{$tile}:hover #{$tile}__description {
+    transform: translateY(0);
     overflow-y: auto;
   }
 }
