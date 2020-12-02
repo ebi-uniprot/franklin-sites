@@ -1,8 +1,7 @@
-import React, { CSSProperties, FC, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, FC } from 'react';
 import classNames from 'classnames';
 
 import '../styles/components/tile.scss';
-import useSize from '../hooks/useSize';
 
 type Props = {
   /**
@@ -30,10 +29,10 @@ type Props = {
    */
   gradient?: boolean;
   /**
-   * The length of a side of the Tile square (css value). By default it will use the
+   * The width Tile square (css value). By default it will use the
    * width of the provided container.
    */
-  sideLength?: string;
+  width?: string;
   /**
    * Action triggered on click
    */
@@ -47,54 +46,31 @@ export const Tile: FC<Props> = ({
   backgroundColor,
   backgroundImage,
   gradient = false,
-  sideLength,
+  width,
   onClick,
-}) => {
-  const classes = classNames({ tile: 'tile', 'tile-gradient': gradient });
-  const ref = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState(sideLength);
-
-  const [sizes] = useSize(containerRef);
-
-  useEffect(() => {
-    if (sideLength) {
-      return;
+}) => (
+  <div
+    className={classNames({ tile: 'tile', 'tile-gradient': gradient })}
+    style={
+      {
+        '--tile-background': backgroundColor,
+        width: width || '100%',
+      } as CSSProperties
     }
-    if (sizes) {
-      setSize(sizes.width);
-    }
-  }, [sizes, sideLength]);
-
-  return (
-    <div ref={containerRef}>
-      <div
-        className={classes}
-        style={
-          {
-            '--tile-background': backgroundColor,
-            width: size,
-            height: size,
-          } as CSSProperties
-        }
-        onClick={onClick}
-        role="button"
-        tabIndex={0}
-        onKeyPress={onClick}
-      >
-        <section className="tile__background-image" ref={ref}>
-          {backgroundImage}
-        </section>
-        <section className="tile__content">
-          <h3 className="tile__header">{title}</h3>
-          {subtitle && <h5 className="tile__subtitle">{subtitle}</h5>}
-          {description && (
-            <small className="tile__description">{description}</small>
-          )}
-        </section>
-      </div>
-    </div>
-  );
-};
+    onClick={onClick}
+    role="button"
+    tabIndex={0}
+    onKeyPress={onClick}
+  >
+    <section className="tile__background-image">{backgroundImage}</section>
+    <section className="tile__content">
+      <h3 className="tile__header">{title}</h3>
+      {subtitle && <h5 className="tile__subtitle">{subtitle}</h5>}
+      {description && (
+        <small className="tile__description">{description}</small>
+      )}
+    </section>
+  </div>
+);
 
 export default Tile;

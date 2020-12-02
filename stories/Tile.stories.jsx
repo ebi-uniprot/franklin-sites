@@ -28,7 +28,7 @@ export const tile = () => (
     backgroundColor={useColor()}
     subtitle="Subtitle"
     description={loremIpsum()}
-    sideLength="20rem"
+    width="20rem"
     onClick={action('clicked')}
   />
 );
@@ -40,7 +40,7 @@ export const tileWithGradient = () => (
     subtitle="Subtitle"
     description={loremIpsum()}
     gradient
-    sideLength="20rem"
+    width="20rem"
     onClick={action('clicked')}
   />
 );
@@ -67,6 +67,6 @@ export const tileWithBackgroundImage = () => (
     description={loremIpsum({ count: 1, units: 'paragraph' })}
     backgroundImage={<SVG />}
     onClick={action('clicked')}
-    sideLength="20rem"
+    width="20rem"
   />
 );

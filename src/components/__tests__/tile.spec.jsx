@@ -41,7 +41,7 @@ describe('Tile component', () => {
 
   test('should render with default specified width', () => {
     const { asFragment } = render(
-      <Tile title="Tile title" onClick={clickFn} sideLength="20rem" />
+      <Tile title="Tile title" onClick={clickFn} width="20rem" />
     );
     expect(asFragment()).toMatchSnapshot();
   });

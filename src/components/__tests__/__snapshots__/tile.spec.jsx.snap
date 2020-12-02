@@ -2,64 +2,60 @@
 
 exports[`Tile component should render 1`] = `
 <DocumentFragment>
-  <div>
-    <div
-      class="tile tile-gradient"
-      role="button"
-      style="--tile-background: #00639a; width: 800px; height: 800px;"
-      tabindex="0"
+  <div
+    class="tile tile-gradient"
+    role="button"
+    style="--tile-background: #00639a; width: 100%;"
+    tabindex="0"
+  >
+    <section
+      class="tile__background-image"
     >
-      <section
-        class="tile__background-image"
+      test-file-stub
+    </section>
+    <section
+      class="tile__content"
+    >
+      <h3
+        class="tile__header"
       >
-        test-file-stub
-      </section>
-      <section
-        class="tile__content"
+        Tile title
+      </h3>
+      <h5
+        class="tile__subtitle"
       >
-        <h3
-          class="tile__header"
-        >
-          Tile title
-        </h3>
-        <h5
-          class="tile__subtitle"
-        >
-          Subtitle
-        </h5>
-        <small
-          class="tile__description"
-        >
-          My description
-        </small>
-      </section>
-    </div>
+        Subtitle
+      </h5>
+      <small
+        class="tile__description"
+      >
+        My description
+      </small>
+    </section>
   </div>
 </DocumentFragment>
 `;
 
 exports[`Tile component should render with default specified width 1`] = `
 <DocumentFragment>
-  <div>
-    <div
-      class="tile"
-      role="button"
-      style="width: 20rem; height: 20rem;"
-      tabindex="0"
+  <div
+    class="tile"
+    role="button"
+    style="width: 20rem;"
+    tabindex="0"
+  >
+    <section
+      class="tile__background-image"
+    />
+    <section
+      class="tile__content"
     >
-      <section
-        class="tile__background-image"
-      />
-      <section
-        class="tile__content"
+      <h3
+        class="tile__header"
       >
-        <h3
-          class="tile__header"
-        >
-          Tile title
-        </h3>
-      </section>
-    </div>
+        Tile title
+      </h3>
+    </section>
   </div>
 </DocumentFragment>
 `;
