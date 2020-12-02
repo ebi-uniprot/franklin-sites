@@ -5,11 +5,6 @@ import colors from '../../styles/colours.json';
 
 import Tile from '../tile';
 
-import useSize from '../../hooks/useSize';
-jest.mock('../../hooks/useSize');
-
-useSize.mockReturnValue([{ width: 800 }]);
-
 let component;
 let clickFn = jest.fn();
 
