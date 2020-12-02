@@ -98,18 +98,16 @@ const Facets = ({ data, extraActionsFor, queryStringKey }) => {
                   ),
                 };
 
-                return {
-                  id: `${facet.name}_${value}`,
-                  content: (
-                    <Link
-                      to={to}
-                      className={isActive ? 'facet-active' : undefined}
-                      replace
-                    >
-                      {`${label || value} (${formatLargeNumber(count)})`}
-                    </Link>
-                  ),
-                };
+                return (
+                  <Link
+                    key={`${facet.name}_${value}`}
+                    to={to}
+                    className={isActive ? 'facet-active' : undefined}
+                    replace
+                  >
+                    {`${label || value} (${formatLargeNumber(count)})`}
+                  </Link>
+                );
               })}
             </ExpandableList>
           </li>
