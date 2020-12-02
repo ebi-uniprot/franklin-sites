@@ -35,7 +35,7 @@
     "IE 11"
   ],
   "jest": {
-    "coverageReporters": [
+    " geReporters": [
       "json-summary",
       "lcov",
       "text-summary",
@@ -44,7 +44,7 @@
     "coverageThreshold": {
       "global": {
         "lines": 81.11,
-        "statements": 80.73,
+        "statements": 80.71,
         "functions": 74.55,
         "branches": 69.51
       }
