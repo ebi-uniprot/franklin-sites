@@ -63,7 +63,7 @@ type ExpandableListProps = {
   displayNumberOfHiddenItems?: boolean;
 };
 
-const ExpandableList: FC<ExpandableListProps> = ({
+export const ExpandableList: FC<ExpandableListProps> = ({
   children: c,
   numberCollapsedItems = 5,
   descriptionString = 'items',
