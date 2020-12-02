@@ -49,7 +49,8 @@ export const Tile: FC<Props> = ({
   width,
   onClick,
 }) => (
-  <div
+  <button
+    type="button"
     className={classNames({ tile: 'tile', 'tile-gradient': gradient })}
     style={
       {
@@ -58,9 +59,6 @@ export const Tile: FC<Props> = ({
       } as CSSProperties
     }
     onClick={onClick}
-    role="button"
-    tabIndex={0}
-    onKeyPress={onClick}
   >
     <section className="tile__background-image">{backgroundImage}</section>
     <section className="tile__content">
@@ -70,7 +68,7 @@ export const Tile: FC<Props> = ({
         <small className="tile__description">{description}</small>
       )}
     </section>
-  </div>
+  </button>
 );
 
 export default Tile;
