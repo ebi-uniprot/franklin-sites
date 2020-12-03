@@ -1,18 +1,43 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { fireEvent, render } from '@testing-library/react';
+import { ProtVistaIcon } from '../';
+import colors from '../../styles/colours.json';
 
 import Tile from '../tile';
 
-describe('Tile component', () => {
-  test('should render', () => {
-    const component = renderer.create(<Tile title="Tile title" namespace="uniref" />).toJSON();
+let component;
+let clickFn = jest.fn();
 
-    expect(component).toMatchSnapshot();
+describe('Tile component', () => {
+  beforeEach(() => {
+    component = render(
+      <Tile
+        title="Tile title"
+        subtitle="Subtitle"
+        description="My description"
+        backgroundImage={ProtVistaIcon}
+        backgroundColor={colors.seaBlue}
+        onClick={clickFn}
+        gradient
+      />
+    );
   });
-  test('should render small tile', () => {
-    const component = renderer
-      .create(<Tile title="Tile title" small namespace="uniref" />)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+
+  test('should render', () => {
+    const { asFragment } = component;
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should handle click', () => {
+    const { getByText } = component;
+    fireEvent.click(getByText('Subtitle'));
+    expect(clickFn).toHaveBeenCalled();
+  });
+
+  test('should render with default specified width', () => {
+    const { asFragment } = render(
+      <Tile title="Tile title" onClick={clickFn} width="20rem" />
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });

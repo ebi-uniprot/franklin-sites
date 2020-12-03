@@ -1,30 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tile component should render 1`] = `
-<div
-  className="tile tile--uniref"
->
-  <h3
-    className="tile__header"
+<DocumentFragment>
+  <button
+    class="tile tile-gradient"
+    style="--tile-background: #00639a; width: 100%;"
+    type="button"
   >
-    Tile title
-  </h3>
-  <p
-    className="tile__content"
-  >
-    This is a short description of what the resource is/provides.
-  </p>
-</div>
+    <section
+      class="tile__background-image"
+    >
+      test-file-stub
+    </section>
+    <section
+      class="tile__content"
+    >
+      <h3
+        class="tile__header"
+      >
+        Tile title
+      </h3>
+      <h5
+        class="tile__subtitle"
+      >
+        Subtitle
+      </h5>
+      <small
+        class="tile__description"
+      >
+        My description
+      </small>
+    </section>
+  </button>
+</DocumentFragment>
 `;
 
-exports[`Tile component should render small tile 1`] = `
-<div
-  className="tile tile--uniref tile--small"
->
-  <h3
-    className="tile__header"
+exports[`Tile component should render with default specified width 1`] = `
+<DocumentFragment>
+  <button
+    class="tile"
+    style="width: 20rem;"
+    type="button"
   >
-    Tile title
-  </h3>
-</div>
+    <section
+      class="tile__background-image"
+    />
+    <section
+      class="tile__content"
+    >
+      <h3
+        class="tile__header"
+      >
+        Tile title
+      </h3>
+    </section>
+  </button>
+</DocumentFragment>
 `;
