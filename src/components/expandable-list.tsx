@@ -71,7 +71,9 @@ export const ExpandableList: FC<ExpandableListProps> = ({
   extraActions,
   displayNumberOfHiddenItems,
 }) => {
-  const children = Children.toArray(c) as ReactElement[];
+  // get an array of children, filter out null or undefined children to avoid
+  // counting them towards the threshold limit
+  const children = Children.toArray(c).filter(Boolean) as ReactElement[];
   const [expanded, setExpanded] = useState(false);
   const enoughChildren = children.length > numberCollapsedItems + 1;
   const itemNodes = children
