@@ -94,7 +94,7 @@ export const ExpandableList: FC<ExpandableListProps> = ({
             descriptionString={descriptionString || 'items'}
             nHiddenItems={
               displayNumberOfHiddenItems
-                ? c.length - numberCollapsedItems
+                ? children.length - numberCollapsedItems
                 : undefined
             }
           />
