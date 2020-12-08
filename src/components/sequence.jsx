@@ -115,29 +115,27 @@ const Sequence = ({
     setHighlights(highlightsToUpdate);
   };
 
-  const getSelectors = () => {
-    return (
-      <DropdownButton label="Highlight" className="tertiary">
-        <div className="dropdown-menu__content">
-          {aminoAcidsProps.map((aaProp) => {
-            const inputId = `${accession}-${aaProp.name}`;
-            return (
-              <label key={aaProp.name} htmlFor={inputId}>
-                <input
-                  type="checkbox"
-                  id={inputId}
-                  data-testid="sequence-highlight-checkbox"
-                  onChange={() => handleToggleHighlight(aaProp)}
-                  checked={highlights.includes(aaProp)}
-                />
-                {aaProp.name}
-              </label>
-            );
-          })}
-        </div>
-      </DropdownButton>
-    );
-  };
+  const getSelectors = () => (
+    <DropdownButton label="Highlight" className="tertiary">
+      <div className="dropdown-menu__content">
+        {aminoAcidsProps.map((aaProp) => {
+          const inputId = `${accession}-${aaProp.name}`;
+          return (
+            <label key={aaProp.name} htmlFor={inputId}>
+              <input
+                type="checkbox"
+                id={inputId}
+                data-testid="sequence-highlight-checkbox"
+                onChange={() => handleToggleHighlight(aaProp)}
+                checked={highlights.includes(aaProp)}
+              />
+              {aaProp.name}
+            </label>
+          );
+        })}
+      </div>
+    </DropdownButton>
+  );
   const chunks = getChunks(sequence, chunkSize, textSize);
 
   return (
