@@ -14,8 +14,6 @@ export default {
 
 export const heroHeader = () => (
   <HeroHeader
-    topLeft={<i>Top Left</i>}
-    topRight={<b>Top Right</b>}
     title="Title"
     footer={<span>{loremIpsum({ count: 25, units: 'words' })}</span>}
   >
