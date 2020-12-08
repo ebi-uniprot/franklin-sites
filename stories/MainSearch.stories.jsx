@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { action } from '@storybook/addon-actions';
 
@@ -6,19 +5,19 @@ import { MainSearch } from '../src/components';
 import StateDecorator from '../src/decorators/StateDecorator';
 
 const namespaces = {
-  'uniprotkb': 'UniProtKB',
-  'uniref': 'UniRef',
-  'uniparc': 'UniParc',
-  'proteomes': 'Proteomes',
-  'publications': 'Publications',
-  'keywords': 'Keywords',
+  uniprotkb: 'UniProtKB',
+  uniref: 'UniRef',
+  uniparc: 'UniParc',
+  proteomes: 'Proteomes',
+  publications: 'Publications',
+  keywords: 'Keywords',
 };
 
 // Custom decorator
 export default {
   title: 'Forms/Main Search',
   decorators: [
-    story => {
+    (story) => {
       return (
         <StateDecorator>
           {(state, setState) => (
@@ -38,28 +37,34 @@ export default {
   },
 };
 
-export const mainSearch = (_, {state, setState}) => (
+export const mainSearch = (_, { state, setState }) => (
   <MainSearch
     searchTerm={state.value}
-    onChange={value => setState({ value })}
+    onChange={(value) => setState({ value })}
     onSubmit={action('Submitted')}
   />
 );
 
 mainSearch.propTypes = {
-  state: PropTypes.shape({ value: PropTypes.string, namespace: PropTypes.string }).isRequired,
+  state: PropTypes.shape({
+    value: PropTypes.string,
+    namespace: PropTypes.string,
+  }).isRequired,
   setState: PropTypes.func.isRequired,
 };
 
-export const mainSearchWithNamespaces = ({defaultNamespace}, { state, setState, ...rest }) => (
+export const mainSearchWithNamespaces = (
+  { defaultNamespace },
+  { state, setState, ...rest }
+) => (
   <MainSearch
     selectedNamespace={state.namespace || defaultNamespace}
     searchTerm={state.value}
     namespaces={namespaces}
-    onNamespaceChange={value => setState({ namespace: value })}
-    onChange={value => setState({ value })}
+    onNamespaceChange={(value) => setState({ namespace: value })}
+    onChange={(value) => setState({ value })}
     onSubmit={action('Submitted')}
   />
 );
 // eslint-disable-next-line prefer-destructuring
-mainSearchWithNamespaces.args = { defaultNamespace: 'uniprotkb'};
+mainSearchWithNamespaces.args = { defaultNamespace: 'uniprotkb' };

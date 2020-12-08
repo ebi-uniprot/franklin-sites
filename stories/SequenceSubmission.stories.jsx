@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SequenceSubmission } from '../src/components';
 
 export default {
@@ -57,7 +57,7 @@ export const dynamicallyChangeValue = () => {
       <SequenceSubmission
         placeholder="Enter a sequence..."
         value={sequence}
-        onChange={e => {
+        onChange={(e) => {
           setSequence(e.sequence);
           setLikelyType(e.likelyType);
         }}
@@ -72,7 +72,7 @@ export const dynamicallyChangeValue = () => {
       </label>
       <input
         type="reset"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
           setSequence('');
         }}

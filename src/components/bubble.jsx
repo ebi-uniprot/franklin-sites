@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/bubble.scss';
 
@@ -7,7 +6,9 @@ const Bubble = ({ value, size, colourClass }) => {
   if (value > 99) {
     displayValue = '99+';
   }
-  return <span className={`bubble--${size} ${colourClass}`}>{displayValue}</span>;
+  return (
+    <span className={`bubble--${size} ${colourClass}`}>{displayValue}</span>
+  );
 };
 
 Bubble.propTypes = {

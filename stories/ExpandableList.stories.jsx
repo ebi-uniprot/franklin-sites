@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
 

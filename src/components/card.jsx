@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
 import classNames from 'classnames';
@@ -32,7 +32,7 @@ CardLink.defaultProps = {
   includeSeparator: false,
 };
 
-const Card = React.forwardRef(
+const Card = forwardRef(
   (
     { title, subtitle, children, links, onClick, onKeyDown, active, ...props },
     ref

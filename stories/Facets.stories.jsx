@@ -1,4 +1,3 @@
-import React from 'react';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 
 import { Facets } from '../src/components';

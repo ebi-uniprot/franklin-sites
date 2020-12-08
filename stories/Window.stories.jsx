@@ -1,4 +1,3 @@
-import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 import { Window } from '../src/components';
 

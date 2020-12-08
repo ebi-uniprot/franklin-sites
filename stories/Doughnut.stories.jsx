@@ -1,4 +1,3 @@
-import React from 'react';
 import { DoughnutChart } from '../src/components';
 
 export default {

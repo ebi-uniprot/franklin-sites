@@ -1,4 +1,4 @@
-import React, { useState, useRef, cloneElement } from 'react';
+import { useState, useRef, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/external-link.scss';
 import ExternalLinkIcon from '../svg/external-link.svg';

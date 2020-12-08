@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 
 import { Button } from '../src/components';
 import { DownloadIcon } from '../src/components';

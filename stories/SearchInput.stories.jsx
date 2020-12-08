@@ -1,4 +1,3 @@
-import React from 'react';
 import { SearchInput } from '../src/components';
 
 export default {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import sequenceProcessor from '../sequence-utils/sequence-processor';
@@ -10,7 +10,7 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
   const [processed, setProcessed] = useState([]);
 
   const onChangeWithValidation = useCallback(
-    newValue => {
+    (newValue) => {
       const processed = sequenceProcessor(newValue);
       setProcessed(processed);
 
@@ -85,7 +85,7 @@ const SequenceSubmission = ({ value, onChange, placeholder, defaultValue }) => {
       <textarea
         className="sequence-submission-input"
         value={value}
-        onChange={e => onChangeWithValidation(e.target.value)}
+        onChange={(e) => onChangeWithValidation(e.target.value)}
         placeholder={placeholder}
         data-testid="sequence-submission-input"
         defaultValue={defaultValue}

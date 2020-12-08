@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Sequence } from '../src/components';
 import sequenceData from '../src/mock-data/sequence-data';

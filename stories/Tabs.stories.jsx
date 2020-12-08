@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 
 import { Tabs, Tab, ConfigureIcon } from '../src/components';

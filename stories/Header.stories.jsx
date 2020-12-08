@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Header from '../src/components/header';
 import { MainSearch } from '../src/components/index';

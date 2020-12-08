@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { scaleLinear, axisBottom, select, range } from 'd3';
 

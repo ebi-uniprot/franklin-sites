@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '../svg/search.svg';
 import SpinnerIcon from '../svg/spinner.svg';

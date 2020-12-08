@@ -1,4 +1,3 @@
-import React from 'react';
 import { DisplayMenu } from '../src/components';
 import displayMenuData from '../src/components/__mocks__/displayMenu';
 

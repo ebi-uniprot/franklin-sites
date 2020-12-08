@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import ModalBackdrop from './modal-backdrop';
 import Window from './window/window';

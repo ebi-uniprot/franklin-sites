@@ -1,4 +1,3 @@
-import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 import { action } from '@storybook/addon-actions';
 import { Accordion, AccordionSearch } from '../src/components';

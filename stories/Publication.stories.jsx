@@ -1,4 +1,3 @@
-import React from 'react';
 import { Publication } from '../src/components';
 import publicationData from '../src/components/__mocks__/publications';
 

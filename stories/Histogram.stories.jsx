@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { withKnobs, select, text, number } from '@storybook/addon-knobs';
 

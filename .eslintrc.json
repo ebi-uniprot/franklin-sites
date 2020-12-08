@@ -45,8 +45,7 @@
         ]
       }
     ],
-    "no-shadow": "off",
-    "no-use-before-define": "off",
+    "jest/no-mocks-import": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -55,14 +54,17 @@
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
     ],
-    "react/jsx-wrap-multilines": "off",
+    "no-shadow": "off",
+    "no-use-before-define": "off",
     "react/no-did-update-set-state": "off",
-    "react/jsx-one-expression-per-line": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": "off",
+    "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
-    "jest/no-mocks-import": "off"
+    "react/jsx-uses-react": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "import/resolver": {
