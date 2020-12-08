@@ -15,9 +15,9 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
   children,
   footer,
   className,
-  ...rest
+  ...props
 }) => (
-  <div className={cn('hero-header', className)} {...rest}>
+  <div className={cn('hero-header', className)} {...props}>
     <div className="hero-header__title">
       <h1>{title}</h1>
     </div>
