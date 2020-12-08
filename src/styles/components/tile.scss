@@ -12,7 +12,12 @@ $tile: '.tile';
   overflow: hidden;
   background: var(--tile-background, #{$colour-sea-blue});
   &.tile-gradient {
-    background: linear-gradient(rgba(255, 255, 255, 0.5), transparent)
+    background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.2),
+        rgba(255, 255, 255, 0.2),
+        rgba(0, 0, 0, 0.2)
+      )
       var(--tile-background, #{$colour-sea-blue});
   }
   text-align: center;
@@ -35,8 +40,9 @@ $tile: '.tile';
     transition: transform $animation-time linear;
     display: block;
     padding: 0.7rem;
+    line-height: 1.6;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     height: 50%;
     position: absolute;
     margin: 0;
@@ -51,6 +57,7 @@ $tile: '.tile';
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 0.8;
     width: 100%;
     height: 100%;
     padding: $global-padding/2;

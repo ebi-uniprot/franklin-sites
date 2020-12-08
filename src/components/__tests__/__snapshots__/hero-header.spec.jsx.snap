@@ -5,20 +5,6 @@ exports[`Hero Header component should render 1`] = `
   className="hero-header"
 >
   <div
-    className="hero-header__top"
-  >
-    <div>
-      <i>
-        Top Left
-      </i>
-    </div>
-    <div>
-      <b>
-        Top Right
-      </b>
-    </div>
-  </div>
-  <div
     className="hero-header__title"
   >
     <h1>
