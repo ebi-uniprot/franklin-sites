@@ -21,19 +21,19 @@
 
 <div class="box-colour colour-reviewed" data-name="$colour-reviewed" ></div>
 <div class="box-colour colour-unreviewed" data-name="$colour-unreviewed" ></div>
-<div class="box-colour colour-uniparc" data-name="$colour-uniparc" ></div>
 
 ### Namespace palette
 
 <div class="box-colour colour-uniref" data-name="$colour-uniref" ></div>
 <div class="box-colour colour-uniparc" data-name="$colour-uniparc" ></div>
 <div class="box-colour colour-proteomes" data-name="$colour-proteomes" ></div>
-<div class="box-colour colour-supporting-data" data-name="$colour-supporting-data" ></div>
-<div class="box-colour colour-help" data-name="$colour-help" ></div>
-<div
-  class="box-colour colour-annotation-systems"
-  data-name="$colour-annotation-systems"
-></div>
+
+### Tools palette
+
+<div class="box-colour colour-peptide-search" data-name="$colour-peptide-search" ></div>
+<div class="box-colour colour-id-mapping" data-name="$colour-id-mapping" ></div>
+<div class="box-colour colour-blast" data-name="$colour-blast" ></div>
+<div class="box-colour colour-align" data-name="$colour-align" ></div>
 
 ### Messages
 
