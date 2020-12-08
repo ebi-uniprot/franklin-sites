@@ -3,21 +3,17 @@
 exports[`Hero Header component should render 1`] = `
 <div
   className="hero-header"
+  topLeft={
+    <i>
+      Top Left
+    </i>
+  }
+  topRight={
+    <b>
+      Top Right
+    </b>
+  }
 >
-  <div
-    className="hero-header__top"
-  >
-    <div>
-      <i>
-        Top Left
-      </i>
-    </div>
-    <div>
-      <b>
-        Top Right
-      </b>
-    </div>
-  </div>
   <div
     className="hero-header__title"
   >
