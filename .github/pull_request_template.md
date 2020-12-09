@@ -1,0 +1,8 @@
+- [ ] What is the link to the Jira that this PR is for?
+- [ ] Have you written tests or updated tests so that the overall coverage doesn't fall?
+- [ ] Are there any linting errors that required you to add exceptions?
+- [ ] Were all the edited/created files in TypeScript? If not, please list the files you left in JavaScript and the reason to not update them.
+- [ ] Is there a story associated with it? If so:
+   - [ ] Which one(s) should the reviewer look at to evaluate the changes?
+   - [ ] Is the automatic documentation in the story up-to-date?
+   - [ ] Are the props modifiables in the story through knobs? Or are there multiple stories covering enough different cases?

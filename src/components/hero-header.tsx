@@ -1,15 +1,28 @@
+import { ReactNode } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/header.scss';
 
 type HeroHeaderProps = {
-  title: JSX.Element;
-  children: JSX.Element;
-  footer?: JSX.Element;
+  /**
+   * The title of the hero header
+   */
+  title: ReactNode;
+  /**
+   * The content of the hero header
+   */
+  children: ReactNode;
+  /**
+   * An optional footer, displayed at the bottom
+   */
+  footer?: ReactNode;
+  /**
+   * An optional class name
+   */
   className?: string;
 };
 
-const HeroHeader: React.FC<HeroHeaderProps> = ({
+export const HeroHeader: React.FC<HeroHeaderProps> = ({
   title = '',
   children,
   footer,

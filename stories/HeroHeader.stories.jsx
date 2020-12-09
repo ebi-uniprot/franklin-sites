@@ -1,8 +1,14 @@
 import { loremIpsum } from 'lorem-ipsum';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import { HeroHeader } from '../src/components';
+
+const useTitle = () => text('Title', 'Title');
+const useFooter = () =>
+  text('Footer', loremIpsum({ count: 25, units: 'words' }));
 
 export default {
   title: 'Layout/Hero header',
+  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose: 'Provide an entry point',
@@ -12,10 +18,7 @@ export default {
 };
 
 export const heroHeader = () => (
-  <HeroHeader
-    title="Title"
-    footer={<span>{loremIpsum({ count: 25, units: 'words' })}</span>}
-  >
+  <HeroHeader title={useTitle()} footer={useFooter()}>
     <input type="text" />
   </HeroHeader>
 );
