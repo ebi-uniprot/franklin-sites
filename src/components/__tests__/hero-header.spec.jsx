@@ -5,12 +5,7 @@ import HeroHeader from '../hero-header';
 describe('Hero Header component', () => {
   test('should render', () => {
     const component = renderer.create(
-      <HeroHeader
-        topLeft={<i>Top Left</i>}
-        topRight={<b>Top Right</b>}
-        title="Title"
-        footer={<span>Footer</span>}
-      >
+      <HeroHeader title="Title" footer={<span>Footer</span>}>
         <input type="text" />
       </HeroHeader>
     );

@@ -119,14 +119,6 @@ $content-width: 90%;
   flex-direction: column;
   margin-bottom: 2em;
 
-  &__top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex: 2 1 auto;
-    width: $content-width;
-  }
-
   &__title {
     display: flex;
     align-items: flex-end;
