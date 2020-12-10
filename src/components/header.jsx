@@ -92,6 +92,7 @@ Header.propTypes = {
   links: PropTypes.arrayOf(linkProp),
   search: PropTypes.element,
   isNegative: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Header.defaultProps = {
@@ -99,6 +100,7 @@ Header.defaultProps = {
   links: [],
   search: undefined,
   isNegative: false,
+  className: '',
 };
 
 export default Header;
