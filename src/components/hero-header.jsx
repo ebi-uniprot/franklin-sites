@@ -1,9 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
+
 import '../styles/components/header.scss';
 
-const HeroHeader = ({ topLeft, topRight, title, children, footer }) => (
-  <div className="hero-header">
+const HeroHeader = ({
+  topLeft,
+  topRight,
+  title,
+  children,
+  footer,
+  className,
+  ...rest
+}) => (
+  <div className={cn('hero-header', className)} {...rest}>
     <div className="hero-header__top">
       <div>{topLeft}</div>
       <div>{topRight}</div>

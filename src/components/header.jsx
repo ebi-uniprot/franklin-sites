@@ -50,8 +50,11 @@ HeaderLink.propTypes = {
   link: linkProp.isRequired,
 };
 
-const Header = ({ logo, links, search, isNegative }) => (
-  <div className={cn('header', { 'header--negative': isNegative })}>
+const Header = ({ logo, links, search, isNegative, className, ...rest }) => (
+  <div
+    className={cn('header', { 'header--negative': isNegative }, className)}
+    {...rest}
+  >
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>

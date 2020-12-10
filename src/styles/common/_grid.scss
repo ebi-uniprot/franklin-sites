@@ -1,0 +1,54 @@
+$gap: 1rem;
+$max-width: 100ch;
+$min-side-margin: 1rem;
+$grid-gap: 1em;
+$separator-width: 2px;
+$separator-offset: 5px;
+$n-columns: 12;
+
+/* uniprot-website grid system */
+.uniprot-grid {
+  display: grid;
+  grid-template-columns:
+        // left-margin
+
+    minmax($min-side-margin, calc((100% - #{$max-width}) / 2))
+    // main grid columns
+    repeat(12, 1fr)
+    // right-margin
+    minmax($min-side-margin, calc((100% - #{$max-width}) / 2));
+
+  &--with-background > * {
+    background: salmon;
+  }
+
+  & > :first-child {
+    // default start
+    grid-column-start: 2;
+  }
+
+  & > * {
+    // default span
+    grid-column: auto / span 3;
+    padding: calc(#{$grid-gap} / 2);
+  }
+
+  & > .uniprot-grid-cell {
+    @for $i from 1 through $n-columns {
+      &--span-#{$i} {
+        grid-column: auto / span $i;
+      }
+    }
+
+    &--fullbleed {
+      width: max-content;
+      justify-self: center;
+      // span from side to side
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.grid-content-block {
+  margin: 1em 0;
+}
