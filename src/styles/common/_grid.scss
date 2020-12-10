@@ -1,3 +1,6 @@
+@import '../settings';
+@import '../colours';
+
 $gap: 1rem;
 $max-width: 100ch;
 $min-side-margin: 1rem;
@@ -19,7 +22,7 @@ $n-columns: 12;
     minmax($min-side-margin, calc((100% - #{$max-width}) / 2));
 
   &--with-background > * {
-    background: salmon;
+    background: $colour-platinum;
   }
 
   & > :first-child {
@@ -50,5 +53,5 @@ $n-columns: 12;
 }
 
 .grid-content-block {
-  margin: 1em 0;
+  margin: $global-margin 0;
 }

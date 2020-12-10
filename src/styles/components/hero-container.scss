@@ -2,17 +2,11 @@
 @import '../colours';
 
 .hero-container {
-  grid-area: hero-container;
-
-  display: grid;
-  grid-template-columns: auto minmax(12rem, 64rem) auto;
+  grid-column: 2/14;
 
   & > section:first-child {
-    grid-column-start: 2;
-
-    // the side-margins are temporary. remove when css grid is complete.
-    margin: $global-margin $global-margin / 2;
-    padding: $global-padding;
+    grid-column: 2/14;
+    margin: $global-margin 0;
     background-color: $colour-platinum;
   }
 }
