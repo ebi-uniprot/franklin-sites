@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { Card } from '../src/components';

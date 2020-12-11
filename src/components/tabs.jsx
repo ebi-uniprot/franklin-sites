@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, Children } from 'react';
+import { useState, useCallback, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import { v1 } from 'uuid';
 import cn from 'classnames';

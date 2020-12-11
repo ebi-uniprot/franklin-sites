@@ -1,4 +1,3 @@
-import React from 'react';
 import { MemoryRouter, useLocation, useHistory } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 import { InPageNav } from '../src/components';

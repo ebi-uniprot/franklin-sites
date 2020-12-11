@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoremIpsum } from 'lorem-ipsum';
 
 import { CodeBlock } from '../src/components';

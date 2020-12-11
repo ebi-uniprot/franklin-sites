@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/header.scss';

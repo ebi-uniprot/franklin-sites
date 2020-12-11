@@ -1,4 +1,3 @@
-import React from 'react';
 import ProteinIcon from '../svg/protein.svg';
 import '../styles/components/loader.scss';
 

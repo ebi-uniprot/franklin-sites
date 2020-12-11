@@ -1,4 +1,3 @@
-import React from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { HeroHeader } from '../src/components';

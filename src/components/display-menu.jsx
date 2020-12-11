@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink, Route, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/components/display-menu.scss';
@@ -8,7 +7,7 @@ const DisplayMenu = ({ data }) => {
   return (
     <ul className="display-menu">
       <ul className="no-bullet">
-        {data.map(displayItem => (
+        {data.map((displayItem) => (
           <li key={displayItem.name}>
             <h5 className="display-menu__item_title">
               <NavLink

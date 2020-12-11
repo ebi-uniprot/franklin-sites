@@ -1,4 +1,4 @@
-import React, { forwardRef, ComponentClass, FunctionComponent } from 'react';
+import { forwardRef, ComponentClass, FunctionComponent } from 'react';
 import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';
