@@ -1,4 +1,4 @@
-import { FC, Children, useState, ReactNode, ReactElement } from 'react';
+import { FC, Children, useState, ReactNode } from 'react';
 import cn from 'classnames';
 
 import Button from './button';
@@ -40,7 +40,7 @@ type ExpandableListProps = {
   /**
    * Children as an array of react elements, items of the list
    */
-  children: ReactElement[];
+  children: ReactNode;
   /**
    * Threshold from which to start hiding items of the list
    */
@@ -73,7 +73,7 @@ export const ExpandableList: FC<ExpandableListProps> = ({
 }) => {
   // get an array of children, filter out null or undefined children to avoid
   // counting them towards the threshold limit
-  const children = Children.toArray(c).filter(Boolean) as ReactElement[];
+  const children = Children.toArray(c).filter(Boolean);
   const [expanded, setExpanded] = useState(false);
   const enoughChildren = children.length > numberCollapsedItems + 1;
   const itemNodes = children
@@ -81,7 +81,13 @@ export const ExpandableList: FC<ExpandableListProps> = ({
       0,
       expanded || !enoughChildren ? children.length : numberCollapsedItems
     )
-    .map((item, index) => <li key={item.key || index}>{item}</li>);
+    .map((item, index) => {
+      let key: string | number = index;
+      if (typeof item === 'object' && 'key' in item && item.key) {
+        key = item.key;
+      }
+      return <li key={key}>{item}</li>;
+    });
 
   let actions = null;
   if (enoughChildren || extraActions) {

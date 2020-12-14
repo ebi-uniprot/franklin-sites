@@ -1,9 +1,9 @@
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, ReactNode, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import '../styles/components/tile.scss';
 
-type Props = {
+type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
    * The tile title
    */
@@ -15,7 +15,7 @@ type Props = {
   /**
    * The tile description.
    */
-  description?: JSX.Element;
+  description?: ReactNode;
   /**
    * The background color
    */
@@ -33,10 +33,6 @@ type Props = {
    * width of the provided container.
    */
   width?: string;
-  /**
-   * Action triggered on click
-   */
-  onClick: () => void;
 };
 
 export const Tile: FC<Props> = ({
@@ -47,18 +43,24 @@ export const Tile: FC<Props> = ({
   backgroundImage,
   gradient = false,
   width,
-  onClick,
+  className,
+  style,
+  ...props
 }) => (
   <button
     type="button"
-    className={classNames({ tile: 'tile', 'tile-gradient': gradient })}
+    className={classNames(className, {
+      tile: 'tile',
+      'tile-gradient': gradient,
+    })}
     style={
       {
+        ...style,
         '--tile-background': backgroundColor,
         width: width || '100%',
       } as CSSProperties
     }
-    onClick={onClick}
+    {...props}
   >
     <section className="tile__background-image">{backgroundImage}</section>
     <section className="tile__content">
