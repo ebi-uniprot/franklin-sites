@@ -25,66 +25,39 @@ export const grid = () => (
     <div style={gridStyles.wrapper}>
       <h3>Uniprot Grid</h3>
       <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell--span-12"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-12">
           span-12
         </div>
       </div>
       <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell--span-6"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-6">
           span-6
         </div>
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell--span-6"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-6">
           span-6
         </div>
       </div>
       <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell--span-4"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-4">
           span-4
         </div>
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell--span-8"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-8">
           span-8
         </div>
       </div>
       <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell uniprot-grid-cell--span-4"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-4">
           span-4
         </div>
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell uniprot-grid-cell--span-4"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-4">
           span-4
         </div>
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell uniprot-grid-cell--span-4"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-4">
           span-4
         </div>
       </div>
       <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell uniprot-grid-cell--span-1"
-        >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-1">
           span-1
         </div>
       </div>
@@ -110,7 +83,7 @@ export const grid = () => (
       <div style={gridStyles.grid} className="uniprot-grid">
         <div
           style={gridStyles.cell}
-          className="uniprot-grid-cell--span-2 uniprot-grid-cell--offset-10"
+          className="uniprot-grid-cell--offset-10 uniprot-grid-cell--span-2"
         >
           span-2 offset-10
         </div>

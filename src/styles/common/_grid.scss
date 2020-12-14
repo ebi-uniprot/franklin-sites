@@ -21,7 +21,8 @@ $n-columns: 12;
     // right-margin
     minmax($min-side-margin, calc((100% - #{$max-width}) / 2));
 
-  & > .uniprot-grid-cell:first-child {
+  &
+    > *[class*='uniprot-grid-cell--span-']:not([class*='uniprot-grid-cell--offset-']):first-child {
     // default start
     grid-column-start: 2;
   }
