@@ -21,11 +21,7 @@ $n-columns: 12;
     // right-margin
     minmax($min-side-margin, calc((100% - #{$max-width}) / 2));
 
-  &--with-background > * {
-    background: $colour-platinum;
-  }
-
-  & > :first-child {
+  & > .uniprot-grid-cell:first-child {
     // default start
     grid-column-start: 2;
   }
@@ -40,6 +36,13 @@ $n-columns: 12;
     @for $i from 1 through $n-columns {
       &--span-#{$i} {
         grid-column: auto / span $i;
+      }
+    }
+
+    @for $i from 1 through $n-columns {
+      &--offset-#{$i} {
+        // Plus 2 because one is for gutter and one to push the item forward
+        grid-column-start: $i + 2;
       }
     }
 
