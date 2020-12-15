@@ -111,18 +111,13 @@ $content-width: 90%;
 
 .hero-header {
   @include box-shadow();
-  grid-area: hero-header;
   height: 60vh;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   margin-bottom: 2em;
+  display: grid;
 
   &__title {
-    display: flex;
-    align-items: flex-end;
-    flex: 2 1 auto;
+    grid-column: 2/14;
+    text-align: center;
 
     h1 {
       color: $colour-sky-white;
@@ -130,13 +125,12 @@ $content-width: 90%;
   }
 
   &__content {
-    flex: 2 1 auto;
-    width: $content-width;
+    grid-column: 2/14;
+    padding: 0;
   }
 
-  &__footer {
-    flex: 0 1 auto;
-  }
+  // &__footer {
+  // }
 
   label {
     color: $colour-sky-white;

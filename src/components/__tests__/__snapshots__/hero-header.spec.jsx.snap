@@ -19,7 +19,7 @@ exports[`Hero Header component should render 1`] = `
     />
   </div>
   <div
-    className="hero-header__footer"
+    className="hero-header__footer uniprot-grid-cell--fullbleed"
   >
     <span>
       Footer

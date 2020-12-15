@@ -49,8 +49,11 @@ HeaderLink.propTypes = {
   link: linkProp.isRequired,
 };
 
-const Header = ({ logo, links, search, isNegative }) => (
-  <div className={cn('header', { 'header--negative': isNegative })}>
+const Header = ({ logo, links, search, isNegative, className, ...props }) => (
+  <div
+    className={cn('header', { 'header--negative': isNegative }, className)}
+    {...props}
+  >
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>
@@ -88,6 +91,7 @@ Header.propTypes = {
   links: PropTypes.arrayOf(linkProp),
   search: PropTypes.element,
   isNegative: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Header.defaultProps = {
@@ -95,6 +99,7 @@ Header.defaultProps = {
   links: [],
   search: undefined,
   isNegative: false,
+  className: '',
 };
 
 export default Header;

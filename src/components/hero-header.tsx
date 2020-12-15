@@ -34,7 +34,9 @@ export const HeroHeader: React.FC<HeroHeaderProps> = ({
       <h1>{title}</h1>
     </div>
     <div className="hero-header__content">{children}</div>
-    <div className="hero-header__footer">{footer}</div>
+    <div className="hero-header__footer uniprot-grid-cell--fullbleed">
+      {footer}
+    </div>
   </div>
 );
 
