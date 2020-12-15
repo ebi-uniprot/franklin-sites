@@ -54,6 +54,12 @@ $n-columns: 12;
       grid-column: 1 / -1;
     }
   }
+
+  &--with-gutters {
+    .uniprot-grid-cell {
+      margin: 0 $grid-gap/2;
+    }
+  }
 }
 
 .grid-content-block {
