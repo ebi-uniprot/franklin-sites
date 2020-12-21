@@ -100,7 +100,7 @@ export const grid = () => (
         className="uniprot-grid uniprot-grid--centered uniprot-grid--with-bleed"
       >
         <div style={gridStyles.cell} className="uniprot-grid-cell--span-12">
-          span-5 offset-2
+          span-12
         </div>
       </div>
     </div>
