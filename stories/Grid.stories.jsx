@@ -93,7 +93,7 @@ export const grid = () => (
       </p>
       <p>
         <code>--with-bleed</code>: Sometimes, you need the grid background to
-        overflow into the most left and right gutters. Define the colour by
+        overflow into the leftmost and rightmost gutters. Define the colour by
         using the css variable <code>--grid-background</code>
       </p>
     </div>
