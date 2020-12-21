@@ -25,6 +25,12 @@ $n-columns: 12;
       }
     }
   }
+
+  &--with-gutters {
+    .uniprot-grid-cell {
+      margin: 0 $grid-gap/2;
+    }
+  }
 }
 
 .#{$grid-name}--centered {

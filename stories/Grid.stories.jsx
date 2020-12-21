@@ -2,7 +2,7 @@ import React from 'react';
 // import "../styles/common/grid";
 
 export default {
-  title: 'Grid',
+  title: 'Grid/Grid',
 };
 
 const gridStyles = {
@@ -13,6 +13,11 @@ const gridStyles = {
     background: '#ccc',
     '--grid-background': '#ccc',
     padding: '.5rem',
+  },
+  cell2: {
+    background: 'blue',
+    paddingTop: '0.5rem',
+    paddingBottom: '0.5rem',
   },
 };
 
