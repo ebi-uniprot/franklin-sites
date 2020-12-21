@@ -6,23 +6,19 @@ export default {
 };
 
 const gridStyles = {
-  wrapper: {
-    border: '1px solid #ccc',
-    padding: '0.5rem',
-    margin: '1rem 0',
-  },
   grid: {
     margin: '1rem 0',
   },
   cell: {
     background: '#ccc',
-    border: '1px solid #000',
+    '--grid-background': '#ccc',
+    padding: '.5rem',
   },
 };
 
 export const grid = () => (
   <>
-    <div style={gridStyles.wrapper}>
+    <div>
       <h3>Uniprot Grid</h3>
       <div style={gridStyles.grid} className="uniprot-grid">
         <div style={gridStyles.cell} className="uniprot-grid-cell--span-12">
@@ -60,34 +56,41 @@ export const grid = () => (
         <div style={gridStyles.cell} className="uniprot-grid-cell--span-1">
           span-1
         </div>
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-11">
+          span-1
+        </div>
+      </div>
+      <div style={gridStyles.grid} className="uniprot-grid">
+        <div
+          style={gridStyles.cell}
+          className="uniprot-grid-cell--span-11 uniprot-grid-cell--offset-1"
+        >
+          span-11 offset-1
+        </div>
+      </div>
+      <div style={gridStyles.grid} className="uniprot-grid">
+        <div
+          style={gridStyles.cell}
+          className="uniprot-grid-cell--span-5 uniprot-grid-cell--offset-2"
+        >
+          span-5 offset-2
+        </div>
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-5">
+          span-5
+        </div>
       </div>
     </div>
-    <div style={gridStyles.wrapper}>
-      <h3>Uniprot Grid with Offsets</h3>
-      <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell--span-6 uniprot-grid-cell--offset-3"
-        >
-          span-6 offset-3
-        </div>
-      </div>
-      <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell--span-4 uniprot-grid-cell--offset-4"
-        >
-          span-4 offset-8
-        </div>
-      </div>
-      <div style={gridStyles.grid} className="uniprot-grid">
-        <div
-          style={gridStyles.cell}
-          className="uniprot-grid-cell--offset-10 uniprot-grid-cell--span-2"
-        >
-          span-2 offset-10
-        </div>
-      </div>
+    <div>
+      <h3>Grid modifiers</h3>
+      <p>
+        <code>--centered</code>: To use if the grid should be centered on the
+        page instead of full width.
+      </p>
+      <p>
+        <code>--with-bleed</code>: Sometimes, you need the grid background to
+        overflow into the most left and right gutters. Define the colour by
+        using the css variable <code>--grid-background</code>
+      </p>
     </div>
   </>
 );
