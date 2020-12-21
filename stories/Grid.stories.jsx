@@ -1,17 +1,16 @@
 import React from 'react';
-// import "../styles/common/grid";
 
 export default {
-  title: 'Grid/Grid',
+  title: 'Core/Grid',
 };
 
 const gridStyles = {
   grid: {
     margin: '1rem 0',
+    '--grid-background': '#ccc',
   },
   cell: {
     background: '#ccc',
-    '--grid-background': '#ccc',
     padding: '.5rem',
   },
   cell2: {
@@ -96,6 +95,14 @@ export const grid = () => (
         overflow into the leftmost and rightmost gutters. Define the colour by
         using the css variable <code>--grid-background</code>
       </p>
+      <div
+        style={gridStyles.grid}
+        className="uniprot-grid uniprot-grid--centered uniprot-grid--with-bleed"
+      >
+        <div style={gridStyles.cell} className="uniprot-grid-cell--span-12">
+          span-5 offset-2
+        </div>
+      </div>
     </div>
   </>
 );
