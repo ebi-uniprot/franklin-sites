@@ -111,26 +111,28 @@ $content-width: 90%;
 
 .hero-header {
   @include box-shadow();
+  flex-direction: column;
   height: 60vh;
   margin-bottom: 2em;
-  display: grid;
 
-  &__title {
-    grid-column: 2/14;
+  & > * {
+    width: 100%;
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
     text-align: center;
-
+    flex-direction: column;
+    justify-content: center;
     h1 {
       color: $colour-sky-white;
     }
   }
 
-  &__content {
-    grid-column: 2/14;
-    padding: 0;
+  &__footer {
+    flex: 0;
   }
-
-  // &__footer {
-  // }
 
   label {
     color: $colour-sky-white;

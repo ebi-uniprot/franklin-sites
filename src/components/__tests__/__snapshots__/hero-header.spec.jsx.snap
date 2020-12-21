@@ -5,21 +5,17 @@ exports[`Hero Header component should render 1`] = `
   className="hero-header"
 >
   <div
-    className="hero-header__title"
+    className="hero-header__content"
   >
     <h1>
       Title
     </h1>
-  </div>
-  <div
-    className="hero-header__content"
-  >
     <input
       type="text"
     />
   </div>
   <div
-    className="hero-header__footer uniprot-grid-cell--fullbleed"
+    className="hero-header__footer"
   >
     <span>
       Footer
