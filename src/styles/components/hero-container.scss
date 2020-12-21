@@ -2,11 +2,13 @@
 @import '../colours';
 
 .hero-container {
-  grid-column: 2/14;
-
-  & > section:first-child {
-    grid-column: 2/14;
-    margin: $global-margin 0;
-    background-color: $colour-platinum;
+  margin-top: $global-margin;
+  margin-bottom: $global-margin;
+  padding: $global-padding 0;
+  background-color: $colour-platinum;
+  --grid-background: #{$colour-platinum};
+  &--side-padding {
+    padding-left: $global-padding;
+    padding-right: $global-padding;
   }
 }
