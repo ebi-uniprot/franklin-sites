@@ -30,13 +30,11 @@ export const HeroHeader: React.FC<HeroHeaderProps> = ({
   ...props
 }) => (
   <div className={cn('hero-header', className)} {...props}>
-    <div className="hero-header__title">
+    <div className="hero-header__content">
       <h1>{title}</h1>
+      {children}
     </div>
-    <div className="hero-header__content">{children}</div>
-    <div className="hero-header__footer uniprot-grid-cell--fullbleed">
-      {footer}
-    </div>
+    <div className="hero-header__footer">{footer}</div>
   </div>
 );
 

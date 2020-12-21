@@ -1,39 +1,18 @@
 @import '../settings';
 @import '../colours';
 
+$grid-name: 'uniprot-grid';
 $gap: 1rem;
-$max-width: 100ch;
-$min-side-margin: 1rem;
-$grid-gap: 1em;
-$separator-width: 2px;
-$separator-offset: 5px;
+$max-width: 117ch; // 1070px with Lato 16px base as per mockup
 $n-columns: 12;
 
 /* uniprot-website grid system */
-.uniprot-grid {
+.#{$grid-name} {
   display: grid;
-  grid-template-columns:
-        // left-margin
+  grid-column-gap: $gap; /* or we can implement that differently */
+  grid-template-columns: repeat(12, 1fr);
 
-    minmax($min-side-margin, calc((100% - #{$max-width}) / 2))
-    // main grid columns
-    repeat(12, 1fr)
-    // right-margin
-    minmax($min-side-margin, calc((100% - #{$max-width}) / 2));
-
-  &
-    > *[class*='uniprot-grid-cell--span-']:not([class*='uniprot-grid-cell--offset-']):first-child {
-    // default start
-    grid-column-start: 2;
-  }
-
-  & > * {
-    // default span
-    grid-column: auto / span 3;
-    padding: calc(#{$grid-gap} / 2);
-  }
-
-  & > .uniprot-grid-cell {
+  & > .#{$grid-name}-cell {
     @for $i from 1 through $n-columns {
       &--span-#{$i} {
         grid-column: auto / span $i;
@@ -42,26 +21,18 @@ $n-columns: 12;
 
     @for $i from 1 through $n-columns {
       &--offset-#{$i} {
-        // Plus 2 because one is for gutter and one to push the item forward
-        grid-column-start: $i + 2;
+        grid-column-start: $i + 1;
       }
-    }
-
-    &--fullbleed {
-      width: max-content;
-      justify-self: center;
-      // span from side to side
-      grid-column: 1 / -1;
-    }
-  }
-
-  &--with-gutters {
-    .uniprot-grid-cell {
-      margin: 0 $grid-gap/2;
     }
   }
 }
 
-.grid-content-block {
-  margin: $global-margin 0;
+.#{$grid-name}--centered {
+  margin-left: auto;
+  width: calc(min(100vw, #{$max-width}));
+  margin-right: auto;
+}
+
+.#{$grid-name}--with-bleed {
+  box-shadow: -$gap 0 var(--grid-background), $gap 0 var(--grid-background);
 }
