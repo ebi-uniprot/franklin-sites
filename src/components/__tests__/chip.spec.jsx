@@ -1,5 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import Chip from '../chip';
 
 describe('Chip component', () => {
@@ -22,5 +24,15 @@ describe('Chip component', () => {
     const { queryByTestId } = render(<Chip>Some content</Chip>);
     const removeIcon = queryByTestId('remove-icon');
     expect(removeIcon).toBeNull();
+  });
+
+  it('should not have disabled attribute when disabled=false passed as a prop', () => {
+    const { getByRole } = render(<Chip disabled={false}>Some content</Chip>);
+    expect(getByRole('button')).not.toHaveAttribute('disabled');
+  });
+
+  it('should have disabled attribute when disabled=true passed as a prop', () => {
+    const { getByRole } = render(<Chip disabled>Some content</Chip>);
+    expect(getByRole('button')).toHaveAttribute('disabled');
   });
 });
