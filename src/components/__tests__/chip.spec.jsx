@@ -26,12 +26,12 @@ describe('Chip component', () => {
     expect(removeIcon).toBeNull();
   });
 
-  it('should not have disabled class when disabled=false passed as a prop', () => {
+  it('should not have disabled attribute when disabled=false passed as a prop', () => {
     const { getByRole } = render(<Chip disabled={false}>Some content</Chip>);
     expect(getByRole('button')).not.toHaveAttribute('disabled');
   });
 
-  it('should have disabled class when disabled=true passed as a prop', () => {
+  it('should have disabled attribute when disabled=true passed as a prop', () => {
     const { getByRole } = render(<Chip disabled>Some content</Chip>);
     expect(getByRole('button')).toHaveAttribute('disabled');
   });
