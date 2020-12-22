@@ -1,5 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import Chip from '../chip';
 
 describe('Chip component', () => {
@@ -25,12 +27,12 @@ describe('Chip component', () => {
   });
 
   it('should not have disabled class when disabled=false passed as a prop', () => {
-    const { container } = render(<Chip disabled={false}>Some content</Chip>);
-    expect(container.firstChild.className).not.toMatch(/disabled/);
+    const { getByRole } = render(<Chip disabled={false}>Some content</Chip>);
+    expect(getByRole('button')).not.toHaveAttribute('disabled');
   });
 
   it('should have disabled class when disabled=true passed as a prop', () => {
-    const { container } = render(<Chip disabled>Some content</Chip>);
-    expect(container.firstChild.className).toMatch(/disabled/);
+    const { getByRole } = render(<Chip disabled>Some content</Chip>);
+    expect(getByRole('button')).toHaveAttribute('disabled');
   });
 });
