@@ -23,4 +23,14 @@ describe('Chip component', () => {
     const removeIcon = queryByTestId('remove-icon');
     expect(removeIcon).toBeNull();
   });
+
+  it('should not have disabled class when disabled=false passed as a prop', () => {
+    const { container } = render(<Chip disabled={false}>Some content</Chip>);
+    expect(container.firstChild.className).not.toMatch(/disabled/);
+  });
+
+  it('should have disabled class when disabled=true passed as a prop', () => {
+    const { container } = render(<Chip disabled>Some content</Chip>);
+    expect(container.firstChild.className).toMatch(/disabled/);
+  });
 });
