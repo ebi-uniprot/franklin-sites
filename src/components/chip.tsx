@@ -33,12 +33,12 @@ type ChipProps = {
   /**
    * click event listener on the component (except on the close button if present)
    */
-  onClick: () => void;
+  onClick?: () => void;
   /**
    * Optional extra props to pass to the chip
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  props: Record<PropertyKey, any>;
+  props?: Record<PropertyKey, any>;
 };
 
 export const Chip: FC<ChipProps> = ({
