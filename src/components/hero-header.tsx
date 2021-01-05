@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, FC } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/header.scss';
@@ -22,7 +22,7 @@ type HeroHeaderProps = {
   className?: string;
 };
 
-export const HeroHeader: React.FC<HeroHeaderProps> = ({
+export const HeroHeader: FC<HeroHeaderProps> = ({
   title = '',
   children,
   footer,
