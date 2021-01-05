@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 
 import { Chip } from '../src/components';
 
-import colors from '../src/styles/colours.json';
+import colors from '../src/styles/colours';
 
 export default {
   title: 'Core/Chip',

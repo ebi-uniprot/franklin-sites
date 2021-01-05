@@ -1,5 +1,5 @@
 @import './settings';
-@import './colours';
+@import './colours.js';
 @import './franklin-settings';
 
 $global-left: if($global-text-direction == rtl, right, left);

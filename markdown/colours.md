@@ -24,9 +24,11 @@
 
 ### Namespace palette
 
+<div class="box-colour colour-uniprotkb" data-name="$colour-uniprotkb" ></div>
 <div class="box-colour colour-uniref" data-name="$colour-uniref" ></div>
 <div class="box-colour colour-uniparc" data-name="$colour-uniparc" ></div>
 <div class="box-colour colour-proteomes" data-name="$colour-proteomes" ></div>
+<div class="box-colour colour-supporting-data" data-name="$colour-supporting-data" ></div>
 
 ### Tools palette
 

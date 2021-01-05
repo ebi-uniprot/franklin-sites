@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { ProtVistaIcon } from '../';
-import colors from '../../styles/colours.json';
+import colors from '../../styles/colours';
 
 import Tile from '../tile';
 
@@ -16,7 +16,7 @@ describe('Tile component', () => {
         subtitle="Subtitle"
         description="My description"
         backgroundImage={ProtVistaIcon}
-        backgroundColor={colors.seaBlue}
+        backgroundColor={colors.colourUniprotkb}
         onClick={clickFn}
         gradient
       />

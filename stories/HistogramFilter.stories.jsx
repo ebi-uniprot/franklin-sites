@@ -10,7 +10,7 @@ import {
   getGaussianSample,
 } from '../src/mock-data/probability-distribution-sample';
 
-import colors from '../src/styles/colours.json';
+import colors from '../src/styles/colours';
 
 export default {
   title: 'Forms/Histogram Filter',

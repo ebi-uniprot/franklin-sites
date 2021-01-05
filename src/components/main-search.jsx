@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import DropdownButton from './dropdown-button';
 import Button from './button';
 
-import color from '../styles/colours.json';
+import color from '../styles/colours';
 
 import '../styles/components/main-search.scss';
 
@@ -18,7 +18,7 @@ const MainSearch = ({
 }) => {
   const style = useMemo(
     () => ({
-      '--main-button-color': color[selectedNamespace] || color.seaBlue,
+      '--main-button-color': color[selectedNamespace] || color.colourUniprotkb,
     }),
     [selectedNamespace]
   );

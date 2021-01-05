@@ -4,7 +4,7 @@ import { Button } from '../src/components';
 import { DownloadIcon } from '../src/components';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 
-import colors from '../src/styles/colours.json';
+import colors from '../src/styles/colours';
 
 export default {
   title: 'Forms/Button',
@@ -18,7 +18,12 @@ export default {
 };
 
 const useColor = () =>
-  select('--main-button-color', colors, colors.seaBlue, 'Custom Properties');
+  select(
+    '--main-button-color',
+    colors,
+    colors.colourUniprotkb,
+    'Custom Properties'
+  );
 const useDisabled = () => boolean('disabled', false, 'Props');
 
 export const buttons = () => {

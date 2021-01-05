@@ -2,7 +2,7 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Tile } from '../src/components';
 import SVG from '../assets/uniprotkb_illustration.svg';
-import colors from '../src/styles/colours.json';
+import colors from '../src/styles/colours';
 import { loremIpsum, LoremIpsum } from 'lorem-ipsum';
 
 export default {
@@ -19,7 +19,12 @@ export default {
 };
 
 const useColor = () =>
-  select('--tile-background', colors, colors.seaBlue, 'Custom Properties');
+  select(
+    '--tile-background',
+    colors,
+    colors.colourUniprotkb,
+    'Custom Properties'
+  );
 
 export const tile = () => (
   <Tile

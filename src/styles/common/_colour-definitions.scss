@@ -1,4 +1,4 @@
-@import '../colours';
+@import '../colours.js';
 
 // PRIMARY
 .colour-sapphire-blue {
@@ -57,6 +57,10 @@
   color: $colour-yankees-blue;
 }
 // NAMESPACE
+.colour-uniprotkb {
+  background: $colour-uniprotkb;
+  color: $colour-yankees-blue;
+}
 .colour-uniref {
   background: $colour-uniref;
   color: $colour-yankees-blue;
@@ -67,6 +71,10 @@
 }
 .colour-proteomes {
   background: $colour-proteomes;
+  color: $colour-sky-white;
+}
+.colour-supporting-data {
+  background: $colour-supporting-data;
   color: $colour-sky-white;
 }
 .colour-peptide-search {
