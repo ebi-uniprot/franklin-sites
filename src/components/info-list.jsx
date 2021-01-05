@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import InfoListItem from './info-list-item';
 
 import '../styles/components/info-list.scss';
 
@@ -10,31 +11,19 @@ const InfoList = ({
   highlightFirstItem,
   noTitles,
 }) => (
-  <div
-    className={classNames(
-      'info-list',
-      { 'info-list--columns': columns },
-      { 'info-list--compact': isCompact },
-      { 'info-list--no-title': noTitles }
-    )}
-  >
+  <div className={classNames('info-list', { 'info-list--columns': columns })}>
     {infoData.map(
       // Only draw if there is content
       (item, index) =>
         item.content && (
-          <div className="info-list__item" key={item.title}>
-            <div className="info-list__title">
-              <h5 className="bold">{item.title}</h5>
-            </div>
-
-            <div className="info-list__content">
-              {index === 0 && highlightFirstItem ? (
-                <strong>{item.content}</strong>
-              ) : (
-                item.content
-              )}
-            </div>
-          </div>
+          <InfoListItem
+            title={item.title}
+            content={item.content}
+            highlight={index === 0 && highlightFirstItem}
+            compact={isCompact}
+            hideTitle={noTitles}
+            key={item.title}
+          />
         )
     )}
   </div>

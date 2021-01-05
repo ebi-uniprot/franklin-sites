@@ -29,6 +29,7 @@ export { default as Histogram } from './histogram';
 export { default as HistogramFilter } from './histogram-filter';
 export { default as InPageNav } from './in-page-nav';
 export { default as InfoList } from './info-list';
+export { default as InfoListItem } from './info-list-item';
 export { default as Loader } from './loader';
 export { default as LongNumber } from './long-number';
 export { default as MainSearch } from './main-search';
