@@ -1,9 +1,9 @@
 import cn from 'classnames';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import '../styles/components/hero-container.scss';
 
-interface HeroContainerProps {
+type HeroContainerProps = {
   /**
    * The title of the component
    */
@@ -24,9 +24,9 @@ interface HeroContainerProps {
    * Remove left and right padding
    */
   noSidePadding?: boolean;
-}
+};
 
-export const HeroContainer: React.FC<HeroContainerProps> = ({
+export const HeroContainer: FC<HeroContainerProps> = ({
   title,
   children,
   className,

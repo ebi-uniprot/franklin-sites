@@ -1,4 +1,10 @@
-import { FC, useCallback, ReactNode } from 'react';
+import {
+  FC,
+  useCallback,
+  useRef,
+  ReactNode,
+  MouseEvent as ReactMouseEvent,
+} from 'react';
 import cn from 'classnames';
 
 import RemoveIcon from '../svg/times.svg';
@@ -13,7 +19,7 @@ type ChipProps = {
   /**
    * Call back which, if present, will display a remove icon and is fired when this is clicked
    */
-  onRemove?: (event: React.MouseEvent<SVGElement, MouseEvent>) => void;
+  onRemove?: (event: ReactMouseEvent<SVGElement, MouseEvent>) => void;
   /**
    * If true will opacify the chip and prevent the remove from being clickable
    */
@@ -51,14 +57,15 @@ export const Chip: FC<ChipProps> = ({
   onClick,
   ...props
 }) => {
+  const onRemoveRef = useRef(onRemove);
+  onRemoveRef.current = onRemove;
+
   const handleRemove = useCallback(
-    (event: React.MouseEvent<SVGElement, MouseEvent>) => {
+    (event: ReactMouseEvent<SVGElement, MouseEvent>) => {
       event.stopPropagation();
-      if (onRemove) {
-        onRemove(event);
-      }
+      onRemoveRef.current?.(event);
     },
-    [onRemove]
+    []
   );
 
   return (
