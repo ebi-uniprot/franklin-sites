@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
-import Header from '../src/components/header';
-import { MainSearch } from '../src/components/index';
+import { Header, MainSearch } from '../src/components';
 
 import UniProtLogo from '../src/svg/swissprot.svg';
 
@@ -38,7 +37,7 @@ const Search = () => {
     <MainSearch
       onChange={setValue}
       searchTerm={value}
-      onSubmit={(e) => {
+      onSubmit={(e: MouseEvent) => {
         e.preventDefault();
         action('onSubmit')(e);
       }}

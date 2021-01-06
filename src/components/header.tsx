@@ -65,9 +65,21 @@ const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
 };
 
 type HeaderProps = {
+  /**
+   * Logo to display where the link to the home page will be
+   */
   logo?: ReactNode;
+  /**
+   * List of items to render in the header
+   */
   items: Array<HeaderItem | HeaderDropdown>;
+  /**
+   * Search component
+   */
   search?: ReactNode;
+  /**
+   * Flag representing if the header should be in a "negative" style
+   */
   isNegative?: boolean;
 };
 const Header: FC<HeaderProps> = ({ logo, items, search, isNegative }) => (
