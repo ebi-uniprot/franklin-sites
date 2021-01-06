@@ -37,7 +37,7 @@ const uniformSample = getUniformSample(min, max, nValues);
 export const Gaussian = () => {
   const [range, setRange] = useState([min, max]);
   const handleChange = (newRange) => {
-    action(`range selected: ${newRange}`);
+    action('range selected')(newRange);
     setRange(newRange);
   };
   return (
@@ -75,7 +75,7 @@ export const Uniform = () => {
   const [range, setRange] = useState([min, max]);
 
   const handleChange = (newRange) => {
-    action(`range selected: ${newRange}`);
+    action('range selected')(newRange);
     setRange(newRange);
   };
   return (

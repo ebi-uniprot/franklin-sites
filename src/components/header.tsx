@@ -44,15 +44,16 @@ type HeaderItemProps = {
 };
 const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
   let extraProps = {};
-  let element: Link | 'a' | 'button' = Link;
-  if (item.href) {
+  let element: typeof Link | 'a' | 'button' = Link;
+  if (item.path) {
+    extraProps = { to: item.path };
+  } else if (item.href) {
     extraProps = {
       target: '_blank',
       rel: 'noopener noreferrer',
     };
     element = 'a';
-  }
-  if (item.onClick) {
+  } else if (item.onClick) {
     extraProps = { onClick: item.onClick };
     element = 'button';
   }

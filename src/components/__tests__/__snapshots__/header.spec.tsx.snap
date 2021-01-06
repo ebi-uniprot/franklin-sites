@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should render 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="header__logo"
+    >
+      <a
+        href="/"
+      />
+    </div>
+    <ul
+      class="header__navigation"
+    >
+      <li>
+        <a
+          class="button tertiary"
+          href="/here"
+        >
+          <strong>
+            here
+          </strong>
+        </a>
+      </li>
+      <li>
+        <a
+          class="button tertiary"
+          href="/there"
+        >
+          there
+        </a>
+      </li>
+      <li>
+        <a
+          class="button tertiary"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          EBI
+        </a>
+      </li>
+      <li>
+        <button
+          class="button tertiary"
+          type="button"
+        >
+          action
+        </button>
+      </li>
+      <li>
+        <div
+          class="dropdown-container"
+        >
+          <button
+            class="button primary dropdown"
+            type="button"
+          >
+            sub links
+          </button>
+          <div
+            class="dropdown-menu"
+          />
+        </div>
+      </li>
+    </ul>
+    <div
+      class="header__search"
+    />
+  </div>
+</DocumentFragment>
+`;
