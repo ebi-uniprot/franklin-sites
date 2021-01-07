@@ -61,6 +61,14 @@ type ExpandableListProps = {
    * Wether to display or not the number of hidden elements
    */
   displayNumberOfHiddenItems?: boolean;
+  /**
+   * Classnames to be added to the list container
+   */
+  className?: string;
+  /**
+   * Any other prop to pass down to the rendered element
+   */
+  [key: string]: unknown;
 };
 
 export const ExpandableList: FC<ExpandableListProps> = ({
@@ -70,6 +78,8 @@ export const ExpandableList: FC<ExpandableListProps> = ({
   showBullets,
   extraActions,
   displayNumberOfHiddenItems,
+  className,
+  ...props
 }) => {
   // get an array of children, filter out null or undefined children to avoid
   // counting them towards the threshold limit
@@ -111,7 +121,12 @@ export const ExpandableList: FC<ExpandableListProps> = ({
   }
 
   return (
-    <ul className={cn('expandable-list', { 'no-bullet': !showBullets })}>
+    <ul
+      className={cn(className, 'expandable-list', {
+        'no-bullet': !showBullets,
+      })}
+      {...props}
+    >
       {itemNodes}
       {actions}
     </ul>
