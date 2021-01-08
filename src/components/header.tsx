@@ -30,17 +30,20 @@ type HeaderButton = {
   onClick: () => void;
   items?: never;
 };
-type HeaderItem = HeaderExternalLink | HeaderInternalLink | HeaderButton;
+type HeaderPossibleItem =
+  | HeaderExternalLink
+  | HeaderInternalLink
+  | HeaderButton;
 type HeaderDropdown = {
   label: ReactNode;
   href?: never;
   path?: never;
   onClick?: never;
-  items: HeaderItem[];
+  items: HeaderPossibleItem[];
 };
 
 type HeaderItemProps = {
-  item: HeaderItem;
+  item: HeaderPossibleItem;
 };
 const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
   let extraProps = {};
@@ -72,7 +75,7 @@ type HeaderProps = {
   /**
    * List of items to render in the header
    */
-  items: Array<HeaderItem | HeaderDropdown>;
+  items: Array<HeaderPossibleItem | HeaderDropdown>;
   /**
    * Search component
    */
@@ -111,7 +114,7 @@ const Header: FC<HeaderProps> = ({ logo, items, search, isNegative }) => (
               </ul>
             </DropdownButton>
           ) : (
-            <HeaderItem item={item} />
+            <HeaderItem item={item as HeaderPossibleItem} />
           )}
         </li>
       ))}
