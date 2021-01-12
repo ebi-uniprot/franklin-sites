@@ -89,6 +89,6 @@ a {
   text-decoration: none;
   font-weight: font-weight('semi-bold');
   &:hover {
-    color: lighten($colour-link, 10);
+    @include hover($with-transition: true);
   }
 }

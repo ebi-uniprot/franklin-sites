@@ -1,5 +1,6 @@
 @import '../colours.js';
 @import '../settings';
+@import '../mixins';
 
 $line-height: 2rem;
 
@@ -13,10 +14,11 @@ $line-height: 2rem;
       padding-left: 1rem;
     }
     &--active {
-      background-color: lighten($colour-selected, 5%);
+      background-color: $colour-selected;
     }
     &:hover {
-      background-color: $colour-hover;
+      background-color: $colour-selected;
+      @include hover;
     }
     &--active:before {
       content: '';

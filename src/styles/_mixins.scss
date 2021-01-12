@@ -67,3 +67,12 @@ $global-right: if($global-text-direction == rtl, left, right);
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin hover($with-transition: false) {
+  filter: brightness(110%);
+  @if $with-transition == true {
+    transition: 0.5s filter ease;
+  } @else {
+    transition: none;
+  }
+}

@@ -35,25 +35,6 @@ const colorDefinition = {
   colourOuterSpace: '#374343',
 };
 
-const hexToRGBA = (hexValue, transparency = 1) => {
-  let r = 0;
-  let g = 0;
-  let b = 0;
-
-  if (hexValue.length === 4) {
-    r = `0x${hexValue[1]}${hexValue[1]}`;
-    g = `0x${hexValue[2]}${hexValue[2]}`;
-    b = `0x${hexValue[3]}${hexValue[3]}`;
-  } else if (hexValue.length === 7) {
-    r = `0x${hexValue[1]}${hexValue[2]}`;
-    g = `0x${hexValue[3]}${hexValue[4]}`;
-    b = `0x${hexValue[5]}${hexValue[6]}`;
-  } else {
-    return null;
-  }
-  return `rgba(${+r}, ${+g}, ${+b}, ${transparency})`;
-};
-
 // node-sass-json-importer doesn't support ES6 exports
 module.exports = {
   ...colorDefinition,
@@ -74,5 +55,4 @@ module.exports = {
   colourInfo: colorDefinition.colourMalibu,
   colourLink: colorDefinition.colourSapphireBlue,
   colourSelected: colorDefinition.colourGainsborough,
-  colourHover: hexToRGBA(colorDefinition.colourPlatinum, 0.05),
 };
