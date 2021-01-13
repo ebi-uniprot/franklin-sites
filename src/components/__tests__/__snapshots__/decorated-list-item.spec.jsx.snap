@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DecoratedListItem component should render 1`] = `
+<div
+  className="decorated-list-item"
+>
+  <div
+    className="decorated-list-item__title"
+  >
+    <h5
+      className="bold"
+    >
+      Title
+    </h5>
+  </div>
+  <div
+    className="decorated-list-item__content"
+  >
+    Content
+  </div>
+</div>
+`;
+
+exports[`DecoratedListItem component should render compact 1`] = `
+<div
+  className="decorated-list-item decorated-list-item--compact"
+>
+  <div
+    className="decorated-list-item__title"
+  >
+    <h5
+      className="bold"
+    >
+      Title
+    </h5>
+  </div>
+  <div
+    className="decorated-list-item__content"
+  >
+    Content
+  </div>
+</div>
+`;
+
+exports[`DecoratedListItem component should render compact without title 1`] = `
+<div
+  className="decorated-list-item decorated-list-item--compact"
+>
+  <div
+    className="decorated-list-item__title"
+  >
+    <h5
+      className="bold"
+    />
+  </div>
+  <div
+    className="decorated-list-item__content"
+  >
+    Content
+  </div>
+</div>
+`;
+
+exports[`DecoratedListItem component should render inline 1`] = `
+<div
+  className="decorated-list-item decorated-list-item--inline"
+>
+  <div
+    className="decorated-list-item__title"
+  >
+    <h5
+      className="bold"
+    />
+  </div>
+  <div
+    className="decorated-list-item__content"
+  >
+    Content
+  </div>
+</div>
+`;
+
+exports[`DecoratedListItem component should render without title 1`] = `
+<div
+  className="decorated-list-item"
+>
+  <div
+    className="decorated-list-item__title"
+  >
+    <h5
+      className="bold"
+    />
+  </div>
+  <div
+    className="decorated-list-item__content"
+  >
+    Content
+  </div>
+</div>
+`;

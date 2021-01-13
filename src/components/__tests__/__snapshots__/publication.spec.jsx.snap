@@ -94,13 +94,13 @@ exports[`Publication component should render 1`] = `
           </button>
         </section>
         <div
-          class="info-list info-list--compact"
+          class="info-list"
         >
           <div
-            class="info-list__item"
+            class="decorated-list-item decorated-list-item--compact"
           >
             <div
-              class="info-list__title"
+              class="decorated-list-item__title"
             >
               <h5
                 class="bold"
@@ -109,7 +109,7 @@ exports[`Publication component should render 1`] = `
               </h5>
             </div>
             <div
-              class="info-list__content"
+              class="decorated-list-item__content"
             >
               <em>
                 Reptile species of the family Testudinidae of the order Testudines (the turtles).
@@ -117,10 +117,10 @@ exports[`Publication component should render 1`] = `
             </div>
           </div>
           <div
-            class="info-list__item"
+            class="decorated-list-item decorated-list-item--compact"
           >
             <div
-              class="info-list__title"
+              class="decorated-list-item__title"
             >
               <h5
                 class="bold"
@@ -129,7 +129,7 @@ exports[`Publication component should render 1`] = `
               </h5>
             </div>
             <div
-              class="info-list__content"
+              class="decorated-list-item__content"
             >
               Charles really liked them.
             </div>
