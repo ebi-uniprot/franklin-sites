@@ -12,29 +12,27 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
 
   &__title {
     flex-basis: 10vw;
-    text-align: right;
     flex-shrink: 0;
     margin-right: 0.7rem;
+    text-align: right;
+    border-right: $decorative-bar;
+    padding-right: 0.7rem;
     h5 {
       line-height: 1.2;
     }
   }
 
   &__content {
-    padding-left: 0.7rem;
-    border-left: $decorative-bar;
-
     ul {
       margin-bottom: 0;
     }
   }
 
   &--compact {
-    #{ $self } {
-      border-left: $decorative-bar;
-      padding: 0 0 0 0.7rem;
-      margin: 0;
-    }
+    border-left: $decorative-bar;
+    padding: 0 0 0 0.7rem;
+    margin: 0;
+
     #{ $self }__title {
       font-size: 1rem;
       h5 {
@@ -72,12 +70,17 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   }
 
   &--alt-style {
-    #{ $self }__content {
-      border-left: $alt-decorative-bar;
+    border-left: $alt-decorative-bar;
 
+    #{ $self }__title {
+      padding: 0;
+    }
+
+    #{ $self }__content {
       h5 {
         margin: 0;
         line-height: 1.25;
+        font-weight: 600;
       }
     }
   }

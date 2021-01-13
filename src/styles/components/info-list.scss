@@ -9,5 +9,5 @@ $decorative-bar: 0.125rem solid $colour-vivid-cerulean;
 }
 
 @include breakpoint(medium) {
-  @include columns('info-list', 2);
+  @include columns('info-list', 'decorated-list-item', 2);
 }

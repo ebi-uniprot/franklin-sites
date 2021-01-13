@@ -73,11 +73,9 @@ const DecoratedListItem: FC<Props> = ({
     )}
     {...props}
   >
-    {!hideTitle && title && (
-      <div className="decorated-list-item__title">
-        <h5 className="bold">{title}</h5>
-      </div>
-    )}
+    <div className="decorated-list-item__title">
+      <h5 className="bold">{title}</h5>
+    </div>
 
     <div className="decorated-list-item__content">
       {highlight ? <strong>{content || children}</strong> : content || children}
