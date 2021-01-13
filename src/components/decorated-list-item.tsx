@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import '../styles/components/info-list-item.scss';
+import '../styles/components/decorated-list-item.scss';
 
 type Props = {
   /**
@@ -38,9 +38,19 @@ type Props = {
    * Attempts to keep the element horizontally aligned with its siblings
    */
   inline?: boolean;
+
+  /**
+   * Extra CSS class names to be passed down from the parnet component
+   */
+  className?: string;
+
+  /**
+   * Switches to an alternative style for the decorative line
+   */
+  altStyle?: boolean;
 };
 
-const InfoListItem: FC<Props> = ({
+const DecoratedListItem: FC<Props> = ({
   title,
   content,
   children,
@@ -48,25 +58,31 @@ const InfoListItem: FC<Props> = ({
   compact,
   hideTitle,
   inline,
-}: Props) => (
+  className,
+  altStyle,
+  ...props
+}) => (
   <div
     className={classNames(
-      'info-list-item',
-      { 'info-list-item--compact': compact },
-      { 'info-list-item--no-title': hideTitle },
-      { 'info-list-item--inline': inline }
+      className,
+      'decorated-list-item',
+      { 'decorated-list-item--compact': compact },
+      { 'decorated-list-item--no-title': hideTitle },
+      { 'decorated-list-item--inline': inline },
+      { 'decorated-list-item--alt-style': altStyle }
     )}
+    {...props}
   >
     {!hideTitle && title && (
-      <div className="info-list-item__title">
+      <div className="decorated-list-item__title">
         <h5 className="bold">{title}</h5>
       </div>
     )}
 
-    <div className="info-list-item__content">
+    <div className="decorated-list-item__content">
       {highlight ? <strong>{content || children}</strong> : content || children}
     </div>
   </div>
 );
 
-export default InfoListItem;
+export default DecoratedListItem;

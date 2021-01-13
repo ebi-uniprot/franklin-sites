@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import InfoListItem from './info-list-item';
+import DecoratedListItem from './decorated-list-item';
 
 import '../styles/components/info-list.scss';
 
@@ -10,13 +10,20 @@ const InfoList = ({
   isCompact,
   highlightFirstItem,
   noTitles,
+  className,
+  ...props
 }) => (
-  <div className={classNames('info-list', { 'info-list--columns': columns })}>
+  <div
+    className={classNames(className, 'info-list', {
+      'info-list--columns': columns,
+    })}
+    {...props}
+  >
     {infoData.map(
       // Only draw if there is content
       (item, index) =>
         item.content && (
-          <InfoListItem
+          <DecoratedListItem
             title={item.title}
             content={item.content}
             highlight={index === 0 && highlightFirstItem}
@@ -57,6 +64,10 @@ InfoList.propTypes = {
    * Display titles or not
    */
   noTitles: PropTypes.bool,
+  /**
+   * CSS Class name coming from the parent
+   */
+  className: PropTypes.string,
 };
 
 InfoList.defaultProps = {
@@ -64,6 +75,7 @@ InfoList.defaultProps = {
   isCompact: false,
   noTitles: false,
   highlightFirstItem: false,
+  className: null,
 };
 
 export default InfoList;

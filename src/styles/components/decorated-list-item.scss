@@ -3,8 +3,9 @@
 @import '../mixins.scss';
 
 $decorative-bar: 0.125rem solid $colour-vivid-cerulean;
+$alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
 
-.info-list-item {
+.decorated-list-item {
   $self: &;
   display: flex;
   margin-bottom: 1.25rem;
@@ -69,10 +70,21 @@ $decorative-bar: 0.125rem solid $colour-vivid-cerulean;
     flex-grow: 1;
     flex-basis: 0;
   }
+
+  &--alt-style {
+    #{ $self }__content {
+      border-left: $alt-decorative-bar;
+
+      h5 {
+        margin: 0;
+        line-height: 1.25;
+      }
+    }
+  }
 }
 
 @include breakpoint(small only) {
-  .info-list-item {
+  .decorated-list-item {
     display: block;
 
     &__title {
