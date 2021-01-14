@@ -1,10 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
+
 import LongNumber from '../long-number';
 
 describe('Long number component', () => {
   test('should render', () => {
-    const component = renderer.create(<LongNumber>{1000000}</LongNumber>).toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(<LongNumber>{1000000}</LongNumber>);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

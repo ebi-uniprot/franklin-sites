@@ -1,37 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageIntro component should render 1`] = `
-<div
-  className="page-intro"
->
-  <h2>
-    <button
-      className="dropdown"
-      onClick={[Function]}
-      type="button"
-    >
-      <test-file-stub
-        height={20}
-        width={20}
-      />
-       
-      Title
-    </button>
-    <small>
-       
-      1,000
-       results
-    </small>
-  </h2>
+<DocumentFragment>
   <div
-    className="intro-content"
+    class="page-intro"
   >
-    <div>
-      Some content
-    </div>
+    <h2>
+      <button
+        class="dropdown"
+        type="button"
+      >
+        <test-file-stub
+          height="20"
+          width="20"
+        />
+         Title
+      </button>
+      <small>
+         1,000 results
+      </small>
+    </h2>
     <div
-      className="intro-links"
-    />
+      class="intro-content"
+    >
+      <div>
+        Some content
+      </div>
+      <div
+        class="intro-links"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

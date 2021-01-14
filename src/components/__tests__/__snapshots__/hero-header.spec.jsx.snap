@@ -1,25 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Hero Header component should render 1`] = `
-<div
-  className="hero-header"
->
+<DocumentFragment>
   <div
-    className="hero-header__content"
+    class="hero-header"
   >
-    <h1>
-      Title
-    </h1>
-    <input
-      type="text"
-    />
+    <div
+      class="hero-header__content"
+    >
+      <h1>
+        Title
+      </h1>
+      <input
+        type="text"
+      />
+    </div>
+    <div
+      class="hero-header__footer"
+    >
+      <span>
+        Footer
+      </span>
+    </div>
   </div>
-  <div
-    className="hero-header__footer"
-  >
-    <span>
-      Footer
-    </span>
-  </div>
-</div>
+</DocumentFragment>
 `;

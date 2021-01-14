@@ -1,14 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
+
 import HeroContainer from '../hero-container';
 
 describe('Hero Container component', () => {
   test('should render', () => {
-    const component = renderer.create(
+    const { asFragment } = render(
       <HeroContainer title="Title">
         <p>Body content</p>
-      </HeroContainer>,
+      </HeroContainer>
     );
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

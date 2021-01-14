@@ -1,9 +1,7 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import SequenceSubmission from '../sequence-submission';
 import { validResponse } from '../../sequence-utils/sequenceValidator';
-
-afterEach(cleanup);
 
 describe('SequenceSubmission', () => {
   test('should render', () => {

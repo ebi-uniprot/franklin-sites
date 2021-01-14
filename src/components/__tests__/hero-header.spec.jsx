@@ -1,14 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
+
 import HeroHeader from '../hero-header';
 
 describe('Hero Header component', () => {
   test('should render', () => {
-    const component = renderer.create(
+    const { asFragment } = render(
       <HeroHeader title="Title" footer={<span>Footer</span>}>
         <input type="text" />
       </HeroHeader>
     );
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

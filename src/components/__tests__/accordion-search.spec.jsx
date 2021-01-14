@@ -1,8 +1,6 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import AccordionSearch, { filterAccordionData } from '../accordion-search';
-
-afterEach(cleanup);
 
 const props = {
   placeholder: 'Filter',
@@ -51,13 +49,19 @@ describe('AccordionSearch', () => {
   });
 
   test('filterAccordionData should return filtered data with matching query', () => {
-    const filteredAccordionData = filterAccordionData(props.accordionData, 'Nucleus');
+    const filteredAccordionData = filterAccordionData(
+      props.accordionData,
+      'Nucleus'
+    );
     expect(filteredAccordionData).toHaveLength(1);
     expect(filteredAccordionData[0].items[0].id).toBe('2-2');
   });
 
   test('filterAccordionData should return no data with nonmatching query', () => {
-    const filteredAccordionData = filterAccordionData(props.accordionData, 'Zap');
+    const filteredAccordionData = filterAccordionData(
+      props.accordionData,
+      'Zap'
+    );
     expect(filteredAccordionData).toHaveLength(0);
   });
 
@@ -65,12 +69,17 @@ describe('AccordionSearch', () => {
     const { queryAllByTestId } = render(<AccordionSearch {...props} />);
     const content = queryAllByTestId('accordion-content');
     expect(content).toHaveLength(2);
-    const allListItems = content.reduce((acc, node) => acc + node.querySelectorAll('li').length, 0);
+    const allListItems = content.reduce(
+      (acc, node) => acc + node.querySelectorAll('li').length,
+      0
+    );
     expect(allListItems).toBe(5);
   });
 
   test('should match snapshot when input is entered', () => {
-    const { queryByTestId, queryAllByTestId } = render(<AccordionSearch {...props} />);
+    const { queryByTestId, queryAllByTestId } = render(
+      <AccordionSearch {...props} />
+    );
     const input = queryByTestId('search-input');
     fireEvent.change(input, { target: { value: 'Nucleus' } });
     const content = queryAllByTestId('accordion-content');

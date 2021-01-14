@@ -1,45 +1,43 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 
 import DecoratedListItem from '../decorated-list-item';
 
 describe('DecoratedListItem component', () => {
   test('should render', () => {
-    const component = renderer
-      .create(<DecoratedListItem title="Title">Content</DecoratedListItem>)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(
+      <DecoratedListItem title="Title">Content</DecoratedListItem>
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render without title', () => {
-    const component = renderer
-      .create(<DecoratedListItem>Content</DecoratedListItem>)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(
+      <DecoratedListItem>Content</DecoratedListItem>
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render compact', () => {
-    const component = renderer
-      .create(
-        <DecoratedListItem title="Title" compact>
-          Content
-        </DecoratedListItem>
-      )
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(
+      <DecoratedListItem title="Title" compact>
+        Content
+      </DecoratedListItem>
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render compact without title', () => {
-    const component = renderer
-      .create(<DecoratedListItem compact>Content</DecoratedListItem>)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(
+      <DecoratedListItem compact>Content</DecoratedListItem>
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render inline', () => {
-    const component = renderer
-      .create(<DecoratedListItem inline>Content</DecoratedListItem>)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(
+      <DecoratedListItem inline>Content</DecoratedListItem>
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });

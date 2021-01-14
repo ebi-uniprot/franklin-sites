@@ -1,100 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DecoratedListItem component should render 1`] = `
-<div
-  className="decorated-list-item"
->
+<DocumentFragment>
   <div
-    className="decorated-list-item__title"
+    class="decorated-list-item"
   >
-    <h5
-      className="bold"
+    <div
+      class="decorated-list-item__title"
     >
-      Title
-    </h5>
+      <h5
+        class="bold"
+      >
+        Title
+      </h5>
+    </div>
+    <div
+      class="decorated-list-item__content"
+    >
+      Content
+    </div>
   </div>
-  <div
-    className="decorated-list-item__content"
-  >
-    Content
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DecoratedListItem component should render compact 1`] = `
-<div
-  className="decorated-list-item decorated-list-item--compact"
->
+<DocumentFragment>
   <div
-    className="decorated-list-item__title"
+    class="decorated-list-item decorated-list-item--compact"
   >
-    <h5
-      className="bold"
+    <div
+      class="decorated-list-item__title"
     >
-      Title
-    </h5>
+      <h5
+        class="bold"
+      >
+        Title
+      </h5>
+    </div>
+    <div
+      class="decorated-list-item__content"
+    >
+      Content
+    </div>
   </div>
-  <div
-    className="decorated-list-item__content"
-  >
-    Content
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DecoratedListItem component should render compact without title 1`] = `
-<div
-  className="decorated-list-item decorated-list-item--compact"
->
+<DocumentFragment>
   <div
-    className="decorated-list-item__title"
+    class="decorated-list-item decorated-list-item--compact"
   >
-    <h5
-      className="bold"
-    />
+    <div
+      class="decorated-list-item__title"
+    >
+      <h5
+        class="bold"
+      />
+    </div>
+    <div
+      class="decorated-list-item__content"
+    >
+      Content
+    </div>
   </div>
-  <div
-    className="decorated-list-item__content"
-  >
-    Content
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DecoratedListItem component should render inline 1`] = `
-<div
-  className="decorated-list-item decorated-list-item--inline"
->
+<DocumentFragment>
   <div
-    className="decorated-list-item__title"
+    class="decorated-list-item decorated-list-item--inline"
   >
-    <h5
-      className="bold"
-    />
+    <div
+      class="decorated-list-item__title"
+    >
+      <h5
+        class="bold"
+      />
+    </div>
+    <div
+      class="decorated-list-item__content"
+    >
+      Content
+    </div>
   </div>
-  <div
-    className="decorated-list-item__content"
-  >
-    Content
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DecoratedListItem component should render without title 1`] = `
-<div
-  className="decorated-list-item"
->
+<DocumentFragment>
   <div
-    className="decorated-list-item__title"
+    class="decorated-list-item"
   >
-    <h5
-      className="bold"
-    />
+    <div
+      class="decorated-list-item__title"
+    >
+      <h5
+        class="bold"
+      />
+    </div>
+    <div
+      class="decorated-list-item__content"
+    >
+      Content
+    </div>
   </div>
-  <div
-    className="decorated-list-item__content"
-  >
-    Content
-  </div>
-</div>
+</DocumentFragment>
 `;

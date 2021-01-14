@@ -160,7 +160,6 @@
     "react-docgen": "5.3.1",
     "react-dom": "17.0.1",
     "react-router-dom": "5.2.0",
-    "react-test-renderer": "17.0.1",
     "regenerator-runtime": "0.13.7",
     "sass-loader": "10.1.1",
     "storybook-react-router": "1.0.8",

@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 
 import InfoList from '../info-list';
 
@@ -15,10 +15,8 @@ describe('InfoList component', () => {
         content: <div>Some more content</div>,
       },
     ];
-    const component = renderer
-      .create(<InfoList infoData={infoData} />)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(<InfoList infoData={infoData} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render compact', () => {
@@ -32,10 +30,8 @@ describe('InfoList component', () => {
         content: <div>Some more content</div>,
       },
     ];
-    const component = renderer
-      .create(<InfoList infoData={infoData} isCompact />)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(<InfoList infoData={infoData} isCompact />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render without titles', () => {
@@ -49,10 +45,8 @@ describe('InfoList component', () => {
         content: <div>Some more content</div>,
       },
     ];
-    const component = renderer
-      .create(<InfoList infoData={infoData} noTitles />)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(<InfoList infoData={infoData} noTitles />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('should render without in 2 columns', () => {
@@ -66,9 +60,7 @@ describe('InfoList component', () => {
         content: <div>Some more content</div>,
       },
     ];
-    const component = renderer
-      .create(<InfoList infoData={infoData} columns />)
-      .toJSON();
-    expect(component).toMatchSnapshot();
+    const { asFragment } = render(<InfoList infoData={infoData} columns />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

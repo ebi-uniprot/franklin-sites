@@ -1,32 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExternalLink component should render external link 1`] = `
-<a
-  className="external-link"
-  href="#"
-  rel="noopener"
-  target="_blank"
->
-  <span>
-    Link text
-  </span>
-  <test-file-stub
-    width={12.5}
-  />
-</a>
+<DocumentFragment>
+  <a
+    class="external-link"
+    href="#"
+    rel="noopener"
+    target="_blank"
+  >
+    <span>
+      Link text
+    </span>
+    <test-file-stub
+      width="12.5"
+    />
+  </a>
+</DocumentFragment>
 `;
 
 exports[`ExternalLink component should render external link without target: _blank attribute 1`] = `
-<a
-  className="external-link"
-  href="#"
-  rel="noopener"
->
-  <span>
-    Link text
-  </span>
-  <test-file-stub
-    width={12.5}
-  />
-</a>
+<DocumentFragment>
+  <a
+    class="external-link"
+    href="#"
+    rel="noopener"
+  >
+    <span>
+      Link text
+    </span>
+    <test-file-stub
+      width="12.5"
+    />
+  </a>
+</DocumentFragment>
 `;

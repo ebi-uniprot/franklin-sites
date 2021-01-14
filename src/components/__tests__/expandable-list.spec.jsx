@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react';
-
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import ExpandableList, { ExpandableMessage } from '../expandable-list';
-
-afterEach(cleanup);
 
 const descriptionString = 'foo';
 

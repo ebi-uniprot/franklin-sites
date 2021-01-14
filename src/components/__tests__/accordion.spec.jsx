@@ -1,8 +1,6 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Accordion from '../accordion';
-
-afterEach(cleanup);
 
 const props = {
   title: 'foo',
@@ -22,7 +20,10 @@ describe('Accordion', () => {
     fireEvent.click(title);
     const content = queryByTestId('accordion-content');
     const contentClasses = Object.values(content.classList);
-    expect(contentClasses).toEqual(['accordion__content', 'accordion__content--display-content']);
+    expect(contentClasses).toEqual([
+      'accordion__content',
+      'accordion__content--display-content',
+    ]);
   });
 
   test('should not show content when expand title is clicked twice', () => {
@@ -32,6 +33,9 @@ describe('Accordion', () => {
     fireEvent.click(title);
     const content = queryByTestId('accordion-content');
     const contentClasses = Object.values(content.classList);
-    expect(contentClasses).toEqual(['accordion__content', 'accordion__content--hide-content']);
+    expect(contentClasses).toEqual([
+      'accordion__content',
+      'accordion__content--hide-content',
+    ]);
   });
 });

@@ -1,37 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TreeSelect component should render 1`] = `
-<div
-  className="dropdown-container"
-  onBlur={[Function]}
->
-  <button
-    className="button primary dropdown"
-    onClick={[Function]}
-    type="button"
-  >
-    Select
-  </button>
+<DocumentFragment>
   <div
-    className="dropdown-menu"
-  />
-</div>
+    class="dropdown-container"
+  >
+    <button
+      class="button primary dropdown"
+      type="button"
+    >
+      Select
+    </button>
+    <div
+      class="dropdown-menu"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TreeSelect component with filter should render 1`] = `
-<div
-  className="dropdown-container"
-  onBlur={[Function]}
->
-  <button
-    className="button primary dropdown"
-    onClick={[Function]}
-    type="button"
-  >
-    Select
-  </button>
+<DocumentFragment>
   <div
-    className="dropdown-menu"
-  />
-</div>
+    class="dropdown-container"
+  >
+    <button
+      class="button primary dropdown"
+      type="button"
+    >
+      Select
+    </button>
+    <div
+      class="dropdown-menu"
+    />
+  </div>
+</DocumentFragment>
 `;

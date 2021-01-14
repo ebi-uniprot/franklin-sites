@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { Tabs, Tab } from '../tabs';
@@ -9,8 +9,6 @@ jest.mock('uuid', () => {
     v1: jest.fn(() => 'abcd'),
   };
 });
-
-afterEach(cleanup);
 
 describe('Tabs', () => {
   test('should render', () => {
