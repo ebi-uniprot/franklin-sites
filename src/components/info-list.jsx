@@ -13,7 +13,7 @@ const InfoList = ({
   className,
   ...props
 }) => (
-  <div
+  <ul
     className={classNames(className, 'info-list', {
       'info-list--columns': columns,
     })}
@@ -23,17 +23,19 @@ const InfoList = ({
       // Only draw if there is content
       (item, index) =>
         item.content && (
-          <DecoratedListItem
-            title={item.title}
-            content={item.content}
-            highlight={index === 0 && highlightFirstItem}
-            compact={isCompact}
-            hideTitle={noTitles}
-            key={item.title}
-          />
+          <li key={item.title}>
+            <DecoratedListItem
+              title={item.title}
+              content={item.content}
+              highlight={index === 0 && highlightFirstItem}
+              compact={isCompact}
+              hideTitle={noTitles}
+              key={item.title}
+            />
+          </li>
         )
     )}
-  </div>
+  </ul>
 );
 
 InfoList.propTypes = {
