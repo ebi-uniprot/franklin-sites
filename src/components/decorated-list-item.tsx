@@ -7,12 +7,12 @@ type Props = {
   /**
    * Title
    */
-  title: string;
+  title?: string;
 
   /**
    * Textual content
    */
-  content: string;
+  content?: string;
 
   /**
    * Same as 'content', but can accept HTML elements
