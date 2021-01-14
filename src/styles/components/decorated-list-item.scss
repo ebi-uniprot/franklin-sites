@@ -1,0 +1,101 @@
+@import '../settings';
+@import '../colours';
+@import '../mixins.scss';
+
+$decorative-bar: 0.125rem solid $colour-vivid-cerulean;
+$alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
+
+.decorated-list-item {
+  $self: &;
+  display: flex;
+  margin-bottom: 1.25rem;
+
+  &__title {
+    flex-basis: 10vw;
+    flex-shrink: 0;
+    margin-right: 0.7rem;
+    text-align: right;
+    border-right: $decorative-bar;
+    padding-right: 0.7rem;
+    h5 {
+      line-height: 1.2;
+    }
+  }
+
+  &__content {
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  &--compact {
+    border-left: $decorative-bar;
+    padding: 0 0 0 0.7rem;
+    margin: 0;
+
+    #{ $self }__title {
+      font-size: 1rem;
+      h5 {
+        line-height: 1.5;
+        font-size: 1rem;
+        margin: 0;
+      }
+      flex: 0;
+      text-align: left;
+      white-space: nowrap;
+      border-right: none;
+      margin-right: 0;
+    }
+    #{ $self }__content {
+      font-size: 1rem;
+      flex: 1;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &--no-title {
+    #{ $self } {
+      margin-bottom: 0.5rem;
+    }
+    #{ $self }__title {
+      display: none;
+    }
+  }
+
+  // IMPORTANT: The parent should have set `display: inline-flex;` for this to work
+  &--inline {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  &--alt-style {
+    border-left: $alt-decorative-bar;
+
+    #{ $self }__title {
+      padding: 0;
+    }
+
+    #{ $self }__content {
+      h5 {
+        margin: 0;
+        line-height: 1.25;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@include breakpoint(small only) {
+  .decorated-list-item {
+    display: block;
+
+    &__title {
+      text-align: left;
+    }
+    &__content {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+}

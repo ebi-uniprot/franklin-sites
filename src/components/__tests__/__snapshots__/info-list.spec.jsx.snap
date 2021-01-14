@@ -1,189 +1,205 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InfoList component should render 1`] = `
-<div
+<ul
   className="info-list"
 >
-  <div
-    className="info-list__item"
-  >
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Item 1
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some content
+        <h5
+          className="bold"
+        >
+          Item 1
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some content
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="info-list__item"
-  >
+  </li>
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Another item
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some more content
+        <h5
+          className="bold"
+        >
+          Another item
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some more content
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </li>
+</ul>
 `;
 
 exports[`InfoList component should render compact 1`] = `
-<div
-  className="info-list info-list--compact"
+<ul
+  className="info-list"
 >
-  <div
-    className="info-list__item"
-  >
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item decorated-list-item--compact"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Item 1
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some content
+        <h5
+          className="bold"
+        >
+          Item 1
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some content
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="info-list__item"
-  >
+  </li>
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item decorated-list-item--compact"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Another item
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some more content
+        <h5
+          className="bold"
+        >
+          Another item
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some more content
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </li>
+</ul>
 `;
 
 exports[`InfoList component should render without in 2 columns 1`] = `
-<div
+<ul
   className="info-list info-list--columns"
 >
-  <div
-    className="info-list__item"
-  >
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Item 1
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some content
+        <h5
+          className="bold"
+        >
+          Item 1
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some content
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="info-list__item"
-  >
+  </li>
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Another item
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some more content
+        <h5
+          className="bold"
+        >
+          Another item
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some more content
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </li>
+</ul>
 `;
 
 exports[`InfoList component should render without titles 1`] = `
-<div
-  className="info-list info-list--no-title"
+<ul
+  className="info-list"
 >
-  <div
-    className="info-list__item"
-  >
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item decorated-list-item--no-title"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Item 1
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some content
+        <h5
+          className="bold"
+        >
+          Item 1
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some content
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="info-list__item"
-  >
+  </li>
+  <li>
     <div
-      className="info-list__title"
+      className="decorated-list-item decorated-list-item--no-title"
     >
-      <h5
-        className="bold"
+      <div
+        className="decorated-list-item__title"
       >
-        Another item
-      </h5>
-    </div>
-    <div
-      className="info-list__content"
-    >
-      <div>
-        Some more content
+        <h5
+          className="bold"
+        >
+          Another item
+        </h5>
+      </div>
+      <div
+        className="decorated-list-item__content"
+      >
+        <div>
+          Some more content
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </li>
+</ul>
 `;
