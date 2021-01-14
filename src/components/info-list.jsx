@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import DecoratedListItem from './decorated-list-item';
 
 import '../styles/components/info-list.scss';
 
@@ -9,35 +10,32 @@ const InfoList = ({
   isCompact,
   highlightFirstItem,
   noTitles,
+  className,
+  ...props
 }) => (
-  <div
-    className={classNames(
-      'info-list',
-      { 'info-list--columns': columns },
-      { 'info-list--compact': isCompact },
-      { 'info-list--no-title': noTitles }
-    )}
+  <ul
+    className={classNames(className, 'info-list', {
+      'info-list--columns': columns,
+    })}
+    {...props}
   >
     {infoData.map(
       // Only draw if there is content
       (item, index) =>
         item.content && (
-          <div className="info-list__item" key={item.title}>
-            <div className="info-list__title">
-              <h5 className="bold">{item.title}</h5>
-            </div>
-
-            <div className="info-list__content">
-              {index === 0 && highlightFirstItem ? (
-                <strong>{item.content}</strong>
-              ) : (
-                item.content
-              )}
-            </div>
-          </div>
+          <li key={item.title}>
+            <DecoratedListItem
+              title={item.title}
+              content={item.content}
+              highlight={index === 0 && highlightFirstItem}
+              compact={isCompact}
+              hideTitle={noTitles}
+              key={item.title}
+            />
+          </li>
         )
     )}
-  </div>
+  </ul>
 );
 
 InfoList.propTypes = {
@@ -68,6 +66,10 @@ InfoList.propTypes = {
    * Display titles or not
    */
   noTitles: PropTypes.bool,
+  /**
+   * CSS Class name coming from the parent
+   */
+  className: PropTypes.string,
 };
 
 InfoList.defaultProps = {
@@ -75,6 +77,7 @@ InfoList.defaultProps = {
   isCompact: false,
   noTitles: false,
   highlightFirstItem: false,
+  className: null,
 };
 
 export default InfoList;
