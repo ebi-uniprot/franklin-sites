@@ -1,13 +1,15 @@
-import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+
 import Publication from '../publication';
+
 import publicationData from '../__mocks__/publications';
+
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 let rendered;
 
 describe('Publication component', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     const {
       title,
       authors,
@@ -37,18 +39,16 @@ describe('Publication component', () => {
   });
 
   test('should expand authors', async () => {
-    const { queryByText, getByText, findByText } = rendered;
-    expect(queryByText('Darwin K.')).toBeNull();
-    fireEvent.click(getByText('[...]'));
-    const author = await findByText('Darwin K.');
+    expect(screen.queryByText('Darwin K.')).toBeNull();
+    fireEvent.click(screen.getByText('[...]'));
+    const author = await screen.findByText('Darwin K.');
     expect(author).toBeTruthy();
   });
 
   test('should expand abstract', async () => {
-    const { queryByText, getByText, findByText } = rendered;
-    expect(queryByText(/Captain Fitzroy/)).toBeNull();
-    fireEvent.click(getByText('View abstract [...]'));
-    const abstract = await findByText(/Captain Fitzroy/);
+    expect(screen.queryByText(/Captain Fitzroy/)).toBeNull();
+    fireEvent.click(screen.getByText('View abstract [...]'));
+    const abstract = await screen.findByText(/Captain Fitzroy/);
     expect(abstract).toBeTruthy();
   });
 });

@@ -1,4 +1,3 @@
-import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import StoryRouter from 'storybook-react-router';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { SwissProtIcon } from '..';
 
 export const displayMenuDummyContent1 = 'Page 1 main content';

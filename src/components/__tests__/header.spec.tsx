@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Header from '../header';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 import expectToThrowNoConsole from '../../testHelpers/expectToThrowNoConsole';

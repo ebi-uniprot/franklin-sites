@@ -1,4 +1,3 @@
-import React from 'react';
 import { scaleLinear } from 'd3';
 import { render } from '@testing-library/react';
 import YAxis from '../histogram-y-axis';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import '../styles/components/modal.scss';
@@ -37,9 +37,10 @@ export default function useModal(Backdrop, Content) {
   );
 
   Modal.propTypes = {
-    children: PropTypes.oneOfType(
-      [PropTypes.arrayOf(PropTypes.node), PropTypes.node],
-    ).isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]).isRequired,
     title: PropTypes.string,
     width: PropTypes.string,
     height: PropTypes.string,

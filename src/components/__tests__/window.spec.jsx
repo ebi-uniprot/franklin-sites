@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Window from '../window/window';
 import { WindowActionButton } from '../window/window-buttons';
 import renderWithRouter from '../../testHelpers/renderWithRouter';

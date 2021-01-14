@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
+
 import AccordionSearch, { filterAccordionData } from '../accordion-search';
 
 const props = {
@@ -66,8 +66,8 @@ describe('AccordionSearch', () => {
   });
 
   test('should be two accordions with a total of five list items', () => {
-    const { queryAllByTestId } = render(<AccordionSearch {...props} />);
-    const content = queryAllByTestId('accordion-content');
+    render(<AccordionSearch {...props} />);
+    const content = screen.queryAllByTestId('accordion-content');
     expect(content).toHaveLength(2);
     const allListItems = content.reduce(
       (acc, node) => acc + node.querySelectorAll('li').length,
@@ -77,20 +77,18 @@ describe('AccordionSearch', () => {
   });
 
   test('should match snapshot when input is entered', () => {
-    const { queryByTestId, queryAllByTestId } = render(
-      <AccordionSearch {...props} />
-    );
-    const input = queryByTestId('search-input');
+    render(<AccordionSearch {...props} />);
+    const input = screen.queryByTestId('search-input');
     fireEvent.change(input, { target: { value: 'Nucleus' } });
-    const content = queryAllByTestId('accordion-content');
+    const content = screen.queryAllByTestId('accordion-content');
     expect(content).toHaveLength(1);
     const listItems = content[0].querySelectorAll('li');
     expect(listItems).toHaveLength(1);
   });
 
   test('should call onSelect when item clicked', () => {
-    const { queryAllByTestId } = render(<AccordionSearch {...props} />);
-    const content = queryAllByTestId('accordion-content');
+    render(<AccordionSearch {...props} />);
+    const content = screen.queryAllByTestId('accordion-content');
     const listItemCheckbox = content[0].querySelector('li>label>input');
     fireEvent.click(listItemCheckbox);
     expect(props.onSelect).toHaveBeenCalled();

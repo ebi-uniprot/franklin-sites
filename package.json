@@ -51,6 +51,9 @@
         "branches": 69.61
       }
     },
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.ts"
+    ],
     "transform": {
       "^.+\\.(jsx|js|tsx|ts)?$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform"

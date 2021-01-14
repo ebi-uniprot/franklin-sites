@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
 const DataDecorator = ({ children, ...props }) => {

@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { Fragment } from 'react';
+import { screen, render, fireEvent } from '@testing-library/react';
 
 import ExpandableList, { ExpandableMessage } from '../expandable-list';
 
@@ -85,7 +85,7 @@ describe('ExpandableList', () => {
   });
 
   test('should not show more button if numberItems <= numberCollapsedItems + 1', () => {
-    const { queryByTestId } = render(
+    render(
       <ExpandableList
         numberCollapsedItems={numberCollapsedItems}
         descriptionString={descriptionString}
@@ -93,11 +93,11 @@ describe('ExpandableList', () => {
         {items.slice(0, numberCollapsedItems + 1)}
       </ExpandableList>
     );
-    expect(queryByTestId('expandable-message')).toBeNull();
+    expect(screen.queryByTestId('expandable-message')).toBeNull();
   });
 
   test('should not show more button if numberItems > numberCollapsedItems + 1', () => {
-    const { getByTestId } = render(
+    render(
       <ExpandableList
         numberCollapsedItems={numberCollapsedItems}
         descriptionString={descriptionString}
@@ -105,7 +105,7 @@ describe('ExpandableList', () => {
         {items}
       </ExpandableList>
     );
-    expect(getByTestId('expandable-message')).toBeTruthy();
+    expect(screen.getByTestId('expandable-message')).toBeTruthy();
   });
 
   test('should initially have numberCollapsedItems and then total number of items after More button click', () => {

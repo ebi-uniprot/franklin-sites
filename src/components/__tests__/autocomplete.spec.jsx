@@ -1,12 +1,13 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
+
 import Autocomplete from '../autocomplete';
+
 import { flattenedPaths } from '../../mock-data/tree-data';
 
 describe('Autocomplete component', () => {
   test('should render', () => {
     const { asFragment } = render(
-      <Autocomplete data={flattenedPaths} onSelect={d => d} />
+      <Autocomplete data={flattenedPaths} onSelect={(d) => d} />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -15,8 +16,8 @@ describe('Autocomplete component', () => {
     const { asFragment } = render(
       <Autocomplete
         data={flattenedPaths}
-        onSelect={d => d}
-        showDropdownUpdated={d => d}
+        onSelect={(d) => d}
+        showDropdownUpdated={(d) => d}
         clearOnSelect
       />
     );
@@ -58,10 +59,8 @@ describe('Autocomplete component', () => {
 
   test('should not submit if previously submitted text is the same as the current input text value', () => {
     const onSelect = jest.fn();
-    const { queryByTestId } = render(
-      <Autocomplete data={flattenedPaths} onSelect={onSelect} />
-    );
-    const searchInput = queryByTestId('search-input');
+    render(<Autocomplete data={flattenedPaths} onSelect={onSelect} />);
+    const searchInput = screen.queryByTestId('search-input');
     const value = { target: { value: 'foo' } };
     fireEvent.change(searchInput, value);
     fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
