@@ -18,55 +18,55 @@ exports[`Publication component should render 1`] = `
           class="publication__authors"
         >
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin C.\\""
           >
             Darwin C.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin B.\\""
           >
             Darwin B.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin A.\\""
           >
             Darwin A.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin D.\\""
           >
             Darwin D.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin E.\\""
           >
             Darwin E.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin F.\\""
           >
             Darwin F.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin G.\\""
           >
             Darwin G.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin H.\\""
           >
             Darwin H.
           </a>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin I.\\""
           >
             Darwin I.
           </a>
@@ -78,7 +78,7 @@ exports[`Publication component should render 1`] = `
           </button>
           , 
           <a
-            href="/"
+            href="/citations/?query=author:\\"Darwin X.\\""
           >
             Darwin X.
           </a>

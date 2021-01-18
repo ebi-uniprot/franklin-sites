@@ -1,4 +1,5 @@
 import { loremIpsum } from 'lorem-ipsum';
+
 import { InfoList } from '../src/components';
 
 export default {
