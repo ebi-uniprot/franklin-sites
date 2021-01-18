@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 
-import DataList from '../data-list';
+import { DataListWithLoader as DataList } from '../data-list';
 
 describe('DataList', () => {
   const data = Array.from({ length: 10 }, (_, index) => ({

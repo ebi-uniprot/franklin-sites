@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 
-import DataTable from '../data-table';
+import { DataTableWithLoader as DataTable } from '../data-table';
 
 describe('DataTable', () => {
   const onSelect = jest.fn();
