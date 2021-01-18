@@ -45,7 +45,7 @@ type WrapperProps = {
 const withDataLoader = (
   BaseComponent: FC<{ data: unknown[] }>
 ) => {
-  const Wrapper = ({
+  const Wrapper: FC<WrapperProps> = ({
     onLoadMoreItems,
     hasMoreData,
     loaderComponent = <Loader />,
