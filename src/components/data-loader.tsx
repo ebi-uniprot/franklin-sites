@@ -43,7 +43,7 @@ type WrapperProps = {
 };
 
 const withDataLoader = (
-  BaseComponent: (props: { data: unknown[] }) => JSX.Element
+  BaseComponent: FC<{ data: unknown[] }>
 ) => {
   const Wrapper = ({
     onLoadMoreItems,
