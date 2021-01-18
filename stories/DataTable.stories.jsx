@@ -1,10 +1,14 @@
 import { action } from '@storybook/addon-actions';
 
 import {
-  DataTable as DataTableComponent,
+  DataTable,
+  DataTableWithLoader,
   DENSITY_COMPACT,
 } from '../src/components';
-import DataDecorator from '../src/decorators/DataDecorator';
+import {
+  DataDecorator,
+  DataLoaderDecorator,
+} from '../src/decorators/DataDecorator';
 
 export default {
   title: 'Data/Data Table',
@@ -14,11 +18,21 @@ export default {
       function: '',
     },
   },
-  decorators: [(story) => <DataDecorator>{story}</DataDecorator>],
+  decorators: [(story) => <DataLoaderDecorator>{story}</DataLoaderDecorator>],
 };
 
 export const dataTable = (_, props) => (
-  <DataTableComponent
+  <DataTable
+    {...props}
+    onSelect={action('onSelect')}
+    onHeaderClick={action('onHeaderClick')}
+    selectable
+  />
+);
+dataTable.decorators = [(story) => <DataDecorator>{story}</DataDecorator>];
+
+export const dataTableWithLoader = (_, props) => (
+  <DataTableWithLoader
     {...props}
     onSelect={action('onSelect')}
     onHeaderClick={action('onHeaderClick')}
@@ -26,8 +40,8 @@ export const dataTable = (_, props) => (
   />
 );
 
-export const dataTableClickToLoad = (_, props) => (
-  <DataTableComponent
+export const dataTableWithLoaderClickToLoad = (_, props) => (
+  <DataTableWithLoader
     {...props}
     clickToLoad
     onSelect={action('onSelect')}
@@ -36,8 +50,8 @@ export const dataTableClickToLoad = (_, props) => (
   />
 );
 
-export const dataTableCompact = (_, props) => (
-  <DataTableComponent
+export const dataTableWithLoaderCompact = (_, props) => (
+  <DataTableWithLoader
     {...props}
     onSelect={action('onSelect')}
     onHeaderClick={action('onHeaderClick')}
@@ -46,8 +60,8 @@ export const dataTableCompact = (_, props) => (
   />
 );
 
-export const fixedTable = (_, props) => (
-  <DataTableComponent
+export const fixedTableWithLoader = (_, props) => (
+  <DataTableWithLoader
     {...props}
     onSelect={action('onSelect')}
     selectable
@@ -55,4 +69,4 @@ export const fixedTable = (_, props) => (
   />
 );
 
-dataTableCompact.propTypes = DataTableComponent.propTypes;
+dataTableWithLoaderCompact.propTypes = DataTableWithLoader.propTypes;

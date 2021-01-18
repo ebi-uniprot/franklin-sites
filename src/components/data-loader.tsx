@@ -1,5 +1,12 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+  ReactNode,
+  FC,
+} from 'react';
 
 import Button from './button';
 import Loader from './loader';
@@ -8,30 +15,63 @@ import '../styles/components/data-loader.scss';
 
 const ioSupport = 'IntersectionObserver' in window;
 
-const withDataLoader = (BaseComponent) => {
-  const Wrapper = (props) => {
-    const {
-      onLoadMoreItems,
-      hasMoreData,
-      data,
-      loaderComponent,
-      clickToLoad,
-    } = props;
+type WrapperProps = {
+  /**
+   * Callback to request more items if user scrolled to the bottom of the scroll-container or if
+   * the scroll-container isn't scrollable yet because not enough items have been loaded yet. If
+   * not provided this component will simply pass the data prop to the BaseComponent to be rendered
+   * without observing scroll or triggering more data loading.
+   */
+  onLoadMoreItems: () => void;
+  /**
+   * A boolean to indicate that the parent has more items to provide.
+   */
+  hasMoreData: boolean;
+  /**
+   * A custom loader component
+   */
+  // eslint-disable-next-line react/require-default-props
+  loaderComponent?: ReactNode;
+  /**
+   * Data that is being represented in the wrapped component
+   */
+  data: unknown[];
+  /**
+   * Use a button to load more data instead of having infinite scrolling
+   */
+  // eslint-disable-next-line react/require-default-props
+  clickToLoad?: boolean;
+};
+
+const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
+  const Wrapper: FC<WrapperProps> = ({
+    onLoadMoreItems,
+    hasMoreData,
+    loaderComponent = <Loader />,
+    data,
+    clickToLoad = false,
+    ...restProps
+  }: WrapperProps) => {
     // store this prop in a ref to not trigger re-creation of observer if the user
     // of this component forgot to memoize 'onLoadMoreItems' function.
     const onLoadMoreItemsRef = useRef(onLoadMoreItems);
     onLoadMoreItemsRef.current = onLoadMoreItems;
 
     const [loading, setLoading] = useState(false);
-    const sentinelRef = useRef(null);
+    const sentinelRef = useRef<HTMLDivElement>(null);
 
     const handleAskForMoreData = useCallback(() => {
       setLoading(true);
-      onLoadMoreItemsRef.current();
+      if (onLoadMoreItemsRef.current) {
+        onLoadMoreItemsRef.current();
+      }
     }, []);
 
-    const observerCallbackRef = useRef();
-    observerCallbackRef.current = ([{ isIntersecting }]) => {
+    const observerCallbackRef = useRef<
+      (entry: IntersectionObserverEntry) => void
+    >();
+
+    observerCallbackRef.current = ({ isIntersecting }) => {
       if (!isIntersecting || loading || !hasMoreData) {
         // skip if
         // - "Loading..." component not visible;
@@ -47,10 +87,12 @@ const withDataLoader = (BaseComponent) => {
         return;
       }
       // eslint-disable-next-line consistent-return
-      return new window.IntersectionObserver((...entries) =>
+      return new window.IntersectionObserver(([entry]) => {
         // use it inside an other function, otherwise will use the first version
-        observerCallbackRef.current(...entries)
-      );
+        if (observerCallbackRef.current) {
+          observerCallbackRef.current(entry);
+        }
+      });
     }, [clickToLoad]);
 
     // eslint-disable-next-line consistent-return
@@ -83,41 +125,12 @@ const withDataLoader = (BaseComponent) => {
 
     return (
       <>
-        <BaseComponent {...props} />
+        <BaseComponent data={data} {...restProps} />
         <div className="data-loader__loading" ref={sentinelRef}>
           {hasMoreData && sentinelContent}
         </div>
       </>
     );
-  };
-
-  Wrapper.propTypes = {
-    /**
-     * Callback to request more items if user scrolled to the bottom of the scroll-container or if
-     * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
-     */
-    onLoadMoreItems: PropTypes.func.isRequired,
-    /**
-     * A boolean to indicate that the parent has more items to provide.
-     */
-    hasMoreData: PropTypes.bool.isRequired,
-    /**
-     * A custom loader component
-     */
-    loaderComponent: PropTypes.element,
-    /**
-     * Data that is being represented in the wrapped component
-     */
-    data: PropTypes.arrayOf(PropTypes.any).isRequired,
-    /**
-     * Use a button to load more data instead of having infinite scrolling
-     */
-    clickToLoad: PropTypes.bool,
-  };
-
-  Wrapper.defaultProps = {
-    loaderComponent: <Loader />,
-    clickToLoad: false,
   };
 
   return Wrapper;
