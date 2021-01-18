@@ -80,10 +80,8 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
       handleAskForMoreData();
     };
 
-    const { current: ioSupport } = useRef('IntersectionObserver' in window);
-
     const observer = useMemo(() => {
-      if (!ioSupport || clickToLoad) {
+      if (!('IntersectionObserver' in window) || clickToLoad) {
         return;
       }
       // eslint-disable-next-line consistent-return
@@ -93,7 +91,7 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
           observerCallbackRef.current(entry);
         }
       });
-    }, [clickToLoad, ioSupport]);
+    }, [clickToLoad]);
 
     // eslint-disable-next-line consistent-return
     useEffect(() => {
@@ -111,7 +109,7 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
     }, [length]);
 
     let sentinelContent = loaderComponent;
-    if ((!ioSupport || clickToLoad) && !loading) {
+    if ((!('IntersectionObserver' in window) || clickToLoad) && !loading) {
       sentinelContent = (
         <Button
           variant="secondary"
