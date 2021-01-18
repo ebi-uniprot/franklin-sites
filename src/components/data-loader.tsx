@@ -13,8 +13,6 @@ import Loader from './loader';
 
 import '../styles/components/data-loader.scss';
 
-const ioSupport = 'IntersectionObserver' in window;
-
 type WrapperProps = {
   /**
    * Callback to request more items if user scrolled to the bottom of the scroll-container or if
@@ -82,6 +80,8 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
       handleAskForMoreData();
     };
 
+    const { current: ioSupport } = useRef('IntersectionObserver' in window);
+
     const observer = useMemo(() => {
       if (!ioSupport || clickToLoad) {
         return;
@@ -93,7 +93,7 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
           observerCallbackRef.current(entry);
         }
       });
-    }, [clickToLoad]);
+    }, [clickToLoad, ioSupport]);
 
     // eslint-disable-next-line consistent-return
     useEffect(() => {

@@ -295,13 +295,15 @@ exports[`DataTable should render autoload 1`] = `
   <div
     class="data-loader__loading"
   >
-    <button
-      class="button secondary"
-      data-testid="click-to-load-more"
-      type="button"
+    <div
+      class="loader-container"
     >
-      Load more data
-    </button>
+      <test-file-stub
+        classname="loader"
+        height="100"
+        width="100"
+      />
+    </div>
   </div>
 </DocumentFragment>
 `;
