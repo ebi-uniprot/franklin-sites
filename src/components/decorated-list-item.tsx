@@ -1,5 +1,5 @@
-import { FC, ReactNode } from 'react';
-import classNames from 'classnames';
+import { FC } from 'react';
+import cn from 'classnames';
 
 import '../styles/components/decorated-list-item.scss';
 
@@ -8,42 +8,26 @@ type Props = {
    * Title
    */
   title?: string;
-
-  /**
-   * Textual content
-   */
-  content?: string;
-
-  /**
-   * Same as 'content', but can accept HTML elements
-   */
-  children: string | ReactNode;
-
   /**
    * Make this item visually stand-out
    */
   highlight?: boolean;
-
   /**
    * Compact style
    */
   compact?: boolean;
-
   /**
    * Hide the title
    */
   hideTitle?: boolean;
-
   /**
    * Attempts to keep the element horizontally aligned with its siblings
    */
   inline?: boolean;
-
   /**
-   * Extra CSS class names to be passed down from the parnet component
+   * Optional CSS classnames to be passed down from the parent component
    */
   className?: string;
-
   /**
    * Switches to an alternative style for the decorative line
    */
@@ -52,7 +36,6 @@ type Props = {
 
 const DecoratedListItem: FC<Props> = ({
   title,
-  content,
   children,
   highlight,
   compact,
@@ -63,14 +46,12 @@ const DecoratedListItem: FC<Props> = ({
   ...props
 }) => (
   <div
-    className={classNames(
-      className,
-      'decorated-list-item',
-      { 'decorated-list-item--compact': compact },
-      { 'decorated-list-item--no-title': hideTitle },
-      { 'decorated-list-item--inline': inline },
-      { 'decorated-list-item--alt-style': altStyle }
-    )}
+    className={cn(className, 'decorated-list-item', {
+      'decorated-list-item--compact': compact,
+      'decorated-list-item--no-title': hideTitle,
+      'decorated-list-item--inline': inline,
+      'decorated-list-item--alt-style': altStyle,
+    })}
     {...props}
   >
     <div className="decorated-list-item__title">
@@ -78,7 +59,7 @@ const DecoratedListItem: FC<Props> = ({
     </div>
 
     <div className="decorated-list-item__content">
-      {highlight ? <strong>{content || children}</strong> : content || children}
+      {highlight ? <strong>{children}</strong> : children}
     </div>
   </div>
 );

@@ -29,6 +29,7 @@ describe('Publication component', () => {
         journalInfo={journalInfo}
         pubmedId={pubmedId}
         statistics={statistics}
+        linkBuilder={(author) => `/citations/?query=author:"${author}"`}
       />
     );
   });

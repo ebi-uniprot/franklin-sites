@@ -1,4 +1,5 @@
 import { Publication } from '../src/components';
+
 import publicationData from '../src/components/__mocks__/publications';
 
 export default {
@@ -10,6 +11,8 @@ export default {
     },
   },
 };
+
+const linkBuilder = (author) => `/citations/?query=author:"${author}"`;
 
 export const publication = () => {
   const {
@@ -30,6 +33,56 @@ export const publication = () => {
       journalInfo={journalInfo}
       pubmedId={pubmedId}
       statistics={statistics}
+      linkBuilder={linkBuilder}
+    />
+  );
+};
+
+export const publicationWithoutManyAuthors = () => {
+  const {
+    title,
+    authors,
+    abstract,
+    infoData,
+    journalInfo,
+    pubmedId,
+    statistics,
+  } = publicationData;
+  return (
+    <Publication
+      title={title}
+      authors={authors.slice(0, 2)}
+      abstract={abstract}
+      infoData={infoData}
+      journalInfo={journalInfo}
+      pubmedId={pubmedId}
+      statistics={statistics}
+      linkBuilder={linkBuilder}
+    />
+  );
+};
+
+export const publicationFull = () => {
+  const {
+    title,
+    authors,
+    abstract,
+    infoData,
+    journalInfo,
+    pubmedId,
+    statistics,
+  } = publicationData;
+  return (
+    <Publication
+      title={title}
+      authors={authors}
+      abstract={abstract}
+      infoData={infoData}
+      journalInfo={journalInfo}
+      pubmedId={pubmedId}
+      statistics={statistics}
+      linkBuilder={linkBuilder}
+      displayAll
     />
   );
 };
