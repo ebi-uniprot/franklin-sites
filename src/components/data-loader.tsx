@@ -21,10 +21,12 @@ type WrapperProps = {
    * not provided this component will simply pass the data prop to the BaseComponent to be rendered
    * without observing scroll or triggering more data loading.
    */
+  // eslint-disable-next-line react/require-default-props
   onLoadMoreItems?: () => void;
   /**
    * A boolean to indicate that the parent has more items to provide.
    */
+  // eslint-disable-next-line react/require-default-props
   hasMoreData?: boolean;
   /**
    * A custom loader component
