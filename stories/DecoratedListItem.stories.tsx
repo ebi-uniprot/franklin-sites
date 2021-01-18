@@ -32,7 +32,7 @@ const data = [
 export const decoratedListItem = () => (
   <div className="uniprot-grid">
     {data.map((i) => (
-      <div className="uniprot-grid-cell--span-3">
+      <div key={i.title} className="uniprot-grid-cell--span-3">
         <DecoratedListItem compact altStyle>
           <h3>{i.title}</h3>
         </DecoratedListItem>
