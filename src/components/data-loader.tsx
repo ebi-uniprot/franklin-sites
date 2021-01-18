@@ -5,6 +5,7 @@ import {
   useMemo,
   useCallback,
   ReactNode,
+  FC,
 } from 'react';
 
 import Button from './button';
@@ -42,9 +43,7 @@ type WrapperProps = {
   clickToLoad?: boolean;
 };
 
-const withDataLoader = (
-  BaseComponent: FC<{ data: unknown[] }>
-) => {
+const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
   const Wrapper: FC<WrapperProps> = ({
     onLoadMoreItems,
     hasMoreData,
