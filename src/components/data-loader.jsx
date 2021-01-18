@@ -43,7 +43,7 @@ const withDataLoader = (BaseComponent) => {
     };
 
     const observer = useMemo(() => {
-      if (!ioSupport || clickToLoad) {
+      if (!ioSupport || clickToLoad || typeof onLoadMoreItems !== 'function') {
         return;
       }
       // eslint-disable-next-line consistent-return
@@ -51,7 +51,7 @@ const withDataLoader = (BaseComponent) => {
         // use it inside an other function, otherwise will use the first version
         observerCallbackRef.current(...entries)
       );
-    }, [clickToLoad]);
+    }, [clickToLoad, onLoadMoreItems]);
 
     // eslint-disable-next-line consistent-return
     useEffect(() => {
@@ -81,26 +81,30 @@ const withDataLoader = (BaseComponent) => {
       );
     }
 
-    return (
+    return typeof onLoadMoreItems === 'function' ? (
       <>
         <BaseComponent {...props} />
         <div className="data-loader__loading" ref={sentinelRef}>
           {hasMoreData && sentinelContent}
         </div>
       </>
+    ) : (
+      <BaseComponent {...props} />
     );
   };
 
   Wrapper.propTypes = {
     /**
      * Callback to request more items if user scrolled to the bottom of the scroll-container or if
-     * the scroll-container isn't scrollable yet because not enough items have been loaded yet.
+     * the scroll-container isn't scrollable yet because not enough items have been loaded yet. If
+     * not provided this component will simply pass the data prop to the BaseComponent to be rendered
+     * without observing scroll or triggering more data loading.
      */
-    onLoadMoreItems: PropTypes.func.isRequired,
+    onLoadMoreItems: PropTypes.func,
     /**
      * A boolean to indicate that the parent has more items to provide.
      */
-    hasMoreData: PropTypes.bool.isRequired,
+    hasMoreData: PropTypes.bool,
     /**
      * A custom loader component
      */
@@ -116,6 +120,8 @@ const withDataLoader = (BaseComponent) => {
   };
 
   Wrapper.defaultProps = {
+    onLoadMoreItems: null,
+    hasMoreData: false,
     loaderComponent: <Loader />,
     clickToLoad: false,
   };
