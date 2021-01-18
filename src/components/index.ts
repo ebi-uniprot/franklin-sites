@@ -8,9 +8,10 @@ export { default as ButtonModal } from './button-modal';
 export { default as Card } from './card';
 export { default as Chip } from './chip';
 export { default as CodeBlock } from './code-block';
-export { default as DataList } from './data-list';
+export { DataList, DataListWithLoader } from './data-list';
 export {
-  default as DataTable,
+  DataTable,
+  DataTableWithLoader,
   DENSITY_COMPACT,
   DENSITY_NORMAL,
 } from './data-table';

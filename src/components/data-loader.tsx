@@ -21,17 +21,16 @@ type WrapperProps = {
    * not provided this component will simply pass the data prop to the BaseComponent to be rendered
    * without observing scroll or triggering more data loading.
    */
-  // eslint-disable-next-line react/require-default-props
-  onLoadMoreItems?: () => void;
+  onLoadMoreItems: () => void;
   /**
    * A boolean to indicate that the parent has more items to provide.
    */
-  // eslint-disable-next-line react/require-default-props
-  hasMoreData?: boolean;
+  hasMoreData: boolean;
   /**
    * A custom loader component
    */
-  loaderComponent: ReactNode;
+  // eslint-disable-next-line react/require-default-props
+  loaderComponent?: ReactNode;
   /**
    * Data that is being represented in the wrapped component
    */
@@ -39,20 +38,21 @@ type WrapperProps = {
   /**
    * Use a button to load more data instead of having infinite scrolling
    */
-  clickToLoad: boolean;
+  // eslint-disable-next-line react/require-default-props
+  clickToLoad?: boolean;
 };
 
 const withDataLoader = (
-  BaseComponent: (props: WrapperProps) => JSX.Element
+  BaseComponent: (props: { data: unknown[] }) => JSX.Element
 ) => {
-  const Wrapper = (props: WrapperProps) => {
-    const {
-      onLoadMoreItems,
-      hasMoreData = false,
-      loaderComponent = <Loader />,
-      data,
-      clickToLoad = false,
-    } = props;
+  const Wrapper = ({
+    onLoadMoreItems,
+    hasMoreData,
+    loaderComponent = <Loader />,
+    data,
+    clickToLoad = false,
+    ...restProps
+  }: WrapperProps) => {
     // store this prop in a ref to not trigger re-creation of observer if the user
     // of this component forgot to memoize 'onLoadMoreItems' function.
     const onLoadMoreItemsRef = useRef(onLoadMoreItems);
@@ -84,7 +84,7 @@ const withDataLoader = (
     };
 
     const observer = useMemo(() => {
-      if (!ioSupport || clickToLoad || typeof onLoadMoreItems !== 'function') {
+      if (!ioSupport || clickToLoad) {
         return;
       }
       // eslint-disable-next-line consistent-return
@@ -94,7 +94,7 @@ const withDataLoader = (
           observerCallbackRef.current(entry);
         }
       });
-    }, [clickToLoad, onLoadMoreItems]);
+    }, [clickToLoad]);
 
     // eslint-disable-next-line consistent-return
     useEffect(() => {
@@ -124,15 +124,13 @@ const withDataLoader = (
       );
     }
 
-    return typeof onLoadMoreItems === 'function' ? (
+    return (
       <>
-        <BaseComponent {...props} />
+        <BaseComponent data={data} {...restProps} />
         <div className="data-loader__loading" ref={sentinelRef}>
           {hasMoreData && sentinelContent}
         </div>
       </>
-    ) : (
-      <BaseComponent {...props} />
     );
   };
 

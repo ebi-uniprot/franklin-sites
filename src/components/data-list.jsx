@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import withDataLoader from './data-loader';
 
-const DataList = ({ data, getIdKey, dataRenderer }) => (
+export const DataList = ({ data, getIdKey, dataRenderer }) => (
   <>
     {data.map((content) => (
       <section key={getIdKey(content)}>{dataRenderer(content)}</section>
@@ -29,4 +29,4 @@ DataList.defaultProps = {
   getIdKey: ({ id }) => id,
 };
 
-export default withDataLoader(DataList);
+export const DataListWithLoader = withDataLoader(DataList);

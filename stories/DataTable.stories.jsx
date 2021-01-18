@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 import {
-  DataTable as DataTableComponent,
+  DataTableWithLoader as DataTableComponent,
   DENSITY_COMPACT,
 } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';

@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 
-import { DataList, Card } from '../src/components';
+import { DataListWithLoader, Card } from '../src/components';
 import DataDecorator from '../src/decorators/DataDecorator';
 
 export default {
@@ -14,20 +14,18 @@ export default {
   decorators: [(story) => <DataDecorator>{story}</DataDecorator>],
 };
 
-export const dataList = (_, props) => {
-  return (
-    <DataList
-      {...props}
-      onSelect={action('onSelect')}
-      onHeaderClick={action('onHeaderClick')}
-      dataRenderer={(content) => <>{Object.values(content)}</>}
-      selectable
-    />
-  );
-};
+export const dataList = (_, props) => (
+  <DataListWithLoader
+    {...props}
+    onSelect={action('onSelect')}
+    onHeaderClick={action('onHeaderClick')}
+    dataRenderer={(content) => <>{Object.values(content)}</>}
+    selectable
+  />
+);
 
 export const dataListWithCards = (_, props) => (
-  <DataList
+  <DataListWithLoader
     {...props}
     onHeaderClick={action('onHeaderClick')}
     dataRenderer={(content) => (
@@ -37,5 +35,5 @@ export const dataListWithCards = (_, props) => (
   />
 );
 
-dataList.propTypes = DataList.propTypes;
-dataListWithCards.propTypes = DataList.propTypes;
+dataList.propTypes = DataListWithLoader.propTypes;
+dataListWithCards.propTypes = DataListWithLoader.propTypes;

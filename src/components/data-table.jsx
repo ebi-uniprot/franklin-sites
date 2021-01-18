@@ -167,7 +167,7 @@ DataTableBody.defaultProps = {
   getIdKey: ({ id }) => id,
 };
 
-const DataTable = ({
+export const DataTable = ({
   data,
   columns,
   onSelect,
@@ -226,4 +226,4 @@ DataTable.defaultProps = {
   propsForTable: null,
 };
 
-export default withDataLoader(DataTable);
+export const DataTableWithLoader = withDataLoader(DataTable);
