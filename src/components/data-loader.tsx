@@ -13,8 +13,6 @@ import Loader from './loader';
 
 import '../styles/components/data-loader.scss';
 
-const ioSupport = 'IntersectionObserver' in window;
-
 type WrapperProps = {
   /**
    * Callback to request more items if user scrolled to the bottom of the scroll-container or if
@@ -83,7 +81,7 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
     };
 
     const observer = useMemo(() => {
-      if (!ioSupport || clickToLoad) {
+      if (!('IntersectionObserver' in window) || clickToLoad) {
         return;
       }
       // eslint-disable-next-line consistent-return
@@ -111,7 +109,7 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
     }, [length]);
 
     let sentinelContent = loaderComponent;
-    if ((!ioSupport || clickToLoad) && !loading) {
+    if ((!('IntersectionObserver' in window) || clickToLoad) && !loading) {
       sentinelContent = (
         <Button
           variant="secondary"

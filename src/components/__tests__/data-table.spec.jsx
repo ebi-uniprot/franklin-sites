@@ -53,6 +53,14 @@ describe('DataTable', () => {
 
   beforeEach(() => {
     onLoadMoreItems = jest.fn();
+    window.IntersectionObserver = jest.fn(() => ({
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+    }));
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
   });
 
   test('should render autoload', () => {
@@ -93,5 +101,11 @@ describe('DataTable', () => {
     const header = screen.getByText(/Column 1/);
     fireEvent.click(header);
     expect(onHeaderClick).toHaveBeenCalled();
+  });
+
+  test('should show click-to-load if no IntersectionObserver support', () => {
+    delete window.IntersectionObserver;
+    renderTable({ clickToLoad: false });
+    expect(screen.getByTestId('click-to-load-more')).toBeTruthy();
   });
 });
