@@ -188,7 +188,7 @@ type PublicationProps = {
   /**
    * The content of an Info List component.
    */
-  infoData: Array<{ title: string; content: ReactNode }>;
+  infoData?: Array<{ title: string; content: ReactNode }>;
   /**
    * Information about the journal in which this was published.
    */
