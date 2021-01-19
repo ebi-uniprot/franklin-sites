@@ -175,8 +175,16 @@ exports[`Publication component should render 1`] = `
               <small>
                 <a
                   href="//dx.doi.org/10.1038/331525a0"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  Nature 331:525-527(1988)
+                  Nature 331:525-527(
+                  <time
+                    datetime="1988-01-01T00:00:00.000Z"
+                  >
+                    1988
+                  </time>
+                  )
                 </a>
               </small>
             </li>

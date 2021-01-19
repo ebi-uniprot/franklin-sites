@@ -68,23 +68,50 @@ const Abstract: FC<AbstractProps> = ({ abstract, open = false }) => {
 
 type JournalInfoProps = {
   journalInfo: {
-    publicationDate: string;
-    journal: string;
-    firstPage: string;
-    lastPage: string;
-    volume: string;
+    publicationDate?: string;
+    journal?: string;
+    firstPage?: string;
+    lastPage?: string;
+    volume?: string;
     doiId?: string;
   };
 };
 
-const JournalInfo: FC<JournalInfoProps> = ({ journalInfo }) => {
-  if (!journalInfo.doiId) {
+const JournalInfo: FC<JournalInfoProps> = ({
+  journalInfo: { publicationDate, journal, firstPage, lastPage, volume, doiId },
+}) => {
+  if (!doiId) {
     return null;
   }
 
+  const name = journal || doiId;
+  let page = null;
+  if (firstPage) {
+    page = firstPage;
+    if (lastPage) {
+      page += `-${lastPage}`;
+    }
+  }
+
+  let date;
+  if (publicationDate) {
+    date = (
+      <>
+        (
+        <time dateTime={new Date(publicationDate).toISOString()}>
+          {publicationDate}
+        </time>
+        )
+      </>
+    );
+  }
+
   return (
-    <a href={`//dx.doi.org/${journalInfo.doiId}`}>
-      {`${journalInfo.journal} ${journalInfo.volume}:${journalInfo.firstPage}-${journalInfo.lastPage}(${journalInfo.publicationDate})`}
+    <a href={`//dx.doi.org/${doiId}`} target="_blank" rel="noopener noreferrer">
+      {name} {volume}
+      {volume && page && ':'}
+      {page}
+      {date}
     </a>
   );
 };
