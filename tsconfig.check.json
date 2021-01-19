@@ -4,5 +4,5 @@
     // Don't emit; allow Babel to transform files.
     "noEmit": true
   },
-  "include": ["src/**/*", "./jest-setup.ts"]
+  "include": ["src/**/*", "stories/**/*", "./jest-setup.ts"]
 }
