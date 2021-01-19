@@ -149,7 +149,7 @@ type PublicationProps = {
   /**
    * The publication title.
    */
-  title: string;
+  title?: string;
   /**
    * The lise of authors. Will be cut off and can be expanded.
    */
@@ -165,15 +165,15 @@ type PublicationProps = {
   /**
    * Information about the journal in which this was published.
    */
-  journalInfo: JournalInfoProps['journalInfo'];
+  journalInfo?: JournalInfoProps['journalInfo'];
   /**
    * The PubMed identifier
    */
-  pubmedId: number | string;
+  pubmedId?: number | string;
   /**
    * Number of other entries this publication is cited in
    */
-  statistics: StatisticsProps['statistics'];
+  statistics?: StatisticsProps['statistics'];
   /**
    * Display all authors and abstract by default (useful for publication entry)
    */
