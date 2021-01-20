@@ -1,4 +1,4 @@
-import { FacetObject } from '../../components/facets';
+import { FacetObject } from '../facets';
 
 export const statusFacet: FacetObject = {
   label: 'Status',
@@ -109,7 +109,7 @@ export const proteinsWithFacet: FacetObject = {
   ],
 };
 
-export const facets: FacetObject[] = [
+const facets: FacetObject[] = [
   statusFacet,
   {
     label: 'Model organisms',
