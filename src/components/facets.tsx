@@ -15,7 +15,7 @@ import '../styles/components/facets.scss';
 
 type FacetValue = { label?: string; value: string; count: number };
 
-export type Facet = {
+export type FacetObject = {
   label: string;
   name: string;
   allowMultipleSelection?: boolean;
@@ -85,7 +85,7 @@ type FacetProps = {
   /**
    * The facet data to be displayed
    */
-  data: Facet;
+  data: FacetObject;
   /**
    * Extra components to be added in the "action" area
    */
@@ -159,7 +159,7 @@ type FacetsProps = {
   /**
    * The facet data to be displayed
    */
-  data?: Facet[];
+  data?: FacetObject[];
   /**
    * Extra components to be added in the "action" area, map of <facet name, component>
    */
