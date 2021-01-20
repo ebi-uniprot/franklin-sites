@@ -1,6 +1,6 @@
 import { MemoryRouter, useLocation } from 'react-router-dom';
 
-import { Facets } from '../src/components';
+import { Facets, Facet } from '../src/components';
 
 import facetData from '../src/mock-data/facetData';
 
@@ -35,7 +35,12 @@ const Demo = () => {
         pathname: {location.pathname + location.search}
       </code>
       <div style={{ border: '1px solid black', padding: '1ch' }}>
-        <Facets data={facetData} extraActionsFor={extraActionsFor} />
+        <Facets data={facetData} extraActionsFor={extraActionsFor}>
+          injected content
+          {facetData.map((facet) => (
+            <Facet data={facet} key={facet.name} />
+          ))}
+        </Facets>
       </div>
     </>
   );
