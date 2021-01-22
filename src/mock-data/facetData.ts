@@ -1,6 +1,6 @@
-import { Facet } from '../components/facets';
+import { FacetObject } from '../components/facets';
 
-const facetData: Facet[] = [
+const facetData: FacetObject[] = [
   {
     label: 'Facet 1',
     name: 'facet_1',

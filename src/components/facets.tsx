@@ -1,4 +1,4 @@
-import { FC, ReactNode, HTMLAttributes } from 'react';
+import { FC, ReactNode, HTMLAttributes, Children } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import {
@@ -15,7 +15,7 @@ import '../styles/components/facets.scss';
 
 type FacetValue = { label?: string; value: string; count: number };
 
-export type Facet = {
+export type FacetObject = {
   label: string;
   name: string;
   allowMultipleSelection?: boolean;
@@ -81,11 +81,85 @@ export const stringify = (
   return qsStringify({ ...rest, [queryStringKey]: facetString });
 };
 
-type Props = {
+type FacetProps = {
   /**
    * The facet data to be displayed
    */
-  data: Facet[];
+  data: FacetObject;
+  /**
+   * Extra components to be added in the "action" area
+   */
+  extraActions?: ReactNode;
+  /**
+   * Key with which to add the facets in the querystring (defaults to "facets")
+   */
+  queryStringKey?: string;
+};
+
+export const Facet: FC<FacetProps & HTMLAttributes<HTMLDivElement>> = ({
+  data,
+  extraActions,
+  queryStringKey = 'facets',
+  ...props
+}) => {
+  const location = useLocation();
+  const search = parse(location.search, queryStringKey);
+
+  if (!data.values?.length) {
+    return null;
+  }
+  return (
+    <div {...props}>
+      <div className="facet-name">{data.label || data.name}</div>
+      <ExpandableList extraActions={extraActions}>
+        {data.values.map(({ value, label, count }) => {
+          const queryField = search[queryStringKey] as
+            | CustomQueryValue
+            | undefined;
+          const isActive = queryField?.[data.name]?.has(value);
+
+          const facetSet = new Set(
+            data.allowMultipleSelection && queryField
+              ? queryField[data.name]
+              : null
+          );
+          facetSet[isActive ? 'delete' : 'add'](value);
+
+          const to = {
+            ...location,
+            search: stringify(
+              {
+                ...search,
+                [queryStringKey]: {
+                  ...queryField,
+                  [data.name]: facetSet,
+                },
+              },
+              queryStringKey
+            ),
+          };
+
+          return (
+            <Link
+              key={`${data.name}_${value}`}
+              to={to}
+              className={isActive ? 'facet-active' : undefined}
+              replace
+            >
+              {`${label || value} (${formatLargeNumber(count)})`}
+            </Link>
+          );
+        })}
+      </ExpandableList>
+    </div>
+  );
+};
+
+type FacetsProps = {
+  /**
+   * The facet data to be displayed
+   */
+  data?: FacetObject[];
   /**
    * Extra components to be added in the "action" area, map of <facet name, component>
    */
@@ -96,75 +170,42 @@ type Props = {
   queryStringKey?: string;
 };
 
-const Facets: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
+export const Facets: FC<FacetsProps & HTMLAttributes<HTMLDivElement>> = ({
   data,
   extraActionsFor,
   queryStringKey = 'facets',
+  children,
   className,
   ...props
 }) => {
-  const location = useLocation();
-
-  if (!(data && data.length)) {
+  if (!(data?.length || Children.count(children))) {
     return null;
   }
-
-  const facetsToShow = data.filter(
-    (facet) => facet.values && facet.values.length
-  );
-
-  const search = parse(location.search, queryStringKey);
 
   return (
     <div className={cn(className, 'facets')} {...props}>
       <ul className="no-bullet">
-        {facetsToShow.map((facet) => {
-          if (!facet.values) {
+        {data?.map((facet) => (
+          <li key={facet.name}>
+            <Facet
+              data={facet}
+              extraActions={extraActionsFor?.get(facet.name)}
+              queryStringKey={queryStringKey}
+            />
+          </li>
+        ))}
+        {Children.map(children, (child, index) => {
+          if (!child) {
             return null;
           }
           return (
-            <li key={facet.name}>
-              <div className="facet-name">{facet.label || facet.name}</div>
-              <ExpandableList extraActions={extraActionsFor?.get(facet.name)}>
-                {facet.values.map(({ value, label, count }) => {
-                  const queryField = search[queryStringKey] as
-                    | CustomQueryValue
-                    | undefined;
-                  const isActive = queryField?.[facet.name]?.has(value);
-
-                  const facetSet = new Set(
-                    facet.allowMultipleSelection && queryField
-                      ? queryField[facet.name]
-                      : null
-                  );
-                  facetSet[isActive ? 'delete' : 'add'](value);
-
-                  const to = {
-                    ...location,
-                    search: stringify(
-                      {
-                        ...search,
-                        [queryStringKey]: {
-                          ...queryField,
-                          [facet.name]: facetSet,
-                        },
-                      },
-                      queryStringKey
-                    ),
-                  };
-
-                  return (
-                    <Link
-                      key={`${facet.name}_${value}`}
-                      to={to}
-                      className={isActive ? 'facet-active' : undefined}
-                      replace
-                    >
-                      {`${label || value} (${formatLargeNumber(count)})`}
-                    </Link>
-                  );
-                })}
-              </ExpandableList>
+            <li
+              key={
+                (typeof child === 'object' && 'key' in child && child.key) ||
+                index
+              }
+            >
+              {child}
             </li>
           );
         })}
@@ -172,5 +213,3 @@ const Facets: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
     </div>
   );
 };
-
-export default Facets;
