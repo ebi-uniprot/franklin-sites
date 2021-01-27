@@ -29,38 +29,52 @@
     top: 0;
     z-index: $z-index-low;
     position: sticky;
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
+
+    &--ascend,
+    &--descend {
+      &::after {
+        content: '▲';
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.6em;
+        margin: 0 0.8em;
+        transition: transform ease-out 0.5s;
+        transform: rotateX(0);
+
+        @media (prefers-reduced-motion: reduce) {
+          transition-duration: 0s;
+        }
+      }
+    }
 
     &--ascend {
-      cursor: pointer;
-      &::after {
-        @include chevron(up, $colour-sky-white);
+      &:hover::after {
+        transform: rotateX(0.5turn);
       }
     }
 
     &--descend {
-      cursor: pointer;
       &::after {
-        @include chevron(down, $colour-sky-white);
+        transform: rotateX(0.5turn);
       }
-    }
-
-    &--sortable {
-      cursor: pointer;
-      &::after {
-        @include chevron(down, $colour-platinum);
-      }
-      &:hover:after {
-        @include chevron(down, $colour-sky-white);
+      &:hover::after {
+        transform: rotateX(0);
       }
     }
 
     &--checkbox {
       // This doesn't have an effect unless `table-layout: fixed`
       width: 1.5rem;
+    }
+  }
+
+  &__row {
+    &:nth-of-type(2n) {
+      background-color: $colour-platinum;
+    }
+
+    &--selected {
+      background-color: $colour-selected;
     }
   }
 
@@ -74,22 +88,6 @@
       background-color: map-get($foundation-palette, warning);
     }
 
-    &--odd {
-      background-color: $colour-platinum;
-    }
-
-    &--selected {
-      background-color: $colour-selected;
-    }
-
-    &--checkbox {
-      // Is this still used?
-      box-sizing: border-box;
-      width: 0;
-      padding: 0.8em 1.2em;
-      overflow: hidden;
-    }
-
     &--loading {
       text-align: center;
     }
@@ -99,9 +97,13 @@
     }
   }
 
+  &__header-cell {
+    width: auto;
+  }
+
   &--compact {
     font-size: $font-size-medium;
-    #{ $self }_header-cell,
+    #{ $self }__header-cell,
     #{ $self }__cell {
       padding: 0.25;
     }

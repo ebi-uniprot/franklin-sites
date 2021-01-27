@@ -1,10 +1,6 @@
 import { action } from '@storybook/addon-actions';
 
-import {
-  DataTable,
-  DataTableWithLoader,
-  DENSITY_COMPACT,
-} from '../src/components';
+import { DataTable, DataTableWithLoader } from '../src/components';
 import {
   DataDecorator,
   DataLoaderDecorator,
@@ -56,7 +52,7 @@ export const dataTableWithLoaderCompact = (_, props) => (
     onSelect={action('onSelect')}
     onHeaderClick={action('onHeaderClick')}
     selectable
-    density={DENSITY_COMPACT}
+    density="compact"
   />
 );
 

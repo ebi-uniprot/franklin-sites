@@ -11,7 +11,7 @@ const columns = [
     name: 'content1',
     render: (row) => row.content1,
     sortable: true,
-    sorted: 'ascend',
+    sorted: 'descend',
   },
   {
     label: 'Column 2',
