@@ -6,7 +6,7 @@ import Button from './button';
 import '../styles/components/expandable-list.scss';
 
 type ExpandableMessageProps = {
-  expanded: boolean;
+  expanded?: boolean;
   setExpanded: (expanded: boolean) => unknown;
   descriptionString?: string;
   nHiddenItems?: number;

@@ -19,7 +19,9 @@
     table-layout: fixed;
   }
 
-  &__header-cell {
+  // table header cell, without any specific modifier applied
+  & th {
+    width: auto;
     border: 0;
     padding: 0.25rem 0.5rem;
     font-weight: bold;
@@ -29,7 +31,9 @@
     top: 0;
     z-index: $z-index-low;
     position: sticky;
+  }
 
+  &__header-cell {
     &--ascend,
     &--descend {
       &::after {
@@ -68,22 +72,37 @@
     }
   }
 
-  &__row {
+  // table row, without any specific modifier applied
+  & tr {
     &:nth-of-type(2n) {
       background-color: $colour-platinum;
     }
+  }
 
+  &__row {
     &--selected {
       background-color: $colour-selected;
     }
   }
 
-  &__cell {
+  // table body cell, without any specific modifier applied
+  & td {
     padding: 0.5rem;
     vertical-align: top;
     border: 0;
     border-bottom: 1px solid $colour-sky-white;
+  }
 
+  &--optimised-rendering td {
+    /** notes: do not use if:
+      *  - height of row is really tall or variable (scroll bar will jump)
+      *  - column width changes (should be fine with "fixedLayout")
+      */
+    content-visibility: auto; // avoid rendering rows that are out of view
+    contain-intrinsic-size: 1px 2em; // assume minimum size of one line + margin
+  }
+
+  &__cell {
     &--warning {
       background-color: map-get($foundation-palette, warning);
     }
@@ -95,10 +114,6 @@
     &--ellipsis {
       @include ellipsis();
     }
-  }
-
-  &__header-cell {
-    width: auto;
   }
 
   &--compact {

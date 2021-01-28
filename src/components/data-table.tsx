@@ -1,32 +1,32 @@
-import { PropsWithChildren, ReactNode } from 'react';
+/* eslint-disable react/require-default-props */
+import { ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
-import withDataLoader from './data-loader';
+import withDataLoader, { WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
 
-interface CommonColumn<T> {
+type RowID = string | number;
+
+type CommonColumn<T> = {
   label: ReactNode;
   name: string;
+  // same function signature as a map function
   render: (datum: T, index: number, data: T[]) => ReactNode;
   width?: string;
-}
+};
 
-interface SortableColumn<T> extends CommonColumn<T> {
+export interface SortableColumn<T> extends CommonColumn<T> {
   sortable: true;
   sorted?: 'ascend' | 'descend';
 }
 
-interface NonSortableColumn<T> extends CommonColumn<T> {
-  sortable: false | undefined;
-  sorted: never;
+export interface NonSortableColumn<T> extends CommonColumn<T> {
+  sortable?: false | undefined;
+  sorted?: never;
 }
 
-interface SharedProps<T> {
-  /**
-   * Flag which indicates rows should be selectable with an input box.
-   */
-  selectable?: boolean;
+type SharedProps<T> = {
   /**
    * An array of objects which specifies attributes about each column of your data. Each object has
    *  label, name and render attributes.
@@ -35,25 +35,30 @@ interface SharedProps<T> {
   /**
    * Table fixed layout
    */
+  // Note sure why it doesn't detect it as used...
+  // eslint-disable-next-line react/no-unused-prop-types
   fixedLayout?: boolean;
-}
+};
 
-interface HeadProps<T> extends SharedProps<T> {
+const BLOCK = 'data-table';
+
+type HeadProps<T> = {
+  selectable?: boolean;
   onHeaderClick?: (columnName: CommonColumn<T>['name']) => void;
-}
+};
 
 function DataTableHead<T>({
   selectable,
   columns,
   onHeaderClick,
-}: PropsWithChildren<HeadProps<T>>) {
+}: HeadProps<T> & SharedProps<T>) {
   return (
-    <thead className="data-table__header">
-      <tr className="data-table__row">
+    <thead>
+      <tr>
         {selectable && (
           <th
             key="selectable-column"
-            className="data-table__header-cell data-table__header-cell--checkbox"
+            className={`${BLOCK}__header-cell--checkbox`}
           >
             {' '}
           </th>
@@ -61,10 +66,11 @@ function DataTableHead<T>({
         {columns.map(({ sorted, name, label, sortable, width }) => (
           <th
             key={name}
-            className={cn('data-table__header-cell', {
-              [`data-table__header-cell--${sorted || 'ascend'}`]:
-                sorted || sortable,
-            })}
+            className={
+              sorted || sortable
+                ? `${BLOCK}__header-cell--${sorted || 'ascend'}`
+                : undefined
+            }
             onClick={sortable ? () => onHeaderClick?.(name) : undefined}
             style={width ? { width } : undefined}
           >
@@ -76,9 +82,7 @@ function DataTableHead<T>({
   );
 }
 
-type ID = string | number;
-
-interface BodyProps<T> extends SharedProps<T> {
+type BodyProps<T> = {
   /**
    * The data to be displayed
    */
@@ -86,45 +90,42 @@ interface BodyProps<T> extends SharedProps<T> {
   /**
    * A function that returns a unique ID for each of the data objects.
    * Defaults to return the "id" field.
+   * Same function signature as a map function.
    */
-  getIdKey?: (datum: T) => ID;
+  getIdKey?: (datum: T, index: number, data: T[]) => RowID;
   /**
    * A callback function that is called whenever a user selects a row.
    */
-  onSelect?: (id: ID, datum: T, index: number, data: T[]) => void;
+  onSelectRow?: (id: RowID, datum: T, index: number, data: T[]) => void;
   /**
    * An object which indicates which rows have been selected by the user.
    */
-  selected?: Array<ID>;
-}
+  selected?: RowID[];
+};
 
 function DataTableBody<T extends Record<string, unknown>>({
   data,
   columns,
-  onSelect,
-  selected = [],
+  onSelectRow,
+  selected,
   getIdKey,
-  selectable,
   fixedLayout,
-}: PropsWithChildren<BodyProps<T>>) {
+}: BodyProps<T> & SharedProps<T>) {
   return (
     <tbody>
-      {data.map((datum, index, data) => {
-        const id = getIdKey?.(datum) || (datum.id as ID);
-        const isSelected = selected.includes(id);
-        const className = 'data-table__cell';
+      {data.map((datum, index) => {
+        const id = getIdKey?.(datum, index, data) || (datum.id as RowID);
+        const isSelected = selected?.includes(id);
         return (
           <tr
             key={id}
-            className={cn('data-table__row', {
-              'data-table__row--selected': isSelected,
-            })}
+            className={isSelected ? `${BLOCK}__row--selected` : undefined}
           >
-            {selectable && (
-              <td key={`${id}-select-column`} className={className}>
+            {selected && (
+              <td key={`${id}-select-column`}>
                 <input
                   type="checkbox"
-                  onChange={() => onSelect?.(id, datum, index, data)}
+                  onChange={() => onSelectRow?.(id, datum, index, data)}
                   aria-label={`${id}`}
                   checked={isSelected}
                 />
@@ -133,9 +134,7 @@ function DataTableBody<T extends Record<string, unknown>>({
             {columns.map((column) => (
               <td
                 key={`${id}-${column.name}`}
-                className={cn(className, {
-                  'data-table__cell--ellipsis': fixedLayout,
-                })}
+                className={fixedLayout ? `${BLOCK}__cell--ellipsis` : undefined}
               >
                 {column.render(datum, index, data)}
               </td>
@@ -147,53 +146,65 @@ function DataTableBody<T extends Record<string, unknown>>({
   );
 }
 
-interface TableProps<T> extends HeadProps<T>, BodyProps<T> {
+type TableProps = {
   /**
    * Display density of the table (default is 'normal')
    */
   density?: 'normal' | 'compact';
   /**
-   * Optional props
+   * Choose to activate optimised rendering (default: false). Do not use if
+   *  - height of row is really tall or variable (scroll bar will jump)
+   *  - column width changes (should be fine with "fixedLayout")
    */
-}
+  optimisedRendering?: boolean;
+};
+
+export interface Props<T>
+  extends TableProps,
+    BodyProps<T>,
+    // Omit because 'selectable' is not passed from the top, it is deduced later
+    Omit<HeadProps<T>, 'selectable'>,
+    SharedProps<T> {}
 
 export function DataTable<T extends Record<string, unknown>>({
   data,
   columns,
-  onSelect,
+  onSelectRow,
   selected,
   getIdKey,
-  selectable,
   onHeaderClick,
   density = 'normal',
   fixedLayout,
+  optimisedRendering,
   className,
   ...props
-}: PropsWithChildren<TableProps<T>>) {
+}: Props<T> & HTMLAttributes<HTMLTableElement>): JSX.Element {
   return (
     <table
-      className={cn(className, 'data-table', {
-        'data-table--compact': density === 'compact',
-        'data-table--fixed': fixedLayout,
+      className={cn(className, BLOCK, {
+        [`${BLOCK}--compact`]: density === 'compact',
+        [`${BLOCK}--fixed`]: fixedLayout,
+        [`${BLOCK}--optimised-rendering`]: optimisedRendering,
       })}
       {...props}
     >
-      <DataTableHead
-        selectable={selectable}
+      <DataTableHead<T>
+        selectable={Boolean(selected)}
         columns={columns}
         onHeaderClick={onHeaderClick}
       />
-      <DataTableBody
+      <DataTableBody<T>
         data={data}
         columns={columns}
-        onSelect={onSelect}
+        onSelectRow={onSelectRow}
         selected={selected}
         getIdKey={getIdKey}
-        selectable={selectable}
         fixedLayout={fixedLayout}
       />
     </table>
   );
 }
 
-export const DataTableWithLoader = withDataLoader(DataTable);
+export const DataTableWithLoader = <T extends Record<string, unknown>>(
+  props: WrapperProps<T> & Props<T> & HTMLAttributes<HTMLTableElement>
+) => withDataLoader<T, typeof props>(DataTable)(props);

@@ -8,7 +8,7 @@ describe('DataList', () => {
     content: index,
   }));
 
-  let onLoadMoreItems;
+  let onLoadMoreItems: () => void;
 
   const renderList = ({ hasMoreData = true, clickToLoad = true } = {}) =>
     render(
@@ -18,7 +18,6 @@ describe('DataList', () => {
         data={data}
         clickToLoad={clickToLoad}
         dataRenderer={(item) => <p>{item.content}</p>}
-        onCardClick={null}
       />
     );
 

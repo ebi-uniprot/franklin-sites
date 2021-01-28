@@ -12,20 +12,26 @@ export const getLipsumSentences = () =>
     sentenceUpperBound: 30,
   });
 
+type Args = {
+  numberElements: number;
+  keys: string[];
+  idKey?: string;
+  type?: 'sentences' | 'words';
+};
 export const getLipsumObjectArray = ({
   numberElements,
   keys,
   idKey = 'id',
   type = 'sentences',
-}) =>
-  Array.from({ length: numberElements }, () => {
-    const dataPoint = { [idKey]: v1() };
-    keys.forEach((key) => {
-      const text =
-        type === 'sentences' ? getLipsumSentences() : getLipsumWords();
-      dataPoint[key] = text;
-    });
-    return dataPoint;
-  });
+}: Args): Array<Record<string, string>> =>
+  Array.from({ length: numberElements }, () =>
+    Object.fromEntries([
+      [[idKey], v1()],
+      ...keys.map((key) => [
+        key,
+        type === 'sentences' ? getLipsumSentences() : getLipsumWords(),
+      ]),
+    ])
+  );
 
 export default getLipsumObjectArray;

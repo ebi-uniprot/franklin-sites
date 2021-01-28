@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
 
 import { ExpandableList } from '../src/components';
