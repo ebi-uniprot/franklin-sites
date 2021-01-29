@@ -6,8 +6,6 @@ import withDataLoader, { WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
 
-type RowID = string | number;
-
 type CommonColumn<T> = {
   label: ReactNode;
   name: string;
@@ -84,15 +82,15 @@ function DataTableHead<T>({
 }
 
 // Either the rows are selectable
-type Selectable<T> = {
+type Selectable<T, ID> = {
   /**
    * A callback function that is called whenever a user selects a row.
    */
-  onSelectRow: (id: RowID, datum: T, index: number, data: T[]) => void;
+  onSelectRow: (id: ID, datum: T, index: number, data: T[]) => void;
   /**
    * An object which indicates which rows have been selected by the user.
    */
-  selected: RowID[];
+  selected: ID[];
 };
 // Or they're not selectable
 type NonSelectable = {
@@ -100,33 +98,35 @@ type NonSelectable = {
   selected?: never;
 };
 
-type MaybeSelectable<T> = Selectable<T> | NonSelectable;
+type MaybeSelectable<T, ID> = Selectable<T, ID> | NonSelectable;
 
-type BodyProps<T> = {
+type BodyProps<T, ID> = {
   /**
    * The data to be displayed
    */
   data: T[];
   /**
    * A function that returns a unique ID for each of the data objects.
-   * Defaults to return the "id" field.
    * Same function signature as a map function.
    */
-  getIdKey?: (datum: T, index: number, data: T[]) => RowID;
+  getIdKey: (datum: T, index: number, data: T[]) => ID;
 };
 
-function DataTableBody<T extends Record<string, unknown>>({
+function DataTableBody<
+  T extends Record<string, unknown>,
+  ID extends string | number
+>({
   data,
   columns,
   onSelectRow,
   selected,
   getIdKey,
   fixedLayout,
-}: BodyProps<T> & SharedProps<T> & MaybeSelectable<T>) {
+}: BodyProps<T, ID> & SharedProps<T> & MaybeSelectable<T, ID>) {
   return (
     <tbody>
       {data.map((datum, index) => {
-        const id = getIdKey?.(datum, index, data) || (datum.id as RowID);
+        const id = getIdKey(datum, index, data);
         const isSelected = selected?.includes(id);
         return (
           <tr
@@ -171,14 +171,17 @@ type TableProps = {
   optimisedRendering?: boolean;
 };
 
-export interface Props<T>
+export interface Props<T, ID = string>
   extends TableProps,
-    BodyProps<T>,
+    BodyProps<T, ID>,
     // Omit because 'selectable' is not passed from the top, it is deduced later
     Omit<HeadProps<T>, 'selectable'>,
     SharedProps<T> {}
 
-export function DataTable<T extends Record<string, unknown>>({
+export function DataTable<
+  T extends Record<string, unknown>,
+  ID extends string | number = string
+>({
   data,
   columns,
   onSelectRow,
@@ -190,8 +193,8 @@ export function DataTable<T extends Record<string, unknown>>({
   optimisedRendering,
   className,
   ...props
-}: Props<T> &
-  MaybeSelectable<T> &
+}: Props<T, ID> &
+  MaybeSelectable<T, ID> &
   HTMLAttributes<HTMLTableElement>): JSX.Element {
   let selectedProps = {};
   if (selected) {
@@ -211,7 +214,7 @@ export function DataTable<T extends Record<string, unknown>>({
         columns={columns}
         onHeaderClick={onHeaderClick}
       />
-      <DataTableBody<T>
+      <DataTableBody<T, ID>
         data={data}
         columns={columns}
         getIdKey={getIdKey}
@@ -222,9 +225,12 @@ export function DataTable<T extends Record<string, unknown>>({
   );
 }
 
-export const DataTableWithLoader = <T extends Record<string, unknown>>(
+export const DataTableWithLoader = <
+  T extends Record<string, unknown>,
+  ID extends string | number = string
+>(
   props: WrapperProps<T> &
-    Props<T> &
-    MaybeSelectable<T> &
+    Props<T, ID> &
+    MaybeSelectable<T, ID> &
     HTMLAttributes<HTMLTableElement>
 ) => withDataLoader<T, typeof props>(DataTable)(props);

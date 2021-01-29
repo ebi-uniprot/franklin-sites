@@ -16,6 +16,7 @@ describe('DataList', () => {
         onLoadMoreItems={onLoadMoreItems}
         hasMoreData={hasMoreData}
         data={data}
+        getIdKey={(datum) => datum.id}
         clickToLoad={clickToLoad}
         dataRenderer={(item) => <p>{item.content}</p>}
       />

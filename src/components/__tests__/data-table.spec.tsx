@@ -48,6 +48,7 @@ describe('DataTable', () => {
     render(
       <DataTable
         onLoadMoreItems={onLoadMoreItems}
+        getIdKey={(datum) => datum.id}
         hasMoreData={hasMoreData}
         data={data}
         clickToLoad={clickToLoad}
