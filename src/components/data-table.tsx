@@ -7,7 +7,7 @@ import withDataLoader, { WrapperProps } from './data-loader';
 import '../styles/components/data-table.scss';
 
 type CommonColumn<T> = {
-  label: ReactNode;
+  label?: ReactNode;
   name: string;
   // same function signature as a map function
   render: (datum: T, index: number, data: T[]) => ReactNode;
