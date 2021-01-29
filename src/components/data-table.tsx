@@ -16,11 +16,12 @@ type CommonColumn<T> = {
   width?: string;
 };
 
+// Either a column is sortable
 export interface SortableColumn<T> extends CommonColumn<T> {
   sortable: true;
   sorted?: 'ascend' | 'descend';
 }
-
+// Or it's not sortable
 export interface NonSortableColumn<T> extends CommonColumn<T> {
   sortable?: false | undefined;
   sorted?: never;
@@ -82,6 +83,25 @@ function DataTableHead<T>({
   );
 }
 
+// Either the rows are selectable
+type Selectable<T> = {
+  /**
+   * A callback function that is called whenever a user selects a row.
+   */
+  onSelectRow: (id: RowID, datum: T, index: number, data: T[]) => void;
+  /**
+   * An object which indicates which rows have been selected by the user.
+   */
+  selected: RowID[];
+};
+// Or they're not selectable
+type NonSelectable = {
+  onSelectRow?: never;
+  selected?: never;
+};
+
+type MaybeSelectable<T> = Selectable<T> | NonSelectable;
+
 type BodyProps<T> = {
   /**
    * The data to be displayed
@@ -93,14 +113,6 @@ type BodyProps<T> = {
    * Same function signature as a map function.
    */
   getIdKey?: (datum: T, index: number, data: T[]) => RowID;
-  /**
-   * A callback function that is called whenever a user selects a row.
-   */
-  onSelectRow?: (id: RowID, datum: T, index: number, data: T[]) => void;
-  /**
-   * An object which indicates which rows have been selected by the user.
-   */
-  selected?: RowID[];
 };
 
 function DataTableBody<T extends Record<string, unknown>>({
@@ -110,7 +122,7 @@ function DataTableBody<T extends Record<string, unknown>>({
   selected,
   getIdKey,
   fixedLayout,
-}: BodyProps<T> & SharedProps<T>) {
+}: BodyProps<T> & SharedProps<T> & MaybeSelectable<T>) {
   return (
     <tbody>
       {data.map((datum, index) => {
@@ -178,7 +190,13 @@ export function DataTable<T extends Record<string, unknown>>({
   optimisedRendering,
   className,
   ...props
-}: Props<T> & HTMLAttributes<HTMLTableElement>): JSX.Element {
+}: Props<T> &
+  MaybeSelectable<T> &
+  HTMLAttributes<HTMLTableElement>): JSX.Element {
+  let selectedProps = {};
+  if (selected) {
+    selectedProps = { selected, onSelectRow };
+  }
   return (
     <table
       className={cn(className, BLOCK, {
@@ -196,15 +214,17 @@ export function DataTable<T extends Record<string, unknown>>({
       <DataTableBody<T>
         data={data}
         columns={columns}
-        onSelectRow={onSelectRow}
-        selected={selected}
         getIdKey={getIdKey}
         fixedLayout={fixedLayout}
+        {...selectedProps}
       />
     </table>
   );
 }
 
 export const DataTableWithLoader = <T extends Record<string, unknown>>(
-  props: WrapperProps<T> & Props<T> & HTMLAttributes<HTMLTableElement>
+  props: WrapperProps<T> &
+    Props<T> &
+    MaybeSelectable<T> &
+    HTMLAttributes<HTMLTableElement>
 ) => withDataLoader<T, typeof props>(DataTable)(props);
