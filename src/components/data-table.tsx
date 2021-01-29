@@ -16,7 +16,7 @@ type CommonColumn<T> = {
 
 // Either a column is sortable
 export interface SortableColumn<T> extends CommonColumn<T> {
-  sortable: true;
+  sortable?: true;
   sorted?: 'ascend' | 'descend';
 }
 // Or it's not sortable
@@ -28,7 +28,7 @@ export interface NonSortableColumn<T> extends CommonColumn<T> {
 type SharedProps<T> = {
   /**
    * An array of objects which specifies attributes about each column of your data. Each object has
-   *  label, name and render attributes.
+   * label, name and render attributes.
    */
   columns: Array<SortableColumn<T> | NonSortableColumn<T>>;
   /**
@@ -43,7 +43,10 @@ const BLOCK = 'data-table';
 
 type HeadProps<T> = {
   selectable?: boolean;
-  onHeaderClick?: (columnName: CommonColumn<T>['name']) => void;
+  /**
+   * Optional event handler called when a sortable column header gets clicked
+   */
+  onHeaderClick?: (columnName: SortableColumn<T>['name']) => void;
 };
 
 function DataTableHead<T>({
