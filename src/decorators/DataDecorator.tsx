@@ -1,17 +1,29 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState, HTMLAttributes } from 'react';
 
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
+import { Props as DataListProps } from '../components/data-list';
+import {
+  Props as DataTableProps,
+  SortableColumn,
+  NonSortableColumn,
+} from '../components/data-table';
+import { WrapperProps } from '../components/data-loader';
+
+type DataType = Record<string, string>;
+type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
+
 const totalNumberDataPoints = 50;
-const getIdKey = ({ id }) => id;
-const columns = [
+const getIdKey = (datum: DataType) => datum.id;
+export const columns: Array<
+  SortableColumn<DataType> | NonSortableColumn<DataType>
+> = [
   {
     label: 'Column 1',
     name: 'content1',
     render: (row) => row.content1,
     sortable: true,
-    sorted: 'ascend',
+    sorted: 'descend',
   },
   {
     label: 'Column 2',
@@ -38,14 +50,20 @@ const columns = [
   },
 ];
 
-function generateData(numberElements) {
-  return getLipsumObjectArray({
+const generateData = (numberElements: number) =>
+  getLipsumObjectArray({
     keys: columns.map((column) => column.name),
     numberElements,
   });
-}
 
-export const DataLoaderDecorator = ({ children, ...props }) => {
+type Args<P> = {
+  children: (props: P) => JSX.Element;
+} & HTMLAttributes<HTMLDivElement>;
+
+export const DataLoaderDecorator = ({
+  children,
+  ...props
+}: Args<CommonProps & WrapperProps<DataType>>) => {
   let loadingData = false;
   const numberDataPointsPerRequest = 6;
   const sleepDuration = 0.75;
@@ -85,11 +103,7 @@ export const DataLoaderDecorator = ({ children, ...props }) => {
   );
 };
 
-DataLoaderDecorator.propTypes = {
-  children: PropTypes.func.isRequired,
-};
-
-export const DataDecorator = ({ children, ...props }) => (
+export const DataDecorator = ({ children, ...props }: Args<CommonProps>) => (
   <div {...props}>
     {children({
       data: generateData(totalNumberDataPoints),
@@ -98,6 +112,3 @@ export const DataDecorator = ({ children, ...props }) => (
     })}
   </div>
 );
-DataDecorator.propTypes = {
-  children: PropTypes.func.isRequired,
-};

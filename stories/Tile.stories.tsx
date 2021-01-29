@@ -1,9 +1,11 @@
 import { withKnobs, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { loremIpsum } from 'lorem-ipsum';
+
 import { Tile } from '../src/components';
+
 import SVG from '../assets/uniprotkb_illustration.svg';
 import colors from '../src/styles/colours.json';
-import { loremIpsum, LoremIpsum } from 'lorem-ipsum';
 
 export default {
   title: 'Navigation/Tile',
@@ -21,7 +23,7 @@ export default {
 const useColor = () =>
   select('--tile-background', colors, colors.seaBlue, 'Custom Properties');
 
-export const tile = () => (
+export const BasicTile = () => (
   <Tile
     title="Title"
     backgroundColor={useColor()}
@@ -32,7 +34,7 @@ export const tile = () => (
   />
 );
 
-export const tileWithGradient = () => (
+export const TileWithGradient = () => (
   <Tile
     title="Title"
     backgroundColor={useColor()}
@@ -44,7 +46,7 @@ export const tileWithGradient = () => (
   />
 );
 
-export const tileWithContainer = () => (
+export const TileWithContainer = () => (
   <div style={{ width: '40%' }}>
     <Tile
       title="Title"
@@ -57,7 +59,7 @@ export const tileWithContainer = () => (
   </div>
 );
 
-export const tileWithBackgroundImage = () => (
+export const TileWithBackgroundImage = () => (
   <Tile
     title="Title"
     backgroundColor={useColor()}

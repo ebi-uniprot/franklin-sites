@@ -6,7 +6,7 @@ import publicationData from '../__mocks__/publications';
 
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
-let rendered;
+let rendered: ReturnType<typeof renderWithRouter>;
 
 describe('Publication component', () => {
   beforeEach(async () => {

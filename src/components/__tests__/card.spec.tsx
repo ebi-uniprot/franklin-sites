@@ -7,7 +7,7 @@ import renderWithRouter from '../../testHelpers/renderWithRouter';
 describe('Card component', () => {
   test('should render', () => {
     const { asFragment } = renderWithRouter(
-      <Card title="Title" onClick={null}>
+      <Card title="Title">
         <span>Some content</span>
       </Card>
     );
@@ -16,7 +16,7 @@ describe('Card component', () => {
 
   test('should render card with subtitle', () => {
     const { asFragment } = renderWithRouter(
-      <Card title="Title" subtitle="Subtitle" onClick={null}>
+      <Card title="Title" subtitle="Subtitle">
         <span>Some content</span>
       </Card>
     );
@@ -33,7 +33,7 @@ describe('Card component', () => {
     ];
 
     const { asFragment } = renderWithRouter(
-      <Card title="Title" subtitle="Subtitle" links={links} onClick={null}>
+      <Card title="Title" subtitle="Subtitle" links={links}>
         <span>Some content</span>
       </Card>
     );

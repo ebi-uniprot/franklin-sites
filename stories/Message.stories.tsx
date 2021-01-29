@@ -1,6 +1,7 @@
-import { Fragment } from 'react';
 import { action } from '@storybook/addon-actions';
+
 import { Message } from '../src/components';
+
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
@@ -29,11 +30,11 @@ export const successMessage = () => (
 );
 
 const subtitle = (
-  <Fragment>
-    Try using <a href="#">BLAST</a>, <a href="#">Align</a>,{' '}
-    <a href="#">ID Mapping/Retrieve</a> or{' '}
-    <a href="#">Peptide Search to begin</a>
-  </Fragment>
+  <>
+    Try using <a href="/">BLAST</a>, <a href="/">Align</a>,{' '}
+    <a href="/">ID Mapping/Retrieve</a> or{' '}
+    <a href="/">Peptide Search to begin</a>
+  </>
 );
 
 export const forFullPageErrors = () => (

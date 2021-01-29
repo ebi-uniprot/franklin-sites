@@ -9,12 +9,7 @@ export { default as Card } from './card';
 export { default as Chip } from './chip';
 export { default as CodeBlock } from './code-block';
 export { DataList, DataListWithLoader } from './data-list';
-export {
-  DataTable,
-  DataTableWithLoader,
-  DENSITY_COMPACT,
-  DENSITY_NORMAL,
-} from './data-table';
+export { DataTable, DataTableWithLoader } from './data-table';
 export { default as DisplayMenu } from './display-menu';
 export { default as DoughnutChart } from './doughnut-chart';
 export { default as DropdownButton } from './dropdown-button';

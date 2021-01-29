@@ -39,7 +39,7 @@ export default {
 };
 
 export const card = () => (
-  <Card title="Title" subtitle={<a to="/#">APOE_HUMAN - P02649</a>}>
+  <Card title="Title" subtitle={<a href="/#">APOE_HUMAN - P02649</a>}>
     {getLipsumSentences()}
   </Card>
 );

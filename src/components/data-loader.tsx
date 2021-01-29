@@ -5,7 +5,7 @@ import {
   useMemo,
   useCallback,
   ReactNode,
-  FC,
+  ComponentType,
 } from 'react';
 
 import Button from './button';
@@ -13,7 +13,7 @@ import Loader from './loader';
 
 import '../styles/components/data-loader.scss';
 
-type WrapperProps = {
+export type WrapperProps<D> = {
   /**
    * Callback to request more items if user scrolled to the bottom of the scroll-container or if
    * the scroll-container isn't scrollable yet because not enough items have been loaded yet. If
@@ -28,28 +28,36 @@ type WrapperProps = {
   /**
    * A custom loader component
    */
-  // eslint-disable-next-line react/require-default-props
   loaderComponent?: ReactNode;
   /**
    * Data that is being represented in the wrapped component
    */
-  data: unknown[];
+  data: D[];
   /**
    * Use a button to load more data instead of having infinite scrolling
    */
-  // eslint-disable-next-line react/require-default-props
   clickToLoad?: boolean;
 };
 
-const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
-  const Wrapper: FC<WrapperProps> = ({
+type BaseComponentProps<D> = {
+  data: D[];
+};
+
+function withDataLoader<
+  // data type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  D extends Record<string, any>,
+  // props types of wrapped component
+  P extends BaseComponentProps<D>
+>(BaseComponent: ComponentType<P>) {
+  const Wrapper: ComponentType<P & WrapperProps<P['data'][0]>> = ({
     onLoadMoreItems,
     hasMoreData,
     loaderComponent = <Loader />,
     data,
     clickToLoad = false,
-    ...restProps
-  }: WrapperProps) => {
+    ...props
+  }) => {
     // store this prop in a ref to not trigger re-creation of observer if the user
     // of this component forgot to memoize 'onLoadMoreItems' function.
     const onLoadMoreItemsRef = useRef(onLoadMoreItems);
@@ -121,9 +129,12 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
       );
     }
 
+    // TS doesn't like when I separate data from props when asserting as P
+    const baseComponentProps = { ...props, data };
+
     return (
       <>
-        <BaseComponent data={data} {...restProps} />
+        <BaseComponent {...(baseComponentProps as P)} />
         <div className="data-loader__loading" ref={sentinelRef}>
           {hasMoreData && sentinelContent}
         </div>
@@ -132,6 +143,6 @@ const withDataLoader = (BaseComponent: FC<{ data: unknown[] }>) => {
   };
 
   return Wrapper;
-};
+}
 
 export default withDataLoader;

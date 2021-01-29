@@ -1,5 +1,6 @@
 import { loremIpsum } from 'lorem-ipsum';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+
 import { HeroContainer } from '../src/components';
 
 export default {

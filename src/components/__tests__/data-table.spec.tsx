@@ -1,13 +1,27 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 
-import { DataTableWithLoader as DataTable } from '../data-table';
+import {
+  DataTableWithLoader as DataTable,
+  SortableColumn,
+  NonSortableColumn,
+} from '../data-table';
 
 describe('DataTable', () => {
-  const onSelect = jest.fn();
+  const onSelectRow = jest.fn();
   const onHeaderClick = jest.fn();
-  const selectable = true;
   const selected = ['id0'];
-  const columns = [
+
+  const data = Array.from({ length: 10 }, (_, index) => ({
+    id: `id${index}`,
+    content1: 'foo',
+    content2: 'bar',
+    content3: 'baz',
+  }));
+
+  type DataType = typeof data[0];
+  const columns: Array<
+    SortableColumn<DataType> | NonSortableColumn<DataType>
+  > = [
     {
       label: 'Column 1',
       name: 'content1',
@@ -27,32 +41,28 @@ describe('DataTable', () => {
       sortable: true,
     },
   ];
-  const data = Array.from({ length: 10 }, (_, index) => ({
-    id: `id${index}`,
-    content1: 'foo',
-    content2: 'bar',
-    content3: 'baz',
-  }));
 
-  let onLoadMoreItems;
+  let onLoadMoreItems: () => void;
 
   const renderTable = ({ hasMoreData = true, clickToLoad = true } = {}) =>
     render(
       <DataTable
         onLoadMoreItems={onLoadMoreItems}
+        getIdKey={(datum) => datum.id}
         hasMoreData={hasMoreData}
         data={data}
         clickToLoad={clickToLoad}
         columns={columns}
-        onSelect={onSelect}
+        onSelectRow={onSelectRow}
         selected={selected}
         onHeaderClick={onHeaderClick}
-        selectable={selectable}
       />
     );
 
   beforeEach(() => {
     onLoadMoreItems = jest.fn();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     window.IntersectionObserver = jest.fn(() => ({
       observe: jest.fn(),
       unobserve: jest.fn(),
@@ -89,10 +99,10 @@ describe('DataTable', () => {
 
   test('should fire onSelect when checkbox is clicked', () => {
     renderTable();
-    expect(onSelect).not.toHaveBeenCalled();
+    expect(onSelectRow).not.toHaveBeenCalled();
     const checkbox = screen.getAllByRole('checkbox');
     fireEvent.click(checkbox[0]);
-    expect(onSelect).toHaveBeenCalled();
+    expect(onSelectRow).toHaveBeenCalled();
   });
 
   test('should fire onHeaderClick when header is clicked', () => {
@@ -104,6 +114,8 @@ describe('DataTable', () => {
   });
 
   test('should show click-to-load if no IntersectionObserver support', () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     delete window.IntersectionObserver;
     renderTable({ clickToLoad: false });
     expect(screen.getByTestId('click-to-load-more')).toBeTruthy();

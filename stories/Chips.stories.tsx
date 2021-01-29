@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
@@ -16,31 +17,37 @@ export default {
   },
 };
 
-export const chips = () => {
-  return (
-    <Chip
-      title={text('title', 'this is a chip', 'Props')}
-      compact={boolean('compact', false, 'Props')}
-      disabled={boolean('disabled', false, 'Props')}
-      className={select(
-        'className',
-        ['primary', 'secondary'],
-        'primary',
-        'Props'
-      )}
-      style={{
+interface Style extends CSSProperties {
+  // TODO: define and extend the supported custom properties in franklin
+  // TODO: find a way to expose them globally when using franklin elements
+  '--main-chip-color': string;
+}
+
+export const chips = () => (
+  <Chip
+    title={text('title', 'this is a chip', 'Props')}
+    compact={boolean('compact', false, 'Props')}
+    disabled={boolean('disabled', false, 'Props')}
+    className={select(
+      'className',
+      ['primary', 'secondary'],
+      'primary',
+      'Props'
+    )}
+    style={
+      {
         '--main-chip-color': select(
           '--main-chip-color',
           colors,
           colors.sapphireBlue,
           'Custom Properties'
         ),
-      }}
-    >
-      Chip content
-    </Chip>
-  );
-};
+      } as Style
+    }
+  >
+    Chip content
+  </Chip>
+);
 
 export const withClick = () => (
   <>

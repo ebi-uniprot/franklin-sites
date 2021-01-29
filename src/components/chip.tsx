@@ -4,6 +4,7 @@ import {
   useRef,
   ReactNode,
   MouseEvent as ReactMouseEvent,
+  HTMLAttributes,
 } from 'react';
 import cn from 'classnames';
 
@@ -40,14 +41,9 @@ type ChipProps = {
    * click event listener on the component (except on the close button if present)
    */
   onClick?: () => void;
-  /**
-   * Optional extra props to pass to the chip
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  props?: Record<PropertyKey, any>;
 };
 
-export const Chip: FC<ChipProps> = ({
+export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
   children,
   onRemove,
   className = '',

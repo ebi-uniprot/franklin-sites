@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/react';
+
 import Message from '../message';
 
 describe('Message component', () => {

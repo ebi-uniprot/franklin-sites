@@ -12,7 +12,7 @@ export default {
   },
 };
 
-const linkBuilder = (author) => `/citations/?query=author:"${author}"`;
+const linkBuilder = (author: string) => `/citations/?query=author:"${author}"`;
 
 export const publication = () => {
   const {

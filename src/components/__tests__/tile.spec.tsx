@@ -1,11 +1,12 @@
 import { fireEvent, render } from '@testing-library/react';
-import { ProtVistaIcon } from '../';
-import colors from '../../styles/colours.json';
 
 import Tile from '../tile';
+import { ProtVistaIcon } from '..';
 
-let component;
-let clickFn = jest.fn();
+import colors from '../../styles/colours.json';
+
+let component: ReturnType<typeof render>;
+const clickFn = jest.fn();
 
 describe('Tile component', () => {
   beforeEach(() => {

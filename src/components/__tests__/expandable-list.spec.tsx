@@ -6,7 +6,7 @@ import ExpandableList, { ExpandableMessage } from '../expandable-list';
 const descriptionString = 'foo';
 
 describe('ExpandableMessage', () => {
-  let setExpanded;
+  let setExpanded: () => void;
   beforeEach(() => {
     setExpanded = jest.fn();
   });
@@ -23,42 +23,42 @@ describe('ExpandableMessage', () => {
   });
 
   test('should call setExpanded when button is clicked and button text be "More descriptionString"', () => {
-    const { container } = render(
+    render(
       <ExpandableMessage
         expanded={false}
         setExpanded={setExpanded}
         descriptionString={descriptionString}
       />
     );
-    const button = container.querySelector('button');
+    const button = screen.getByRole('button');
     fireEvent.click(button);
     expect(setExpanded).toHaveBeenCalled();
     expect(button.textContent).toEqual(`More ${descriptionString}`);
   });
 
   test('button text should be "Less descriptionString"', () => {
-    const { container } = render(
+    render(
       <ExpandableMessage
         expanded
         setExpanded={setExpanded}
         descriptionString={descriptionString}
       />
     );
-    const button = container.querySelector('button');
+    const button = screen.getByRole('button');
     fireEvent.click(button);
     expect(setExpanded).toHaveBeenCalled();
     expect(button.textContent).toEqual(`Less ${descriptionString}`);
   });
 
   test('button text should include the number of hidden items', () => {
-    const { container } = render(
+    render(
       <ExpandableMessage
         setExpanded={setExpanded}
         descriptionString={descriptionString}
         nHiddenItems={4}
       />
     );
-    const button = container.querySelector('button');
+    const button = screen.getByRole('button');
     fireEvent.click(button);
     expect(setExpanded).toHaveBeenCalled();
     expect(button.textContent).toEqual(`4 more ${descriptionString}`);
@@ -119,7 +119,7 @@ describe('ExpandableList', () => {
     );
     let listItems = container.querySelectorAll('li');
     expect(listItems).toHaveLength(numberCollapsedItems + 1);
-    const button = container.querySelector('button');
+    const button = screen.getByRole('button');
     fireEvent.click(button);
     listItems = container.querySelectorAll('li');
     expect(listItems).toHaveLength(numberItems + 1);

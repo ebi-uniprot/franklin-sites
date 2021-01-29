@@ -8,14 +8,12 @@ import Button from './button';
 import '../styles/components/header.scss';
 
 type HeaderExternalLink = {
-  label: ReactNode;
   href: string;
   path?: never;
   onClick?: never;
   items?: never;
 };
 type HeaderInternalLink = {
-  label: ReactNode;
   href?: never;
   path:
     | string
@@ -24,16 +22,15 @@ type HeaderInternalLink = {
   items?: never;
 };
 type HeaderButton = {
-  label: ReactNode;
   href?: never;
   path?: never;
   onClick: () => void;
   items?: never;
 };
-type HeaderPossibleItem =
-  | HeaderExternalLink
-  | HeaderInternalLink
-  | HeaderButton;
+type HeaderPossibleItem = {
+  label: ReactNode;
+} & (HeaderExternalLink | HeaderInternalLink | HeaderButton);
+
 type HeaderDropdown = {
   label: ReactNode;
   href?: never;
