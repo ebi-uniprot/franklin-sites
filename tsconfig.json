@@ -12,11 +12,11 @@
     "isolatedModules": true,
     // Import non-ES modules as default imports.
     "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     // "esModuleInterop": true,
     "module": "esnext",
     "jsx": "react-jsx",
     "types": ["jest", "node"],
     "skipLibCheck": true
-  },
-  "exclude": ["node_modules", "src/**/*.spec.ts*", "src/**/*.spec.js*"]
+  }
 }

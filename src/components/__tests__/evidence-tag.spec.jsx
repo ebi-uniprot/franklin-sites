@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import EvidenceTag from '../evidence-tag';
 
 jest.mock('uuid', () => {
@@ -26,6 +25,4 @@ describe('EvidenceTag component', () => {
     ).toBe(true);
     expect(asFragment()).toMatchSnapshot();
   });
-
-  afterEach(() => cleanup());
 });

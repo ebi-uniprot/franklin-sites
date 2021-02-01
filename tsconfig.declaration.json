@@ -9,5 +9,6 @@
     "strict": false
   },
   "include": ["src/types/**/*"],
+  "exclude": ["node_modules", "src/**/*.spec.ts*", "src/**/*.spec.js*"],
   "files": ["src/components/index.ts"]
 }

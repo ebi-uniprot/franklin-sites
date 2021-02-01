@@ -8,19 +8,15 @@ export { default as ButtonModal } from './button-modal';
 export { default as Card } from './card';
 export { default as Chip } from './chip';
 export { default as CodeBlock } from './code-block';
-export { default as DataList } from './data-list';
-export {
-  default as DataTable,
-  DENSITY_COMPACT,
-  DENSITY_NORMAL,
-} from './data-table';
+export { DataList, DataListWithLoader } from './data-list';
+export { DataTable, DataTableWithLoader } from './data-table';
 export { default as DisplayMenu } from './display-menu';
 export { default as DoughnutChart } from './doughnut-chart';
 export { default as DropdownButton } from './dropdown-button';
 export { default as EvidenceTag } from './evidence-tag';
 export { default as ExpandableList } from './expandable-list';
 export { default as ExternalLink } from './external-link';
-export { default as Facets } from './facets';
+export { Facets, Facet } from './facets';
 export { default as FranklinSite } from './franklin-site';
 export { default as Header } from './header';
 export { default as HeroContainer } from './hero-container';
@@ -29,6 +25,7 @@ export { default as Histogram } from './histogram';
 export { default as HistogramFilter } from './histogram-filter';
 export { default as InPageNav } from './in-page-nav';
 export { default as InfoList } from './info-list';
+export { default as DecoratedListItem } from './decorated-list-item';
 export { default as Loader } from './loader';
 export { default as LongNumber } from './long-number';
 export { default as MainSearch } from './main-search';

@@ -1,4 +1,3 @@
-import React from 'react';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 import InPageNav from '../in-page-nav';
 

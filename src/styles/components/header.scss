@@ -24,22 +24,28 @@ $content-width: 90%;
     color: $colour-sapphire-blue;
     background: $colour-sky-white;
 
-    a,
-    button,
-    a:link,
-    a:visited,
-    a:hover,
-    a:active {
+    a.button,
+    button.button,
+    a.button:link,
+    a.button:visited,
+    a.button:hover,
+    a.button:active,
+    .header__logo > a {
       color: $colour-sapphire-blue;
+    }
+
+    .header__search button.button {
+      color: $colour-sky-white;
     }
   }
 
-  a,
-  button,
-  a:link,
-  a:visited,
-  a:hover,
-  a:active {
+  a.button,
+  button.button,
+  a.button:link,
+  a.button:visited,
+  a.button:hover,
+  a.button:active,
+  .header__logo > a {
     color: $colour-sky-white;
 
     &.button.dropdown {
@@ -52,12 +58,12 @@ $content-width: 90%;
   }
 
   .dropdown-menu {
-    a,
-    button,
-    a:link,
-    a:visited,
-    a:hover,
-    a:active {
+    a.button,
+    button.button,
+    a.button:link,
+    a.button:visited,
+    a.button:hover,
+    a.button:active {
       color: $colour-sapphire-blue;
     }
   }
@@ -73,26 +79,32 @@ $content-width: 90%;
     align-items: center;
     margin: 0;
 
-    a:hover {
-      border-bottom: 1px solid currentColor;
+    a.button,
+    button.button {
+      &:hover {
+        border-bottom: 1px solid currentColor;
+      }
     }
 
     li {
       display: contents;
 
-      & > a {
+      & > a.button,
+      & > button.button {
         margin: 0.1rem 0.25rem; // .1rem to align with dropdown
         font-size: 1rem; // match font-size in dropdown button
       }
     }
 
+    a.button,
     button.button {
+      font-weight: bold;
+
       &,
       &:focus,
       &:hover {
         transition: none;
         font-size: 1rem;
-        font-weight: bold;
         background: none;
         padding-left: 0.6em;
         padding-right: 0.6em;

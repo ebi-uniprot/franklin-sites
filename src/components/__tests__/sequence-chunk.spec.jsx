@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import SequenceChunk from '../sequence-chunk';
 
@@ -10,7 +9,7 @@ describe('Sequence chunk component', () => {
         textSize={{ width: 10, height: 10 }}
         chunkSize={10}
         chunkNumber={2}
-      />,
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -28,7 +27,7 @@ describe('Sequence chunk component', () => {
         ]}
         chunkSize={10}
         chunkNumber={2}
-      />,
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });

@@ -1,9 +1,7 @@
-import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
+
 import SequenceSubmission from '../sequence-submission';
 import { validResponse } from '../../sequence-utils/sequenceValidator';
-
-afterEach(cleanup);
 
 describe('SequenceSubmission', () => {
   test('should render', () => {
@@ -24,20 +22,18 @@ describe('SequenceSubmission', () => {
   });
 
   test('should validate after onChange event', async () => {
-    const { queryByTestId, findByTestId } = render(<SequenceSubmission />);
-    const textarea = queryByTestId('sequence-submission-input');
+    render(<SequenceSubmission />);
+    const textarea = screen.queryByTestId('sequence-submission-input');
     fireEvent.change(textarea, { target: { value: 'ACTGUACTGUACTGU+' } });
-    const error = await findByTestId('sequence-submission-error');
+    const error = await screen.findByTestId('sequence-submission-error');
     expect(error).toBeTruthy();
   });
 
   test('should call custom onChange callback once', async () => {
     const onChange = jest.fn();
     const value = 'ACTGUACTGUACTGU';
-    const { queryByTestId } = render(
-      <SequenceSubmission onChange={(e) => onChange(e)} />
-    );
-    const textarea = queryByTestId('sequence-submission-input');
+    render(<SequenceSubmission onChange={(e) => onChange(e)} />);
+    const textarea = screen.queryByTestId('sequence-submission-input');
     fireEvent.change(textarea, { target: { value } });
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith([

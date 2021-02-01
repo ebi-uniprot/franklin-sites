@@ -23,7 +23,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
    * The background image
    */
-  backgroundImage?: JSX.Element;
+  backgroundImage?: ReactNode;
   /**
    * Whether to create a gradient based on the backgroung color or not
    */

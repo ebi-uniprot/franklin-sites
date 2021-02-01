@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component should render 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <section>
+      <div
+        class="card__header"
+      >
+        <h2
+          class="card__title"
+        >
+          Title
+        </h2>
+      </div>
+      <div
+        class="card__content"
+      >
+        <span>
+          Some content
+        </span>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Card component should render card with links 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <section>
+      <div
+        class="card__header"
+      >
+        <h2
+          class="card__title"
+        >
+          Title
+        </h2>
+        <div
+          class="card__subtitle"
+        >
+          Subtitle
+        </div>
+      </div>
+      <div
+        class="card__content"
+      >
+        <span>
+          Some content
+        </span>
+      </div>
+    </section>
+    <section
+      class="card__actions"
+    >
+      <span
+        class="card__link"
+        style="border-bottom: 0.125rem solid red;"
+      >
+        <a
+          href="/example.com"
+        >
+          link
+        </a>
+      </span>
+    </section>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Card component should render card with onclick 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <section
+      class="card--has-hover"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="card__header"
+      >
+        <h2
+          class="card__title"
+        >
+          Title
+        </h2>
+        <div
+          class="card__subtitle"
+        >
+          Subtitle
+        </div>
+      </div>
+      <div
+        class="card__content"
+      >
+        <span>
+          Some content
+        </span>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Card component should render card with subtitle 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <section>
+      <div
+        class="card__header"
+      >
+        <h2
+          class="card__title"
+        >
+          Title
+        </h2>
+        <div
+          class="card__subtitle"
+        >
+          Subtitle
+        </div>
+      </div>
+      <div
+        class="card__content"
+      >
+        <span>
+          Some content
+        </span>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;

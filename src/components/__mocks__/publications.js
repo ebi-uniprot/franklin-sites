@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   pubmedId: 123456,
   statistics: {

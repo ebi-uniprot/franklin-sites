@@ -1,8 +1,5 @@
-import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 import Accordion from '../accordion';
-
-afterEach(cleanup);
 
 const props = {
   title: 'foo',
@@ -17,21 +14,27 @@ describe('Accordion', () => {
   });
 
   test('should show content when expand title is clicked', () => {
-    const { queryByTestId } = render(<Accordion {...props} />);
-    const title = queryByTestId('accordion-title');
+    render(<Accordion {...props} />);
+    const title = screen.queryByTestId('accordion-title');
     fireEvent.click(title);
-    const content = queryByTestId('accordion-content');
+    const content = screen.queryByTestId('accordion-content');
     const contentClasses = Object.values(content.classList);
-    expect(contentClasses).toEqual(['accordion__content', 'accordion__content--display-content']);
+    expect(contentClasses).toEqual([
+      'accordion__content',
+      'accordion__content--display-content',
+    ]);
   });
 
   test('should not show content when expand title is clicked twice', () => {
-    const { queryByTestId } = render(<Accordion {...props} />);
-    const title = queryByTestId('accordion-title');
+    render(<Accordion {...props} />);
+    const title = screen.queryByTestId('accordion-title');
     fireEvent.click(title);
     fireEvent.click(title);
-    const content = queryByTestId('accordion-content');
+    const content = screen.queryByTestId('accordion-content');
     const contentClasses = Object.values(content.classList);
-    expect(contentClasses).toEqual(['accordion__content', 'accordion__content--hide-content']);
+    expect(contentClasses).toEqual([
+      'accordion__content',
+      'accordion__content--hide-content',
+    ]);
   });
 });

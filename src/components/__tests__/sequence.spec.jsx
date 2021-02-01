@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 
 import Sequence from '../sequence';
 
@@ -32,31 +31,29 @@ describe('Sequence component', () => {
   });
 
   test('should toggle highlight on', () => {
-    const { getAllByTestId, getByText } = rendered;
-    fireEvent.click(getByText('Highlight'));
+    fireEvent.click(screen.getByText('Highlight'));
     const propertyIndex = 0;
     fireEvent.click(
-      getAllByTestId('sequence-highlight-checkbox')[propertyIndex]
+      screen.getAllByTestId('sequence-highlight-checkbox')[propertyIndex]
     );
     const { aminoAcids } = aminoAcidsProps[propertyIndex];
     const re = new RegExp(aminoAcids.join('|'), 'g');
     const nAminoAcidsWithProperty = sequenceData.match(re).length;
-    expect(getAllByTestId('sequence-highlight-rect')).toHaveLength(
+    expect(screen.getAllByTestId('sequence-highlight-rect')).toHaveLength(
       nAminoAcidsWithProperty
     );
   });
 
   test('should toggle highlight off', () => {
-    const { getAllByTestId, queryByTestId, getByText } = rendered;
-    fireEvent.click(getByText('Highlight'));
+    fireEvent.click(screen.getByText('Highlight'));
     const propertyIndex = 0;
     fireEvent.click(
-      getAllByTestId('sequence-highlight-checkbox')[propertyIndex]
+      screen.getAllByTestId('sequence-highlight-checkbox')[propertyIndex]
     );
     fireEvent.click(
-      getAllByTestId('sequence-highlight-checkbox')[propertyIndex]
+      screen.getAllByTestId('sequence-highlight-checkbox')[propertyIndex]
     );
-    expect(queryByTestId('sequence-highlight-rect')).toBeNull();
+    expect(screen.queryByTestId('sequence-highlight-rect')).toBeNull();
   });
 });
 
@@ -64,22 +61,20 @@ describe('Sequence component show/hide', () => {
   const handleSequenceLoad = jest.fn();
 
   test('should toggle view/hide on loaded sequence', () => {
-    const { getByText, queryByText } = render(
+    render(
       <Sequence sequence={sequenceData} accession="P05067" isCollapsible />
     );
     // Look for 'M' as it's used to measure
-    expect(queryByText('M')).toBeNull();
-    fireEvent.click(getByText(/Show sequence/));
-    expect('M').toBeTruthy();
-    fireEvent.click(getByText(/Hide sequence/));
-    expect(queryByText('M')).toBeNull();
+    expect(screen.queryByText('M')).toBeNull();
+    fireEvent.click(screen.getByText(/Show sequence/));
+    expect(screen.queryByText('M')).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/Hide sequence/));
+    expect(screen.queryByText('M')).toBeNull();
   });
 
   test('should be collapsed and trigger loading of sequence', () => {
-    const { getByText } = render(
-      <Sequence onShowSequence={handleSequenceLoad} accession="P05067" />
-    );
-    fireEvent.click(getByText(/Show/));
+    render(<Sequence onShowSequence={handleSequenceLoad} accession="P05067" />);
+    fireEvent.click(screen.getByText(/Show/));
     expect(handleSequenceLoad).toBeCalled();
   });
 });

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function getLastIndexOfSubstringIgnoreCase(string, substring) {
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
 }

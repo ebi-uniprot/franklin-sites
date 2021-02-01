@@ -1,22 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { DefaultCloseButton } from './window-buttons';
 
-const WindowHeader = ({
-  title,
-  withCloseButton,
-  onWindowClose,
-}) => (
+const WindowHeader = ({ title, withCloseButton, onWindowClose }) => (
   <div className="window__header">
     <span className="window__header__title">{title}</span>
-    {(withCloseButton && onWindowClose)
-      && (
-        <DefaultCloseButton
-          onClick={onWindowClose}
-          iconOnly
-        />
-      )}
+    {withCloseButton && onWindowClose && (
+      <DefaultCloseButton onClick={onWindowClose} iconOnly />
+    )}
   </div>
 );
 

@@ -19,7 +19,9 @@
     table-layout: fixed;
   }
 
-  &__header-cell {
+  // table header cell, without any specific modifier applied
+  & th {
+    width: auto;
     border: 0;
     padding: 0.25rem 0.5rem;
     font-weight: bold;
@@ -29,32 +31,38 @@
     top: 0;
     z-index: $z-index-low;
     position: sticky;
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
+  }
+
+  &__header-cell {
+    &--ascend,
+    &--descend {
+      &::after {
+        content: '▲';
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.6em;
+        margin: 0 0.8em;
+        transition: transform ease-out 0.5s;
+        transform: rotateX(0);
+
+        @media (prefers-reduced-motion: reduce) {
+          transition-duration: 0s;
+        }
+      }
+    }
 
     &--ascend {
-      cursor: pointer;
-      &::after {
-        @include chevron(up, $colour-sky-white);
+      &:hover::after {
+        transform: rotateX(0.5turn);
       }
     }
 
     &--descend {
-      cursor: pointer;
       &::after {
-        @include chevron(down, $colour-sky-white);
+        transform: rotateX(0.5turn);
       }
-    }
-
-    &--sortable {
-      cursor: pointer;
-      &::after {
-        @include chevron(down, $colour-platinum);
-      }
-      &:hover:after {
-        @include chevron(down, $colour-sky-white);
+      &:hover::after {
+        transform: rotateX(0);
       }
     }
 
@@ -64,30 +72,39 @@
     }
   }
 
-  &__cell {
+  // table row, without any specific modifier applied
+  & tr {
+    &:nth-of-type(2n) {
+      background-color: $colour-platinum;
+    }
+  }
+
+  &__row {
+    &--selected {
+      background-color: $colour-selected;
+    }
+  }
+
+  // table body cell, without any specific modifier applied
+  & td {
     padding: 0.5rem;
     vertical-align: top;
     border: 0;
     border-bottom: 1px solid $colour-sky-white;
+  }
 
+  &--optimised-rendering td {
+    /** notes: do not use if:
+      *  - height of row is really tall or variable (scroll bar will jump)
+      *  - column width changes (should be fine with "fixedLayout")
+      */
+    content-visibility: auto; // avoid rendering rows that are out of view
+    contain-intrinsic-size: 1px 2em; // assume minimum size of one line + margin
+  }
+
+  &__cell {
     &--warning {
       background-color: map-get($foundation-palette, warning);
-    }
-
-    &--odd {
-      background-color: $colour-platinum;
-    }
-
-    &--selected {
-      background-color: $colour-selected;
-    }
-
-    &--checkbox {
-      // Is this still used?
-      box-sizing: border-box;
-      width: 0;
-      padding: 0.8em 1.2em;
-      overflow: hidden;
     }
 
     &--loading {
@@ -101,7 +118,7 @@
 
   &--compact {
     font-size: $font-size-medium;
-    #{ $self }_header-cell,
+    #{ $self }__header-cell,
     #{ $self }__cell {
       padding: 0.25;
     }

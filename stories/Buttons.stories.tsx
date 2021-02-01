@@ -1,8 +1,7 @@
 import { CSSProperties } from 'react';
-
-import { Button } from '../src/components';
-import { DownloadIcon } from '../src/components';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+
+import { Button, DownloadIcon } from '../src/components';
 
 import colors from '../src/styles/colours';
 
@@ -26,7 +25,7 @@ const useColor = () =>
   );
 const useDisabled = () => boolean('disabled', false, 'Props');
 
-export const buttons = () => {
+export const Buttons = () => {
   const color = useColor();
   const disabled = useDisabled();
   return (
@@ -48,7 +47,7 @@ export const buttons = () => {
   );
 };
 
-export const buttonGroups = () => {
+export const ButtonGroups = () => {
   const color = useColor();
   const disabled = useDisabled();
   return (
@@ -95,7 +94,7 @@ export const buttonGroups = () => {
   );
 };
 
-export const withIcon = () => {
+export const WithIcon = () => {
   const color = useColor();
   const disabled = useDisabled();
   return (

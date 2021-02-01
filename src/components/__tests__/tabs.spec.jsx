@@ -1,6 +1,4 @@
-import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { screen, render, fireEvent } from '@testing-library/react';
 
 import { Tabs, Tab } from '../tabs';
 
@@ -9,8 +7,6 @@ jest.mock('uuid', () => {
     v1: jest.fn(() => 'abcd'),
   };
 });
-
-afterEach(cleanup);
 
 describe('Tabs', () => {
   test('should render', () => {
@@ -53,7 +49,7 @@ describe('Tabs', () => {
   });
 
   test('should show corresponding content when 2nd tab title is clicked', () => {
-    const { queryAllByTestId, queryByTestId } = render(
+    render(
       <Tabs>
         <Tab id="a" title={<div>Title 1</div>}>
           blah
@@ -66,11 +62,11 @@ describe('Tabs', () => {
         </Tab>
       </Tabs>
     );
-    let content = queryByTestId('tab-content');
+    let content = screen.queryByTestId('tab-content');
     expect(content).not.toHaveTextContent('blaher');
-    const title = queryAllByTestId('tab-title');
+    const title = screen.queryAllByTestId('tab-title');
     fireEvent.click(title[1]);
-    content = queryByTestId('tab-content');
+    content = screen.queryByTestId('tab-content');
     expect(content).toHaveTextContent('blaher');
   });
 });

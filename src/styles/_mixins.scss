@@ -15,12 +15,12 @@ $global-right: if($global-text-direction == rtl, left, right);
   margin-#{$global-left}: $offset;
 }
 
-@mixin columns($base-class, $number) {
+@mixin columns($base-class, $item-class, $number) {
   .#{$base-class}--columns {
     column-count: $number;
     column-width: percentage(1 / $number);
 
-    .#{$base-class}__item {
+    .#{$item-class} {
       break-inside: avoid;
     }
   }

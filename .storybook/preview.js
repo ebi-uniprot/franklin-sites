@@ -1,8 +1,10 @@
-import React from 'react';
+import React from 'react'; // Still needed for deployed storybook to work
 import { addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import StoryRouter from 'storybook-react-router';
+
 import franklinTheme from './franklin-theme';
+
 import '../src/styles/index.scss';
 
 addDecorator(withInfo);
