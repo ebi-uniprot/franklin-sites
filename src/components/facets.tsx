@@ -185,15 +185,17 @@ export const Facets: FC<FacetsProps & HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div className={cn(className, 'facets')} {...props}>
       <ul className="no-bullet">
-        {data?.map((facet) => (
-          <li key={facet.name}>
-            <Facet
-              data={facet}
-              extraActions={extraActionsFor?.get(facet.name)}
-              queryStringKey={queryStringKey}
-            />
-          </li>
-        ))}
+        {data?.map((facet) =>
+          facet.values?.length ? (
+            <li key={facet.name}>
+              <Facet
+                data={facet}
+                extraActions={extraActionsFor?.get(facet.name)}
+                queryStringKey={queryStringKey}
+              />
+            </li>
+          ) : null
+        )}
         {Children.map(children, (child, index) => {
           if (!child) {
             return null;

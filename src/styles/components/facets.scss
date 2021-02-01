@@ -6,6 +6,10 @@
     color: $colour-yankees-blue;
     font-weight: 800;
     margin-bottom: $global-margin / 4;
+
+    & + ul > li {
+      margin-bottom: 1px;
+    }
   }
 
   & > ul > li {
@@ -13,6 +17,7 @@
     margin-bottom: $global-margin / 2;
     border-bottom: 1px solid $colour-platinum;
     position: relative;
+
     a {
       cursor: pointer;
       display: block;
@@ -20,16 +25,20 @@
       line-height: $global-lineheight;
       text-align: left;
       padding: $global-margin / 3;
+
       &:hover {
         background: $colour-hover;
       }
     }
+
     a.facet-active {
       font-weight: bold;
       background: $colour-selected;
+
       &:hover,
       &:focus {
         background: $colour-hover;
+
         &:after {
           display: inline-block;
           position: absolute;
