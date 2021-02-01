@@ -39,7 +39,7 @@ export const chips = () => (
         '--main-chip-color': select(
           '--main-chip-color',
           colors,
-          colors.sapphireBlue,
+          colors.colourSapphireBlue,
           'Custom Properties'
         ),
       } as Style
