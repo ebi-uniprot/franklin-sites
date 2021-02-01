@@ -22,6 +22,7 @@ import {
   PublicationIcon,
   PublicationLineIcon,
   RefreshIcon,
+  ReferenceProteomeIcon,
   ReSubmitIcon,
   SearchIcon,
   SpinnerIcon,
@@ -57,6 +58,11 @@ const iconDefinition = [
     name: 'uniparc.svg',
     description: 'UniParc',
     icon: <UniParcIcon width={size} height={size} />,
+  },
+  {
+    name: 'reference-proteome.svg',
+    description: 'Reference proteome',
+    icon: <ReferenceProteomeIcon width={size} height={size} />,
   },
   {
     name: 'obsolete.svg',
@@ -220,25 +226,23 @@ const iconDefinition = [
   },
 ];
 
-export const icons = () => {
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {iconDefinition.map((d) => (
-        <div
-          key={d.name}
-          style={{
-            padding: '1rem',
-            margin: '0.2rem',
-            width: '10rem',
-            textAlign: 'center',
-          }}
-        >
-          {d.icon}
-          <div>
-            <small>{d.description}</small>
-          </div>
+export const icons = () => (
+  <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+    {iconDefinition.map((d) => (
+      <div
+        key={d.name}
+        style={{
+          padding: '1rem',
+          margin: '0.2rem',
+          width: '10rem',
+          textAlign: 'center',
+        }}
+      >
+        {d.icon}
+        <div>
+          <small>{d.description}</small>
         </div>
-      ))}
-    </div>
-  );
-};
+      </div>
+    ))}
+  </div>
+);

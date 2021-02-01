@@ -81,6 +81,7 @@ export { default as TremblIcon } from '../svg/trembl.svg';
 export { default as UniParcIcon } from '../svg/uniparc.svg';
 export { default as WarningTriangleIcon } from '../svg/warning-triangle.svg';
 export { default as WarningIcon } from '../svg/warning.svg';
+export { default as ReferenceProteomeIcon } from '../svg/reference-proteome.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
