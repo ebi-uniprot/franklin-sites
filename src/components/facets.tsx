@@ -13,10 +13,10 @@ import { formatLargeNumber } from '../utils';
 
 import '../styles/components/facets.scss';
 
-type FacetValue = { label?: string; value: string; count: number };
+type FacetValue = { label?: ReactNode; value: string; count: number };
 
 export type FacetObject = {
-  label: string;
+  label?: ReactNode;
   name: string;
   allowMultipleSelection?: boolean;
   values?: FacetValue[];
@@ -146,7 +146,8 @@ export const Facet: FC<FacetProps & HTMLAttributes<HTMLDivElement>> = ({
               className={isActive ? 'facet-active' : undefined}
               replace
             >
-              {`${label || value} (${formatLargeNumber(count)})`}
+              {label || value}
+              {` (${formatLargeNumber(count)})`}
             </Link>
           );
         })}
