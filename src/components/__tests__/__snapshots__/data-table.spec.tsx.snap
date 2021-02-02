@@ -23,7 +23,9 @@ exports[`DataTable should render autoload 1`] = `
         <th
           class="data-table__header-cell--ascend"
         >
-          Column 3
+          <h1>
+            Column 3
+          </h1>
         </th>
       </tr>
     </thead>
@@ -242,7 +244,9 @@ exports[`DataTable should render click-to-load 1`] = `
         <th
           class="data-table__header-cell--ascend"
         >
-          Column 3
+          <h1>
+            Column 3
+          </h1>
         </th>
       </tr>
     </thead>
