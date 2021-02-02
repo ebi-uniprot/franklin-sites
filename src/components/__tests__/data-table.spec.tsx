@@ -35,7 +35,7 @@ describe('DataTable', () => {
       render: (row) => row.content2,
     },
     {
-      label: () => <h1>Column 3</h1>,
+      label: <h1>Column 3</h1>,
       name: 'content3',
       render: (row) => row.content3,
       sortable: true,

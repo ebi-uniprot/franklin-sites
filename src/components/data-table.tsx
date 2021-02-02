@@ -76,7 +76,7 @@ function DataTableHead<T>({
             onClick={sortable ? () => onHeaderClick?.(name) : undefined}
             style={width ? { width } : undefined}
           >
-            {typeof label === 'function' ? label() : label}
+            {label}
           </th>
         ))}
       </tr>
