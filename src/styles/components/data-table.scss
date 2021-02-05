@@ -35,9 +35,10 @@
 
   &__header-cell {
     &--sortable {
+      cursor: pointer;
+
       &::after {
         content: '▲';
-        cursor: pointer;
         display: inline-block;
         font-size: 0.6em;
         margin: 0 0.8em;
