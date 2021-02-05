@@ -13,15 +13,17 @@ exports[`DataTable should render autoload 1`] = `
            
         </th>
         <th
-          class="data-table__header-cell--ascend"
+          class="data-table__header-cell--sortable data-table__header-cell--ascend"
         >
           Column 1
         </th>
-        <th>
+        <th
+          class=""
+        >
           Column 2
         </th>
         <th
-          class="data-table__header-cell--ascend"
+          class="data-table__header-cell--sortable"
         >
           <h1>
             Column 3
@@ -234,15 +236,17 @@ exports[`DataTable should render click-to-load 1`] = `
            
         </th>
         <th
-          class="data-table__header-cell--ascend"
+          class="data-table__header-cell--sortable data-table__header-cell--ascend"
         >
           Column 1
         </th>
-        <th>
+        <th
+          class=""
+        >
           Column 2
         </th>
         <th
-          class="data-table__header-cell--ascend"
+          class="data-table__header-cell--sortable"
         >
           <h1>
             Column 3

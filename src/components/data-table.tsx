@@ -68,11 +68,11 @@ function DataTableHead<T>({
         {columns.map(({ sorted, name, label, sortable, width }) => (
           <th
             key={name}
-            className={
-              sorted || sortable
-                ? `${BLOCK}__header-cell--${sorted || 'ascend'}`
-                : undefined
-            }
+            className={cn({
+              [`${BLOCK}__header-cell--sortable`]: sortable,
+              [`${BLOCK}__header-cell--${sorted || 'ascend'}`]:
+                sortable && sorted,
+            })}
             onClick={sortable ? () => onHeaderClick?.(name) : undefined}
             style={width ? { width } : undefined}
           >

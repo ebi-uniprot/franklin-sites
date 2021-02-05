@@ -34,20 +34,32 @@
   }
 
   &__header-cell {
-    &--ascend,
-    &--descend {
+    &--sortable {
+      cursor: pointer;
+
       &::after {
         content: '▲';
-        cursor: pointer;
         display: inline-block;
         font-size: 0.6em;
         margin: 0 0.8em;
+        opacity: 0.7;
         transition: transform ease-out 0.5s;
         transform: rotateX(0);
 
         @media (prefers-reduced-motion: reduce) {
           transition-duration: 0s;
         }
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+
+    &--ascend,
+    &--descend {
+      &::after {
+        opacity: 1;
       }
     }
 
