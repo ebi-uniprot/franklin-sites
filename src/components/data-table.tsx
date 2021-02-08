@@ -1,36 +1,37 @@
 /* eslint-disable react/require-default-props */
-import { ReactNode, HTMLAttributes } from 'react';
+import { memo, useCallback, ReactNode, HTMLAttributes, FormEvent } from 'react';
 import cn from 'classnames';
 
 import withDataLoader, { WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
 
-type CommonColumn<T> = {
+type BasicDatum = Record<string, unknown>;
+
+type CommonColumn<Datum> = {
   label?: ReactNode;
   name: string;
-  // same function signature as a map function
-  render: (datum: T, index: number, data: T[]) => ReactNode;
+  render: (datum: Datum) => ReactNode;
   width?: string;
 };
 
 // Either a column is sortable
-export interface SortableColumn<T> extends CommonColumn<T> {
+export interface SortableColumn<Datum> extends CommonColumn<Datum> {
   sortable?: true;
   sorted?: 'ascend' | 'descend';
 }
 // Or it's not sortable
-export interface NonSortableColumn<T> extends CommonColumn<T> {
+export interface NonSortableColumn<Datum> extends CommonColumn<Datum> {
   sortable?: false | undefined;
   sorted?: never;
 }
 
-type SharedProps<T> = {
+type SharedProps<Datum> = {
   /**
-   * An array of objects which specifies attributes about each column of your data. Each object has
-   * label, name and render attributes.
+   * An array of objects which specifies attributes about each column of your
+   * data. Each object has label, name and render attributes.
    */
-  columns: Array<SortableColumn<T> | NonSortableColumn<T>>;
+  columns: Array<SortableColumn<Datum> | NonSortableColumn<Datum>>;
   /**
    * Table fixed layout
    */
@@ -41,59 +42,59 @@ type SharedProps<T> = {
 
 const BLOCK = 'data-table';
 
-type HeadProps<T> = {
+type HeadProps<Datum> = {
   selectable?: boolean;
   /**
    * Optional event handler called when a sortable column header gets clicked
+   * Make sure that it doesn't change unecessarily by wrapping it in useCallback
    */
-  onHeaderClick?: (columnName: SortableColumn<T>['name']) => void;
+  onHeaderClick?: (columnName: SortableColumn<Datum>['name']) => void;
 };
 
-function DataTableHead<T>({
+const DataTableHead = <Datum extends BasicDatum>({
   selectable,
   columns,
   onHeaderClick,
-}: HeadProps<T> & SharedProps<T>) {
-  return (
-    <thead>
-      <tr>
-        {selectable && (
-          <th
-            key="selectable-column"
-            className={`${BLOCK}__header-cell--checkbox`}
-          >
-            {' '}
-          </th>
-        )}
-        {columns.map(({ sorted, name, label, sortable, width }) => (
-          <th
-            key={name}
-            className={cn({
-              [`${BLOCK}__header-cell--sortable`]: sortable,
-              [`${BLOCK}__header-cell--${sorted || 'ascend'}`]:
-                sortable && sorted,
-            })}
-            onClick={sortable ? () => onHeaderClick?.(name) : undefined}
-            style={width ? { width } : undefined}
-          >
-            {label}
-          </th>
-        ))}
-      </tr>
-    </thead>
-  );
-}
+}: HeadProps<Datum> & SharedProps<Datum>) => (
+  <thead>
+    <tr>
+      {selectable && (
+        <th
+          key="selectable-column"
+          className={`${BLOCK}__header-cell--checkbox`}
+        >
+          {' '}
+        </th>
+      )}
+      {columns.map(({ sorted, name, label, sortable, width }) => (
+        <th
+          key={name}
+          className={cn({
+            [`${BLOCK}__header-cell--sortable`]: sortable,
+            [`${BLOCK}__header-cell--${sorted || 'ascend'}`]:
+              sortable && sorted,
+          })}
+          onClick={sortable ? () => onHeaderClick?.(name) : undefined}
+          style={width ? { width } : undefined}
+        >
+          {label}
+        </th>
+      ))}
+    </tr>
+  </thead>
+);
+const MemoizedDataTableHead = memo(DataTableHead) as typeof DataTableHead;
 
 // Either the rows are selectable
-type Selectable<T, ID> = {
+type Selectable = {
   /**
    * A callback function that is called whenever a user selects a row.
    */
-  onSelectRow: (id: ID, datum: T, index: number, data: T[]) => void;
+  onSelectRow: (id: string) => void;
   /**
    * An object which indicates which rows have been selected by the user.
    */
-  selected: ID[];
+  selected: string[];
 };
 // Or they're not selectable
 type NonSelectable = {
@@ -101,65 +102,100 @@ type NonSelectable = {
   selected?: never;
 };
 
-type MaybeSelectable<T, ID> = Selectable<T, ID> | NonSelectable;
+type MaybeSelectable = Selectable | NonSelectable;
 
-type BodyProps<T, ID> = {
+type RowProps<Datum extends BasicDatum> = {
   /**
    * The data to be displayed
    */
-  data: T[];
+  datum: Datum;
+  id: string;
+  selectable: boolean;
+  isSelected?: boolean;
+};
+
+const DataTableRow = <Datum extends BasicDatum>({
+  datum,
+  columns,
+  selectable,
+  isSelected,
+  id,
+  fixedLayout,
+}: RowProps<Datum> & SharedProps<Datum>) => (
+  <tr className={isSelected ? `${BLOCK}__row--selected` : undefined}>
+    {selectable && (
+      <td key={`${id}-select-column`}>
+        <input
+          type="checkbox"
+          aria-label={id}
+          data-id={id}
+          checked={isSelected}
+        />
+      </td>
+    )}
+    {columns.map((column) => (
+      <td
+        key={`${id}-${column.name}`}
+        className={fixedLayout ? `${BLOCK}__cell--ellipsis` : undefined}
+      >
+        {column.render(datum)}
+      </td>
+    ))}
+  </tr>
+);
+const MemoizedDataTableRow = memo(DataTableRow) as typeof DataTableRow;
+
+type BodyProps<Datum> = {
+  /**
+   * The data to be displayed
+   */
+  data: Datum[];
   /**
    * A function that returns a unique ID for each of the data objects.
    * Same function signature as a map function.
    */
-  getIdKey: (datum: T, index: number, data: T[]) => ID;
+  getIdKey: (datum: Datum, index: number, data: Datum[]) => string;
+  onSelectRow?: Selectable['onSelectRow'];
 };
 
-function DataTableBody<
-  T extends Record<string, unknown>,
-  ID extends string | number
->({
+const DataTableBody = <Datum extends BasicDatum>({
   data,
-  columns,
-  onSelectRow,
   selected,
   getIdKey,
-  fixedLayout,
-}: BodyProps<T, ID> & SharedProps<T> & MaybeSelectable<T, ID>) {
+  onSelectRow,
+  ...props
+}: BodyProps<Datum> & SharedProps<Datum> & MaybeSelectable) => {
+  const handleChange = useCallback(
+    (event: FormEvent<HTMLElement>) => {
+      if (!onSelectRow) {
+        return;
+      }
+      const target = event.target as HTMLElement;
+      if (target.dataset.id) {
+        onSelectRow(target.dataset.id);
+      }
+    },
+    [onSelectRow]
+  );
+
   return (
-    <tbody>
+    <tbody onChange={handleChange}>
       {data.map((datum, index) => {
         const id = getIdKey(datum, index, data);
-        const isSelected = selected?.includes(id);
         return (
-          <tr
+          <MemoizedDataTableRow
             key={id}
-            className={isSelected ? `${BLOCK}__row--selected` : undefined}
-          >
-            {selected && (
-              <td key={`${id}-select-column`}>
-                <input
-                  type="checkbox"
-                  onChange={() => onSelectRow?.(id, datum, index, data)}
-                  aria-label={`${id}`}
-                  checked={isSelected}
-                />
-              </td>
-            )}
-            {columns.map((column) => (
-              <td
-                key={`${id}-${column.name}`}
-                className={fixedLayout ? `${BLOCK}__cell--ellipsis` : undefined}
-              >
-                {column.render(datum, index, data)}
-              </td>
-            ))}
-          </tr>
+            datum={datum}
+            id={id}
+            isSelected={selected?.includes(id)}
+            selectable={Boolean(selected)}
+            {...props}
+          />
         );
       })}
     </tbody>
   );
-}
+};
 
 type TableProps = {
   /**
@@ -174,17 +210,14 @@ type TableProps = {
   optimisedRendering?: boolean;
 };
 
-export interface Props<T, ID = string>
+export interface Props<Datum>
   extends TableProps,
-    BodyProps<T, ID>,
+    BodyProps<Datum>,
     // Omit because 'selectable' is not passed from the top, it is deduced later
-    Omit<HeadProps<T>, 'selectable'>,
-    SharedProps<T> {}
+    Omit<HeadProps<Datum>, 'selectable'>,
+    SharedProps<Datum> {}
 
-export function DataTable<
-  T extends Record<string, unknown>,
-  ID extends string | number = string
->({
+export const DataTable = <Datum extends BasicDatum>({
   data,
   columns,
   onSelectRow,
@@ -196,9 +229,9 @@ export function DataTable<
   optimisedRendering,
   className,
   ...props
-}: Props<T, ID> &
-  MaybeSelectable<T, ID> &
-  HTMLAttributes<HTMLTableElement>): JSX.Element {
+}: Props<Datum> &
+  MaybeSelectable &
+  HTMLAttributes<HTMLTableElement>): JSX.Element => {
   let selectedProps = {};
   if (selected) {
     selectedProps = { selected, onSelectRow };
@@ -212,12 +245,12 @@ export function DataTable<
       })}
       {...props}
     >
-      <DataTableHead<T>
+      <MemoizedDataTableHead<Datum>
         selectable={Boolean(selected)}
         columns={columns}
         onHeaderClick={onHeaderClick}
       />
-      <DataTableBody<T, ID>
+      <DataTableBody<Datum>
         data={data}
         columns={columns}
         getIdKey={getIdKey}
@@ -226,14 +259,11 @@ export function DataTable<
       />
     </table>
   );
-}
+};
 
-export const DataTableWithLoader = <
-  T extends Record<string, unknown>,
-  ID extends string | number = string
->(
-  props: WrapperProps<T> &
-    Props<T, ID> &
-    MaybeSelectable<T, ID> &
+export const DataTableWithLoader = <Datum extends BasicDatum>(
+  props: WrapperProps<Datum> &
+    Props<Datum> &
+    MaybeSelectable &
     HTMLAttributes<HTMLTableElement>
-) => withDataLoader<T, typeof props>(DataTable)(props);
+) => withDataLoader<Datum, typeof props>(DataTable)(props);
