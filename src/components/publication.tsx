@@ -28,7 +28,8 @@ const Authors: FC<AuthorProps> = ({ authors, limit = 10, linkBuilder }) => {
   return (
     <section className="publication__authors">
       {displayedAuthors.map((author, index) => (
-        <Fragment key={author}>
+        // eslint-disable-next-line react/no-array-index-key
+        <Fragment key={index}>
           {index !== 0 && ', '}
           <Link to={linkBuilder(author)}>{author}</Link>
         </Fragment>
