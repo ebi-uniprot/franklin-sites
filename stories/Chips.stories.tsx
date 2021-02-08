@@ -54,7 +54,7 @@ export const withClick = () => (
     <Chip title="this is a primary chip" onClick={action('click on primary')}>
       Primary
     </Chip>
-    <Chip className="secondary" onClick={action('click on secondary')}>
+    <Chip variant="secondary" onClick={action('click on secondary')}>
       Secondary
     </Chip>
   </>
@@ -63,7 +63,7 @@ export const withClick = () => (
 export const removable = () => (
   <>
     <Chip onRemove={action('Remove chip')}>Primary</Chip>
-    <Chip onRemove={action('Remove chip')} className="secondary">
+    <Chip onRemove={action('Remove chip')} variant="secondary">
       Secondary
     </Chip>
   </>

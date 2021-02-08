@@ -4,9 +4,10 @@ import {
   useRef,
   ReactNode,
   MouseEvent as ReactMouseEvent,
-  HTMLAttributes,
 } from 'react';
 import cn from 'classnames';
+
+import { Button, ButtonProps } from './button';
 
 import RemoveIcon from '../svg/times.svg';
 
@@ -26,7 +27,7 @@ type ChipProps = {
    */
   disabled?: boolean;
   /**
-   * Additional CSS classnames to apply (eg secondary, tertiary)
+   * Additional CSS classnames to apply
    */
   className?: string;
   /**
@@ -43,10 +44,10 @@ type ChipProps = {
   onClick?: () => void;
 };
 
-export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
+export const Chip: FC<ChipProps & ButtonProps> = ({
   children,
   onRemove,
-  className = '',
+  className,
   disabled,
   compact = false,
   title,
@@ -65,8 +66,7 @@ export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
   );
 
   return (
-    <button
-      type="button"
+    <Button
       className={cn(
         'chip',
         { 'chip--disabled': disabled, 'chip--compact': compact },
@@ -74,14 +74,20 @@ export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
       )}
       title={title}
       onClick={onClick}
-      disabled={typeof disabled === 'boolean' ? disabled : !onClick}
+      disabled={
+        typeof disabled === 'boolean' ? disabled : !(onClick || onRemove)
+      }
       {...props}
     >
       {children}
       {onRemove && !disabled && (
-        <RemoveIcon data-testid="remove-icon" onClick={handleRemove} />
+        <RemoveIcon
+          className="chip__remove-icon"
+          data-testid="remove-icon"
+          onClick={handleRemove}
+        />
       )}
-    </button>
+    </Button>
   );
 };
 

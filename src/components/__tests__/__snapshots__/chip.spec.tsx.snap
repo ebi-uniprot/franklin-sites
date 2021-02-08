@@ -3,7 +3,7 @@
 exports[`Chip component should render 1`] = `
 <DocumentFragment>
   <button
-    class="chip"
+    class="button primary disabled chip"
     disabled=""
     type="button"
   >
