@@ -23,7 +23,7 @@ export const dataTable = () => (
       <DataTable
         {...props}
         columns={columns}
-        onSelectRow={action('onSelect')}
+        onSelectRow={action('onSelectRow')}
         onHeaderClick={action('onHeaderClick')}
         selected={[]}
       />
@@ -37,7 +37,7 @@ export const dataTableWithLoader = () => (
       <DataTableWithLoader
         {...props}
         columns={columns}
-        onSelectRow={action('onSelect')}
+        onSelectRow={action('onSelectRow')}
         onHeaderClick={action('onHeaderClick')}
         selected={[]}
       />
@@ -52,7 +52,7 @@ export const dataTableWithLoaderClickToLoad = () => (
         {...props}
         columns={columns}
         clickToLoad
-        onSelectRow={action('onSelect')}
+        onSelectRow={action('onSelectRow')}
         onHeaderClick={action('onHeaderClick')}
         selected={[]}
       />
@@ -66,7 +66,7 @@ export const dataTableWithLoaderCompact = () => (
       <DataTableWithLoader
         {...props}
         columns={columns}
-        onSelectRow={action('onSelect')}
+        onSelectRow={action('onSelectRow')}
         onHeaderClick={action('onHeaderClick')}
         selected={[]}
         density="compact"
@@ -81,7 +81,7 @@ export const fixedTableWithLoader = () => (
       <DataTableWithLoader
         {...props}
         columns={columns}
-        onSelectRow={action('onSelect')}
+        onSelectRow={action('onSelectRow')}
         selected={[]}
         fixedLayout
       />
