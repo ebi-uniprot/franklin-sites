@@ -1,4 +1,4 @@
-import { forwardRef, FC, ReactNode, HTMLAttributes } from 'react';
+import { forwardRef, FC, ReactNode, HTMLAttributes, Fragment } from 'react';
 import { NavLink, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -8,25 +8,17 @@ type CardLinkProps = {
   name: string;
   link: LinkProps['to'];
   color?: string;
-  includeSeparator?: boolean;
 };
 
-const CardLink: FC<CardLinkProps> = ({
-  name,
-  link,
-  color,
-  includeSeparator,
-}) => (
-  <span
-    className={cn('card__link', {
-      'card__link--separator': includeSeparator,
-    })}
-    style={color ? { borderBottom: `0.125rem solid ${color}` } : {}}
+const CardLink: FC<CardLinkProps> = ({ name, link, color }) => (
+  <NavLink
+    to={link}
+    className="card__link"
+    activeClassName="card__link--active"
+    style={color ? { borderBottom: `0.125rem solid ${color}` } : undefined}
   >
-    <NavLink to={link} activeClassName="card__link--active">
-      {name}
-    </NavLink>
-  </span>
+    {name}
+  </NavLink>
 );
 
 type Props = {
@@ -41,14 +33,14 @@ type Props = {
   /**
    * Links to be displayed at the bottom of the card
    */
-  links?: Array<Omit<CardLinkProps, 'includeSeparator'>>;
+  links?: Array<CardLinkProps>;
   /**
    * Should the card styling show it as active or not
    */
   active?: boolean;
 };
 
-const Card = forwardRef<HTMLDivElement, Props & HTMLAttributes<HTMLDivElement>>(
+const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
   (
     {
       title,
@@ -73,12 +65,12 @@ const Card = forwardRef<HTMLDivElement, Props & HTMLAttributes<HTMLDivElement>>(
         }
       : {};
     return (
-      <div
+      <section
         className={cn(className, 'card', { 'card--active': active })}
         ref={ref}
         {...props}
       >
-        <section {...containerAttributes}>
+        <div {...containerAttributes}>
           {title && (
             <div className="card__header">
               <h2 className="card__title">{title}</h2>
@@ -86,15 +78,18 @@ const Card = forwardRef<HTMLDivElement, Props & HTMLAttributes<HTMLDivElement>>(
             </div>
           )}
           <div className="card__content">{children}</div>
-        </section>
+        </div>
         {links?.length ? (
-          <section className="card__actions">
-            {links.map((l, i) => (
-              <CardLink key={l.name} {...l} includeSeparator={i > 0} />
+          <div className="card__actions">
+            {links.map((link, index) => (
+              <Fragment key={link.name}>
+                {index > 0 && ' · '}
+                <CardLink {...link} />
+              </Fragment>
             ))}
-          </section>
+          </div>
         ) : undefined}
-      </div>
+      </section>
     );
   }
 );
