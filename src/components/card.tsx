@@ -1,4 +1,4 @@
-import { forwardRef, FC, ReactNode, HTMLAttributes, Fragment } from 'react';
+import { forwardRef, FC, ReactNode, HTMLAttributes } from 'react';
 import { NavLink, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -81,11 +81,8 @@ const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
         </div>
         {links?.length ? (
           <div className="card__actions">
-            {links.map((link, index) => (
-              <Fragment key={link.name}>
-                {index > 0 && ' · '}
-                <CardLink {...link} />
-              </Fragment>
+            {links.map((link) => (
+              <CardLink key={link.name} {...link} />
             ))}
           </div>
         ) : undefined}

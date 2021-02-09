@@ -71,6 +71,12 @@ $card-link-padding: 0.5rem;
     background-color: $colour-hover;
   }
 
+  &:not(:first-child)::before {
+    content: ' · ';
+    margin-left: -$card-link-padding;
+    margin-right: $card-link-padding;
+  }
+
   &--active {
     background-color: scale-color($color: $colour-platinum, $lightness: 20%);
   }
