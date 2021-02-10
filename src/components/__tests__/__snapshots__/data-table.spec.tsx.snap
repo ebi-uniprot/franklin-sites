@@ -39,6 +39,7 @@ exports[`DataTable should render autoload 1`] = `
           <input
             aria-label="id0"
             checked=""
+            data-id="id0"
             type="checkbox"
           />
         </td>
@@ -56,6 +57,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id1"
+            data-id="id1"
             type="checkbox"
           />
         </td>
@@ -73,6 +75,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id2"
+            data-id="id2"
             type="checkbox"
           />
         </td>
@@ -90,6 +93,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id3"
+            data-id="id3"
             type="checkbox"
           />
         </td>
@@ -107,6 +111,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id4"
+            data-id="id4"
             type="checkbox"
           />
         </td>
@@ -124,6 +129,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id5"
+            data-id="id5"
             type="checkbox"
           />
         </td>
@@ -141,6 +147,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id6"
+            data-id="id6"
             type="checkbox"
           />
         </td>
@@ -158,6 +165,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id7"
+            data-id="id7"
             type="checkbox"
           />
         </td>
@@ -175,6 +183,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id8"
+            data-id="id8"
             type="checkbox"
           />
         </td>
@@ -192,6 +201,7 @@ exports[`DataTable should render autoload 1`] = `
         <td>
           <input
             aria-label="id9"
+            data-id="id9"
             type="checkbox"
           />
         </td>
@@ -262,6 +272,7 @@ exports[`DataTable should render click-to-load 1`] = `
           <input
             aria-label="id0"
             checked=""
+            data-id="id0"
             type="checkbox"
           />
         </td>
@@ -279,6 +290,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id1"
+            data-id="id1"
             type="checkbox"
           />
         </td>
@@ -296,6 +308,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id2"
+            data-id="id2"
             type="checkbox"
           />
         </td>
@@ -313,6 +326,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id3"
+            data-id="id3"
             type="checkbox"
           />
         </td>
@@ -330,6 +344,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id4"
+            data-id="id4"
             type="checkbox"
           />
         </td>
@@ -347,6 +362,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id5"
+            data-id="id5"
             type="checkbox"
           />
         </td>
@@ -364,6 +380,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id6"
+            data-id="id6"
             type="checkbox"
           />
         </td>
@@ -381,6 +398,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id7"
+            data-id="id7"
             type="checkbox"
           />
         </td>
@@ -398,6 +416,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id8"
+            data-id="id8"
             type="checkbox"
           />
         </td>
@@ -415,6 +434,7 @@ exports[`DataTable should render click-to-load 1`] = `
         <td>
           <input
             aria-label="id9"
+            data-id="id9"
             type="checkbox"
           />
         </td>
