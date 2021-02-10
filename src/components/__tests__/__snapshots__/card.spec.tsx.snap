@@ -2,10 +2,10 @@
 
 exports[`Card component should render 1`] = `
 <DocumentFragment>
-  <div
+  <section
     class="card"
   >
-    <section>
+    <div>
       <div
         class="card__header"
       >
@@ -22,17 +22,17 @@ exports[`Card component should render 1`] = `
           Some content
         </span>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </DocumentFragment>
 `;
 
 exports[`Card component should render card with links 1`] = `
 <DocumentFragment>
-  <div
+  <section
     class="card"
   >
-    <section>
+    <div>
       <div
         class="card__header"
       >
@@ -54,31 +54,28 @@ exports[`Card component should render card with links 1`] = `
           Some content
         </span>
       </div>
-    </section>
-    <section
+    </div>
+    <div
       class="card__actions"
     >
-      <span
+      <a
         class="card__link"
+        href="/example.com"
         style="border-bottom: 0.125rem solid red;"
       >
-        <a
-          href="/example.com"
-        >
-          link
-        </a>
-      </span>
-    </section>
-  </div>
+        link
+      </a>
+    </div>
+  </section>
 </DocumentFragment>
 `;
 
 exports[`Card component should render card with onclick 1`] = `
 <DocumentFragment>
-  <div
+  <section
     class="card"
   >
-    <section
+    <div
       class="card--has-hover"
       role="button"
       tabindex="0"
@@ -104,17 +101,17 @@ exports[`Card component should render card with onclick 1`] = `
           Some content
         </span>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </DocumentFragment>
 `;
 
 exports[`Card component should render card with subtitle 1`] = `
 <DocumentFragment>
-  <div
+  <section
     class="card"
   >
-    <section>
+    <div>
       <div
         class="card__header"
       >
@@ -136,7 +133,7 @@ exports[`Card component should render card with subtitle 1`] = `
           Some content
         </span>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </DocumentFragment>
 `;
