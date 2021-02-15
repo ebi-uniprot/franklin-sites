@@ -114,6 +114,8 @@ type RowProps<Datum extends BasicDatum> = {
   isSelected?: boolean;
 };
 
+const noop = () => undefined;
+
 const DataTableRow = <Datum extends BasicDatum>({
   datum,
   columns,
@@ -130,6 +132,11 @@ const DataTableRow = <Datum extends BasicDatum>({
           aria-label={id}
           data-id={id}
           checked={isSelected}
+          // Yes, we know what we are doing, we do event delegation at the level
+          // of the body in order to prevent rerendering each row if the handler
+          // function changes (out of the franklin's responsibility).
+          // This prevents a React warning in development
+          onChange={noop}
         />
       </td>
     )}
