@@ -69,8 +69,7 @@
           text-align: left;
           font-weight: normal;
           padding: 0.5rem !important; // These two !important's are required to ensure the BLAST button is ...
-          margin-bottom: 0 !important; // styled in the same way as the <a> tags in the Sequence component
-          margin-right: 2rem;
+          margin: 0 !important; // styled in the same way as the <a> tags in the Sequence component
           position: relative;
           display: block;
           border: none;
