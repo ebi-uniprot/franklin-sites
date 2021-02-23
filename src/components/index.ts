@@ -32,7 +32,6 @@ export { default as MainSearch } from './main-search';
 export { default as Message } from './message';
 export { default as ModalBackdrop } from './modal-backdrop';
 export { default as PageIntro } from './page-intro';
-export { default as Publication } from './publication';
 export { default as SearchInput } from './search-input';
 export { default as Sequence } from './sequence';
 export { default as SequenceSubmission } from './sequence-submission';
@@ -82,6 +81,7 @@ export { default as UniParcIcon } from '../svg/uniparc.svg';
 export { default as WarningTriangleIcon } from '../svg/warning-triangle.svg';
 export { default as WarningIcon } from '../svg/warning.svg';
 export { default as ReferenceProteomeIcon } from '../svg/reference-proteome.svg';
+export { default as CommunityAnnotationIcon } from '../svg/community.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';

@@ -35,6 +35,7 @@ import {
   UniParcIcon,
   WarningIcon,
   WarningTriangleIcon,
+  CommunityAnnotationIcon,
 } from '../src/components';
 
 export default {
@@ -223,6 +224,11 @@ const iconDefinition = [
     name: 'success.svg',
     description: 'Success',
     icon: <SuccessIcon width={size} height={size} />,
+  },
+  {
+    name: 'community.svg',
+    description: 'Community',
+    icon: <CommunityAnnotationIcon width={size} height={size} />,
   },
 ];
 
