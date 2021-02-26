@@ -135,4 +135,11 @@
       padding: 0.25;
     }
   }
+
+  & .expandable-list {
+    button,
+    a {
+      white-space: nowrap;
+    }
+  }
 }

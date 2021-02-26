@@ -1,8 +1,6 @@
 .expandable-list {
   button,
   a {
-    white-space: nowrap;
-
     .facets &:not(.expandable-list__action) {
       color: initial;
       font-weight: initial;
