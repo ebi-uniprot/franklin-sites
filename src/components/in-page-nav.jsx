@@ -116,7 +116,7 @@ const InPageNav = ({ sections, rootElement }) => {
     // sleep, to give the rest of the page a chance to start loading
     // schedule, to trigger only when the page has finished doing work
     // hopefully by then all the components are loaded and in their right space
-    sleep(250)
+    sleep(1000)
       .then(() => schedule(1000))
       .then(() => {
         document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
