@@ -1,3 +1,5 @@
+import { select } from '@storybook/addon-knobs';
+
 import {
   BasketIcon,
   BinIcon,
@@ -7,6 +9,7 @@ import {
   CitedSpeechIcon,
   ClockIcon,
   CloseIcon,
+  CommunityAnnotationIcon,
   ComputerMappedIcon,
   ConfigureIcon,
   CopyIcon,
@@ -17,13 +20,13 @@ import {
   ExternalLinkIcon,
   ListIcon,
   ObsoleteIcon,
-  ProteinIcon,
   ProtVistaIcon,
+  ProteinIcon,
   PublicationIcon,
   PublicationLineIcon,
-  RefreshIcon,
-  ReferenceProteomeIcon,
   ReSubmitIcon,
+  ReferenceProteomeIcon,
+  RefreshIcon,
   SearchIcon,
   SpinnerIcon,
   StatisticsIcon,
@@ -35,11 +38,12 @@ import {
   UniParcIcon,
   WarningIcon,
   WarningTriangleIcon,
-  CommunityAnnotationIcon,
   ZoomIn,
   ZoomOut,
   ZoomToSequence,
 } from '../src/components';
+
+import colors from '../src/styles/colours.json';
 
 export default {
   title: 'Core/Icons',
@@ -251,7 +255,13 @@ const iconDefinition = [
 ];
 
 export const icons = () => (
-  <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      color: select('CSS color', colors, colors.sapphireBlue),
+    }}
+  >
     {iconDefinition.map((d) => (
       <div
         key={d.name}
