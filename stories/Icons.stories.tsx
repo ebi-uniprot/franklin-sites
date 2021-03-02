@@ -36,6 +36,9 @@ import {
   WarningIcon,
   WarningTriangleIcon,
   CommunityAnnotationIcon,
+  ZoomIn,
+  ZoomOut,
+  ZoomToSequence,
 } from '../src/components';
 
 export default {
@@ -229,6 +232,21 @@ const iconDefinition = [
     name: 'community.svg',
     description: 'Community',
     icon: <CommunityAnnotationIcon width={size} height={size} />,
+  },
+  {
+    name: 'zoom-in.svg',
+    description: 'Zoom In',
+    icon: <ZoomIn width={size} height={size} />,
+  },
+  {
+    name: 'zoom-out.svg',
+    description: 'Zoom Out',
+    icon: <ZoomOut width={size} height={size} />,
+  },
+  {
+    name: 'zoom-to-sequence.svg',
+    description: 'Zoom to sequence',
+    icon: <ZoomToSequence width={size} height={size} />,
   },
 ];
 
