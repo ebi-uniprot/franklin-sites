@@ -1,6 +1,8 @@
 import { FC, AnchorHTMLAttributes } from 'react';
 import cn from 'classnames';
 
+import { tidyUrlString } from '../utils';
+
 import ExternalLinkIcon from '../svg/external-link.svg';
 
 import '../styles/components/external-link.scss';
@@ -14,11 +16,20 @@ type Props = {
    * Decides if a new browser tab should be opened or not, defaults to true
    */
   newTab?: boolean;
+  tidyUrl?: boolean;
 };
 
 const ExternalLink: FC<
   Props & Exclude<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
-> = ({ children, url, newTab = true, className, rel, ...props }) => (
+> = ({
+  children,
+  url,
+  tidyUrl = true,
+  newTab = true,
+  className,
+  rel,
+  ...props
+}) => (
   <a
     {...props}
     className={cn('external-link', className)}
@@ -26,7 +37,7 @@ const ExternalLink: FC<
     href={url}
     {...(newTab ? { target: '_blank' } : {})}
   >
-    {children}
+    {children || (tidyUrl ? tidyUrlString(url) : url)}
     <ExternalLinkIcon width={12.5} />
   </a>
 );
