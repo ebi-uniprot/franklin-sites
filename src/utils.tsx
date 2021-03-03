@@ -12,7 +12,7 @@ type Item = {
 };
 export const getFlattenedPaths = (
   currentItems: Item[],
-  id: string,
+  id?: string,
   path: Item[] = []
 ) => {
   let flattened: Pick<Item, 'label' | 'id'>[][] = [];
@@ -50,11 +50,11 @@ export function restructureFlattenedTreeDataForAutocomplete(
   );
 }
 
-export function formatLargeNumber(x: number) {
+export function formatLargeNumber(x: string | number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-export function capitaliseFirstLetter(string: string) {
+export function capitaliseFirstLetter(string?: string | null) {
   return string && string.charAt(0).toUpperCase() + string.slice(1);
 }
 
