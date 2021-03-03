@@ -9,7 +9,8 @@ type Props = {
   children: string | number;
 };
 
-const LongNumber: FC<Props> = ({ children }: Props) =>
-  formatLargeNumber(children);
+const LongNumber: FC<Props> = ({ children }) => (
+  <>{formatLargeNumber(children)}</>
+);
 
 export default LongNumber;
