@@ -14,3 +14,7 @@ export default {
 export const externalLink = () => (
   <ExternalLink url="https://www.ebi.ac.uk/">external link</ExternalLink>
 );
+
+export const externalLinkWithoutTextPassed = () => (
+  <ExternalLink url="https://www.ebi.ac.uk/" />
+);
