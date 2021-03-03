@@ -1,3 +1,5 @@
+import { select } from '@storybook/addon-knobs';
+
 import {
   BasketIcon,
   BinIcon,
@@ -7,6 +9,7 @@ import {
   CitedSpeechIcon,
   ClockIcon,
   CloseIcon,
+  CommunityAnnotationIcon,
   ComputerMappedIcon,
   ConfigureIcon,
   CopyIcon,
@@ -17,13 +20,13 @@ import {
   ExternalLinkIcon,
   ListIcon,
   ObsoleteIcon,
-  ProteinIcon,
   ProtVistaIcon,
+  ProteinIcon,
   PublicationIcon,
   PublicationLineIcon,
-  RefreshIcon,
-  ReferenceProteomeIcon,
   ReSubmitIcon,
+  ReferenceProteomeIcon,
+  RefreshIcon,
   SearchIcon,
   SpinnerIcon,
   StatisticsIcon,
@@ -35,8 +38,12 @@ import {
   UniParcIcon,
   WarningIcon,
   WarningTriangleIcon,
-  CommunityAnnotationIcon,
+  ZoomIn,
+  ZoomOut,
+  ZoomToSequence,
 } from '../src/components';
+
+import colors from '../src/styles/colours.json';
 
 export default {
   title: 'Core/Icons',
@@ -230,10 +237,31 @@ const iconDefinition = [
     description: 'Community',
     icon: <CommunityAnnotationIcon width={size} height={size} />,
   },
+  {
+    name: 'zoom-in.svg',
+    description: 'Zoom In',
+    icon: <ZoomIn width={size} height={size} />,
+  },
+  {
+    name: 'zoom-out.svg',
+    description: 'Zoom Out',
+    icon: <ZoomOut width={size} height={size} />,
+  },
+  {
+    name: 'zoom-to-sequence.svg',
+    description: 'Zoom to sequence',
+    icon: <ZoomToSequence width={size} height={size} />,
+  },
 ];
 
 export const icons = () => (
-  <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      color: select('CSS color', colors, colors.sapphireBlue),
+    }}
+  >
     {iconDefinition.map((d) => (
       <div
         key={d.name}

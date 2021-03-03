@@ -82,6 +82,9 @@ export { default as WarningTriangleIcon } from '../svg/warning-triangle.svg';
 export { default as WarningIcon } from '../svg/warning.svg';
 export { default as ReferenceProteomeIcon } from '../svg/reference-proteome.svg';
 export { default as CommunityAnnotationIcon } from '../svg/community.svg';
+export { default as ZoomIn } from '../svg/zoom-in.svg';
+export { default as ZoomOut } from '../svg/zoom-out.svg';
+export { default as ZoomToSequence } from '../svg/zoom-to-sequence.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
