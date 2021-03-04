@@ -43,9 +43,8 @@ const Window: FC<WindowProps> = ({
   const cssClasses = cn(baseClassName, className, {
     [`${baseClassName}--with-shadow`]: !!withShadow,
   });
-  if (typeof onWindowOpen === 'function') {
-    onWindowOpen();
-  }
+
+  onWindowOpen?.();
 
   return (
     <div className={cssClasses} style={styles}>
