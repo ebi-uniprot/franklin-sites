@@ -74,6 +74,6 @@ export function highlightSubstring(string: string, substring: string) {
 }
 
 export const tidyUrlString = (url: string) => {
-  const re = /(^https?:\/\/(www\.)?)|(\/$)/g;
+  const re = /(^(https?:\/\/)?(www\.)?)|(\/+$)/g;
   return url.replaceAll(re, '');
 };

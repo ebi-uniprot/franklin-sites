@@ -8,6 +8,7 @@ import {
   restructureFlattenedTreeItemsForAutocomplete,
   highlightSubstring,
   capitaliseFirstLetter,
+  tidyUrlString,
 } from '../utils';
 
 import { treeData } from '../mock-data/tree-data';
@@ -162,5 +163,25 @@ describe('highlightSubstring', () => {
   });
   test('should return string if no substring found', () => {
     expect(highlightSubstring(string, 'zap')).toEqual(string);
+  });
+});
+
+describe('tidyUrlString', () => {
+  it('should remove http://wwww and any trailing slashes', () => {
+    expect(tidyUrlString('http://www.ebi.ac.uk//')).toEqual('ebi.ac.uk');
+  });
+  it('should remove https', () => {
+    expect(tidyUrlString('https://ebi.ac.uk')).toEqual('ebi.ac.uk');
+  });
+  it('should remove www', () => {
+    expect(tidyUrlString('www.ebi.ac.uk')).toEqual('ebi.ac.uk');
+  });
+  it('should leave forward slashes in the middle of the url', () => {
+    expect(tidyUrlString('https://www.ebi.ac.uk/uniprot/TrEMBLstats')).toEqual(
+      'ebi.ac.uk/uniprot/TrEMBLstats'
+    );
+  });
+  it('should return the same url if it is already tidy', () => {
+    expect(tidyUrlString('ebi.ac.uk')).toEqual('ebi.ac.uk');
   });
 });

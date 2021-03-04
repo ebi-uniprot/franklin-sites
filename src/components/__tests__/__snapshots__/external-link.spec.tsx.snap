@@ -34,3 +34,19 @@ exports[`ExternalLink component should render external link without target: _bla
   </a>
 </DocumentFragment>
 `;
+
+exports[`ExternalLink component should render just the url without http(s), www, /$ if no child text is passed 1`] = `
+<DocumentFragment>
+  <a
+    class="external-link"
+    href="https://www.ebi.ac.uk/"
+    rel="noopener"
+    target="_blank"
+  >
+    ebi.ac.uk
+    <test-file-stub
+      width="12.5"
+    />
+  </a>
+</DocumentFragment>
+`;
