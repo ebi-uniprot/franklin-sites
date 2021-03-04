@@ -55,6 +55,9 @@ const MainSearch = ({
         type="text"
         className="main-search__input"
         data-testid="main-search-input"
+        aria-label={`Text query${
+          selectedNamespace ? ` in ${selectedNamespace}` : ''
+        }`}
         onChange={(e) => onChange(e.target.value)}
         value={searchTerm}
       />
