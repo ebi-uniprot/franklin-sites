@@ -8,6 +8,7 @@ exports[`MainSearch component should render 1`] = `
     style="--main-button-color: #00639a;"
   >
     <input
+      aria-label="Text query"
       class="main-search__input"
       data-testid="main-search-input"
       type="text"
@@ -44,6 +45,7 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
       />
     </div>
     <input
+      aria-label="Text query in one"
       class="main-search__input"
       data-testid="main-search-input"
       type="text"
