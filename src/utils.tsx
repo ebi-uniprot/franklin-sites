@@ -73,7 +73,8 @@ export function highlightSubstring(string: string, substring: string) {
   );
 }
 
-export const tidyUrlString = (url: string) => {
-  const re = /(^(https?:\/\/)?(www\.)?)|(\/+$)/g;
-  return url.replaceAll(re, '');
-};
+const reProtocol = /^((https?:\/\/)?(www\.)?)/;
+const reTrailingSlashes = /(\/+$)/;
+
+export const tidyUrlString = (url: string) =>
+  url.replace(reProtocol, '').replace(reTrailingSlashes, '');
