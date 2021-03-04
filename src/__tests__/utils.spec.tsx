@@ -184,4 +184,7 @@ describe('tidyUrlString', () => {
   it('should return the same url if it is already tidy', () => {
     expect(tidyUrlString('ebi.ac.uk')).toEqual('ebi.ac.uk');
   });
+  it('should handle a schema-relative URL', () => {
+    expect(tidyUrlString('//www.ebi.ac.uk/')).toEqual('ebi.ac.uk');
+  });
 });
