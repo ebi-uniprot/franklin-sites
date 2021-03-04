@@ -1,7 +1,9 @@
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { ExternalLink } from '../src/components';
 
 export default {
   title: 'Core/External link',
+  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose:
@@ -12,9 +14,18 @@ export default {
 };
 
 export const externalLink = () => (
-  <ExternalLink url="https://www.ebi.ac.uk/">external link</ExternalLink>
+  <ExternalLink
+    url="https://www.ebi.ac.uk/"
+    noIcon={boolean('Hide icon?', false)}
+  >
+    external link
+  </ExternalLink>
 );
 
-export const externalLinkWithoutTextPassed = () => (
-  <ExternalLink url="https://www.ebi.ac.uk/" />
+export const externalLinkWithoutPassingText = () => (
+  <ExternalLink
+    url="https://www.ebi.ac.uk/"
+    tidyUrl={boolean('Tidy URL string?', false)}
+    noIcon={boolean('Hide icon?', false)}
+  />
 );
