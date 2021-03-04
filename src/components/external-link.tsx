@@ -40,7 +40,9 @@ const ExternalLink: FC<
     {...(newTab ? { target: '_blank' } : {})}
   >
     {children || (tidyUrl ? tidyUrlString(url) : url)}
-    {!noIcon && <ExternalLinkIcon width={12.5} />}
+    {!noIcon && (
+      <ExternalLinkIcon data-testid="external-link-icon" width={12.5} />
+    )}
   </a>
 );
 
