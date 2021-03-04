@@ -23,7 +23,7 @@ describe('ExternalLink component', () => {
 
   test('should render just the url without http(s), www, /$ if no child text is passed', () => {
     const { asFragment } = render(
-      <ExternalLink url="https://www.ebi.ac.uk/" />
+      <ExternalLink url="https://www.ebi.ac.uk/" tidyUrl />
     );
     expect(asFragment()).toMatchSnapshot();
   });

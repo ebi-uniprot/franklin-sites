@@ -17,6 +17,7 @@ type Props = {
    */
   newTab?: boolean;
   tidyUrl?: boolean;
+  noIcon?: boolean;
 };
 
 const ExternalLink: FC<
@@ -24,10 +25,11 @@ const ExternalLink: FC<
 > = ({
   children,
   url,
-  tidyUrl = true,
+  tidyUrl = false,
   newTab = true,
   className,
   rel,
+  noIcon = false,
   ...props
 }) => (
   <a
@@ -38,7 +40,7 @@ const ExternalLink: FC<
     {...(newTab ? { target: '_blank' } : {})}
   >
     {children || (tidyUrl ? tidyUrlString(url) : url)}
-    <ExternalLinkIcon width={12.5} />
+    {!noIcon && <ExternalLinkIcon width={12.5} />}
   </a>
 );
 
