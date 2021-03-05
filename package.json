@@ -8,13 +8,13 @@
     "dist",
     "assets"
   ],
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types/components/index.d.ts",
   "sideEffects": false,
   "repository": "https://github.com/ebi-uniprot/franklin.git",
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build-library && yarn build-types && yarn build-storybook",
+    "build": "rm -rf dist && yarn build-library && yarn build-types && yarn build-storybook",
     "build-library": "webpack",
     "build-types": "tsc --project tsconfig.declaration.json",
     "preanalyse": "yarn run build-library",
