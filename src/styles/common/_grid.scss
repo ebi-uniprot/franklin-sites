@@ -3,13 +3,15 @@
 
 $grid-name: 'uniprot-grid';
 $gap: 1rem;
-$max-width: 117ch; // 1070px with Lato 16px base as per mockup
+// Needs to be absolute value, otherwise grid width will change depending on
+// where in the page we use it
+$max-width: 67rem; // ±1070px with Lato 16px base as per mockup
 $n-columns: 12;
 
 /* uniprot-website grid system */
 .#{$grid-name} {
   display: grid;
-  grid-column-gap: $gap; /* or we can implement that differently */
+  gap: $gap; /* or we can implement that differently */
   grid-template-columns: repeat(12, 1fr);
 
   & > .#{$grid-name}-cell {
@@ -29,7 +31,7 @@ $n-columns: 12;
 
 .#{$grid-name}--centered {
   margin-left: auto;
-  width: calc(min(100vw, #{$max-width}));
+  width: calc(min(95vw, #{$max-width}));
   margin-right: auto;
 }
 
