@@ -167,24 +167,24 @@ describe('highlightSubstring', () => {
 });
 
 describe('tidyUrlString', () => {
-  it('should remove http://wwww and any trailing slashes', () => {
-    expect(tidyUrlString('http://www.ebi.ac.uk//')).toEqual('ebi.ac.uk');
+  it('should remove http:// and any trailing slashes', () => {
+    expect(tidyUrlString('http://www.ebi.ac.uk//')).toEqual('www.ebi.ac.uk');
   });
   it('should remove https', () => {
     expect(tidyUrlString('https://ebi.ac.uk')).toEqual('ebi.ac.uk');
   });
-  it('should remove www', () => {
-    expect(tidyUrlString('www.ebi.ac.uk')).toEqual('ebi.ac.uk');
+  it('should retain www', () => {
+    expect(tidyUrlString('www.ebi.ac.uk')).toEqual('www.ebi.ac.uk');
   });
   it('should leave forward slashes in the middle of the url', () => {
     expect(tidyUrlString('https://www.ebi.ac.uk/uniprot/TrEMBLstats')).toEqual(
-      'ebi.ac.uk/uniprot/TrEMBLstats'
+      'www.ebi.ac.uk/uniprot/TrEMBLstats'
     );
   });
   it('should return the same url if it is already tidy', () => {
     expect(tidyUrlString('ebi.ac.uk')).toEqual('ebi.ac.uk');
   });
   it('should handle a schema-relative URL', () => {
-    expect(tidyUrlString('//www.ebi.ac.uk/')).toEqual('ebi.ac.uk');
+    expect(tidyUrlString('//www.ebi.ac.uk/')).toEqual('www.ebi.ac.uk');
   });
 });

@@ -45,7 +45,7 @@ exports[`ExternalLink component should render just the url without http(s), www,
     rel="noopener"
     target="_blank"
   >
-    ebi.ac.uk
+    www.ebi.ac.uk
     <test-file-stub
       data-testid="external-link-icon"
       width="12.5"
