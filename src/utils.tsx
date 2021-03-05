@@ -73,7 +73,7 @@ export function highlightSubstring(string: string, substring: string) {
   );
 }
 
-const reProtocol = /^((https?:\/\/)?(\/\/)?)/;
+const reProtocol = /^(https?:)?(\/\/)?/;
 const reTrailingSlashes = /(\/+$)/;
 
 export const tidyUrlString = (url: string) =>
