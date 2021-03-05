@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExternalLink component should render external link 1`] = `
+exports[`ExternalLink component should render external link with icon 1`] = `
 <DocumentFragment>
   <a
     class="external-link"
@@ -12,6 +12,7 @@ exports[`ExternalLink component should render external link 1`] = `
       Link text
     </span>
     <test-file-stub
+      data-testid="external-link-icon"
       width="12.5"
     />
   </a>
@@ -29,6 +30,24 @@ exports[`ExternalLink component should render external link without target: _bla
       Link text
     </span>
     <test-file-stub
+      data-testid="external-link-icon"
+      width="12.5"
+    />
+  </a>
+</DocumentFragment>
+`;
+
+exports[`ExternalLink component should render just the url without http(s), www, /$ if no child text is passed 1`] = `
+<DocumentFragment>
+  <a
+    class="external-link"
+    href="https://www.ebi.ac.uk/"
+    rel="noopener"
+    target="_blank"
+  >
+    www.ebi.ac.uk
+    <test-file-stub
+      data-testid="external-link-icon"
       width="12.5"
     />
   </a>

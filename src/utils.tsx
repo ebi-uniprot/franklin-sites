@@ -1,9 +1,21 @@
-export function getLastIndexOfSubstringIgnoreCase(string, substring) {
+export function getLastIndexOfSubstringIgnoreCase(
+  string: string,
+  substring: string
+) {
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
 }
 
-export const getFlattenedPaths = (currentItems, id, path = []) => {
-  let flattened = [];
+type Item = {
+  label: string;
+  id: string;
+  items?: Item[];
+};
+export const getFlattenedPaths = (
+  currentItems: Item[],
+  id?: string,
+  path: Item[] = []
+) => {
+  let flattened: Pick<Item, 'label' | 'id'>[][] = [];
   currentItems.forEach((node) => {
     const { items, ...thisNode } = node;
     const nodePath = [...path, thisNode];
@@ -20,7 +32,7 @@ export const getFlattenedPaths = (currentItems, id, path = []) => {
 };
 
 export function restructureFlattenedTreeItemsForAutocomplete(
-  items,
+  items: Item[],
   sep = ' / '
 ) {
   return {
@@ -30,21 +42,23 @@ export function restructureFlattenedTreeItemsForAutocomplete(
   };
 }
 
-export function restructureFlattenedTreeDataForAutocomplete(flattenedTreeData) {
+export function restructureFlattenedTreeDataForAutocomplete(
+  flattenedTreeData: Item[][]
+) {
   return flattenedTreeData.map((items) =>
     restructureFlattenedTreeItemsForAutocomplete(items)
   );
 }
 
-export function formatLargeNumber(x) {
+export function formatLargeNumber(x: string | number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-export function capitaliseFirstLetter(string) {
+export function capitaliseFirstLetter(string?: string | null) {
   return string && string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function highlightSubstring(string, substring) {
+export function highlightSubstring(string: string, substring: string) {
   const i = getLastIndexOfSubstringIgnoreCase(string, substring);
   if (i < 0) return string;
   const prestring = string.slice(0, i);
@@ -59,25 +73,8 @@ export function highlightSubstring(string, substring) {
   );
 }
 
-export function getClassNames(mixedInput, optionalCondition, output = '') {
-  if (typeof optionalCondition !== 'undefined' && optionalCondition !== true) {
-    return '';
-  }
+const reProtocol = /^(https?:)?(\/\/)?/;
+const reTrailingSlashes = /(\/+$)/;
 
-  if (typeof mixedInput === 'string') {
-    return mixedInput;
-  }
-
-  if (Array.isArray(mixedInput)) {
-    if (typeof mixedInput[1] === 'boolean') {
-      return getClassNames(mixedInput[0], mixedInput[1], output);
-    }
-
-    return mixedInput
-      .map((item) => getClassNames(item, optionalCondition, output))
-      .filter((x) => x) // removes nulls, undefineds, empty strings, etc.
-      .join(' ');
-  }
-
-  return output;
-}
+export const tidyUrlString = (url: string) =>
+  url.replace(reProtocol, '').replace(reTrailingSlashes, '');

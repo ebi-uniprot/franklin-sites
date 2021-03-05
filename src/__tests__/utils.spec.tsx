@@ -7,8 +7,8 @@ import {
   restructureFlattenedTreeDataForAutocomplete,
   restructureFlattenedTreeItemsForAutocomplete,
   highlightSubstring,
-  getClassNames,
   capitaliseFirstLetter,
+  tidyUrlString,
 } from '../utils';
 
 import { treeData } from '../mock-data/tree-data';
@@ -156,7 +156,9 @@ describe('capitaliseFirstLetter', () => {
 describe('highlightSubstring', () => {
   const string = 'Item 1 / Item 1a';
   test('should highlight substring (case insensitive', () => {
-    const { asFragment } = render(highlightSubstring(string, 'item 1'));
+    const { asFragment } = render(
+      highlightSubstring(string, 'item 1') as JSX.Element
+    );
     expect(asFragment()).toMatchSnapshot();
   });
   test('should return string if no substring found', () => {
@@ -164,36 +166,25 @@ describe('highlightSubstring', () => {
   });
 });
 
-describe('getClassNames', () => {
-  test('should work with a string and an optional boolean value', () => {
-    const sample = {
-      zero: getClassNames('zero'),
-      one: getClassNames('one', true),
-      two: getClassNames('two', false),
-    };
-    const expectedResults = {
-      zero: 'zero',
-      one: 'one',
-      two: '',
-    };
-
-    expect(sample).toEqual(expectedResults);
+describe('tidyUrlString', () => {
+  it('should remove http:// and any trailing slashes', () => {
+    expect(tidyUrlString('http://www.ebi.ac.uk//')).toEqual('www.ebi.ac.uk');
   });
-
-  test('should work with a nested array of mixed input values', () => {
-    const input = [
-      'zero', // emited optional condition
-      ['one', true], // standard format
-      ['not-this-one', false], // should not be in the output
-      ['two'], // emited optional condition
-      [
-        // nested array
-        ['three', !!1], // casting truthy values to boolean
-        ['four', () => true], // function call for the condition
-      ],
-    ];
-
-    const expectedResults = 'zero one two three four';
-    expect(getClassNames(input)).toBe(expectedResults);
+  it('should remove https', () => {
+    expect(tidyUrlString('https://ebi.ac.uk')).toEqual('ebi.ac.uk');
+  });
+  it('should retain www', () => {
+    expect(tidyUrlString('www.ebi.ac.uk')).toEqual('www.ebi.ac.uk');
+  });
+  it('should leave forward slashes in the middle of the url', () => {
+    expect(tidyUrlString('https://www.ebi.ac.uk/uniprot/TrEMBLstats')).toEqual(
+      'www.ebi.ac.uk/uniprot/TrEMBLstats'
+    );
+  });
+  it('should return the same url if it is already tidy', () => {
+    expect(tidyUrlString('ebi.ac.uk')).toEqual('ebi.ac.uk');
+  });
+  it('should handle a schema-relative URL', () => {
+    expect(tidyUrlString('//www.ebi.ac.uk/')).toEqual('www.ebi.ac.uk');
   });
 });

@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { formatLargeNumber } from '../utils';
 
 type Props = {
@@ -9,7 +7,6 @@ type Props = {
   children: string | number;
 };
 
-const LongNumber: FC<Props> = ({ children }: Props) =>
-  formatLargeNumber(children);
+const LongNumber = ({ children }: Props) => <>{formatLargeNumber(children)}</>;
 
 export default LongNumber;
