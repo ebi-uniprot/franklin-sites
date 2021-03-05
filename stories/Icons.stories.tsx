@@ -15,6 +15,7 @@ import {
   CopyIcon,
   DownloadIcon,
   EditIcon,
+  EnvelopeIcon,
   ErrorIcon,
   EvidenceTagIcon,
   ExternalLinkIcon,
@@ -251,6 +252,11 @@ const iconDefinition = [
     name: 'zoom-to-sequence.svg',
     description: 'Zoom to sequence',
     icon: <ZoomToSequence width={size} height={size} />,
+  },
+  {
+    name: 'envelope.svg',
+    description: 'Envelope',
+    icon: <EnvelopeIcon width={size} height={size} />,
   },
 ];
 

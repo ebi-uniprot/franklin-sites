@@ -14,7 +14,7 @@
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && yarn build-library && yarn build-types && yarn build-storybook",
+    "build": "rm -r dist; yarn build-library && yarn build-types && yarn build-storybook",
     "build-library": "webpack",
     "build-types": "tsc --project tsconfig.declaration.json",
     "preanalyse": "yarn run build-library",
