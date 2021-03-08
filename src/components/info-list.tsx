@@ -5,11 +5,13 @@ import DecoratedListItem from './decorated-list-item';
 
 import '../styles/components/info-list.scss';
 
+type Item = { title: ReactNode; content: ReactNode; key?: string };
+
 type Props = {
   /**
    * An array of objects each containing 'title' and 'content'
    */
-  infoData: Array<{ title: string; content: ReactNode }>;
+  infoData: Array<Item>;
   /**
    * A boolean indicating whether the component should span multiple
    * columns on medium to large screens or not.
@@ -51,17 +53,16 @@ const InfoList: FC<Props> = ({
   >
     {infoData.map(
       // Only draw if there is content
-      (item, index) =>
-        item.content && (
-          <li key={item.title}>
+      ({ content, title, key }, index) =>
+        content && (
+          <li key={key || (typeof title === 'string' ? title : index)}>
             <DecoratedListItem
-              title={item.title}
+              title={title}
               highlight={index === 0 && highlightFirstItem}
               compact={isCompact}
               hideTitle={noTitles}
-              key={item.title}
             >
-              {item.content}
+              {content}
             </DecoratedListItem>
           </li>
         )

@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`InfoList component should not render items that are undefined 1`] = `
+<DocumentFragment>
+  <ul
+    class="info-list info-list--columns"
+  />
+</DocumentFragment>
+`;
+
 exports[`InfoList component should render 1`] = `
 <DocumentFragment>
   <ul
@@ -106,7 +114,40 @@ exports[`InfoList component should render compact 1`] = `
 </DocumentFragment>
 `;
 
-exports[`InfoList component should render without in 2 columns 1`] = `
+exports[`InfoList component should render title that is a React Node 1`] = `
+<DocumentFragment>
+  <ul
+    class="info-list"
+  >
+    <li>
+      <div
+        class="decorated-list-item"
+      >
+        <div
+          class="decorated-list-item__title"
+        >
+          <h5
+            class="bold"
+          >
+            <div>
+              Item 1
+            </div>
+          </h5>
+        </div>
+        <div
+          class="decorated-list-item__content"
+        >
+          <div>
+            Some content
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</DocumentFragment>
+`;
+
+exports[`InfoList component should render with titles in 2 columns 1`] = `
 <DocumentFragment>
   <ul
     class="info-list info-list--columns"
