@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { withKnobs, radios, text } from '@storybook/addon-knobs';
 
-import { TreeSelect } from '../src/components';
+import { TreeSelect as TS } from '../src/components';
 
 import { treeData } from '../src/mock-data/tree-data';
 
@@ -21,8 +21,8 @@ const useLabel = () => text('label', 'Select', 'Props');
 const useVariant = () =>
   radios('variant', ['primary', 'secondary', 'tertiary'], 'primary', 'Props');
 
-export const treeSelect = () => (
-  <TreeSelect
+export const TreeSelect = () => (
+  <TS
     label={useLabel()}
     data={treeData}
     onSelect={action('onSelect')}
@@ -30,8 +30,8 @@ export const treeSelect = () => (
   />
 );
 
-export const treeSelectWithAutocomplete = () => (
-  <TreeSelect
+export const TreeSelectWithAutocomplete = () => (
+  <TS
     label={useLabel()}
     data={treeData}
     onSelect={action('onSelect')}

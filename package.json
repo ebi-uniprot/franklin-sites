@@ -22,7 +22,7 @@
     "jest-coverage-ratchet": "jest-coverage-ratchet",
     "coverage-bump": "npm-run-all test:unit jest-coverage-ratchet",
     "test": "npm-run-all --continue-on-error test:*",
-    "test:lint": "eslint 'src/**/*.ts*' 'src/**/*.js*' 'stories/**/*.ts*' --ignore-pattern 'src/**/*.spec.ts*' --ignore-pattern 'src/**/*.spec.js*' --ignore-pattern 'src/**/*.json' --cache --cache-location 'node_modules/.eslintcache'",
+    "test:lint": "eslint 'src/**/*.[tj]s?' 'stories/**/*.[tj]s?' --cache --cache-location 'node_modules/.eslintcache'",
     "test:types": "tsc --project tsconfig.check.json",
     "test:unit": "jest --coverage",
     "test-watch": "jest --watch",

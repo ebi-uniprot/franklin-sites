@@ -1,11 +1,9 @@
 import { render, fireEvent } from '@testing-library/react';
 import EvidenceTag from '../evidence-tag';
 
-jest.mock('uuid', () => {
-  return {
-    v1: jest.fn(() => 'abcd'),
-  };
-});
+jest.mock('uuid', () => ({
+  v1: jest.fn(() => 'abcd'),
+}));
 
 describe('EvidenceTag component', () => {
   test('should render tag and toggle visibility of content', () => {

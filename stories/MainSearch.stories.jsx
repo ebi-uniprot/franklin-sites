@@ -17,17 +17,15 @@ const namespaces = {
 export default {
   title: 'Forms/Main Search',
   decorators: [
-    (story) => {
-      return (
-        <StateDecorator>
-          {(state, setState) => (
-            <div style={{ display: 'flex', flexFlow: 'column' }}>
-              {story({ state, setState })}
-            </div>
-          )}
-        </StateDecorator>
-      );
-    },
+    (story) => (
+      <StateDecorator>
+        {(state, setState) => (
+          <div style={{ display: 'flex', flexFlow: 'column' }}>
+            {story({ state, setState })}
+          </div>
+        )}
+      </StateDecorator>
+    ),
   ],
   parameters: {
     purposeFunction: {
@@ -55,7 +53,7 @@ mainSearch.propTypes = {
 
 export const mainSearchWithNamespaces = (
   { defaultNamespace },
-  { state, setState, ...rest }
+  { state, setState }
 ) => (
   <MainSearch
     selectedNamespace={state.namespace || defaultNamespace}

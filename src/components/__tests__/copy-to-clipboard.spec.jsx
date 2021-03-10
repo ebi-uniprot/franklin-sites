@@ -1,9 +1,7 @@
 import { render, fireEvent } from '@testing-library/react';
 import CopyToClipboard from '../copy-to-clipboard';
 
-jest.mock('copy-to-clipboard', () => {
-  return jest.fn();
-});
+jest.mock('copy-to-clipboard', () => jest.fn());
 
 describe('CopyToClipboard component', () => {
   let rendered;

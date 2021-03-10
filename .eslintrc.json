@@ -40,7 +40,7 @@
           ".storybook/**",
           "stories/**",
           "./src/addons/**",
-          "**/*.spec.jsx",
+          "**/*.spec.*",
           "./src/mock-data/**"
         ]
       }

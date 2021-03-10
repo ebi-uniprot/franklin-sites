@@ -1,6 +1,6 @@
-import Header from '../header';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
-import expectToThrowNoConsole from '../../testHelpers/expectToThrowNoConsole';
+
+import Header from '../header';
 
 describe('Header component', () => {
   test('should render', () => {
@@ -10,7 +10,7 @@ describe('Header component', () => {
           { path: '/here', label: <strong>here</strong> },
           { path: '/there', label: 'there' },
           { href: 'www.ebi.ac.uk', label: 'EBI' },
-          { onClick: () => {}, label: 'action' },
+          { onClick: jest.fn(), label: 'action' },
           {
             items: [
               { path: '/sub-link-a', label: 'sub link A' },

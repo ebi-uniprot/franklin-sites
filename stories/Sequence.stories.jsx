@@ -40,7 +40,7 @@ export const sequenceCollapsableWithInfoData = () => {
   return <Sequence sequence={sequenceData} infoData={data} isCollapsible />;
 };
 
-export const sequenceAsyncLoad = () => {
+export const SequenceAsyncLoad = () => {
   const [sequence, setSequence] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const onShowSequence = () => {

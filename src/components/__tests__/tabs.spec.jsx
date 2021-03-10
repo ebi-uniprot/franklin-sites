@@ -2,11 +2,9 @@ import { screen, render, fireEvent } from '@testing-library/react';
 
 import { Tabs, Tab } from '../tabs';
 
-jest.mock('uuid', () => {
-  return {
-    v1: jest.fn(() => 'abcd'),
-  };
-});
+jest.mock('uuid', () => ({
+  v1: jest.fn(() => 'abcd'),
+}));
 
 describe('Tabs', () => {
   test('should render', () => {

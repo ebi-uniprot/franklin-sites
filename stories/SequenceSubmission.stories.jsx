@@ -48,7 +48,7 @@ export const withMultipleSequencesWarning = () => (
   />
 );
 
-export const dynamicallyChangeValue = () => {
+export const DynamicallyChangeValue = () => {
   const [sequence, setSequence] = useState('ACTG');
   const [likelyType, setLikelyType] = useState(null);
 
@@ -57,19 +57,19 @@ export const dynamicallyChangeValue = () => {
       <SequenceSubmission
         placeholder="Enter a sequence..."
         value={sequence}
-        onChange={(e) => {
-          setSequence(e.sequence);
-          setLikelyType(e.likelyType);
+        onChange={(event) => {
+          setSequence(event[0]?.sequence);
+          setLikelyType(event[0]?.likelyType);
         }}
       />
-      <label>
+      <p>
         Sequence:
         <output>{sequence}</output>
-      </label>
-      <label>
+      </p>
+      <p>
         Likely type:
         <output>{likelyType}</output>
-      </label>
+      </p>
       <input
         type="reset"
         onClick={(e) => {
