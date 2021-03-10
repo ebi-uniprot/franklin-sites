@@ -1,6 +1,6 @@
 import { loremIpsum } from 'lorem-ipsum';
 
-import { InfoList } from '../src/components';
+import { InfoList, SwissProtIcon } from '../src/components';
 
 export default {
   title: 'Data/Info List',
@@ -25,6 +25,14 @@ const data = [
   },
   {
     title: 'Yet another item',
+    content: loremIpsum({ count: 25, units: 'words' }),
+  },
+  {
+    title: (
+      <>
+        <SwissProtIcon width={16} height={16} /> An item with JSX
+      </>
+    ),
     content: loremIpsum({ count: 25, units: 'words' }),
   },
 ];

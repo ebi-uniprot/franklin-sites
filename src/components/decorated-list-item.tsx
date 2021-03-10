@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/decorated-list-item.scss';
@@ -7,7 +7,7 @@ type Props = {
   /**
    * Title
    */
-  title?: string;
+  title?: ReactNode;
   /**
    * Make this item visually stand-out
    */
