@@ -86,6 +86,7 @@ export { default as WarningTriangleIcon } from '../svg/warning-triangle.svg';
 export { default as ZoomIn } from '../svg/zoom-in.svg';
 export { default as ZoomOut } from '../svg/zoom-out.svg';
 export { default as ZoomToSequence } from '../svg/zoom-to-sequence.svg';
+export { default as HelpIcon } from '../svg/help.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
