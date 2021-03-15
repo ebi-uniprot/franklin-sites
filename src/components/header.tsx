@@ -64,6 +64,33 @@ const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
   );
 };
 
+const HeaderListItem: FC<{
+  item: HeaderPossibleItem | HeaderDropdown;
+  isNegative: boolean;
+}> = ({ item, isNegative }) => (
+  <li>
+    {item.items ? (
+      <DropdownButton
+        label={item.label}
+        className={cn({
+          'dropdown-container__trigger--negative': isNegative,
+        })}
+        openOnHover
+      >
+        <ul>
+          {item.items.map((subItem, index) => (
+            <li key={typeof subItem.label === 'string' ? subItem.label : index}>
+              <HeaderItem item={subItem} />
+            </li>
+          ))}
+        </ul>
+      </DropdownButton>
+    ) : (
+      <HeaderItem item={item as HeaderPossibleItem} />
+    )}
+  </li>
+);
+
 type HeaderProps = {
   /**
    * Logo to display where the link to the home page will be
@@ -78,45 +105,58 @@ type HeaderProps = {
    */
   search?: ReactNode;
   /**
+   * Secondary items
+   */
+  secondaryItems?: Array<HeaderPossibleItem | HeaderDropdown>;
+  /**
+   * Subtext
+   */
+  subtext?: ReactNode;
+  /**
    * Flag representing if the header should be in a "negative" style
    */
   isNegative?: boolean;
 };
-const Header: FC<HeaderProps> = ({ logo, items, search, isNegative }) => (
+const Header: FC<HeaderProps> = ({
+  logo,
+  items,
+  search,
+  secondaryItems,
+  subtext,
+  isNegative = false,
+}) => (
   <div className={cn('header', { 'header--negative': isNegative })}>
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>
     <ul className="header__navigation">
       {items.map((item, index) => (
-        <li key={typeof item.label === 'string' ? item.label : index}>
-          {item.items ? (
-            <DropdownButton
-              label={item.label}
-              className={cn({
-                'dropdown-container__trigger--negative': isNegative,
-              })}
-              openOnHover
-            >
-              <ul>
-                {item.items.map((subItem, index) => (
-                  <li
-                    key={
-                      typeof subItem.label === 'string' ? subItem.label : index
-                    }
-                  >
-                    <HeaderItem item={subItem} />
-                  </li>
-                ))}
-              </ul>
-            </DropdownButton>
-          ) : (
-            <HeaderItem item={item as HeaderPossibleItem} />
-          )}
-        </li>
+        <HeaderListItem
+          item={item}
+          key={typeof item.label === 'string' ? item.label : index}
+          isNegative={isNegative}
+        />
       ))}
     </ul>
     <div className="header__search">{search}</div>
+    {secondaryItems && (
+      <div className="header__secondary">
+        <ul className="header__navigation">
+          {secondaryItems.map((item, index) => (
+            <HeaderListItem
+              item={item}
+              key={
+                typeof item.label === 'string'
+                  ? item.label
+                  : `secondary_${index}`
+              }
+              isNegative={isNegative}
+            />
+          ))}
+        </ul>
+        {subtext && <small>{subtext}</small>}
+      </div>
+    )}
   </div>
 );
 

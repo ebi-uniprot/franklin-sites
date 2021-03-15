@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { Header, MainSearch } from '../src/components';
+import {
+  BasketIcon,
+  EnvelopeIcon,
+  Header,
+  HelpIcon,
+  MainSearch,
+} from '../src/components';
 
 import UniProtLogo from '../src/svg/swissprot.svg';
 
@@ -15,7 +21,7 @@ export default {
   },
 };
 
-const items = [
+const headerItems = [
   { label: 'Link 1', path: '/' },
   {
     label: 'Links 2',
@@ -29,6 +35,12 @@ const items = [
   },
   { label: 'Link 3', path: '/' },
   { label: 'action', onClick: action('onClick') },
+];
+
+const headerSecondaryItems = [
+  { label: <HelpIcon />, path: '/' },
+  { label: <EnvelopeIcon />, path: '/' },
+  { label: <BasketIcon />, path: '/' },
 ];
 
 const Search = () => {
@@ -46,14 +58,29 @@ const Search = () => {
 };
 
 export const header = () => (
-  <Header logo={<UniProtLogo width={30} />} items={items} search={<Search />} />
+  <Header
+    logo={<UniProtLogo width={30} />}
+    items={headerItems}
+    search={<Search />}
+  />
 );
 
 export const headerNegative = () => (
   <Header
     logo={<UniProtLogo width={30} />}
-    items={items}
+    items={headerItems}
     search={<Search />}
+    secondaryItems={headerSecondaryItems}
+    isNegative
+  />
+);
+
+export const headerWithSecondaryNav = () => (
+  <Header
+    logo={<UniProtLogo width={30} />}
+    items={headerItems}
+    secondaryItems={headerSecondaryItems}
+    subtext="Release info | Statistics"
     isNegative
   />
 );

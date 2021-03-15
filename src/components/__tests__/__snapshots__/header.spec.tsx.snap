@@ -68,7 +68,59 @@ exports[`Header component should render 1`] = `
     </ul>
     <div
       class="header__search"
-    />
+    >
+      <form
+        class="main-search"
+        data-testid="main-search-form"
+        style="--main-button-color: #00639a;"
+      >
+        <input
+          aria-label="Text query"
+          class="main-search__input"
+          data-testid="main-search-input"
+          type="text"
+          value=""
+        />
+        <button
+          class="button primary"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+    <div
+      class="header__secondary"
+    >
+      <ul
+        class="header__navigation"
+      >
+        <li>
+          <a
+            class="button tertiary"
+            href="/"
+          >
+            <test-file-stub />
+          </a>
+        </li>
+        <li>
+          <a
+            class="button tertiary"
+            href="/"
+          >
+            <test-file-stub />
+          </a>
+        </li>
+        <li>
+          <a
+            class="button tertiary"
+            href="/"
+          >
+            <test-file-stub />
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </DocumentFragment>
 `;
