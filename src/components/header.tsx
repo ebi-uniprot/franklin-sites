@@ -51,6 +51,7 @@ const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
     extraProps = {
       target: '_blank',
       rel: 'noopener noreferrer',
+      href: item.href,
     };
     element = 'a';
   } else if (item.onClick) {
