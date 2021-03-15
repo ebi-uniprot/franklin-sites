@@ -16,7 +16,7 @@
     // "esModuleInterop": true,
     "module": "esnext",
     "jsx": "react-jsx",
-    "types": ["jest", "node"],
+    "types": ["jest", "node", "@testing-library/jest-dom"],
     "skipLibCheck": true
   }
 }
