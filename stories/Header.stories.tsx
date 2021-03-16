@@ -58,24 +58,28 @@ const Search = () => {
 };
 
 export const header = () => (
+  <Header logo={<UniProtLogo width={30} />} items={headerItems} />
+);
+
+export const headerWithSearch = () => (
   <Header
     logo={<UniProtLogo width={30} />}
     items={headerItems}
     search={<Search />}
+    isNegative
   />
 );
 
-export const headerNegative = () => (
+export const headerNegativeWithSecondaryNav = () => (
   <Header
     logo={<UniProtLogo width={30} />}
     items={headerItems}
-    search={<Search />}
     secondaryItems={headerSecondaryItems}
     isNegative
   />
 );
 
-export const headerWithSecondaryNav = () => (
+export const headerNegativeWithSubtext = () => (
   <Header
     logo={<UniProtLogo width={30} />}
     items={headerItems}

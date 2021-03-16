@@ -140,21 +140,23 @@ const Header: FC<HeaderProps> = ({
       ))}
     </ul>
     <div className="header__search">{search}</div>
-    {secondaryItems && (
+    {(secondaryItems || subtext) && (
       <div className="header__secondary">
-        <ul className="header__navigation">
-          {secondaryItems.map((item, index) => (
-            <HeaderListItem
-              item={item}
-              key={
-                typeof item.label === 'string'
-                  ? item.label
-                  : `secondary_${index}`
-              }
-              isNegative={isNegative}
-            />
-          ))}
-        </ul>
+        {secondaryItems && (
+          <ul className="header__navigation">
+            {secondaryItems.map((item, index) => (
+              <HeaderListItem
+                item={item}
+                key={
+                  typeof item.label === 'string'
+                    ? item.label
+                    : `secondary_${index}`
+                }
+                isNegative={isNegative}
+              />
+            ))}
+          </ul>
+        )}
         {subtext && <small>{subtext}</small>}
       </div>
     )}

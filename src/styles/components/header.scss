@@ -126,11 +126,6 @@ $content-width: 90%;
         }
       }
     }
-    small {
-      display: block;
-      // Magic number to reduce spacing
-      margin-top: -0.2rem;
-    }
   }
 
   &__search {
