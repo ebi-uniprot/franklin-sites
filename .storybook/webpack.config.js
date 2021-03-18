@@ -1,7 +1,7 @@
 const path = require('path');
 const jsonImporter = require('node-sass-json-importer');
 
-module.exports = async ({ config, mode }) => {
+module.exports = async ({ config }) => {
   // Remove default svg loader
   config.module.rules = config.module.rules.map((rule) => {
     // NOTE: there should be a better way to deal with this as it will cause
@@ -24,16 +24,17 @@ module.exports = async ({ config, mode }) => {
     test: /\.scss$/,
     sideEffects: true,
     use: [
-      'style-loader',
-      'css-loader',
+      {
+        loader: 'style-loader', // creates style nodes from JS strings
+      },
+      {
+        loader: 'css-loader', // translates CSS into CommonJS
+      },
       {
         loader: 'sass-loader',
         options: {
           sassOptions: {
-            includePaths: [
-              path.resolve(__dirname, '../src/styles'),
-              path.resolve(__dirname, '../src/app/styles'),
-            ],
+            includePaths: [path.resolve(__dirname, '../src/styles')],
             importer: jsonImporter({ convertCase: true }),
           },
         },
