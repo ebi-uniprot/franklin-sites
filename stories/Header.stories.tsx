@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import {
   BasketIcon,
@@ -19,6 +20,7 @@ export default {
       function: '',
     },
   },
+  decorators: [withKnobs],
 };
 
 const headerItems = [
@@ -58,33 +60,14 @@ const Search = () => {
 };
 
 export const header = () => (
-  <Header logo={<UniProtLogo width={30} />} items={headerItems} />
-);
-
-export const headerWithSearch = () => (
   <Header
     logo={<UniProtLogo width={30} />}
     items={headerItems}
-    search={<Search />}
-    isNegative
-  />
-);
-
-export const headerNegativeWithSecondaryNav = () => (
-  <Header
-    logo={<UniProtLogo width={30} />}
-    items={headerItems}
-    secondaryItems={headerSecondaryItems}
-    isNegative
-  />
-);
-
-export const headerNegativeWithSubtext = () => (
-  <Header
-    logo={<UniProtLogo width={30} />}
-    items={headerItems}
-    secondaryItems={headerSecondaryItems}
-    subtext="Release info | Statistics"
-    isNegative
+    search={boolean('With Search', true) && <Search />}
+    secondaryItems={
+      boolean('Secondary items', true) ? headerSecondaryItems : undefined
+    }
+    subtext={boolean('Subtext', true) && 'Release info | Statistics'}
+    isNegative={boolean('Negative', true)}
   />
 );
