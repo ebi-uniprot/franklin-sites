@@ -129,6 +129,9 @@ $content-width: 90%;
         }
       }
     }
+    small {
+      white-space: nowrap;
+    }
   }
 
   &__search {
