@@ -1,3 +1,4 @@
+import { BasketIcon, EnvelopeIcon, HelpIcon, MainSearch } from '..';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 import Header from '../header';
@@ -19,6 +20,12 @@ describe('Header component', () => {
             label: 'sub links',
           },
         ]}
+        secondaryItems={[
+          { label: <HelpIcon />, path: '/' },
+          { label: <EnvelopeIcon />, path: '/' },
+          { label: <BasketIcon />, path: '/' },
+        ]}
+        search={<MainSearch onChange={jest.fn()} onSubmit={jest.fn()} />}
       />
     );
 

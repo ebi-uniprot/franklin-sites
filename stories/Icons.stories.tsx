@@ -42,6 +42,7 @@ import {
   ZoomIn,
   ZoomOut,
   ZoomToSequence,
+  HelpIcon,
 } from '../src/components';
 
 import colors from '../src/styles/colours.json';
@@ -257,6 +258,11 @@ const iconDefinition = [
     name: 'envelope.svg',
     description: 'Envelope',
     icon: <EnvelopeIcon width={size} height={size} />,
+  },
+  {
+    name: 'help.svg',
+    description: 'Help',
+    icon: <HelpIcon width={size} height={size} />,
   },
 ];
 
