@@ -28,13 +28,13 @@ module.exports = async ({ config }) => {
         loader: 'style-loader', // creates style nodes from JS strings
       },
       {
-        loader: 'css-loader', // translates CSS into CommonJS
+        // translates CSS into something importable into the code
+        loader: 'css-loader',
       },
       {
         loader: 'sass-loader',
         options: {
           sassOptions: {
-            includePaths: [path.resolve(__dirname, '../src/styles')],
             importer: jsonImporter({ convertCase: true }),
           },
         },

@@ -41,7 +41,8 @@ module.exports = [
           sideEffects: true,
           use: [
             {
-              loader: 'style-loader', // creates style nodes from JS strings
+              // translates CSS into something importable into the code
+              loader: 'style-loader',
             },
             {
               loader: 'css-loader', // translates CSS into CommonJS
@@ -50,7 +51,6 @@ module.exports = [
               loader: 'sass-loader',
               options: {
                 sassOptions: {
-                  includePaths: [path.resolve(__dirname, 'src/styles')],
                   importer: jsonImporter({ convertCase: true }),
                 },
               },
