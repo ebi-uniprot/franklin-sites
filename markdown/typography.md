@@ -24,6 +24,10 @@ laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repreh
 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+## Small text
+
+<small>I am small.</small>
+
 ## Links
 
 [click me](https://www.uniprot.org)
