@@ -4,9 +4,9 @@ import cn from 'classnames';
 
 import ExternalLink, { Props as ExternalLinkProps } from './external-link';
 
-import '../styles/components/tile.scss';
+import { HeadingLevels } from '../types/common';
 
-type HeadingLevels = `h${1 | 2 | 3 | 4 | 5 | 6}`;
+import '../styles/components/tile.scss';
 
 type Props = (LinkProps | ExternalLinkProps) & {
   /**
@@ -40,12 +40,8 @@ type Props = (LinkProps | ExternalLinkProps) & {
   width?: string;
 };
 
-const nextHeading = (level: HeadingLevels) => {
-  if (level === 'h6') {
-    throw new Error('no lower heading level than h6');
-  }
-  return `h${+level[1] + 1}`;
-};
+const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
+  `h${+level[1] + 1}`;
 
 export const Tile: FC<Props> = ({
   title,
@@ -62,7 +58,7 @@ export const Tile: FC<Props> = ({
 }) => {
   const isExternal = 'url' in props;
 
-  const linkTarget = (
+  const mainContent = (
     <span>
       {createElement(headingLevel, { className: 'tile__header medium' }, title)}
       {subtitle &&
@@ -94,11 +90,11 @@ export const Tile: FC<Props> = ({
           {...(props as ExternalLinkProps)}
           noIcon
         >
-          {linkTarget}
+          {mainContent}
         </ExternalLink>
       ) : (
         <Link className="tile__main-content" {...(props as LinkProps)}>
-          {linkTarget}
+          {mainContent}
         </Link>
       )}
       {children && <small className="tile__description">{children}</small>}

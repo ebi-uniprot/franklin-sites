@@ -1,9 +1,9 @@
 import { createElement, FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
-import '../styles/components/hero-container.scss';
+import { HeadingLevels } from '../types/common';
 
-type HeadingLevels = `h${1 | 2 | 3 | 4 | 5 | 6}`;
+import '../styles/components/hero-container.scss';
 
 type HeroContainerProps = HTMLAttributes<HTMLElement> & {
   /**
