@@ -39,18 +39,7 @@ $tile: '.tile';
   &__header {
     display: block;
     margin-top: 0.5em;
-
-    // match mixin specificity...
-    @media (min-width: 0px) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__subtitle {
-    // match mixin specificity...
-    @media (min-width: 0px) {
-      line-height: 0.5;
-    }
+    margin-bottom: 0;
   }
 
   &__main-content {
