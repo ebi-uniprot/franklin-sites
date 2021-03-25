@@ -2,58 +2,64 @@
 
 exports[`Tile component should render 1`] = `
 <DocumentFragment>
-  <button
+  <div
     class="tile tile-gradient"
     style="--tile-background: #00639a; width: 100%;"
-    type="button"
   >
-    <section
+    <div
+      aria-hidden="true"
       class="tile__background-image"
     >
       test-file-stub
-    </section>
-    <section
-      class="tile__content"
+    </div>
+    <a
+      class="tile__main-content"
+      href="/"
     >
-      <h3
-        class="tile__header"
-      >
-        Tile title
-      </h3>
-      <h5
-        class="tile__subtitle"
-      >
-        Subtitle
-      </h5>
-      <small
-        class="tile__description"
-      >
-        My description
-      </small>
-    </section>
-  </button>
+      <span>
+        <h3
+          class="tile__header"
+        >
+          Tile title
+        </h3>
+        <h4
+          class="tile__subtitle"
+        >
+          Subtitle
+        </h4>
+      </span>
+    </a>
+    <small
+      class="tile__description"
+    >
+      My description
+    </small>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`Tile component should render with default specified width 1`] = `
 <DocumentFragment>
-  <button
+  <div
     class="tile"
     style="width: 20rem;"
-    type="button"
   >
-    <section
+    <div
+      aria-hidden="true"
       class="tile__background-image"
     />
-    <section
-      class="tile__content"
+    <a
+      class="tile__main-content"
+      href="/"
     >
-      <h3
-        class="tile__header"
-      >
-        Tile title
-      </h3>
-    </section>
-  </button>
+      <span>
+        <h3
+          class="tile__header"
+        >
+          Tile title
+        </h3>
+      </span>
+    </a>
+  </div>
 </DocumentFragment>
 `;

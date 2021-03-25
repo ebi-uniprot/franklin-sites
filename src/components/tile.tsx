@@ -1,21 +1,26 @@
-import { CSSProperties, FC, ReactNode, ButtonHTMLAttributes } from 'react';
-import classNames from 'classnames';
+import { createElement, CSSProperties, FC, ReactNode } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
+import cn from 'classnames';
+
+import ExternalLink, { Props as ExternalLinkProps } from './external-link';
 
 import '../styles/components/tile.scss';
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+type HeadingLevels = `h${1 | 2 | 3 | 4 | 5 | 6}`;
+
+type Props = (LinkProps | ExternalLinkProps) & {
   /**
    * The tile title
    */
-  title: string;
+  title: ReactNode;
+  /**
+   * The tile title heading level
+   */
+  headingLevel?: Exclude<HeadingLevels, 'h6'>;
   /**
    * The tile subtitle
    */
-  subtitle?: string;
-  /**
-   * The tile description.
-   */
-  description?: ReactNode;
+  subtitle?: ReactNode;
   /**
    * The background color
    */
@@ -35,42 +40,73 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   width?: string;
 };
 
+const nextHeading = (level: HeadingLevels) => {
+  if (level === 'h6') {
+    throw new Error('no lower heading level than h6');
+  }
+  return `h${+level[1] + 1}`;
+};
+
 export const Tile: FC<Props> = ({
   title,
+  headingLevel = 'h3',
   subtitle,
-  description,
   backgroundColor,
   backgroundImage,
   gradient = false,
   width,
   className,
   style,
+  children,
   ...props
-}) => (
-  <button
-    type="button"
-    className={classNames(className, {
-      tile: 'tile',
-      'tile-gradient': gradient,
-    })}
-    style={
-      {
-        ...style,
-        '--tile-background': backgroundColor,
-        width: width || '100%',
-      } as CSSProperties
-    }
-    {...props}
-  >
-    <section className="tile__background-image">{backgroundImage}</section>
-    <section className="tile__content">
-      <h3 className="tile__header">{title}</h3>
-      {subtitle && <h5 className="tile__subtitle">{subtitle}</h5>}
-      {description && (
-        <small className="tile__description">{description}</small>
+}) => {
+  const isExternal = 'url' in props;
+
+  const linkTarget = (
+    <span>
+      {createElement(headingLevel, { className: 'tile__header' }, title)}
+      {subtitle &&
+        createElement(
+          nextHeading(headingLevel),
+          { className: 'tile__subtitle' },
+          subtitle
+        )}
+    </span>
+  );
+
+  return (
+    <div
+      className={cn(className, {
+        tile: 'tile',
+        'tile-gradient': gradient,
+      })}
+      style={
+        {
+          ...style,
+          '--tile-background': backgroundColor,
+          width: width || '100%',
+        } as CSSProperties
+      }
+    >
+      <div className="tile__background-image" aria-hidden="true">
+        {backgroundImage}
+      </div>
+      {isExternal ? (
+        <ExternalLink
+          className="tile__main-content"
+          {...(props as ExternalLinkProps)}
+          noIcon
+        >
+          {linkTarget}
+        </ExternalLink>
+      ) : (
+        <Link className="tile__main-content" {...(props as LinkProps)}>
+          {linkTarget}
+        </Link>
       )}
-    </section>
-  </button>
-);
+      {children && <small className="tile__description">{children}</small>}
+    </div>
+  );
+};
 
 export default Tile;

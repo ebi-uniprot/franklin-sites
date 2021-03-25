@@ -54,10 +54,11 @@ const DecoratedListItem: FC<Props> = ({
     })}
     {...props}
   >
-    <div className="decorated-list-item__title">
-      <h5 className="bold">{title}</h5>
-    </div>
-
+    {title && (
+      <div className="decorated-list-item__title">
+        <h5 className="bold">{title}</h5>
+      </div>
+    )}
     <div className="decorated-list-item__content">
       {highlight ? <strong>{children}</strong> : children}
     </div>
