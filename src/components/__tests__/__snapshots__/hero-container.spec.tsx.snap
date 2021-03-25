@@ -6,7 +6,7 @@ exports[`Hero Container component should render 1`] = `
     class="hero-container hero-container--side-padding"
   >
     <h2
-      class="hero-container__title"
+      class="medium"
     >
       Title
     </h2>
