@@ -1,6 +1,5 @@
 @import '../settings';
 @import '../colours';
-@import '../mixins';
 
 .hero-container {
   --grid-background: #{$colour-platinum};
@@ -13,9 +12,5 @@
   &--side-padding {
     padding-left: $global-padding;
     padding-right: $global-padding;
-  }
-
-  &__title {
-    @include fs-font-settings('H3');
   }
 }

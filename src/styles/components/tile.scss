@@ -37,7 +37,6 @@ $tile: '.tile';
   }
 
   &__header {
-    @include fs-font-settings('H3');
     display: block;
     margin-top: 0.5em;
 
@@ -48,8 +47,6 @@ $tile: '.tile';
   }
 
   &__subtitle {
-    @include fs-font-settings('H5');
-
     // match mixin specificity...
     @media (min-width: 0px) {
       line-height: 0.5;

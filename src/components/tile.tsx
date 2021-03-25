@@ -64,11 +64,11 @@ export const Tile: FC<Props> = ({
 
   const linkTarget = (
     <span>
-      {createElement(headingLevel, { className: 'tile__header' }, title)}
+      {createElement(headingLevel, { className: 'tile__header medium' }, title)}
       {subtitle &&
         createElement(
           nextHeading(headingLevel),
-          { className: 'tile__subtitle' },
+          { className: 'tile__subtitle tiny' },
           subtitle
         )}
     </span>
@@ -76,10 +76,7 @@ export const Tile: FC<Props> = ({
 
   return (
     <div
-      className={cn(className, {
-        tile: 'tile',
-        'tile-gradient': gradient,
-      })}
+      className={cn(className, 'tile', { 'tile-gradient': gradient })}
       style={
         {
           ...style,
