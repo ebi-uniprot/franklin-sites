@@ -48,7 +48,9 @@ $tile: '.tile';
   }
 
   &__description {
-    transition: transform $animation-time linear;
+    &--animated {
+      transition: transform $animation-time linear;
+    }
     display: block;
     padding: 0.7rem;
     line-height: 1.6;
