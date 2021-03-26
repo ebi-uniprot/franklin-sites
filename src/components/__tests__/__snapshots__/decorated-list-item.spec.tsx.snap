@@ -52,13 +52,6 @@ exports[`DecoratedListItem component should render compact without title 1`] = `
     class="decorated-list-item decorated-list-item--compact"
   >
     <div
-      class="decorated-list-item__title"
-    >
-      <h5
-        class="bold"
-      />
-    </div>
-    <div
       class="decorated-list-item__content"
     >
       Content
@@ -73,13 +66,6 @@ exports[`DecoratedListItem component should render inline 1`] = `
     class="decorated-list-item decorated-list-item--inline"
   >
     <div
-      class="decorated-list-item__title"
-    >
-      <h5
-        class="bold"
-      />
-    </div>
-    <div
       class="decorated-list-item__content"
     >
       Content
@@ -93,13 +79,6 @@ exports[`DecoratedListItem component should render without title 1`] = `
   <div
     class="decorated-list-item"
   >
-    <div
-      class="decorated-list-item__title"
-    >
-      <h5
-        class="bold"
-      />
-    </div>
     <div
       class="decorated-list-item__content"
     >

@@ -34,13 +34,16 @@ h6 {
   color: $colour-yankees-blue;
 }
 
-h1 {
+h1,
+.huge {
   @include fs-font-settings('H1');
 }
-h2 {
+h2,
+.big {
   @include fs-font-settings('H2');
 }
-h3 {
+h3,
+.medium {
   @include fs-font-settings('H3');
   opacity: 90%;
   &.bold {
@@ -48,10 +51,12 @@ h3 {
     opacity: 100%;
   }
 }
-h4 {
+h4,
+.small {
   @include fs-font-settings('H4');
 }
-h5 {
+h5,
+.tiny {
   @include fs-font-settings('H5');
   &.bold {
     font-weight: font-weight('bold');

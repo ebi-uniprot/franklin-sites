@@ -1,21 +1,19 @@
+import { createElement, FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
-import { FC, ReactNode } from 'react';
+
+import { HeadingLevels } from '../types/common';
 
 import '../styles/components/hero-container.scss';
 
-type HeroContainerProps = {
+type HeroContainerProps = HTMLAttributes<HTMLElement> & {
   /**
    * The title of the component
    */
   title?: string;
   /**
-   * The content of the component
+   * The tile title heading level
    */
-  children: ReactNode;
-  /**
-   * CSS classes to pass to the component
-   */
-  className?: string;
+  headingLevel?: HeadingLevels;
   /**
    * CSS classes to pass to the component title
    */
@@ -28,21 +26,27 @@ type HeroContainerProps = {
 
 export const HeroContainer: FC<HeroContainerProps> = ({
   title,
+  headingLevel = 'h2',
   children,
   className,
   titleClassName,
   noSidePadding = false,
 }) => (
-  <div
+  <section
     className={cn(
       'hero-container',
       className,
       !noSidePadding && 'hero-container--side-padding'
     )}
   >
-    {title && <h3 className={titleClassName}>{title}</h3>}
+    {title &&
+      createElement(
+        headingLevel,
+        { className: cn(titleClassName, 'medium') },
+        title
+      )}
     {children}
-  </div>
+  </section>
 );
 
 export default HeroContainer;

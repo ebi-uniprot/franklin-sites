@@ -2,15 +2,17 @@
 
 exports[`Hero Container component should render 1`] = `
 <DocumentFragment>
-  <div
+  <section
     class="hero-container hero-container--side-padding"
   >
-    <h3>
+    <h2
+      class="medium"
+    >
       Title
-    </h3>
+    </h2>
     <p>
       Body content
     </p>
-  </div>
+  </section>
 </DocumentFragment>
 `;

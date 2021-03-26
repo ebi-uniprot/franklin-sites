@@ -1,5 +1,6 @@
 @import '../settings';
 @import '../colours';
+@import '../mixins';
 
 $animation-time: 0.25s;
 
@@ -10,7 +11,11 @@ $tile: '.tile';
   justify-content: center;
   position: relative;
   overflow: hidden;
+  contain: content;
   background: var(--tile-background, #{$colour-sea-blue});
+  text-align: center;
+  color: $colour-sky-white;
+
   &.tile-gradient {
     background: linear-gradient(
         45deg,
@@ -20,8 +25,7 @@ $tile: '.tile';
       )
       var(--tile-background, #{$colour-sea-blue});
   }
-  text-align: center;
-  color: $colour-sky-white;
+
   &__header,
   &__subtitle {
     // hack for rendering before svg
@@ -31,12 +35,18 @@ $tile: '.tile';
     margin: 0;
     line-height: 1.2;
   }
-  padding: $global-padding/2 0 0 0;
-  cursor: pointer;
 
   &__header {
     display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0;
   }
+
+  &__main-content {
+    position: relative;
+    width: 100%;
+  }
+
   &__description {
     transition: transform $animation-time linear;
     display: block;
@@ -51,6 +61,13 @@ $tile: '.tile';
     left: 0;
     overflow-y: hidden;
     transform: translateY(33%);
+
+    pointer-events: none;
+
+    a,
+    button {
+      pointer-events: initial;
+    }
   }
 
   &__background-image {
@@ -62,6 +79,7 @@ $tile: '.tile';
     width: 100%;
     height: 100%;
     padding: $global-padding/2;
+
     svg {
       transition: filter $animation-time ease-out;
       width: 100%;
@@ -73,15 +91,20 @@ $tile: '.tile';
   &:hover,
   &:focus,
   &:focus-within {
-    svg {
-      filter: blur(0.1rem);
+    #{$tile}__main-content {
+      outline-offset: -1ch;
     }
+
     #{$tile}__description {
       transform: translateY(0);
       overflow-y: auto;
     }
+
     #{$tile}__background-image {
       background-color: rgba(0, 0, 0, 0.1);
+      svg {
+        filter: blur(0.1rem);
+      }
     }
   }
 

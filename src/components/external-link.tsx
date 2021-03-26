@@ -7,7 +7,7 @@ import ExternalLinkIcon from '../svg/external-link.svg';
 
 import '../styles/components/external-link.scss';
 
-type Props = {
+export type Props = Exclude<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
   /**
    * The location that is visted when clicked
    */
@@ -20,9 +20,7 @@ type Props = {
   noIcon?: boolean;
 };
 
-const ExternalLink: FC<
-  Props & Exclude<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
-> = ({
+const ExternalLink: FC<Props> = ({
   children,
   url,
   tidyUrl = false,
