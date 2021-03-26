@@ -40,6 +40,7 @@ export const BasicTile = () => (
     width="20rem"
     gradient={boolean('gradient', false, 'Props')}
     to="/"
+    descriptionSlideUp={boolean('Slide up description', false, 'Props')}
   >
     {loremIpsum()}
     {boolean('button in description', false) ? (

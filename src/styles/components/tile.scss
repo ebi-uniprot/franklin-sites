@@ -95,7 +95,7 @@ $tile: '.tile';
       outline-offset: -1ch;
     }
 
-    #{$tile}__description {
+    #{$tile}__description--animated {
       transform: translateY(0);
       overflow-y: auto;
     }

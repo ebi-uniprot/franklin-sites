@@ -38,6 +38,11 @@ type Props = (LinkProps | ExternalLinkProps) & {
    * width of the provided container.
    */
   width?: string;
+  /**
+   * Whether to slide up the description when the mouse is over the tile.
+   * Can be useful if the description text is long.
+   */
+  descriptionSlideUp?: boolean;
 };
 
 const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
@@ -54,6 +59,7 @@ export const Tile: FC<Props> = ({
   className,
   style,
   children,
+  descriptionSlideUp = false,
   ...props
 }) => {
   const isExternal = 'url' in props;
@@ -97,7 +103,16 @@ export const Tile: FC<Props> = ({
           {mainContent}
         </Link>
       )}
-      {children && <small className="tile__description">{children}</small>}
+      {children && (
+        <small
+          className={cn(
+            'tile__description',
+            descriptionSlideUp && 'tile__description--animated'
+          )}
+        >
+          {children}
+        </small>
+      )}
     </div>
   );
 };
