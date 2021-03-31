@@ -9,6 +9,11 @@
   padding: $global-padding 0;
   background-color: $colour-platinum;
 
+  &__title {
+    line-height: 1;
+    margin-bottom: 0;
+  }
+
   &--side-padding {
     padding-left: $global-padding;
     padding-right: $global-padding;

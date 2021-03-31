@@ -28,12 +28,10 @@ $tile: '.tile';
 
   &__header,
   &__subtitle {
-    // hack for rendering before svg
-    opacity: 0.9;
     color: $colour-sky-white;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     margin: 0;
-    line-height: 1.2;
+    line-height: 1;
   }
 
   &__header {
