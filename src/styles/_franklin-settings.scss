@@ -155,6 +155,32 @@ $fs-font-values: (
       0.5rem,
     ),
   ),
+  'H6': (
+    'small': (
+      16px,
+      1 * 0.5rem,
+      1.7,
+      -0.04rem,
+      'semi-bold',
+      0.5rem,
+    ),
+    'medium': (
+      16px,
+      1 * 0.8rem,
+      1.7,
+      -0.04rem,
+      'semi-bold',
+      0.5rem,
+    ),
+    'large': (
+      16px,
+      1rem,
+      1.7,
+      -0.04rem,
+      'semi-bold',
+      0.5rem,
+    ),
+  ),
 );
 
 // Breakpoints
