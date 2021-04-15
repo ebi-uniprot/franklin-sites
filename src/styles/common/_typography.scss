@@ -62,6 +62,13 @@ h5,
     font-weight: font-weight('bold');
   }
 }
+h6,
+.micro {
+  @include fs-font-settings('H6');
+  &.bold {
+    font-weight: font-weight('bold');
+  }
+}
 p {
   margin-bottom: 1.875rem;
 }
