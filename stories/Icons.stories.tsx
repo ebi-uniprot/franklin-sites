@@ -3,6 +3,8 @@ import { select } from '@storybook/addon-knobs';
 import {
   BasketIcon,
   BinIcon,
+  CalendarIcon,
+  CameraIcon,
   ChevronDownIcon,
   ChevronUpIcon,
   CitedIcon,
@@ -19,7 +21,9 @@ import {
   ErrorIcon,
   EvidenceTagIcon,
   ExternalLinkIcon,
+  HelpIcon,
   ListIcon,
+  LocationPinIcon,
   ObsoleteIcon,
   ProtVistaIcon,
   ProteinIcon,
@@ -39,10 +43,10 @@ import {
   UniParcIcon,
   WarningIcon,
   WarningTriangleIcon,
+  WorldIcon,
   ZoomIn,
   ZoomOut,
   ZoomToSequence,
-  HelpIcon,
 } from '../src/components';
 
 import colors from '../src/styles/colours.json';
@@ -263,6 +267,26 @@ const iconDefinition = [
     name: 'help.svg',
     description: 'Help',
     icon: <HelpIcon width={size} height={size} />,
+  },
+  {
+    name: 'location-pin.svg',
+    description: 'Location Pin',
+    icon: <LocationPinIcon width={size} height={size} />,
+  },
+  {
+    name: 'calendar.svg',
+    description: 'Calendar',
+    icon: <CalendarIcon width={size} height={size} />,
+  },
+  {
+    name: 'camera.svg',
+    description: 'Camera',
+    icon: <CameraIcon width={size} height={size} />,
+  },
+  {
+    name: 'world.svg',
+    description: 'World',
+    icon: <WorldIcon width={size} height={size} />,
   },
 ];
 

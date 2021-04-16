@@ -47,6 +47,8 @@ export { default as useModal } from '../hooks/modal';
 // Icons
 export { default as BasketIcon } from '../svg/basket.svg';
 export { default as BinIcon } from '../svg/bin.svg';
+export { default as CalendarIcon } from '../svg/calendar.svg';
+export { default as CameraIcon } from '../svg/camera.svg';
 export { default as ChevronDownIcon } from '../svg/chevron-down.svg';
 export { default as ChevronUpIcon } from '../svg/chevron-up.svg';
 export { default as CitedIcon } from '../svg/cited.svg';
@@ -63,7 +65,9 @@ export { default as EnvelopeIcon } from '../svg/envelope.svg';
 export { default as ErrorIcon } from '../svg/error.svg';
 export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';
 export { default as ExternalLinkIcon } from '../svg/external-link.svg';
+export { default as HelpIcon } from '../svg/help.svg';
 export { default as ListIcon } from '../svg/th-list.svg';
+export { default as LocationPinIcon } from '../svg/location-pin.svg';
 export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as ProteinIcon } from '../svg/protein.svg';
 export { default as ProtVistaIcon } from '../svg/protvista.svg';
@@ -83,10 +87,10 @@ export { default as TremblIcon } from '../svg/trembl.svg';
 export { default as UniParcIcon } from '../svg/uniparc.svg';
 export { default as WarningIcon } from '../svg/warning.svg';
 export { default as WarningTriangleIcon } from '../svg/warning-triangle.svg';
+export { default as WorldIcon } from '../svg/world.svg';
 export { default as ZoomIn } from '../svg/zoom-in.svg';
 export { default as ZoomOut } from '../svg/zoom-out.svg';
 export { default as ZoomToSequence } from '../svg/zoom-to-sequence.svg';
-export { default as HelpIcon } from '../svg/help.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
