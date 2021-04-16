@@ -2,6 +2,7 @@
 import { memo, useCallback, ReactNode, HTMLAttributes, FormEvent } from 'react';
 import cn from 'classnames';
 
+import Loader from './loader';
 import withDataLoader, { WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
@@ -85,6 +86,97 @@ const DataTableHead = <Datum extends BasicDatum>({
 );
 const MemoizedDataTableHead = memo(DataTableHead) as typeof DataTableHead;
 
+type CellProp<Datum extends BasicDatum> = {
+  column: CommonColumn<Datum>;
+  datum: Datum;
+  loading?: boolean;
+  fixedLayout?: boolean;
+  firstColumn: boolean;
+};
+
+const Cell = <Datum extends BasicDatum>({
+  column,
+  datum,
+  loading,
+  fixedLayout,
+  firstColumn,
+}: CellProp<Datum>) => {
+  let rendered: ReactNode;
+  try {
+    rendered = column.render(datum);
+  } catch (error) {
+    /**
+     * We get here only if the renderer fails. If the renderer returns null of
+     * undefined because of a lack of data, then it will no throw and will not
+     * display the loader at all
+     */
+    if (!loading) {
+      throw error;
+    } else {
+      rendered = firstColumn && <Loader />;
+    }
+  }
+
+  return (
+    <td className={fixedLayout ? `${BLOCK}__cell--ellipsis` : undefined}>
+      {rendered}
+    </td>
+  );
+};
+
+type RowProps<Datum extends BasicDatum> = {
+  /**
+   * The data to be displayed
+   */
+  datum: Datum;
+  loading?: boolean;
+  id: string;
+  selectable: boolean;
+  isSelected?: boolean;
+};
+
+const noop = () => undefined;
+
+const DataTableRow = <Datum extends BasicDatum>({
+  datum,
+  loading,
+  columns,
+  selectable,
+  isSelected,
+  id,
+  fixedLayout,
+  firstColumn,
+}: RowProps<Datum> & SharedProps<Datum> & { firstColumn: boolean }) => (
+  <tr className={isSelected ? `${BLOCK}__row--selected` : undefined}>
+    {selectable && (
+      <td key={`${id}-select-column`}>
+        <input
+          type="checkbox"
+          aria-label={id}
+          data-id={id}
+          checked={isSelected}
+          // Yes, we know what we are doing, we do event delegation at the level
+          // of the body in order to prevent rerendering each row if the handler
+          // function changes (out of the franklin's responsibility).
+          // This prevents a React warning in development
+          onChange={noop}
+        />
+      </td>
+    )}
+    {columns.map((column) => (
+      <Cell
+        key={`${id}-${column.name}`}
+        column={column}
+        datum={datum}
+        loading={loading}
+        fixedLayout={fixedLayout}
+        firstColumn={firstColumn}
+      />
+    ))}
+  </tr>
+);
+const MemoizedDataTableRow = memo(DataTableRow) as typeof DataTableRow;
+
 // Either the rows are selectable
 type Selectable = {
   /**
@@ -104,59 +196,12 @@ type NonSelectable = {
 
 type MaybeSelectable = Selectable | NonSelectable;
 
-type RowProps<Datum extends BasicDatum> = {
-  /**
-   * The data to be displayed
-   */
-  datum: Datum;
-  id: string;
-  selectable: boolean;
-  isSelected?: boolean;
-};
-
-const noop = () => undefined;
-
-const DataTableRow = <Datum extends BasicDatum>({
-  datum,
-  columns,
-  selectable,
-  isSelected,
-  id,
-  fixedLayout,
-}: RowProps<Datum> & SharedProps<Datum>) => (
-  <tr className={isSelected ? `${BLOCK}__row--selected` : undefined}>
-    {selectable && (
-      <td key={`${id}-select-column`}>
-        <input
-          type="checkbox"
-          aria-label={id}
-          data-id={id}
-          checked={isSelected}
-          // Yes, we know what we are doing, we do event delegation at the level
-          // of the body in order to prevent rerendering each row if the handler
-          // function changes (out of the franklin's responsibility).
-          // This prevents a React warning in development
-          onChange={noop}
-        />
-      </td>
-    )}
-    {columns.map((column) => (
-      <td
-        key={`${id}-${column.name}`}
-        className={fixedLayout ? `${BLOCK}__cell--ellipsis` : undefined}
-      >
-        {column.render(datum)}
-      </td>
-    ))}
-  </tr>
-);
-const MemoizedDataTableRow = memo(DataTableRow) as typeof DataTableRow;
-
 type BodyProps<Datum> = {
   /**
    * The data to be displayed
    */
   data: Datum[];
+  loading?: boolean;
   /**
    * A function that returns a unique ID for each of the data objects.
    * Same function signature as a map function.
@@ -167,6 +212,7 @@ type BodyProps<Datum> = {
 
 const DataTableBody = <Datum extends BasicDatum>({
   data,
+  loading,
   selected,
   getIdKey,
   onSelectRow,
@@ -193,9 +239,11 @@ const DataTableBody = <Datum extends BasicDatum>({
           <MemoizedDataTableRow
             key={id}
             datum={datum}
+            loading={loading}
             id={id}
             isSelected={selected?.includes(id)}
             selectable={Boolean(selected)}
+            firstColumn={index === 0}
             {...props}
           />
         );
@@ -226,6 +274,7 @@ export interface Props<Datum>
 
 export const DataTable = <Datum extends BasicDatum>({
   data,
+  loading,
   columns,
   onSelectRow,
   selected,
@@ -259,6 +308,7 @@ export const DataTable = <Datum extends BasicDatum>({
       />
       <DataTableBody<Datum>
         data={data}
+        loading={loading}
         columns={columns}
         getIdKey={getIdKey}
         fixedLayout={fixedLayout}
