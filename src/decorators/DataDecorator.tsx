@@ -40,7 +40,7 @@ export const columns: Array<
     label: 'Column 4',
     name: 'content4',
     render: (row) => row.content4,
-    width: '40vw',
+    width: '30vw',
     sortable: true,
   },
   {

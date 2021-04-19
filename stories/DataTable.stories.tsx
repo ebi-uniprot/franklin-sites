@@ -75,6 +75,31 @@ export const dataTableWithLoaderCompact = () => (
   </DataLoaderDecorator>
 );
 
+export const dataTableLoading = () => (
+  <DataLoaderDecorator>
+    {(props) => (
+      <DataTableWithLoader
+        {...props}
+        loading
+        columns={[
+          ...columns,
+          {
+            label: 'Column 6',
+            name: 'content5',
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore we know it doesn't exist, it's on purpose
+            render: (row) => row.content6.complexValue,
+          },
+        ]}
+        onSelectRow={action('onSelectRow')}
+        onHeaderClick={action('onHeaderClick')}
+        selected={[]}
+        density="compact"
+      />
+    )}
+  </DataLoaderDecorator>
+);
+
 export const fixedTableWithLoader = () => (
   <DataLoaderDecorator>
     {(props) => (

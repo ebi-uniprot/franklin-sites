@@ -27,6 +27,25 @@ export const dataList = () => (
   </DataDecorator>
 );
 
+export const dataListLoading = () => (
+  <DataDecorator>
+    {(props) => (
+      <DataList
+        {...props}
+        loading
+        dataRenderer={(content) => (
+          <>
+            {Object.values(content)}
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore we know it doesn't exist, it's on purpose */}
+            {content.complex.value}
+          </>
+        )}
+      />
+    )}
+  </DataDecorator>
+);
+
 export const dataListWithLoader = () => (
   <DataLoaderDecorator>
     {(props) => (
