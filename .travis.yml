@@ -1,12 +1,11 @@
 language: node_js
 node_js:
-  - 'node'
+  - 15
 before_deploy:
   - yarn build
 notifications:
   email:
     - xwatkins@ebi.ac.uk
-    - mmahmoudy@ebi.ac.uk
     - dlrice@ebi.ac.uk
   slack: ebi-uniprot:7OMFmmkUp9uxH3SXgyq7OVb3
 deploy:
