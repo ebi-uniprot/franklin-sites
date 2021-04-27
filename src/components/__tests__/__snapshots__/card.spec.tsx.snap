@@ -5,13 +5,13 @@ exports[`Card component should render 1`] = `
   <section
     class="card"
   >
-    <div>
+    <div
+      class="card__container"
+    >
       <div
         class="card__header"
       >
-        <h2
-          class="card__title"
-        >
+        <h2>
           Title
         </h2>
       </div>
@@ -32,20 +32,15 @@ exports[`Card component should render card with links 1`] = `
   <section
     class="card"
   >
-    <div>
+    <div
+      class="card__container"
+    >
       <div
         class="card__header"
       >
-        <h2
-          class="card__title"
-        >
+        <h2>
           Title
         </h2>
-        <div
-          class="card__subtitle"
-        >
-          Subtitle
-        </div>
       </div>
       <div
         class="card__content"
@@ -59,7 +54,7 @@ exports[`Card component should render card with links 1`] = `
       class="card__actions"
     >
       <a
-        class="card__link"
+        class="card-action"
         href="/example.com"
         style="border-bottom: 0.125rem solid red;"
       >
@@ -70,61 +65,27 @@ exports[`Card component should render card with links 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Card component should render card with onclick 1`] = `
+exports[`Card component should render card with target 1`] = `
 <DocumentFragment>
   <section
-    class="card"
+    class="card card--has-link"
   >
+    <a
+      aria-hidden="true"
+      class="card__link"
+      data-testid="background-link"
+      href="/target"
+      tabindex="-1"
+    />
     <div
-      class="card--has-hover"
-      role="button"
-      tabindex="0"
+      class="card__container"
     >
       <div
         class="card__header"
       >
-        <h2
-          class="card__title"
-        >
+        <h2>
           Title
         </h2>
-        <div
-          class="card__subtitle"
-        >
-          Subtitle
-        </div>
-      </div>
-      <div
-        class="card__content"
-      >
-        <span>
-          Some content
-        </span>
-      </div>
-    </div>
-  </section>
-</DocumentFragment>
-`;
-
-exports[`Card component should render card with subtitle 1`] = `
-<DocumentFragment>
-  <section
-    class="card"
-  >
-    <div>
-      <div
-        class="card__header"
-      >
-        <h2
-          class="card__title"
-        >
-          Title
-        </h2>
-        <div
-          class="card__subtitle"
-        >
-          Subtitle
-        </div>
       </div>
       <div
         class="card__content"
