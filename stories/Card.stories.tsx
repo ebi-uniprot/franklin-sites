@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-import { action } from '@storybook/addon-actions';
-import { Card } from '../src/components';
+import { boolean } from '@storybook/addon-knobs';
+
+import { Card as CardComponent, SwissProtIcon } from '../src/components';
+
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 const links = [
@@ -24,6 +25,15 @@ const links = [
     link: '/burlywood',
     color: 'burlywood',
   },
+  {
+    key: 'swissprot',
+    name: (
+      <>
+        <SwissProtIcon width="1.5ch" /> Reviewed
+      </>
+    ),
+    link: '/reviewed',
+  },
 ];
 
 export default {
@@ -38,30 +48,30 @@ export default {
   },
 };
 
-export const card = () => (
-  <Card title="Title" subtitle={<a href="/#">APOE_HUMAN - P02649</a>}>
-    {getLipsumSentences()}
-  </Card>
-);
-
-export const cardWithOnClick = () => (
-  <Card title="Title" onClick={action('click')} links={links}>
-    {getLipsumSentences()}
-  </Card>
-);
-
-export const cardWithLinks = () => (
-  <Card
-    title="Title"
-    subtitle={<Link to="/#">APOE_HUMAN - P02649</Link>}
-    links={links}
-  >
-    {getLipsumSentences()}
-  </Card>
-);
-
-export const activeCard = () => (
-  <Card title="Title" onClick={action('click')} active>
-    {getLipsumSentences()}
-  </Card>
-);
+export const Card = () => {
+  const hasHeader = boolean('header', true, 'Props');
+  const hasHeaderSeparator = boolean('headerSeparator', true, 'Props');
+  const hasCheckbox = boolean('checkbox (only if header)', false, 'Props');
+  return (
+    <CardComponent
+      header={
+        hasHeader ? (
+          <>
+            {hasCheckbox && <input type="checkbox" />}
+            <h2>
+              Title{' '}
+              <a className="medium" href="/#">
+                APOE_HUMAN - P02649
+              </a>
+            </h2>
+          </>
+        ) : undefined
+      }
+      headerSeparator={hasHeaderSeparator}
+      to={boolean('to', false, 'Props') ? '#' : undefined}
+      links={boolean('links', false, 'Props') ? links : undefined}
+    >
+      {getLipsumSentences()}
+    </CardComponent>
+  );
+};

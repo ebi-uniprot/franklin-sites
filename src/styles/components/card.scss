@@ -11,21 +11,38 @@ $card-link-padding: 0.5rem;
   border-radius: 0.2rem;
   margin: $global-margin $shadow-padding;
   width: calc(100% - #{$global-padding});
+  position: relative;
 
-  &--has-hover:hover {
-    background-color: scale-color($color: $colour-platinum, $lightness: 40%);
-    transition: 0.5s background-color ease;
+  &__link {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     cursor: pointer;
   }
 
-  &__header {
-    padding-left: $global-padding;
+  &__container {
+    position: relative;
+  }
 
-    &__checkbox {
-      input[type='checkbox'] {
-        margin: 0 0.75rem 0.5rem 0;
-        vertical-align: middle;
-      }
+  &--has-link {
+    transition: 0.5s background-color ease;
+
+    &:hover,
+    &:focus-within {
+      background-color: scale-color($color: $colour-platinum, $lightness: 40%);
+    }
+
+    * {
+      pointer-events: none;
+    }
+
+    a,
+    button,
+    input {
+      pointer-events: initial;
     }
   }
 
@@ -33,16 +50,26 @@ $card-link-padding: 0.5rem;
     padding: $global-padding;
   }
 
-  &__title {
-    margin: 0;
-    margin-right: $global-margin;
-  }
-
   &__header {
     display: flex;
     align-items: baseline;
-    border-bottom: 0.125rem solid;
-    border-color: $colour-platinum;
+    padding-left: $global-padding;
+
+    &--with-separator {
+      border-bottom: 0.125rem solid $colour-platinum;
+    }
+
+    & > * {
+      margin: 0;
+    }
+
+    & > *:not(:last-child) {
+      margin-right: $global-margin;
+    }
+
+    &:not(&--with-separator) + .card__content {
+      padding-top: 0;
+    }
   }
 
   &__actions {
@@ -53,20 +80,18 @@ $card-link-padding: 0.5rem;
     padding: 0;
     background-color: $colour-selected;
   }
-
-  &--active {
-    background-color: scale-color($color: $colour-platinum, $lightness: 20%);
-  }
 }
 
-.card__link {
+.card-action {
   margin: 0;
   padding: $card-link-padding;
   font-weight: 600;
   white-space: nowrap;
   background-color: $colour-gainsborough;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-within {
     transition: 0.5s background-color ease;
     background-color: $colour-hover;
   }
