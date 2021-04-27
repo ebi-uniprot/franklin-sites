@@ -70,7 +70,6 @@ export const Card = () => {
       headerSeparator={hasHeaderSeparator}
       to={boolean('to', false, 'Props') ? '#' : undefined}
       links={boolean('links', false, 'Props') ? links : undefined}
-      active={boolean('active', false, 'Props')}
     >
       {getLipsumSentences()}
     </CardComponent>

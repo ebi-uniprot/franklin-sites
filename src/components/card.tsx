@@ -43,11 +43,6 @@ type Props = {
    */
   links?: Array<CardActionProps>;
   /**
-   * Should the card styling show it as active or not
-   */
-  // TODO: where is that used?
-  active?: boolean;
-  /**
    * Target/link of the card when clicking on it
    */
   to?: LinkProps['to'];
@@ -61,7 +56,6 @@ const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
       children,
       links,
       to,
-      active,
       className,
       ...props
     },
@@ -69,7 +63,6 @@ const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
   ) => (
     <section
       className={cn(className, 'card', {
-        'card--active': active,
         'card--has-link': to,
       })}
       ref={ref}

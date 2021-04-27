@@ -31,8 +31,7 @@ $card-link-padding: 0.5rem;
     transition: 0.5s background-color ease;
 
     &:hover,
-    &:focus-within,
-    .card--active {
+    &:focus-within {
       background-color: scale-color($color: $colour-platinum, $lightness: 40%);
     }
 
