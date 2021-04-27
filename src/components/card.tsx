@@ -1,20 +1,28 @@
-import { forwardRef, FC, ReactNode, HTMLAttributes } from 'react';
-import { NavLink, LinkProps } from 'react-router-dom';
+import { forwardRef, FC, ReactNode, HTMLAttributes, ReactText } from 'react';
+import { NavLink, Link, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
 import '../styles/components/card.scss';
 
-type CardLinkProps = {
-  name: string;
+type CardActionProps = {
   link: LinkProps['to'];
   color?: string;
-};
+} & (
+  | {
+      key?: ReactText;
+      name: string;
+    }
+  | {
+      key: ReactText;
+      name: ReactNode;
+    }
+);
 
-const CardLink: FC<CardLinkProps> = ({ name, link, color }) => (
+const CardAction: FC<CardActionProps> = ({ name, link, color }) => (
   <NavLink
     to={link}
-    className="card__link"
-    activeClassName="card__link--active"
+    className="card-action"
+    activeClassName="card-action--active"
     style={color ? { borderBottom: `0.125rem solid ${color}` } : undefined}
   >
     {name}
@@ -23,72 +31,80 @@ const CardLink: FC<CardLinkProps> = ({ name, link, color }) => (
 
 type Props = {
   /**
-   * The card title (can be an Element)
+   * The card header (should include the wanted heading level)
    */
-  title?: ReactNode;
+  header?: ReactNode;
   /**
-   * The subtitle (can be an Element)
+   * Does the card header need a separator? Defaults to true
    */
-  subtitle?: ReactNode;
+  headerSeparator?: boolean;
   /**
    * Links to be displayed at the bottom of the card
    */
-  links?: Array<CardLinkProps>;
+  links?: Array<CardActionProps>;
   /**
-   * Should the card styling show it as active or not
+   * Target/link of the card when clicking on it
    */
-  active?: boolean;
+  to?: LinkProps['to'];
 };
 
 const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
   (
     {
-      title,
-      subtitle,
+      header,
+      headerSeparator = true,
       children,
       links,
-      onClick,
-      onKeyDown,
-      active,
+      to,
       className,
       ...props
     },
     ref
-  ) => {
-    const containerAttributes = onClick
-      ? {
-          className: 'card--has-hover',
-          onClick,
-          onKeyDown,
-          role: 'button',
-          tabIndex: 0,
-        }
-      : {};
-    return (
-      <section
-        className={cn(className, 'card', { 'card--active': active })}
-        ref={ref}
-        {...props}
-      >
-        <div {...containerAttributes}>
-          {title && (
-            <div className="card__header">
-              <h2 className="card__title">{title}</h2>
-              {subtitle && <div className="card__subtitle">{subtitle}</div>}
-            </div>
-          )}
-          <div className="card__content">{children}</div>
-        </div>
-        {links?.length ? (
-          <div className="card__actions">
-            {links.map((link) => (
-              <CardLink key={link.name} {...link} />
-            ))}
+  ) => (
+    <section
+      className={cn(className, 'card', {
+        'card--has-link': to,
+      })}
+      ref={ref}
+      {...props}
+    >
+      {to && (
+        <Link
+          data-testid="background-link"
+          to={to}
+          className="card__link"
+          aria-hidden="true"
+          tabIndex={-1}
+        />
+      )}
+      <div className="card__container">
+        {header && (
+          <div
+            className={cn('card__header', {
+              'card__header--with-separator': headerSeparator,
+            })}
+          >
+            {header}
           </div>
-        ) : undefined}
-      </section>
-    );
-  }
+        )}
+        <div className="card__content">{children}</div>
+      </div>
+      {links?.length ? (
+        <div className="card__actions">
+          {links.map((link, index) => (
+            <CardAction
+              key={
+                link.key ||
+                (typeof link.name === 'string' ? link.name : index) ||
+                index
+              }
+              {...link}
+            />
+          ))}
+        </div>
+      ) : undefined}
+    </section>
+  )
 );
 
 export default Card;

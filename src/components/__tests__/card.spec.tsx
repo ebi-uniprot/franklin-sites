@@ -7,16 +7,7 @@ import renderWithRouter from '../../testHelpers/renderWithRouter';
 describe('Card component', () => {
   test('should render', () => {
     const { asFragment } = renderWithRouter(
-      <Card title="Title">
-        <span>Some content</span>
-      </Card>
-    );
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  test('should render card with subtitle', () => {
-    const { asFragment } = renderWithRouter(
-      <Card title="Title" subtitle="Subtitle">
+      <Card header={<h2>Title</h2>}>
         <span>Some content</span>
       </Card>
     );
@@ -33,22 +24,21 @@ describe('Card component', () => {
     ];
 
     const { asFragment } = renderWithRouter(
-      <Card title="Title" subtitle="Subtitle" links={links}>
+      <Card header={<h2>Title</h2>} links={links}>
         <span>Some content</span>
       </Card>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render card with onclick', () => {
-    const onClickMock = jest.fn();
-    const { asFragment } = renderWithRouter(
-      <Card title="Title" subtitle="Subtitle" onClick={onClickMock}>
+  test('should render card with target', () => {
+    const { asFragment, history } = renderWithRouter(
+      <Card header={<h2>Title</h2>} to="/target">
         <span>Some content</span>
       </Card>
     );
-    fireEvent.click(screen.getByRole('button'));
-    expect(onClickMock).toHaveBeenCalled();
     expect(asFragment()).toMatchSnapshot();
+    fireEvent.click(screen.getByTestId('background-link'));
+    expect(history.location.pathname).toBe('/target');
   });
 });
