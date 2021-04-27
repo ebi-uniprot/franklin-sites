@@ -56,6 +56,10 @@ $card-link-padding: 0.5rem;
     align-items: baseline;
     padding-left: $global-padding;
 
+    &--with-separator {
+      border-bottom: 0.125rem solid $colour-platinum;
+    }
+
     & > * {
       margin: 0;
     }
@@ -64,7 +68,7 @@ $card-link-padding: 0.5rem;
       margin-right: $global-margin;
     }
 
-    & + .card__content {
+    &:not(&--with-separator) + .card__content {
       padding-top: 0;
     }
   }

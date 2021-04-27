@@ -9,7 +9,7 @@ exports[`Card component should render 1`] = `
       class="card__container"
     >
       <div
-        class="card__header"
+        class="card__header card__header--with-separator"
       >
         <h2>
           Title
@@ -36,7 +36,7 @@ exports[`Card component should render card with links 1`] = `
       class="card__container"
     >
       <div
-        class="card__header"
+        class="card__header card__header--with-separator"
       >
         <h2>
           Title
@@ -81,7 +81,7 @@ exports[`Card component should render card with target 1`] = `
       class="card__container"
     >
       <div
-        class="card__header"
+        class="card__header card__header--with-separator"
       >
         <h2>
           Title

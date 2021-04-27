@@ -50,6 +50,7 @@ export default {
 
 export const Card = () => {
   const hasHeader = boolean('header', true, 'Props');
+  const hasHeaderSeparator = boolean('headerSeparator', true, 'Props');
   const hasCheckbox = boolean('checkbox (only if header)', false, 'Props');
   return (
     <CardComponent
@@ -66,6 +67,7 @@ export const Card = () => {
           </>
         ) : undefined
       }
+      headerSeparator={hasHeaderSeparator}
       to={boolean('to', false, 'Props') ? '#' : undefined}
       links={boolean('links', false, 'Props') ? links : undefined}
       active={boolean('active', false, 'Props')}

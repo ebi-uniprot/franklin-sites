@@ -35,6 +35,10 @@ type Props = {
    */
   header?: ReactNode;
   /**
+   * Does the card header need a separator? Defaults to true
+   */
+  headerSeparator?: boolean;
+  /**
    * Links to be displayed at the bottom of the card
    */
   links?: Array<CardActionProps>;
@@ -50,7 +54,19 @@ type Props = {
 };
 
 const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
-  ({ header, children, links, to, active, className, ...props }, ref) => (
+  (
+    {
+      header,
+      headerSeparator = true,
+      children,
+      links,
+      to,
+      active,
+      className,
+      ...props
+    },
+    ref
+  ) => (
     <section
       className={cn(className, 'card', {
         'card--active': active,
@@ -69,7 +85,15 @@ const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
         />
       )}
       <div className="card__container">
-        {header && <div className="card__header">{header}</div>}
+        {header && (
+          <div
+            className={cn('card__header', {
+              'card__header--with-separator': headerSeparator,
+            })}
+          >
+            {header}
+          </div>
+        )}
         <div className="card__content">{children}</div>
       </div>
       {links?.length ? (
