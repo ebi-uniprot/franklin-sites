@@ -23,7 +23,8 @@ $card-link-padding: 0.5rem;
     cursor: pointer;
   }
 
-  &__container {
+  &__container,
+  &__actions {
     position: relative;
   }
 
