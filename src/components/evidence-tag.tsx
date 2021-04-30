@@ -32,10 +32,6 @@ type EvidenceTagProps = {
    * Decides the colour of the tag
    */
   iconComponent: ReactElement<{ width: number; height: number }>;
-  /**
-   * The content of the tag
-   */
-  children: ReactNode;
 };
 
 const EvidenceTag: FC<EvidenceTagProps> = ({
