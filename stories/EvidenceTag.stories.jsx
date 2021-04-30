@@ -23,7 +23,6 @@ const IconComponentOptions = {
 export const evidenceTag = () => (
   <EvidenceTag
     label={text('label', 'this is an evidence tag', 'Props')}
-    title="Tag title"
     iconComponent={
       IconComponentOptions[
         select('iconComponent', ['EvidenceTag', 'HelpIcon'], null, 'Props')

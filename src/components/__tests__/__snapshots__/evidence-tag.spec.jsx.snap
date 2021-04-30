@@ -15,7 +15,6 @@ exports[`EvidenceTag component should render tag and toggle visibility of conten
     />
     <span
       class="evidence-tag__label"
-      title="My title"
     >
       My evidence
     </span>
