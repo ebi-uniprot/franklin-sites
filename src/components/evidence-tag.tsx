@@ -21,14 +21,6 @@ type EvidenceTagProps = {
    */
   label: string;
   /**
-   * Displayed on on mouseover
-   */
-  title: string;
-  /**
-   * Decides the colour of the tag
-   */
-  className?: string;
-  /**
    * Decides the colour of the tag
    */
   iconComponent: ReactElement<{ width: number; height: number }>;
@@ -56,9 +48,7 @@ const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
         {...props}
       >
         {cloneElement(iconComponent, { width: size, height: size })}
-        <span className="evidence-tag__label" title={title}>
-          {label}
-        </span>
+        <span className="evidence-tag__label">{label}</span>
       </button>
       {children && (
         <div
