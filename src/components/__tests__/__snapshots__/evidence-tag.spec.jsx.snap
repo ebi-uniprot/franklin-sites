@@ -5,7 +5,7 @@ exports[`EvidenceTag component should render tag and toggle visibility of conten
   <button
     aria-controls="abcd"
     aria-expanded="true"
-    class="evidence-tag "
+    class="evidence-tag"
     data-testid="evidence-tag-trigger"
     type="button"
   >

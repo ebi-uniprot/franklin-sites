@@ -1,5 +1,12 @@
-import { useState, useRef, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import {
+  useState,
+  useRef,
+  cloneElement,
+  ReactNode,
+  FC,
+  ReactElement,
+} from 'react';
+import cn from 'classnames';
 import { v1 } from 'uuid';
 
 import EvidenceTagIcon from '../svg/evidence-tag.svg';
@@ -8,13 +15,42 @@ import '../styles/components/evidence-tag.scss';
 
 const size = 12;
 
-const EvidenceTag = ({ label, title, className, iconComponent, children }) => {
+type EvidenceTagProps = {
+  /**
+   * Displayed on the tag
+   */
+  label: string;
+  /**
+   * Displayed on on mouseover
+   */
+  title: string;
+  /**
+   * Decides the colour of the tag
+   */
+  className?: string;
+  /**
+   * Decides the colour of the tag
+   */
+  iconComponent: ReactElement<{ width: number; height: number }>;
+  /**
+   * The content of the tag
+   */
+  children: ReactNode;
+};
+
+const EvidenceTag: FC<EvidenceTagProps> = ({
+  label,
+  title,
+  className,
+  iconComponent = <EvidenceTagIcon />,
+  children,
+}) => {
   const idRef = useRef(v1());
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
     <>
       <button
-        className={`evidence-tag ${className}`}
+        className={cn(className, 'evidence-tag')}
         onClick={() => setContentDisplay(!contentDisplay)}
         type="button"
         data-testid="evidence-tag-trigger"
@@ -39,39 +75,6 @@ const EvidenceTag = ({ label, title, className, iconComponent, children }) => {
       )}
     </>
   );
-};
-
-EvidenceTag.propTypes = {
-  /**
-   * Displayed on the tag
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * Displayed on on mouseover
-   */
-  title: PropTypes.string,
-  /**
-   * Decides the colour of the tag
-   */
-  className: PropTypes.string,
-  /**
-   * Decides the colour of the tag
-   */
-  iconComponent: PropTypes.element,
-  /**
-   * The content of the tag
-   */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-
-EvidenceTag.defaultProps = {
-  title: '',
-  className: '',
-  iconComponent: <EvidenceTagIcon />,
-  children: null,
 };
 
 export default EvidenceTag;
