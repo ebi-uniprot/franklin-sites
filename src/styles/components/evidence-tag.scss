@@ -12,9 +12,20 @@
   line-height: 1.25rem;
   margin-left: ($global-margin/2);
   border-radius: $global-padding/4;
-  background-color: $colour-platinum;
+  background-color: $colour-gainsborough;
+  border: 1px solid $colour-weldon-blue;
   padding: 0 $global-padding/4;
   color: $colour-yankees-blue;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    background-color: $colour-pastel-blue;
+  }
+
+  &:active {
+    background-color: rgba($colour-independence, 0.3);
+  }
 
   svg {
     position: absolute;
