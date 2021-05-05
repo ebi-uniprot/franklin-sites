@@ -1,7 +1,7 @@
 @import '../settings';
 @import '../colours';
 
-.evidence-tag {
+button.evidence-tag {
   cursor: pointer;
   position: relative;
   display: inline-block;
@@ -30,11 +30,11 @@
   svg {
     position: absolute;
   }
+}
 
-  &__label {
-    padding-left: ($global-padding);
-    text-transform: capitalize;
-  }
+.evidence-tag__label {
+  padding-left: ($global-padding);
+  text-transform: capitalize;
 }
 
 .evidence-tag-content {

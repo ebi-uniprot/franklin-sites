@@ -21,9 +21,9 @@ type EvidenceTagProps = {
    */
   label: string;
   /**
-   * Decides the colour of the tag
+   * Icon to display
    */
-  iconComponent: ReactElement<{ width: number; height: number }>;
+  iconComponent?: ReactElement<{ width: number; height: number }>;
 };
 
 const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
