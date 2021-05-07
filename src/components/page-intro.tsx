@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { FC, ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -12,9 +11,39 @@ import '../styles/components/page-intro.scss';
 
 const chevronSize = 20;
 
-const PageIntro = ({ title, resultsCount, children, links, showContent }) => {
-  const [displayContent, setDisplayContent] = useState(showContent);
+type PageIntroProps = {
+  /**
+   * The title, works as a trigger to open/close
+   */
+  title: ReactNode;
+  titlePostfix: ReactNode;
+  /**
+   * Number of results
+   */
+  resultsCount?: number;
+  /**
+   * Content revealed on toggle
+   */
+  children?: ReactNode;
+  /**
+   * Links revealed on toggle
+   */
+  links?: { title: string; destination: string }[];
+  /**
+   * To show the content by default or not
+   */
+  showContent?: boolean;
+};
 
+const PageIntro: FC<PageIntroProps> = ({
+  title,
+  resultsCount = 0,
+  children,
+  links,
+  showContent = false,
+  titlePostfix,
+}) => {
+  const [displayContent, setDisplayContent] = useState(showContent);
   return (
     <div className="page-intro">
       <h2>
@@ -33,6 +62,7 @@ const PageIntro = ({ title, resultsCount, children, links, showContent }) => {
         {resultsCount > 0 && (
           <small> {formatLargeNumber(resultsCount)} results</small>
         )}
+        {titlePostfix}
       </h2>
 
       <div
@@ -42,7 +72,7 @@ const PageIntro = ({ title, resultsCount, children, links, showContent }) => {
       >
         {children}
         <div className="intro-links">
-          {links.map((link) => (
+          {links?.map((link) => (
             <Link to={link.destination} key={link.title}>
               {link.title}
             </Link>
@@ -51,36 +81,6 @@ const PageIntro = ({ title, resultsCount, children, links, showContent }) => {
       </div>
     </div>
   );
-};
-
-PageIntro.propTypes = {
-  /**
-   * The title, works as a trigger to open/close
-   */
-  title: PropTypes.string.isRequired,
-  /**
-   * Number of results
-   */
-  resultsCount: PropTypes.number,
-  /**
-   * Content revealed on toggle
-   */
-  children: PropTypes.node,
-  /**
-   * Links revealed on toggle
-   */
-  links: PropTypes.arrayOf(PropTypes.shape({})),
-  /**
-   * To show the content by default or not
-   */
-  showContent: PropTypes.bool,
-};
-
-PageIntro.defaultProps = {
-  resultsCount: 0,
-  links: [],
-  showContent: false,
-  children: undefined,
 };
 
 export default PageIntro;
