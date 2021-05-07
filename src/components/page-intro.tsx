@@ -16,7 +16,7 @@ type PageIntroProps = {
    * The title, works as a trigger to open/close
    */
   title: ReactNode;
-  titlePostfix: ReactNode;
+  titlePostscript?: ReactNode;
   /**
    * Number of results
    */
@@ -41,7 +41,7 @@ const PageIntro: FC<PageIntroProps> = ({
   children,
   links,
   showContent = false,
-  titlePostfix,
+  titlePostscript,
 }) => {
   const [displayContent, setDisplayContent] = useState(showContent);
   return (
@@ -60,9 +60,9 @@ const PageIntro: FC<PageIntroProps> = ({
           {title}
         </button>
         {resultsCount > 0 && (
-          <small> {formatLargeNumber(resultsCount)} results</small>
+          <small> {formatLargeNumber(resultsCount)} results </small>
         )}
-        {titlePostfix}
+        {titlePostscript}
       </h2>
 
       <div
