@@ -21,7 +21,7 @@ export const pageIntro = () => (
     title="UniProt"
     resultsCount={1000}
     showContent={boolean('Show Content', true, 'Props')}
-    titlePostscript={text('Title Postcript', undefined, 'Props')}
+    titlePostscript={text('Title Postcript', '', 'Props')}
   >
     {getLipsumSentences()}
   </PageIntro>
