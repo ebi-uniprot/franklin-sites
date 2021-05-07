@@ -1,8 +1,11 @@
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+
 import { PageIntro } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
   title: 'Layout/Page Intro',
+  decorators: [withKnobs],
   parameters: {
     purposeFunction: {
       function:
@@ -14,7 +17,12 @@ export default {
 };
 
 export const pageIntro = () => (
-  <PageIntro title="UniProt" resultsCount={1000} showContent>
+  <PageIntro
+    title="UniProt"
+    resultsCount={1000}
+    showContent={boolean('Show Content', true, 'Props')}
+    titlePostscript={text('Title Postcript', undefined, 'Props')}
+  >
     {getLipsumSentences()}
   </PageIntro>
 );
