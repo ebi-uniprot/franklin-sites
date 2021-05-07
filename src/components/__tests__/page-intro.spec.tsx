@@ -17,7 +17,7 @@ describe('PageIntro component', () => {
       <PageIntro
         title="Title"
         resultsCount={1000}
-        titlePostscript={<i> from job ID123</i>}
+        titlePostscript={<i>from job ID123</i>}
       >
         <div>Some content</div>
       </PageIntro>
