@@ -1,12 +1,22 @@
 import { useMemo } from 'react';
-import PropTypes from 'prop-types';
 
 import DropdownButton from './dropdown-button';
 import Button from './button';
 
 import color from '../styles/colours.json';
 
+import { FranklinStyle } from '../types/common';
+
 import '../styles/components/main-search.scss';
+
+type MainSearchProps = {
+  onSubmit: () => void;
+  onChange: (selectedValue: string) => void;
+  searchTerm: string;
+  namespaces: Record<string, string>;
+  onNamespaceChange: (namespace: string) => void;
+  selectedNamespace: string;
+};
 
 const MainSearch = ({
   searchTerm = '',
@@ -15,10 +25,11 @@ const MainSearch = ({
   onSubmit,
   onNamespaceChange = () => null,
   selectedNamespace = 'uniprotkb',
-}) => {
-  const style = useMemo(
+}: MainSearchProps) => {
+  const style = useMemo<FranklinStyle>(
     () => ({
-      '--main-button-color': color[selectedNamespace] || color.seaBlue,
+      '--main-button-color':
+        color[selectedNamespace as keyof typeof color] || color.seaBlue,
     }),
     [selectedNamespace]
   );
@@ -32,7 +43,7 @@ const MainSearch = ({
     >
       {Object.keys(namespaces).length > 0 && (
         <DropdownButton label={namespaces[selectedNamespace]}>
-          {(setShowMenu) => (
+          {(setShowMenu: (show: boolean) => void) => (
             <ul>
               {Object.keys(namespaces).map((key) => (
                 <li key={key}>
@@ -64,22 +75,6 @@ const MainSearch = ({
       <Button type="submit">Search</Button>
     </form>
   );
-};
-
-MainSearch.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string,
-  namespaces: PropTypes.objectOf(PropTypes.string),
-  onNamespaceChange: PropTypes.func,
-  selectedNamespace: PropTypes.string,
-};
-
-MainSearch.defaultProps = {
-  searchTerm: '',
-  namespaces: {},
-  onNamespaceChange: () => null,
-  selectedNamespace: '',
 };
 
 export default MainSearch;
