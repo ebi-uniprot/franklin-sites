@@ -7,13 +7,17 @@ exports[`MainSearch component should render 1`] = `
     data-testid="main-search-form"
     style="--main-button-color: #00639a;"
   >
-    <input
-      aria-label="Text query"
+    <div
       class="main-search__input"
-      data-testid="main-search-input"
-      type="text"
-      value=""
-    />
+    >
+      <input
+        aria-label="Text query"
+        class="main-search__input"
+        data-testid="main-search-input"
+        type="text"
+        value=""
+      />
+    </div>
     <button
       class="button primary"
       type="submit"
@@ -44,13 +48,17 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
         class="dropdown-menu"
       />
     </div>
-    <input
-      aria-label="Text query in one"
+    <div
       class="main-search__input"
-      data-testid="main-search-input"
-      type="text"
-      value=""
-    />
+    >
+      <input
+        aria-label="Text query in one"
+        class="main-search__input"
+        data-testid="main-search-input"
+        type="text"
+        value=""
+      />
+    </div>
     <button
       class="button primary"
       type="submit"

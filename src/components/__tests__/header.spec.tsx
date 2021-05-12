@@ -25,7 +25,7 @@ describe('Header component', () => {
           { label: <EnvelopeIcon />, path: '/' },
           { label: <BasketIcon />, path: '/' },
         ]}
-        search={<MainSearch onChange={jest.fn()} onSubmit={jest.fn()} />}
+        search={<MainSearch onTextChange={jest.fn()} onSubmit={jest.fn()} />}
       />
     );
 

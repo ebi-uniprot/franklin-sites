@@ -1,3 +1,5 @@
+@import '../colours';
+
 .main-search {
   display: flex;
 
@@ -15,5 +17,28 @@
     .button {
       display: flex;
     }
+  }
+  &__input {
+    display: flex;
+    position: relative;
+    width: 100%;
+    input {
+      margin: 0;
+    }
+  }
+
+  &__secondary-container {
+    display: flex;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    align-items: center;
+    color: $colour-weldon-blue;
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: $colour-weldon-blue;
+    padding: 0 1ch;
   }
 }

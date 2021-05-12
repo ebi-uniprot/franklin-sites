@@ -38,7 +38,7 @@ export default {
 export const mainSearch = (_, { state, setState }) => (
   <MainSearch
     searchTerm={state.value}
-    onChange={(value) => setState({ value })}
+    onTextChange={(value) => setState({ value })}
     onSubmit={action('Submitted')}
   />
 );
@@ -51,18 +51,33 @@ mainSearch.propTypes = {
   setState: PropTypes.func.isRequired,
 };
 
-export const mainSearchWithNamespaces = (
-  { defaultNamespace },
-  { state, setState }
-) => (
+export const mainSearchWithNamespaces = (_, { state, setState }) => (
   <MainSearch
-    selectedNamespace={state.namespace || defaultNamespace}
     searchTerm={state.value}
     namespaces={namespaces}
     onNamespaceChange={(value) => setState({ namespace: value })}
-    onChange={(value) => setState({ value })}
+    onTextChange={(value) => setState({ value })}
     onSubmit={action('Submitted')}
   />
 );
+
+export const mainSearchWithNamespacesAndSecondaryButtons = (
+  _,
+  { state, setState }
+) => (
+  <MainSearch
+    selectedNamespace={state.namespace}
+    searchTerm={state.value}
+    namespaces={namespaces}
+    onNamespaceChange={(value) => setState({ namespace: value })}
+    onTextChange={(value) => setState({ value })}
+    onSubmit={action('Submitted')}
+    secondaryButtons={[
+      { label: 'Advanced', action: action('Advanced') },
+      { label: 'List', action: action('List') },
+    ]}
+  />
+);
+
 // eslint-disable-next-line prefer-destructuring
 mainSearchWithNamespaces.args = { defaultNamespace: 'uniprotkb' };

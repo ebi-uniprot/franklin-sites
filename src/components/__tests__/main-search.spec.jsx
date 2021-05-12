@@ -5,7 +5,7 @@ describe('MainSearch component', () => {
   const handleSubmit = jest.fn();
   const handleChange = jest.fn();
   const props = {
-    onChange: handleChange,
+    onTextChange: handleChange,
     onSubmit: handleSubmit,
   };
   const namespaces = { one: 'One', two: 'Two', three: 'Three' };

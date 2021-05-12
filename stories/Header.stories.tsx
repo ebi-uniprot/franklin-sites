@@ -49,7 +49,7 @@ const Search = () => {
   const [value, setValue] = useState('');
   return (
     <MainSearch
-      onChange={setValue}
+      onTextChange={setValue}
       searchTerm={value}
       onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
