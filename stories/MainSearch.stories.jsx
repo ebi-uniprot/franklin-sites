@@ -53,6 +53,7 @@ mainSearch.propTypes = {
 
 export const mainSearchWithNamespaces = (_, { state, setState }) => (
   <MainSearch
+    selectedNamespace={state.namespace}
     searchTerm={state.value}
     namespaces={namespaces}
     onNamespaceChange={(value) => setState({ namespace: value })}
