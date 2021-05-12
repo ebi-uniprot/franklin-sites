@@ -22,6 +22,7 @@ import {
   EvidenceTagIcon,
   ExternalLinkIcon,
   HelpIcon,
+  InformationIcon,
   ListIcon,
   LocationPinIcon,
   ObsoleteIcon,
@@ -40,6 +41,7 @@ import {
   TableIcon,
   TagIcon,
   TremblIcon,
+  ToolboxIcon,
   UniParcIcon,
   WarningIcon,
   WarningTriangleIcon,
@@ -269,6 +271,11 @@ const iconDefinition = [
     icon: <HelpIcon width={size} height={size} />,
   },
   {
+    name: 'information.svg',
+    description: 'Information',
+    icon: <InformationIcon width={size} height={size} />,
+  },
+  {
     name: 'location-pin.svg',
     description: 'Location Pin',
     icon: <LocationPinIcon width={size} height={size} />,
@@ -287,6 +294,11 @@ const iconDefinition = [
     name: 'world.svg',
     description: 'World',
     icon: <WorldIcon width={size} height={size} />,
+  },
+  {
+    name: 'toolbox.svg',
+    description: 'Toolbox',
+    icon: <ToolboxIcon width={size} height={size} />,
   },
 ];
 
