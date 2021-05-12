@@ -17,7 +17,12 @@ describe('MainSearch component', () => {
 
   test('should render with namespaces selector', () => {
     const { asFragment } = render(
-      <MainSearch {...props} namespaces={namespaces} selectedNamespace="one" />
+      <MainSearch
+        {...props}
+        namespaces={namespaces}
+        selectedNamespace="one"
+        onNamespaceChange={jest.fn()}
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });

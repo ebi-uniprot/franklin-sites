@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { SyntheticEvent, useMemo } from 'react';
 
 import DropdownButton from './dropdown-button';
 import Button from './button';
@@ -10,21 +10,21 @@ import { FranklinStyle } from '../types/common';
 import '../styles/components/main-search.scss';
 
 type MainSearchProps = {
-  onSubmit: () => void;
+  onSubmit: (e: SyntheticEvent) => void;
   onChange: (selectedValue: string) => void;
-  searchTerm: string;
-  namespaces: Record<string, string>;
-  onNamespaceChange: (namespace: string) => void;
-  selectedNamespace: string;
+  searchTerm?: string;
+  namespaces?: Record<string, string>;
+  onNamespaceChange?: (namespace: string) => void;
+  selectedNamespace?: string;
 };
 
 const MainSearch = ({
-  searchTerm = '',
+  searchTerm,
   namespaces = {},
   onChange,
   onSubmit,
-  onNamespaceChange = () => null,
-  selectedNamespace = 'uniprotkb',
+  onNamespaceChange,
+  selectedNamespace,
 }: MainSearchProps) => {
   const style = useMemo<FranklinStyle>(
     () => ({
@@ -41,8 +41,15 @@ const MainSearch = ({
       data-testid="main-search-form"
       style={style}
     >
-      {Object.keys(namespaces).length > 0 && (
-        <DropdownButton label={namespaces[selectedNamespace]}>
+      {Object.keys(namespaces).length > 0 && onNamespaceChange && (
+        <DropdownButton
+          label={
+            namespaces[
+              // Pick the first item if nothing defined
+              selectedNamespace || namespaces[Object.keys(namespaces)[0]]
+            ]
+          }
+        >
           {(setShowMenu: (show: boolean) => void) => (
             <ul>
               {Object.keys(namespaces).map((key) => (
