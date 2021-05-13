@@ -121,11 +121,7 @@ const DropdownButton = ({
         style={style}
       >
         {showMenu &&
-          (childType === 'function'
-            ? (children as (
-                showMenu: Dispatch<SetStateAction<boolean>>
-              ) => ReactNode)(setShowMenu)
-            : children)}
+          (typeof children === 'function' ? children(setShowMenu) : children)}
       </div>
     </div>
   );
