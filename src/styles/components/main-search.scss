@@ -33,7 +33,7 @@
     right: 0;
     height: 100%;
     align-items: center;
-    color: $colour-weldon-blue;
+    color: $colour-independence;
   }
 
   &--secondary {
@@ -41,5 +41,11 @@
     color: inherit;
     padding: 0 1ch;
     cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.25s ease-out;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
