@@ -9,7 +9,7 @@ import { FranklinStyle } from '../types/common';
 
 import '../styles/components/main-search.scss';
 
-type MainSearchProps = {
+export type MainSearchProps = {
   /**
    * Action performed upon search submission
    */
