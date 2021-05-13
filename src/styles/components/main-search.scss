@@ -44,7 +44,9 @@
     opacity: 0.8;
     transition: opacity 0.25s ease-out;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:focus-within {
       opacity: 1;
     }
   }
