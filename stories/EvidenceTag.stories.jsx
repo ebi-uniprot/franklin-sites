@@ -1,5 +1,10 @@
 import { withKnobs, text, select } from '@storybook/addon-knobs';
-import { EvidenceTag, EvidenceTagIcon, HelpIcon } from '../src/components';
+import {
+  EvidenceTag,
+  EvidenceTagIcon,
+  InformationIcon,
+  HelpIcon,
+} from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
@@ -17,6 +22,7 @@ export default {
 
 const IconComponentOptions = {
   EvidenceTag: <EvidenceTagIcon />,
+  InformationIcon: <InformationIcon />,
   HelpIcon: <HelpIcon />,
 };
 
@@ -25,7 +31,12 @@ export const evidenceTag = () => (
     label={text('label', 'this is an evidence tag', 'Props')}
     iconComponent={
       IconComponentOptions[
-        select('iconComponent', ['EvidenceTag', 'HelpIcon'], null, 'Props')
+        select(
+          'iconComponent',
+          ['EvidenceTag', 'InformationIcon', 'HelpIcon'],
+          null,
+          'Props'
+        )
       ]
     }
   >
