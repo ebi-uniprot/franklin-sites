@@ -2,27 +2,6 @@
 @import '../colours';
 
 .page-intro {
-  .intro-content {
-    column-count: 2;
-    display: none;
-    &--display-content {
-      display: block;
-    }
-  }
-  .intro-links {
-    text-align: right;
-    a {
-      margin-right: $global-margin;
-    }
-  }
-  button {
-    cursor: pointer;
-    color: $colour-yankees-blue;
-    font-weight: inherit;
-    &:focus {
-      outline: none;
-    }
-  }
   small {
     color: $colour-yankees-blue;
   }

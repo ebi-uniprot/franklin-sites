@@ -1,8 +1,12 @@
+import { select, text, withKnobs } from '@storybook/addon-knobs';
+
 import { PageIntro } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
+import { HeadingLevels } from '../src/types/common';
 
 export default {
   title: 'Layout/Page Intro',
+  decorators: [withKnobs],
   parameters: {
     purposeFunction: {
       function:
@@ -14,7 +18,17 @@ export default {
 };
 
 export const pageIntro = () => (
-  <PageIntro title="UniProt" resultsCount={1000} showContent>
+  <PageIntro
+    title="UniProt"
+    resultsCount={1000}
+    titlePostscript={text('Title Postcript', '', 'Props')}
+    headingLevel={select(
+      'Heading Level',
+      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as HeadingLevels[],
+      'h1' as HeadingLevels,
+      'Props'
+    )}
+  >
     {getLipsumSentences()}
   </PageIntro>
 );

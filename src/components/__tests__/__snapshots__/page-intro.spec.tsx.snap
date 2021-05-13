@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageIntro component should render 1`] = `
+<DocumentFragment>
+  <div
+    class="page-intro"
+  >
+    <h1
+      class="big"
+    >
+      Title
+      <small>
+         1,000 results 
+      </small>
+    </h1>
+  </div>
+</DocumentFragment>
+`;
