@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 
@@ -49,9 +49,9 @@ const Search = () => {
   const [value, setValue] = useState('');
   return (
     <MainSearch
-      onChange={setValue}
+      onTextChange={setValue}
       searchTerm={value}
-      onSubmit={(e: MouseEvent) => {
+      onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         action('onSubmit')(e);
       }}

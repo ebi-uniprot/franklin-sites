@@ -1,23 +1,56 @@
-import { useRef, useState, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import {
+  useRef,
+  useState,
+  useEffect,
+  useMemo,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import cn from 'classnames';
 
 import Button from './button';
 
 import '../styles/components/dropdown.scss';
 
+type Props = {
+  /**
+   * Content revealed on click.
+   */
+  children:
+    | ReactNode
+    | ((showMenu: Dispatch<SetStateAction<boolean>>) => ReactNode);
+  /**
+   * Label to be display by the button
+   */
+  label: ReactNode;
+  /**
+   * Additional CSS classnames to apply to button
+   */
+  className?: string;
+  /**
+   * Button variant to use
+   */
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  /**
+   * open on pointer over (useful for dropdowns in header)
+   */
+  openOnHover?: boolean;
+};
+
 const DropdownButton = ({
   children,
   label,
+  variant,
   className,
-  openOnHover,
+  openOnHover = false,
   ...props
-}) => {
+}: Props) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [size, setSize] = useState();
+  const [size, setSize] = useState<DOMRect>();
 
-  const ref = useRef();
-  const dropdownRef = useRef();
+  const ref = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const childType = typeof children;
 
@@ -27,11 +60,12 @@ const DropdownButton = ({
       return;
     }
 
-    const listener = (event) => {
+    const listener = (event: MouseEvent | TouchEvent) => {
       if (
         !ref.current ||
-        ref.current.parentElement.contains(event.target) ||
-        (childType === 'function' && dropdownRef.current.contains(event.target))
+        ref.current?.parentElement?.contains(event.target as Node) ||
+        (childType === 'function' &&
+          dropdownRef.current?.contains(event.target as Node))
       ) {
         return;
       }
@@ -64,13 +98,16 @@ const DropdownButton = ({
   return (
     <div
       className="dropdown-container"
-      onBlur={(e) => setShowMenu(e.currentTarget.contains(e.relatedTarget))}
+      onBlur={(e) =>
+        setShowMenu(e.currentTarget.contains(e.relatedTarget as Node))
+      }
       onPointerEnter={openOnHover ? () => setShowMenu(true) : undefined}
       onPointerLeave={openOnHover ? () => setShowMenu(false) : undefined}
     >
       <Button
         className={cn('dropdown', className)}
         onClick={() => setShowMenu((showMenu) => !showMenu)}
+        variant={variant}
         ref={ref}
         {...props}
       >
@@ -84,39 +121,10 @@ const DropdownButton = ({
         style={style}
       >
         {showMenu &&
-          (childType === 'function' ? children(setShowMenu) : children)}
+          (typeof children === 'function' ? children(setShowMenu) : children)}
       </div>
     </div>
   );
-};
-
-DropdownButton.propTypes = {
-  /**
-   * Content revealed on click.
-   */
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
-  /**
-   * Label to be display by the button
-   */
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-  /**
-   * Additional CSS classnames to apply to button
-   */
-  className: PropTypes.string,
-  /**
-   * Button variant to use
-   */
-  variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
-  /**
-   * open on pointer over (useful for dropdowns in header)
-   */
-  openOnHover: PropTypes.bool,
-};
-
-DropdownButton.defaultProps = {
-  className: undefined,
-  openOnHover: undefined,
-  variant: undefined,
 };
 
 export default DropdownButton;

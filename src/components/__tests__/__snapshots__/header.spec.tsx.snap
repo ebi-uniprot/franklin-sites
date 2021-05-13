@@ -71,17 +71,19 @@ exports[`Header component should render 1`] = `
       class="header__search"
     >
       <form
+        aria-label="Main search"
         class="main-search"
-        data-testid="main-search-form"
         style="--main-button-color: #00639a;"
       >
-        <input
-          aria-label="Text query"
-          class="main-search__input"
-          data-testid="main-search-input"
-          type="text"
-          value=""
-        />
+        <div
+          class="main-search__input-container"
+        >
+          <input
+            aria-label="Text query"
+            type="text"
+            value=""
+          />
+        </div>
         <button
           class="button primary"
           type="submit"
