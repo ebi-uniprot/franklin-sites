@@ -34,6 +34,10 @@
     height: 100%;
     align-items: center;
     color: $colour-weldon-blue;
+
+    & > button {
+      cursor: pointer;
+    }
   }
 
   &--secondary {
