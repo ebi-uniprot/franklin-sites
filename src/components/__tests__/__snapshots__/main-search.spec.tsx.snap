@@ -3,8 +3,8 @@
 exports[`MainSearch component should render 1`] = `
 <DocumentFragment>
   <form
+    aria-label="Main search"
     class="main-search"
-    data-testid="main-search-form"
     style="--main-button-color: #00639a;"
   >
     <div
@@ -13,7 +13,6 @@ exports[`MainSearch component should render 1`] = `
       <input
         aria-label="Text query"
         class="main-search__input"
-        data-testid="main-search-input"
         type="text"
         value=""
       />
@@ -31,8 +30,8 @@ exports[`MainSearch component should render 1`] = `
 exports[`MainSearch component should render with namespaces selector 1`] = `
 <DocumentFragment>
   <form
+    aria-label="Main search"
     class="main-search"
-    data-testid="main-search-form"
     style="--main-button-color: #00639a;"
   >
     <div
@@ -54,7 +53,6 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
       <input
         aria-label="Text query in one"
         class="main-search__input"
-        data-testid="main-search-input"
         type="text"
         value=""
       />

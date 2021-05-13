@@ -64,8 +64,8 @@ const MainSearch = ({
   return (
     <form
       onSubmit={onSubmit}
+      aria-label="Main search"
       className="main-search"
-      data-testid="main-search-form"
       style={style}
     >
       {Object.keys(namespaces).length > 0 && onNamespaceChange && (
@@ -100,7 +100,6 @@ const MainSearch = ({
         <input
           type="text"
           className="main-search__input"
-          data-testid="main-search-input"
           aria-label={`Text query${
             selectedNamespace ? ` in ${selectedNamespace}` : ''
           }`}
