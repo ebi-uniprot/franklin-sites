@@ -1,4 +1,4 @@
-import { HTMLAttributes, SyntheticEvent, useMemo } from 'react';
+import { Fragment, HTMLAttributes, SyntheticEvent, useMemo } from 'react';
 
 import DropdownButton from './dropdown-button';
 import Button from './button';
@@ -115,9 +115,10 @@ const MainSearch = ({
         />
         {secondaryButtons && (
           <div className="main-search__secondary-container">
-            {secondaryButtons.map(({ label, action }, i) => (
-              <>
-                {i > 0 && <small> | </small>}
+            {secondaryButtons.map(({ label, action }, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <Fragment key={index}>
+                {index > 0 && <small> | </small>}
                 <button
                   type="button"
                   onClick={action}
@@ -126,7 +127,7 @@ const MainSearch = ({
                 >
                   <small>{label}</small>
                 </button>
-              </>
+              </Fragment>
             ))}
           </div>
         )}
