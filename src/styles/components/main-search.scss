@@ -34,15 +34,12 @@
     height: 100%;
     align-items: center;
     color: $colour-weldon-blue;
-
-    & > button {
-      cursor: pointer;
-    }
   }
 
   &--secondary {
     background-color: transparent;
-    color: $colour-weldon-blue;
+    color: inherit;
     padding: 0 1ch;
+    cursor: pointer;
   }
 }
