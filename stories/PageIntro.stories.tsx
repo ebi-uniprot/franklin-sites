@@ -1,4 +1,4 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { text, withKnobs } from '@storybook/addon-knobs';
 
 import { PageIntro } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
@@ -20,7 +20,6 @@ export const pageIntro = () => (
   <PageIntro
     title="UniProt"
     resultsCount={1000}
-    showContent={boolean('Show Content', true, 'Props')}
     titlePostscript={text('Title Postcript', '', 'Props')}
   >
     {getLipsumSentences()}

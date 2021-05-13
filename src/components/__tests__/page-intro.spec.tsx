@@ -1,7 +1,5 @@
 import { render, screen } from '@testing-library/react';
 
-import renderWithRouter from '../../testHelpers/renderWithRouter';
-
 import PageIntro from '../page-intro';
 
 describe('PageIntro component', () => {
@@ -14,32 +12,13 @@ describe('PageIntro component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render links if provided', () => {
-    renderWithRouter(
-      <PageIntro
-        title="Title"
-        resultsCount={1000}
-        links={[{ title: 'a link', destination: '/the/moon' }]}
-      >
-        <div>Some content</div>
-      </PageIntro>
-    );
-    expect(
-      screen.getByRole('link', {
-        name: /a link/i,
-      })
-    ).toBeInTheDocument();
-  });
-
   test('should render title postscript', () => {
     render(
       <PageIntro
         title="Title"
         resultsCount={1000}
         titlePostscript={<i>from job ID123</i>}
-      >
-        <div>Some content</div>
-      </PageIntro>
+      />
     );
     expect(
       screen.getByRole('heading', {

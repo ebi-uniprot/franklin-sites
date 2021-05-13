@@ -6,30 +6,11 @@ exports[`PageIntro component should render 1`] = `
     class="page-intro"
   >
     <h2>
-      <button
-        class="dropdown"
-        type="button"
-      >
-        <test-file-stub
-          height="20"
-          width="20"
-        />
-         Title
-      </button>
+      Title
       <small>
          1,000 results 
       </small>
     </h2>
-    <div
-      class="intro-content"
-    >
-      <div>
-        Some content
-      </div>
-      <div
-        class="intro-links"
-      />
-    </div>
   </div>
 </DocumentFragment>
 `;
