@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { HeadingLevels } from '../../types/common';
 
 import PageIntro from '../page-intro';
 
@@ -10,6 +11,17 @@ describe('PageIntro component', () => {
       </PageIntro>
     );
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render with heading level', () => {
+    const level = 5;
+    const headingLevel = `h${level}` as HeadingLevels;
+    render(
+      <PageIntro title="Title" resultsCount={1000} headingLevel={headingLevel}>
+        <div>Some content</div>
+      </PageIntro>
+    );
+    expect(screen.getByRole('heading', { level })).toBeInTheDocument();
   });
 
   test('should render title postscript', () => {

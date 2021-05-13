@@ -5,12 +5,12 @@ exports[`PageIntro component should render 1`] = `
   <div
     class="page-intro"
   >
-    <h2>
+    <h1>
       Title
       <small>
          1,000 results 
       </small>
-    </h2>
+    </h1>
   </div>
 </DocumentFragment>
 `;
