@@ -96,10 +96,9 @@ const MainSearch = ({
           )}
         </DropdownButton>
       )}
-      <div className="main-search__input">
+      <div className="main-search__input-container">
         <input
           type="text"
-          className="main-search__input"
           aria-label={`Text query${
             selectedNamespace ? ` in ${selectedNamespace}` : ''
           }`}
