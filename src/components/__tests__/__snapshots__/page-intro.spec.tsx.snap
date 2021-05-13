@@ -5,7 +5,9 @@ exports[`PageIntro component should render 1`] = `
   <div
     class="page-intro"
   >
-    <h1>
+    <h1
+      class="big"
+    >
       Title
       <small>
          1,000 results 

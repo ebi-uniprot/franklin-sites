@@ -1,4 +1,5 @@
 import { createElement, FC, ReactNode } from 'react';
+import cn from 'classnames';
 
 import { formatLargeNumber } from '../utils';
 
@@ -39,7 +40,7 @@ const PageIntro: FC<PageIntroProps> = ({
   <div className="page-intro">
     {createElement(
       headingLevel,
-      { className: titleClassName },
+      { className: cn('big', titleClassName) },
       <>
         {title}
         {resultsCount > 0 && (
