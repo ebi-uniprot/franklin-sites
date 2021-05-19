@@ -1,4 +1,12 @@
 .expandable-list {
+  margin-bottom: 0;
+
+  li:not(:first-child) {
+    button {
+      margin-top: 0;
+    }
+  }
+
   button,
   a {
     .facets &:not(.expandable-list__action) {
