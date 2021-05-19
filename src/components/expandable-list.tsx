@@ -1,4 +1,4 @@
-import { FC, Children, useState, ReactNode } from 'react';
+import { FC, Children, useState, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import Button from './button';
@@ -40,7 +40,7 @@ type ExpandableListProps = {
   /**
    * Children as an array of react elements, items of the list
    */
-  children: ReactNode;
+  children?: ReactNode;
   /**
    * Threshold from which to start hiding items of the list
    */
@@ -65,13 +65,9 @@ type ExpandableListProps = {
    * Classnames to be added to the list container
    */
   className?: string;
-  /**
-   * Any other prop to pass down to the rendered element
-   */
-  [key: string]: unknown;
 };
 
-export const ExpandableList: FC<ExpandableListProps> = ({
+export const ExpandableList = ({
   children: c,
   numberCollapsedItems = 5,
   descriptionString = 'items',
@@ -80,11 +76,17 @@ export const ExpandableList: FC<ExpandableListProps> = ({
   displayNumberOfHiddenItems,
   className,
   ...props
-}) => {
+}: ExpandableListProps & HTMLAttributes<HTMLUListElement>) => {
+  const [expanded, setExpanded] = useState(false);
+
   // get an array of children, filter out null or undefined children to avoid
   // counting them towards the threshold limit
   const children = Children.toArray(c).filter(Boolean);
-  const [expanded, setExpanded] = useState(false);
+
+  if (!children.length) {
+    return null;
+  }
+
   const enoughChildren = children.length > numberCollapsedItems + 1;
   const itemNodes = children
     .slice(

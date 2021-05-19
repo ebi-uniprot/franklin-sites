@@ -84,6 +84,28 @@ describe('ExpandableList', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  test('should not render when no children', () => {
+    const { container } = render(
+      <ExpandableList
+        numberCollapsedItems={numberCollapsedItems}
+        descriptionString={descriptionString}
+      />
+    );
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  test('should not render when empty list as children', () => {
+    const { container } = render(
+      <ExpandableList
+        numberCollapsedItems={numberCollapsedItems}
+        descriptionString={descriptionString}
+      >
+        {[]}
+      </ExpandableList>
+    );
+    expect(container).toBeEmptyDOMElement();
+  });
+
   test('should not show more button if numberItems <= numberCollapsedItems + 1', () => {
     render(
       <ExpandableList
