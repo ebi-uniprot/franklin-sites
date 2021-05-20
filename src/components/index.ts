@@ -15,6 +15,7 @@ export { default as DoughnutChart } from './doughnut-chart';
 export { default as DropdownButton } from './dropdown-button';
 export { default as EvidenceTag } from './evidence-tag';
 export { default as ExpandableList } from './expandable-list';
+export { default as EllipsisReveal } from './ellipsis-reveal';
 export { default as ExternalLink } from './external-link';
 export { Facets, Facet } from './facets';
 export { default as FranklinSite } from './franklin-site';
