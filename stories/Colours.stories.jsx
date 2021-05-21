@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import coloursFile from '../markdown/colours.md';
 
@@ -7,5 +8,5 @@ export default {
 };
 
 export const colours = () => (
-  <ReactMarkdown source={coloursFile} escapeHtml={false} />
+  <ReactMarkdown rehypePlugins={[rehypeRaw]}>{coloursFile}</ReactMarkdown>
 );

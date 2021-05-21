@@ -1,4 +1,6 @@
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+
 import typographyFile from '../markdown/typography.md';
 
 export default {
@@ -6,5 +8,5 @@ export default {
 };
 
 export const typography = () => (
-  <ReactMarkdown source={typographyFile} escapeHtml={false} />
+  <ReactMarkdown rehypePlugins={[rehypeRaw]}>{typographyFile}</ReactMarkdown>
 );
