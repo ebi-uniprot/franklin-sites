@@ -16,5 +16,7 @@ export default {
 };
 
 export const expandableList = () => (
-  <EllipsisReveal>{getLipsumSentences()}</EllipsisReveal>
+  <>
+    Some text <EllipsisReveal>{getLipsumSentences()}</EllipsisReveal>
+  </>
 );

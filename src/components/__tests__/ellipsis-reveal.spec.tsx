@@ -4,9 +4,12 @@ import EllipsisReveal from '../ellipsis-reveal';
 describe('EllipsisReveal', () => {
   test('should reveal extra text upon click', () => {
     render(<EllipsisReveal>Some other text</EllipsisReveal>);
+
+    expect(screen.queryByText('Some other text')).not.toBeInTheDocument();
+
     const button = screen.getByRole('button');
     fireEvent.click(button);
-    const expandedText = screen.findByText('Some other text');
-    expect(expandedText).toBeTruthy();
+
+    expect(screen.getByText('Some other text')).toBeInTheDocument();
   });
 });

@@ -1,7 +1,16 @@
-import { FC, useState } from 'react';
+import { FC, HTMLAttributes, useState } from 'react';
+import cn from 'classnames';
+
 import { Button } from './button';
 
-const EllipsisReveal: FC = ({ children }) => {
+import '../styles/components/ellipsis-reveal.scss';
+
+const EllipsisReveal: FC<HTMLAttributes<HTMLButtonElement>> = ({
+  children,
+  className,
+  title,
+  ...props
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -11,7 +20,10 @@ const EllipsisReveal: FC = ({ children }) => {
         <Button
           variant="tertiary"
           onClick={() => setOpen(true)}
-          style={{ margin: 0 }}
+          className={cn(className, 'ellipsis-reveal')}
+          title={title || 'Show more'}
+          aria-expanded="false"
+          {...props}
         >
           [...]
         </Button>
