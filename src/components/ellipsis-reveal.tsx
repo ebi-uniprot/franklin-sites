@@ -8,7 +8,11 @@ const EllipsisReveal: FC = ({ children }) => {
       {open ? (
         children
       ) : (
-        <Button variant="tertiary" onClick={() => setOpen(true)}>
+        <Button
+          variant="tertiary"
+          onClick={() => setOpen(true)}
+          style={{ margin: 0 }}
+        >
           [...]
         </Button>
       )}
