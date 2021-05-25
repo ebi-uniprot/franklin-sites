@@ -14,12 +14,13 @@ module.exports = [
       path: `${__dirname}/dist`,
       filename: 'franklin-components.js',
       libraryTarget: 'commonjs',
+      clean: true,
     },
     devtool: 'source-map',
     externals: {
-      react: { commonjs: 'react' },
-      'react-dom': { commonjs: 'react-dom' },
-      'react-router-dom': { commonjs: 'react-router-dom' },
+      react: 'react',
+      'react-dom': 'react-dom',
+      'react-router-dom': 'react-router-dom',
     },
     resolve: {
       extensions: ['.jsx', '.js', '.tsx', '.ts'],
@@ -27,8 +28,8 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /\.(j|t)sx?$/,
-          exclude: /(node_modules)/,
+          test: /\.m?(j|t)sx?$/,
+          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
@@ -46,6 +47,9 @@ module.exports = [
             },
             {
               loader: 'css-loader', // translates CSS into CommonJS
+              options: {
+                esModule: false,
+              },
             },
             {
               loader: 'sass-loader',
@@ -83,7 +87,6 @@ module.exports = [
     stats: {
       children: false,
       assetsSort: '!size',
-      // groupAssetsByChunk: true,
     },
   },
 ];
