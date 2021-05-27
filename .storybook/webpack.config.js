@@ -30,6 +30,9 @@ module.exports = async ({ config }) => {
       {
         // translates CSS into something importable into the code
         loader: 'css-loader',
+        options: {
+          esModule: false,
+        },
       },
       {
         loader: 'sass-loader',
