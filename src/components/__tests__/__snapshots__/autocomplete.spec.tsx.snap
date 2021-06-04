@@ -30,7 +30,9 @@ exports[`Autocomplete component should render 1`] = `
     >
       <div
         class="dropdown-menu__panel"
-      />
+      >
+        <ul />
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -66,7 +68,9 @@ exports[`Autocomplete component should render with props: showDropdownUpdated & 
     >
       <div
         class="dropdown-menu__panel"
-      />
+      >
+        <ul />
+      </div>
     </div>
   </div>
 </DocumentFragment>

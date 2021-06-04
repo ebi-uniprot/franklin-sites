@@ -35,8 +35,8 @@ type AutocompleteProps = {
   onSelect: (selected: AutocompleteItemType | string) => void;
   onChange?: (textInput: string) => void;
   showDropdownUpdated?: (updated: boolean) => void;
-  clearOnSelect: boolean;
-  placeholder: string;
+  clearOnSelect?: boolean;
+  placeholder?: string;
   filter?: boolean;
   value?: string;
   minCharsToShowDropdown?: number;
