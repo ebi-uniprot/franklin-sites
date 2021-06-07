@@ -35,6 +35,5 @@ export const treeData = [
 ];
 
 const flatPaths = getFlattenedPaths(treeData);
-export const flattenedPaths = restructureFlattenedTreeDataForAutocomplete(
-  flatPaths
-);
+export const flattenedPaths =
+  restructureFlattenedTreeDataForAutocomplete(flatPaths);
