@@ -9,7 +9,7 @@ type PossibleElements =
   | FunctionComponent
   | ComponentClass;
 
-type ButtonProps = {
+export type ButtonProps = {
   /**
    * The element to use as a button
    */
