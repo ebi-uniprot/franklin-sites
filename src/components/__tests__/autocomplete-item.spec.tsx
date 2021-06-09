@@ -5,6 +5,7 @@ import AutocompleteItem from '../autocomplete-item';
 describe('AutocompleteItem component', () => {
   test('should render', () => {
     const item = {
+      id: 'item id',
       pathLabel: 'A path to > some item',
       itemLabel: 'some item',
       value: 'item',
