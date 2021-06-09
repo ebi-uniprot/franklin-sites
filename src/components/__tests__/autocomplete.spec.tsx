@@ -11,7 +11,7 @@ import { AutocompleteItemType } from '../autocomplete-item';
 describe('Autocomplete component', () => {
   it('should render', () => {
     const { asFragment } = render(
-      <Autocomplete data={flattenedPaths} onSelect={(d) => d} />
+      <Autocomplete data={flattenedPaths} onSelect={jest.fn()} />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -20,7 +20,7 @@ describe('Autocomplete component', () => {
     const { asFragment } = render(
       <Autocomplete
         data={flattenedPaths}
-        onSelect={(d) => d}
+        onSelect={jest.fn()}
         showDropdownUpdated={(d) => d}
         clearOnSelect
       />
