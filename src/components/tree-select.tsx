@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import cn from 'classnames';
 
 import {
@@ -6,8 +6,8 @@ import {
   Item,
   restructureFlattenedTreeDataForAutocomplete,
 } from '../utils';
-import DropdownButton from './dropdown-button';
-import { Button, ButtonProps } from './button';
+import DropdownButton, { DropdownButtonProps } from './dropdown-button';
+import Button from './button';
 import Autocomplete from './autocomplete';
 
 import '../styles/components/tree-select.scss';
@@ -32,22 +32,14 @@ export type TreeSelectProps = {
   autocompletePlaceholder?: string;
   autocompleteFilter?: boolean;
   /**
-   * The displayed label on the button
-   */
-  label?: string;
-  /**
    * Array of default active nodes for initialisation
    */
   defaultActiveNodes?: Item['id'][];
-  /**
-   * Optional extra props to pass to the button
-   */
-  props?: ButtonProps;
 };
 
 type SetShowDropdownMenu = (show: boolean) => void;
 
-const TreeSelect: FC<TreeSelectProps> = ({
+const TreeSelect = ({
   data,
   onSelect,
   autocomplete = false,
@@ -56,7 +48,7 @@ const TreeSelect: FC<TreeSelectProps> = ({
   defaultActiveNodes = [],
   label,
   ...props
-}) => {
+}: TreeSelectProps & DropdownButtonProps) => {
   const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
   const [openNodes, setOpenNodes] = useState<Item['id'][]>([]);
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] =

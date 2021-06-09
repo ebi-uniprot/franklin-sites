@@ -13,7 +13,7 @@ import Button from './button';
 
 import '../styles/components/dropdown.scss';
 
-type Props = {
+export type DropdownButtonProps = {
   /**
    * Content revealed on click.
    */
@@ -45,7 +45,7 @@ const DropdownButton = ({
   className,
   openOnHover = false,
   ...props
-}: Props) => {
+}: DropdownButtonProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [size, setSize] = useState<DOMRect>();
 
