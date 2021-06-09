@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useState,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import cn from 'classnames';
 
 import AutocompleteItem, { AutocompleteItemType } from './autocomplete-item';
@@ -56,7 +62,9 @@ const Autocomplete = ({
   minCharsToShowDropdown = 0,
   isLoading = false,
   autoFocus = false,
-}: AutocompleteProps) => {
+  className,
+  ...props
+}: AutocompleteProps & HTMLAttributes<HTMLDivElement>) => {
   const [textInputValue, setTextInputValue] = useState(value);
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [selected, setSelected] = useState(false);
@@ -139,7 +147,7 @@ const Autocomplete = ({
     filter,
     minCharsToShowDropdown
   );
-  let nodes;
+  let nodes: ReactNode[] = [];
   if (showDropdown) {
     nodes = (filter ? filterOptions(data, textInputValue) : data).map(
       (item, index) => (
@@ -155,7 +163,7 @@ const Autocomplete = ({
   }
 
   return (
-    <div className="autocomplete-container">
+    <div className={cn('autocomplete-container', className)} {...props}>
       <SearchInput
         type="text"
         value={textInputValue}
@@ -171,7 +179,7 @@ const Autocomplete = ({
         })}
       >
         <div className="dropdown-menu__panel">
-          <ul>{nodes}</ul>
+          {nodes.length ? <ul>{nodes}</ul> : null}
         </div>
       </div>
     </div>
