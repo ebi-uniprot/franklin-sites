@@ -5,11 +5,12 @@ export function getLastIndexOfSubstringIgnoreCase(
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
 }
 
-type Item = {
+export type Item = {
   label: string;
   id: string;
   items?: Item[];
 };
+
 export const getFlattenedPaths = (
   currentItems: Item[],
   id?: string,

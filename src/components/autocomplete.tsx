@@ -6,6 +6,7 @@ import {
   ReactNode,
 } from 'react';
 import cn from 'classnames';
+import { Except } from 'type-fest';
 
 import AutocompleteItem, { AutocompleteItemType } from './autocomplete-item';
 import SearchInput from './search-input';
@@ -50,6 +51,14 @@ type AutocompleteProps = {
   autoFocus?: boolean;
 };
 
+type Props = Except<
+  HTMLAttributes<HTMLDivElement>,
+  // Need to remove them because we use the same name as existing ones, but
+  // but with a different signature
+  'onSelect' | 'onChange'
+> &
+  AutocompleteProps;
+
 const Autocomplete = ({
   data,
   onSelect,
@@ -64,7 +73,7 @@ const Autocomplete = ({
   autoFocus = false,
   className,
   ...props
-}: AutocompleteProps & HTMLAttributes<HTMLDivElement>) => {
+}: Props) => {
   const [textInputValue, setTextInputValue] = useState(value);
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [selected, setSelected] = useState(false);
