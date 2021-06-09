@@ -1,5 +1,6 @@
-import { useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import cn from 'classnames';
+import { Except } from 'type-fest';
 
 import {
   getFlattenedPaths,
@@ -32,6 +33,10 @@ export type TreeSelectProps = {
   autocompletePlaceholder?: string;
   autocompleteFilter?: boolean;
   /**
+   * The displayed label on the button
+   */
+  label?: ReactNode;
+  /**
    * Array of default active nodes for initialisation
    */
   defaultActiveNodes?: Item['id'][];
@@ -48,7 +53,7 @@ const TreeSelect = ({
   defaultActiveNodes = [],
   label,
   ...props
-}: TreeSelectProps & DropdownButtonProps) => {
+}: Except<DropdownButtonProps, 'children' | 'label'> & TreeSelectProps) => {
   const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
   const [openNodes, setOpenNodes] = useState<Item['id'][]>([]);
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] =
@@ -130,7 +135,9 @@ const TreeSelect = ({
                 getFlattenedPaths(data)
               )}
               showDropdownUpdated={setAutocompleteShowDropdown}
-              onSelect={(node) => handleNodeClick(node, setShowDropdownMenu)}
+              onSelect={(node: AutocompleteItemType | string) =>
+                handleNodeClick(node, setShowDropdownMenu)
+              }
               placeholder={autocompletePlaceholder}
               filter={autocompleteFilter}
               clearOnSelect
