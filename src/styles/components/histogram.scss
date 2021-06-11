@@ -4,7 +4,7 @@
   --main-color: var(--main-histogram-color, #{$colour-weldon-blue});
   --out-range-color: var(--out-range-histogram-color, #{$colour-platinum});
   // -1px to avoid artifacts by overlapping a bit
-  --bar-margin: calc(var(--histogram-bar-gap, -1px) / 2);
+  --bar-margin: calc(var(--histogram-bar-gap, -1px) * 0.5);
 
   position: relative;
   display: flex;

@@ -18,7 +18,7 @@
   background-color: $colour-sky-white;
 
   padding: 0.5rem 1rem 0.5rem 0.5rem;
-  margin-bottom: $global-margin/2;
+  margin-bottom: $global-margin * 0.5;
 
   display: grid;
   grid-template-areas:

@@ -5,11 +5,11 @@
 $border-width: 2px;
 
 @mixin doughnut-chart($remSize) {
-  $size: remToPx($remSize/2);
+  $size: remToPx($remSize * 0.5);
   overflow: hidden;
   position: relative;
   display: inline-block;
-  margin: 0 $global-margin/5;
+  margin: 0 $global-margin * 0.2;
   vertical-align: middle;
   width: $size * 2;
   height: $size * 2;

@@ -10,11 +10,11 @@ button.evidence-tag {
   font-size: 0.75rem;
   height: 1.25rem;
   line-height: 1.25rem;
-  margin-left: ($global-margin/2);
-  border-radius: $global-padding/4;
+  margin-left: $global-margin * 0.5;
+  border-radius: $global-padding * 0.25;
   background-color: $colour-gainsborough;
   border: 1px solid $colour-weldon-blue;
-  padding: 0 $global-padding/4;
+  padding: 0 $global-padding * 0.25;
   color: $colour-yankees-blue;
 
   &:hover,
