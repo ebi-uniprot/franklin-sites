@@ -12,7 +12,7 @@ $rootPx: 16px;
 }
 
 @function pxToRem($px) {
-  @return unitless-calc($px) / unitless-calc($rootPx) + 0px;
+  @return (unitless-calc($px) / unitless-calc($rootPx)) + 0px;
 }
 
 @function bubbleFontSize($size) {
