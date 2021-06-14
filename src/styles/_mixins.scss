@@ -1,4 +1,3 @@
-@use 'sass:math';
 @import './settings';
 @import './colours';
 @import './franklin-settings';
@@ -19,7 +18,7 @@ $global-right: if($global-text-direction == rtl, left, right);
 @mixin columns($base-class, $item-class, $number) {
   .#{$base-class}--columns {
     column-count: $number;
-    column-width: percentage(math.div(1, $number));
+    column-width: percentage(1 / $number);
 
     .#{$item-class} {
       break-inside: avoid;
