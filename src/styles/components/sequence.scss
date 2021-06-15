@@ -8,7 +8,7 @@
   }
   .action-bar,
   .info-list {
-    margin: ($global-margin / 2);
+    margin: $global-margin * 0.5;
   }
 
   .sequence {
@@ -21,8 +21,7 @@
       flex-wrap: wrap;
 
       &__chunk {
-        margin: ($global-margin / 2);
-
+        margin: $global-margin * 0.5;
         &__counter {
           text-anchor: end;
           user-select: none;

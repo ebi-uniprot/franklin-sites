@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '../settings';
 
 $small-bubble: 1.6rem;
@@ -15,7 +16,7 @@ $rootPx: 16px;
 }
 
 @function bubbleFontSize($size) {
-  @return $size/4 + 1/3;
+  @return $size * 0.25 + 0.3333333333;
 }
 
 /******************************************************************************\

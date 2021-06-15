@@ -17,7 +17,7 @@
     color: $colour-sky-white;
     background-color: $colour-yankees-blue;
     font-weight: 700;
-    padding: 0 $global-padding / 2;
+    padding: 0 $global-padding * 0.5;
     display: flex;
     line-height: 2rem;
     justify-content: center;
@@ -31,7 +31,7 @@
   &__content {
     width: 100%;
     flex-grow: 1;
-    padding: $global-padding / 2;
+    padding: $global-padding * 0.5;
     background-color: $colour-sky-white;
   }
 
@@ -40,11 +40,11 @@
     background-color: $colour-sky-white;
     display: flex;
     justify-content: flex-end;
-    padding: $global-padding / 2;
+    padding: $global-padding * 0.5;
 
     .button {
       margin-bottom: 0;
-      margin-left: $global-padding / 2;
+      margin-left: $global-padding * 0.5;
       padding: 0.5rem 1rem;
     }
   }

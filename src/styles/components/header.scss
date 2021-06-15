@@ -114,7 +114,7 @@ $content-width: 90%;
 
   &__secondary {
     text-align: right;
-    padding-left: $global-padding/2;
+    padding-left: $global-padding * 0.5;
     line-height: 1;
     .header__navigation {
       display: flex;
