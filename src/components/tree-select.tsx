@@ -3,8 +3,8 @@ import cn from 'classnames';
 import { Except } from 'type-fest';
 
 import {
+  BasicItem,
   getFlattenedPaths,
-  Item,
   restructureFlattenedTreeDataForAutocomplete,
 } from '../utils';
 import DropdownButton, { DropdownButtonProps } from './dropdown-button';
@@ -14,7 +14,7 @@ import Autocomplete from './autocomplete';
 import '../styles/components/tree-select.scss';
 import { AutocompleteItemType } from './autocomplete-item';
 
-export type TreeSelectProps = {
+export type TreeSelectProps<Item extends BasicItem<Item>> = {
   /**
    * The tree structure
    */
@@ -22,7 +22,7 @@ export type TreeSelectProps = {
   /**
    * What happens when something is selected
    */
-  onSelect: (item: Item) => void;
+  onSelect: (item: Omit<Item, 'items'>) => void;
   /**
    * Contains autocomplete functionality to search through tree
    */
@@ -44,7 +44,7 @@ export type TreeSelectProps = {
 
 type SetShowDropdownMenu = (show: boolean) => void;
 
-const TreeSelect = ({
+const TreeSelect = <Item extends BasicItem<Item>>({
   data,
   onSelect,
   autocomplete = false,
@@ -53,14 +53,15 @@ const TreeSelect = ({
   defaultActiveNodes = [],
   label,
   ...props
-}: Except<DropdownButtonProps, 'children' | 'label'> & TreeSelectProps) => {
+}: Except<DropdownButtonProps, 'children' | 'label'> &
+  TreeSelectProps<Item>) => {
   const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
-  const [openNodes, setOpenNodes] = useState<Item['id'][]>([]);
+  const [openNodes, setOpenNodes] = useState<BasicItem<Item>['id'][]>([]);
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] =
     useState(false);
 
   const toggleNode = useCallback(
-    (node: AutocompleteItemType | Item) => {
+    (node: AutocompleteItemType | BasicItem<Item>) => {
       if (openNodes.includes(node.id)) {
         setOpenNodes(openNodes.slice(0, openNodes.indexOf(node.id)));
       } else {
@@ -72,7 +73,7 @@ const TreeSelect = ({
 
   const handleNodeClick = useCallback(
     (
-      node: AutocompleteItemType | Item | string,
+      node: AutocompleteItemType | BasicItem<Item> | string,
       setShowDropdownMenu: SetShowDropdownMenu
     ) => {
       // Don't register when user hasn't specifically selected something
@@ -94,7 +95,11 @@ const TreeSelect = ({
   );
 
   const buildTree = useCallback(
-    (items: Item[], setShowDropdownMenu: SetShowDropdownMenu, open = false) => (
+    (
+      items: BasicItem<Item>[],
+      setShowDropdownMenu: SetShowDropdownMenu,
+      open = false
+    ) => (
       <ul className={cn({ open })}>
         {items.map((node) => (
           <li key={node.id} className={cn({ branch: node.items })}>

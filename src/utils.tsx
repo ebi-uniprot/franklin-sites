@@ -5,23 +5,26 @@ export function getLastIndexOfSubstringIgnoreCase(
   return string.toLowerCase().lastIndexOf(substring.toLowerCase());
 }
 
-export type Item = {
+export type BasicItem<Item> = {
   label: string;
   id: string;
-  items?: Item[];
+  items?: BasicItem<Item>[];
 };
 
-export const getFlattenedPaths = (
+export const getFlattenedPaths = <Item extends BasicItem<Item>>(
   currentItems: Item[],
   id?: string,
   path: Item[] = []
 ) => {
-  let flattened: Pick<Item, 'label' | 'id'>[][] = [];
+  let flattened: Omit<Item, 'items'>[][] = [];
   currentItems.forEach((node) => {
     const { items, ...thisNode } = node;
     const nodePath = [...path, thisNode];
     if (items) {
-      const result = getFlattenedPaths(items, id, nodePath);
+      const result = getFlattenedPaths(items, id, nodePath) as Omit<
+        Item,
+        'items'
+      >[][];
       if (result.length) {
         flattened = [...flattened, ...result];
       }
@@ -32,10 +35,9 @@ export const getFlattenedPaths = (
   return flattened;
 };
 
-export function restructureFlattenedTreeItemsForAutocomplete(
-  items: Item[],
-  sep = ' / '
-) {
+export function restructureFlattenedTreeItemsForAutocomplete<
+  Item extends BasicItem<Item>
+>(items: Item[], sep = ' / ') {
   return {
     id: items[items.length - 1].id,
     pathLabel: items.map((item) => item.label).join(sep),
@@ -43,9 +45,9 @@ export function restructureFlattenedTreeItemsForAutocomplete(
   };
 }
 
-export function restructureFlattenedTreeDataForAutocomplete(
-  flattenedTreeData: Item[][]
-) {
+export function restructureFlattenedTreeDataForAutocomplete<
+  Item extends BasicItem<Item>
+>(flattenedTreeData: Item[][]) {
   return flattenedTreeData.map((items) =>
     restructureFlattenedTreeItemsForAutocomplete(items)
   );
