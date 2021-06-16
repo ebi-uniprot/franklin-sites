@@ -1,0 +1,26 @@
+import { action } from '@storybook/addon-actions';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import { loremIpsum } from 'lorem-ipsum';
+import { SlidingPanel } from '../src/components';
+
+export default {
+  title: 'Layout/Sliding Panel',
+  decorators: [withKnobs()],
+  parameters: {
+    purposeFunction: {
+      purpose: '',
+      function: '',
+    },
+  },
+};
+
+export const slidingPanel = () => (
+  <SlidingPanel
+    title={text('Title', 'Title')}
+    position={select('Position', ['top', 'right', 'bottom', 'left'], 'left')}
+    withClose={boolean('withClose', false)}
+    onClose={action('closing')}
+  >
+    {loremIpsum()}
+  </SlidingPanel>
+);
