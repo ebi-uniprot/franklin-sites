@@ -27,4 +27,4 @@ build_static_assets:
     - yarn build
   artifacts:
     paths:
-      - build/
+      - dist/
