@@ -1,0 +1,30 @@
+stages:
+  - test
+  - build_static_assets
+
+.js:
+  image: node:15
+  before_script:
+    - git --version
+    - node --version
+    - npm --version
+    - yarn --version
+    - yarn
+
+test:
+  stage: test
+  extends: .js
+  script:
+    - yarn test
+
+build_static_assets:
+  only:
+    refs:
+      - main
+  extends: .js
+  stage: build_static_assets
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - build/
