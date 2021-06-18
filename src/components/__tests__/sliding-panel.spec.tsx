@@ -1,13 +1,21 @@
+import { fireEvent, screen } from '@testing-library/react';
+
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 import SlidingPanel from '../sliding-panel';
 
 describe('SlidingPanel component', () => {
-  test('should render', () => {
+  test('should click outside', () => {
     const onClose = jest.fn();
-    const { asFragment } = renderWithRouter(
-      <SlidingPanel onClose={onClose} position="left" />
+    renderWithRouter(
+      <>
+        <div data-testid="outside-component" />
+        <SlidingPanel onClose={onClose} position="left" title="Title">
+          Sliding panel content
+        </SlidingPanel>
+      </>
     );
-    expect(asFragment()).toMatchSnapshot();
+    fireEvent.click(screen.getByTestId('outside-component'));
+    expect(onClose).toHaveBeenCalled();
   });
 });
