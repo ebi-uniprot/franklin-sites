@@ -62,6 +62,13 @@
         color: $colour-sky-white;
       }
     }
+    &__arrow {
+      position: absolute;
+      top: -1rem;
+      border-left: 1rem solid transparent;
+      border-right: 1rem solid transparent;
+      border-bottom: 1rem solid $colour-independence;
+    }
   }
 
   &__content {

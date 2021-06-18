@@ -7,7 +7,8 @@ import { Button, CloseIcon } from './index';
 import '../styles/components/sliding-panel.scss';
 
 const SlidingPanel: FC<{
-  position: 'top' | 'bottom' | 'left' | 'right';
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  onClose: (arg: void) => void;
   size?: 'small' | 'medium' | 'large' | 'full-screen';
   title?: ReactNode;
   withCloseButton?: boolean;
@@ -15,17 +16,18 @@ const SlidingPanel: FC<{
   offset?: number;
   yScrollable?: boolean;
   bellowHeader?: boolean;
-  onClose: (arg: void) => void;
+  arrowX?: number;
 }> = ({
   children,
+  onClose,
   position = 'left',
   size = 'medium',
   title,
   withCloseButton = false,
   className,
   bellowHeader = false,
-  onClose,
   yScrollable = false,
+  arrowX,
 }) => {
   const node = useRef<HTMLDivElement>(null);
 
@@ -69,6 +71,12 @@ const SlidingPanel: FC<{
                 <CloseIcon />
               </Button>
             </div>
+          )}
+          {arrowX && (
+            <div
+              className="sliding-panel__header__arrow"
+              style={{ left: arrowX }}
+            />
           )}
         </div>
       )}

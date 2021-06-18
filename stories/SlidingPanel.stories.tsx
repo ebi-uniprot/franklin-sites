@@ -1,5 +1,11 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import {
+  boolean,
+  number,
+  select,
+  text,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';
 import { SlidingPanel } from '../src/components';
 
@@ -24,6 +30,7 @@ export const slidingPanel = () => (
     onClose={action('closing')}
     yScrollable={boolean('yScrollable', false)}
     bellowHeader={boolean('bellowHeader', false)}
+    arrowX={number('arrowX', 0)}
   >
     {loremIpsum()}
   </SlidingPanel>
