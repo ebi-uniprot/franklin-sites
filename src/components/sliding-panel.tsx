@@ -8,16 +8,19 @@ import '../styles/components/sliding-panel.scss';
 
 const SlidingPanel: FC<{
   position: 'top' | 'bottom' | 'left' | 'right';
+  size: 'small' | 'medium' | 'large' | 'full-screen';
   title?: ReactNode;
-  withClose?: boolean;
+  withCloseButton?: boolean;
   className?: string;
+  offset?: number;
   yScrollable?: boolean;
   onClose: (arg: void) => void;
 }> = ({
   children,
-  position,
+  position = 'left',
+  size = 'medium',
   title,
-  withClose = false,
+  withCloseButton = false,
   className,
   onClose,
   yScrollable = false,
@@ -45,14 +48,19 @@ const SlidingPanel: FC<{
   return createPortal(
     <div
       data-testid="sliding-panel"
-      className={cn(`sliding-panel sliding-panel--${position}`, className)}
+      className={cn(
+        'sliding-panel',
+        `sliding-panel--${position}`,
+        `sliding-panel--${position}--${size}`,
+        className
+      )}
       style={{ overflowY: yScrollable ? 'auto' : 'initial' }}
       ref={node}
     >
-      {(title || withClose) && (
+      {(title || withCloseButton) && (
         <div className="sliding-panel__header">
           {title && <h1 className="small">{title}</h1>}
-          {withClose && (
+          {withCloseButton && (
             <div className="sliding-panel__header__buttons">
               <Button variant="tertiary" onClick={() => onCloseRef.current()}>
                 <CloseIcon />

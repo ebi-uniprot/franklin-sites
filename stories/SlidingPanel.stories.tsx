@@ -8,8 +8,9 @@ export default {
   decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
-      purpose: '',
-      function: '',
+      purpose:
+        'Display additional information or options without leaving the page',
+      function: 'Overlayed on top of the page, obfuscating part of the page.',
     },
   },
 };
@@ -18,8 +19,10 @@ export const slidingPanel = () => (
   <SlidingPanel
     title={text('Title', 'Title')}
     position={select('Position', ['top', 'right', 'bottom', 'left'], 'left')}
-    withClose={boolean('withClose', false)}
+    size={select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium')}
+    withCloseButton={boolean('withCloseButton', false)}
     onClose={action('closing')}
+    yScrollable={boolean('yScrollable', false)}
   >
     {loremIpsum()}
   </SlidingPanel>

@@ -79,8 +79,24 @@
   &--top,
   &--bottom {
     width: 100vw;
-    height: 40vh;
     left: 0;
+  }
+
+  &--top--small,
+  &--bottom--small {
+    height: 20vh;
+  }
+  &--top--medium,
+  &--bottom--medium {
+    height: 40vh;
+  }
+  &--top--large,
+  &--bottom--large {
+    height: 60vh;
+  }
+  &--top--full-screen,
+  &--bottom--full-screen {
+    height: 100vh;
   }
 
   &--top {
@@ -96,8 +112,28 @@
   &--left,
   &--right {
     height: 100vh;
-    width: min(max(40vw, 55rem), calc(90vw));
     top: 0;
+  }
+
+  &--left--small,
+  &--right--small {
+    width: min(max(30vw, 22rem), calc(40vw));
+  }
+
+  &--left--medium,
+  &--right--medium {
+    // Values are eyeballed to fit the Query builder
+    width: min(max(40vw, 55rem), calc(90vw));
+  }
+
+  &--left--large,
+  &--right--large {
+    width: min(max(60vw, 77rem), calc(95vw));
+  }
+
+  &--left--full-screen,
+  &--right--full-screen {
+    width: 100vw;
   }
 
   &--left {
