@@ -5,8 +5,9 @@ import renderWithRouter from '../../testHelpers/renderWithRouter';
 import SlidingPanel from '../sliding-panel';
 
 describe('SlidingPanel component', () => {
-  test('should click outside', () => {
-    const onClose = jest.fn();
+  const onClose = jest.fn();
+
+  beforeEach(() => {
     renderWithRouter(
       <>
         <div data-testid="outside-component" />
@@ -15,7 +16,18 @@ describe('SlidingPanel component', () => {
         </SlidingPanel>
       </>
     );
+  });
+
+  afterEach(jest.clearAllMocks);
+
+  test('should click outside', () => {
     fireEvent.click(screen.getByTestId('outside-component'));
     expect(onClose).toHaveBeenCalled();
+  });
+
+  test('should not call onClose when mouse clicks inside', async () => {
+    const inside = screen.getByText('Sliding panel content');
+    fireEvent.click(inside);
+    expect(onClose).not.toHaveBeenCalled();
   });
 });
