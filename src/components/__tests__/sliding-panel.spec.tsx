@@ -20,7 +20,7 @@ describe('SlidingPanel component', () => {
 
   afterEach(jest.clearAllMocks);
 
-  test('should click outside', () => {
+  test('should call onClose when mouse clicks outside', async () => {
     fireEvent.click(screen.getByTestId('outside-component'));
     expect(onClose).toHaveBeenCalled();
   });
