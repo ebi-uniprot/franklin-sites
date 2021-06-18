@@ -4,17 +4,17 @@ import Bubble from '../bubble';
 
 describe('Long number component', () => {
   test('should render with defaults', () => {
-    const { asFragment } = render(<Bubble value={10} />);
+    const { asFragment } = render(<Bubble>{10}</Bubble>);
     expect(asFragment()).toMatchSnapshot();
   });
+
   test('should render bigger than 100', () => {
-    const { asFragment } = render(<Bubble value={101} />);
+    const { asFragment } = render(<Bubble>{101}</Bubble>);
     expect(asFragment()).toMatchSnapshot();
   });
-  test('should render different size and colour', () => {
-    const { asFragment } = render(
-      <Bubble value={101} colourClass="colour-light-grey" size="large" />
-    );
+
+  test('should render different size', () => {
+    const { asFragment } = render(<Bubble size="large">{101}</Bubble>);
     expect(asFragment()).toMatchSnapshot();
   });
 });

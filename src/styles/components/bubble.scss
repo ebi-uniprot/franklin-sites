@@ -12,6 +12,11 @@
   height: $size;
   line-height: $size;
   font-size: bubbleFontSize($size);
+  color: $colour-sky-white;
+
+  --main-color: var(--main-bubble-color, #{$colour-sea-blue});
+  background-color: $colour-sea-blue;
+  background-color: var(--main-color);
 }
 
 .bubble--small {
