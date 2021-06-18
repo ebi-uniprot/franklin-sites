@@ -6,18 +6,44 @@ import { Button, CloseIcon } from './index';
 
 import '../styles/components/sliding-panel.scss';
 
-const SlidingPanel: FC<{
+type SlidingPanelProps = {
+  /**
+   * Where the sliding panel will slide from
+   */
   position?: 'top' | 'bottom' | 'left' | 'right';
+  /**
+   * What happens when close is triggered. Responsability of the user of the compoent
+   */
   onClose: (arg: void) => void;
+  /**
+   * Size of the panel once opened
+   */
   size?: 'small' | 'medium' | 'large' | 'full-screen';
+  /**
+   * Title of the panel
+   */
   title?: ReactNode;
+  /**
+   * Add a close button in the panel header
+   */
   withCloseButton?: boolean;
-  className?: string;
-  offset?: number;
+  /**
+   * Should the panel be scrollable if the content is taller than the panel?
+   */
   yScrollable?: boolean;
+  /**
+   * Should a 'left' or 'right' panel appear below the page header?
+   */
   bellowHeader?: boolean;
+  /**
+   * Horizontal position of the arrow. If the panel appears below the page header.
+   * Also works as a flag to display the arrow.
+   */
   arrowX?: number;
-}> = ({
+  className?: string;
+};
+
+const SlidingPanel: FC<SlidingPanelProps> = ({
   children,
   onClose,
   position = 'left',
