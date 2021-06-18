@@ -8,7 +8,7 @@ import '../styles/components/sliding-panel.scss';
 
 const SlidingPanel: FC<{
   position: 'top' | 'bottom' | 'left' | 'right';
-  size: 'small' | 'medium' | 'large' | 'full-screen';
+  size?: 'small' | 'medium' | 'large' | 'full-screen';
   title?: ReactNode;
   withCloseButton?: boolean;
   className?: string;
