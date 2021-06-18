@@ -14,6 +14,7 @@ const SlidingPanel: FC<{
   className?: string;
   offset?: number;
   yScrollable?: boolean;
+  bellowHeader?: boolean;
   onClose: (arg: void) => void;
 }> = ({
   children,
@@ -22,6 +23,7 @@ const SlidingPanel: FC<{
   title,
   withCloseButton = false,
   className,
+  bellowHeader = false,
   onClose,
   yScrollable = false,
 }) => {
@@ -52,6 +54,7 @@ const SlidingPanel: FC<{
         'sliding-panel',
         `sliding-panel--${position}`,
         `sliding-panel--${position}--${size}`,
+        bellowHeader && `sliding-panel--${position}--bellow-header`,
         className
       )}
       style={{ overflowY: yScrollable ? 'auto' : 'initial' }}

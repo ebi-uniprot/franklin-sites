@@ -115,6 +115,13 @@
     top: 0;
   }
 
+  &--left--bellow-header,
+  &--right--bellow-header {
+    top: 0;
+    margin-top: 70px; // Note: this should be a variable, currently defined in uniprot-website
+    height: calc(100vh - 70px);
+  }
+
   &--left--small,
   &--right--small {
     width: min(max(30vw, 22rem), calc(40vw));

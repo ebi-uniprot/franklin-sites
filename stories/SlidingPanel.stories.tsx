@@ -23,6 +23,7 @@ export const slidingPanel = () => (
     withCloseButton={boolean('withCloseButton', false)}
     onClose={action('closing')}
     yScrollable={boolean('yScrollable', false)}
+    bellowHeader={boolean('bellowHeader', false)}
   >
     {loremIpsum()}
   </SlidingPanel>
