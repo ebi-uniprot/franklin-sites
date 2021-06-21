@@ -1,6 +1,7 @@
 stages:
   - test
   - build_static_assets
+  - deploy
 
 .js:
   image: node:15
@@ -27,4 +28,22 @@ build_static_assets:
     - yarn build
   artifacts:
     paths:
-      - dist/
+      - .out/
+
+deploy:
+  only:
+    refs:
+      - main
+  stage: deploy
+  script:
+    - apk add --no-cache git
+    - git config --global credential.helper cache
+    - git config --global user.email "uniprotci@gmail.com"
+    - git config --global user.name "UniProt CI"
+    - git clone --single-branch --branch gh-pages https://uniprotci:${GITHUB_PAT_REPO}@github.com/ebi-uniprot/franklin-sites.git
+    - rm franklin-sites/*
+    - cp -r /.out/* franklin-sites
+    - cd franklin-sites
+    - git add -A
+    - git commit -m "Deploy gitlab.ebi.ac.uk/uniprot/uniprot-website/franklin-sites to github.com/ebi-uniprot/franklin-sites.git:gh-pages"
+    - git push origin gh-pages
