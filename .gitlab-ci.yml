@@ -45,5 +45,6 @@ deploy:
     - cp -r .out/* franklin-sites
     - cd franklin-sites
     - git add -A
+    - test -z "$(git status --porcelain)" && exit 0
     - git commit -m "Deploy gitlab.ebi.ac.uk/uniprot/uniprot-website/franklin-sites to github.com/ebi-uniprot/franklin-sites.git:gh-pages"
     - git push origin gh-pages
