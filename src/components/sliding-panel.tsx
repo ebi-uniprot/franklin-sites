@@ -6,11 +6,27 @@ import { Button, CloseIcon } from './index';
 
 import '../styles/components/sliding-panel.scss';
 
-type SlidingPanelProps = {
+type LRBelowHeader = {
   /**
-   * Where the sliding panel will slide from
+   * Where the sliding panel should appear
    */
-  position?: 'top' | 'bottom' | 'left' | 'right';
+  position: 'left' | 'right';
+  /**
+   * Horizontal position of the arrow. If the panel appears below the page header.
+   * Also works as a flag to display the arrow and display below the header
+   */
+  arrowX?: number;
+};
+
+type TBSlidingPanel = {
+  /**
+   * Where the sliding panel should appear
+   */
+  position: 'top' | 'bottom';
+  arrowX?: never;
+};
+
+type SlidingPanelProps = {
   /**
    * What happens when close is triggered. Responsability of the user of the compoent
    */
@@ -31,27 +47,17 @@ type SlidingPanelProps = {
    * Should the panel be scrollable if the content is taller than the panel?
    */
   yScrollable?: boolean;
-  /**
-   * Should a 'left' or 'right' panel appear below the page header?
-   */
-  bellowHeader?: boolean;
-  /**
-   * Horizontal position of the arrow. If the panel appears below the page header.
-   * Also works as a flag to display the arrow.
-   */
-  arrowX?: number;
   className?: string;
-};
+} & (LRBelowHeader | TBSlidingPanel);
 
 const SlidingPanel: FC<SlidingPanelProps> = ({
   children,
   onClose,
-  position = 'left',
+  position,
   size = 'medium',
   title,
   withCloseButton = false,
   className,
-  bellowHeader = false,
   yScrollable = false,
   arrowX,
 }) => {
@@ -82,7 +88,7 @@ const SlidingPanel: FC<SlidingPanelProps> = ({
         'sliding-panel',
         `sliding-panel--${position}`,
         `sliding-panel--${position}--${size}`,
-        bellowHeader && `sliding-panel--${position}--bellow-header`,
+        Number.isFinite(arrowX) && `sliding-panel--${position}--below-header`,
         className
       )}
       style={{ overflowY: yScrollable ? 'auto' : 'initial' }}

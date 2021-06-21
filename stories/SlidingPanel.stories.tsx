@@ -29,8 +29,20 @@ export const slidingPanel = () => (
     withCloseButton={boolean('withCloseButton', false)}
     onClose={action('closing')}
     yScrollable={boolean('yScrollable', false)}
-    bellowHeader={boolean('bellowHeader', false)}
-    arrowX={number('arrowX', 0)}
+  >
+    {loremIpsum()}
+  </SlidingPanel>
+);
+
+export const slidingPanelWithArrow = () => (
+  <SlidingPanel
+    title={text('Title', 'Title')}
+    position={select('Position', ['right', 'left'], 'left')}
+    size={select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium')}
+    withCloseButton={boolean('withCloseButton', false)}
+    onClose={action('closing')}
+    yScrollable={boolean('yScrollable', false)}
+    arrowX={number('arrowX', 20)}
   >
     {loremIpsum()}
   </SlidingPanel>
