@@ -75,6 +75,7 @@
           border: none;
           padding-right: 1rem;
           text-decoration: none;
+          white-space: nowrap;
 
           &:hover {
             @extend .hover;
