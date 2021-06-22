@@ -28,7 +28,6 @@ export const slidingPanel = () => (
     size={select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium')}
     withCloseButton={boolean('withCloseButton', false)}
     onClose={action('closing')}
-    yScrollable={boolean('yScrollable', false)}
   >
     {loremIpsum({ count: 25 })}
   </SlidingPanel>
@@ -41,7 +40,6 @@ export const slidingPanelWithArrow = () => (
     size={select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium')}
     withCloseButton={boolean('withCloseButton', false)}
     onClose={action('closing')}
-    yScrollable={boolean('yScrollable', false)}
     arrowX={number('arrowX', 20)}
   >
     {loremIpsum({ count: 25 })}

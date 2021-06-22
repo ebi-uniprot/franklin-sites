@@ -43,10 +43,6 @@ type SlidingPanelProps = {
    * Add a close button in the panel header
    */
   withCloseButton?: boolean;
-  /**
-   * Should the panel be scrollable if the content is taller than the panel?
-   */
-  yScrollable?: boolean;
   className?: string;
 } & (LRBelowHeader | TBSlidingPanel);
 
@@ -57,9 +53,8 @@ const SlidingPanel: FC<SlidingPanelProps> = ({
   size = 'medium',
   title,
   withCloseButton = false,
-  className,
-  yScrollable = false,
   arrowX,
+  className,
 }) => {
   const node = useRef<HTMLDivElement>(null);
 
@@ -91,7 +86,6 @@ const SlidingPanel: FC<SlidingPanelProps> = ({
         Number.isFinite(arrowX) && `sliding-panel--${position}--below-header`,
         className
       )}
-      style={{ overflowY: yScrollable ? 'auto' : 'initial' }}
       ref={node}
     >
       {(title || withCloseButton) && (
