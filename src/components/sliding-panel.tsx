@@ -98,7 +98,7 @@ const SlidingPanel: FC<SlidingPanelProps> = ({
               </Button>
             </div>
           )}
-          {arrowX && (
+          {Number.isFinite(arrowX) && (
             <div
               className="sliding-panel__header__arrow"
               style={{ left: arrowX }}
