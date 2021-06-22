@@ -44,6 +44,6 @@ export const slidingPanelWithArrow = () => (
     yScrollable={boolean('yScrollable', false)}
     arrowX={number('arrowX', 20)}
   >
-    {loremIpsum()}
+    {loremIpsum({ count: 25 })}
   </SlidingPanel>
 );
