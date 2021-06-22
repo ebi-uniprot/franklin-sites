@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { Button, DownloadIcon } from '../src/components';
 
@@ -26,15 +27,25 @@ export const Buttons = () => {
   return (
     <div style={{ '--main-button-color': color } as CSSProperties}>
       <div>
-        <Button disabled={disabled}>Primary</Button>
+        <Button disabled={disabled} onClick={action('onClick')}>
+          Primary
+        </Button>
       </div>
       <div>
-        <Button variant="secondary" disabled={disabled}>
+        <Button
+          variant="secondary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
           Secondary
         </Button>
       </div>
       <div>
-        <Button variant="tertiary" disabled={disabled}>
+        <Button
+          variant="tertiary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
           Tertiary
         </Button>
       </div>
@@ -48,40 +59,82 @@ export const ButtonGroups = () => {
   return (
     <div style={{ '--main-button-color': color } as CSSProperties}>
       <div className="button-group">
-        <button className="button tertiary" type="button">
+        <button
+          className="button tertiary"
+          type="button"
+          onClick={action('onClick')}
+        >
           One
         </button>
-        <button className="button tertiary" type="button">
+        <button
+          className="button tertiary"
+          type="button"
+          onClick={action('onClick')}
+        >
           Two
         </button>
-        <button className="button tertiary" type="button">
+        <button
+          className="button tertiary"
+          type="button"
+          onClick={action('onClick')}
+        >
           Three
         </button>
       </div>
       <div className="button-group">
-        <Button disabled={disabled}>One</Button>
-        <Button disabled={disabled}>Two</Button>
-        <Button disabled={disabled}>Three</Button>
-      </div>
-      <div className="button-group">
-        <Button variant="secondary" disabled={disabled}>
+        <Button disabled={disabled} onClick={action('onClick')}>
           One
         </Button>
-        <Button variant="secondary" disabled={disabled}>
+        <Button disabled={disabled} onClick={action('onClick')}>
           Two
         </Button>
-        <Button variant="secondary" disabled={disabled}>
+        <Button disabled={disabled} onClick={action('onClick')}>
           Three
         </Button>
       </div>
       <div className="button-group">
-        <Button variant="tertiary" disabled={disabled}>
+        <Button
+          variant="secondary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
           One
         </Button>
-        <Button variant="tertiary" disabled={disabled}>
+        <Button
+          variant="secondary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
           Two
         </Button>
-        <Button variant="tertiary" disabled={disabled}>
+        <Button
+          variant="secondary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
+          Three
+        </Button>
+      </div>
+      <div className="button-group">
+        <Button
+          variant="tertiary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
+          One
+        </Button>
+        <Button
+          variant="tertiary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
+          Two
+        </Button>
+        <Button
+          variant="tertiary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
           Three
         </Button>
       </div>
@@ -95,19 +148,27 @@ export const WithIcon = () => {
   return (
     <div style={{ '--main-button-color': color } as CSSProperties}>
       <div>
-        <Button disabled={disabled}>
+        <Button disabled={disabled} onClick={action('onClick')}>
           <DownloadIcon />
           Primary
         </Button>
       </div>
       <div>
-        <Button variant="secondary" disabled={disabled}>
+        <Button
+          variant="secondary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
           <DownloadIcon />
           Secondary
         </Button>
       </div>
       <div>
-        <Button variant="tertiary" disabled={disabled}>
+        <Button
+          variant="tertiary"
+          disabled={disabled}
+          onClick={action('onClick')}
+        >
           <DownloadIcon />
           Tertiary
         </Button>
