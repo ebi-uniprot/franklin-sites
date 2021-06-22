@@ -98,9 +98,10 @@ const DropdownButton = ({
   return (
     <div
       className="dropdown-container"
-      onBlur={(e) =>
-        setShowMenu(e.currentTarget.contains(e.relatedTarget as Node))
-      }
+      // TODO: uncomment when Safari resolves bug: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus
+      // onBlur={(e) =>
+      //   setShowMenu(e.currentTarget.contains(e.relatedTarget as Node))
+      // }
       onPointerEnter={openOnHover ? () => setShowMenu(true) : undefined}
       onPointerLeave={openOnHover ? () => setShowMenu(false) : undefined}
     >
