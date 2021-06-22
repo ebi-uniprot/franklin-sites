@@ -30,7 +30,7 @@ export const slidingPanel = () => (
     onClose={action('closing')}
     yScrollable={boolean('yScrollable', false)}
   >
-    {loremIpsum()}
+    {loremIpsum({ count: 25 })}
   </SlidingPanel>
 );
 
