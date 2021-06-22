@@ -12,7 +12,7 @@ type LRBelowHeader = {
    */
   position: 'left' | 'right';
   /**
-   * Horizontal position of the arrow. If the panel appears below the page header.
+   * Horizontal position of the arrow if the panel appears below the page header.
    * Also works as a flag to display the arrow and display below the header
    */
   arrowX?: number;
