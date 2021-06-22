@@ -3,6 +3,9 @@
 @import '../mixins';
 @import '../common/z-index';
 
+// Note: this should be defined in franklin, currently defined in uniprot-website
+$top-header-margin: 70px;
+
 @keyframes slide-in-top {
   from {
     opacity: 0;
@@ -63,8 +66,9 @@
       }
     }
     &__arrow {
-      position: absolute;
-      top: -1rem;
+      position: fixed;
+      top: $top-header-margin;
+      margin-top: -1rem;
       border-left: 1rem solid transparent;
       border-right: 1rem solid transparent;
       border-bottom: 1rem solid $colour-independence;
@@ -125,8 +129,8 @@
   &--left--below-header,
   &--right--below-header {
     top: 0;
-    margin-top: 70px; // Note: this should be a variable, currently defined in uniprot-website
-    height: calc(100vh - 70px);
+    margin-top: $top-header-margin;
+    height: calc(100vh - $top-header-margin);
   }
 
   &--left--small,
