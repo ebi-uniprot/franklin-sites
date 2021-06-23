@@ -98,9 +98,13 @@ const DropdownButton = ({
   return (
     <div
       className="dropdown-container"
-      onBlur={(e) =>
-        setShowMenu(e.currentTarget.contains(e.relatedTarget as Node))
-      }
+      // TODO: This code has been commented out as part of https://www.ebi.ac.uk/panda/jira/browse/TRM-25862
+      // Because Safari doesn't focus when clicking on a button: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus
+      // a jira has been made https://www.ebi.ac.uk/panda/jira/browse/TRM-26188 to investigate and implement ways to deal with this.
+      // Will leave the code here has a marker for that task.
+      // onBlur={(e) =>
+      //   setShowMenu(e.currentTarget.contains(e.relatedTarget as Node))
+      // }
       onPointerEnter={openOnHover ? () => setShowMenu(true) : undefined}
       onPointerLeave={openOnHover ? () => setShowMenu(false) : undefined}
     >
