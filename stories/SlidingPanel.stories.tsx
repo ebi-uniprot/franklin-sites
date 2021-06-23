@@ -18,33 +18,50 @@ export default {
 
 const usePosition = () =>
   select('Position', ['top', 'right', 'bottom', 'left'], 'left');
+const usePositionLR = () => select('Position', ['right', 'left'], 'left');
+
 const useTitle = () => text('Title', 'Title');
 const useSize = () =>
   select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium');
 const useWithCloseButton = () => boolean('withCloseButton', false);
-const useWithArrow = () => boolean('withArrow', false);
 
 export const SlidingPanels = () => {
+  const title = useTitle();
+  const position = usePosition();
+  const size = useSize();
+  const withCloseButton = useWithCloseButton();
+
+  return (
+    <SlidingPanel
+      title={title}
+      position={position}
+      size={size}
+      withCloseButton={withCloseButton}
+      onClose={() => action('Closing')}
+    >
+      {loremIpsum({ count: 25 })}
+    </SlidingPanel>
+  );
+};
+
+export const SlidingPanelsWithArrow = () => {
   const [showPanel, setShowPanel] = useState(false);
   const [arrowX, setArrowX] = useState();
 
-  const position = usePosition();
+  const position = usePositionLR();
   const title = useTitle();
   const size = useSize();
   const withCloseButton = useWithCloseButton();
-  const withArrow =
-    useWithArrow() && (position === 'left' || position === 'right');
 
   const buttonRef = useCallback(
     (node) => {
       if (node) {
-        if ((withArrow && position === 'left') || position === 'right') {
-          const bcr = node.getBoundingClientRect();
-          setArrowX(bcr.x + bcr.width / 2);
-        }
+        const bcr = node.getBoundingClientRect();
+        setArrowX(bcr.x + bcr.width / 2);
       }
     },
-    [withArrow, position]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [position]
   );
 
   const onButtonClick = () => {
