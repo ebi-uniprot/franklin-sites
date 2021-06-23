@@ -136,7 +136,7 @@ $arrow-size: 1rem;
   &--right--below-header {
     top: 0;
     margin-top: $top-header-margin;
-    height: calc(100vh - $top-header-margin);
+    height: calc(100vh - #{$top-header-margin});
   }
 
   &--left--small,
