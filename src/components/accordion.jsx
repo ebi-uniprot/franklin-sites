@@ -35,9 +35,9 @@ const Accordion = ({ title, count, children, alwaysOpen }) => {
 
         <div className="accordion__title__side">
           {count > 0 && (
-            <span className="accordion__title__side__count">
-              <Bubble size="small" value={count} />
-            </span>
+            <Bubble size="small" className="accordion__title__side__count">
+              {count}
+            </Bubble>
           )}
           {!alwaysOpen &&
             (open ? (

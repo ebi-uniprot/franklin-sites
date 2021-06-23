@@ -3,17 +3,17 @@
 exports[`Long number component should render bigger than 100 1`] = `
 <DocumentFragment>
   <span
-    class="bubble--medium colour-sea-blue"
+    class="bubble--medium"
   >
     99+
   </span>
 </DocumentFragment>
 `;
 
-exports[`Long number component should render different size and colour 1`] = `
+exports[`Long number component should render different size 1`] = `
 <DocumentFragment>
   <span
-    class="bubble--large colour-light-grey"
+    class="bubble--large"
   >
     99+
   </span>
@@ -23,7 +23,7 @@ exports[`Long number component should render different size and colour 1`] = `
 exports[`Long number component should render with defaults 1`] = `
 <DocumentFragment>
   <span
-    class="bubble--medium colour-sea-blue"
+    class="bubble--medium"
   >
     10
   </span>
