@@ -41,6 +41,7 @@ export { default as Tile } from './tile';
 export { default as TreeSelect } from './tree-select';
 export { default as Window } from './window/window';
 export { WindowActionButton } from './window/window-buttons';
+export { default as SlidingPanel } from './sliding-panel';
 
 // Hooks
 export { default as useModal } from '../hooks/modal';

@@ -1,0 +1,172 @@
+@import '../settings';
+@import '../colours';
+@import '../mixins';
+@import '../common/z-index';
+
+// Note: this should be defined in franklin, currently defined in uniprot-website
+$top-header-margin: 70px;
+
+$arrow-size: 1rem;
+
+@keyframes slide-in-top {
+  from {
+    opacity: 0;
+    margin-top: -65rem;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    margin-right: -65rem;
+  }
+}
+@keyframes slide-in-bottom {
+  from {
+    opacity: 0;
+    margin-bottom: -65rem;
+  }
+}
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    margin-left: -65rem;
+  }
+}
+
+.sliding-panel {
+  @include box-shadow(0.125rem);
+  background-color: $colour-sky-white;
+  border-radius: 0.2rem;
+  padding: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: $z-index-highest;
+  opacity: 1;
+  margin: 0;
+
+  // animation on mount
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: backwards;
+
+  &__header {
+    background-color: $colour-independence;
+    padding: $global-padding/2 $global-padding;
+    color: $colour-sky-white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+      color: $colour-sky-white;
+      margin-bottom: 0;
+    }
+    &__buttons {
+      button.tertiary {
+        margin: 0;
+        color: $colour-sky-white;
+      }
+    }
+    &__arrow {
+      position: fixed;
+      top: $top-header-margin;
+      margin-top: -$arrow-size;
+      margin-left: -$arrow-size;
+      border-left: $arrow-size solid transparent;
+      border-right: $arrow-size solid transparent;
+      border-bottom: $arrow-size solid $colour-independence;
+    }
+  }
+
+  &__content {
+    padding: $global-padding;
+    overflow-y: auto;
+  }
+
+  &__button-row {
+    position: sticky;
+    display: flex;
+    justify-content: flex-end;
+    padding: $global-padding/2 0;
+    bottom: 0;
+  }
+
+  &--top,
+  &--bottom {
+    width: 100vw;
+    left: 0;
+  }
+
+  &--top--small,
+  &--bottom--small {
+    height: 20vh;
+  }
+  &--top--medium,
+  &--bottom--medium {
+    height: 40vh;
+  }
+  &--top--large,
+  &--bottom--large {
+    height: 60vh;
+  }
+  &--top--full-screen,
+  &--bottom--full-screen {
+    height: 100vh;
+  }
+
+  &--top {
+    top: 0;
+    animation-name: slide-in-top;
+  }
+
+  &--bottom {
+    bottom: 0;
+    animation-name: slide-in-bottom;
+  }
+
+  &--left,
+  &--right {
+    height: 100vh;
+    top: 0;
+  }
+
+  &--left--below-header,
+  &--right--below-header {
+    top: 0;
+    margin-top: $top-header-margin;
+    height: calc(100vh - #{$top-header-margin});
+  }
+
+  &--left--small,
+  &--right--small {
+    width: min(max(30vw, 22rem), calc(40vw));
+  }
+
+  &--left--medium,
+  &--right--medium {
+    // Values are eyeballed to fit the Query builder
+    width: min(max(40vw, 55rem), calc(90vw));
+  }
+
+  &--left--large,
+  &--right--large {
+    width: min(max(60vw, 77rem), calc(95vw));
+  }
+
+  &--left--full-screen,
+  &--right--full-screen {
+    width: 100vw;
+  }
+
+  &--left {
+    left: 0;
+    animation-name: slide-in-left;
+  }
+
+  &--right {
+    right: 0;
+    animation-name: slide-in-right;
+  }
+}
