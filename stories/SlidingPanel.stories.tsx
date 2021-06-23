@@ -1,13 +1,8 @@
+import { useCallback, useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import {
-  boolean,
-  number,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';
-import { SlidingPanel } from '../src/components';
+import { Button, SlidingPanel } from '../src/components';
 
 export default {
   title: 'Layout/Sliding Panel',
@@ -21,27 +16,72 @@ export default {
   },
 };
 
-export const slidingPanel = () => (
-  <SlidingPanel
-    title={text('Title', 'Title')}
-    position={select('Position', ['top', 'right', 'bottom', 'left'], 'left')}
-    size={select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium')}
-    withCloseButton={boolean('withCloseButton', false)}
-    onClose={action('closing')}
-  >
-    {loremIpsum({ count: 25 })}
-  </SlidingPanel>
-);
+const usePosition = () =>
+  select('Position', ['top', 'right', 'bottom', 'left'], 'left');
+const useTitle = () => text('Title', 'Title');
+const useSize = () =>
+  select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium');
+const useWithCloseButton = () => boolean('withCloseButton', false);
+const useWithArrow = () => boolean('withArrow', false);
 
-export const slidingPanelWithArrow = () => (
-  <SlidingPanel
-    title={text('Title', 'Title')}
-    position={select('Position', ['right', 'left'], 'left')}
-    size={select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium')}
-    withCloseButton={boolean('withCloseButton', false)}
-    onClose={action('closing')}
-    arrowX={number('arrowX', 20)}
-  >
-    {loremIpsum({ count: 25 })}
-  </SlidingPanel>
-);
+export const SlidingPanels = () => {
+  const [showPanel, setShowPanel] = useState(false);
+  const [arrowX, setArrowX] = useState();
+
+  const position = usePosition();
+  const title = useTitle();
+  const size = useSize();
+  const withCloseButton = useWithCloseButton();
+  const withArrow =
+    useWithArrow() && (position === 'left' || position === 'right');
+
+  const buttonRef = useCallback(
+    (node) => {
+      if (node) {
+        if ((withArrow && position === 'left') || position === 'right') {
+          const bcr = node.getBoundingClientRect();
+          setArrowX(bcr.x + bcr.width / 2);
+        }
+      }
+    },
+    [withArrow, position]
+  );
+
+  const onButtonClick = () => {
+    setShowPanel(true);
+  };
+
+  const onClose = () => {
+    setShowPanel(false);
+    action('onClose');
+  };
+
+  return (
+    <>
+      <Button
+        onClick={onButtonClick}
+        style={{
+          position: 'absolute',
+          top: '-2rem',
+          left: position === 'left' ? '1rem' : '',
+          right: position === 'right' ? '1rem' : '',
+        }}
+        ref={buttonRef}
+      >
+        Click me
+      </Button>
+      {showPanel && (
+        <SlidingPanel
+          title={title}
+          position={position}
+          size={size}
+          withCloseButton={withCloseButton}
+          onClose={onClose}
+          arrowX={arrowX}
+        >
+          {loremIpsum({ count: 25 })}
+        </SlidingPanel>
+      )}
+    </>
+  );
+};
