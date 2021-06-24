@@ -10,12 +10,25 @@ stages:
     - node --version
     - npm --version
     - yarn --version
-    - yarn
 
 test:
   stage: test
   extends: .js
   script:
+    - yarn
+    - yarn test
+
+merge_and_test:
+  only:
+    - external_pull_requests
+  extends: .js
+  stage: test
+  script:
+    - echo Merging $CI_EXTERNAL_PULL_REQUEST_SOURCE_BRANCH_NAME into $CI_EXTERNAL_PULL_REQUEST_TARGET_BRANCH_NAME to test upstream effects
+    - git checkout $CI_EXTERNAL_PULL_REQUEST_TARGET_BRANCH_NAME
+    - git merge $CI_EXTERNAL_PULL_REQUEST_SOURCE_BRANCH_NAME -m "Merge and test"
+    - test -n "$(git status --porcelain)" && exit 1 # Exit if merge has conflicts
+    - yarn
     - yarn test
 
 build_static_assets:
@@ -25,6 +38,7 @@ build_static_assets:
   extends: .js
   stage: build_static_assets
   script:
+    - yarn
     - yarn build
   artifacts:
     paths:
