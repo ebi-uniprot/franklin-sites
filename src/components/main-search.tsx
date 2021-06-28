@@ -1,4 +1,4 @@
-import { Fragment, HTMLAttributes, SyntheticEvent, useMemo } from 'react';
+import { Fragment, InputHTMLAttributes, SyntheticEvent, useMemo } from 'react';
 
 import DropdownButton from './dropdown-button';
 import Button from './button';
@@ -38,7 +38,7 @@ export type MainSearchProps = {
    * A list of objects representing secondary buttons and their actions
    */
   secondaryButtons?: { label: string; action: () => void }[];
-} & HTMLAttributes<HTMLInputElement>;
+} & InputHTMLAttributes<HTMLInputElement>;
 
 const countCharacters = (items: string[]) =>
   items.reduce((prev, curr) => prev + curr.length, 0);
