@@ -56,19 +56,19 @@ $arrow-size: 1rem;
     background-color: $colour-independence;
     padding: $global-padding/2 $global-padding;
     color: $colour-sky-white;
+    --main-button-color: currentColor;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    h1 {
-      color: $colour-sky-white;
+
+    &__title {
       margin-bottom: 0;
     }
-    &__buttons {
-      button.tertiary {
-        margin: 0;
-        color: $colour-sky-white;
-      }
+
+    button {
+      margin: 0;
     }
+
     &__arrow {
       position: fixed;
       top: $top-header-margin;
@@ -83,6 +83,7 @@ $arrow-size: 1rem;
   &__content {
     padding: $global-padding;
     overflow-y: auto;
+    flex: 1;
   }
 
   &__button-row {

@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect, ReactNode } from 'react';
+import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames';
 
@@ -46,7 +46,7 @@ type SlidingPanelProps = {
   className?: string;
 } & (LRBelowHeader | TBSlidingPanel);
 
-const SlidingPanel: FC<SlidingPanelProps> = ({
+const SlidingPanel: FC<SlidingPanelProps & HTMLAttributes<HTMLDivElement>> = ({
   children,
   onClose,
   position,
@@ -55,6 +55,7 @@ const SlidingPanel: FC<SlidingPanelProps> = ({
   withCloseButton = false,
   arrowX,
   className,
+  ...props
 }) => {
   const node = useRef<HTMLDivElement>(null);
 
@@ -87,16 +88,21 @@ const SlidingPanel: FC<SlidingPanelProps> = ({
         className
       )}
       ref={node}
+      {...props}
     >
       {(title || withCloseButton) && (
         <div className="sliding-panel__header">
-          {title && <h1 className="small">{title}</h1>}
+          {title && (
+            <span className="small sliding-panel__header__title">{title}</span>
+          )}
           {withCloseButton && (
-            <div className="sliding-panel__header__buttons">
-              <Button variant="tertiary" onClick={() => onCloseRef.current()}>
-                <CloseIcon />
-              </Button>
-            </div>
+            <Button
+              variant="tertiary"
+              onClick={() => onCloseRef.current()}
+              className="sliding-panel__header__buttons"
+            >
+              <CloseIcon />
+            </Button>
           )}
           {Number.isFinite(arrowX) && (
             <div
