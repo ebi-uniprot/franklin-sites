@@ -43,10 +43,11 @@ type SlidingPanelProps = {
    * Add a close button in the panel header
    */
   withCloseButton?: boolean;
-  className?: string;
 } & (LRBelowHeader | TBSlidingPanel);
 
-const SlidingPanel: FC<SlidingPanelProps & HTMLAttributes<HTMLDivElement>> = ({
+const SlidingPanel: FC<
+  SlidingPanelProps & Exclude<HTMLAttributes<HTMLDivElement>, 'title'>
+> = ({
   children,
   onClose,
   position,
