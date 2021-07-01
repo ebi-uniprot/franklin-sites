@@ -46,7 +46,7 @@ type SlidingPanelProps = {
 } & (LRBelowHeader | TBSlidingPanel);
 
 const SlidingPanel: FC<
-  SlidingPanelProps & Exclude<HTMLAttributes<HTMLDivElement>, 'title'>
+  SlidingPanelProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>
 > = ({
   children,
   onClose,
