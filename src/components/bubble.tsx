@@ -1,5 +1,6 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, ReactText } from 'react';
 import cn from 'classnames';
+import { Except } from 'type-fest';
 
 import '../styles/components/bubble.scss';
 
@@ -7,7 +8,7 @@ type Props = {
   /**
    * The number to display
    */
-  children: number;
+  children?: number;
   /**
    * The bubble size (default is medium)
    */
@@ -19,9 +20,12 @@ const Bubble = ({
   size = 'medium',
   className,
   ...props
-}: Props & HTMLAttributes<HTMLSpanElement>) => {
-  let displayValue: string | number = Math.round(children * 10) / 10;
-  if (children > 99) {
+}: Props & Except<HTMLAttributes<HTMLSpanElement>, 'children'>) => {
+  let displayValue: ReactText | undefined;
+  if (children !== undefined && Number.isFinite(children)) {
+    displayValue = Math.round(children * 10) / 10;
+  }
+  if (children !== undefined && children > 99) {
     displayValue = '99+';
   }
   return (

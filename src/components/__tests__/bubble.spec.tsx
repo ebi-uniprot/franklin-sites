@@ -8,6 +8,11 @@ describe('Long number component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  test('should render without children', () => {
+    const { asFragment } = render(<Bubble />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   test('should render bigger than 100', () => {
     const { asFragment } = render(<Bubble>{101}</Bubble>);
     expect(asFragment()).toMatchSnapshot();
