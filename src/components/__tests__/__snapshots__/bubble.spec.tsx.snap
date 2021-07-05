@@ -29,3 +29,11 @@ exports[`Long number component should render with defaults 1`] = `
   </span>
 </DocumentFragment>
 `;
+
+exports[`Long number component should render without children 1`] = `
+<DocumentFragment>
+  <span
+    class="bubble--medium"
+  />
+</DocumentFragment>
+`;
