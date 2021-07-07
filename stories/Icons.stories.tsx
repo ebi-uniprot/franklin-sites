@@ -49,6 +49,7 @@ import {
   ZoomIn,
   ZoomOut,
   ZoomToSequence,
+  FullViewIcon,
 } from '../src/components';
 
 import colors from '../src/styles/colours.json';
@@ -299,6 +300,11 @@ const iconDefinition = [
     name: 'toolbox.svg',
     description: 'Toolbox',
     icon: <ToolboxIcon width={size} height={size} />,
+  },
+  {
+    name: 'full-view.svg',
+    description: 'Full View',
+    icon: <FullViewIcon width={size} height={size} />,
   },
 ];
 
