@@ -49,6 +49,8 @@ export { default as useModal } from '../hooks/modal';
 // Icons
 export { default as BasketIcon } from '../svg/basket.svg';
 export { default as BinIcon } from '../svg/bin.svg';
+export { default as BookIcon } from '../svg/book.svg';
+export { default as BookLineIcon } from '../svg/book-line.svg';
 export { default as CalendarIcon } from '../svg/calendar.svg';
 export { default as CameraIcon } from '../svg/camera.svg';
 export { default as ChevronDownIcon } from '../svg/chevron-down.svg';
@@ -76,7 +78,6 @@ export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as ProteinIcon } from '../svg/protein.svg';
 export { default as ProtVistaIcon } from '../svg/protvista.svg';
 export { default as PublicationIcon } from '../svg/publication.svg';
-export { default as PublicationLineIcon } from '../svg/publication-line.svg';
 export { default as ReferenceProteomeIcon } from '../svg/reference-proteome.svg';
 export { default as RefreshIcon } from '../svg/refresh.svg';
 export { default as ReSubmitIcon } from '../svg/re-submit.svg';
