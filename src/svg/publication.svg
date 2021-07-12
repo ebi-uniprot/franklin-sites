@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 32">
-  <path fill="currentColor" d="M26.5 13.5h-8v8h8v-8z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 32" fill="currentColor">
+  <path d="M26.5 13.5h-8v8h8v-8z"/>
   <clipPath id="a">
     <path fill-rule="evenodd" d="M26.5 18.5h-8v-8h8v8z" transform="matrix(1 0 0 -1 0 32)"/>
   </clipPath>
@@ -11,21 +11,21 @@
     <path fill-rule="evenodd" d="M26 18v-7h-7v7h7zm1 1h-9v-9h9v9z" transform="matrix(1 0 0 -1 0 32)"/>
   </clipPath>
   <g clip-path="url(#b)">
-    <path fill="currentColor" d="M26 14h1v-1h-1v1zm0 7v1h1v-1h-1zm-7 0h-1v1h1v-1zm0-7v-1h-1v1h1zm8-1h1v-1h-1v1zm-9 0v-1h-1v1h1zm0 9h-1v1h1v-1zm9 0v1h1v-1h-1zm-2-8v7h2v-7h-2zm1 6h-7v2h7v-2zm-6 1v-7h-2v7h2zm-1-6h7v-2h-7v2zm8-3h-9v2h9v-2zm-10 1v9h2v-9h-2zm1 10h9v-2h-9v2zm10-1v-9h-2v9h2z"/>
+    <path d="M26 14h1v-1h-1v1zm0 7v1h1v-1h-1zm-7 0h-1v1h1v-1zm0-7v-1h-1v1h1zm8-1h1v-1h-1v1zm-9 0v-1h-1v1h1zm0 9h-1v1h1v-1zm9 0v1h1v-1h-1zm-2-8v7h2v-7h-2zm1 6h-7v2h7v-2zm-6 1v-7h-2v7h2zm-1-6h7v-2h-7v2zm8-3h-9v2h9v-2zm-10 1v9h2v-9h-2zm1 10h9v-2h-9v2zm10-1v-9h-2v9h2z"/>
   </g>
-  <path fill="currentColor" d="M29 1v28H17a3 3 0 00-2 .8V1.9a1 1 0 011-.9h13zm1-1H16a2 2 0 00-2 2v30h1a1.9 1.9 0 01.6-1.4 2 2 0 011.4-.5h13V0z"/>
+  <path d="M29 1v28H17a3 3 0 00-2 .8V1.9a1 1 0 011-.9h13zm1-1H16a2 2 0 00-2 2v30h1a1.9 1.9 0 01.6-1.4 2 2 0 011.4-.5h13V0z"/>
   <clipPath id="c">
     <path fill-rule="evenodd" d="M29 31V3H17a3 3 0 01-2-.8v27.9a1 1 0 001 .9h13zm1 1H16a2 2 0 01-2-2V0h1a1.9 1.9 0 00.6 1.4c.4.3 1 .5 1.4.5h13V32z" transform="matrix(1 0 0 -1 0 32)"/>
   </clipPath>
   <g clip-path="url(#c)">
-    <path fill="currentColor" d="M29 1h1V0h-1v1zm0 28v1h1v-1h-1zm-12 0v1-1zm-2 .8h-1V32l1.7-1.4-.7-.8zm0-27.9h-1 1zm1-.9v1-1zm14-1h1v-1h-1v1zM16 0v1-1zm-2 2h-1 1zm0 30h-1v1h1v-1zm1 0v1h1v-1h-1zm.6-1.4l.7.7-.7-.7zm1.4-.5v1-1zm13 0v1h1v-1h-1zM28 1v28h2V1h-2zm1 27H17v2h12v-2zm-12 0a4 4 0 00-2.6 1l1.3 1.6A2 2 0 0117 30v-2zm-1 1.8V1.9h-2v27.9h2zM16 2L14.7.5A2 2 0 0014 2l2 .1zm0 0V0a2 2 0 00-1.3.5L16 2zm0 0h13V0H16v2zm14-3H16v2h14v-2zM16-1a3 3 0 00-2 .8l1.4 1.5c.1-.2.4-.3.6-.3v-2zm-2 .8A3 3 0 0013 2h2c0-.2.2-.4.4-.6L14-.2zM13 2v30h2V2h-2zm1 31h1v-2h-1v2zm2-1l.1-.4-1.8-.7c-.2.3-.3.7-.2 1.1h2zm.1-.4l.2-.3L15 30c-.3.3-.6.6-.7 1l1.8.7zm.2-.3l.7-.2v-2a3 3 0 00-2 .8l1.3 1.4zm.7-.2h13v-2H17v2zm14-1V0h-2v30h2z"/>
+    <path d="M29 1h1V0h-1v1zm0 28v1h1v-1h-1zm-12 0v1-1zm-2 .8h-1V32l1.7-1.4-.7-.8zm0-27.9h-1 1zm1-.9v1-1zm14-1h1v-1h-1v1zM16 0v1-1zm-2 2h-1 1zm0 30h-1v1h1v-1zm1 0v1h1v-1h-1zm.6-1.4l.7.7-.7-.7zm1.4-.5v1-1zm13 0v1h1v-1h-1zM28 1v28h2V1h-2zm1 27H17v2h12v-2zm-12 0a4 4 0 00-2.6 1l1.3 1.6A2 2 0 0117 30v-2zm-1 1.8V1.9h-2v27.9h2zM16 2L14.7.5A2 2 0 0014 2l2 .1zm0 0V0a2 2 0 00-1.3.5L16 2zm0 0h13V0H16v2zm14-3H16v2h14v-2zM16-1a3 3 0 00-2 .8l1.4 1.5c.1-.2.4-.3.6-.3v-2zm-2 .8A3 3 0 0013 2h2c0-.2.2-.4.4-.6L14-.2zM13 2v30h2V2h-2zm1 31h1v-2h-1v2zm2-1l.1-.4-1.8-.7c-.2.3-.3.7-.2 1.1h2zm.1-.4l.2-.3L15 30c-.3.3-.6.6-.7 1l1.8.7zm.2-.3l.7-.2v-2a3 3 0 00-2 .8l1.3 1.4zm.7-.2h13v-2H17v2zm14-1V0h-2v30h2z"/>
   </g>
-  <path fill="currentColor" d="M13.1 1a1 1 0 01.9 1v27.7c-.5-.4-1.1-.6-1.8-.6H1V1h12.1zm0-1H0v30h12.2a1.8 1.8 0 011.3.6 2 2 0 01.6 1.4h.9V2a2 2 0 00-1.9-2z"/>
+  <path d="M13.1 1a1 1 0 01.9 1v27.7c-.5-.4-1.1-.6-1.8-.6H1V1h12.1zm0-1H0v30h12.2a1.8 1.8 0 011.3.6 2 2 0 01.6 1.4h.9V2a2 2 0 00-1.9-2z"/>
   <clipPath id="d">
     <path fill-rule="evenodd" d="M13.1 31a1 1 0 00.9-1V2.4c-.5.4-1.1.6-1.8.6H1v28h12.1zm0 1H0V2h12.2a1.8 1.8 0 001.3-.6 2 2 0 00.6-1.4h.9v30a2 2 0 01-1.9 2z" transform="matrix(1 0 0 -1 0 32)"/>
   </clipPath>
   <g clip-path="url(#d)">
-    <path fill="currentColor" d="M13.1 1V0v1zm.9 1h-1 1zm0 27.7l-.6.8 1.6 1.4v-2.2h-1zm-1.8-.6v1-1zM1 29H0v1h1v-1zM1 1V0H0v1h1zm12.1-1v1h1V0h-1zM0 0v-1h-1v1h1zm0 30h-1v1h1v-1zm12.2 0v-1 1zm1.3.6l-.7.7.7-.7zm.6 1.4h-1v1h1v-1zm.9 0v1h1v-1h-1zm0-30h-1 1zm-1.9-2v-1h-1v1h1zm0 2l.8-1.8a2 2 0 00-.7-.2L13 2zm0 0L14.4.6a2 2 0 00-.6-.4L13 2zm0 0l1.8-.8a2 2 0 00-.4-.6L13 2zm0 0H13h2l-.1-.8L13 2zM13 2v27.7h2V2h-2zm1.6 27c-.6-.6-1.5-1-2.4-1v2c.4 0 .8.2 1.2.5l1.2-1.5zm-2.4-1H1v2h11.2v-2zM2 29V1H0v28h2zM1 2h12.1V0H1v2zm12.1-3H0v2h13.1v-2zM-1 0v30h2V0h-2zm1 31h12.2v-2H0v2zm12.2 0l.3.1.8-1.8c-.4-.2-.7-.2-1.1-.2v2zm.3.1l.3.2 1.4-1.4-.9-.6-.8 1.8zm.3.2l.2.3 1.9-.7a3 3 0 00-.7-1l-1.4 1.4zm.2.3v.4h2v-1l-2 .7zm1 1.4h1v-2h-1v2zm2-1V2h-2v30h2zm0-30c0-.4 0-.8-.2-1.2l-1.9.8.1.3h2zM15.8.8a3 3 0 00-.6-1l-1.5 1.5.2.3 1.9-.8zm-.6-1a3 3 0 00-1-.6l-.7 1.9s.2 0 .2.2l1.5-1.4zm-1-.6a3 3 0 00-1-.2L13 1h.4l.7-1.8zm-2 .8h2-2z"/>
+    <path d="M13.1 1V0v1zm.9 1h-1 1zm0 27.7l-.6.8 1.6 1.4v-2.2h-1zm-1.8-.6v1-1zM1 29H0v1h1v-1zM1 1V0H0v1h1zm12.1-1v1h1V0h-1zM0 0v-1h-1v1h1zm0 30h-1v1h1v-1zm12.2 0v-1 1zm1.3.6l-.7.7.7-.7zm.6 1.4h-1v1h1v-1zm.9 0v1h1v-1h-1zm0-30h-1 1zm-1.9-2v-1h-1v1h1zm0 2l.8-1.8a2 2 0 00-.7-.2L13 2zm0 0L14.4.6a2 2 0 00-.6-.4L13 2zm0 0l1.8-.8a2 2 0 00-.4-.6L13 2zm0 0H13h2l-.1-.8L13 2zM13 2v27.7h2V2h-2zm1.6 27c-.6-.6-1.5-1-2.4-1v2c.4 0 .8.2 1.2.5l1.2-1.5zm-2.4-1H1v2h11.2v-2zM2 29V1H0v28h2zM1 2h12.1V0H1v2zm12.1-3H0v2h13.1v-2zM-1 0v30h2V0h-2zm1 31h12.2v-2H0v2zm12.2 0l.3.1.8-1.8c-.4-.2-.7-.2-1.1-.2v2zm.3.1l.3.2 1.4-1.4-.9-.6-.8 1.8zm.3.2l.2.3 1.9-.7a3 3 0 00-.7-1l-1.4 1.4zm.2.3v.4h2v-1l-2 .7zm1 1.4h1v-2h-1v2zm2-1V2h-2v30h2zm0-30c0-.4 0-.8-.2-1.2l-1.9.8.1.3h2zM15.8.8a3 3 0 00-.6-1l-1.5 1.5.2.3 1.9-.8zm-.6-1a3 3 0 00-1-.6l-.7 1.9s.2 0 .2.2l1.5-1.4zm-1-.6a3 3 0 00-1-.2L13 1h.4l.7-1.8zm-2 .8h2-2z"/>
   </g>
-  <path fill="currentColor" d="M22 6h5V5h-5v1zM3 14h9v-1H3v1zm0-4h7V9H3v1zm0-4h5V5H3v1zm15 4h9V9h-9v1zM3 18h9v-1H3v1zm0 4h9v-1H3v1zm0 4h9v-1H3v1zm15 0h9v-1h-9v1z"/>
+  <path d="M22 6h5V5h-5v1zM3 14h9v-1H3v1zm0-4h7V9H3v1zm0-4h5V5H3v1zm15 4h9V9h-9v1zM3 18h9v-1H3v1zm0 4h9v-1H3v1zm0 4h9v-1H3v1zm15 0h9v-1h-9v1z"/>
 </svg>
