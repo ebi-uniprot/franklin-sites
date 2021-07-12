@@ -3,6 +3,8 @@ import { select } from '@storybook/addon-knobs';
 import {
   BasketIcon,
   BinIcon,
+  BookIcon,
+  BookLineIcon,
   CalendarIcon,
   CameraIcon,
   ChevronDownIcon,
@@ -29,7 +31,6 @@ import {
   ProtVistaIcon,
   ProteinIcon,
   PublicationIcon,
-  PublicationLineIcon,
   ReSubmitIcon,
   ReferenceProteomeIcon,
   RefreshIcon,
@@ -162,9 +163,14 @@ const iconDefinition = [
     icon: <PublicationIcon width={size} height={size} />,
   },
   {
-    name: 'publication-line.svg',
-    description: 'Publication Line',
-    icon: <PublicationLineIcon width={size} height={size} />,
+    name: 'book.svg',
+    description: 'Book',
+    icon: <BookIcon width={size} height={size} />,
+  },
+  {
+    name: 'book-line.svg',
+    description: 'Book Line',
+    icon: <BookLineIcon width={size} height={size} />,
   },
   {
     name: 'cited.svg',
