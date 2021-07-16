@@ -24,6 +24,17 @@ describe('PageIntro component', () => {
     expect(screen.getByRole('heading', { level })).toBeInTheDocument();
   });
 
+  test('should render 1 singular result', () => {
+    render(
+      <PageIntro title="Title" resultsCount={1}>
+        <div>Some content</div>
+      </PageIntro>
+    );
+    expect(
+      screen.getByRole('heading', { name: /Title 1 result/ })
+    ).toBeInTheDocument();
+  });
+
   test('should render title postscript', () => {
     render(
       <PageIntro

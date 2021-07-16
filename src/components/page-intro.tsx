@@ -44,7 +44,11 @@ const PageIntro: FC<PageIntroProps> = ({
       <>
         {title}
         {resultsCount > 0 && (
-          <small> {formatLargeNumber(resultsCount)} results </small>
+          <small>
+            {' '}
+            {formatLargeNumber(resultsCount)} result
+            {resultsCount === 1 ? '' : 's'}{' '}
+          </small>
         )}
         {titlePostscript}
       </>
