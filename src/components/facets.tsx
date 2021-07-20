@@ -144,7 +144,6 @@ export const Facet: FC<FacetProps & HTMLAttributes<HTMLDivElement>> = ({
               key={`${data.name}_${value}`}
               to={to}
               className={isActive ? 'facet-active' : undefined}
-              replace
             >
               {label || value}
               {` (${formatLargeNumber(count)})`}
