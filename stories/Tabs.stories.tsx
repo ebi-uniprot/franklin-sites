@@ -60,12 +60,12 @@ export const unmanagedTabsWithDifferentDefault = () => (
 
 const options = ['option a', 'option 2', 'option III'];
 const ManagedTabs = () => {
-  const interval = useRef();
+  const interval = useRef<number>();
 
   const [selected, setSelected] = useState(options[0]);
 
   useEffect(() => {
-    interval.current = setInterval(() => {
+    interval.current = window.setInterval(() => {
       setSelected(options[Math.floor(Math.random() * options.length)]);
     }, 3000);
     return () => clearInterval(interval.current);
@@ -102,4 +102,5 @@ const ManagedTabs = () => {
     </>
   );
 };
+
 export const managedTabs = () => <ManagedTabs />;

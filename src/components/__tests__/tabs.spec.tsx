@@ -67,4 +67,21 @@ describe('Tabs', () => {
     content = screen.queryByTestId('tab-content');
     expect(content).toHaveTextContent('blaher');
   });
+
+  test('should show 2nd tab if defined as active', () => {
+    render(
+      <Tabs active="b">
+        <Tab id="a" title={<div>Title 1</div>}>
+          blah-1
+        </Tab>
+        <Tab id="b" title="Title 2">
+          blaher
+        </Tab>
+        <Tab id="c" title="Title 3" />
+      </Tabs>
+    );
+    const content = screen.queryByTestId('tab-content');
+    expect(content).not.toHaveTextContent('blah-1');
+    expect(content).toHaveTextContent('blaher');
+  });
 });
