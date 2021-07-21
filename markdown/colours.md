@@ -28,6 +28,10 @@
 <div class="box-colour colour-uniparc" data-name="$colour-uniparc" ></div>
 <div class="box-colour colour-proteomes" data-name="$colour-proteomes" ></div>
 
+### Help palette
+
+<div class="box-colour colour-help-green" data-name="$colour-help-green" ></div>
+
 ### Tools palette
 
 <div class="box-colour colour-peptide-search" data-name="$colour-peptide-search" ></div>
