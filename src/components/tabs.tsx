@@ -40,7 +40,10 @@ type TabsProps = {
   /**
    * <Tab> elements defining the content and title of each tab
    */
-  children: Array<ReactElement<TabProps>> | ReactElement<TabProps>;
+  children:
+    | Array<ReactElement<TabProps> | null>
+    | ReactElement<TabProps>
+    | null;
   /**
    * Optional way of controling the tabs from the outside of this component by
    * assigning here a value corresponding to an 'id' prop of one of the child
@@ -55,7 +58,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
   const isManaged = typeof active !== 'undefined';
 
   // create an array of tab description objects out of the children's props
-  const childrenArray = Children.toArray(children) as Array<
+  const childrenArray = Children.toArray(children).filter(Boolean) as Array<
     ReactElement<TabProps>
   >;
   const tabs = childrenArray.map(
