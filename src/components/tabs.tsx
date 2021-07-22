@@ -1,63 +1,68 @@
-import { useState, useCallback, useRef, Children } from 'react';
-import PropTypes from 'prop-types';
+import {
+  useState,
+  useCallback,
+  useRef,
+  Children,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import { v1 } from 'uuid';
 import cn from 'classnames';
 
 import '../styles/components/tabs.scss';
+import { Except } from 'type-fest';
 
-// This is just a configuration component, it doesn't need to render anything as
-// it will be used by a <Tabs> component
-export const Tab = () => null;
-Tab.propTypes = {
+type TabProps = {
   /**
    * Title of that tab
    */
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
+  title: ReactNode;
   /**
    * Optional ID for that tab, one of the expected options for the parent <Tabs> component
    */
-  id: PropTypes.string,
+  id?: string;
   /**
    * Content of that tab
    */
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
+  children?: ReactNode;
   /**
    * Choose that tab as the default to be displayed
    */
-  defaultSelected: PropTypes.bool,
-  /**
-   * Optional className to be passed to the title of the tab
-   */
-  className: PropTypes.string,
-  /**
-   * Optional extra props to pass to the title of the tab
-   */
-  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types, react/require-default-props
-};
+  defaultSelected?: boolean;
+} & Except<HTMLAttributes<HTMLDivElement>, 'title' | 'id'>;
 
-const tabType = PropTypes.shape({
-  type: PropTypes.oneOf([Tab]),
-});
+// This is just a configuration component, it doesn't need to render anything as
+// it will be used by a <Tabs> component
+export const Tab = (_: TabProps) => null;
 
-export const Tabs = ({ children, active, className, ...props }) => {
+type TabsProps = {
+  /**
+   * <Tab> elements defining the content and title of each tab
+   */
+  children: Array<ReactElement<TabProps>> | ReactElement<TabProps>;
+  /**
+   * Optional way of controling the tabs from the outside of this component by
+   * assigning here a value corresponding to an 'id' prop of one of the child
+   * <Tab>
+   */
+  active?: string | number;
+} & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
+
+export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
   const idRef = useRef(v1());
 
   const isManaged = typeof active !== 'undefined';
 
   // create an array of tab description objects out of the children's props
-  const tabs = Children.toArray(children).map(
+  const childrenArray = Children.toArray(children) as Array<
+    ReactElement<TabProps>
+  >;
+  const tabs = childrenArray.map(
     // eslint-disable-next-line no-shadow
     ({ props: { id, ...props } }, index) => ({
       // set a default value for id depending on their index if needed
-      id: typeof id === 'undefined' ? `${index}` : id,
+      id: id === undefined ? `${index}` : id,
       // and get the rest of the props as they are
       ...props,
     })
@@ -153,29 +158,4 @@ export const Tabs = ({ children, active, className, ...props }) => {
       </div>
     </div>
   );
-};
-Tabs.propTypes = {
-  /**
-   * <Tab> elements defining the content and title of each tab
-   */
-  children: PropTypes.oneOfType([PropTypes.arrayOf(tabType), tabType])
-    .isRequired,
-  /**
-   * Optional way of controling the tabs from the outside of this component by
-   * assigning here a value corresponding to an 'id' prop of one of the child
-   * <Tab>
-   */
-  active: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Optional className to be passed to the container of the tabs
-   */
-  className: PropTypes.string,
-  /**
-   * Optional extra props to pass to the container of the tabs
-   */
-  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types, react/require-default-props
-};
-Tabs.defaultProps = {
-  active: undefined,
-  className: undefined,
 };
