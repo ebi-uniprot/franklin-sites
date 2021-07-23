@@ -66,8 +66,6 @@ const SlidingPanel: FC<
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (node?.current && !node.current.contains(e.target as Node)) {
-        e.stopPropagation();
-        e.preventDefault();
         onCloseRef.current();
       }
     };
