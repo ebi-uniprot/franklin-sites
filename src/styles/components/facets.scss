@@ -35,22 +35,15 @@
       font-weight: bold;
       background: $colour-selected;
 
+      &:after {
+        position: absolute;
+        right: 1ch;
+        content: '✖';
+      }
+
       &:hover,
       &:focus {
         background: $colour-hover;
-
-        &:after {
-          display: inline-block;
-          position: absolute;
-          background: url('../../svg/times.svg');
-          background-repeat: no-repeat;
-          background-size: 1rem 1rem;
-          right: 0.2rem;
-          margin-top: 0.3rem;
-          content: ' ';
-          height: 1rem;
-          width: 1rem;
-        }
       }
     }
   }
