@@ -10,15 +10,14 @@ const getNewSequenceObject = () => ({
   sequence: '',
 });
 
-const validate = sequenceObject => {
+const validate = (sequenceObject) => {
   const validation = sequenceValidator(sequenceObject.sequence);
   return { ...validation, ...sequenceObject };
 };
 
-const sequenceProcessor = rawText => {
+const sequenceProcessor = (rawText) => {
   const sequences = [];
   let currentSequence = getNewSequenceObject();
-  // eslint-disable-next-line no-restricted-syntax
   for (const line of rawText.split('\n')) {
     // for each line
 

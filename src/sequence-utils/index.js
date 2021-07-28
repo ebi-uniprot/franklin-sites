@@ -10,7 +10,6 @@ export function formatFASTA(fasta, chunkSize = 10, chunksPerLine = 6) {
 
   let header = '';
   let sequence = '';
-  // eslint-disable-next-line no-restricted-syntax
   for (const line of fasta.split('\n')) {
     const trimmedLine = line.trim();
     if (commentLineRE.test(trimmedLine)) {

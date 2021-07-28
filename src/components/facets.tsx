@@ -50,7 +50,6 @@ export const parse = (
   const customParsed: CustomParsedQuery = parsed;
   customParsed[queryStringKey] = {};
   const field = customParsed[queryStringKey] as CustomQueryValue;
-  // eslint-disable-next-line no-restricted-syntax
   for (const [name, value] of facets) {
     if (!field[name]) {
       field[name] = new Set();

@@ -1,5 +1,6 @@
 import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
+import { useLocation } from 'react-router-dom';
 import cn from 'classnames';
 
 import { Button, CloseIcon } from './index';
@@ -63,11 +64,20 @@ const SlidingPanel: FC<
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
+  // Handle closing the sliding panel when there's a click outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (node?.current && !node.current.contains(e.target as Node)) {
-        onCloseRef.current();
+      // loop through all the currently opened panels
+      for (const panel of document.querySelectorAll<HTMLDivElement>(
+        '.sliding-panel'
+      )) {
+        // if the click event was within one, bail out of the whole function
+        if (panel.contains(e.target as Node)) {
+          return;
+        }
       }
+      // If none of the panels contains the target, close the panel
+      onCloseRef.current();
     };
 
     document.addEventListener('click', handleClickOutside, true);
@@ -75,6 +85,18 @@ const SlidingPanel: FC<
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
+
+  // Handle closing the sliding panel when there's a path change
+  const { pathname } = useLocation();
+  const firstTime = useRef(true);
+  useEffect(() => {
+    if (firstTime.current) {
+      firstTime.current = false;
+    } else {
+      onCloseRef.current();
+    }
+    // keep pathname below, this is to trigger the effect when it changes
+  }, [pathname]);
 
   return createPortal(
     <div
