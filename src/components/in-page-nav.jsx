@@ -31,7 +31,6 @@ const InPageNav = ({ sections, rootElement }) => {
 
     const io = new window.IntersectionObserver(
       (entries) => {
-        // eslint-disable-next-line no-restricted-syntax
         for (const entry of entries) {
           // update the visibility map
           visibilityMap.set(entry.target, {
@@ -42,7 +41,6 @@ const InPageNav = ({ sections, rootElement }) => {
 
         let mostVisible;
         let highestVisibility = 0;
-        // eslint-disable-next-line no-restricted-syntax
         for (const [element, { height, ratio }] of visibilityMap.entries()) {
           // find the most visible element
           if (highestVisibility < height) {
@@ -78,7 +76,6 @@ const InPageNav = ({ sections, rootElement }) => {
           .map(({ id }) => document.querySelector(`#${id}`))
           .filter(Boolean);
 
-        // eslint-disable-next-line no-restricted-syntax
         for (const element of elements) {
           io.observe(element);
           visibilityMap.set(element, 0);

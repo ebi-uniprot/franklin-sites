@@ -49,6 +49,7 @@
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
     ],
+    "no-restricted-syntax": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
     "react/no-did-update-set-state": "off",

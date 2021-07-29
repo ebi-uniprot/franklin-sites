@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';
+
 import { Button, SlidingPanel } from '../src/components';
 
 export default {
@@ -97,6 +98,65 @@ export const SlidingPanelsWithArrow = () => {
           arrowX={arrowX}
         >
           {loremIpsum({ count: 25 })}
+        </SlidingPanel>
+      )}
+    </>
+  );
+};
+
+export const SlidingPanelInSlidingPanel = () => {
+  const [showPanel, setShowPanel] = useState(false);
+  const [showPanel2, setShowPanel2] = useState(false);
+
+  const position = usePositionLR();
+  const title = useTitle();
+  const size = useSize();
+  const withCloseButton = useWithCloseButton();
+
+  return (
+    <>
+      <Button
+        onClick={() => setShowPanel(true)}
+        style={{
+          position: 'absolute',
+          top: '-2rem',
+          left: position === 'left' ? '1rem' : '',
+          right: position === 'right' ? '1rem' : '',
+        }}
+      >
+        Click me
+      </Button>
+      {showPanel && (
+        <SlidingPanel
+          title={`Sliding panel 1: ${title}`}
+          position={position}
+          size={size}
+          withCloseButton={withCloseButton}
+          onClose={() => {
+            setShowPanel(false);
+            setShowPanel2(false);
+            action('onClose 1');
+          }}
+        >
+          <>
+            <Button onClick={() => setShowPanel2(true)}>Click me too</Button>
+            <br />
+            {loremIpsum({ count: 25 })}
+            {showPanel2 && (
+              <SlidingPanel
+                title={`Sliding panel 2: ${title}`}
+                position={position}
+                size={size}
+                withCloseButton={withCloseButton}
+                onClose={() => {
+                  setShowPanel2(false);
+                  action('onClose 2');
+                }}
+              >
+                {loremIpsum({ count: 25 })}
+              </SlidingPanel>
+            )}
+          </>
         </SlidingPanel>
       )}
     </>
