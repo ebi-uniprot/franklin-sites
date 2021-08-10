@@ -24,11 +24,11 @@ describe('Chip component', () => {
 
   it('should not have disabled attribute when disabled=false passed as a prop', () => {
     render(<Chip disabled={false}>Some content</Chip>);
-    expect(screen.getByRole('button')).not.toHaveAttribute('disabled');
+    expect(screen.getByRole('button')).not.toHaveClass('chip--disabled');
   });
 
   it('should have disabled attribute when disabled=true passed as a prop', () => {
     render(<Chip disabled>Some content</Chip>);
-    expect(screen.getByRole('button')).toHaveAttribute('disabled');
+    expect(screen.getByRole('button')).toHaveClass('chip--disabled');
   });
 });
