@@ -5,7 +5,8 @@
 
 .chip {
   --main-color: var(--main-chip-color, #{$colour-sea-blue});
-
+  line-height: 1;
+  user-select: none;
   display: inline-block;
   vertical-align: middle;
   margin: 0.25rem;
