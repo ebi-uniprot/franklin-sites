@@ -16,6 +16,26 @@ describe('Chip component', () => {
     expect(onRemove).toHaveBeenCalled();
   });
 
+  it('should fire onClick when chip is clicked', () => {
+    const onClick = jest.fn();
+    render(<Chip onClick={onClick}>Some content</Chip>);
+    fireEvent.click(screen.getByRole('button'));
+    expect(onClick).toHaveBeenCalled();
+  });
+
+  it('should fire onKeyPress when key pressed', () => {
+    const onKeyPress = jest.fn();
+    render(<Chip onKeyPress={onKeyPress}>Some content</Chip>);
+    const chip = screen.getByRole('button');
+    chip.focus();
+    fireEvent.keyPress(document.activeElement || document.body, {
+      key: 'Enter',
+      code: 'Enter',
+      charCode: 13,
+    });
+    expect(onKeyPress).toHaveBeenCalled();
+  });
+
   it('should not show remove icon when onRemove prop is not passed', () => {
     render(<Chip>Some content</Chip>);
     const removeIcon = screen.queryByTestId('remove-icon');
