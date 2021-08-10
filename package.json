@@ -29,7 +29,7 @@
     "prerelease": "yarn test && yarn build",
     "release": "yarn publish && git push --follow-tags origin main",
     "start": "start-storybook -p 6006 -s ./assets",
-    "build-storybook": "build-storybook -72.16% .storybook -o .out -s ./assets",
+    "build-storybook": "build-storybook -c .storybook -o .out -s ./assets",
     "prepare": "husky install"
   },
   "browserslist": [
