@@ -60,6 +60,20 @@ export const withClick = () => (
   </>
 );
 
+export const withKeyPress = () => (
+  <>
+    <Chip
+      title="this is a primary chip"
+      onKeyPress={action('key press on primary')}
+    >
+      Primary
+    </Chip>
+    <Chip className="secondary" onKeyPress={action('key press on secondary')}>
+      Secondary
+    </Chip>
+  </>
+);
+
 export const removable = () => (
   <>
     <Chip onRemove={action('Remove chip')}>Primary</Chip>
