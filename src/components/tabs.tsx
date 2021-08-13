@@ -31,7 +31,7 @@ type TabProps = {
    */
   defaultSelected?: boolean;
   /**
-   * Option to render and hide tab (with style:hidden) rather than remove from the DOM
+   * Option to render and hide tab (display:none) rather than remove from the DOM
    */
   cache?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'title' | 'id'>;
