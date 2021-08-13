@@ -58,6 +58,8 @@ const Demo = () => {
   return (
     <>
       <button
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         disabled={history.index === 0}
         type="button"
         className="button"
@@ -71,6 +73,8 @@ const Demo = () => {
         {location.hash}
       </code>
       <button
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         disabled={history.index + 1 === history.length}
         type="button"
         className="button"
