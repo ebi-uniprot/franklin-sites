@@ -108,6 +108,7 @@ export const managedTabs = () => <ManagedTabs />;
 export const cachedTabs = () => (
   <Tabs>
     <Tab
+      cache
       title={
         <>
           Title 1
@@ -118,7 +119,6 @@ export const cachedTabs = () => (
           />
         </>
       }
-      cache
     >
       {loremIpsum({ count: 2 })}
     </Tab>
