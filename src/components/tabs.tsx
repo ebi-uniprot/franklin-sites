@@ -30,6 +30,10 @@ type TabProps = {
    * Choose that tab as the default to be displayed
    */
   defaultSelected?: boolean;
+  /**
+   * Option to render and hide tab (with style:hidden) rather than remove from the DOM
+   */
+  cache?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'title' | 'id'>;
 
 // This is just a configuration component, it doesn't need to render anything as
@@ -113,7 +117,23 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
   if (!selectedTab) {
     throw new Error(`Could not find a tab with the id: "${selectedState}"`);
   }
-  const content = selectedTab.children;
+
+  let content;
+  const hasCacheTab = tabs.some(({ cache }) => cache);
+  if (hasCacheTab) {
+    content = tabs.map((tab) => {
+      const selected = tab.id === selectedTab.id;
+      return (
+        (tab.cache || selected) && (
+          <div key={tab.id} style={{ display: selected ? 'block' : 'none' }}>
+            {tab.children}
+          </div>
+        )
+      );
+    });
+  } else {
+    content = selectedTab.children;
+  }
 
   let unmanagedProps = {};
   // add event listeners in case this is not an externally managed component
@@ -135,6 +155,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
             className, // eslint-disable-line no-shadow
             children: _,
             defaultSelected: __,
+            cache: ___,
             ...props // eslint-disable-line no-shadow
           }) => (
             <div
