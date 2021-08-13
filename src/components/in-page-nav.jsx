@@ -92,11 +92,9 @@ const InPageNav = ({ sections, rootElement }) => {
       const hash = location.hash.replace('#', '');
       frame().then(() => {
         if (hash) {
-          document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById(hash)?.scrollIntoView();
         } else if (rootElement) {
-          document
-            .querySelector(rootElement)
-            ?.scrollTo({ top: 0, behavior: 'smooth' });
+          document.querySelector(rootElement)?.scrollTo({ top: 0 });
         }
       });
     });
@@ -115,9 +113,7 @@ const InPageNav = ({ sections, rootElement }) => {
     // hopefully by then all the components are loaded and in their right space
     sleep(500)
       .then(() => schedule(1000))
-      .then(() => {
-        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-      });
+      .then(() => document.getElementById(hash)?.scrollIntoView());
   }, [history]); // history won't change, unlike location
 
   // move active marker
