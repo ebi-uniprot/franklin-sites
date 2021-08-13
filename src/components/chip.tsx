@@ -79,7 +79,6 @@ export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
       )}
       onKeyPress={onKeyPress}
       onClick={onClick}
-      title={title}
       tabIndex={0}
       {...props}
     >
