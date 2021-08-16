@@ -41,9 +41,15 @@ type ChipProps = {
    * click event listener on the component (except on the close button if present)
    */
   onClick?: () => void;
+  /**
+   * key press event listener on the component
+   */
+  onKeyPress?: () => void;
 };
 
-export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
+export const Chip: FC<
+  ChipProps & HTMLAttributes<HTMLButtonElement | HTMLSpanElement>
+> = ({
   children,
   onRemove,
   className = '',
@@ -51,7 +57,8 @@ export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
   compact = false,
   title,
   onClick,
-  ...props
+  onKeyPress,
+  ...rest
 }) => {
   const onRemoveRef = useRef(onRemove);
   onRemoveRef.current = onRemove;
@@ -63,25 +70,34 @@ export const Chip: FC<ChipProps & HTMLAttributes<HTMLButtonElement>> = ({
     },
     []
   );
+  const props = { ...rest };
+  let element: 'button' | 'span' = 'button';
+  if (onRemove) {
+    element = 'span';
+    if (onClick || onKeyPress) {
+      props.role = 'button';
+      props.tabIndex = 0;
+    }
+  }
 
+  const Element = element;
   return (
-    <button
-      type="button"
+    <Element
       className={cn(
         'chip',
         { 'chip--disabled': disabled, 'chip--compact': compact },
         className
       )}
-      title={title}
+      type={element === 'button' ? 'button' : undefined}
+      onKeyPress={onKeyPress}
       onClick={onClick}
-      disabled={typeof disabled === 'boolean' ? disabled : !onClick}
       {...props}
     >
       {children}
       {onRemove && !disabled && (
         <RemoveIcon data-testid="remove-icon" onClick={handleRemove} />
       )}
-    </button>
+    </Element>
   );
 };
 

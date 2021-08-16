@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Chip component should render 1`] = `
+exports[`Chip component should render a button when onRemove is not passed 1`] = `
 <DocumentFragment>
   <button
     class="chip"
-    disabled=""
     type="button"
   >
     Some content
