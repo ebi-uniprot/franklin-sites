@@ -3,14 +3,23 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import Chip from '../chip';
 
 describe('Chip component', () => {
-  it('should render', () => {
+  it('should render a button when onRemove is not passed', () => {
     const { asFragment } = render(<Chip>Some content</Chip>);
     expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it('should fire onRemove when remove SVG is clicked', () => {
+  it('should render span if onRemove is passed; have button role if onClick is also passed; fire onRemove when remove SVG is clicked', () => {
     const onRemove = jest.fn();
-    render(<Chip onRemove={onRemove}>Some content</Chip>);
+    render(
+      <Chip onRemove={onRemove} onClick={jest.fn()}>
+        Some content
+      </Chip>
+    );
+    expect(screen.getByText('Some content').tagName).toBe('SPAN');
+    expect(
+      screen.getByRole('button', { name: 'Some content' })
+    ).toBeInTheDocument();
     const removeIcon = screen.getByTestId('remove-icon');
     fireEvent.click(removeIcon);
     expect(onRemove).toHaveBeenCalled();
