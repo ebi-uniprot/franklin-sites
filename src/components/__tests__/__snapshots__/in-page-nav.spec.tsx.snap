@@ -29,7 +29,7 @@ exports[`InPageNav component should render 1`] = `
       </a>
     </li>
     <li
-      class="disabled"
+      class=""
     >
       <a
         class=""
