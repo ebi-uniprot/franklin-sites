@@ -104,3 +104,27 @@ const ManagedTabs = () => {
 };
 
 export const managedTabs = () => <ManagedTabs />;
+
+export const cachedTabs = () => (
+  <Tabs>
+    <Tab
+      cache
+      title={
+        <>
+          Title 1
+          <ConfigureIcon
+            style={{ verticalAlign: 'text-top' }}
+            width={16}
+            height={16}
+          />
+        </>
+      }
+    >
+      {loremIpsum({ count: 2 })}
+    </Tab>
+    <Tab title="Title 2">{loremIpsum({ count: 2 })}</Tab>
+    <Tab cache title="Title 3">
+      {loremIpsum({ count: 2 })}
+    </Tab>
+  </Tabs>
+);
