@@ -38,7 +38,6 @@ describe('InPageNav component', () => {
     {
       id: 'id3',
       label: 'Third link',
-      disabled: true,
     },
   ];
 
