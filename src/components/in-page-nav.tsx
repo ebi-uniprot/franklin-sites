@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useRef, useState, HTMLAttributes } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { sleep, schedule, frame } from 'timing-functions';
 import cn from 'classnames';
@@ -8,18 +7,31 @@ import '../styles/components/in-page-nav.scss';
 
 const GRANULARITY = 11;
 
-const InPageNav = ({ sections, rootElement }) => {
+type Props = {
+  sections: Array<{
+    id: string;
+    label: string;
+    disabled?: boolean;
+  }>;
+  rootElement?: string | HTMLElement;
+};
+
+const InPageNav = ({
+  sections,
+  rootElement,
+  ...props
+}: Props & HTMLAttributes<HTMLUListElement>) => {
   const history = useHistory();
 
   const [active, setActive] = useState(sections[0].id);
 
-  const marker = useRef();
+  const marker = useRef<HTMLDivElement>(null);
   const firstMarkerRender = useRef(true);
 
   // effect to connect user changes in scroll to browser history
   useEffect(() => {
     // get elements to watch from configured sections
-    let elements = [];
+    let elements: HTMLElement[] = [];
 
     // Intersection Observer to watch when sections appear/disappear
     if (!('IntersectionObserver' in window)) {
@@ -73,8 +85,8 @@ const InPageNav = ({ sections, rootElement }) => {
       .then(() => {
         // get elements to watch from configured sections
         elements = sections
-          .map(({ id }) => document.querySelector(`#${id}`))
-          .filter(Boolean);
+          .map(({ id }) => document.querySelector<HTMLElement>(`#${id}`))
+          .filter((x: null | HTMLElement): x is HTMLElement => Boolean(x));
 
         for (const element of elements) {
           io.observe(element);
@@ -92,11 +104,13 @@ const InPageNav = ({ sections, rootElement }) => {
       const hash = location.hash.replace('#', '');
       frame().then(() => {
         if (hash) {
-          document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById(hash)?.scrollIntoView();
         } else if (rootElement) {
-          document
-            .querySelector(rootElement)
-            ?.scrollTo({ top: 0, behavior: 'smooth' });
+          const element =
+            typeof rootElement === 'string'
+              ? document.querySelector(rootElement)
+              : rootElement;
+          element?.scrollTo({ top: 0 });
         }
       });
     });
@@ -115,9 +129,7 @@ const InPageNav = ({ sections, rootElement }) => {
     // hopefully by then all the components are loaded and in their right space
     sleep(500)
       .then(() => schedule(1000))
-      .then(() => {
-        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-      });
+      .then(() => document.getElementById(hash)?.scrollIntoView());
   }, [history]); // history won't change, unlike location
 
   // move active marker
@@ -133,13 +145,20 @@ const InPageNav = ({ sections, rootElement }) => {
       return;
     }
 
-    const target = marker.current.parentElement.querySelector('.active');
-    if (!target) return;
+    const target = marker.current?.parentElement?.querySelector('.active');
+    if (!target) {
+      return;
+    }
 
     // get measurements
-    const containerRect = marker.current.parentElement.getBoundingClientRect();
+    const containerRect =
+      marker.current?.parentElement?.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
     const currentMarkerRec = marker.current.getBoundingClientRect();
+
+    if (!containerRect) {
+      return;
+    }
 
     marker.current.style.display = 'block';
     marker.current.animate(
@@ -164,7 +183,7 @@ const InPageNav = ({ sections, rootElement }) => {
   }, [active]);
 
   return (
-    <ul className="in-page-nav">
+    <ul className="in-page-nav" {...props}>
       <div ref={marker} className="marker" />
       {sections.map(({ id, label, disabled }) => (
         <li key={label} className={cn({ disabled })}>
@@ -175,21 +194,6 @@ const InPageNav = ({ sections, rootElement }) => {
       ))}
     </ul>
   );
-};
-
-InPageNav.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      disabled: PropTypes.bool,
-    })
-  ).isRequired,
-  rootElement: PropTypes.string,
-};
-
-InPageNav.defaultProps = {
-  rootElement: undefined,
 };
 
 export default InPageNav;
