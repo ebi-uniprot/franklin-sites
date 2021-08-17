@@ -2,10 +2,14 @@ import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import cn from 'classnames';
+import { frame } from 'timing-functions';
 
 import { Button, CloseIcon } from './index';
 
 import '../styles/components/sliding-panel.scss';
+
+const focusable =
+  'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])';
 
 type LRBelowHeader = {
   /**
@@ -61,8 +65,50 @@ const SlidingPanel: FC<
 }) => {
   const node = useRef<HTMLDivElement>(null);
 
-  const onCloseRef = useRef(onClose);
+  const onCloseRef = useRef<(() => void) | null>(onClose);
   onCloseRef.current = onClose;
+
+  // onMount/onUnmount
+  useEffect(() => {
+    // keep track of the currently active element (likely the button used)
+    const previousActiveElement = document.activeElement as HTMLElement | null;
+
+    // Mutation observer for when the content of the sliding panel changes
+    // (because all the content might not be there immediatly)
+    let mutationObs: MutationObserver | null = null;
+    const focusTarget = node.current?.querySelector<HTMLElement>(focusable);
+    if (focusTarget) {
+      focusTarget.focus();
+    } else {
+      // if there is no focusable element, wait for one to be rendered
+      mutationObs = new MutationObserver(() => {
+        // Get the first focusable element in the panel
+        const focusTarget = node.current?.querySelector<HTMLElement>(focusable);
+        if (focusTarget) {
+          // If there is one, focus it and disconnect the observer
+          focusTarget.focus();
+          mutationObs?.disconnect();
+        }
+      });
+      if (node.current) {
+        // Connect the observer to the panel
+        mutationObs?.observe(node.current, { childList: true, subtree: true });
+      }
+    }
+
+    // Clean up
+    return () => {
+      // Return focus to previously active element on unmount if still there
+      if (previousActiveElement && document.contains(previousActiveElement)) {
+        previousActiveElement?.focus();
+      }
+      // Disconnect here too, just in case it didn't have a chance to do so
+      mutationObs?.disconnect();
+      // Lose the reference to the onClose function on unmount because we might
+      // call it on the next frame but it will already be unmounted
+      onCloseRef.current = null;
+    };
+  }, []);
 
   // Handle closing the sliding panel when there's a click outside
   useEffect(() => {
@@ -76,8 +122,11 @@ const SlidingPanel: FC<
           return;
         }
       }
-      // If none of the panels contains the target, close the panel
-      onCloseRef.current();
+      // If none of the panels contains the target, close the panel.
+      // Wait a frame in order to let other event listeners run before.
+      frame().then(() => {
+        onCloseRef.current?.();
+      });
     };
 
     document.addEventListener('click', handleClickOutside, true);
@@ -93,7 +142,7 @@ const SlidingPanel: FC<
     if (firstTime.current) {
       firstTime.current = false;
     } else {
-      onCloseRef.current();
+      onCloseRef.current?.();
     }
     // keep pathname below, this is to trigger the effect when it changes
   }, [pathname]);
@@ -119,7 +168,7 @@ const SlidingPanel: FC<
           {withCloseButton && (
             <Button
               variant="tertiary"
-              onClick={() => onCloseRef.current()}
+              onClick={() => onCloseRef.current?.()}
               className="sliding-panel__header__buttons"
             >
               <CloseIcon />

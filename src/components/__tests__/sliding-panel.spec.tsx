@@ -1,13 +1,13 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { sleep } from 'timing-functions';
 
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 import SlidingPanel from '../sliding-panel';
 
 describe('SlidingPanel component', () => {
-  const onClose = jest.fn();
-
-  beforeEach(() => {
+  it('should call onClose when mouse clicks outside but not inside', async () => {
+    const onClose = jest.fn();
     renderWithRouter(
       <>
         <div data-testid="outside-component" />
@@ -16,18 +16,45 @@ describe('SlidingPanel component', () => {
         </SlidingPanel>
       </>
     );
-  });
-
-  afterEach(jest.clearAllMocks);
-
-  test('should call onClose when mouse clicks outside', async () => {
+    fireEvent.click(screen.getByText('Sliding panel content'));
+    await waitFor(() => sleep(200));
     fireEvent.click(screen.getByTestId('outside-component'));
-    expect(onClose).toHaveBeenCalled();
+    await waitFor(() => expect(onClose).toHaveBeenCalled());
   });
 
-  test('should not call onClose when mouse clicks inside', async () => {
-    const inside = screen.getByText('Sliding panel content');
-    fireEvent.click(inside);
-    expect(onClose).not.toHaveBeenCalled();
+  it('should move focus around correctly', async () => {
+    // First render, not mounted yet
+    const rendered = renderWithRouter(
+      <>
+        <div data-testid="outside-component" />
+        <button type="button">Button</button>
+      </>
+    );
+    const outsideButton = screen.getByRole('button');
+    outsideButton.focus();
+    expect(document.activeElement).toBe(outsideButton); // sanity check
+
+    // Second render, mounted
+    rendered.rerender(
+      <>
+        <div data-testid="outside-component" />
+        <button type="button">Button</button>
+        <SlidingPanel onClose={jest.fn()} position="left" title="Title">
+          Sliding panel content
+          <input type="text" />
+        </SlidingPanel>
+      </>
+    );
+    const insideInput = screen.getByRole('textbox');
+    expect(document.activeElement).toBe(insideInput);
+
+    // Third render, unmounted
+    rendered.rerender(
+      <>
+        <div data-testid="outside-component" />
+        <button type="button">Button</button>
+      </>
+    );
+    expect(document.activeElement).toBe(outsideButton);
   });
 });
