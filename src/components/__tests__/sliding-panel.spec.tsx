@@ -17,7 +17,7 @@ describe('SlidingPanel component', () => {
       </>
     );
     fireEvent.click(screen.getByText('Sliding panel content'));
-    await waitFor(() => sleep(200));
+    await sleep(200);
     fireEvent.click(screen.getByTestId('outside-component'));
     await waitFor(() => expect(onClose).toHaveBeenCalled());
   });
