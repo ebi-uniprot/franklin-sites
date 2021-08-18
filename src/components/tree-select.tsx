@@ -2,17 +2,20 @@ import { ReactNode, useCallback, useState } from 'react';
 import cn from 'classnames';
 import { Except } from 'type-fest';
 
-import {
-  BasicItem,
-  getFlattenedPaths,
-  restructureFlattenedTreeDataForAutocomplete,
-} from '../utils';
 import DropdownButton, { DropdownButtonProps } from './dropdown-button';
 import Button from './button';
 import Autocomplete from './autocomplete';
 
-import '../styles/components/tree-select.scss';
+import {
+  BasicItem,
+  getFlattenedPaths,
+  restructureFlattenedTreeDataForAutocomplete,
+  getSingleChildren,
+} from '../utils';
+
 import { AutocompleteItemType } from './autocomplete-item';
+
+import '../styles/components/tree-select.scss';
 
 export type TreeSelectProps<Item extends BasicItem<Item>> = {
   /**
@@ -56,19 +59,23 @@ const TreeSelect = <Item extends BasicItem<Item>>({
 }: Except<DropdownButtonProps, 'children' | 'label'> &
   TreeSelectProps<Item>) => {
   const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
-  const [openNodes, setOpenNodes] = useState<BasicItem<Item>['id'][]>([]);
+
+  const [openNodes, setOpenNodes] = useState<BasicItem<Item>['id'][]>(
+    Array.from(getSingleChildren(data))
+  );
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] =
     useState(false);
 
   const toggleNode = useCallback(
-    (node: AutocompleteItemType | BasicItem<Item>) => {
-      if (openNodes.includes(node.id)) {
-        setOpenNodes(openNodes.slice(0, openNodes.indexOf(node.id)));
-      } else {
-        setOpenNodes([...openNodes, node.id]);
-      }
-    },
-    [openNodes]
+    (node: AutocompleteItemType | BasicItem<Item>) =>
+      setOpenNodes((openNodes) => {
+        const index = openNodes.indexOf(node.id);
+        if (index === -1) {
+          return [...openNodes, node.id];
+        }
+        return openNodes.filter((id) => id !== node.id);
+      }),
+    []
   );
 
   const handleNodeClick = useCallback(
@@ -98,33 +105,39 @@ const TreeSelect = <Item extends BasicItem<Item>>({
     (
       items: BasicItem<Item>[],
       setShowDropdownMenu: SetShowDropdownMenu,
-      open = false
+      first = false
     ) => (
-      <ul className={cn({ open })}>
-        {items.map((node) => (
-          <li key={node.id} className={cn({ branch: node.items })}>
-            <Button
-              onClick={() => handleNodeClick(node, setShowDropdownMenu)}
-              className={cn({ active: activeNodes.includes(node.id) })}
-              variant="secondary"
-              aria-label={
-                node.items?.length
-                  ? `${node.label} (${node.items.length} nested option${
-                      node.items.length === 1 ? '' : 's'
-                    })`
-                  : undefined
-              }
+      <ul role={first ? 'tree' : 'group'}>
+        {items.map((node) => {
+          let ariaExpanded: undefined | 'true' | 'false';
+          if (node.items) {
+            ariaExpanded = openNodes.includes(node.id) ? 'true' : 'false';
+          }
+          return (
+            <li
+              key={node.id}
+              role="treeitem"
+              aria-expanded={ariaExpanded}
+              className={cn({ branch: node.items })}
             >
-              {node.label}
-            </Button>
-            {node.items &&
-              buildTree(
-                node.items,
-                setShowDropdownMenu,
-                openNodes.includes(node.id)
-              )}
-          </li>
-        ))}
+              <Button
+                onClick={() => handleNodeClick(node, setShowDropdownMenu)}
+                className={cn({ active: activeNodes.includes(node.id) })}
+                variant="secondary"
+                aria-label={
+                  node.items?.length
+                    ? `${node.label} (${node.items.length} nested option${
+                        node.items.length === 1 ? '' : 's'
+                      })`
+                    : undefined
+                }
+              >
+                {node.label}
+              </Button>
+              {node.items && buildTree(node.items, setShowDropdownMenu)}
+            </li>
+          );
+        })}
       </ul>
     ),
     [activeNodes, handleNodeClick, openNodes]
@@ -151,7 +164,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
           )}
           {!autocompleteShowDropdown && (
             <div className="dropdown-menu__panel">
-              {buildTree(data, setShowDropdownMenu)}
+              {buildTree(data, setShowDropdownMenu, true)}
             </div>
           )}
         </>

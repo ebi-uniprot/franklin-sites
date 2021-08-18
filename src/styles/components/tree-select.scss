@@ -2,40 +2,59 @@
 
 .dropdown-menu__panel ul {
   li {
-    &.branch > button::after {
-      content: '';
-      width: 0;
-      height: 0;
-      border: inset 0.4rem;
-      border-right-width: 0;
-      border-left-style: solid;
-      border-color: transparent transparent transparent $colour-yankees-blue;
-      position: relative;
-      top: 0.4rem;
-      float: right;
-    }
+    &[aria-expanded] > button {
+      margin-right: 2ch !important;
 
-    &.branch {
-      ul {
-        opacity: 0;
-        display: none;
-        -webkit-transition: none;
-        /* Safari */
-        transition: none;
+      &::after {
+        content: '►';
+        float: right;
+        transition: transform 0.25s ease-out;
 
-        &.open {
-          opacity: 1;
-          position: relative;
-          display: block;
-          -webkit-transition: all 0.5s;
-          /* Safari */
-          transition: all 0.5s;
-        }
-
-        li {
-          padding-left: 1rem;
+        @media (prefers-reduced-motion: reduce) {
+          transition-duration: 0s;
         }
       }
+
+      &:hover::after {
+        will-change: transform;
+      }
     }
+
+    &[aria-expanded='true'] > button::after {
+      transform: rotateZ(90deg);
+    }
+
+    &[aria-expanded] {
+      ul {
+        display: none;
+      }
+
+      &[aria-expanded='true'] > ul {
+        display: block;
+        animation: fade-in-from-none 0.5s ease-out;
+      }
+
+      li {
+        padding-left: 1rem;
+      }
+    }
+  }
+}
+
+// Can't animate opacity and transform together, so we need to use keyframes
+@keyframes fade-in-from-none {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+
+  1% {
+    opacity: 0;
+    display: block;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
   }
 }
