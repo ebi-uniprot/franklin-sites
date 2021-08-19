@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState, useEffect } from 'react';
 import cn from 'classnames';
 import { Except } from 'type-fest';
 
@@ -60,9 +60,12 @@ const TreeSelect = <Item extends BasicItem<Item>>({
   TreeSelectProps<Item>) => {
   const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
 
-  const [openNodes, setOpenNodes] = useState<BasicItem<Item>['id'][]>(
-    Array.from(getSingleChildren(data))
-  );
+  const [openNodes, setOpenNodes] = useState<BasicItem<Item>['id'][]>([]);
+  // When data changes, we need to update which nodes need to be open
+  useEffect(() => {
+    setOpenNodes(Array.from(getSingleChildren(data)));
+  }, [data]);
+
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] =
     useState(false);
 
