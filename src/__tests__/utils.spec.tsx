@@ -6,6 +6,7 @@ import {
   getLastIndexOfSubstringIgnoreCase,
   restructureFlattenedTreeDataForAutocomplete,
   restructureFlattenedTreeItemsForAutocomplete,
+  getSingleChildren,
   highlightSubstring,
   capitaliseFirstLetter,
   tidyUrlString,
@@ -13,7 +14,7 @@ import {
 
 import { treeData } from '../mock-data/tree-data';
 
-test('should get all paths', () => {
+it('should get all paths', () => {
   const path = getFlattenedPaths(treeData);
   expect(path).toEqual([
     [
@@ -60,10 +61,38 @@ test('should get all paths', () => {
         id: 'item_2',
       },
     ],
+    [
+      {
+        label: 'Another reaaaaalllllyyyyy looooooong Item 3',
+        id: 'item_3',
+      },
+      {
+        label: 'Item 3a (single child, open by default)',
+        id: 'item_3a',
+      },
+      {
+        label: 'Item 3a A',
+        id: 'item_3a_A',
+      },
+    ],
+    [
+      {
+        label: 'Another reaaaaalllllyyyyy looooooong Item 3',
+        id: 'item_3',
+      },
+      {
+        label: 'Item 3a (single child, open by default)',
+        id: 'item_3a',
+      },
+      {
+        label: 'Item 3a B',
+        id: 'item_3a_B',
+      },
+    ],
   ]);
 });
 
-test('should find the correct path', () => {
+it('should find the correct path', () => {
   const path = getFlattenedPaths(treeData, 'item_1b_B');
   expect(path).toEqual([
     [
@@ -83,22 +112,22 @@ test('should find the correct path', () => {
   ]);
 });
 
-test('should not find any paths', () => {
+it('should not find any paths', () => {
   const path = getFlattenedPaths(treeData, 'The unfindable');
   expect(path).toEqual([]);
 });
 
-test('should find the index of the last substring', () => {
+it('should find the index of the last substring', () => {
   const index = getLastIndexOfSubstringIgnoreCase('StringSTRING', 'String');
   expect(index).toEqual(6);
 });
 
-test('should not find the index of the last string', () => {
+it('should not find the index of the last string', () => {
   const index = getLastIndexOfSubstringIgnoreCase('StringSTRING', 'unfindable');
   expect(index).toEqual(-1);
 });
 
-test('should prepare all tree data for autocomplete', () => {
+it('should prepare all tree data for autocomplete', () => {
   const flatPaths = getFlattenedPaths(treeData);
   const data = restructureFlattenedTreeDataForAutocomplete(flatPaths);
   expect(data).toEqual([
@@ -122,10 +151,22 @@ test('should prepare all tree data for autocomplete', () => {
       pathLabel: 'Some Item 2',
       itemLabel: 'Some Item 2',
     },
+    {
+      id: 'item_3a_A',
+      itemLabel: 'Item 3a A',
+      pathLabel:
+        'Another reaaaaalllllyyyyy looooooong Item 3 / Item 3a (single child, open by default) / Item 3a A',
+    },
+    {
+      id: 'item_3a_B',
+      itemLabel: 'Item 3a B',
+      pathLabel:
+        'Another reaaaaalllllyyyyy looooooong Item 3 / Item 3a (single child, open by default) / Item 3a B',
+    },
   ]);
 });
 
-test('should prepare flattened tree data items for autocomplete', () => {
+it('should prepare flattened tree data items for autocomplete', () => {
   const items = [
     {
       label: 'Item 1',
@@ -144,7 +185,11 @@ test('should prepare flattened tree data items for autocomplete', () => {
   });
 });
 
-describe('capitaliseFirstLetter', () => {
+it('should yield single children from a tree of items', () => {
+  expect(Array.from(getSingleChildren(treeData))).toEqual(['item_3a']);
+});
+
+test('capitaliseFirstLetter', () => {
   expect(capitaliseFirstLetter(null)).toBe(null);
   expect(capitaliseFirstLetter('')).toBe('');
   expect(capitaliseFirstLetter('a')).toBe('A');
@@ -155,13 +200,13 @@ describe('capitaliseFirstLetter', () => {
 
 describe('highlightSubstring', () => {
   const string = 'Item 1 / Item 1a';
-  test('should highlight substring (case insensitive', () => {
+  it('should highlight substring (case insensitive', () => {
     const { asFragment } = render(
       highlightSubstring(string, 'item 1') as JSX.Element
     );
     expect(asFragment()).toMatchSnapshot();
   });
-  test('should return string if no substring found', () => {
+  it('should return string if no substring found', () => {
     expect(highlightSubstring(string, 'zap')).toEqual(string);
   });
 });

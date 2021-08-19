@@ -53,6 +53,19 @@ export function restructureFlattenedTreeDataForAutocomplete<
   );
 }
 
+export function* getSingleChildren<Item extends BasicItem<Item>>(
+  children: Item[]
+): Generator<string, void, never> {
+  if (children.length === 1) {
+    yield children[0].id;
+  }
+  for (const child of children) {
+    if (child.items) {
+      yield* getSingleChildren(child.items);
+    }
+  }
+}
+
 export function formatLargeNumber(x: string | number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }

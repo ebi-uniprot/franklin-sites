@@ -32,6 +32,26 @@ export const treeData = [
     label: 'Some Item 2',
     id: 'item_2',
   },
+  {
+    label: 'Another reaaaaalllllyyyyy looooooong Item 3',
+    id: 'item_3',
+    items: [
+      {
+        label: 'Item 3a (single child, open by default)',
+        id: 'item_3a',
+        items: [
+          {
+            label: 'Item 3a A',
+            id: 'item_3a_A',
+          },
+          {
+            label: 'Item 3a B',
+            id: 'item_3a_B',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const flatPaths = getFlattenedPaths(treeData);
