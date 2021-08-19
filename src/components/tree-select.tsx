@@ -68,13 +68,11 @@ const TreeSelect = <Item extends BasicItem<Item>>({
 
   const toggleNode = useCallback(
     (node: AutocompleteItemType | BasicItem<Item>) =>
-      setOpenNodes((openNodes) => {
-        const index = openNodes.indexOf(node.id);
-        if (index === -1) {
-          return [...openNodes, node.id];
-        }
-        return openNodes.filter((id) => id !== node.id);
-      }),
+      setOpenNodes((openNodes) =>
+        openNodes.includes(node.id)
+          ? openNodes.filter((id) => id !== node.id)
+          : [...openNodes, node.id]
+      ),
     []
   );
 
