@@ -41,7 +41,7 @@ type AutocompleteProps = {
   data: AutocompleteItemType[];
   onSelect: (selected: AutocompleteItemType | string) => void;
   onChange?: (textInput: string) => void;
-  showDropdownUpdated?: (updated: boolean) => void;
+  onDropdownChange?: (dropdownShown: boolean) => void;
   clearOnSelect?: boolean;
   placeholder?: string;
   filter?: boolean;
@@ -63,7 +63,7 @@ const Autocomplete = ({
   data,
   onSelect,
   onChange,
-  showDropdownUpdated,
+  onDropdownChange,
   clearOnSelect = false,
   placeholder = '',
   filter = true,
@@ -77,11 +77,18 @@ const Autocomplete = ({
   const [textInputValue, setTextInputValue] = useState(value);
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [selected, setSelected] = useState(false);
-  const [submittedInputValue, setSubmittedInputValue] = useState('');
 
   useEffect(() => {
     setTextInputValue(value);
   }, [value]);
+
+  useEffect(
+    () => () => {
+      // On unmount tell the parent that the dropdown menu isn't being shown anymore.
+      onDropdownChange?.(false);
+    },
+    [onDropdownChange]
+  );
 
   const handleInputChange = useCallback(
     (event) => {
@@ -94,33 +101,28 @@ const Autocomplete = ({
         filter,
         minCharsToShowDropdown
       );
-      showDropdownUpdated?.(showDropdown);
+      onDropdownChange?.(showDropdown);
       setTextInputValue(textInputValue);
       setSelected(selected);
       onChange?.(textInputValue);
+      if (showDropdown) {
+        setHoverIndex(0);
+      }
     },
-    [data, filter, minCharsToShowDropdown, onChange, showDropdownUpdated]
+    [data, filter, minCharsToShowDropdown, onChange, onDropdownChange]
   );
 
   const handleNodeSelect = useCallback(
     (selected: AutocompleteItemType | string) => {
       const textInputValue =
         typeof selected === 'string' ? selected : selected?.pathLabel;
-
-      // If the same value has already been submitted, don't resubmit
-      if (!clearOnSelect && submittedInputValue === textInputValue) {
-        setTextInputValue(clearOnSelect ? '' : textInputValue);
-        showDropdownUpdated?.(false);
-      } else {
-        setTextInputValue(clearOnSelect ? '' : textInputValue);
-        setSubmittedInputValue(textInputValue);
-        setHoverIndex(-1);
-        setSelected(true);
-        showDropdownUpdated?.(false);
-        onSelect(selected);
-      }
+      setTextInputValue(clearOnSelect ? '' : textInputValue);
+      setHoverIndex(-1);
+      setSelected(true);
+      onDropdownChange?.(false);
+      onSelect(selected);
     },
-    [clearOnSelect, onSelect, showDropdownUpdated, submittedInputValue]
+    [clearOnSelect, onSelect, onDropdownChange]
   );
 
   const handleOnKeyDown = useCallback(
@@ -156,6 +158,7 @@ const Autocomplete = ({
     filter,
     minCharsToShowDropdown
   );
+
   let nodes: ReactNode[] = [];
   if (showDropdown) {
     nodes = (filter ? filterOptions(data, textInputValue) : data).map(

@@ -153,7 +153,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
               data={restructureFlattenedTreeDataForAutocomplete(
                 getFlattenedPaths(data)
               )}
-              showDropdownUpdated={setAutocompleteShowDropdown}
+              onDropdownChange={setAutocompleteShowDropdown}
               onSelect={(node: AutocompleteItemType | string) =>
                 handleNodeClick(node, setShowDropdownMenu)
               }
