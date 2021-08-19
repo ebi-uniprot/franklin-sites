@@ -36,7 +36,7 @@ exports[`Autocomplete component should render 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Autocomplete component should render with props: showDropdownUpdated & clearOnSelect 1`] = `
+exports[`Autocomplete component should render with props: onDropdownChange & clearOnSelect 1`] = `
 <DocumentFragment>
   <div
     class="autocomplete-container"

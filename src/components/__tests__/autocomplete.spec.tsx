@@ -16,28 +16,26 @@ describe('Autocomplete component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should render with props: showDropdownUpdated & clearOnSelect', () => {
+  it('should render with props: onDropdownChange & clearOnSelect', () => {
     const { asFragment } = render(
       <Autocomplete
         data={flattenedPaths}
         onSelect={jest.fn()}
-        showDropdownUpdated={(d) => d}
+        onDropdownChange={(d) => d}
         clearOnSelect
       />
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should not submit if previously submitted text is the same as the current input text value', () => {
+  it('should submit current input text value', () => {
     const onSelect = jest.fn();
     render(<Autocomplete data={flattenedPaths} onSelect={onSelect} />);
     const searchInput = screen.getByTestId('search-input');
-    const value = { target: { value: 'foo' } };
-    fireEvent.change(searchInput, value);
+    const value = 'foo';
+    fireEvent.change(searchInput, { target: { value } });
     fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
-    fireEvent.change(searchInput, value);
-    fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
-    expect(onSelect).toHaveBeenCalledTimes(1);
+    expect(onSelect).toHaveBeenCalledWith(value);
   });
 });
 
