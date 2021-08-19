@@ -93,17 +93,16 @@ const Autocomplete = ({
   const handleInputChange = useCallback(
     (event) => {
       const { value: textInputValue } = event.target;
-      const selected = false;
       const showDropdown = shouldShowDropdown(
         textInputValue,
         data,
-        selected,
+        false,
         filter,
         minCharsToShowDropdown
       );
       onDropdownChange?.(showDropdown);
       setTextInputValue(textInputValue);
-      setSelected(selected);
+      setSelected(false);
       onChange?.(textInputValue);
       if (showDropdown) {
         setHoverIndex(0);
