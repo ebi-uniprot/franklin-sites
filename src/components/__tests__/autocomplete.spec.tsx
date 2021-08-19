@@ -36,6 +36,19 @@ describe('Autocomplete component', () => {
     fireEvent.change(searchInput, { target: { value } });
     fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
     expect(onSelect).toHaveBeenCalledWith(value);
+    expect(searchInput).toHaveValue(value);
+  });
+
+  it('should clear on Enter if clearOnSelect is passed', () => {
+    const onSelect = jest.fn();
+    render(
+      <Autocomplete data={flattenedPaths} onSelect={onSelect} clearOnSelect />
+    );
+    const searchInput = screen.getByTestId('search-input');
+    const value = 'foo';
+    fireEvent.change(searchInput, { target: { value } });
+    fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
+    expect(searchInput).toHaveValue('');
   });
 });
 
@@ -77,5 +90,17 @@ describe('filterOptions', () => {
 describe('shouldShowDropdown', () => {
   it('should return false if length of text input is less than minCharsToShowDropdown', () => {
     expect(shouldShowDropdown('fo', [], true, true, 3)).toBe(false);
+  });
+
+  it('should return true if text input is in options', () => {
+    expect(shouldShowDropdown('Item', flattenedPaths, false, true, 3)).toBe(
+      true
+    );
+  });
+
+  it('should return true if filtering is not applied', () => {
+    expect(shouldShowDropdown('Zzz', flattenedPaths, false, false, 3)).toBe(
+      true
+    );
   });
 });
