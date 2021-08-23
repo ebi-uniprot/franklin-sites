@@ -19,6 +19,12 @@ $content-width: 90%;
     $colour-sapphire-blue
   );
 
+  & > * {
+    // None of the children should grow or shrink
+    // but the search bar (grow) and the primary links (shrink)
+    flex: 0 0 auto;
+  }
+
   &.header--negative {
     justify-content: space-between;
     color: $colour-sapphire-blue;
@@ -73,11 +79,19 @@ $content-width: 90%;
   }
 
   &__navigation {
+    flex-shrink: 1;
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     align-items: center;
     margin: 0;
+
+    // Hide the scroll bar in the header
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     a.button,
     button.button {
@@ -116,26 +130,30 @@ $content-width: 90%;
     text-align: right;
     padding-left: $global-padding * 0.5;
     line-height: 1;
+
     .header__navigation {
       display: flex;
-      justify-content: flex-end;
+
       a.button,
       button.button {
         margin: 0 0.25rem;
         padding: 0 0.1rem;
         line-height: 1.4;
+
         svg {
           margin: 0;
         }
       }
     }
+
     small {
       white-space: nowrap;
     }
   }
 
   &__search {
-    flex: 4 4 auto;
+    // Search bar is the only one growing or shrinking
+    flex: 1;
     input,
     button {
       margin: 0;
