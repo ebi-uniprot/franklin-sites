@@ -133,6 +133,7 @@ $content-width: 90%;
 
     .header__navigation {
       display: flex;
+      overflow-x: initial;
 
       a.button,
       button.button {
