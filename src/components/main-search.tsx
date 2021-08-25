@@ -61,6 +61,19 @@ const MainSearch = ({
     [selectedNamespace]
   );
 
+  const inputStyle = useMemo(() => {
+    const count =
+      secondaryButtons &&
+      countCharacters(secondaryButtons.map(({ label }) => label));
+    return count
+      ? {
+          paddingRight: `${count}ch`,
+          // Add 2 more characters' width, to be able to click on some text
+          minWidth: `${count + 2}ch`,
+        }
+      : undefined;
+  }, [secondaryButtons]);
+
   return (
     <form
       onSubmit={onSubmit}
@@ -104,13 +117,7 @@ const MainSearch = ({
           }`}
           onChange={(e) => onTextChange(e.target.value)}
           value={searchTerm}
-          style={{
-            paddingRight: secondaryButtons
-              ? `${countCharacters(
-                  secondaryButtons.map(({ label }) => label)
-                )}ch`
-              : '',
-          }} // Actually take number of letters
+          style={inputStyle}
           {...props}
         />
         {secondaryButtons && (
