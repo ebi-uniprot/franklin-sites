@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @import '../settings';
 @import '../colours';
 @import '../mixins';
@@ -54,7 +56,7 @@ $arrow-size: 1rem;
 
   &__header {
     background-color: $colour-independence;
-    padding: $global-padding/2 $global-padding;
+    padding: math.div($global-padding, 2) $global-padding;
     color: $colour-sky-white;
     --main-button-color: currentColor;
     display: flex;
@@ -90,7 +92,7 @@ $arrow-size: 1rem;
     position: sticky;
     display: flex;
     justify-content: flex-end;
-    padding: $global-padding/2 0;
+    padding: math.div($global-padding, 2) 0;
     bottom: 0;
   }
 
