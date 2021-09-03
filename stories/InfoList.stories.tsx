@@ -35,6 +35,11 @@ const data = [
     ),
     content: loremIpsum({ count: 25, units: 'words' }),
   },
+  {
+    title: 'This item is a link',
+    content: loremIpsum({ count: 25, units: 'words' }),
+    to: '#',
+  },
 ];
 
 export const infoList = () => <InfoList infoData={data} />;

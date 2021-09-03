@@ -10,6 +10,7 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   display: flex;
   align-items: baseline;
   margin-bottom: 1.25rem;
+  padding: 0;
 
   &__title {
     flex-basis: 10vw;
@@ -85,6 +86,36 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
       }
     }
   }
+
+  &__link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+  }
+
+  &--has-link {
+    transition: 0.5s background-color ease;
+    position: relative;
+
+    &:hover,
+    &:focus-within {
+      background-color: scale-color($color: $colour-platinum, $lightness: 40%);
+    }
+
+    * {
+      pointer-events: none;
+    }
+
+    a,
+    button,
+    input,
+    label {
+      pointer-events: initial;
+    }
+  }
 }
 
 @include breakpoint(small only) {
@@ -93,6 +124,7 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
 
     &__title {
       text-align: left;
+      border-right: 0;
     }
     &__content {
       border-left: none;
