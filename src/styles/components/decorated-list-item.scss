@@ -8,6 +8,7 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
 .decorated-list-item {
   $self: &;
   display: flex;
+  align-items: baseline;
   margin-bottom: 1.25rem;
 
   &__title {

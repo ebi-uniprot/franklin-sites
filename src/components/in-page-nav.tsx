@@ -100,11 +100,11 @@ const InPageNav = ({
 
   // listen for changes in location hash to move corresponding element into view
   useEffect(() => {
-    const unlisten = history.listen((location) => {
-      const hash = location.hash.replace('#', '');
+    const unlisten = history.listen((location) =>
       frame().then(() => {
-        if (hash) {
-          document.getElementById(hash)?.scrollIntoView();
+        const id = location.hash.replace('#', '');
+        if (id) {
+          document.getElementById(id)?.scrollIntoView();
         } else if (rootElement) {
           const element =
             typeof rootElement === 'string'
@@ -112,24 +112,26 @@ const InPageNav = ({
               : rootElement;
           element?.scrollTo({ top: 0 });
         }
-      });
-    });
+      })
+    );
     return unlisten;
   }, [history, rootElement]);
 
   // move element into view on mount
   useEffect(() => {
-    const hash = history.location.hash.replace('#', '');
-    if (!hash) {
-      // no hash to navigate to
-      return;
-    }
     // sleep, to give the rest of the page a chance to start loading
     // schedule, to trigger only when the page has finished doing work
     // hopefully by then all the components are loaded and in their right space
     sleep(500)
       .then(() => schedule(1000))
-      .then(() => document.getElementById(hash)?.scrollIntoView());
+      .then(() => {
+        const id = history.location.hash.replace('#', '');
+        if (!id) {
+          // no id to navigate to
+          return;
+        }
+        document.getElementById(id)?.scrollIntoView();
+      });
   }, [history]); // history won't change, unlike location
 
   // move active marker
