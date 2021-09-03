@@ -42,23 +42,18 @@ const SearchInput: FC<Props> = ({
   ...props
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const focusOnInput = () => {
+  const handleSuffixInteraction = () => {
     inputRef?.current?.focus();
+    if (value?.trim() && !isLoading) {
+      onChange?.({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+    }
   };
 
   let icon;
   if (isLoading) {
     icon = <SpinnerIcon width={14} height={14} />;
   } else if (value?.trim()) {
-    icon = (
-      <CloseIcon
-        width={14}
-        height={14}
-        onClick={() =>
-          onChange?.({ target: { value: '' } } as ChangeEvent<HTMLInputElement>)
-        }
-      />
-    );
+    icon = <CloseIcon width={14} height={14} />;
   } else {
     icon = <SearchIcon width={14} height={14} />;
   }
@@ -79,8 +74,8 @@ const SearchInput: FC<Props> = ({
         data-testid="search-input-suffix"
         role="presentation"
         className="search-input__suffix"
-        onKeyPress={focusOnInput}
-        onClick={focusOnInput}
+        onKeyPress={handleSuffixInteraction}
+        onClick={handleSuffixInteraction}
       >
         {icon}
       </span>
