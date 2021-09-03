@@ -15,9 +15,7 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   &__title {
     flex-basis: 10vw;
     flex-shrink: 0;
-    margin-right: 0.7rem;
     text-align: right;
-    border-right: $decorative-bar;
     padding-right: 0.7rem;
     h5 {
       line-height: 1.2;
@@ -25,6 +23,10 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   }
 
   &__content {
+    padding-left: 0.7rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-left: $decorative-bar;
     ul {
       margin-bottom: 0;
     }
@@ -124,10 +126,10 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
 
     &__title {
       text-align: left;
-      border-right: 0;
     }
     &__content {
       border-left: none;
+      padding-left: 0;
       padding-left: 0;
     }
   }
