@@ -14,7 +14,7 @@ type Props = {
    */
   highlight?: boolean;
   /**
-   * Target/link of the card when clicking on it
+   * Target/link of the list item when clicking on it
    */
   to?: LinkProps['to'];
   /**

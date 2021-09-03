@@ -98,9 +98,10 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
     cursor: pointer;
   }
 
+  // Lifted from card style
   &--has-link {
     transition: 0.5s background-color ease;
-    position: relative;
+    position: relative; // Needed this otherwise the whole list becomes the anchor element
 
     &:hover,
     &:focus-within {
