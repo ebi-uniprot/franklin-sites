@@ -4,6 +4,7 @@ import {
   KeyboardEvent,
   ChangeEventHandler,
   ChangeEvent,
+  InputHTMLAttributes,
 } from 'react';
 
 import { SearchIcon, SpinnerIcon, CloseIcon } from '.';
@@ -31,7 +32,7 @@ type Props = {
    * Text to place in the text input component in the absence of value.
    */
   isLoading?: boolean;
-};
+} & InputHTMLAttributes<HTMLInputElement>;
 
 const SearchInput: FC<Props> = ({
   value,

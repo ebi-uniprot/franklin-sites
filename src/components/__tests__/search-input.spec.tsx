@@ -33,4 +33,12 @@ describe('SearchInput', () => {
     fireEvent.click(suffix);
     expect(onChange).toHaveBeenCalled();
   });
+
+  it('should not call onChange with "" when value is present and suffix is clicked and isLoading', () => {
+    const onChange = jest.fn();
+    render(<SearchInput onChange={onChange} value="foo" isLoading />);
+    const suffix = screen.getByTestId('search-input-suffix');
+    fireEvent.click(suffix);
+    expect(onChange).not.toHaveBeenCalled();
+  });
 });
