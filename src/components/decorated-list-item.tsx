@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import cn from 'classnames';
+import { Link, LinkProps } from 'react-router-dom';
 
 import '../styles/components/decorated-list-item.scss';
 
@@ -12,6 +13,10 @@ type Props = {
    * Make this item visually stand-out
    */
   highlight?: boolean;
+  /**
+   * Target/link of the list item when clicking on it
+   */
+  to?: LinkProps['to'];
   /**
    * Compact style
    */
@@ -37,6 +42,7 @@ type Props = {
 const DecoratedListItem: FC<Props> = ({
   title,
   children,
+  to,
   highlight,
   compact,
   hideTitle,
@@ -51,9 +57,19 @@ const DecoratedListItem: FC<Props> = ({
       'decorated-list-item--no-title': hideTitle,
       'decorated-list-item--inline': inline,
       'decorated-list-item--alt-style': altStyle,
+      'decorated-list-item--has-link': to,
     })}
     {...props}
   >
+    {to && (
+      <Link
+        data-testid="background-link"
+        to={to}
+        className="decorated-list-item__link"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+    )}
     {title && (
       <div className="decorated-list-item__title">
         <h5 className="bold">{title}</h5>

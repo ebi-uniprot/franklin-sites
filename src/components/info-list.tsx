@@ -5,7 +5,12 @@ import DecoratedListItem from './decorated-list-item';
 
 import '../styles/components/info-list.scss';
 
-type Item = { title: ReactNode; content: ReactNode; key?: string };
+type Item = {
+  title: ReactNode;
+  content: ReactNode;
+  key?: string;
+  to?: string;
+};
 
 type Props = {
   /**
@@ -53,7 +58,7 @@ const InfoList: FC<Props> = ({
   >
     {infoData.map(
       // Only draw if there is content
-      ({ content, title, key }, index) =>
+      ({ content, title, key, to }, index) =>
         content && (
           <li key={key || (typeof title === 'string' ? title : index)}>
             <DecoratedListItem
@@ -61,6 +66,7 @@ const InfoList: FC<Props> = ({
               highlight={index === 0 && highlightFirstItem}
               compact={isCompact}
               hideTitle={noTitles}
+              to={to}
             >
               {content}
             </DecoratedListItem>

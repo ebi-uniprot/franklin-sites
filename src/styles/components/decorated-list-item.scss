@@ -10,13 +10,12 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   display: flex;
   align-items: baseline;
   margin-bottom: 1.25rem;
+  padding: 0;
 
   &__title {
     flex-basis: 10vw;
     flex-shrink: 0;
-    margin-right: 0.7rem;
     text-align: right;
-    border-right: $decorative-bar;
     padding-right: 0.7rem;
     h5 {
       line-height: 1.2;
@@ -24,6 +23,10 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   }
 
   &__content {
+    padding-left: 0.7rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-left: $decorative-bar;
     ul {
       margin-bottom: 0;
     }
@@ -83,6 +86,37 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
         line-height: 1.25;
         font-weight: 600;
       }
+    }
+  }
+
+  &__link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+  }
+
+  // Lifted from card style
+  &--has-link {
+    transition: 0.5s background-color ease;
+    position: relative; // Needed this otherwise the whole list becomes the anchor element
+
+    &:hover,
+    &:focus-within {
+      background-color: scale-color($color: $colour-platinum, $lightness: 40%);
+    }
+
+    * {
+      pointer-events: none;
+    }
+
+    a,
+    button,
+    input,
+    label {
+      pointer-events: initial;
     }
   }
 }
