@@ -12,7 +12,7 @@ describe('SearchInput', () => {
 
   test('should focus on text input when suffix is clicked', () => {
     render(<SearchInput placeholder="This is the initial value" />);
-    const suffix = screen.queryByTestId('search-input-suffix');
+    const suffix = screen.getByTestId('search-input-suffix');
     fireEvent.click(suffix);
     const input = screen.queryByTestId('search-input');
     expect(document.activeElement).toEqual(input);
