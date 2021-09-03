@@ -1,4 +1,6 @@
-import { render } from '@testing-library/react';
+import { screen, fireEvent, render } from '@testing-library/react';
+
+import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 import DecoratedListItem from '../decorated-list-item';
 
@@ -38,5 +40,14 @@ describe('DecoratedListItem component', () => {
       <DecoratedListItem inline>Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should render link and navigate when clicked', () => {
+    const { asFragment, history } = renderWithRouter(
+      <DecoratedListItem to="/target">Content</DecoratedListItem>
+    );
+    expect(asFragment()).toMatchSnapshot();
+    fireEvent.click(screen.getByTestId('background-link'));
+    expect(history.location.pathname).toBe('/target');
   });
 });

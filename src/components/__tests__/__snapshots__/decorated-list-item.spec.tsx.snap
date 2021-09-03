@@ -74,6 +74,27 @@ exports[`DecoratedListItem component should render inline 1`] = `
 </DocumentFragment>
 `;
 
+exports[`DecoratedListItem component should render link and navigate when clicked 1`] = `
+<DocumentFragment>
+  <div
+    class="decorated-list-item decorated-list-item--has-link"
+  >
+    <a
+      aria-hidden="true"
+      class="decorated-list-item__link"
+      data-testid="background-link"
+      href="/target"
+      tabindex="-1"
+    />
+    <div
+      class="decorated-list-item__content"
+    >
+      Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`DecoratedListItem component should render without title 1`] = `
 <DocumentFragment>
   <div
