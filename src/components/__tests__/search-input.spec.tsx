@@ -39,6 +39,6 @@ describe('SearchInput', () => {
     render(<SearchInput onChange={onChange} value="foo" isLoading />);
     const suffix = screen.getByTestId('search-input-suffix');
     fireEvent.click(suffix);
-    expect(onChange).not.toHaveBeenCalled();
+    expect(onChange).not.toHaveBeenCalledWith({ target: { value: '' } });
   });
 });
