@@ -45,7 +45,7 @@ const SearchInput: FC<Props> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const handleSuffixInteraction = () => {
     inputRef?.current?.focus();
-    if (value?.trim() && !isLoading) {
+    if (value && !isLoading) {
       onChange?.({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
     }
   };
@@ -53,7 +53,7 @@ const SearchInput: FC<Props> = ({
   let icon;
   if (isLoading) {
     icon = <SpinnerIcon width={14} height={14} />;
-  } else if (value?.trim()) {
+  } else if (value) {
     icon = <CloseIcon width={14} height={14} />;
   } else {
     icon = <SearchIcon width={14} height={14} />;
