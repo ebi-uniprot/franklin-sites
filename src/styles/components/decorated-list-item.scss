@@ -9,8 +9,8 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   $self: &;
   display: flex;
   align-items: baseline;
-  margin-bottom: 1.25rem;
-  padding: 0;
+  margin-bottom: 0.25rem;
+  padding: 0.5rem 0;
 
   &__title {
     flex-basis: 10vw;
@@ -24,8 +24,8 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
 
   &__content {
     padding-left: 0.7rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
     border-left: $decorative-bar;
     ul {
       margin-bottom: 0;
@@ -131,6 +131,7 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
     &__content {
       border-left: none;
       padding-left: 0;
+      padding-top: 0;
     }
   }
 }
