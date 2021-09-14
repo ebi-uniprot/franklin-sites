@@ -47,7 +47,6 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
       flex: 0;
       text-align: left;
       white-space: nowrap;
-      border-right: none;
       margin-right: 0;
     }
     #{ $self }__content {
@@ -55,6 +54,7 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
       flex: 1;
       margin: 0;
       padding: 0;
+      border-left: none;
     }
   }
 
