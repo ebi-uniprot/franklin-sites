@@ -21,42 +21,37 @@ export default {
 };
 
 export const BasicTile = () => (
-  <Tile
-    title={text('title', 'Title', 'Props')}
-    headingLevel={select(
-      'headingLevel',
-      ['h1', 'h2', 'h3', 'h4', 'h5'],
-      'h3',
-      'Props'
-    )}
-    backgroundColor={select(
-      '--tile-background',
-      colors,
-      colors.seaBlue,
-      'Custom Properties'
-    )}
-    backgroundImage={boolean('with background?', false) ? <SVG /> : null}
-    subtitle={text('subtitle', 'subtitle', 'Props')}
-    width="20rem"
-    gradient={boolean('gradient', false, 'Props')}
-    to="/"
-    descriptionSlideUp={boolean('Slide up description', false, 'Props')}
-  >
-    {loremIpsum()}
-    {boolean('button in description', false) ? (
-      <button
-        type="button"
-        onClick={action('description button clicked')}
-        style={{ color: 'currentcolor', background: 'black' }}
-      >
-        Some button
-      </button>
-    ) : null}
-  </Tile>
-);
-
-export const TileWithContainer = () => (
-  <div style={{ width: '40%' }}>
-    <BasicTile />
+  <div style={{ width: text('Container size', '40%', 'ContainerProps') }}>
+    <Tile
+      title={text('title', 'Title', 'Props')}
+      headingLevel={select(
+        'headingLevel',
+        ['h1', 'h2', 'h3', 'h4', 'h5'],
+        'h3',
+        'Props'
+      )}
+      backgroundColor={select(
+        '--tile-background',
+        colors,
+        colors.seaBlue,
+        'Custom Properties'
+      )}
+      backgroundImage={boolean('with background?', false) ? <SVG /> : null}
+      subtitle={text('subtitle', 'subtitle', 'Props')}
+      gradient={boolean('gradient', false, 'Props')}
+      to="/"
+      descriptionSlideUp={boolean('Slide up description', false, 'Props')}
+    >
+      {loremIpsum()}
+      {boolean('button in description', false) ? (
+        <button
+          type="button"
+          onClick={action('description button clicked')}
+          style={{ color: 'currentcolor', background: 'black' }}
+        >
+          Some button
+        </button>
+      ) : null}
+    </Tile>
   </div>
 );
