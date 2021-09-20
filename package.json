@@ -91,7 +91,7 @@
   "dependencies": {
     "classnames": "2.3.1",
     "d3": "5.16.0",
-    "foundation-sites": "6.7.1",
+    "foundation-sites": "6.7.2",
     "history": "4.10.1",
     "lodash-es": "4.17.21",
     "lorem-ipsum": "2.0.3",
