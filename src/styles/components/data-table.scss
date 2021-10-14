@@ -52,6 +52,7 @@
 
         &:hover::after {
           opacity: 1;
+          transform: rotateX(0.5turn);
         }
       }
 
@@ -59,12 +60,6 @@
       &--descend {
         &::after {
           opacity: 1;
-        }
-      }
-
-      &--ascend {
-        &:hover::after {
-          transform: rotateX(0.5turn);
         }
       }
 
