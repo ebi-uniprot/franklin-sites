@@ -1,8 +1,22 @@
-/* eslint-disable react/require-default-props */
-import { memo, useCallback, ReactNode, HTMLAttributes, FormEvent } from 'react';
+import {
+  memo,
+  useEffect,
+  ReactNode,
+  HTMLAttributes,
+  useRef,
+  useCallback,
+} from 'react';
 import cn from 'classnames';
+import { v1 } from 'uuid';
+import { schedule } from 'timing-functions';
 
 import Loader from './loader';
+
+import useComplexCheckboxes, {
+  checkboxCellSelector,
+  updateSelectAllCheckbox,
+} from '../hooks/useComplexCheckboxes';
+
 import withDataLoader, { WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
@@ -44,7 +58,6 @@ type SharedProps<Datum> = {
 const BLOCK = 'data-table';
 
 type HeadProps<Datum> = {
-  selectable?: boolean;
   /**
    * Optional event handler called when a sortable column header gets clicked
    * Make sure that it doesn't change unecessarily by wrapping it in useCallback
@@ -53,18 +66,16 @@ type HeadProps<Datum> = {
 };
 
 const DataTableHead = <Datum extends BasicDatum>({
-  selectable,
   columns,
   onHeaderClick,
-}: HeadProps<Datum> & SharedProps<Datum>) => (
+  checkbox,
+}: HeadProps<Datum> & SharedProps<Datum> & { checkbox: ReactNode }) => (
   <thead>
     <tr>
-      {selectable && (
-        <th
-          key="selectable-column"
-          className={`${BLOCK}__header-cell--checkbox`}
-        >
-          {' '}
+      {checkbox && (
+        <th className={`${BLOCK}__header-cell--checkbox`}>
+          {/* needs a relative wrapper, because the header is sticky */}
+          <div className="checkbox-cell">{checkbox}</div>
         </th>
       )}
       {columns.map(({ sorted, name, label, sortable, width }) => (
@@ -110,6 +121,7 @@ const Cell = <Datum extends BasicDatum>({
      * undefined because of a lack of data, then it will no throw and will not
      * display the loader at all
      */
+    /* istanbul ignore next */
     if (!loading) {
       throw error;
     } else {
@@ -132,71 +144,47 @@ type RowProps<Datum extends BasicDatum> = {
   loading?: boolean;
   id: string;
   selectable: boolean;
-  isSelected?: boolean;
 };
-
-const noop = () => undefined;
 
 const DataTableRow = <Datum extends BasicDatum>({
   datum,
   loading,
   columns,
   selectable,
-  isSelected,
   id,
   fixedLayout,
   firstColumn,
-}: RowProps<Datum> & SharedProps<Datum> & { firstColumn: boolean }) => (
-  <tr className={isSelected ? `${BLOCK}__row--selected` : undefined}>
-    {selectable && (
-      <td key={`${id}-select-column`}>
-        <input
-          type="checkbox"
-          aria-label={id}
-          data-id={id}
-          checked={isSelected}
-          // Yes, we know what we are doing, we do event delegation at the level
-          // of the body in order to prevent rerendering each row if the handler
-          // function changes (out of the franklin's responsibility).
-          // This prevents a React warning in development
-          onChange={noop}
+}: RowProps<Datum> & SharedProps<Datum> & { firstColumn: boolean }) => {
+  const idRef = useRef(v1());
+  return (
+    <tr>
+      {selectable && (
+        <td className="checkbox-cell">
+          <input type="checkbox" data-id={id} id={idRef.current} />
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label
+            htmlFor={idRef.current}
+            aria-label={id}
+            title="click to select, shift+click for multiple selection"
+          />
+        </td>
+      )}
+      {columns.map((column) => (
+        <Cell
+          key={`${id}-${column.name}`}
+          column={column}
+          datum={datum}
+          loading={loading}
+          fixedLayout={fixedLayout}
+          firstColumn={firstColumn}
         />
-      </td>
-    )}
-    {columns.map((column) => (
-      <Cell
-        key={`${id}-${column.name}`}
-        column={column}
-        datum={datum}
-        loading={loading}
-        fixedLayout={fixedLayout}
-        firstColumn={firstColumn}
-      />
-    ))}
-  </tr>
-);
+      ))}
+    </tr>
+  );
+};
 const MemoizedDataTableRow = memo(DataTableRow) as typeof DataTableRow;
 
-// Either the rows are selectable
-type Selectable = {
-  /**
-   * A callback function that is called whenever a user selects a row.
-   */
-  onSelectRow: (id: string) => void;
-  /**
-   * An object which indicates which rows have been selected by the user.
-   */
-  selected: string[];
-};
-// Or they're not selectable
-type NonSelectable = {
-  onSelectRow?: never;
-  selected?: never;
-};
-
-type MaybeSelectable = Selectable | NonSelectable;
-
-type BodyProps<Datum> = {
+type RowsProps<Datum> = {
   /**
    * The data to be displayed
    */
@@ -207,49 +195,10 @@ type BodyProps<Datum> = {
    * Same function signature as a map function.
    */
   getIdKey: (datum: Datum, index: number, data: Datum[]) => string;
-  onSelectRow?: Selectable['onSelectRow'];
-};
-
-const DataTableBody = <Datum extends BasicDatum>({
-  data,
-  loading,
-  selected,
-  getIdKey,
-  onSelectRow,
-  ...props
-}: BodyProps<Datum> & SharedProps<Datum> & MaybeSelectable) => {
-  const handleChange = useCallback(
-    (event: FormEvent<HTMLElement>) => {
-      if (!onSelectRow) {
-        return;
-      }
-      const target = event.target as HTMLElement;
-      if (target.dataset.id) {
-        onSelectRow(target.dataset.id);
-      }
-    },
-    [onSelectRow]
-  );
-
-  return (
-    <tbody onChange={handleChange}>
-      {data.map((datum, index) => {
-        const id = getIdKey(datum, index, data);
-        return (
-          <MemoizedDataTableRow
-            key={id}
-            datum={datum}
-            loading={loading}
-            id={id}
-            isSelected={selected?.includes(id)}
-            selectable={Boolean(selected)}
-            firstColumn={index === 0}
-            {...props}
-          />
-        );
-      })}
-    </tbody>
-  );
+  /**
+   * A callback that is called whenever a user selects or unselects a row.
+   */
+  onSelectionChange?: (event: MouseEvent | KeyboardEvent) => void;
 };
 
 type TableProps = {
@@ -267,7 +216,7 @@ type TableProps = {
 
 export interface Props<Datum>
   extends TableProps,
-    BodyProps<Datum>,
+    RowsProps<Datum>,
     // Omit because 'selectable' is not passed from the top, it is deduced later
     Omit<HeadProps<Datum>, 'selectable'>,
     SharedProps<Datum> {}
@@ -276,22 +225,51 @@ export const DataTable = <Datum extends BasicDatum>({
   data,
   loading,
   columns,
-  onSelectRow,
-  selected,
   getIdKey,
   onHeaderClick,
+  onSelectionChange,
   density = 'normal',
   fixedLayout,
   optimisedRendering,
   className,
   ...props
-}: Props<Datum> &
-  MaybeSelectable &
-  HTMLAttributes<HTMLTableElement>): JSX.Element => {
-  let selectedProps = {};
-  if (selected) {
-    selectedProps = { selected, onSelectRow };
-  }
+}: Props<Datum> & HTMLAttributes<HTMLTableElement>): JSX.Element => {
+  const idRef = useRef(v1());
+
+  const { selectAllRef, checkboxContainerRef } =
+    useComplexCheckboxes(onSelectionChange);
+
+  // We need to update the state of the select-all checkbox when data changes
+  useEffect(() => {
+    updateSelectAllCheckbox(checkboxContainerRef.current, selectAllRef.current);
+  }, [data, checkboxContainerRef, selectAllRef]);
+
+  const handleSelectAll = useCallback(() => {
+    const selectAllCheckbox = selectAllRef.current;
+    if (!selectAllCheckbox) {
+      return;
+    }
+    const allCheckboxes =
+      checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>(
+        `${checkboxCellSelector} > input[type="checkbox"]`
+      );
+    if (!allCheckboxes?.length) {
+      return;
+    }
+    // should check all boxes if is checked
+    const shouldBeChecked = selectAllCheckbox.checked;
+    schedule().then(() => {
+      for (const checkbox of allCheckboxes.values()) {
+        // If inconsistent state, click to sync
+        if (shouldBeChecked !== checkbox.checked) {
+          checkbox.click(); // Needs to click to trigger event
+        }
+      }
+    });
+  }, [checkboxContainerRef, selectAllRef]);
+
+  const selectable = Boolean(onSelectionChange);
+
   return (
     <table
       className={cn(className, BLOCK, {
@@ -302,25 +280,47 @@ export const DataTable = <Datum extends BasicDatum>({
       {...props}
     >
       <MemoizedDataTableHead<Datum>
-        selectable={Boolean(selected)}
         columns={columns}
         onHeaderClick={onHeaderClick}
+        checkbox={
+          selectable && (
+            <>
+              <input
+                type="checkbox"
+                id={idRef.current}
+                ref={selectAllRef}
+                onClick={handleSelectAll}
+              />
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label
+                htmlFor={idRef.current}
+                aria-label="Selection control for all visible items"
+              />
+            </>
+          )
+        }
       />
-      <DataTableBody<Datum>
-        data={data}
-        loading={loading}
-        columns={columns}
-        getIdKey={getIdKey}
-        fixedLayout={fixedLayout}
-        {...selectedProps}
-      />
+      <tbody ref={checkboxContainerRef}>
+        {data.map((datum, index) => {
+          const id = getIdKey(datum, index, data);
+          return (
+            <MemoizedDataTableRow<Datum>
+              key={id}
+              datum={datum}
+              loading={loading}
+              id={id}
+              selectable={selectable}
+              firstColumn={index === 0}
+              columns={columns}
+              fixedLayout={fixedLayout}
+            />
+          );
+        })}
+      </tbody>
     </table>
   );
 };
 
 export const DataTableWithLoader = <Datum extends BasicDatum>(
-  props: WrapperProps<Datum> &
-    Props<Datum> &
-    MaybeSelectable &
-    HTMLAttributes<HTMLTableElement>
+  props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLTableElement>
 ) => withDataLoader<Datum, typeof props>(DataTable)(props);

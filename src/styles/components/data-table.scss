@@ -19,6 +19,10 @@
     table-layout: fixed;
   }
 
+  & thead {
+    background-color: $colour-sea-blue;
+  }
+
   // table header cell, without any specific modifier applied
   & th {
     width: auto;
@@ -75,6 +79,12 @@
       &--checkbox {
         // This doesn't have an effect unless `table-layout: fixed`
         width: 1.5rem;
+
+        padding: 0;
+
+        & input[type='checkbox'] {
+          margin-top: 0.5em;
+        }
       }
     }
   }
@@ -85,18 +95,45 @@
     }
   }
 
-  &__row {
-    &--selected {
-      background-color: $colour-selected;
-    }
-  }
-
   // table body cell, without any specific modifier applied
   & td {
     padding: 0.5rem;
-    vertical-align: top;
     border: 0;
+    vertical-align: top;
     border-bottom: 1px solid $colour-sky-white;
+  }
+
+  & .checkbox-cell {
+    position: relative;
+    padding: 0;
+
+    & > input[type='checkbox'] {
+      margin: 0.9em 0.75ch 0 1.25ch;
+
+      & + label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        border-left: 1ch solid $colour-sea-blue;
+        opacity: 0;
+
+        transition: opacity ease-in-out 0.1s;
+      }
+
+      &:hover,
+      &:focus {
+        & + label {
+          opacity: 0.2;
+        }
+      }
+
+      &:checked + label {
+        opacity: 1;
+      }
+    }
   }
 
   &--optimised-rendering td {
