@@ -153,11 +153,15 @@ describe('DataTable', () => {
     expect(onSelectionChange).toHaveBeenCalledTimes(data.length);
     expect(selectAll.indeterminate).toBe(false); // not in a mixed state
 
+    await waitFor(() => {
+      expect(selectAll.disabled).toBe(false);
+    });
+
     fireEvent.click(selectAll); // uncheck everything
     // No checked checkboxes to find, helper function should throw
-    await waitFor(() =>
-      expect(() => getBodyCheckboxes({ checked: true })).toThrow()
-    );
+    await waitFor(() => {
+      expect(() => getBodyCheckboxes({ checked: true })).toThrow();
+    });
     expect(onSelectionChange).toHaveBeenCalledTimes(2 * data.length);
     expect(selectAll.indeterminate).toBe(false); // not in a mixed state
   });

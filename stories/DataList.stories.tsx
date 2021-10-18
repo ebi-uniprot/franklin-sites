@@ -69,7 +69,7 @@ export const dataListWithLoaderAndCards = () => (
         <DataListWithLoader
           {...props}
           dataRenderer={(content) => (
-            <Card onSelect={action('onSelect')}>
+            <Card>
               {selectable && (
                 <div className="checkbox-cell">
                   <input type="checkbox" />
@@ -78,7 +78,7 @@ export const dataListWithLoaderAndCards = () => (
               {Object.values(content)}
             </Card>
           )}
-          onSelectionChange={selectable ? jest.fn() : undefined}
+          onSelectionChange={selectable ? action('onSelect') : undefined}
           clickToLoad={useClickToLoad()}
         />
       );

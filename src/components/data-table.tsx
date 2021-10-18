@@ -4,19 +4,14 @@ import {
   ReactNode,
   HTMLAttributes,
   useRef,
-  useCallback,
   useMemo,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
-import { schedule } from 'timing-functions';
 
 import Loader from './loader';
 
-import useDataCheckboxes, {
-  checkboxCellSelector,
-  updateSelectAllCheckbox,
-} from '../hooks/useDataCheckboxes';
+import useDataCheckboxes from '../hooks/useDataCheckboxes';
 
 import withDataLoader, { WrapperProps } from './data-loader';
 
@@ -237,37 +232,11 @@ export const DataTable = <Datum extends BasicDatum>({
 }: Props<Datum> & HTMLAttributes<HTMLTableElement>): JSX.Element => {
   const idRef = useRef(v1());
 
-  const { selectAllRef, checkboxContainerRef } =
+  const { selectAllRef, checkboxContainerRef, checkSelectAllSync } =
     useDataCheckboxes(onSelectionChange);
 
   // We need to update the state of the select-all checkbox when data changes
-  useEffect(() => {
-    updateSelectAllCheckbox(checkboxContainerRef.current, selectAllRef.current);
-  }, [data, checkboxContainerRef, selectAllRef]);
-
-  const handleSelectAll = useCallback(() => {
-    const selectAllCheckbox = selectAllRef.current;
-    if (!selectAllCheckbox) {
-      return;
-    }
-    const allCheckboxes =
-      checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>(
-        `${checkboxCellSelector} > input[type="checkbox"]`
-      );
-    if (!allCheckboxes?.length) {
-      return;
-    }
-    // should check all boxes if is checked
-    const shouldBeChecked = selectAllCheckbox.checked;
-    schedule().then(() => {
-      for (const checkbox of allCheckboxes.values()) {
-        // If inconsistent state, click to sync
-        if (shouldBeChecked !== checkbox.checked) {
-          checkbox.click(); // Needs to click to trigger event
-        }
-      }
-    });
-  }, [checkboxContainerRef, selectAllRef]);
+  useEffect(checkSelectAllSync, [data, checkSelectAllSync]);
 
   const selectable = Boolean(onSelectionChange);
 
@@ -275,12 +244,7 @@ export const DataTable = <Datum extends BasicDatum>({
     () =>
       selectable && (
         <>
-          <input
-            type="checkbox"
-            id={idRef.current}
-            ref={selectAllRef}
-            onClick={handleSelectAll}
-          />
+          <input type="checkbox" id={idRef.current} ref={selectAllRef} />
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label
             htmlFor={idRef.current}
@@ -288,7 +252,7 @@ export const DataTable = <Datum extends BasicDatum>({
           />
         </>
       ),
-    [handleSelectAll, selectAllRef, selectable]
+    [selectAllRef, selectable]
   );
 
   return (
