@@ -13,10 +13,10 @@ import { schedule } from 'timing-functions';
 
 import Loader from './loader';
 
-import useComplexCheckboxes, {
+import useDataCheckboxes, {
   checkboxCellSelector,
   updateSelectAllCheckbox,
-} from '../hooks/useComplexCheckboxes';
+} from '../hooks/useDataCheckboxes';
 
 import withDataLoader, { WrapperProps } from './data-loader';
 
@@ -238,7 +238,7 @@ export const DataTable = <Datum extends BasicDatum>({
   const idRef = useRef(v1());
 
   const { selectAllRef, checkboxContainerRef } =
-    useComplexCheckboxes(onSelectionChange);
+    useDataCheckboxes(onSelectionChange);
 
   // We need to update the state of the select-all checkbox when data changes
   useEffect(() => {

@@ -47,7 +47,7 @@ export const updateSelectAllCheckbox = debounce(
   { leading: false }
 );
 
-const useComplexCheckboxes = (
+const useDataCheckboxes = (
   onSelectionChange?: (event: MouseEvent | KeyboardEvent) => void
 ) => {
   // HTML element refs
@@ -148,4 +148,4 @@ const useComplexCheckboxes = (
   return { selectAllRef, checkboxContainerRef };
 };
 
-export default useComplexCheckboxes;
+export default useDataCheckboxes;

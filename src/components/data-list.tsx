@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import Loader from './loader';
 
-import useComplexCheckboxes from '../hooks/useComplexCheckboxes';
+import useDataCheckboxes from '../hooks/useDataCheckboxes';
 
 import withDataLoader, { WrapperProps } from './data-loader';
 
@@ -78,7 +78,7 @@ export function DataList<Datum extends BasicDatum>({
   className,
   ...props
 }: Props<Datum> & HTMLAttributes<HTMLDivElement>) {
-  const { checkboxContainerRef } = useComplexCheckboxes(onSelectionChange);
+  const { checkboxContainerRef } = useDataCheckboxes(onSelectionChange);
 
   return (
     <div
