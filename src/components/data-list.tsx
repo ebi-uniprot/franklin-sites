@@ -1,4 +1,5 @@
 import { memo, ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 
 import Loader from './loader';
 
@@ -74,12 +75,17 @@ export function DataList<Datum extends BasicDatum>({
   dataRenderer,
   loading = false,
   onSelectionChange,
+  className,
   ...props
 }: Props<Datum> & HTMLAttributes<HTMLDivElement>) {
   const { checkboxContainerRef } = useComplexCheckboxes(onSelectionChange);
 
   return (
-    <div {...props} ref={checkboxContainerRef}>
+    <div
+      {...props}
+      className={cn('data-list', className)}
+      ref={checkboxContainerRef}
+    >
       {data.map((datum, index) => {
         const id = getIdKey(datum, index, data);
         return (

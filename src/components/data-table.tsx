@@ -5,6 +5,7 @@ import {
   HTMLAttributes,
   useRef,
   useCallback,
+  useMemo,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
@@ -270,6 +271,26 @@ export const DataTable = <Datum extends BasicDatum>({
 
   const selectable = Boolean(onSelectionChange);
 
+  const selectAllCheckbox = useMemo(
+    () =>
+      selectable && (
+        <>
+          <input
+            type="checkbox"
+            id={idRef.current}
+            ref={selectAllRef}
+            onClick={handleSelectAll}
+          />
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label
+            htmlFor={idRef.current}
+            aria-label="Selection control for all visible items"
+          />
+        </>
+      ),
+    [handleSelectAll, selectAllRef, selectable]
+  );
+
   return (
     <table
       className={cn(className, BLOCK, {
@@ -282,23 +303,7 @@ export const DataTable = <Datum extends BasicDatum>({
       <MemoizedDataTableHead<Datum>
         columns={columns}
         onHeaderClick={onHeaderClick}
-        checkbox={
-          selectable && (
-            <>
-              <input
-                type="checkbox"
-                id={idRef.current}
-                ref={selectAllRef}
-                onClick={handleSelectAll}
-              />
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label
-                htmlFor={idRef.current}
-                aria-label="Selection control for all visible items"
-              />
-            </>
-          )
-        }
+        checkbox={selectAllCheckbox}
       />
       <tbody ref={checkboxContainerRef}>
         {data.map((datum, index) => {
