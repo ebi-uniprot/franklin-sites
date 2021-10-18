@@ -7,6 +7,7 @@ import { schedule } from 'timing-functions';
 // Needs to use this when using custom checkboxes (in cards for example)
 export const checkboxCellSelector = '.checkbox-cell';
 
+// Use debounce to wait until the next tick (0 and `leading: false`)
 export const updateSelectAllCheckbox = debounce(
   (
     checkboxContainer?: HTMLElement | null,
