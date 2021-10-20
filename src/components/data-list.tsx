@@ -1,6 +1,10 @@
 import { memo, ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 
 import Loader from './loader';
+
+import useDataCheckboxes from '../hooks/useDataCheckboxes';
+
 import withDataLoader, { WrapperProps } from './data-loader';
 
 export type Props<Datum> = {
@@ -17,6 +21,10 @@ export type Props<Datum> = {
    * Same function signature as a map function.
    */
   getIdKey: (datum: Datum, index: number, data: Datum[]) => string;
+  /**
+   * A callback that is called whenever a user selects or unselects a row.
+   */
+  onSelectionChange?: (event: MouseEvent | KeyboardEvent) => void;
   /**
    * A renderer function for each item of the list.
    * Make sure that it doesn't change unecessarily by wrapping it in useCallback
@@ -66,10 +74,18 @@ export function DataList<Datum extends BasicDatum>({
   getIdKey,
   dataRenderer,
   loading = false,
+  onSelectionChange,
+  className,
   ...props
 }: Props<Datum> & HTMLAttributes<HTMLDivElement>) {
+  const { checkboxContainerRef } = useDataCheckboxes(onSelectionChange);
+
   return (
-    <div {...props}>
+    <div
+      {...props}
+      className={cn('data-list', className)}
+      ref={checkboxContainerRef}
+    >
       {data.map((datum, index) => {
         const id = getIdKey(datum, index, data);
         return (

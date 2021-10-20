@@ -1,4 +1,11 @@
-import { render, fireEvent, screen } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  screen,
+  getAllByRole,
+  ByRoleOptions,
+  waitFor,
+} from '@testing-library/react';
 
 import {
   DataTableWithLoader as DataTable,
@@ -6,10 +13,13 @@ import {
   NonSortableColumn,
 } from '../data-table';
 
+jest.mock('uuid', () => ({
+  v1: jest.fn(() => 'abcd'),
+}));
+
 describe('DataTable', () => {
-  const onSelectRow = jest.fn();
+  const onSelectionChange = jest.fn();
   const onHeaderClick = jest.fn();
-  const selected = ['id0'];
 
   const data = Array.from({ length: 10 }, (_, index) => ({
     id: `id${index}`,
@@ -19,28 +29,27 @@ describe('DataTable', () => {
   }));
 
   type DataType = typeof data[0];
-  const columns: Array<
-    SortableColumn<DataType> | NonSortableColumn<DataType>
-  > = [
-    {
-      label: 'Column 1',
-      name: 'content1',
-      render: (row) => row.content1,
-      sortable: true,
-      sorted: 'ascend',
-    },
-    {
-      label: 'Column 2',
-      name: 'content2',
-      render: (row) => row.content2,
-    },
-    {
-      label: <h1>Column 3</h1>,
-      name: 'content3',
-      render: (row) => row.content3,
-      sortable: true,
-    },
-  ];
+  const columns: Array<SortableColumn<DataType> | NonSortableColumn<DataType>> =
+    [
+      {
+        label: 'Column 1',
+        name: 'content1',
+        render: (row) => row.content1,
+        sortable: true,
+        sorted: 'ascend',
+      },
+      {
+        label: 'Column 2',
+        name: 'content2',
+        render: (row) => row.content2,
+      },
+      {
+        label: <h1>Column 3</h1>,
+        name: 'content3',
+        render: (row) => row.content3,
+        sortable: true,
+      },
+    ];
 
   let onLoadMoreItems: () => void;
 
@@ -53,11 +62,17 @@ describe('DataTable', () => {
         data={data}
         clickToLoad={clickToLoad}
         columns={columns}
-        onSelectRow={onSelectRow}
-        selected={selected}
+        onSelectionChange={onSelectionChange}
         onHeaderClick={onHeaderClick}
       />
     );
+
+  const getBodyCheckboxes = (options?: ByRoleOptions) => {
+    const table = screen.getByRole('table');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const body = table.querySelector('tbody')!;
+    return getAllByRole(body, 'checkbox', options);
+  };
 
   beforeEach(() => {
     onLoadMoreItems = jest.fn();
@@ -69,7 +84,7 @@ describe('DataTable', () => {
     }));
   });
 
-  afterAll(() => {
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -97,12 +112,76 @@ describe('DataTable', () => {
     expect(clickToLoadMore).toBeNull();
   });
 
-  test('should fire onSelect when checkbox is clicked', () => {
+  test('should fire onSelectionChange when a checkbox is clicked', () => {
     renderTable();
-    expect(onSelectRow).not.toHaveBeenCalled();
-    const checkbox = screen.getAllByRole('checkbox');
-    fireEvent.click(checkbox[0]);
-    expect(onSelectRow).toHaveBeenCalled();
+    expect(onSelectionChange).not.toHaveBeenCalled();
+    const checkboxes = getBodyCheckboxes();
+    fireEvent.click(checkboxes[0]);
+    expect(getBodyCheckboxes({ checked: true })).toHaveLength(1);
+    expect(onSelectionChange).toHaveBeenCalled();
+  });
+
+  test('should select all checkboxes when last checkbox is clicked with shift key', async () => {
+    renderTable();
+    const checkboxes = getBodyCheckboxes();
+    fireEvent.click(checkboxes[data.length - 1], { shiftKey: true }); // last
+    await waitFor(() =>
+      expect(getBodyCheckboxes({ checked: true })).toHaveLength(data.length)
+    );
+    expect(onSelectionChange).toHaveBeenCalledTimes(data.length);
+  });
+
+  // Can't test this as we can't generate trusted events in tests
+  test.skip('should select all in-between checkboxes when 2nd checkbox check is with shift key', () => {
+    renderTable();
+    expect(onSelectionChange).not.toHaveBeenCalled();
+    const checkboxes = getBodyCheckboxes();
+    fireEvent.click(checkboxes[data.length - 1], { isTrusted: true }); // last checkbox, first selection
+    fireEvent.click(checkboxes[data.length - 3], { shiftKey: true }); // 3rd last
+    expect(getBodyCheckboxes({ checked: true })).toHaveLength(3);
+  });
+
+  test('should select and unselect all checkboxes when select all checkbox is ticked', async () => {
+    renderTable();
+    const selectAll = screen.getByRole('checkbox', {
+      name: /Selection control/i,
+    }) as HTMLInputElement;
+    fireEvent.click(selectAll); // check everything
+    await waitFor(() =>
+      expect(getBodyCheckboxes({ checked: true })).toHaveLength(data.length)
+    );
+    expect(onSelectionChange).toHaveBeenCalledTimes(data.length);
+    expect(selectAll.indeterminate).toBe(false); // not in a mixed state
+
+    await waitFor(() => {
+      expect(selectAll.disabled).toBe(false);
+    });
+
+    fireEvent.click(selectAll); // uncheck everything
+    // No checked checkboxes to find, helper function should throw
+    await waitFor(() =>
+      expect(() => getBodyCheckboxes({ checked: true })).toThrow()
+    );
+    expect(onSelectionChange).toHaveBeenCalledTimes(2 * data.length);
+    expect(selectAll.indeterminate).toBe(false); // not in a mixed state
+  });
+
+  test('select all should get in a mixed state if one checkbox is selected, then unselect everything when clicked', async () => {
+    renderTable();
+    const selectAll = screen.getByRole('checkbox', {
+      name: /Selection control/i,
+    }) as HTMLInputElement;
+    expect(selectAll.indeterminate).toBe(false);
+    const checkboxes = getBodyCheckboxes();
+    fireEvent.click(checkboxes[0]);
+    expect(getBodyCheckboxes({ checked: true })).toHaveLength(1);
+    await waitFor(() => expect(selectAll.indeterminate).toBe(true));
+    fireEvent.click(selectAll); // uncheck everything, get out of mixed state
+    // No checked checkboxes to find, helper function should throw
+    await waitFor(() =>
+      expect(() => getBodyCheckboxes({ checked: true })).toThrow()
+    );
+    expect(selectAll.indeterminate).toBe(false); // not in a mixed state
   });
 
   test('should fire onHeaderClick when header is clicked', () => {

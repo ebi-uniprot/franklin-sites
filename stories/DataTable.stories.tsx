@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { boolean, select } from '@storybook/addon-knobs';
 
 import { DataTable, DataTableWithLoader } from '../src/components';
 import {
@@ -17,15 +18,24 @@ export default {
   },
 };
 
+const useCheckbox = () => boolean('onSelectionChange', false, 'Props');
+const useFixedLayout = () => boolean('fixedLayout', false, 'Props');
+const useDensity = () =>
+  select('density', ['normal', 'compact'], 'normal', 'Props');
+const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
+
 export const dataTable = () => (
   <DataDecorator>
     {(props) => (
       <DataTable
         {...props}
         columns={columns}
-        onSelectRow={action('onSelectRow')}
+        onSelectionChange={
+          useCheckbox() ? action('onSelectionChange') : undefined
+        }
         onHeaderClick={action('onHeaderClick')}
-        selected={[]}
+        fixedLayout={useFixedLayout()}
+        density={useDensity()}
       />
     )}
   </DataDecorator>
@@ -37,45 +47,19 @@ export const dataTableWithLoader = () => (
       <DataTableWithLoader
         {...props}
         columns={columns}
-        onSelectRow={action('onSelectRow')}
+        onSelectionChange={
+          useCheckbox() ? action('onSelectionChange') : undefined
+        }
         onHeaderClick={action('onHeaderClick')}
-        selected={[]}
+        fixedLayout={useFixedLayout()}
+        density={useDensity()}
+        clickToLoad={useClickToLoad()}
       />
     )}
   </DataLoaderDecorator>
 );
 
-export const dataTableWithLoaderClickToLoad = () => (
-  <DataLoaderDecorator>
-    {(props) => (
-      <DataTableWithLoader
-        {...props}
-        columns={columns}
-        clickToLoad
-        onSelectRow={action('onSelectRow')}
-        onHeaderClick={action('onHeaderClick')}
-        selected={[]}
-      />
-    )}
-  </DataLoaderDecorator>
-);
-
-export const dataTableWithLoaderCompact = () => (
-  <DataLoaderDecorator>
-    {(props) => (
-      <DataTableWithLoader
-        {...props}
-        columns={columns}
-        onSelectRow={action('onSelectRow')}
-        onHeaderClick={action('onHeaderClick')}
-        selected={[]}
-        density="compact"
-      />
-    )}
-  </DataLoaderDecorator>
-);
-
-export const dataTableLoading = () => (
+export const dataTableColumnLoading = () => (
   <DataLoaderDecorator>
     {(props) => (
       <DataTableWithLoader
@@ -85,30 +69,19 @@ export const dataTableLoading = () => (
           ...columns,
           {
             label: 'Column 6',
-            name: 'content5',
+            name: 'content6',
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore we know it doesn't exist, it's on purpose
             render: (row) => row.content6.complexValue,
           },
         ]}
-        onSelectRow={action('onSelectRow')}
+        onSelectionChange={
+          useCheckbox() ? action('onSelectionChange') : undefined
+        }
         onHeaderClick={action('onHeaderClick')}
-        selected={[]}
-        density="compact"
-      />
-    )}
-  </DataLoaderDecorator>
-);
-
-export const fixedTableWithLoader = () => (
-  <DataLoaderDecorator>
-    {(props) => (
-      <DataTableWithLoader
-        {...props}
-        columns={columns}
-        onSelectRow={action('onSelectRow')}
-        selected={[]}
-        fixedLayout
+        fixedLayout={useFixedLayout()}
+        density={useDensity()}
+        clickToLoad={useClickToLoad()}
       />
     )}
   </DataLoaderDecorator>

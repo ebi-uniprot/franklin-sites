@@ -10,7 +10,18 @@ exports[`DataTable should render autoload 1`] = `
         <th
           class="data-table__header-cell--checkbox"
         >
-           
+          <div
+            class="checkbox-cell"
+          >
+            <input
+              id="abcd"
+              type="checkbox"
+            />
+            <label
+              aria-label="Selection control for all visible items"
+              for="abcd"
+            />
+          </div>
         </th>
         <th
           class="data-table__header-cell--sortable data-table__header-cell--ascend"
@@ -32,15 +43,19 @@ exports[`DataTable should render autoload 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        class="data-table__row--selected"
-      >
-        <td>
+      <tr>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id0"
-            checked=""
             data-id="id0"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id0"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -54,11 +69,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id1"
             data-id="id1"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id1"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -72,11 +94,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id2"
             data-id="id2"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id2"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -90,11 +119,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id3"
             data-id="id3"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id3"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -108,11 +144,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id4"
             data-id="id4"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id4"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -126,11 +169,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id5"
             data-id="id5"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id5"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -144,11 +194,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id6"
             data-id="id6"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id6"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -162,11 +219,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id7"
             data-id="id7"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id7"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -180,11 +244,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id8"
             data-id="id8"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id8"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -198,11 +269,18 @@ exports[`DataTable should render autoload 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id9"
             data-id="id9"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id9"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -243,7 +321,18 @@ exports[`DataTable should render click-to-load 1`] = `
         <th
           class="data-table__header-cell--checkbox"
         >
-           
+          <div
+            class="checkbox-cell"
+          >
+            <input
+              id="abcd"
+              type="checkbox"
+            />
+            <label
+              aria-label="Selection control for all visible items"
+              for="abcd"
+            />
+          </div>
         </th>
         <th
           class="data-table__header-cell--sortable data-table__header-cell--ascend"
@@ -265,15 +354,19 @@ exports[`DataTable should render click-to-load 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        class="data-table__row--selected"
-      >
-        <td>
+      <tr>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id0"
-            checked=""
             data-id="id0"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id0"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -287,11 +380,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id1"
             data-id="id1"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id1"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -305,11 +405,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id2"
             data-id="id2"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id2"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -323,11 +430,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id3"
             data-id="id3"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id3"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -341,11 +455,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id4"
             data-id="id4"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id4"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -359,11 +480,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id5"
             data-id="id5"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id5"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -377,11 +505,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id6"
             data-id="id6"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id6"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -395,11 +530,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id7"
             data-id="id7"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id7"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -413,11 +555,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id8"
             data-id="id8"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id8"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>
@@ -431,11 +580,18 @@ exports[`DataTable should render click-to-load 1`] = `
         </td>
       </tr>
       <tr>
-        <td>
+        <td
+          class="checkbox-cell"
+        >
           <input
-            aria-label="id9"
             data-id="id9"
+            id="abcd"
             type="checkbox"
+          />
+          <label
+            aria-label="id9"
+            for="abcd"
+            title="click to select, shift+click for multiple selection"
           />
         </td>
         <td>

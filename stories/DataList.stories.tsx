@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
 
 import { DataList, DataListWithLoader, Card } from '../src/components';
 import {
@@ -15,6 +16,8 @@ export default {
     },
   },
 };
+
+const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
 
 export const dataList = () => (
   <DataDecorator>
@@ -52,6 +55,7 @@ export const dataListWithLoader = () => (
       <DataListWithLoader
         {...props}
         dataRenderer={(content) => <>{Object.values(content)}</>}
+        clickToLoad={useClickToLoad()}
       />
     )}
   </DataLoaderDecorator>
@@ -59,13 +63,25 @@ export const dataListWithLoader = () => (
 
 export const dataListWithLoaderAndCards = () => (
   <DataLoaderDecorator>
-    {(props) => (
-      <DataListWithLoader
-        {...props}
-        dataRenderer={(content) => (
-          <Card onSelect={action('onSelect')}>{Object.values(content)}</Card>
-        )}
-      />
-    )}
+    {(props) => {
+      const selectable = boolean('selectable', false, 'Props');
+      return (
+        <DataListWithLoader
+          {...props}
+          dataRenderer={(content) => (
+            <Card>
+              {selectable && (
+                <div className="checkbox-cell">
+                  <input type="checkbox" />
+                </div>
+              )}
+              {Object.values(content)}
+            </Card>
+          )}
+          onSelectionChange={selectable ? action('onSelect') : undefined}
+          clickToLoad={useClickToLoad()}
+        />
+      );
+    }}
   </DataLoaderDecorator>
 );

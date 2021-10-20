@@ -2,7 +2,9 @@
 
 exports[`DataList should render autoload 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="data-list"
+  >
     <section>
       <p>
         0
@@ -70,7 +72,9 @@ exports[`DataList should render autoload 1`] = `
 
 exports[`DataList should render click-to-load 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="data-list"
+  >
     <section>
       <p>
         0
