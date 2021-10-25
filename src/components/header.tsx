@@ -50,7 +50,8 @@ const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
   } else if (item.href) {
     extraProps = {
       target: '_blank',
-      rel: 'noopener noreferrer',
+      rel: 'noopener',
+      referrerpolicy: 'no-referrer-when-downgrade',
       href: item.href,
     };
     element = 'a';

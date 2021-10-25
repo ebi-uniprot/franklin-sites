@@ -37,7 +37,8 @@ exports[`Header component should render 1`] = `
         <a
           class="button tertiary"
           href="www.ebi.ac.uk"
-          rel="noopener noreferrer"
+          referrerpolicy="no-referrer-when-downgrade"
+          rel="noopener"
           target="_blank"
         >
           EBI
