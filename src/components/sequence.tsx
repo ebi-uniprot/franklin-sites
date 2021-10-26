@@ -1,26 +1,34 @@
 import { useState, useEffect, useRef, ReactNode, FC } from 'react';
-import InfoList from './info-list';
-import DownloadIcon from '../svg/download.svg';
-import BasketIcon from '../svg/basket.svg';
-import Spinner from '../svg/spinner.svg';
+import {
+  InfoList,
+  DownloadIcon,
+  BasketIcon,
+  SpinnerIcon,
+  DropdownButton,
+  SequenceTools,
+} from '.';
 import SequenceChunk from './sequence-chunk';
 import CopyToClipboard from './copy-to-clipboard';
-import DropdownButton from './dropdown-button';
-import SequenceTools from './sequence-tools';
 
 import aminoAcidsProps from './data/amino-acid-properties.json';
 
 import '../styles/components/sequence.scss';
 
+type AminoAcidProperty = {
+  name: string;
+  aminoAcids: string[];
+  colour: string;
+};
+
 type SequenceProps = {
   /**
    * The sequence
    */
-  sequence?: string;
+  sequence: string;
   /**
    * The accession corresponding to the sequence
    */
-  accession: string;
+  accession?: string;
   /**
    * Action triggered when the "Show sequence" button is clicked.
    * This button will be displayed by default if no sequence is passed
@@ -49,7 +57,7 @@ type SequenceProps = {
   initialTextSize?: {
     width: number;
     height: number;
-  }[];
+  };
   /**
    * The number of items to include in a sequence chunk. Default 10
    */
@@ -85,7 +93,7 @@ const Sequence: FC<SequenceProps> = ({
   showActionBar = true,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
-  const [highlights, setHighlights] = useState([]);
+  const [highlights, setHighlights] = useState<AminoAcidProperty[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(
     isCollapsible || (onShowSequence && !sequence)
   );
@@ -116,7 +124,7 @@ const Sequence: FC<SequenceProps> = ({
           className="button secondary"
           onClick={handleShowSequenceClick}
         >
-          Show sequence {isLoading && <Spinner />}
+          Show sequence {isLoading && <SpinnerIcon />}
         </button>
       </>
     );
@@ -139,7 +147,7 @@ const Sequence: FC<SequenceProps> = ({
     return chunks;
   };
 
-  const handleToggleHighlight = (aaProp) => {
+  const handleToggleHighlight = (aaProp: AminoAcidProperty) => {
     let highlightsToUpdate = [...highlights];
     if (highlightsToUpdate.includes(aaProp)) {
       highlightsToUpdate = highlightsToUpdate.filter((h) => h !== aaProp);
@@ -184,14 +192,9 @@ const Sequence: FC<SequenceProps> = ({
         </button>
       )}
       <section className="sequence-container">
-        {showActionBar && (
+        {showActionBar && accession && (
           <div className="action-bar button-group">
-            <DropdownButton label="Tools" className="tertiary">
-              <SequenceTools
-                accession={accession}
-                onBlastClick={onBlastClick}
-              />
-            </DropdownButton>
+            <SequenceTools accession={accession} onBlastClick={onBlastClick} />
             {downloadUrl && (
               <a className="button tertiary" href={downloadUrl} download>
                 <DownloadIcon />
@@ -223,7 +226,7 @@ const Sequence: FC<SequenceProps> = ({
         <div className="sequence">
           <div className="sequence__sequence">
             {/* If textSize was not provided, add a text element so it can be measured */}
-            {textSize === null ? (
+            {!textSize ? (
               <svg>
                 <text ref={text}>M</text>
               </svg>

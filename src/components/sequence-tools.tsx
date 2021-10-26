@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { DropdownButton } from '.';
 
 const expasyPrefixUrl = '//web.expasy.org/cgi-bin/';
 const sequenceTools = [
@@ -30,30 +31,32 @@ type SequenceToolsProps = {
 };
 
 const SequenceTools: FC<SequenceToolsProps> = ({ accession, onBlastClick }) => (
-  <ul className="no-bullet">
-    {onBlastClick && (
-      <li>
-        <button
-          className="button tertiary"
-          type="button"
-          onClick={onBlastClick}
-        >
-          BLAST
-        </button>
-      </li>
-    )}
-    {sequenceTools.map((sequenceTool) => (
-      <li key={sequenceTool.name}>
-        <a
-          href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {sequenceTool.name}
-        </a>
-      </li>
-    ))}
-  </ul>
+  <DropdownButton label="Tools" className="tertiary">
+    <ul className="no-bullet">
+      {onBlastClick && (
+        <li>
+          <button
+            className="button tertiary"
+            type="button"
+            onClick={onBlastClick}
+          >
+            BLAST
+          </button>
+        </li>
+      )}
+      {sequenceTools.map((sequenceTool) => (
+        <li key={sequenceTool.name}>
+          <a
+            href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {sequenceTool.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </DropdownButton>
 );
 
 export default SequenceTools;
