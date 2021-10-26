@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { DropdownButton } from '.';
 
 const expasyPrefixUrl = '//web.expasy.org/cgi-bin/';
