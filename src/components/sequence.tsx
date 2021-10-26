@@ -1,61 +1,103 @@
-import { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import InfoList from './info-list';
-import DownloadIcon from '../svg/download.svg';
-import BasketIcon from '../svg/basket.svg';
-import Spinner from '../svg/spinner.svg';
+import { useState, useEffect, useRef, ReactNode, FC } from 'react';
+import {
+  InfoList,
+  DownloadIcon,
+  BasketIcon,
+  SpinnerIcon,
+  DropdownButton,
+  SequenceTools,
+} from '.';
 import SequenceChunk from './sequence-chunk';
 import CopyToClipboard from './copy-to-clipboard';
 
 import aminoAcidsProps from './data/amino-acid-properties.json';
 
 import '../styles/components/sequence.scss';
-import DropdownButton from './dropdown-button';
 
-const expasyPrefixUrl = '//web.expasy.org/cgi-bin/';
-const sequenceTools = [
-  {
-    name: 'ProtParam',
-    url: '/protparam/protparam?',
-  },
-  {
-    name: 'ProtScale',
-    url: '/protscale/protscale.pl?',
-  },
-  {
-    name: 'Compute pI/Mw',
-    url: '/compute_pi/pi_tool?',
-  },
-  {
-    name: 'PeptideMass',
-    url: '/peptide_mass/peptide-mass.pl?',
-  },
-  {
-    name: 'PeptideCutter',
-    url: '/peptide_cutter/peptidecutter.pl?',
-  },
-];
+type AminoAcidProperty = {
+  name: string;
+  aminoAcids: string[];
+  colour: string;
+};
 
-const Sequence = ({
+type SequenceProps = {
+  /**
+   * The sequence
+   */
+  sequence: string;
+  /**
+   * The accession corresponding to the sequence
+   */
+  accession?: string;
+  /**
+   * Action triggered when the "Show sequence" button is clicked.
+   * This button will be displayed by default if no sequence is passed
+   * down to the component.
+   */
+  onShowSequence?: () => void;
+  /**
+   * Display option to show/hide the sequence. If no sequence is
+   * provided and `onShowSequence` is defined, this defaults to "true"
+   */
+  isCollapsible?: boolean;
+  /**
+   * If the sequence is loading, display a spinner in the button
+   */
+  isLoading?: boolean;
+  /**
+   * Data to be displayed in an InfoData component above the sequence
+   */
+  infoData?: {
+    title: string;
+    content: ReactNode;
+  }[];
+  /**
+   * The width and height of a letter. Will be calculated if left blank
+   */
+  initialTextSize?: {
+    width: number;
+    height: number;
+  };
+  /**
+   * The number of items to include in a sequence chunk. Default 10
+   */
+  chunkSize?: number;
+  /**
+   * The URL to download the isoform sequence
+   */
+  downloadUrl?: string;
+  /**
+   * Callback which is fired when the BLAST button is clicked. If no callback
+   * is provided then no BLAST button will be displayed.
+   */
+  onBlastClick?: () => void;
+  /** Callback which is fired when the Add button is clicked. If no callback
+   * is provided then no Add button will be displayed.
+   */
+  onAddToBasketClick?: () => void;
+  showActionBar?: boolean;
+};
+
+const Sequence: FC<SequenceProps> = ({
   sequence,
   accession,
   onShowSequence,
-  isCollapsible,
-  isLoading,
+  isCollapsible = false,
+  isLoading = false,
   infoData,
-  chunkSize,
+  chunkSize = 10,
   initialTextSize,
   onBlastClick,
   onAddToBasketClick,
   downloadUrl,
-  showActionBar,
+  showActionBar = true,
 }) => {
   const [textSize, setTextSize] = useState(initialTextSize);
-  const [highlights, setHighlights] = useState([]);
+  const [highlights, setHighlights] = useState<AminoAcidProperty[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(
     isCollapsible || (onShowSequence && !sequence)
   );
-  const text = useRef(null);
+  const text = useRef<SVGTextElement>(null);
 
   useEffect(() => {
     if (!text || !text.current || !text.current.getBBox || initialTextSize) {
@@ -82,13 +124,13 @@ const Sequence = ({
           className="button secondary"
           onClick={handleShowSequenceClick}
         >
-          Show sequence {isLoading && <Spinner />}
+          Show sequence {isLoading && <SpinnerIcon />}
         </button>
       </>
     );
   }
 
-  const getChunks = (str, size) => {
+  const getChunks = (str: string, size: number) => {
     const numChunks = Math.ceil(str.length / size);
     const chunks = new Array(numChunks);
     for (let i = 0, chunkStart = 0; i < numChunks; i += 1, chunkStart += size) {
@@ -105,7 +147,7 @@ const Sequence = ({
     return chunks;
   };
 
-  const handleToggleHighlight = (aaProp) => {
+  const handleToggleHighlight = (aaProp: AminoAcidProperty) => {
     let highlightsToUpdate = [...highlights];
     if (highlightsToUpdate.includes(aaProp)) {
       highlightsToUpdate = highlightsToUpdate.filter((h) => h !== aaProp);
@@ -136,7 +178,7 @@ const Sequence = ({
       </div>
     </DropdownButton>
   );
-  const chunks = getChunks(sequence, chunkSize, textSize);
+  const chunks = getChunks(sequence, chunkSize);
 
   return (
     <>
@@ -150,34 +192,9 @@ const Sequence = ({
         </button>
       )}
       <section className="sequence-container">
-        {showActionBar && (
+        {showActionBar && accession && (
           <div className="action-bar button-group">
-            <DropdownButton label="Tools" className="tertiary">
-              <ul className="no-bullet">
-                {onBlastClick && (
-                  <li>
-                    <button
-                      className="button tertiary"
-                      type="button"
-                      onClick={onBlastClick}
-                    >
-                      BLAST
-                    </button>
-                  </li>
-                )}
-                {sequenceTools.map((sequenceTool) => (
-                  <li key={sequenceTool.name}>
-                    <a
-                      href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {sequenceTool.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </DropdownButton>
+            <SequenceTools accession={accession} onBlastClick={onBlastClick} />
             {downloadUrl && (
               <a className="button tertiary" href={downloadUrl} download>
                 <DownloadIcon />
@@ -209,7 +226,7 @@ const Sequence = ({
         <div className="sequence">
           <div className="sequence__sequence">
             {/* If textSize was not provided, add a text element so it can be measured */}
-            {textSize === null ? (
+            {!textSize ? (
               <svg>
                 <text ref={text}>M</text>
               </svg>
@@ -231,81 +248,6 @@ const Sequence = ({
       </section>
     </>
   );
-};
-
-Sequence.propTypes = {
-  /**
-   * The sequence
-   */
-  sequence: PropTypes.string,
-  /**
-   * The accession corresponding to the sequence
-   */
-  accession: PropTypes.string,
-  /**
-   * Action triggered when the "Show sequence" button is clicked.
-   * This button will be displayed by default if no sequence is passed
-   * down to the component.
-   */
-  onShowSequence: PropTypes.func,
-  /**
-   * Display option to show/hide the sequence. If no sequence is
-   * provided and `onShowSequence` is defined, this defaults to "true"
-   */
-  isCollapsible: PropTypes.bool,
-  /**
-   * If the sequence is loading, display a spinner in the button
-   */
-  isLoading: PropTypes.bool,
-  /**
-   * Data to be displayed in an InfoData component above the sequence
-   */
-  infoData: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      content: PropTypes.node,
-    })
-  ),
-  /**
-   * The width and height of a letter. Will be calculated if left blank
-   */
-  initialTextSize: PropTypes.shape({
-    width: PropTypes.number,
-    height: PropTypes.number,
-  }),
-  /**
-   * The number of items to include in a sequence chunk. Default 10
-   */
-  chunkSize: PropTypes.number,
-  /**
-   * The URL to download the isoform sequence
-   */
-  downloadUrl: PropTypes.string,
-  /**
-   * Callback which is fired when the BLAST button is clicked. If no callback
-   * is provided then no BLAST button will be displayed.
-   */
-  onBlastClick: PropTypes.func,
-  /** Callback which is fired when the Add button is clicked. If no callback
-   * is provided then no Add button will be displayed.
-   */
-  onAddToBasketClick: PropTypes.func,
-  showActionBar: PropTypes.bool,
-};
-
-Sequence.defaultProps = {
-  sequence: null,
-  onShowSequence: null,
-  isLoading: false,
-  infoData: null,
-  isCollapsible: false,
-  chunkSize: 10,
-  accession: null,
-  initialTextSize: null,
-  downloadUrl: null,
-  onBlastClick: null,
-  onAddToBasketClick: null,
-  showActionBar: true,
 };
 
 export default Sequence;

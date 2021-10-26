@@ -35,6 +35,7 @@ export { default as ModalBackdrop } from './modal-backdrop';
 export { default as PageIntro } from './page-intro';
 export { default as SearchInput } from './search-input';
 export { default as Sequence } from './sequence';
+export { default as SequenceTools } from './sequence-tools';
 export { default as SequenceSubmission } from './sequence-submission';
 export { Tab, Tabs } from './tabs';
 export { default as Tile } from './tile';
