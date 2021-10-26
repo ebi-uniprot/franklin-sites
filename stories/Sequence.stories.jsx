@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { Sequence } from '../src/components';
+import { Sequence, SequenceTools } from '../src/components';
 import sequenceData from '../src/mock-data/sequence-data';
 
 export default {
@@ -58,3 +58,7 @@ export const SequenceAsyncLoad = () => {
     />
   );
 };
+
+export const sequenceTools = () => (
+  <SequenceTools accession="P05067" onBlastClick={action('onBlastClick')} />
+);
