@@ -30,7 +30,7 @@ type SequenceToolsProps = {
   onBlastClick?: () => void;
 };
 
-const SequenceTools: FC<SequenceToolsProps> = ({ accession, onBlastClick }) => (
+const SequenceTools = ({ accession, onBlastClick }: SequenceToolsProps) => (
   <DropdownButton label="Tools" className="tertiary">
     <ul className="no-bullet">
       {onBlastClick && (
