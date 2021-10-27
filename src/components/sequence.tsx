@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, ReactNode, FC } from 'react';
 import {
   InfoList,
   DownloadIcon,
-  BasketIcon,
   SpinnerIcon,
   DropdownButton,
   SequenceTools,
@@ -24,7 +23,7 @@ type SequenceProps = {
   /**
    * The sequence
    */
-  sequence: string;
+  sequence?: string;
   /**
    * The accession corresponding to the sequence
    */
@@ -74,7 +73,7 @@ type SequenceProps = {
   /** Callback which is fired when the Add button is clicked. If no callback
    * is provided then no Add button will be displayed.
    */
-  onAddToBasketClick?: () => void;
+  addToBasketButton?: ReactNode;
   showActionBar?: boolean;
 };
 
@@ -88,7 +87,7 @@ const Sequence: FC<SequenceProps> = ({
   chunkSize = 10,
   initialTextSize,
   onBlastClick,
-  onAddToBasketClick,
+  addToBasketButton,
   downloadUrl,
   showActionBar = true,
 }) => {
@@ -201,18 +200,7 @@ const Sequence: FC<SequenceProps> = ({
                 Download
               </a>
             )}
-
-            {onAddToBasketClick && (
-              <button
-                type="button"
-                className="button tertiary"
-                onClick={onAddToBasketClick}
-              >
-                <BasketIcon />
-                Add
-              </button>
-            )}
-
+            {addToBasketButton}
             {getSelectors()}
             <CopyToClipboard
               toCopy={sequence}
