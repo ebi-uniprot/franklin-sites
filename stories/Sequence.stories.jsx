@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { Sequence, SequenceTools } from '../src/components';
+import { Sequence, SequenceTools, Button } from '../src/components';
 import sequenceData from '../src/mock-data/sequence-data';
 
 export default {
@@ -13,13 +13,19 @@ export default {
   },
 };
 
+const AddToBasketButton = () => (
+  <Button variant="tertiary" onClick={action('AddToBasketButton clicked')}>
+    Add To Basket
+  </Button>
+);
+
 export const sequence = () => (
   <Sequence
     sequence={sequenceData}
     accession="P05067"
     downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
     onBlastClick={action('onBlastClick')}
-    onAddToBasketClick={action('onAddToBasketClick')}
+    addToBasketButton={<AddToBasketButton />}
   />
 );
 export const sequenceWithoutActionBar = () => (
