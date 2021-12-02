@@ -5,6 +5,7 @@ import {
   HTMLAttributes,
   useRef,
   useMemo,
+  ReactComponentElement,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
@@ -20,7 +21,7 @@ import '../styles/components/data-table.scss';
 type BasicDatum = Record<string, unknown>;
 
 type CommonColumn<Datum> = {
-  label?: ReactNode;
+  label?: ReactNode | ReactComponentElement<never, never>;
   name: string;
   render: (datum: Datum) => ReactNode;
   width?: string;
@@ -85,7 +86,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           onClick={sortable ? () => onHeaderClick?.(name) : undefined}
           style={width ? { width } : undefined}
         >
-          {label}
+          {typeof label === 'function' ? label() : label}
         </th>
       ))}
     </tr>
