@@ -5,7 +5,6 @@ import {
   HTMLAttributes,
   useRef,
   useMemo,
-  ReactComponentElement,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
@@ -21,7 +20,7 @@ import '../styles/components/data-table.scss';
 type BasicDatum = Record<string, unknown>;
 
 type CommonColumn<Datum> = {
-  label?: ReactNode | ReactComponentElement<never, never>;
+  label?: ReactNode;
   name: string;
   render: (datum: Datum) => ReactNode;
   width?: string;
