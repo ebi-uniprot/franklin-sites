@@ -44,7 +44,11 @@ export const columns: Array<
     sortable: true,
   },
   {
-    label: 'Column 5',
+    label: () => (
+      <>
+        Column 5 <small>FC</small>
+      </>
+    ),
     name: 'content5',
     render: (row) => row.content5,
   },

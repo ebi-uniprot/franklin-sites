@@ -85,7 +85,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           onClick={sortable ? () => onHeaderClick?.(name) : undefined}
           style={width ? { width } : undefined}
         >
-          {label}
+          {typeof label === 'function' ? label() : label}
         </th>
       ))}
     </tr>
