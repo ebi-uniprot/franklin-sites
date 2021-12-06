@@ -73,9 +73,8 @@ function withDataLoader<
       }
     }, []);
 
-    const observerCallbackRef = useRef<
-      (entry: IntersectionObserverEntry) => void
-    >();
+    const observerCallbackRef =
+      useRef<(entry: IntersectionObserverEntry) => void>();
 
     observerCallbackRef.current = ({ isIntersecting }) => {
       if (!isIntersecting || loading || !hasMoreData) {

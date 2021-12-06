@@ -34,25 +34,23 @@ const SequenceChunk = ({
   chunkNumber,
   highlights,
 }) => (
-  <>
-    <svg height={3 * textSize.height} width={textSize.width * chunkSize}>
-      <text
-        x={textSize.width * chunkSize}
-        y={textSize.height}
-        className="sequence__sequence__chunk__counter"
-      >
-        {sequence.length === chunkSize && chunkNumber * chunkSize + chunkSize}
-      </text>
-      <text
-        x="0"
-        y={2 * textSize.height}
-        className="sequence__sequence__chunk__sequence"
-      >
-        {sequence}
-      </text>
-      {generateHighlights(sequence, highlights, textSize)}
-    </svg>
-  </>
+  <svg height={3 * textSize.height} width={textSize.width * chunkSize}>
+    <text
+      x={textSize.width * chunkSize}
+      y={textSize.height}
+      className="sequence__sequence__chunk__counter"
+    >
+      {sequence.length === chunkSize && chunkNumber * chunkSize + chunkSize}
+    </text>
+    <text
+      x="0"
+      y={2 * textSize.height}
+      className="sequence__sequence__chunk__sequence"
+    >
+      {sequence}
+    </text>
+    {generateHighlights(sequence, highlights, textSize)}
+  </svg>
 );
 
 SequenceChunk.propTypes = {

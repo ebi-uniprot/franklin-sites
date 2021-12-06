@@ -69,7 +69,7 @@ const DataListItem = <Datum extends BasicDatum>({
 };
 const MemoizedDataListItem = memo(DataListItem) as typeof DataListItem;
 
-export function DataList<Datum extends BasicDatum>({
+export const DataList = <Datum extends BasicDatum>({
   data,
   getIdKey,
   dataRenderer,
@@ -77,7 +77,7 @@ export function DataList<Datum extends BasicDatum>({
   onSelectionChange,
   className,
   ...props
-}: Props<Datum> & HTMLAttributes<HTMLDivElement>) {
+}: Props<Datum> & HTMLAttributes<HTMLDivElement>) => {
   const { checkboxContainerRef } = useDataCheckboxes(onSelectionChange);
 
   return (
@@ -101,7 +101,7 @@ export function DataList<Datum extends BasicDatum>({
       })}
     </div>
   );
-}
+};
 
 export const DataListWithLoader = <Datum extends BasicDatum>(
   props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLElement>

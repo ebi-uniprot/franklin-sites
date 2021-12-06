@@ -117,15 +117,13 @@ const Sequence: FC<SequenceProps> = ({
 
   if (isCollapsed || !sequence) {
     return (
-      <>
-        <button
-          type="button"
-          className="button secondary"
-          onClick={handleShowSequenceClick}
-        >
-          Show sequence {isLoading && <SpinnerIcon />}
-        </button>
-      </>
+      <button
+        type="button"
+        className="button secondary"
+        onClick={handleShowSequenceClick}
+      >
+        Show sequence {isLoading && <SpinnerIcon />}
+      </button>
     );
   }
 

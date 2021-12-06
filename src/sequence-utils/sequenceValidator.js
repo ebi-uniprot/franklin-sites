@@ -55,7 +55,7 @@ const validCharacters = /^[A-NP-Z*.-]+$/i;
  * @param {string} seq - Sequence
  * @return {Boolean} True if it is likely to be FASTA
  */
-const isFASTA = seq => /.*[>;]+/gm.test(seq);
+const isFASTA = (seq) => /.*[>;]+/gm.test(seq);
 
 /**
  * Prepares a string to be digested by the core validation function.
@@ -66,7 +66,7 @@ const isFASTA = seq => /.*[>;]+/gm.test(seq);
 function prepareFASTAString(fasta) {
   return fasta
     .split(/^[>;].*\n?$/gm) // split and remove the 'Description' line
-    .map(s => s.replace(/\s/g, '')) // remove all of the white-space
+    .map((s) => s.replace(/\s/g, '')) // remove all of the white-space
     .filter(Boolean); // remove all non-truthy values e.g. null, '', false.
 }
 
@@ -274,7 +274,7 @@ function validateSequences(input) {
   }
 
   // Validate each sequence separately, compile and return the results
-  return sequences.map(sequence => sequenceValidator(sequence));
+  return sequences.map((sequence) => sequenceValidator(sequence));
 }
 
 export default validateSequences;

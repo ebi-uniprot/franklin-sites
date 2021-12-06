@@ -8,4 +8,5 @@ module.exports = {
     '@storybook/addon-actions/register',
     './purposeFunction/register.js',
   ],
+  staticDirs: ['../assets'],
 };

@@ -52,12 +52,20 @@
     "no-restricted-syntax": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
-    "react/no-did-update-set-state": "off",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "react/jsx-filename-extension": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
     "react/jsx-props-no-spreading": "off",
     "react/jsx-uses-react": "off",
     "react/jsx-wrap-multilines": "off",
+    "react/no-did-update-set-state": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "react-hooks/rules-of-hooks": "error",

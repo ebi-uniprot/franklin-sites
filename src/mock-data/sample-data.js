@@ -1,9 +1,10 @@
 async function fetchPage(page, size) {
   const totalItems = 27;
   // totalItems += (page * 3);     // changing page size
-  const itemsPerPage = totalItems < page * size
-    ? totalItems % size // last page
-    : size;
+  const itemsPerPage =
+    totalItems < page * size
+      ? totalItems % size // last page
+      : size;
 
   if (itemsPerPage < 1) {
     return null;
