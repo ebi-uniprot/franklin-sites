@@ -4,7 +4,7 @@ stages:
   - deploy
 
 .js:
-  image: node:15
+  image: node:16
   before_script:
     - git --version
     - node --version
