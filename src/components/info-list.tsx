@@ -16,7 +16,7 @@ type Props = {
   /**
    * An array of objects each containing 'title' and 'content'
    */
-  infoData: Array<Item>;
+  infoData?: Array<Item>;
   /**
    * A boolean indicating whether the component should span multiple
    * columns on medium to large screens or not.
@@ -46,7 +46,7 @@ const InfoList = ({
   className,
   ...props
 }: Props & HTMLAttributes<HTMLUListElement>) => {
-  if (!infoData.length || infoData.every((infoDatum) => !infoDatum.content)) {
+  if (!infoData?.length || infoData.every((infoDatum) => !infoDatum.content)) {
     return null;
   }
 
