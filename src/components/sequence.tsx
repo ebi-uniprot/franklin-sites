@@ -245,7 +245,7 @@ const Sequence = ({
             </DropdownButton>
             <CopyToClipboard
               textToCopy={sequence}
-              beforeCopy="Copy FASTA"
+              beforeCopy="Copy sequence"
               afterCopy="Copied"
               className="tertiary"
             />
