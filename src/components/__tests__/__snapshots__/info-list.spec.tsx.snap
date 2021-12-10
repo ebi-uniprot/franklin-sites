@@ -4,7 +4,28 @@ exports[`InfoList component should not render items that are undefined 1`] = `
 <DocumentFragment>
   <ul
     class="info-list info-list--columns"
-  />
+  >
+    <li>
+      <div
+        class="decorated-list-item"
+      >
+        <div
+          class="decorated-list-item__title"
+        >
+          <h5
+            class="bold"
+          >
+            Item 1
+          </h5>
+        </div>
+        <div
+          class="decorated-list-item__content"
+        >
+          content
+        </div>
+      </div>
+    </li>
+  </ul>
 </DocumentFragment>
 `;
 

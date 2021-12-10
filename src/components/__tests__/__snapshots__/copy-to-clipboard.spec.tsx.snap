@@ -3,7 +3,7 @@
 exports[`CopyToClipboard component should render 1`] = `
 <DocumentFragment>
   <button
-    class="button"
+    class="button primary"
     type="button"
   >
     Copy this

@@ -1,13 +1,24 @@
-import { useState, useEffect, useRef, ReactNode, FC } from 'react';
+import {
+  useState,
+  ReactNode,
+  useMemo,
+  useCallback,
+  memo,
+  useEffect,
+  useRef,
+  CSSProperties,
+} from 'react';
+import cn from 'classnames';
+
 import {
   InfoList,
   DownloadIcon,
   SpinnerIcon,
   DropdownButton,
   SequenceTools,
+  CopyToClipboard,
+  Button,
 } from '.';
-import SequenceChunk from './sequence-chunk';
-import CopyToClipboard from './copy-to-clipboard';
 
 import aminoAcidsProps from './data/amino-acid-properties.json';
 
@@ -15,9 +26,80 @@ import '../styles/components/sequence.scss';
 
 type AminoAcidProperty = {
   name: string;
-  aminoAcids: string[];
+  aminoAcids: Set<string>;
   colour: string;
 };
+
+const aaProps: AminoAcidProperty[] = aminoAcidsProps.map((aaProp) => ({
+  ...aaProp,
+  // Optimise for later lookup
+  aminoAcids: new Set(aaProp.aminoAcids),
+}));
+
+const chunksOfTen = /(.{1,10})/g;
+
+const SequenceChunks = memo(
+  ({
+    sequence,
+    computeHighlights,
+  }: {
+    sequence: string;
+    computeHighlights: boolean;
+  }) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    const chunks = useMemo(() => sequence.match(chunksOfTen) || [], [sequence]);
+
+    useEffect(() => {
+      // Don't run until needed the first time
+      if (!computeHighlights) {
+        return;
+      }
+      // OK, we requested a highlight, compute them all at once
+      for (const [index, chunk] of chunks.entries()) {
+        const boxShadow: string[] = [];
+
+        let xOffset = 0;
+        // start at negative values to get closer to the letters
+        let yOffset = -3;
+        for (const { name, aminoAcids } of aaProps) {
+          for (const letter of chunk) {
+            if (aminoAcids.has(letter)) {
+              boxShadow.push(
+                `${xOffset}ch ${yOffset}px 0 1px var(--color-${name}, transparent)`
+              );
+            }
+            xOffset += 10;
+          }
+          yOffset += 2;
+          xOffset = 0;
+        }
+        const node = ref.current?.children[index] as HTMLElement | undefined;
+        if (node) {
+          // Avoid React by setting directly on the nodes
+          node?.style.setProperty('--box-shadow', boxShadow.join(', '));
+        }
+      }
+    }, [chunks, computeHighlights]);
+
+    return (
+      <div className="sequence" ref={ref}>
+        {chunks.map((chunk, index) => (
+          <span
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            className={cn('sequence__chunk', {
+              'sequence__chunk--display-last':
+                index + 1 === chunks.length && chunk.length === 10,
+            })}
+          >
+            {chunk}
+          </span>
+        ))}
+      </div>
+    );
+  }
+);
 
 type SequenceProps = {
   /**
@@ -51,17 +133,6 @@ type SequenceProps = {
     content: ReactNode;
   }[];
   /**
-   * The width and height of a letter. Will be calculated if left blank
-   */
-  initialTextSize?: {
-    width: number;
-    height: number;
-  };
-  /**
-   * The number of items to include in a sequence chunk. Default 10
-   */
-  chunkSize?: number;
-  /**
    * The URL to download the isoform sequence
    */
   downloadUrl?: string;
@@ -77,118 +148,72 @@ type SequenceProps = {
   showActionBar?: boolean;
 };
 
-const Sequence: FC<SequenceProps> = ({
+const Sequence = ({
   sequence,
   accession,
   onShowSequence,
   isCollapsible = false,
   isLoading = false,
   infoData,
-  chunkSize = 10,
-  initialTextSize,
   onBlastClick,
   addToBasketButton,
   downloadUrl,
   showActionBar = true,
-}) => {
-  const [textSize, setTextSize] = useState(initialTextSize);
+}: SequenceProps) => {
   const [highlights, setHighlights] = useState<AminoAcidProperty[]>([]);
+  const [computeHighlights, setComputeHighlights] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(
     isCollapsible || (onShowSequence && !sequence)
   );
-  const text = useRef<SVGTextElement>(null);
 
-  useEffect(() => {
-    if (!text || !text.current || !text.current.getBBox || initialTextSize) {
-      return;
-    }
-    // Measure height and width of the dummy element
-    const { width, height } = text.current.getBBox();
-    setTextSize({ width, height });
-  }, [initialTextSize, showActionBar, isCollapsed, sequence]);
-
-  const handleShowSequenceClick = () => {
+  const handleShowSequenceClick = useCallback(() => {
     setIsCollapsed(false);
     // Request call of sequence
     if (!sequence && onShowSequence) {
       onShowSequence();
     }
-  };
+  }, [onShowSequence, sequence]);
+
+  const sequenceStyle = useMemo(
+    () =>
+      Object.fromEntries(
+        highlights.map((highlight) => [
+          `--color-${highlight.name}`,
+          highlight.colour,
+        ])
+      ),
+    [highlights]
+  );
+
+  const handleToggleHighlight = useCallback((aaProp: AminoAcidProperty) => {
+    setComputeHighlights(true);
+    setHighlights((highlights) => {
+      const highlightsSet = new Set(highlights);
+      if (highlightsSet.has(aaProp)) {
+        highlightsSet.delete(aaProp);
+      } else {
+        highlightsSet.add(aaProp);
+      }
+      return Array.from(highlightsSet);
+    });
+  }, []);
 
   if (isCollapsed || !sequence) {
     return (
-      <button
-        type="button"
-        className="button secondary"
-        onClick={handleShowSequenceClick}
-      >
+      <Button variant="secondary" onClick={handleShowSequenceClick}>
         Show sequence {isLoading && <SpinnerIcon />}
-      </button>
+      </Button>
     );
   }
-
-  const getChunks = (str: string, size: number) => {
-    const numChunks = Math.ceil(str.length / size);
-    const chunks = new Array(numChunks);
-    for (let i = 0, chunkStart = 0; i < numChunks; i += 1, chunkStart += size) {
-      chunks[i] = (
-        <SequenceChunk
-          sequence={str.substr(chunkStart, size)}
-          textSize={textSize}
-          chunkSize={size}
-          chunkNumber={i}
-          highlights={highlights}
-        />
-      );
-    }
-    return chunks;
-  };
-
-  const handleToggleHighlight = (aaProp: AminoAcidProperty) => {
-    let highlightsToUpdate = [...highlights];
-    if (highlightsToUpdate.includes(aaProp)) {
-      highlightsToUpdate = highlightsToUpdate.filter((h) => h !== aaProp);
-    } else {
-      highlightsToUpdate.push(aaProp);
-    }
-    setHighlights(highlightsToUpdate);
-  };
-
-  const getSelectors = () => (
-    <DropdownButton label="Highlight" className="tertiary">
-      <div className="dropdown-menu__content">
-        {aminoAcidsProps.map((aaProp) => {
-          const inputId = `${accession}-${aaProp.name}`;
-          return (
-            <label key={aaProp.name} htmlFor={inputId}>
-              <input
-                type="checkbox"
-                id={inputId}
-                data-testid="sequence-highlight-checkbox"
-                onChange={() => handleToggleHighlight(aaProp)}
-                checked={highlights.includes(aaProp)}
-              />
-              {aaProp.name}
-            </label>
-          );
-        })}
-      </div>
-    </DropdownButton>
-  );
-  const chunks = getChunks(sequence, chunkSize);
 
   return (
     <>
       {isCollapsible && (
-        <button
-          type="button"
-          className="button secondary"
-          onClick={() => setIsCollapsed(true)}
-        >
+        <Button variant="secondary" onClick={() => setIsCollapsed(true)}>
           Hide sequence
-        </button>
+        </Button>
       )}
-      <section className="sequence-container">
+      <section className="sequence-container" style={sequenceStyle}>
         {showActionBar && accession && (
           <div className="action-bar button-group">
             <SequenceTools accession={accession} onBlastClick={onBlastClick} />
@@ -199,38 +224,38 @@ const Sequence: FC<SequenceProps> = ({
               </a>
             )}
             {addToBasketButton}
-            {getSelectors()}
+            <DropdownButton label="Highlight" className="tertiary">
+              <div className="dropdown-menu__content">
+                {aaProps.map((aaProp) => {
+                  const inputId = `${accession}-${aaProp.name}`;
+                  return (
+                    <label key={aaProp.name} htmlFor={inputId}>
+                      <input
+                        type="checkbox"
+                        id={inputId}
+                        onChange={() => handleToggleHighlight(aaProp)}
+                        checked={highlights.includes(aaProp)}
+                        style={{ accentColor: aaProp.colour } as CSSProperties}
+                      />
+                      {aaProp.name}
+                    </label>
+                  );
+                })}
+              </div>
+            </DropdownButton>
             <CopyToClipboard
-              toCopy={sequence}
+              textToCopy={sequence}
               beforeCopy="Copy FASTA"
               afterCopy="Copied"
               className="tertiary"
             />
           </div>
         )}
-        {infoData && <InfoList infoData={infoData} isCompact columns />}
-        <div className="sequence">
-          <div className="sequence__sequence">
-            {/* If textSize was not provided, add a text element so it can be measured */}
-            {!textSize ? (
-              <svg>
-                <text ref={text}>M</text>
-              </svg>
-            ) : (
-              <>
-                {chunks.map((chunk, index) => (
-                  <span
-                    className="sequence__sequence__chunk"
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={`chunk_${index}`}
-                  >
-                    {chunk}
-                  </span>
-                ))}
-              </>
-            )}
-          </div>
-        </div>
+        <InfoList infoData={infoData} isCompact columns />
+        <SequenceChunks
+          sequence={sequence}
+          computeHighlights={computeHighlights}
+        />
       </section>
     </>
   );

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import DecoratedListItem from './decorated-list-item';
@@ -16,7 +16,7 @@ type Props = {
   /**
    * An array of objects each containing 'title' and 'content'
    */
-  infoData: Array<Item>;
+  infoData?: Array<Item>;
   /**
    * A boolean indicating whether the component should span multiple
    * columns on medium to large screens or not.
@@ -35,13 +35,9 @@ type Props = {
    * Display titles or not
    */
   noTitles?: boolean;
-  /**
-   * optional CSS classname coming from the parent
-   */
-  className?: string;
 };
 
-const InfoList: FC<Props> = ({
+const InfoList = ({
   infoData,
   columns,
   isCompact,
@@ -49,31 +45,37 @@ const InfoList: FC<Props> = ({
   noTitles,
   className,
   ...props
-}) => (
-  <ul
-    className={cn(className, 'info-list', {
-      'info-list--columns': columns,
-    })}
-    {...props}
-  >
-    {infoData.map(
-      // Only draw if there is content
-      ({ content, title, key, to }, index) =>
-        content && (
-          <li key={key || (typeof title === 'string' ? title : index)}>
-            <DecoratedListItem
-              title={title}
-              highlight={index === 0 && highlightFirstItem}
-              compact={isCompact}
-              hideTitle={noTitles}
-              to={to}
-            >
-              {content}
-            </DecoratedListItem>
-          </li>
-        )
-    )}
-  </ul>
-);
+}: Props & HTMLAttributes<HTMLUListElement>) => {
+  if (!infoData?.length || infoData.every((infoDatum) => !infoDatum.content)) {
+    return null;
+  }
+
+  return (
+    <ul
+      className={cn(className, 'info-list', {
+        'info-list--columns': columns,
+      })}
+      {...props}
+    >
+      {infoData.map(
+        // Only draw if there is content
+        ({ content, title, key, to }, index) =>
+          content && (
+            <li key={key || (typeof title === 'string' ? title : index)}>
+              <DecoratedListItem
+                title={title}
+                highlight={index === 0 && highlightFirstItem}
+                compact={isCompact}
+                hideTitle={noTitles}
+                to={to}
+              >
+                {content}
+              </DecoratedListItem>
+            </li>
+          )
+      )}
+    </ul>
+  );
+};
 
 export default InfoList;

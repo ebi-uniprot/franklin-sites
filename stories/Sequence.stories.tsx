@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import { sleep } from 'timing-functions';
+
 import { Sequence, SequenceTools, Button } from '../src/components';
+
 import sequenceData from '../src/mock-data/sequence-data';
 
 export default {
@@ -47,15 +50,16 @@ export const sequenceCollapsableWithInfoData = () => {
 };
 
 export const SequenceAsyncLoad = () => {
-  const [sequence, setSequence] = useState(null);
+  const [sequence, setSequence] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
-  const onShowSequence = () => {
+
+  const onShowSequence = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      setSequence(sequenceData);
-      setIsLoading(false);
-    }, 2000);
+    await sleep(2000);
+    setSequence(sequenceData);
+    setIsLoading(false);
   };
+
   return (
     <Sequence
       sequence={sequence}

@@ -18,6 +18,24 @@ describe('InfoList component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  it('should render nothing when empty list', () => {
+    const { container } = render(<InfoList infoData={[]} />);
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it('should render nothing when no content', () => {
+    const { container } = render(
+      <InfoList
+        infoData={[
+          { title: 'Item 1', content: null },
+          { title: 'Item 2', content: undefined },
+          { title: 'Item 3', content: '' },
+        ]}
+      />
+    );
+    expect(container).toBeEmptyDOMElement();
+  });
+
   it('should render compact', () => {
     const { asFragment } = render(<InfoList infoData={infoData} isCompact />);
     expect(asFragment()).toMatchSnapshot();
@@ -35,7 +53,13 @@ describe('InfoList component', () => {
 
   it('should not render items that are undefined', () => {
     const { asFragment } = render(
-      <InfoList infoData={[{ title: 'Item 1', content: undefined }]} columns />
+      <InfoList
+        infoData={[
+          { title: 'Item 1', content: 'content' },
+          { title: 'Item 2', content: undefined },
+        ]}
+        columns
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
