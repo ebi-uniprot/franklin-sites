@@ -8,6 +8,8 @@ import {
   useRef,
   CSSProperties,
 } from 'react';
+import cn from 'classnames';
+
 import {
   InfoList,
   DownloadIcon,
@@ -86,7 +88,10 @@ const SequenceChunks = memo(
           <span
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            className="sequence__chunk"
+            className={cn('sequence__chunk', {
+              'sequence__chunk--display-last':
+                index + 1 === chunks.length && chunk.length === 10,
+            })}
           >
             {chunk}
           </span>

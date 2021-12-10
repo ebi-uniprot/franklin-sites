@@ -26,15 +26,18 @@
       position: relative;
       white-space: nowrap;
 
-      &:not(:last-child)::before {
-        content: counter(sequence);
-        counter-increment: sequence 10;
+      &:not(:last-child),
+      &--display-last {
+        &:before {
+          content: counter(sequence);
+          counter-increment: sequence 10;
 
-        position: absolute;
-        top: -0.8em;
-        right: 0;
-        opacity: 0.5;
-        font-weight: bold;
+          position: absolute;
+          top: -0.8em;
+          right: 0;
+          opacity: 0.5;
+          font-weight: bold;
+        }
       }
 
       &::after {
