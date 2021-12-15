@@ -72,7 +72,7 @@ const DecoratedListItem: FC<Props> = ({
     )}
     {title && (
       <div className="decorated-list-item__title">
-        <h5 className="bold">{title}</h5>
+        <span className="small">{title}</span>
       </div>
     )}
     <div className="decorated-list-item__content">
