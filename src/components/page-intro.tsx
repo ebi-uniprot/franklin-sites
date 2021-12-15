@@ -40,7 +40,7 @@ const PageIntro: FC<PageIntroProps> = ({
   <div className="page-intro">
     {createElement(
       headingLevel,
-      { className: cn('big', titleClassName) },
+      { className: cn(titleClassName) },
       <>
         {title}
         {resultsCount > 0 && (
