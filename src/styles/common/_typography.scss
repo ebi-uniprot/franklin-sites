@@ -34,35 +34,38 @@ h6 {
   color: $colour-yankees-blue;
 }
 
+// Typography scale https://type-scale.com/
+// 1.250 "Major third"
+
+.x-huge {
+  font-size: 3.052rem;
+  font-weight: $fs-font-weight-bold;
+}
+
 h1,
 .huge {
-  font-size: 2.89rem;
-  letter-spacing: -0.076rem;
+  font-size: 2.441rem;
   font-weight: $fs-font-weight-semi-bold;
 }
 h2,
 .big {
-  font-size: 1.86rem;
-  letter-spacing: -0.038rem;
+  font-size: 1.953rem;
   font-weight: $fs-font-weight-semi-bold;
   opacity: 90%;
 }
 h3,
 .medium {
-  font-size: 1.56rem;
-  letter-spacing: -0.031rem;
+  font-size: 1.563rem;
   font-weight: $fs-font-weight-semi-bold;
 }
 h4,
 .small {
   font-size: 1.25rem;
-  letter-spacing: -0.047rem;
   font-weight: $fs-font-weight-semi-bold;
 }
 h5,
 .tiny {
   font-size: 1rem;
-  letter-spacing: -0.04rem;
   font-weight: $fs-font-weight-semi-bold;
 }
 
