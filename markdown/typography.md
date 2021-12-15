@@ -3,22 +3,14 @@
 ## Headers
 
 <h1>This is a very large header (h1 or .huge)</h1>
-<h1 class="bold">This is a very large bold header (h1 or .huge)</h1>
 
 <h2>This is a large header (h2 or .big)</h2>
-<h2 class="bold">This is a large bold header (h2 or .big)</h2>
 
 <h3>This is a medium header (h3 or .medium)</h3>
-<h3 class="bold">This is a medium bold header (h3 or .medium)</h3>
 
 <h4>This is a moderate header (h4 or .small)</h4>
-<h4 class="bold">This is a moderate bold header (h4 or .small)</h4>
 
 <h5>This is a tiny header (h5 or .tiny)</h5>
-<h5 class="bold">This is a tiny bold header (h5 or .tiny)</h5>
-
-<h6>This is a tinier header (h6 or .micro)</h6>
-<h6 class="bold">This is a tinier bold header (h6 or .micro)</h6>
 
 ## Paragraphs
 
