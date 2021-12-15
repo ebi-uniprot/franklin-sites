@@ -50,7 +50,7 @@ const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
 
 export const Tile: FC<Props> = ({
   title,
-  headingLevel = 'h3',
+  headingLevel = 'h2',
   subtitle,
   backgroundColor,
   backgroundImage,
@@ -66,11 +66,11 @@ export const Tile: FC<Props> = ({
 
   const mainContent = (
     <span>
-      {createElement(headingLevel, { className: 'tile__header medium' }, title)}
+      {createElement(headingLevel, { className: 'tile__header big' }, title)}
       {subtitle &&
         createElement(
           nextHeading(headingLevel),
-          { className: 'tile__subtitle tiny' },
+          { className: 'tile__subtitle small' },
           subtitle
         )}
     </span>

@@ -31,7 +31,7 @@ export const HeroHeader: FC<HeroHeaderProps> = ({
 }) => (
   <div className={cn('hero-header', className)} {...props}>
     <div className="hero-header__content">
-      <h1>{title}</h1>
+      <h1 className="x-huge">{title}</h1>
       {children}
     </div>
     <div className="hero-header__footer">{footer}</div>
