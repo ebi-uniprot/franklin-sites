@@ -17,16 +17,16 @@ exports[`Tile component should render 1`] = `
       href="/"
     >
       <span>
-        <h3
-          class="tile__header medium"
+        <h2
+          class="tile__header big"
         >
           Tile title
-        </h3>
-        <h4
-          class="tile__subtitle tiny"
+        </h2>
+        <h3
+          class="tile__subtitle small"
         >
           Subtitle
-        </h4>
+        </h3>
       </span>
     </a>
     <small
@@ -53,11 +53,11 @@ exports[`Tile component should render with default specified width 1`] = `
       href="/"
     >
       <span>
-        <h3
-          class="tile__header medium"
+        <h2
+          class="tile__header big"
         >
           Tile title
-        </h3>
+        </h2>
       </span>
     </a>
   </div>

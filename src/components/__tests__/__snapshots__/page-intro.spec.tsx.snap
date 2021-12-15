@@ -6,7 +6,7 @@ exports[`PageIntro component should render 1`] = `
     class="page-intro"
   >
     <h1
-      class="big"
+      class=""
     >
       Title
       <small>
