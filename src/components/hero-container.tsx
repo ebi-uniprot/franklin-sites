@@ -42,7 +42,7 @@ export const HeroContainer: FC<HeroContainerProps> = ({
     {title &&
       createElement(
         headingLevel,
-        { className: cn(titleClassName, 'hero-container__title', 'medium') },
+        { className: cn(titleClassName, 'hero-container__title', 'big') },
         title
       )}
     {children}
