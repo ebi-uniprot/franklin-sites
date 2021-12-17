@@ -70,11 +70,7 @@ const DecoratedListItem: FC<Props> = ({
         tabIndex={-1}
       />
     )}
-    {title && (
-      <div className="decorated-list-item__title">
-        <h5 className="bold">{title}</h5>
-      </div>
-    )}
+    {title && <div className="decorated-list-item__title tiny">{title}</div>}
     <div className="decorated-list-item__content">
       {highlight ? <strong>{children}</strong> : children}
     </div>

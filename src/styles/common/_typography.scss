@@ -34,41 +34,45 @@ h6 {
   color: $colour-yankees-blue;
 }
 
+// Typography scale https://type-scale.com/
+// 1.250 "Major third"
+
+.x-huge {
+  font-size: 3.052rem;
+  font-weight: $fs-font-weight-bold;
+}
+
 h1,
 .huge {
-  @include fs-font-settings('H1');
+  font-size: 2.441rem;
+  font-weight: $fs-font-weight-semi-bold;
 }
 h2,
 .big {
-  @include fs-font-settings('H2');
+  font-size: 1.953rem;
+  font-weight: $fs-font-weight-semi-bold;
 }
 h3,
 .medium {
-  @include fs-font-settings('H3');
-  opacity: 90%;
-  &.bold {
-    font-weight: font-weight('bold');
-    opacity: 100%;
-  }
+  font-size: 1.563rem;
+  font-weight: $fs-font-weight-semi-bold;
 }
 h4,
 .small {
-  @include fs-font-settings('H4');
+  font-size: 1.25rem;
+  font-weight: $fs-font-weight-semi-bold;
 }
 h5,
 .tiny {
-  @include fs-font-settings('H5');
-  &.bold {
-    font-weight: font-weight('bold');
-  }
+  font-size: 1rem;
+  font-weight: $fs-font-weight-semi-bold;
 }
-h6,
-.micro {
-  @include fs-font-settings('H6');
-  &.bold {
-    font-weight: font-weight('bold');
-  }
+// Should not use h6
+h6 {
+  font-size: 1rem;
+  font-weight: $fs-font-weight-regular;
 }
+
 p {
   margin-bottom: 1.875rem;
 }
@@ -99,7 +103,7 @@ ul {
 a {
   color: $colour-link;
   text-decoration: none;
-  font-weight: font-weight('semi-bold');
+  font-weight: $fs-font-weight-semi-bold;
   &:hover {
     color: lighten($colour-link, 10);
   }

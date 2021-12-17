@@ -6,13 +6,9 @@ exports[`DecoratedListItem component should render 1`] = `
     class="decorated-list-item"
   >
     <div
-      class="decorated-list-item__title"
+      class="decorated-list-item__title tiny"
     >
-      <h5
-        class="bold"
-      >
-        Title
-      </h5>
+      Title
     </div>
     <div
       class="decorated-list-item__content"
@@ -29,13 +25,9 @@ exports[`DecoratedListItem component should render compact 1`] = `
     class="decorated-list-item decorated-list-item--compact"
   >
     <div
-      class="decorated-list-item__title"
+      class="decorated-list-item__title tiny"
     >
-      <h5
-        class="bold"
-      >
-        Title
-      </h5>
+      Title
     </div>
     <div
       class="decorated-list-item__content"

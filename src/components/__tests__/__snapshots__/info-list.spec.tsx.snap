@@ -10,13 +10,9 @@ exports[`InfoList component should not render items that are undefined 1`] = `
         class="decorated-list-item"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Item 1
-          </h5>
+          Item 1
         </div>
         <div
           class="decorated-list-item__content"
@@ -39,13 +35,9 @@ exports[`InfoList component should render 1`] = `
         class="decorated-list-item"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Item 1
-          </h5>
+          Item 1
         </div>
         <div
           class="decorated-list-item__content"
@@ -61,13 +53,9 @@ exports[`InfoList component should render 1`] = `
         class="decorated-list-item"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Another item
-          </h5>
+          Another item
         </div>
         <div
           class="decorated-list-item__content"
@@ -92,13 +80,9 @@ exports[`InfoList component should render compact 1`] = `
         class="decorated-list-item decorated-list-item--compact"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Item 1
-          </h5>
+          Item 1
         </div>
         <div
           class="decorated-list-item__content"
@@ -114,13 +98,9 @@ exports[`InfoList component should render compact 1`] = `
         class="decorated-list-item decorated-list-item--compact"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Another item
-          </h5>
+          Another item
         </div>
         <div
           class="decorated-list-item__content"
@@ -145,15 +125,11 @@ exports[`InfoList component should render title that is a React Node 1`] = `
         class="decorated-list-item"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            <div>
-              Item 1
-            </div>
-          </h5>
+          <div>
+            Item 1
+          </div>
         </div>
         <div
           class="decorated-list-item__content"
@@ -178,13 +154,9 @@ exports[`InfoList component should render with titles in 2 columns 1`] = `
         class="decorated-list-item"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Item 1
-          </h5>
+          Item 1
         </div>
         <div
           class="decorated-list-item__content"
@@ -200,13 +172,9 @@ exports[`InfoList component should render with titles in 2 columns 1`] = `
         class="decorated-list-item"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Another item
-          </h5>
+          Another item
         </div>
         <div
           class="decorated-list-item__content"
@@ -231,13 +199,9 @@ exports[`InfoList component should render without titles 1`] = `
         class="decorated-list-item decorated-list-item--no-title"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Item 1
-          </h5>
+          Item 1
         </div>
         <div
           class="decorated-list-item__content"
@@ -253,13 +217,9 @@ exports[`InfoList component should render without titles 1`] = `
         class="decorated-list-item decorated-list-item--no-title"
       >
         <div
-          class="decorated-list-item__title"
+          class="decorated-list-item__title tiny"
         >
-          <h5
-            class="bold"
-          >
-            Another item
-          </h5>
+          Another item
         </div>
         <div
           class="decorated-list-item__content"
