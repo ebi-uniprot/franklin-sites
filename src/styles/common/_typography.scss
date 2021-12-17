@@ -51,7 +51,6 @@ h2,
 .big {
   font-size: 1.953rem;
   font-weight: $fs-font-weight-semi-bold;
-  opacity: 90%;
 }
 h3,
 .medium {
@@ -67,6 +66,11 @@ h5,
 .tiny {
   font-size: 1rem;
   font-weight: $fs-font-weight-semi-bold;
+}
+// Should not use h6
+h6 {
+  font-size: 1rem;
+  font-weight: $fs-font-weight-regular;
 }
 
 p {
