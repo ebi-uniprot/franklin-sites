@@ -5,7 +5,7 @@
 $decorative-bar: 0.125rem solid $colour-vivid-cerulean;
 
 .info-list {
-  margin: $global-margin/4 0 2 * $global-margin/2 0;
+  margin: $global-margin * 0.25 0 2 * $global-margin * 0.5 0;
   list-style: none;
 }
 
