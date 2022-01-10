@@ -4,7 +4,7 @@ import { HeadingLevels } from '../../types/common';
 import PageIntro from '../page-intro';
 
 describe('PageIntro component', () => {
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = render(
       <PageIntro title="Title" resultsCount={1000}>
         <div>Some content</div>
@@ -13,7 +13,7 @@ describe('PageIntro component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render with heading level', () => {
+  it('should render with heading level', () => {
     const level = 5;
     const headingLevel = `h${level}` as HeadingLevels;
     render(
@@ -24,7 +24,7 @@ describe('PageIntro component', () => {
     expect(screen.getByRole('heading', { level })).toBeInTheDocument();
   });
 
-  test('should render 1 singular result', () => {
+  it('should render 1 singular result', () => {
     render(
       <PageIntro title="Title" resultsCount={1}>
         <div>Some content</div>
@@ -35,7 +35,7 @@ describe('PageIntro component', () => {
     ).toBeInTheDocument();
   });
 
-  test('should render title postscript', () => {
+  it('should render title postscript', () => {
     render(
       <PageIntro
         title="Title"

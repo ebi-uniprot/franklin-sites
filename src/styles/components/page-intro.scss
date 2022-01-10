@@ -2,6 +2,11 @@
 @import '../colours';
 
 .page-intro {
+  // should target the first element, the actual heading
+  & > *:first-child {
+    display: inline-block;
+  }
+
   small {
     color: $colour-yankees-blue;
   }
