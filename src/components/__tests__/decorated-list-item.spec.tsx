@@ -5,21 +5,21 @@ import renderWithRouter from '../../testHelpers/renderWithRouter';
 import DecoratedListItem from '../decorated-list-item';
 
 describe('DecoratedListItem component', () => {
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = render(
       <DecoratedListItem title="Title">Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render without title', () => {
+  it('should render without title', () => {
     const { asFragment } = render(
       <DecoratedListItem>Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render compact', () => {
+  it('should render compact', () => {
     const { asFragment } = render(
       <DecoratedListItem title="Title" compact>
         Content
@@ -28,21 +28,21 @@ describe('DecoratedListItem component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render compact without title', () => {
+  it('should render compact without title', () => {
     const { asFragment } = render(
       <DecoratedListItem compact>Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render inline', () => {
+  it('should render inline', () => {
     const { asFragment } = render(
       <DecoratedListItem inline>Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render link and navigate when clicked', () => {
+  it('should render link and navigate when clicked', () => {
     const { asFragment, history } = renderWithRouter(
       <DecoratedListItem to="/target">Content</DecoratedListItem>
     );

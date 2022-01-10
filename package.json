@@ -50,7 +50,7 @@
         "lines": 81.38,
         "statements": 81.02,
         "functions": 78.93,
-        "branches": 71.85
+        "branches": 71.4
       }
     },
     "setupFilesAfterEnv": [
@@ -60,9 +60,6 @@
       "^.+\\.(jsx|js|tsx|ts)?$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform"
     },
-    "testPathIgnorePatterns": [
-      "/src/testHelpers/expectToThrowNoConsole.js"
-    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -130,9 +127,11 @@
     "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react": "12.1.2",
     "@types/classnames": "2.3.1",
+    "@types/d3": "5.16.3",
     "@types/lodash-es": "4.17.5",
     "@types/react-dom": "17.0.11",
     "@types/react-router-dom": "5.3.2",
+    "@types/rheostat": "3.0.2",
     "@types/uuid": "8.3.3",
     "@typescript-eslint/eslint-plugin": "5.9.0",
     "@typescript-eslint/parser": "5.9.0",

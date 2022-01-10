@@ -6,7 +6,7 @@ import { ProtVistaIcon } from '..';
 import colors from '../../styles/colours.json';
 
 describe('Tile component', () => {
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = renderWithRouter(
       <Tile
         title="Tile title"
@@ -22,7 +22,7 @@ describe('Tile component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render with default specified width', () => {
+  it('should render with default specified width', () => {
     const { asFragment } = renderWithRouter(
       <Tile title="Tile title" width="20rem" to="/" />
     );

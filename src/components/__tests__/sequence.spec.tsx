@@ -17,12 +17,12 @@ describe('Sequence component', () => {
     );
   });
 
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = rendered;
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render without tools', () => {
+  it('should render without tools', () => {
     const { asFragment } = render(
       <Sequence sequence={sequenceData} showActionBar={false} />
     );
@@ -33,7 +33,7 @@ describe('Sequence component', () => {
 describe('Sequence component show/hide', () => {
   const handleSequenceLoad = jest.fn();
 
-  test('should toggle view/hide on loaded sequence', () => {
+  it('should toggle view/hide on loaded sequence', () => {
     render(
       <Sequence sequence={sequenceData} accession="P05067" isCollapsible />
     );
@@ -45,7 +45,7 @@ describe('Sequence component show/hide', () => {
     expect(screen.queryByText('MFNFPHPAID')).not.toBeInTheDocument();
   });
 
-  test('should be collapsed and trigger loading of sequence', () => {
+  it('should be collapsed and trigger loading of sequence', () => {
     render(<Sequence onShowSequence={handleSequenceLoad} accession="P05067" />);
     fireEvent.click(screen.getByRole('button', { name: /Show/ }));
     expect(handleSequenceLoad).toBeCalled();

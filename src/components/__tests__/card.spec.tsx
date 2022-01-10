@@ -5,7 +5,7 @@ import Card from '../card';
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 describe('Card component', () => {
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = renderWithRouter(
       <Card header={<h2>Title</h2>}>
         <span>Some content</span>
@@ -14,7 +14,7 @@ describe('Card component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render card with links', () => {
+  it('should render card with links', () => {
     const links = [
       {
         name: 'link',
@@ -31,7 +31,7 @@ describe('Card component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render card with target', () => {
+  it('should render card with target', () => {
     const { asFragment, history } = renderWithRouter(
       <Card header={<h2>Title</h2>} to="/target">
         <span>Some content</span>

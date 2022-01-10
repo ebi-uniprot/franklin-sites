@@ -70,10 +70,6 @@ export function formatLargeNumber(x: string | number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-export function capitaliseFirstLetter(string?: string | null) {
-  return string && string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 export function highlightSubstring(string: string, substring: string) {
   const i = getLastIndexOfSubstringIgnoreCase(string, substring);
   if (i < 0) return string;

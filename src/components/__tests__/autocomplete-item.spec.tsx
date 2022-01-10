@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import AutocompleteItem from '../autocomplete-item';
 
 describe('AutocompleteItem component', () => {
-  test('should render', () => {
+  it('should render', () => {
     const item = {
       id: 'item id',
       pathLabel: 'A path to > some item',

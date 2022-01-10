@@ -4,7 +4,7 @@ import renderWithRouter from '../../testHelpers/renderWithRouter';
 import Header from '../header';
 
 describe('Header component', () => {
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = renderWithRouter(
       <Header
         items={[

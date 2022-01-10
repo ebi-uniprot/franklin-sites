@@ -9,7 +9,7 @@ import {
 } from 'react';
 import cn from 'classnames';
 
-import Button from './button';
+import Button, { ButtonProps } from './button';
 
 import '../styles/components/dropdown.scss';
 
@@ -25,23 +25,14 @@ export type DropdownButtonProps = {
    */
   label: ReactNode;
   /**
-   * Additional CSS classnames to apply to button
-   */
-  className?: string;
-  /**
-   * Button variant to use
-   */
-  variant?: 'primary' | 'secondary' | 'tertiary';
-  /**
    * open on pointer over (useful for dropdowns in header)
    */
   openOnHover?: boolean;
-};
+} & ButtonProps;
 
 const DropdownButton = ({
   children,
   label,
-  variant,
   className,
   openOnHover = false,
   ...props
@@ -111,7 +102,6 @@ const DropdownButton = ({
       <Button
         className={cn('dropdown', className)}
         onClick={() => setShowMenu((showMenu) => !showMenu)}
-        variant={variant}
         ref={ref}
         {...props}
       >

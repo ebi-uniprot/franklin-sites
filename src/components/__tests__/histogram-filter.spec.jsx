@@ -1,10 +1,12 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
+
 import { HistogramFilter } from '..';
 
 describe('HistogramFilter component', () => {
   const onChange = jest.fn();
 
   let rendered;
+
   beforeEach(async () => {
     rendered = render(
       <HistogramFilter
@@ -14,8 +16,7 @@ describe('HistogramFilter component', () => {
         selectedRange={[0, 9]}
       />
     );
-    const { findByTestId } = rendered;
-    await findByTestId('histogram');
+    await screen.findByTestId('histogram');
   });
 
   it('should render', () => {
@@ -24,8 +25,7 @@ describe('HistogramFilter component', () => {
   });
 
   it('should call onChange when text input is provided', () => {
-    const { getByDisplayValue } = rendered;
-    const startInput = getByDisplayValue('0');
+    const startInput = screen.getByDisplayValue('0');
     fireEvent.change(startInput, { target: { value: '1' } });
     expect(onChange).toHaveBeenCalledWith([1, 9]);
   });

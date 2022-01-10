@@ -88,17 +88,17 @@ describe('DataTable', () => {
     jest.clearAllMocks();
   });
 
-  test('should render autoload', () => {
+  it('should render autoload', () => {
     const { asFragment } = renderTable({ clickToLoad: false });
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render click-to-load', () => {
+  it('should render click-to-load', () => {
     const { asFragment } = renderTable();
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should request more data', () => {
+  it('should request more data', () => {
     renderTable();
     expect(onLoadMoreItems).not.toHaveBeenCalled();
     const clickToLoadMore = screen.getByTestId('click-to-load-more');
@@ -106,13 +106,13 @@ describe('DataTable', () => {
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
 
-  test('should not show the option to load more data', () => {
+  it('should not show the option to load more data', () => {
     renderTable({ hasMoreData: false });
     const clickToLoadMore = screen.queryByTestId('click-to-load-more');
     expect(clickToLoadMore).toBeNull();
   });
 
-  test('should fire onSelectionChange when a checkbox is clicked', () => {
+  it('should fire onSelectionChange when a checkbox is clicked', () => {
     renderTable();
     expect(onSelectionChange).not.toHaveBeenCalled();
     const checkboxes = getBodyCheckboxes();
@@ -121,7 +121,7 @@ describe('DataTable', () => {
     expect(onSelectionChange).toHaveBeenCalled();
   });
 
-  test('should select all checkboxes when last checkbox is clicked with shift key', async () => {
+  it('should select all checkboxes when last checkbox is clicked with shift key', async () => {
     renderTable();
     const checkboxes = getBodyCheckboxes();
     fireEvent.click(checkboxes[data.length - 1], { shiftKey: true }); // last
@@ -132,7 +132,7 @@ describe('DataTable', () => {
   });
 
   // Can't test this as we can't generate trusted events in tests
-  test.skip('should select all in-between checkboxes when 2nd checkbox check is with shift key', () => {
+  it.skip('should select all in-between checkboxes when 2nd checkbox check is with shift key', () => {
     renderTable();
     expect(onSelectionChange).not.toHaveBeenCalled();
     const checkboxes = getBodyCheckboxes();
@@ -141,7 +141,7 @@ describe('DataTable', () => {
     expect(getBodyCheckboxes({ checked: true })).toHaveLength(3);
   });
 
-  test('should select and unselect all checkboxes when select all checkbox is ticked', async () => {
+  it('should select and unselect all checkboxes when select all checkbox is ticked', async () => {
     renderTable();
     const selectAll = screen.getByRole('checkbox', {
       name: /Selection control/i,
@@ -166,7 +166,7 @@ describe('DataTable', () => {
     expect(selectAll.indeterminate).toBe(false); // not in a mixed state
   });
 
-  test('select all should get in a mixed state if one checkbox is selected, then unselect everything when clicked', async () => {
+  it('should get in a mixed state if one checkbox is selected, then unselect everything when "select all" clicked', async () => {
     renderTable();
     const selectAll = screen.getByRole('checkbox', {
       name: /Selection control/i,
@@ -184,7 +184,7 @@ describe('DataTable', () => {
     expect(selectAll.indeterminate).toBe(false); // not in a mixed state
   });
 
-  test('should fire onHeaderClick when header is clicked', () => {
+  it('should fire onHeaderClick when header is clicked', () => {
     renderTable();
     expect(onHeaderClick).not.toHaveBeenCalled();
     const header = screen.getByText(/Column 1/);
@@ -192,11 +192,11 @@ describe('DataTable', () => {
     expect(onHeaderClick).toHaveBeenCalled();
   });
 
-  test('should show click-to-load if no IntersectionObserver support', () => {
+  it('should show click-to-load if no IntersectionObserver support', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     delete window.IntersectionObserver;
     renderTable({ clickToLoad: false });
-    expect(screen.getByTestId('click-to-load-more')).toBeTruthy();
+    expect(screen.getByTestId('click-to-load-more')).toBeInTheDocument();
   });
 });

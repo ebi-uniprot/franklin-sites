@@ -11,12 +11,12 @@ describe('MainSearch component', () => {
   };
   const namespaces = { one: 'One', two: 'Two', three: 'Three' };
 
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = render(<MainSearch {...props} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render with namespaces selector', () => {
+  it('should render with namespaces selector', () => {
     const { asFragment } = render(
       <MainSearch
         {...props}
@@ -28,13 +28,13 @@ describe('MainSearch component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should submit the search term', () => {
+  it('should submit the search term', () => {
     render(<MainSearch {...props} />);
     fireEvent.submit(screen.getByRole('form'));
     expect(handleSubmit).toHaveBeenCalled();
   });
 
-  test('should detect the search term', () => {
+  it('should detect the search term', () => {
     render(<MainSearch {...props} />);
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: 'foo' },
@@ -42,7 +42,7 @@ describe('MainSearch component', () => {
     expect(handleChange).toHaveBeenCalledWith('foo');
   });
 
-  test('should set searchTerm', () => {
+  it('should set searchTerm', () => {
     render(<MainSearch {...props} searchTerm="blah" />);
     expect((screen.getByRole('textbox') as HTMLInputElement).value).toBe(
       'blah'

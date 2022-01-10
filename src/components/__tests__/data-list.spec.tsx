@@ -26,17 +26,17 @@ describe('DataList', () => {
     onLoadMoreItems = jest.fn();
   });
 
-  test('should render autoload', () => {
+  it('should render autoload', () => {
     const { asFragment } = renderList({ clickToLoad: false });
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should render click-to-load', () => {
+  it('should render click-to-load', () => {
     const { asFragment } = renderList();
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should request more data', () => {
+  it('should request more data', () => {
     renderList();
     expect(onLoadMoreItems).not.toHaveBeenCalled();
     const clickToLoadMore = screen.getByTestId('click-to-load-more');
@@ -44,7 +44,7 @@ describe('DataList', () => {
     expect(onLoadMoreItems).toHaveBeenCalled();
   });
 
-  test('should not show the option to load more data', () => {
+  it('should not show the option to load more data', () => {
     renderList({ hasMoreData: false });
     const clickToLoadMore = screen.queryByTestId('click-to-load-more');
     expect(clickToLoadMore).toBeNull();

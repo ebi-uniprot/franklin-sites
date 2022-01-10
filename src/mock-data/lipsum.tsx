@@ -1,10 +1,7 @@
 import { loremIpsum } from 'lorem-ipsum';
 import { v1 } from 'uuid';
 
-import { capitaliseFirstLetter } from '../utils';
-
-export const getLipsumWords = () =>
-  capitaliseFirstLetter(loremIpsum({ count: 2, units: 'words' }));
+export const getLipsumWords = () => loremIpsum({ count: 2, units: 'words' });
 
 export const getLipsumSentences = () =>
   loremIpsum({

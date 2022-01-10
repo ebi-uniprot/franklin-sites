@@ -88,18 +88,19 @@ export const ExpandableList = ({
   }
 
   const enoughChildren = children.length > numberCollapsedItems + 1;
-  const itemNodes = children
-    .slice(
+  const itemNodes = Children.map(
+    children.slice(
       0,
       expanded || !enoughChildren ? children.length : numberCollapsedItems
-    )
-    .map((item, index) => {
+    ),
+    (child, index) => {
       let key: string | number = index;
-      if (typeof item === 'object' && 'key' in item && item.key) {
-        key = item.key;
+      if (typeof child === 'object' && 'key' in child && child.key) {
+        key = child.key;
       }
-      return <li key={key}>{item}</li>;
-    });
+      return <li key={key}>{child}</li>;
+    }
+  );
 
   let actions = null;
   if (enoughChildren || extraActions) {

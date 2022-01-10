@@ -5,7 +5,7 @@ import TreeSelect from '../tree-select';
 import { treeData } from '../../mock-data/tree-data';
 
 describe('TreeSelect component', () => {
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = render(
       <TreeSelect data={treeData} onSelect={jest.fn()} />
     );
@@ -14,7 +14,7 @@ describe('TreeSelect component', () => {
 });
 
 describe('TreeSelect component with filter', () => {
-  test('should render', () => {
+  it('should render', () => {
     const { asFragment } = render(
       <TreeSelect data={treeData} onSelect={jest.fn()} autocomplete />
     );

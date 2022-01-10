@@ -8,7 +8,6 @@ import {
   restructureFlattenedTreeItemsForAutocomplete,
   getSingleChildren,
   highlightSubstring,
-  capitaliseFirstLetter,
   tidyUrlString,
 } from '../utils';
 
@@ -187,15 +186,6 @@ it('should prepare flattened tree data items for autocomplete', () => {
 
 it('should yield single children from a tree of items', () => {
   expect(Array.from(getSingleChildren(treeData))).toEqual(['item_3a']);
-});
-
-test('capitaliseFirstLetter', () => {
-  expect(capitaliseFirstLetter(null)).toBe(null);
-  expect(capitaliseFirstLetter('')).toBe('');
-  expect(capitaliseFirstLetter('a')).toBe('A');
-  expect(capitaliseFirstLetter('A')).toBe('A');
-  expect(capitaliseFirstLetter('hello')).toBe('Hello');
-  expect(capitaliseFirstLetter('Hello')).toBe('Hello');
 });
 
 describe('highlightSubstring', () => {
