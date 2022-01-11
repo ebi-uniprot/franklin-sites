@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.176",
+  "version": "0.0.178",
   "main": "dist/franklin-components.js",
   "files": [
     "src",
@@ -22,7 +22,7 @@
     "jest-coverage-ratchet": "jest-coverage-ratchet",
     "coverage-bump": "npm-run-all test:unit jest-coverage-ratchet",
     "test": "npm-run-all --continue-on-error test:*",
-    "test:lint": "eslint 'src/**/*.[tj]s?' 'stories/**/*.[tj]s?' --cache --cache-location 'node_modules/.eslintcache'",
+    "test:lint": "eslint src stories --ext .js,.jsx,.ts,.tsx --cache --cache-location 'node_modules/.eslintcache'",
     "test:types": "tsc --project tsconfig.check.json",
     "test:unit": "jest --coverage",
     "test-watch": "jest --watch",
