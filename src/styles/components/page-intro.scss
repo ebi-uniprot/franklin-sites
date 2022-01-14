@@ -5,6 +5,7 @@
   // should target the first element, the actual heading
   & > *:first-child {
     display: inline-block;
+    margin-top: 1rem;
   }
 
   small {
