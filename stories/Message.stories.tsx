@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { select, boolean, text } from '@storybook/addon-knobs';
 
 import { Message } from '../src/components';
 
@@ -16,29 +17,20 @@ export default {
   },
 };
 
-export const defaultMessage = () => (
-  <Message onDismiss={action('Dismiss')}>{getLipsumSentences()}</Message>
-);
-export const warningMessage = () => (
-  <Message level="warning">{getLipsumSentences()}</Message>
-);
-export const failureMessage = () => (
-  <Message level="failure">{getLipsumSentences()}</Message>
-);
-export const successMessage = () => (
-  <Message level="success">{getLipsumSentences()}</Message>
-);
-
-const subtitle = (
-  <>
-    Try using <a href="/">BLAST</a>, <a href="/">Align</a>,{' '}
-    <a href="/">ID Mapping/Retrieve</a> or{' '}
-    <a href="/">Peptide Search to begin</a>
-  </>
-);
-
-export const forFullPageErrors = () => (
-  <Message level="warning" subtitle={subtitle} forFullPage>
+export const message = () => (
+  <Message
+    level={select(
+      'level',
+      ['success', 'warning', 'failure', 'info'],
+      'info',
+      'Props'
+    )}
+    subtitle={text('subtitle', '', 'Props')}
+    onDismiss={
+      boolean('Dismissable', false, 'Props') ? action('Dismiss') : undefined
+    }
+    forFullPage={boolean('forFullPage', false, 'Props')}
+  >
     {getLipsumSentences()}
   </Message>
 );
