@@ -256,6 +256,7 @@ function validateSequences(input: string | string[]) {
   // Otherwise, make sure we have an array to work with
   if (!Array.isArray(sequences)) {
     throw new Error(invalidInputException);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
   } else if (!Object.prototype.toString.call(sequences) === '[object Array]') {
     throw new Error(invalidInputException);
