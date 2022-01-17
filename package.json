@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.178",
+  "version": "0.0.179",
   "main": "dist/franklin-components.js",
   "files": [
     "src",
@@ -47,8 +47,8 @@
     ],
     "coverageThreshold": {
       "global": {
-        "lines": 81.38,
-        "statements": 81.02,
+        "lines": 81.33,
+        "statements": 80.96,
         "functions": 78.93,
         "branches": 71.85
       }
