@@ -10,7 +10,7 @@ describe('SlidingPanel component', () => {
     const onClose = jest.fn();
     renderWithRouter(
       <>
-        <div data-testid="outside-component" />
+        <div data-testid="outside-element" />
         <SlidingPanel onClose={onClose} position="left" title="Title">
           Sliding panel content
         </SlidingPanel>
@@ -18,8 +18,47 @@ describe('SlidingPanel component', () => {
     );
     fireEvent.click(screen.getByText('Sliding panel content'));
     await sleep(200);
-    fireEvent.click(screen.getByTestId('outside-component'));
-    await waitFor(() => expect(onClose).toHaveBeenCalled());
+    fireEvent.click(screen.getByTestId('outside-element'));
+    await waitFor(() => expect(onClose).toHaveBeenCalledWith('outside'));
+  });
+
+  it('should call onClose when closing through the close button', async () => {
+    const onClose = jest.fn();
+    renderWithRouter(
+      <SlidingPanel
+        onClose={onClose}
+        position="left"
+        title="Title"
+        withCloseButton
+      >
+        Sliding panel content
+      </SlidingPanel>
+    );
+    fireEvent.click(screen.getByRole('button', { name: /close/i }));
+    await waitFor(() => expect(onClose).toHaveBeenCalledWith('button'));
+  });
+
+  it('should call onClose when pressing escape (within and outside the panel)', async () => {
+    const onClose = jest.fn();
+    renderWithRouter(
+      <>
+        <input data-testid="outside-element" />
+        <SlidingPanel onClose={onClose} position="left" title="Title">
+          <input data-testid="inside-element" />
+        </SlidingPanel>
+      </>
+    );
+    fireEvent.keyDown(screen.getByTestId('inside-element'), {
+      key: 'Escape',
+      code: 'Escape',
+    });
+    await waitFor(() => expect(onClose).toHaveBeenCalledWith('escape'));
+    onClose.mockClear();
+    fireEvent.keyDown(screen.getByTestId('outside-element'), {
+      key: 'Escape',
+      code: 'Escape',
+    });
+    await waitFor(() => expect(onClose).toHaveBeenCalledWith('escape'));
   });
 
   it('should move focus around correctly', async () => {

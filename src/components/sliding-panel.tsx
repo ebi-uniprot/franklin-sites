@@ -1,12 +1,4 @@
-import {
-  FC,
-  useRef,
-  useEffect,
-  ReactNode,
-  HTMLAttributes,
-  useCallback,
-  KeyboardEventHandler,
-} from 'react';
+import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import cn from 'classnames';
@@ -155,15 +147,21 @@ const SlidingPanel: FC<
     // keep pathname below, this is to trigger the effect when it changes
   }, [pathname]);
 
-  const handleKeyDown: KeyboardEventHandler = useCallback((event) => {
-    if (event.key === 'Escape') {
-      onCloseRef.current?.('escape');
-    }
+  useEffect(() => {
+    const listener = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onCloseRef.current?.('escape');
+      }
+    };
+
+    document.addEventListener('keydown', listener, { passive: true });
+
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
   }, []);
 
   return createPortal(
-    // event bubbling, so that's why we override this rule
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <aside
       data-testid="sliding-panel"
       className={cn(
@@ -174,9 +172,6 @@ const SlidingPanel: FC<
         className
       )}
       ref={node}
-      onKeyDown={handleKeyDown}
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-      tabIndex={0}
       {...props}
     >
       {(title || withCloseButton) && (
@@ -189,6 +184,7 @@ const SlidingPanel: FC<
               variant="tertiary"
               onClick={() => onCloseRef.current?.('button')}
               className="sliding-panel__header__buttons"
+              title="Close panel"
             >
               <CloseIcon />
             </Button>
