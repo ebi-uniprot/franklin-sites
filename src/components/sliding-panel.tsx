@@ -1,4 +1,12 @@
-import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
+import {
+  FC,
+  useRef,
+  useEffect,
+  ReactNode,
+  HTMLAttributes,
+  useCallback,
+  KeyboardEventHandler,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import cn from 'classnames';
@@ -35,7 +43,7 @@ type SlidingPanelProps = {
   /**
    * What happens when close is triggered. Responsability of the user of the compoent
    */
-  onClose: (arg: void) => void;
+  onClose?: (reason: 'outside' | 'button' | 'navigation' | 'escape') => void;
   /**
    * Size of the panel once opened
    */
@@ -65,7 +73,7 @@ const SlidingPanel: FC<
 }) => {
   const node = useRef<HTMLDivElement>(null);
 
-  const onCloseRef = useRef<(() => void) | null>(onClose);
+  const onCloseRef = useRef<SlidingPanelProps['onClose']>(onClose);
   onCloseRef.current = onClose;
 
   // onMount/onUnmount
@@ -106,7 +114,7 @@ const SlidingPanel: FC<
       mutationObs?.disconnect();
       // Lose the reference to the onClose function on unmount because we might
       // call it on the next frame but it will already be unmounted
-      onCloseRef.current = null;
+      onCloseRef.current = undefined;
     };
   }, []);
 
@@ -125,7 +133,7 @@ const SlidingPanel: FC<
       // If none of the panels contains the target, close the panel.
       // Wait a frame in order to let other event listeners run before.
       frame().then(() => {
-        onCloseRef.current?.();
+        onCloseRef.current?.('outside');
       });
     };
 
@@ -142,13 +150,21 @@ const SlidingPanel: FC<
     if (firstTime.current) {
       firstTime.current = false;
     } else {
-      onCloseRef.current?.();
+      onCloseRef.current?.('navigation');
     }
     // keep pathname below, this is to trigger the effect when it changes
   }, [pathname]);
 
+  const handleKeyDown: KeyboardEventHandler = useCallback((event) => {
+    if (event.key === 'Escape') {
+      onCloseRef.current?.('escape');
+    }
+  }, []);
+
   return createPortal(
-    <div
+    // event bubbling, so that's why we override this rule
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <aside
       data-testid="sliding-panel"
       className={cn(
         'sliding-panel',
@@ -158,6 +174,9 @@ const SlidingPanel: FC<
         className
       )}
       ref={node}
+      onKeyDown={handleKeyDown}
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+      tabIndex={0}
       {...props}
     >
       {(title || withCloseButton) && (
@@ -168,7 +187,7 @@ const SlidingPanel: FC<
           {withCloseButton && (
             <Button
               variant="tertiary"
-              onClick={() => onCloseRef.current?.()}
+              onClick={() => onCloseRef.current?.('button')}
               className="sliding-panel__header__buttons"
             >
               <CloseIcon />
@@ -183,7 +202,7 @@ const SlidingPanel: FC<
         </div>
       )}
       <div className="sliding-panel__content">{children}</div>
-    </div>,
+    </aside>,
     document.body
   );
 };

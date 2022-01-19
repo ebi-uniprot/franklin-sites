@@ -38,7 +38,7 @@ export const SlidingPanels = () => {
       position={position}
       size={size}
       withCloseButton={withCloseButton}
-      onClose={() => action('Closing')}
+      onClose={action('Closing')}
     >
       {loremIpsum({ count: 25 })}
     </SlidingPanel>
@@ -65,19 +65,12 @@ export const SlidingPanelsWithArrow = () => {
     [position]
   );
 
-  const onButtonClick = () => {
-    setShowPanel(true);
-  };
-
-  const onClose = () => {
-    setShowPanel(false);
-    action('onClose');
-  };
-
   return (
     <>
       <Button
-        onClick={onButtonClick}
+        onClick={() => {
+          setShowPanel(true);
+        }}
         style={{
           position: 'absolute',
           top: '-2rem',
@@ -94,7 +87,10 @@ export const SlidingPanelsWithArrow = () => {
           position={position}
           size={size}
           withCloseButton={withCloseButton}
-          onClose={onClose}
+          onClose={(reason) => {
+            setShowPanel(false);
+            action('onClose')(reason);
+          }}
           arrowX={arrowX}
         >
           {loremIpsum({ count: 25 })}
@@ -132,10 +128,10 @@ export const SlidingPanelInSlidingPanel = () => {
           position={position}
           size={size}
           withCloseButton={withCloseButton}
-          onClose={() => {
+          onClose={(reason) => {
             setShowPanel(false);
             setShowPanel2(false);
-            action('onClose 1');
+            action('onClose 1')(reason);
           }}
         >
           <>
@@ -148,9 +144,9 @@ export const SlidingPanelInSlidingPanel = () => {
                 position={position}
                 size={size}
                 withCloseButton={withCloseButton}
-                onClose={() => {
+                onClose={(reason) => {
                   setShowPanel2(false);
-                  action('onClose 2');
+                  action('onClose 2')(reason);
                 }}
               >
                 {loremIpsum({ count: 25 })}
