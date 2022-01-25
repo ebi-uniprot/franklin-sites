@@ -21,6 +21,7 @@ export const columns: Array<
   {
     label: 'Column 1',
     name: 'content1',
+    tooltip: 'Some content for the tooltip',
     render: (row) => row.content1,
     sortable: true,
     sorted: 'descend',
@@ -28,6 +29,11 @@ export const columns: Array<
   {
     label: 'Column 2',
     name: 'content2',
+    tooltip: (
+      <>
+        Some <strong>richer</strong> content for the tooltip
+      </>
+    ),
     render: (row) => row.content2,
   },
   {
