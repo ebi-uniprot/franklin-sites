@@ -101,7 +101,7 @@
     "rehype-raw": "6.1.1",
     "rheostat": "4.1.1",
     "timing-functions": "2.0.1",
-    "tippy.js": "^6.3.7",
+    "tippy.js": "6.3.7",
     "type-fest": "2.8.0",
     "uuid": "8.3.2"
   },
