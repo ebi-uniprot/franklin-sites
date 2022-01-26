@@ -31,7 +31,8 @@ export const columns: Array<
     name: 'content2',
     tooltip: (
       <>
-        Some <strong>richer</strong> content for the tooltip
+        Some <strong>richer</strong> content for the tooltip with a{' '}
+        <ExternalLink url="https://www.uniprot.org">link</ExternalLink>
       </>
     ),
     render: (row) => row.content2,
