@@ -66,9 +66,14 @@ type HeadProps<Datum> = {
   onHeaderClick?: (columnName: SortableColumn<Datum>['name']) => void;
 };
 
-const TableHeaderContent = forwardRef<HTMLElement, { label: ReactNode }>(
+const LabelContent = ({ label }: { label: ReactNode }): JSX.Element =>
+  typeof label === 'function' ? label() : label;
+
+const TippyLabelContent = forwardRef<HTMLElement, { label: ReactNode }>(
   ({ label }, ref) => (
-    <span ref={ref}>{typeof label === 'function' ? label() : label}</span>
+    <span ref={ref}>
+      <LabelContent label={label} />
+    </span>
   )
 );
 
@@ -96,12 +101,12 @@ const DataTableHead = <Datum extends BasicDatum>({
           onClick={sortable ? () => onHeaderClick?.(name) : undefined}
           style={width ? { width } : undefined}
         >
-          {typeof tooltip !== 'undefined' ? (
-            <Tippy content={tooltip} interactive>
-              <TableHeaderContent label={label} />
+          {tooltip && typeof tooltip !== 'undefined' ? (
+            <Tippy content={tooltip} interactive placement="bottom">
+              <TippyLabelContent label={label} />
             </Tippy>
           ) : (
-            <TableHeaderContent label={label} />
+            <LabelContent label={label} />
           )}
         </th>
       ))}
