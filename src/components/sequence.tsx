@@ -129,7 +129,7 @@ type SequenceProps = {
    * Data to be displayed in an InfoData component above the sequence
    */
   infoData?: {
-    title: string;
+    title: ReactNode;
     content: ReactNode;
   }[];
   /**
