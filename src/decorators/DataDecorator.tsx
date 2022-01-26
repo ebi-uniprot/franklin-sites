@@ -41,6 +41,12 @@ export const columns: Array<
   {
     label: 'Column 3',
     name: 'content3',
+    tooltip: (
+      <>
+        Some <strong>richer</strong> content for the tooltip with a{' '}
+        <a href="https://www.uniprot.org">link</a>
+      </>
+    ),
     render: (row) => row.content3,
     sortable: true,
   },
