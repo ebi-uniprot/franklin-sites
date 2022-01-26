@@ -5,7 +5,7 @@ import DecoratedListItem from './decorated-list-item';
 
 import '../styles/components/info-list.scss';
 
-type Item = {
+export type InfoListItem = {
   title: ReactNode;
   content: ReactNode;
   key?: string;
@@ -16,7 +16,7 @@ type Props = {
   /**
    * An array of objects each containing 'title' and 'content'
    */
-  infoData?: Array<Item>;
+  infoData?: Array<InfoListItem>;
   /**
    * A boolean indicating whether the component should span multiple
    * columns on medium to large screens or not.
