@@ -9,6 +9,7 @@ import {
   NonSortableColumn,
 } from '../components/data-table';
 import { WrapperProps } from '../components/data-loader';
+import { ExternalLink } from '../components';
 
 type DataType = Record<string, string>;
 type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
