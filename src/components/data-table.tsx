@@ -97,7 +97,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           style={width ? { width } : undefined}
         >
           {typeof tooltip !== 'undefined' ? (
-            <Tippy content={tooltip}>
+            <Tippy content={tooltip} interactive>
               <TableHeaderContent label={label} />
             </Tippy>
           ) : (
