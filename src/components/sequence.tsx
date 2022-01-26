@@ -20,6 +20,8 @@ import {
   Button,
 } from '.';
 
+import { InfoListItem } from './info-list';
+
 import aminoAcidsProps from './data/amino-acid-properties.json';
 
 import '../styles/components/sequence.scss';
@@ -128,10 +130,7 @@ type SequenceProps = {
   /**
    * Data to be displayed in an InfoData component above the sequence
    */
-  infoData?: {
-    title: string;
-    content: ReactNode;
-  }[];
+  infoData?: InfoListItem[];
   /**
    * The URL to download the isoform sequence
    */

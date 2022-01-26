@@ -9,6 +9,7 @@ import {
   NonSortableColumn,
 } from '../components/data-table';
 import { WrapperProps } from '../components/data-loader';
+import { ExternalLink } from '../components';
 
 type DataType = Record<string, string>;
 type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
@@ -21,6 +22,7 @@ export const columns: Array<
   {
     label: 'Column 1',
     name: 'content1',
+    tooltip: 'Some content for the tooltip',
     render: (row) => row.content1,
     sortable: true,
     sorted: 'descend',
@@ -28,11 +30,23 @@ export const columns: Array<
   {
     label: 'Column 2',
     name: 'content2',
+    tooltip: (
+      <>
+        Some <strong>richer</strong> content for the tooltip with a{' '}
+        <ExternalLink url="https://www.uniprot.org">link</ExternalLink>
+      </>
+    ),
     render: (row) => row.content2,
   },
   {
     label: 'Column 3',
     name: 'content3',
+    tooltip: (
+      <>
+        Some <strong>richer</strong> content for the tooltip with a{' '}
+        <a href="https://www.uniprot.org">link</a>
+      </>
+    ),
     render: (row) => row.content3,
     sortable: true,
   },

@@ -5,9 +5,11 @@ import {
   HTMLAttributes,
   useRef,
   useMemo,
+  forwardRef,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
+import Tippy from '@tippyjs/react';
 
 import Loader from './loader';
 
@@ -17,12 +19,15 @@ import withDataLoader, { WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
 
+import 'tippy.js/dist/tippy.css';
+
 type BasicDatum = Record<string, unknown>;
 
 type CommonColumn<Datum> = {
   label?: ReactNode;
   name: string;
   render: (datum: Datum) => ReactNode;
+  tooltip?: ReactNode;
   width?: string;
 };
 
@@ -61,6 +66,12 @@ type HeadProps<Datum> = {
   onHeaderClick?: (columnName: SortableColumn<Datum>['name']) => void;
 };
 
+const TableHeaderContent = forwardRef<HTMLElement, { label: ReactNode }>(
+  ({ label }, ref) => (
+    <span ref={ref}>{typeof label === 'function' ? label() : label}</span>
+  )
+);
+
 const DataTableHead = <Datum extends BasicDatum>({
   columns,
   onHeaderClick,
@@ -74,7 +85,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           <div className="checkbox-cell">{checkbox}</div>
         </th>
       )}
-      {columns.map(({ sorted, name, label, sortable, width }) => (
+      {columns.map(({ sorted, name, label, tooltip, sortable, width }) => (
         <th
           key={name}
           className={cn({
@@ -85,7 +96,13 @@ const DataTableHead = <Datum extends BasicDatum>({
           onClick={sortable ? () => onHeaderClick?.(name) : undefined}
           style={width ? { width } : undefined}
         >
-          {typeof label === 'function' ? label() : label}
+          {typeof tooltip !== 'undefined' ? (
+            <Tippy content={tooltip} interactive>
+              <TableHeaderContent label={label} />
+            </Tippy>
+          ) : (
+            <TableHeaderContent label={label} />
+          )}
         </th>
       ))}
     </tr>
