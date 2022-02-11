@@ -99,6 +99,7 @@ export { default as WorldIcon } from '../svg/world.svg';
 export { default as ZoomIn } from '../svg/zoom-in.svg';
 export { default as ZoomOut } from '../svg/zoom-out.svg';
 export { default as ZoomToSequence } from '../svg/zoom-to-sequence.svg';
+export { default as ShareNodesIcon } from '../svg/share-nodes.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';

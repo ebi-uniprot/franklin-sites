@@ -51,6 +51,7 @@ import {
   ZoomOut,
   ZoomToSequence,
   FullViewIcon,
+  ShareNodesIcon,
 } from '../src/components';
 
 import colors from '../src/styles/colours.json';
@@ -311,6 +312,11 @@ const iconDefinition = [
     name: 'full-view.svg',
     description: 'Full View',
     icon: <FullViewIcon width={size} height={size} />,
+  },
+  {
+    name: 'share-nodes.svg',
+    description: 'Share',
+    icon: <ShareNodesIcon width={size} height={size} />,
   },
 ];
 
