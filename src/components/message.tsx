@@ -1,11 +1,13 @@
 import { FC, ReactNode, HTMLAttributes, MouseEvent } from 'react';
 import cn from 'classnames';
 
-import WarningIcon from '../svg/warning.svg';
-import SuccessIcon from '../svg/success.svg';
-import WarningTriangleIcon from '../svg/warning-triangle.svg';
-import ErrorIcon from '../svg/error.svg';
-import CloseIcon from '../svg/times.svg';
+import {
+  InformationIcon,
+  SuccessIcon,
+  WarningTriangleIcon,
+  ErrorIcon,
+  CloseIcon,
+} from '.';
 
 import '../styles/components/message.scss';
 
@@ -52,7 +54,7 @@ const Message: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
 }) => {
   let maybeIcon = null;
   if (!noIcon && !forFullPage) {
-    maybeIcon = <WarningIcon width={iconSize} height={iconSize} />;
+    maybeIcon = <InformationIcon width={iconSize} height={iconSize} />;
     if (level === 'warning') {
       maybeIcon = <WarningTriangleIcon width={iconSize} height={iconSize} />;
     } else if (level === 'failure') {
