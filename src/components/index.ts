@@ -11,6 +11,7 @@ export { default as CodeBlock } from './code-block';
 export { default as CopyToClipboard } from './copy-to-clipboard';
 export { DataList, DataListWithLoader } from './data-list';
 export { DataTable, DataTableWithLoader } from './data-table';
+export { default as DecoratedListItem } from './decorated-list-item';
 export { default as DisplayMenu } from './display-menu';
 export { default as DoughnutChart } from './doughnut-chart';
 export { default as DropdownButton } from './dropdown-button';
@@ -27,7 +28,6 @@ export { default as Histogram } from './histogram';
 export { default as HistogramFilter } from './histogram-filter';
 export { default as InPageNav } from './in-page-nav';
 export { default as InfoList } from './info-list';
-export { default as DecoratedListItem } from './decorated-list-item';
 export { default as Loader } from './loader';
 export { default as LongNumber } from './long-number';
 export { default as MainSearch } from './main-search';
@@ -36,14 +36,14 @@ export { default as ModalBackdrop } from './modal-backdrop';
 export { default as PageIntro } from './page-intro';
 export { default as SearchInput } from './search-input';
 export { default as Sequence } from './sequence';
-export { default as SequenceTools } from './sequence-tools';
 export { default as SequenceSubmission } from './sequence-submission';
+export { default as SequenceTools } from './sequence-tools';
+export { default as SlidingPanel } from './sliding-panel';
 export { Tab, Tabs } from './tabs';
 export { default as Tile } from './tile';
 export { default as TreeSelect } from './tree-select';
 export { default as Window } from './window/window';
 export { WindowActionButton } from './window/window-buttons';
-export { default as SlidingPanel } from './sliding-panel';
 
 // Hooks
 export { default as useModal } from '../hooks/modal';
@@ -84,6 +84,7 @@ export { default as ReferenceProteomeIcon } from '../svg/reference-proteome.svg'
 export { default as RefreshIcon } from '../svg/refresh.svg';
 export { default as ReSubmitIcon } from '../svg/re-submit.svg';
 export { default as SearchIcon } from '../svg/search.svg';
+export { default as ShareNodesIcon } from '../svg/share-nodes.svg';
 export { default as SpinnerIcon } from '../svg/spinner.svg';
 export { default as StatisticsIcon } from '../svg/statistics.svg';
 export { default as SuccessIcon } from '../svg/success.svg';
@@ -99,7 +100,6 @@ export { default as WorldIcon } from '../svg/world.svg';
 export { default as ZoomIn } from '../svg/zoom-in.svg';
 export { default as ZoomOut } from '../svg/zoom-out.svg';
 export { default as ZoomToSequence } from '../svg/zoom-to-sequence.svg';
-export { default as ShareNodesIcon } from '../svg/share-nodes.svg';
 
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
