@@ -33,5 +33,6 @@ export default create({
 
   brandTitle: 'Franklin',
   brandUrl: 'https://ebi-uniprot.github.io/franklin-sites',
-  brandImage: './franklin_logo.svg',
+  brandImage:
+    'https://raw.githubusercontent.com/ebi-uniprot/franklin-sites/main/assets/franklin_logo.svg',
 });
