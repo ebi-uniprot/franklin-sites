@@ -13,6 +13,7 @@ const namespaces = {
   proteomes: 'Proteomes',
   publications: 'Publications',
   keywords: 'Keywords',
+  toolResults: 'Tool results',
 };
 
 // Custom decorator
