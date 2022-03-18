@@ -1,16 +1,24 @@
 import { SyntheticEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import {
   BasketIcon,
+  Button,
   EnvelopeIcon,
   Header,
   HelpIcon,
   MainSearch,
+  DropdownButton,
+  ExternalLink,
 } from '../src/components';
 
 import UniProtLogo from '../src/svg/swissprot.svg';
+import {
+  Dropdown,
+  UncontrolledDropdown,
+} from '../src/components/dropdown-button';
 
 export default {
   title: 'Layout/Header',
@@ -23,27 +31,42 @@ export default {
   decorators: [withKnobs],
 };
 
-const headerItems = [
-  { label: 'Link 1', path: '/' },
-  {
-    label: 'Links 2',
-    items: [
-      { label: 'sublink 1', path: '/' },
-      { label: 'sublink 2', path: '/' },
-      { label: 'sublink 3', path: '/' },
-      { label: 'external link', href: '//www.uniprot.org' },
-      { label: 'action', onClick: action('onClick') },
-    ],
-  },
-  { label: 'Link 3', path: '/' },
-  { label: 'action', onClick: action('onClick') },
-];
+const headerItems = (
+  <>
+    <Link to="/">Link 1</Link>
+    <UncontrolledDropdown
+      visibleElement={<Button variant="tertiary">Links 2</Button>}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Link to="/">sublink 1</Link>
+        <Link to="/">sublink 2</Link>
+        <Link to="/">sublink 3</Link>
+        <ExternalLink url="//www.uniprot.org">external link</ExternalLink>
+        <Button variant="tertiary" onClick={action('onClick')}>
+          action
+        </Button>
+      </div>
+    </UncontrolledDropdown>
+    <Link to="/">Link 3</Link>
+    <Button variant="tertiary" onClick={action('onClick')}>
+      action
+    </Button>
+  </>
+);
 
-const headerSecondaryItems = [
-  { label: <HelpIcon />, path: '/' },
-  { label: <EnvelopeIcon />, path: '/' },
-  { label: <BasketIcon />, path: '/' },
-];
+const headerSecondaryItems = (
+  <>
+    <Link to="/">
+      <HelpIcon width="1.8ch" />
+    </Link>
+    <Link to="/">
+      <EnvelopeIcon width="2ch" />
+    </Link>
+    <Link to="/">
+      <BasketIcon width="2ch" />
+    </Link>
+  </>
+);
 
 const Search = () => {
   const [value, setValue] = useState('');

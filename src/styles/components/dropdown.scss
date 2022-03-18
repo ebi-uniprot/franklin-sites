@@ -3,12 +3,67 @@
 @import '../common/z-index';
 @import '../mixins';
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+
+  & > :first-child {
+    padding-inline-end: 2ch;
+
+    &::after {
+      content: '▸';
+      position: absolute;
+      margin-inline-start: 0.5ch;
+
+      transition: transform 0.25s ease-out;
+      transform: rotateZ(0);
+
+      @media (prefers-reduced-motion: reduce) {
+        transition-duration: 0s;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &:after {
+        will-change: transform;
+      }
+    }
+  }
+
+  &[aria-expanded='true'] > :first-child::after {
+    transform: rotateZ(90deg);
+  }
+
+  /* Override of franklin patterns when used within */
+  /* try to keep as little as possible, watch out of specificity wars */
+  .button {
+    margin-block-end: 0;
+  }
+
+  ul {
+    margin-inline-start: 0;
+    margin-block-end: 0;
+  }
+}
+
+.dropdown__content {
+  @include box-shadow();
+  overflow-y: auto;
+  width: max-content;
+  z-index: $z-index-high;
+  animation: 200ms reveal;
+  background: #fff;
+  position: absolute;
+  padding: $global-padding;
+}
+
 .dropdown-container {
   position: relative;
   display: inline-block;
 
   button {
-    white-space: nowrap;
     margin: 0 0 1rem 0;
   }
 }
@@ -19,7 +74,7 @@
   background: $colour-platinum;
 }
 
-.dropdown-menu {
+.dropdown-content {
   --main-button-color: black;
 
   input {

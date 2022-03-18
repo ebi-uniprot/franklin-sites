@@ -4,8 +4,13 @@ import {
   useEffect,
   useMemo,
   ReactNode,
+  ReactElement,
   Dispatch,
   SetStateAction,
+  HTMLAttributes,
+  cloneElement,
+  useCallback,
+  forwardRef,
 } from 'react';
 import cn from 'classnames';
 
@@ -118,6 +123,86 @@ const DropdownButton = ({
           (typeof children === 'function' ? children(setShowMenu) : children)}
       </div>
     </div>
+  );
+};
+
+type DropdownProps = {
+  visibleElement: ReactElement;
+  expanded: boolean;
+};
+
+export const Dropdown = forwardRef<
+  HTMLSpanElement,
+  DropdownProps & HTMLAttributes<HTMLSpanElement>
+>(
+  (
+    {
+      visibleElement,
+      expanded,
+      children,
+      className,
+      'aria-haspopup': ariaHaspopup,
+      ...props
+    },
+    ref
+  ) => (
+    <span
+      className={cn(className, 'dropdown')}
+      {...props}
+      aria-expanded={expanded}
+      aria-haspopup={ariaHaspopup || true}
+      ref={ref}
+    >
+      {visibleElement}
+      {expanded && <div className="dropdown__content">{children}</div>}
+    </span>
+  )
+);
+
+export const UncontrolledDropdown = ({
+  visibleElement,
+  ...props
+}: Omit<DropdownProps, 'expanded'> & HTMLAttributes<HTMLSpanElement>) => {
+  const [expanded, setExpanded] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  // effect to handle a click on anything closing the dropdown
+  useEffect(() => {
+    if (!expanded) {
+      return;
+    }
+
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (
+        !ref.current ||
+        (event.target && ref.current?.contains(event.target as Node))
+      ) {
+        return;
+      }
+      setExpanded(false);
+    };
+
+    window.document.addEventListener('mouseup', listener, { passive: true });
+    window.document.addEventListener('touchend', listener, { passive: true });
+    // eslint-disable-next-line consistent-return
+    return () => {
+      window.document.removeEventListener('mouseup', listener);
+      window.document.removeEventListener('touchend', listener);
+    };
+  }, [expanded]);
+
+  const handleClick = useCallback(
+    () => setExpanded((expanded) => !expanded),
+    []
+  );
+
+  return (
+    <Dropdown
+      visibleElement={cloneElement(visibleElement, { onClick: handleClick })}
+      {...props}
+      expanded={expanded}
+      ref={ref}
+    />
   );
 };
 

@@ -1,8 +1,8 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode, HTMLAttributes, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
-import DropdownButton from './dropdown-button';
+import { Dropdown } from './dropdown-button';
 import Button from './button';
 
 import '../styles/components/header.scss';
@@ -42,7 +42,8 @@ type HeaderDropdown = {
 type HeaderItemProps = {
   item: HeaderPossibleItem;
 };
-const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
+
+const HeaderItem = ({ item }: HeaderItemProps) => {
   let extraProps = {};
   let element: typeof Link | 'a' | 'button' = Link;
   if (item.path) {
@@ -66,32 +67,57 @@ const HeaderItem: FC<HeaderItemProps> = ({ item }) => {
   );
 };
 
-const HeaderListItem: FC<{
+type HeaderListItemProps = {
   item: HeaderPossibleItem | HeaderDropdown;
   isNegative: boolean;
-}> = ({ item, isNegative }) => (
-  <li>
-    {item.items ? (
-      <DropdownButton
-        label={item.label}
-        className={cn({
-          'dropdown-container__trigger--negative': isNegative,
-        })}
-        openOnHover
-      >
-        <ul>
-          {item.items.map((subItem, index) => (
-            <li key={typeof subItem.label === 'string' ? subItem.label : index}>
-              <HeaderItem item={subItem} />
-            </li>
-          ))}
-        </ul>
-      </DropdownButton>
-    ) : (
-      <HeaderItem item={item as HeaderPossibleItem} />
-    )}
-  </li>
-);
+};
+
+const HeaderListItem = ({ item, isNegative }: HeaderListItemProps) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <li>
+      {item.items ? (
+        <Dropdown
+          visibleElement={
+            <Button
+              variant="tertiary"
+              onClick={() => setExpanded((expanded) => !expanded)}
+            >
+              {item.label}
+            </Button>
+          }
+          className={cn({
+            'dropdown-container__trigger--negative': isNegative,
+          })}
+          expanded={expanded}
+          onFocus={() => setExpanded(true)}
+          onBlur={(event) => {
+            if (
+              !event.relatedTarget ||
+              !event.currentTarget.contains(event.relatedTarget as Node)
+            ) {
+              setExpanded(false);
+            }
+          }}
+          onPointerEnter={() => setExpanded(true)}
+          onPointerLeave={() => setExpanded(false)}
+        >
+          <ul>
+            {item.items.map((subItem, index) => (
+              <li
+                key={typeof subItem.label === 'string' ? subItem.label : index}
+              >
+                <HeaderItem item={subItem} />
+              </li>
+            ))}
+          </ul>
+        </Dropdown>
+      ) : (
+        <HeaderItem item={item} />
+      )}
+    </li>
+  );
+};
 
 type HeaderProps = {
   /**
@@ -101,7 +127,7 @@ type HeaderProps = {
   /**
    * List of items to render in the header
    */
-  items: Array<HeaderPossibleItem | HeaderDropdown>;
+  items: ReactNode;
   /**
    * Search component
    */
@@ -109,7 +135,7 @@ type HeaderProps = {
   /**
    * Secondary items
    */
-  secondaryItems?: Array<HeaderPossibleItem | HeaderDropdown>;
+  secondaryItems?: ReactNode;
   /**
    * Subtext
    */
@@ -119,44 +145,30 @@ type HeaderProps = {
    */
   isNegative?: boolean;
 };
-const Header: FC<HeaderProps> = ({
+
+const Header = ({
   logo,
   items,
   search,
   secondaryItems,
   subtext,
   isNegative = false,
-}) => (
-  <div className={cn('header', { 'header--negative': isNegative })}>
+  className,
+  ...props
+}: HeaderProps & HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(className, 'header', { 'header--negative': isNegative })}
+    {...props}
+  >
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>
-    <ul className="header__navigation">
-      {items.map((item, index) => (
-        <HeaderListItem
-          item={item}
-          key={typeof item.label === 'string' ? item.label : index}
-          isNegative={isNegative}
-        />
-      ))}
-    </ul>
+    <div className="header__navigation">{items}</div>
     <div className="header__search">{search}</div>
     {(secondaryItems || subtext) && (
       <div className="header__secondary">
         {secondaryItems && (
-          <ul className="header__navigation">
-            {secondaryItems.map((item, index) => (
-              <HeaderListItem
-                item={item}
-                key={
-                  typeof item.label === 'string'
-                    ? item.label
-                    : `secondary_${index}`
-                }
-                isNegative={isNegative}
-              />
-            ))}
-          </ul>
+          <div className="header__navigation">{secondaryItems}</div>
         )}
         {subtext && <small>{subtext}</small>}
       </div>
