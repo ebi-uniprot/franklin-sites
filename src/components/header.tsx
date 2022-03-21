@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes, useState } from 'react';
+import { ReactNode, HTMLAttributes, useState, FC } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -125,10 +125,6 @@ type HeaderProps = {
    */
   logo?: ReactNode;
   /**
-   * List of items to render in the header
-   */
-  items: ReactNode;
-  /**
    * Search component
    */
   search?: ReactNode;
@@ -146,16 +142,16 @@ type HeaderProps = {
   isNegative?: boolean;
 };
 
-const Header = ({
+const Header: FC<HeaderProps & HTMLAttributes<HTMLDivElement>> = ({
   logo,
-  items,
   search,
   secondaryItems,
   subtext,
   isNegative = false,
   className,
+  children,
   ...props
-}: HeaderProps & HTMLAttributes<HTMLDivElement>) => (
+}) => (
   <div
     className={cn(className, 'header', { 'header--negative': isNegative })}
     {...props}
@@ -163,7 +159,7 @@ const Header = ({
     <div className="header__logo">
       <Link to="/">{logo}</Link>
     </div>
-    <div className="header__navigation">{items}</div>
+    <div className="header__navigation">{children}</div>
     <div className="header__search">{search}</div>
     {(secondaryItems || subtext) && (
       <div className="header__secondary">

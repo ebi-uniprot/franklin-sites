@@ -14,7 +14,11 @@ export { DataTable, DataTableWithLoader } from './data-table';
 export { default as DecoratedListItem } from './decorated-list-item';
 export { default as DisplayMenu } from './display-menu';
 export { default as DoughnutChart } from './doughnut-chart';
-export { default as DropdownButton } from './dropdown-button';
+export {
+  default as DropdownButton,
+  Dropdown,
+  UncontrolledDropdown,
+} from './dropdown-button';
 export { default as EllipsisReveal } from './ellipsis-reveal';
 export { default as EvidenceTag } from './evidence-tag';
 export { default as ExpandableList } from './expandable-list';

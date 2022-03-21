@@ -12,62 +12,50 @@ exports[`Header component should render 1`] = `
         href="/"
       />
     </div>
-    <ul
+    <div
       class="header__navigation"
     >
-      <li>
-        <a
-          class="button tertiary"
-          href="/here"
-        >
-          <strong>
-            here
-          </strong>
-        </a>
-      </li>
-      <li>
-        <a
-          class="button tertiary"
-          href="/there"
-        >
-          there
-        </a>
-      </li>
-      <li>
-        <a
-          class="button tertiary"
-          href="www.ebi.ac.uk"
-          referrerpolicy="no-referrer-when-downgrade"
-          rel="noopener"
-          target="_blank"
-        >
-          EBI
-        </a>
-      </li>
-      <li>
+      <a
+        href="/here"
+      >
+        here
+      </a>
+      <a
+        href="/there"
+      >
+        there
+      </a>
+      <a
+        class="external-link"
+        href="www.ebi.ac.uk"
+        rel="noopener"
+        target="_blank"
+      >
+        EBI
+        <test-file-stub
+          data-testid="external-link-icon"
+          width="12.5"
+        />
+      </a>
+      <button
+        class="button primary"
+        type="button"
+      >
+        Action
+      </button>
+      <span
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="dropdown"
+      >
         <button
           class="button tertiary"
           type="button"
         >
-          action
+          sub links
         </button>
-      </li>
-      <li>
-        <div
-          class="dropdown-container"
-        >
-          <button
-            class="button primary dropdown"
-            type="button"
-          >
-            sub links
-          </button>
-          <div
-            class="dropdown-menu"
-          />
-        </div>
-      </li>
-    </ul>
+      </span>
+    </div>
     <div
       class="header__search"
     >
@@ -96,34 +84,25 @@ exports[`Header component should render 1`] = `
     <div
       class="header__secondary"
     >
-      <ul
+      <div
         class="header__navigation"
       >
-        <li>
-          <a
-            class="button tertiary"
-            href="/"
-          >
-            <test-file-stub />
-          </a>
-        </li>
-        <li>
-          <a
-            class="button tertiary"
-            href="/"
-          >
-            <test-file-stub />
-          </a>
-        </li>
-        <li>
-          <a
-            class="button tertiary"
-            href="/"
-          >
-            <test-file-stub />
-          </a>
-        </li>
-      </ul>
+        <a
+          href="/"
+        >
+          <test-file-stub />
+        </a>
+        <a
+          href="/"
+        >
+          <test-file-stub />
+        </a>
+        <a
+          href="/"
+        >
+          <test-file-stub />
+        </a>
+      </div>
     </div>
   </div>
 </DocumentFragment>

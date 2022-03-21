@@ -9,7 +9,7 @@
   white-space: nowrap;
 
   & > :first-child {
-    padding-inline-end: 2ch;
+    padding-inline-end: 3ch;
 
     &::after {
       content: '▸';
@@ -40,6 +40,7 @@
   /* try to keep as little as possible, watch out of specificity wars */
   .button {
     margin-block-end: 0;
+    margin-inline-end: 0;
   }
 
   ul {
@@ -56,16 +57,12 @@
   animation: 200ms reveal;
   background: #fff;
   position: absolute;
-  padding: $global-padding;
+  padding: 0.5 * $global-padding;
 }
 
 .dropdown-container {
   position: relative;
   display: inline-block;
-
-  button {
-    margin: 0 0 1rem 0;
-  }
 }
 
 .hover {

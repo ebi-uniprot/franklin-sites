@@ -1,6 +1,12 @@
-import { Fragment, InputHTMLAttributes, SyntheticEvent, useMemo } from 'react';
+import {
+  Fragment,
+  InputHTMLAttributes,
+  SyntheticEvent,
+  useMemo,
+  useState,
+} from 'react';
 
-import DropdownButton from './dropdown-button';
+import { Dropdown, UncontrolledDropdown } from './dropdown-button';
 import Button from './button';
 
 import color from '../styles/colours.json';
@@ -53,6 +59,8 @@ const MainSearch = ({
   secondaryButtons,
   ...props
 }: MainSearchProps) => {
+  const [expanded, setExpanded] = useState(false);
+
   const style = useMemo<FranklinStyle>(
     () => ({
       '--main-button-color':
@@ -75,39 +83,40 @@ const MainSearch = ({
   }, [secondaryButtons]);
 
   return (
-    <form
-      onSubmit={onSubmit}
-      aria-label="Main search"
-      className="main-search"
-      style={style}
-    >
+    <form onSubmit={onSubmit} aria-label="Main search" className="main-search">
       {Object.keys(namespaces).length > 0 && onNamespaceChange && (
-        <DropdownButton
-          label={
-            namespaces[
-              // Pick the first item if nothing defined
-              selectedNamespace || Object.keys(namespaces)[0]
-            ]
+        <Dropdown
+          visibleElement={
+            <Button
+              style={style}
+              onClick={() => setExpanded((expanded) => !expanded)}
+            >
+              {
+                namespaces[
+                  // Pick the first item if nothing defined
+                  selectedNamespace || Object.keys(namespaces)[0]
+                ]
+              }
+            </Button>
           }
+          expanded={expanded}
         >
-          {(setShowMenu: (show: boolean) => void) => (
-            <ul>
-              {Object.keys(namespaces).map((key) => (
-                <li key={key}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowMenu(false);
-                      onNamespaceChange(key);
-                    }}
-                  >
-                    {namespaces[key]}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </DropdownButton>
+          <ul className="no-bullet">
+            {Object.keys(namespaces).map((key) => (
+              <li key={key}>
+                <Button
+                  variant="tertiary"
+                  onClick={() => {
+                    onNamespaceChange(key);
+                    setExpanded(false);
+                  }}
+                >
+                  {namespaces[key]}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </Dropdown>
       )}
       <div className="main-search__input-container">
         <input

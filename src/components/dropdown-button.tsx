@@ -132,7 +132,7 @@ type DropdownProps = {
 };
 
 export const Dropdown = forwardRef<
-  HTMLSpanElement,
+  HTMLDivElement,
   DropdownProps & HTMLAttributes<HTMLSpanElement>
 >(
   (
@@ -146,7 +146,7 @@ export const Dropdown = forwardRef<
     },
     ref
   ) => (
-    <span
+    <div
       className={cn(className, 'dropdown')}
       {...props}
       aria-expanded={expanded}
@@ -155,7 +155,7 @@ export const Dropdown = forwardRef<
     >
       {visibleElement}
       {expanded && <div className="dropdown__content">{children}</div>}
-    </span>
+    </div>
   )
 );
 
@@ -164,7 +164,7 @@ export const UncontrolledDropdown = ({
   ...props
 }: Omit<DropdownProps, 'expanded'> & HTMLAttributes<HTMLSpanElement>) => {
   const [expanded, setExpanded] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   // effect to handle a click on anything closing the dropdown
   useEffect(() => {

@@ -2,11 +2,12 @@ import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import { Fragment } from 'react';
 
-import { DropdownButton, Button } from '../src/components';
 import {
+  DropdownButton,
+  Button,
   Dropdown,
   UncontrolledDropdown,
-} from '../src/components/dropdown-button';
+} from '../src/components';
 
 export default {
   title: 'Forms/Dropdown button',
