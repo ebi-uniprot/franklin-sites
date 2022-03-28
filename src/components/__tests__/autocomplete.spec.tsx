@@ -85,6 +85,28 @@ describe('filterOptions', () => {
     ];
     expect(filtered).toEqual(expected);
   });
+  it('should filter options when a tag is provided', () => {
+    const options = [
+      {
+        pathLabel: 'Do not find this',
+      },
+      {
+        pathLabel: 'Also do not find this',
+      },
+      {
+        pathLabel: 'Find this because it is tagged',
+        tags: ['tagged'],
+      },
+    ];
+    const filtered = filterOptions(options as AutocompleteItemType[], 'tagged');
+    const expected = [
+      {
+        pathLabel: 'Find this because it is tagged',
+        tags: ['tagged'],
+      },
+    ];
+    expect(filtered).toEqual(expected);
+  });
 });
 
 describe('shouldShowDropdown', () => {

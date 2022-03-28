@@ -4,8 +4,7 @@ import { render } from '@testing-library/react';
 import {
   getNodePaths,
   getLastIndexOfSubstringIgnoreCase,
-  restructureFlattenedTreeDataForAutocomplete,
-  restructureFlattenedTreeItemsForAutocomplete,
+  prepareTreeDataForAutocomplete,
   getSingleChildren,
   highlightSubstring,
   tidyUrlString,
@@ -34,6 +33,7 @@ it('should get all paths', () => {
       {
         label: 'Item 1b',
         id: 'item_1b',
+        tags: ['tag2', 'tag3'],
       },
       {
         label: 'Item 1b A',
@@ -48,6 +48,7 @@ it('should get all paths', () => {
       {
         label: 'Item 1b',
         id: 'item_1b',
+        tags: ['tag2', 'tag3'],
       },
       {
         label: 'Item 1b B',
@@ -102,6 +103,7 @@ it('should find the correct path', () => {
       {
         label: 'Item 1b',
         id: 'item_1b',
+        tags: ['tag2', 'tag3'],
       },
       {
         label: 'Item 1b B',
@@ -128,7 +130,7 @@ it('should not find the index of the last string', () => {
 
 it('should prepare all tree data for autocomplete', () => {
   const flatPaths = getNodePaths(treeData);
-  const data = restructureFlattenedTreeDataForAutocomplete(flatPaths);
+  const data = prepareTreeDataForAutocomplete(flatPaths);
   expect(data).toEqual([
     {
       id: 'item_1a',
@@ -139,11 +141,13 @@ it('should prepare all tree data for autocomplete', () => {
       id: 'item_1b_A',
       pathLabel: 'Item 1 / Item 1b / Item 1b A',
       itemLabel: 'Item 1b A',
+      tags: ['tag2', 'tag3'],
     },
     {
       id: 'item_1b_B',
       pathLabel: 'Item 1 / Item 1b / Item 1b B',
       itemLabel: 'Item 1b B',
+      tags: ['tag2', 'tag3'],
     },
     {
       id: 'item_2',
@@ -163,25 +167,6 @@ it('should prepare all tree data for autocomplete', () => {
         'Another reaaaaalllllyyyyy looooooong Item 3 / Item 3a (single child, open by default) / Item 3a B',
     },
   ]);
-});
-
-it('should prepare flattened tree data items for autocomplete', () => {
-  const items = [
-    {
-      label: 'Item 1',
-      id: 'item_1',
-    },
-    {
-      label: 'Item 1a',
-      id: 'item_1a',
-    },
-  ];
-  const data = restructureFlattenedTreeItemsForAutocomplete(items);
-  expect(data).toEqual({
-    id: 'item_1a',
-    pathLabel: 'Item 1 / Item 1a',
-    itemLabel: 'Item 1a',
-  });
 });
 
 it('should yield single children from a tree of items', () => {
