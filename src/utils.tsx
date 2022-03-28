@@ -8,20 +8,21 @@ export function getLastIndexOfSubstringIgnoreCase(
 export type BasicItem<Item> = {
   label: string;
   id: string;
+  tags?: string[];
   items?: BasicItem<Item>[];
 };
 
-export const getFlattenedPaths = <Item extends BasicItem<Item>>(
-  currentItems: Item[],
+export const getNodePaths = <Item extends BasicItem<Item>>(
+  items: Item[],
   id?: string,
   path: Item[] = []
 ) => {
   let flattened: Omit<Item, 'items'>[][] = [];
-  currentItems.forEach((node) => {
+  items.forEach((node) => {
     const { items, ...thisNode } = node;
     const nodePath = [...path, thisNode];
     if (items) {
-      const result = getFlattenedPaths(items, id, nodePath) as Omit<
+      const result = getNodePaths(items, id, nodePath) as Omit<
         Item,
         'items'
       >[][];
@@ -35,22 +36,15 @@ export const getFlattenedPaths = <Item extends BasicItem<Item>>(
   return flattened;
 };
 
-export function restructureFlattenedTreeItemsForAutocomplete<
-  Item extends BasicItem<Item>
->(items: Item[], sep = ' / ') {
-  return {
-    id: items[items.length - 1].id,
-    pathLabel: items.map((item) => item.label).join(sep),
-    itemLabel: items[items.length - 1].label,
-  };
-}
-
 export function restructureFlattenedTreeDataForAutocomplete<
   Item extends BasicItem<Item>
 >(flattenedTreeData: Item[][]) {
-  return flattenedTreeData.map((items) =>
-    restructureFlattenedTreeItemsForAutocomplete(items)
-  );
+  return flattenedTreeData.map((items) => ({
+    id: items[items.length - 1].id,
+    pathLabel: items.map((item) => item.label).join(' / '),
+    itemLabel: items[items.length - 1].label,
+    tags: items[items.length - 1].tags,
+  }));
 }
 
 export function* getSingleChildren<Item extends BasicItem<Item>>(

@@ -1,5 +1,5 @@
 import {
-  getFlattenedPaths,
+  getNodePaths,
   restructureFlattenedTreeDataForAutocomplete,
 } from '../utils';
 
@@ -7,6 +7,7 @@ export const treeData = [
   {
     label: 'Item 1',
     id: 'item_1',
+    tags: ['tag1'],
     items: [
       {
         label: 'Item 1a',
@@ -43,6 +44,7 @@ export const treeData = [
           {
             label: 'Item 3a A',
             id: 'item_3a_A',
+            tags: ['tag2', 'tag3'],
           },
           {
             label: 'Item 3a B',
@@ -54,6 +56,6 @@ export const treeData = [
   },
 ];
 
-const flatPaths = getFlattenedPaths(treeData);
+const flatPaths = getNodePaths(treeData);
 export const flattenedPaths =
   restructureFlattenedTreeDataForAutocomplete(flatPaths);

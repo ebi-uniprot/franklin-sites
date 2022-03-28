@@ -2,7 +2,7 @@
 import { render } from '@testing-library/react';
 
 import {
-  getFlattenedPaths,
+  getNodePaths,
   getLastIndexOfSubstringIgnoreCase,
   restructureFlattenedTreeDataForAutocomplete,
   restructureFlattenedTreeItemsForAutocomplete,
@@ -14,8 +14,8 @@ import {
 import { treeData } from '../mock-data/tree-data';
 
 it('should get all paths', () => {
-  const path = getFlattenedPaths(treeData);
-  expect(path).toEqual([
+  const paths = getNodePaths(treeData);
+  expect(paths).toEqual([
     [
       {
         label: 'Item 1',
@@ -92,7 +92,7 @@ it('should get all paths', () => {
 });
 
 it('should find the correct path', () => {
-  const path = getFlattenedPaths(treeData, 'item_1b_B');
+  const path = getNodePaths(treeData, 'item_1b_B');
   expect(path).toEqual([
     [
       {
@@ -112,7 +112,7 @@ it('should find the correct path', () => {
 });
 
 it('should not find any paths', () => {
-  const path = getFlattenedPaths(treeData, 'The unfindable');
+  const path = getNodePaths(treeData, 'The unfindable');
   expect(path).toEqual([]);
 });
 
@@ -127,7 +127,7 @@ it('should not find the index of the last string', () => {
 });
 
 it('should prepare all tree data for autocomplete', () => {
-  const flatPaths = getFlattenedPaths(treeData);
+  const flatPaths = getNodePaths(treeData);
   const data = restructureFlattenedTreeDataForAutocomplete(flatPaths);
   expect(data).toEqual([
     {

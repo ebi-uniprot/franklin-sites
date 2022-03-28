@@ -8,7 +8,7 @@ import Autocomplete from './autocomplete';
 
 import {
   BasicItem,
-  getFlattenedPaths,
+  getNodePaths,
   restructureFlattenedTreeDataForAutocomplete,
   getSingleChildren,
 } from '../utils';
@@ -25,7 +25,7 @@ export type TreeSelectProps<Item extends BasicItem<Item>> = {
   /**
    * What happens when something is selected
    */
-  onSelect: (item: Omit<Item, 'items'>) => void;
+  onSelect: (item: BasicItem<Item> | AutocompleteItemType) => void;
   /**
    * Contains autocomplete functionality to search through tree
    */
@@ -91,11 +91,10 @@ const TreeSelect = <Item extends BasicItem<Item>>({
       if (node.items) {
         toggleNode(node);
       } else {
-        const path = getFlattenedPaths(data, node.id)[0];
-        const leafNode = path[path.length - 1];
+        const path = getNodePaths(data, node.id)[0];
         setActiveNodes(path.map((d) => d.id));
         setOpenNodes(path.map((d) => d.id));
-        onSelect(leafNode);
+        onSelect(node);
         setShowDropdownMenu(false);
       }
     },
@@ -143,7 +142,11 @@ const TreeSelect = <Item extends BasicItem<Item>>({
     ),
     [activeNodes, handleNodeClick, openNodes]
   );
-
+  console.log(
+    data,
+    getNodePaths(data),
+    restructureFlattenedTreeDataForAutocomplete(getNodePaths(data))
+  );
   return (
     <DropdownButton label={label || 'Select'} {...props}>
       {(setShowDropdownMenu: SetShowDropdownMenu) => (
@@ -151,7 +154,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
           {autocomplete && (
             <Autocomplete
               data={restructureFlattenedTreeDataForAutocomplete(
-                getFlattenedPaths(data)
+                getNodePaths(data)
               )}
               onDropdownChange={setAutocompleteShowDropdown}
               onSelect={(node: AutocompleteItemType | string) =>

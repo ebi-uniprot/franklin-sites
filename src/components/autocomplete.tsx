@@ -18,7 +18,9 @@ import '../styles/components/autocomplete.scss';
 
 export const filterOptions = (items: AutocompleteItemType[], query: string) =>
   items.filter(
-    (item) => getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0
+    (item) =>
+      getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0 ||
+      item.tags?.some((tag) => getLastIndexOfSubstringIgnoreCase(tag, query))
   );
 
 export const shouldShowDropdown = (
@@ -32,6 +34,7 @@ export const shouldShowDropdown = (
   let showDropdown = false;
   if (trimmed && !selected && trimmed.length >= minCharsToShowDropdown) {
     const found = filter ? filterOptions(data, trimmed) : data;
+    console.log(data, found);
     showDropdown = found.length > 0;
   }
   return showDropdown;
@@ -78,6 +81,7 @@ const Autocomplete = ({
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [selected, setSelected] = useState(false);
 
+  console.log(data);
   useEffect(() => {
     setTextInputValue(value);
   }, [value]);

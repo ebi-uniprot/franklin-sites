@@ -6,6 +6,7 @@ export type AutocompleteItemType = {
   pathLabel: string;
   itemLabel: string;
   items?: AutocompleteItemType[];
+  tags?: string[];
 };
 
 type AutocompleteItemProps = {
