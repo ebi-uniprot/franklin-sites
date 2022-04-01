@@ -96,9 +96,10 @@ const TreeSelect = <Item extends BasicItem<Item>>({
         toggleNode(node);
       } else {
         const path = getNodePaths(data, node.id)[0];
+        const leafNode = path[path.length - 1];
         setActiveNodes(path.map((d) => d.id));
         setOpenNodes(path.map((d) => d.id));
-        onSelect(node);
+        onSelect(leafNode);
         setShowDropdownMenu(false);
       }
     },
