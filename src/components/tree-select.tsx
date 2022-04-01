@@ -25,7 +25,7 @@ export type TreeSelectProps<Item extends BasicItem<Item>> = {
   /**
    * What happens when something is selected
    */
-  onSelect: (item: BasicItem<Item> | AutocompleteItemType) => void;
+  onSelect: (item: Omit<Item, 'items'>) => void;
   /**
    * Contains autocomplete functionality to search through tree
    */
