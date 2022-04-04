@@ -94,14 +94,14 @@ describe('filterOptions', () => {
         pathLabel: 'Also do not find this',
       },
       {
-        pathLabel: 'Find this because it is tagged',
+        pathLabel: 'Find this because it is marked in a hidden tag',
         tags: ['tagged'],
       },
     ];
     const filtered = filterOptions(options as AutocompleteItemType[], 'tagged');
     const expected = [
       {
-        pathLabel: 'Find this because it is tagged',
+        pathLabel: 'Find this because it is marked in a hidden tag',
         tags: ['tagged'],
       },
     ];
