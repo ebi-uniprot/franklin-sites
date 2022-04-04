@@ -18,7 +18,11 @@ import '../styles/components/autocomplete.scss';
 
 export const filterOptions = (items: AutocompleteItemType[], query: string) =>
   items.filter(
-    (item) => getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0
+    (item) =>
+      getLastIndexOfSubstringIgnoreCase(item.pathLabel, query) >= 0 ||
+      item.tags?.some(
+        (tag) => getLastIndexOfSubstringIgnoreCase(tag, query) >= 0
+      )
   );
 
 export const shouldShowDropdown = (
