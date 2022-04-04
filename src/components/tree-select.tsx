@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState, useEffect } from 'react';
+import { ReactNode, useCallback, useState, useEffect, useMemo } from 'react';
 import cn from 'classnames';
 import { Except } from 'type-fest';
 
@@ -8,8 +8,8 @@ import Autocomplete from './autocomplete';
 
 import {
   BasicItem,
-  getFlattenedPaths,
-  restructureFlattenedTreeDataForAutocomplete,
+  getNodePaths,
+  prepareTreeDataForAutocomplete,
   getSingleChildren,
 } from '../utils';
 
@@ -69,6 +69,10 @@ const TreeSelect = <Item extends BasicItem<Item>>({
   const [autocompleteShowDropdown, setAutocompleteShowDropdown] =
     useState(false);
 
+  const autocompleteData = useMemo(
+    () => prepareTreeDataForAutocomplete(getNodePaths(data)),
+    [data]
+  );
   const toggleNode = useCallback(
     (node: AutocompleteItemType | BasicItem<Item>) =>
       setOpenNodes((openNodes) =>
@@ -91,7 +95,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
       if (node.items) {
         toggleNode(node);
       } else {
-        const path = getFlattenedPaths(data, node.id)[0];
+        const path = getNodePaths(data, node.id)[0];
         const leafNode = path[path.length - 1];
         setActiveNodes(path.map((d) => d.id));
         setOpenNodes(path.map((d) => d.id));
@@ -150,9 +154,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
         <>
           {autocomplete && (
             <Autocomplete
-              data={restructureFlattenedTreeDataForAutocomplete(
-                getFlattenedPaths(data)
-              )}
+              data={autocompleteData}
               onDropdownChange={setAutocompleteShowDropdown}
               onSelect={(node: AutocompleteItemType | string) =>
                 handleNodeClick(node, setShowDropdownMenu)
