@@ -24,6 +24,10 @@ type Props = {
    * Display text when the textarea is empty.
    */
   placeholder?: string;
+  /**
+   * Minimum acceptable length for a sequence
+   */
+  minimumLength?: number;
 };
 
 const SequenceSubmission = ({
@@ -31,18 +35,19 @@ const SequenceSubmission = ({
   onChange,
   placeholder,
   defaultValue,
+  minimumLength,
 }: Props) => {
   const [processed, setProcessed] = useState<SequenceObject[]>([]);
 
   const onChangeWithValidation = useCallback(
     (newValue) => {
-      const processed = sequenceProcessor(newValue);
+      const processed = sequenceProcessor(newValue, minimumLength);
       setProcessed(processed);
 
       // Calling the custom 'onChange' callback first
       onChange?.(processed);
     },
-    [onChange]
+    [onChange, minimumLength]
   );
 
   useEffect(() => {

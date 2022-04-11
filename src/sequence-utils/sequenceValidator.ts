@@ -175,7 +175,7 @@ export function findLikelyType(sequence: string) {
  * @param {string} sequence - A sequence
  * @return {object} The result
  */
-export function sequenceValidator(sequence: string) {
+export function sequenceValidator(sequence: string, minimumLength?: number) {
   // Sequence was not passed at all
   if (!sequence) {
     return errorResponses.missingSequence;
@@ -198,9 +198,7 @@ export function sequenceValidator(sequence: string) {
   if (!cleanSequence) {
     return errorResponses.missingSequence;
   }
-
-  // Minimum length from: https://www.ebi.ac.uk/ipd/imgt/hla/blast.html
-  if (cleanSequence.length < 11) {
+  if (minimumLength && cleanSequence.length <= minimumLength) {
     return errorResponses.shortSequence;
   }
 
@@ -233,7 +231,7 @@ export function sequenceValidator(sequence: string) {
  * @return {Array<object|null>} The result of validating each sequence
  * while keeping order intact.
  */
-function validateSequences(input: string | string[]) {
+function validateSequences(input: string | string[], minimumLength?: number) {
   let sequences: string[] = [];
   // Is this a string?
   if (typeof input === 'string') {
@@ -268,7 +266,9 @@ function validateSequences(input: string | string[]) {
   }
 
   // Validate each sequence separately, compile and return the results
-  return sequences.map((sequence) => sequenceValidator(sequence));
+  return sequences.map((sequence) =>
+    sequenceValidator(sequence, minimumLength)
+  );
 }
 
 export default validateSequences;
