@@ -1,5 +1,5 @@
 import { forwardRef, FC, ReactNode, HTMLAttributes, ReactText } from 'react';
-import { NavLink, Link, LinkProps } from 'react-router-dom';
+import { NavLink, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
 import '../styles/components/card.scss';
@@ -42,41 +42,14 @@ type Props = {
    * Links to be displayed at the bottom of the card
    */
   links?: Array<CardActionProps>;
-  /**
-   * Target/link of the card when clicking on it
-   */
-  to?: LinkProps['to'];
 };
 
 const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
   (
-    {
-      header,
-      headerSeparator = true,
-      children,
-      links,
-      to,
-      className,
-      ...props
-    },
+    { header, headerSeparator = true, children, links, className, ...props },
     ref
   ) => (
-    <section
-      className={cn(className, 'card', {
-        'card--has-link': to,
-      })}
-      ref={ref}
-      {...props}
-    >
-      {to && (
-        <Link
-          data-testid="background-link"
-          to={to}
-          className="card__link"
-          aria-hidden="true"
-          tabIndex={-1}
-        />
-      )}
+    <section className={cn(className, 'card')} ref={ref} {...props}>
       <div className="card__container">
         {header && (
           <div
@@ -87,7 +60,7 @@ const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
             {header}
           </div>
         )}
-        <div className="card__content">{children}</div>
+        {children && <div className="card__content">{children}</div>}
       </div>
       {links?.length ? (
         <div className="card__actions">

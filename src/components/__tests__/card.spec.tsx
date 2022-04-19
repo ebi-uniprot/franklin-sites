@@ -1,5 +1,3 @@
-import { screen, fireEvent } from '@testing-library/react';
-
 import Card from '../card';
 
 import renderWithRouter from '../../testHelpers/renderWithRouter';
@@ -29,16 +27,5 @@ describe('Card component', () => {
       </Card>
     );
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('should render card with target', () => {
-    const { asFragment, history } = renderWithRouter(
-      <Card header={<h2>Title</h2>} to="/target">
-        <span>Some content</span>
-      </Card>
-    );
-    expect(asFragment()).toMatchSnapshot();
-    fireEvent.click(screen.getByTestId('background-link'));
-    expect(history.location.pathname).toBe('/target');
   });
 });

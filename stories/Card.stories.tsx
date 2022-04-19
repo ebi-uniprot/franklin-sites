@@ -68,7 +68,6 @@ export const Card = () => {
         ) : undefined
       }
       headerSeparator={hasHeaderSeparator}
-      to={boolean('to', false, 'Props') ? '#' : undefined}
       links={boolean('links', false, 'Props') ? links : undefined}
     >
       {getLipsumSentences()}

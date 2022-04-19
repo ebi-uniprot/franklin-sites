@@ -65,7 +65,7 @@ const DataListItem = <Datum extends BasicDatum>({
     }
   }
 
-  return <section key={id}>{rendered}</section>;
+  return <li key={id}>{rendered}</li>;
 };
 const MemoizedDataListItem = memo(DataListItem) as typeof DataListItem;
 
@@ -77,13 +77,13 @@ export const DataList = <Datum extends BasicDatum>({
   onSelectionChange,
   className,
   ...props
-}: Props<Datum> & HTMLAttributes<HTMLDivElement>) => {
+}: Props<Datum> & HTMLAttributes<HTMLUListElement>) => {
   const { checkboxContainerRef } = useDataCheckboxes(onSelectionChange);
 
   return (
-    <div
+    <ul
       {...props}
-      className={cn('data-list', className)}
+      className={cn('data-list', 'no-bullet', className)}
       ref={checkboxContainerRef}
     >
       {data.map((datum, index) => {
@@ -99,7 +99,7 @@ export const DataList = <Datum extends BasicDatum>({
           />
         );
       })}
-    </div>
+    </ul>
   );
 };
 
