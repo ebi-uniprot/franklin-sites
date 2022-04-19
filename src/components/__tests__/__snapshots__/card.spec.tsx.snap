@@ -64,37 +64,3 @@ exports[`Card component should render card with links 1`] = `
   </section>
 </DocumentFragment>
 `;
-
-exports[`Card component should render card with target 1`] = `
-<DocumentFragment>
-  <section
-    class="card card--has-link"
-  >
-    <a
-      aria-hidden="true"
-      class="card__link"
-      data-testid="background-link"
-      href="/target"
-      tabindex="-1"
-    />
-    <div
-      class="card__container"
-    >
-      <div
-        class="card__header card__header--with-separator"
-      >
-        <h2>
-          Title
-        </h2>
-      </div>
-      <div
-        class="card__content"
-      >
-        <span>
-          Some content
-        </span>
-      </div>
-    </div>
-  </section>
-</DocumentFragment>
-`;

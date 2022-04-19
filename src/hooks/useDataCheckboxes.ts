@@ -50,9 +50,9 @@ const useDataCheckboxes = (
 ) => {
   // HTML elements refs
   const privateSelectAllRef = useRef<HTMLInputElement | null>(null);
-  const privateCheckboxContainerRef = useRef<HTMLTableSectionElement | null>(
-    null
-  );
+  const privateCheckboxContainerRef = useRef<
+    HTMLTableSectionElement | HTMLUListElement | null
+  >(null);
   const lastTickedRef = useRef<HTMLInputElement | null>(null);
 
   // Bind click event to native event on select-all checkbox
@@ -91,7 +91,7 @@ const useDataCheckboxes = (
 
   // Bind click event to native event using event delegation on container
   const checkboxContainerRef = useCallback(
-    (checkboxContainer: HTMLTableSectionElement | null) => {
+    (checkboxContainer: HTMLTableSectionElement | HTMLUListElement | null) => {
       privateCheckboxContainerRef.current = checkboxContainer;
       if (!(onSelectionChange && checkboxContainer)) {
         return;
