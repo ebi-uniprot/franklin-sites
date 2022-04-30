@@ -2,60 +2,60 @@
 
 exports[`DataList should render autoload 1`] = `
 <DocumentFragment>
-  <div
-    class="data-list"
+  <ul
+    class="data-list no-bullet"
   >
-    <section>
+    <li>
       <p>
         0
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         1
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         2
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         3
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         4
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         5
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         6
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         7
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         8
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         9
       </p>
-    </section>
-  </div>
+    </li>
+  </ul>
   <div
     class="data-loader__loading"
   >
@@ -72,60 +72,60 @@ exports[`DataList should render autoload 1`] = `
 
 exports[`DataList should render click-to-load 1`] = `
 <DocumentFragment>
-  <div
-    class="data-list"
+  <ul
+    class="data-list no-bullet"
   >
-    <section>
+    <li>
       <p>
         0
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         1
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         2
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         3
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         4
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         5
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         6
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         7
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         8
       </p>
-    </section>
-    <section>
+    </li>
+    <li>
       <p>
         9
       </p>
-    </section>
-  </div>
+    </li>
+  </ul>
   <div
     class="data-loader__loading"
   >

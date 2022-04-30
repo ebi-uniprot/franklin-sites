@@ -20,12 +20,18 @@ const getNewSequenceObject = (): SequenceObject => ({
   sequence: '',
 });
 
-const validate = (sequenceObject: SequenceObject): SequenceObject => {
-  const validation = sequenceValidator(sequenceObject.sequence);
+const validate = (
+  sequenceObject: SequenceObject,
+  minimumLength?: number
+): SequenceObject => {
+  const validation = sequenceValidator(sequenceObject.sequence, minimumLength);
   return { ...validation, ...sequenceObject };
 };
 
-const sequenceProcessor = (rawText: string): SequenceObject[] => {
+const sequenceProcessor = (
+  rawText: string,
+  minimumLength?: number
+): SequenceObject[] => {
   const sequences: SequenceObject[] = [];
   let currentSequence = getNewSequenceObject();
   for (const line of rawText.split('\n')) {
@@ -37,7 +43,7 @@ const sequenceProcessor = (rawText: string): SequenceObject[] => {
       if (currentSequence.sequence) {
         // if we already have sequence data being processed
         // store current sequence
-        sequences.push(validate(currentSequence));
+        sequences.push(validate(currentSequence, minimumLength));
 
         // and start new sequence
         currentSequence = getNewSequenceObject();

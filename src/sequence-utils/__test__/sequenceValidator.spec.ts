@@ -50,13 +50,13 @@ describe('validateSequences', () => {
     expect(results).toEqual([errorResponses.missingSequence]);
   });
 
-  it('should fail if a sequence is too short', () => {
-    results = validateSequences([shortSequence]);
+  it('should fail if a sequence is "too short"', () => {
+    results = validateSequences([shortSequence], 11);
     expect(results).toEqual([errorResponses.shortSequence]);
   });
 
   it('should NOT fail if a sequence is too short after clean-up', () => {
-    results = validateSequences([shortSequenceAfterCleanUp]);
+    results = validateSequences([shortSequenceAfterCleanUp], 11);
     expectedResult = [
       {
         ...validResponse,

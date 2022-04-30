@@ -13,50 +13,22 @@ $card-link-padding: 0.5rem;
   width: calc(100% - #{$global-padding});
   position: relative;
 
-  &__link {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-  }
-
-  &__container,
-  &__actions {
-    position: relative;
-  }
-
-  &--has-link {
-    transition: 0.5s background-color ease;
-
-    &:hover,
-    &:focus-within {
-      background-color: scale-color($color: $colour-platinum, $lightness: 40%);
-    }
-
-    * {
-      pointer-events: none;
-    }
-
-    a,
-    button,
-    input,
-    label {
-      pointer-events: initial;
-    }
-  }
-
-  &__content {
+  &__container {
     padding: $global-padding;
+    padding-block: 0.5 * $global-padding;
   }
 
   &__header {
     display: flex;
     align-items: baseline;
-    padding-left: $global-padding;
+    position: relative;
 
-    &--with-separator {
+    &--with-separator::after {
+      content: '';
+      position: absolute;
+      left: -$global-padding;
+      right: -$global-padding;
+      bottom: 0;
       border-bottom: 0.125rem solid $colour-platinum;
     }
 
