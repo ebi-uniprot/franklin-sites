@@ -16,8 +16,8 @@ export { default as DisplayMenu } from './display-menu';
 export { default as DoughnutChart } from './doughnut-chart';
 export {
   default as DropdownButton,
+  ControlledDropdown,
   Dropdown,
-  UncontrolledDropdown,
 } from './dropdown-button';
 export { default as EllipsisReveal } from './ellipsis-reveal';
 export { default as EvidenceTag } from './evidence-tag';

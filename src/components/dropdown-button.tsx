@@ -30,11 +30,13 @@ export type DropdownButtonProps = {
    */
   label: ReactNode;
   /**
-   * open on pointer over (useful for dropdowns in header)
+   * Open on pointer over (useful for dropdowns in header)
    */
   openOnHover?: boolean;
 } & ButtonProps;
 
+// Keep it around for now as it's still used in TreeSelect
+/** @deprecated */
 const DropdownButton = ({
   children,
   label,
@@ -126,14 +128,20 @@ const DropdownButton = ({
   );
 };
 
-type DropdownProps = {
+type ControlledDropdownProps = {
+  /**
+   * Element always visible used to open and close the dropdown
+   */
   visibleElement: ReactElement;
+  /**
+   * Whether the dropdown is open or closed
+   */
   expanded: boolean;
 };
 
-export const Dropdown = forwardRef<
+export const ControlledDropdown = forwardRef<
   HTMLDivElement,
-  DropdownProps & HTMLAttributes<HTMLSpanElement>
+  ControlledDropdownProps & HTMLAttributes<HTMLSpanElement>
 >(
   (
     {
@@ -159,12 +167,27 @@ export const Dropdown = forwardRef<
   )
 );
 
-export const UncontrolledDropdown = ({
+type DropdownProps = {
+  /**
+   * Prop that, when it changes, will cause the dropdown to close
+   */
+  propChangeToClose?: unknown;
+};
+
+export const Dropdown = ({
   visibleElement,
+  propChangeToClose,
   ...props
-}: Omit<DropdownProps, 'expanded'> & HTMLAttributes<HTMLSpanElement>) => {
+}: Omit<ControlledDropdownProps, 'expanded'> &
+  DropdownProps &
+  HTMLAttributes<HTMLSpanElement>) => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  // Effect in order to close the dropdown when the corresponding prop changes
+  useEffect(() => {
+    setExpanded(false);
+  }, [propChangeToClose]);
 
   // effect to handle a click on anything closing the dropdown
   useEffect(() => {
@@ -197,7 +220,7 @@ export const UncontrolledDropdown = ({
   );
 
   return (
-    <Dropdown
+    <ControlledDropdown
       visibleElement={cloneElement(visibleElement, { onClick: handleClick })}
       {...props}
       expanded={expanded}

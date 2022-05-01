@@ -11,6 +11,10 @@
   .action-bar,
   .info-list {
     margin: $global-margin * 0.5;
+
+    input {
+      margin-block-end: 0;
+    }
   }
 
   .sequence {

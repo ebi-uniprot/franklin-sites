@@ -1,5 +1,5 @@
-import { Button, DropdownButton } from '.';
-import { UncontrolledDropdown } from './dropdown-button';
+import { Button } from '.';
+import { Dropdown } from './dropdown-button';
 
 const expasyPrefixUrl = '//web.expasy.org/cgi-bin';
 const sequenceTools = [
@@ -31,9 +31,7 @@ type SequenceToolsProps = {
 };
 
 const SequenceTools = ({ accession, onBlastClick }: SequenceToolsProps) => (
-  <UncontrolledDropdown
-    visibleElement={<Button variant="tertiary">Tools</Button>}
-  >
+  <Dropdown visibleElement={<Button variant="tertiary">Tools</Button>}>
     <ul>
       {onBlastClick && (
         <li>
@@ -54,7 +52,7 @@ const SequenceTools = ({ accession, onBlastClick }: SequenceToolsProps) => (
         </li>
       ))}
     </ul>
-  </UncontrolledDropdown>
+  </Dropdown>
 );
 
 export default SequenceTools;

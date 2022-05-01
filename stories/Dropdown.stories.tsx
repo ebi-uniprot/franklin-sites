@@ -1,13 +1,7 @@
-import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import { Fragment } from 'react';
 
-import {
-  DropdownButton,
-  Button,
-  Dropdown,
-  UncontrolledDropdown,
-} from '../src/components';
+import { Button, ControlledDropdown, Dropdown } from '../src/components';
 
 export default {
   title: 'Forms/Dropdown button',
@@ -21,33 +15,6 @@ export default {
 
 const variants = ['primary', 'secondary', 'tertiary'] as const;
 
-export const dropdownButton = () => (
-  <div>
-    <p>Uncontrolled dropdowns</p>
-    {variants.map((variant) => (
-      <span key={variant}>
-        <DropdownButton
-          label="Download"
-          onSelect={action('onSelect')}
-          variant={variant}
-        >
-          <div className="dropdown-menu__content">
-            <p>Download content from:</p>
-            <ul>
-              <li>
-                <a href="//www.uniprot.org">UniProt</a>
-              </li>
-              <li>
-                <a href="//www.ensembl.org">Ensembl</a>
-              </li>
-            </ul>
-          </div>
-        </DropdownButton>
-      </span>
-    ))}
-  </div>
-);
-
 export const controlledDropdown = () => {
   const expanded = boolean('expanded', false);
 
@@ -56,7 +23,7 @@ export const controlledDropdown = () => {
       <p>Controlled dropdowns (trigger through storybook knobs)</p>
       {variants.map((variant) => (
         <Fragment key={variant}>
-          <Dropdown
+          <ControlledDropdown
             visibleElement={<Button variant={variant}>Download</Button>}
             expanded={expanded}
           >
@@ -69,21 +36,19 @@ export const controlledDropdown = () => {
                 <a href="//www.ensembl.org">Ensembl</a>
               </li>
             </ul>
-          </Dropdown>{' '}
+          </ControlledDropdown>{' '}
         </Fragment>
       ))}
     </div>
   );
 };
 
-export const uncontrolledDropdown = () => (
+export const dropdown = () => (
   <div>
-    <p>Uncontrolled dropdowns</p>
+    <p>Uncontrolled/automatic dropdowns</p>
     {variants.map((variant) => (
       <Fragment key={variant}>
-        <UncontrolledDropdown
-          visibleElement={<Button variant={variant}>Download</Button>}
-        >
+        <Dropdown visibleElement={<Button variant={variant}>Download</Button>}>
           <div>
             <p>Download content from:</p>
             <ul className="no-bullet">
@@ -95,7 +60,7 @@ export const uncontrolledDropdown = () => (
               </li>
             </ul>
           </div>
-        </UncontrolledDropdown>{' '}
+        </Dropdown>{' '}
       </Fragment>
     ))}
   </div>

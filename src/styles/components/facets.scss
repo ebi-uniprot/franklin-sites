@@ -24,7 +24,8 @@
       width: 100%;
       line-height: $global-lineheight;
       text-align: left;
-      padding: $global-margin * 0.3333333333;
+      padding: $global-padding * 0.3333333333;
+      padding-inline-end: 2ch; // Keep a bit more space for the "x"
 
       &:hover {
         background: $colour-hover;

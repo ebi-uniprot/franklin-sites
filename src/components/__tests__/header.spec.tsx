@@ -6,7 +6,7 @@ import {
   ExternalLink,
   HelpIcon,
   MainSearch,
-  UncontrolledDropdown,
+  Dropdown,
 } from '..';
 
 import renderWithRouter from '../../testHelpers/renderWithRouter';
@@ -36,14 +36,14 @@ describe('Header component', () => {
         <Link to="/there">there</Link>
         <ExternalLink url="www.ebi.ac.uk">EBI</ExternalLink>
         <Button onClick={jest.fn()}>Action</Button>
-        <UncontrolledDropdown
+        <Dropdown
           visibleElement={<Button variant="tertiary">sub links</Button>}
         >
           <Link to="/sub-link-a">sub link A</Link>
           <Link to="/sub-link-b">
             <span>sub link B</span>
           </Link>
-        </UncontrolledDropdown>
+        </Dropdown>
       </Header>
     );
 

@@ -5,7 +5,6 @@ exports[`MainSearch component should render 1`] = `
   <form
     aria-label="Main search"
     class="main-search"
-    style="--main-button-color: #00639a;"
   >
     <div
       class="main-search__input-container"
@@ -31,20 +30,19 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
   <form
     aria-label="Main search"
     class="main-search"
-    style="--main-button-color: #00639a;"
   >
     <div
-      class="dropdown-container"
+      aria-expanded="false"
+      aria-haspopup="true"
+      class="dropdown"
     >
       <button
-        class="button primary dropdown"
+        class="button primary"
+        style="--main-button-color: #00639a;"
         type="button"
       >
         One
       </button>
-      <div
-        class="dropdown-menu"
-      />
     </div>
     <div
       class="main-search__input-container"

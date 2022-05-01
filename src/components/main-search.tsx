@@ -1,12 +1,12 @@
 import {
+  CSSProperties,
   Fragment,
   InputHTMLAttributes,
   SyntheticEvent,
   useMemo,
-  useState,
 } from 'react';
 
-import { Dropdown, UncontrolledDropdown } from './dropdown-button';
+import { Dropdown } from './dropdown-button';
 import Button from './button';
 
 import color from '../styles/colours.json';
@@ -14,6 +14,10 @@ import color from '../styles/colours.json';
 import { FranklinStyle } from '../types/common';
 
 import '../styles/components/main-search.scss';
+
+interface InputInternalStyle extends CSSProperties {
+  '--input-padding': string;
+}
 
 export type MainSearchProps = {
   /**
@@ -59,8 +63,6 @@ const MainSearch = ({
   secondaryButtons,
   ...props
 }: MainSearchProps) => {
-  const [expanded, setExpanded] = useState(false);
-
   const style = useMemo<FranklinStyle>(
     () => ({
       '--main-button-color':
@@ -69,17 +71,11 @@ const MainSearch = ({
     [selectedNamespace]
   );
 
-  const inputStyle = useMemo(() => {
+  const inputStyle = useMemo<InputInternalStyle | undefined>(() => {
     const count =
       secondaryButtons &&
       countCharacters(secondaryButtons.map(({ label }) => label));
-    return count
-      ? {
-          paddingRight: `${count}ch`,
-          // Add 2 more characters' width, to be able to click on some text
-          minWidth: `${count + 2}ch`,
-        }
-      : undefined;
+    return count ? { '--input-padding': `${count}ch` } : undefined;
   }, [secondaryButtons]);
 
   return (
@@ -87,10 +83,7 @@ const MainSearch = ({
       {Object.keys(namespaces).length > 0 && onNamespaceChange && (
         <Dropdown
           visibleElement={
-            <Button
-              style={style}
-              onClick={() => setExpanded((expanded) => !expanded)}
-            >
+            <Button variant="primary" style={style}>
               {
                 namespaces[
                   // Pick the first item if nothing defined
@@ -99,7 +92,7 @@ const MainSearch = ({
               }
             </Button>
           }
-          expanded={expanded}
+          propChangeToClose={selectedNamespace}
         >
           <ul className="no-bullet">
             {Object.keys(namespaces).map((key) => (
@@ -108,7 +101,6 @@ const MainSearch = ({
                   variant="tertiary"
                   onClick={() => {
                     onNamespaceChange(key);
-                    setExpanded(false);
                   }}
                 >
                   {namespaces[key]}

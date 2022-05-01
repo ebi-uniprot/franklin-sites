@@ -10,7 +10,7 @@ import {
   Header,
   HelpIcon,
   MainSearch,
-  UncontrolledDropdown,
+  Dropdown,
   ExternalLink,
 } from '../src/components';
 
@@ -66,9 +66,7 @@ export const header = () => (
     isNegative={boolean('Negative', true)}
   >
     <Link to="/">Link 1</Link>
-    <UncontrolledDropdown
-      visibleElement={<Button variant="tertiary">Links 2</Button>}
-    >
+    <Dropdown visibleElement={<Button variant="tertiary">Links 2</Button>}>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <Link to="/">sublink 1</Link>
         <Link to="/">sublink 2</Link>
@@ -78,7 +76,7 @@ export const header = () => (
           action
         </Button>
       </div>
-    </UncontrolledDropdown>
+    </Dropdown>
     <Link to="/">Link 3</Link>
     <Button variant="tertiary" onClick={action('onClick')}>
       action
