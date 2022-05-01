@@ -1,6 +1,8 @@
 @import '../colours';
+@import '../common/typography';
 
 .main-search {
+  $self: &;
   display: flex;
 
   & > input,
@@ -9,21 +11,47 @@
     margin: 0;
   }
 
+  .dropdown__content {
+    padding: 0;
+
+    button.button {
+      color: black;
+    }
+  }
+
+  /* Specificity fight dropdown having a specificity fight with foundation 🙄 */
+  .dropdown > button.button:first-child {
+    margin-inline-end: 0;
+  }
+
   .button {
     border: none;
   }
 
-  .dropdown-container {
-    .button {
-      display: flex;
-    }
-  }
   &__input-container {
     display: flex;
     position: relative;
     width: 100%;
+
     input {
       margin: 0;
+
+      /* So that the search text doesn't go below the secondary buttons */
+      padding-inline-end: var(--input-padding, 0ch);
+      /* Add 2 more characters' width, to be able to click on some text */
+      min-inline-size: calc(var(--input-padding, 0ch) + 2ch);
+
+      /* For screen not too big, hide secondary items on input focus */
+      @media (max-width: 1200px) {
+        .header &:focus {
+          padding-inline-end: initial;
+
+          & + #{ $self }__secondary-container {
+            opacity: 0;
+            pointer-events: none;
+          }
+        }
+      }
     }
   }
 

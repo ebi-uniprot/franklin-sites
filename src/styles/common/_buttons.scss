@@ -3,12 +3,9 @@
 
 .button {
   --main-color: var(--main-button-color, #{$colour-sea-blue});
+  white-space: nowrap;
 
   user-select: none;
-
-  &.dropdown::after {
-    border-color: currentColor transparent transparent;
-  }
 
   svg {
     width: 0.9rem;

@@ -14,7 +14,7 @@ import {
   InfoList,
   DownloadIcon,
   SpinnerIcon,
-  DropdownButton,
+  Dropdown,
   SequenceTools,
   CopyToClipboard,
   Button,
@@ -223,25 +223,25 @@ const Sequence = ({
               </a>
             )}
             {addToBasketButton}
-            <DropdownButton label="Highlight" className="tertiary">
-              <div className="dropdown-menu__content">
-                {aaProps.map((aaProp) => {
-                  const inputId = `${accession}-${aaProp.name}`;
-                  return (
-                    <label key={aaProp.name} htmlFor={inputId}>
-                      <input
-                        type="checkbox"
-                        id={inputId}
-                        onChange={() => handleToggleHighlight(aaProp)}
-                        checked={highlights.includes(aaProp)}
-                        style={{ accentColor: aaProp.colour } as CSSProperties}
-                      />
-                      {aaProp.name}
-                    </label>
-                  );
-                })}
-              </div>
-            </DropdownButton>
+            <Dropdown
+              visibleElement={<Button variant="tertiary">Highlight</Button>}
+            >
+              {aaProps.map((aaProp) => {
+                const inputId = `${accession}-${aaProp.name}`;
+                return (
+                  <label key={aaProp.name} htmlFor={inputId}>
+                    <input
+                      type="checkbox"
+                      id={inputId}
+                      onChange={() => handleToggleHighlight(aaProp)}
+                      checked={highlights.includes(aaProp)}
+                      style={{ accentColor: aaProp.colour } as CSSProperties}
+                    />
+                    {aaProp.name}
+                  </label>
+                );
+              })}
+            </Dropdown>
             <CopyToClipboard
               textToCopy={sequence}
               beforeCopy="Copy sequence"

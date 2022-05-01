@@ -4,8 +4,13 @@ import {
   useEffect,
   useMemo,
   ReactNode,
+  ReactElement,
   Dispatch,
   SetStateAction,
+  HTMLAttributes,
+  cloneElement,
+  useCallback,
+  forwardRef,
 } from 'react';
 import cn from 'classnames';
 
@@ -25,11 +30,13 @@ export type DropdownButtonProps = {
    */
   label: ReactNode;
   /**
-   * open on pointer over (useful for dropdowns in header)
+   * Open on pointer over (useful for dropdowns in header)
    */
   openOnHover?: boolean;
 } & ButtonProps;
 
+// Keep it around for now as it's still used in TreeSelect
+/** @deprecated */
 const DropdownButton = ({
   children,
   label,
@@ -118,6 +125,107 @@ const DropdownButton = ({
           (typeof children === 'function' ? children(setShowMenu) : children)}
       </div>
     </div>
+  );
+};
+
+type ControlledDropdownProps = {
+  /**
+   * Element always visible used to open and close the dropdown
+   */
+  visibleElement: ReactElement;
+  /**
+   * Whether the dropdown is open or closed
+   */
+  expanded: boolean;
+};
+
+export const ControlledDropdown = forwardRef<
+  HTMLDivElement,
+  ControlledDropdownProps & HTMLAttributes<HTMLSpanElement>
+>(
+  (
+    {
+      visibleElement,
+      expanded,
+      children,
+      className,
+      'aria-haspopup': ariaHaspopup,
+      ...props
+    },
+    ref
+  ) => (
+    <div
+      className={cn(className, 'dropdown')}
+      {...props}
+      aria-expanded={expanded}
+      aria-haspopup={ariaHaspopup || true}
+      ref={ref}
+    >
+      {visibleElement}
+      {expanded && <div className="dropdown__content">{children}</div>}
+    </div>
+  )
+);
+
+type DropdownProps = {
+  /**
+   * Prop that, when it changes, will cause the dropdown to close
+   */
+  propChangeToClose?: unknown;
+};
+
+export const Dropdown = ({
+  visibleElement,
+  propChangeToClose,
+  ...props
+}: Omit<ControlledDropdownProps, 'expanded'> &
+  DropdownProps &
+  HTMLAttributes<HTMLSpanElement>) => {
+  const [expanded, setExpanded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Effect in order to close the dropdown when the corresponding prop changes
+  useEffect(() => {
+    setExpanded(false);
+  }, [propChangeToClose]);
+
+  // effect to handle a click on anything closing the dropdown
+  useEffect(() => {
+    if (!expanded) {
+      return;
+    }
+
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (
+        !ref.current ||
+        (event.target && ref.current?.contains(event.target as Node))
+      ) {
+        return;
+      }
+      setExpanded(false);
+    };
+
+    window.document.addEventListener('mouseup', listener, { passive: true });
+    window.document.addEventListener('touchend', listener, { passive: true });
+    // eslint-disable-next-line consistent-return
+    return () => {
+      window.document.removeEventListener('mouseup', listener);
+      window.document.removeEventListener('touchend', listener);
+    };
+  }, [expanded]);
+
+  const handleClick = useCallback(
+    () => setExpanded((expanded) => !expanded),
+    []
+  );
+
+  return (
+    <ControlledDropdown
+      visibleElement={cloneElement(visibleElement, { onClick: handleClick })}
+      {...props}
+      expanded={expanded}
+      ref={ref}
+    />
   );
 };
 

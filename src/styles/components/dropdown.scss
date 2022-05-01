@@ -3,14 +3,102 @@
 @import '../common/z-index';
 @import '../mixins';
 
+// For legacy dropdown (using borders)
+.button.dropdown::after {
+  border-top-color: currentColor;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+
+  /* Specificity fight with foundation */
+  & > button.button {
+    &:first-child {
+      margin-inline-end: 1rem;
+      /* A bit of space for the dropdown indicator */
+      padding-inline-end: 1.5ch;
+    }
+
+    &.primary,
+    &.secondary {
+      &:first-child {
+        /* A bit more space for the dropdown indicator for non-tertiary */
+        padding-inline-end: 2.5ch;
+      }
+    }
+  }
+
+  & > :first-child::after {
+    content: '▸';
+    position: absolute;
+    margin-inline-start: 0.5ch;
+
+    transition: transform 0.25s ease-out;
+    transform: rotateZ(0);
+
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: 0s;
+    }
+
+    &:hover,
+    &:focus {
+      &:after {
+        will-change: transform;
+      }
+    }
+  }
+
+  &[aria-expanded='true'] > :first-child::after {
+    transform: rotateZ(90deg);
+  }
+
+  /* Override of franklin patterns when used within */
+  /* try to keep as little as possible, watch out of specificity wars */
+  .button {
+    margin-block-end: 0;
+    margin-inline-end: 0;
+  }
+
+  ul {
+    margin-inline-start: 0;
+    margin-block-end: 0;
+  }
+}
+
+.dropdown__content {
+  @include box-shadow();
+  overflow-y: auto;
+  width: max-content;
+  z-index: $z-index-high;
+  animation: 200ms reveal;
+  background: #fff;
+  position: absolute;
+  padding: 0.5 * $global-padding;
+  border-radius: 0 0 0.2rem 0.2rem;
+
+  button.button,
+  a {
+    display: inline-block;
+    color: $colour-yankees-blue;
+    margin: 0;
+    padding: 0.25em 1ch;
+    width: 100%;
+    line-height: 2;
+    border: none;
+    font-weight: normal;
+
+    &:hover,
+    &:focus-visible {
+      background: $colour-platinum;
+    }
+  }
+}
+
 .dropdown-container {
   position: relative;
   display: inline-block;
-
-  button {
-    white-space: nowrap;
-    margin: 0 0 1rem 0;
-  }
 }
 
 .hover {
@@ -19,6 +107,7 @@
   background: $colour-platinum;
 }
 
+.dropdown-content,
 .dropdown-menu {
   --main-button-color: black;
 

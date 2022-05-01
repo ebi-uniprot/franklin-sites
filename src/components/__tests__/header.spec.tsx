@@ -1,4 +1,14 @@
-import { BasketIcon, EnvelopeIcon, HelpIcon, MainSearch } from '..';
+import { Link } from 'react-router-dom';
+import {
+  BasketIcon,
+  Button,
+  EnvelopeIcon,
+  ExternalLink,
+  HelpIcon,
+  MainSearch,
+  Dropdown,
+} from '..';
+
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
 import Header from '../header';
@@ -7,26 +17,34 @@ describe('Header component', () => {
   it('should render', () => {
     const { asFragment } = renderWithRouter(
       <Header
-        items={[
-          { path: '/here', label: <strong>here</strong> },
-          { path: '/there', label: 'there' },
-          { href: 'www.ebi.ac.uk', label: 'EBI' },
-          { onClick: jest.fn(), label: 'action' },
-          {
-            items: [
-              { path: '/sub-link-a', label: 'sub link A' },
-              { path: '/sub-link-b', label: <span>sub link b</span> },
-            ],
-            label: 'sub links',
-          },
-        ]}
-        secondaryItems={[
-          { label: <HelpIcon />, path: '/' },
-          { label: <EnvelopeIcon />, path: '/' },
-          { label: <BasketIcon />, path: '/' },
-        ]}
+        secondaryItems={
+          <>
+            <Link to="/">
+              <HelpIcon />
+            </Link>
+            <Link to="/">
+              <EnvelopeIcon />
+            </Link>
+            <Link to="/">
+              <BasketIcon />
+            </Link>
+          </>
+        }
         search={<MainSearch onTextChange={jest.fn()} onSubmit={jest.fn()} />}
-      />
+      >
+        <Link to="/here">here</Link>
+        <Link to="/there">there</Link>
+        <ExternalLink url="www.ebi.ac.uk">EBI</ExternalLink>
+        <Button onClick={jest.fn()}>Action</Button>
+        <Dropdown
+          visibleElement={<Button variant="tertiary">sub links</Button>}
+        >
+          <Link to="/sub-link-a">sub link A</Link>
+          <Link to="/sub-link-b">
+            <span>sub link B</span>
+          </Link>
+        </Dropdown>
+      </Header>
     );
 
     expect(asFragment()).toMatchSnapshot();

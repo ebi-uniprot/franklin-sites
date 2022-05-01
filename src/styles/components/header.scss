@@ -2,8 +2,6 @@
 @import '../colours';
 @import '../mixins';
 
-$content-width: 90%;
-
 .header,
 .hero-header {
   display: flex;
@@ -25,17 +23,18 @@ $content-width: 90%;
     flex: 0 0 auto;
   }
 
-  &.header--negative {
+  &.header--negative,
+  & .dropdown__content {
     justify-content: space-between;
     color: $colour-sapphire-blue;
     background: $colour-sky-white;
 
-    a.button,
+    a,
     button.button,
-    a.button:link,
-    a.button:visited,
-    a.button:hover,
-    a.button:active,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
     .header__logo > a {
       color: $colour-sapphire-blue;
     }
@@ -45,33 +44,16 @@ $content-width: 90%;
     }
   }
 
-  a.button,
+  a,
   button.button,
-  a.button:link,
-  a.button:visited,
-  a.button:hover,
-  a.button:active,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active,
   .header__logo > a {
     color: $colour-sky-white;
-
-    &.button.dropdown {
-      margin-bottom: 0;
-
-      &:after {
-        margin-left: 0.25em;
-      }
-    }
-  }
-
-  .dropdown-menu {
-    a.button,
-    button.button,
-    a.button:link,
-    a.button:visited,
-    a.button:hover,
-    a.button:active {
-      color: $colour-sapphire-blue;
-    }
+    margin-bottom: 0;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
   }
 
   &__logo {
@@ -83,9 +65,10 @@ $content-width: 90%;
     list-style: none;
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
     align-items: center;
     margin: 0;
+    padding: 0 0.5ch;
+    gap: 0.5ch;
 
     // Hide the scroll bar in the header
     scrollbar-width: none;
@@ -93,36 +76,29 @@ $content-width: 90%;
       display: none;
     }
 
-    a.button,
+    a,
     button.button {
+      margin: 0.1rem 0.25rem;
+      border-bottom: 1px solid transparent;
+
       &:hover {
-        border-bottom: 1px solid currentColor;
+        border-bottom-color: currentColor;
       }
     }
 
-    li {
-      display: contents;
-
-      & > a.button,
-      & > button.button {
-        margin: 0.1rem 0.25rem; // .1rem to align with dropdown
-        font-size: 1rem; // match font-size in dropdown button
+    // cancel the previous rule when inside a dropdown
+    .dropdown {
+      a,
+      button.button {
+        margin: 0;
+        border-bottom: none;
       }
     }
 
-    a.button,
+    a,
     button.button {
       font-weight: bold;
-
-      &,
-      &:focus,
-      &:hover {
-        transition: none;
-        font-size: 1rem;
-        background: none;
-        padding-left: 0.6em;
-        padding-right: 0.6em;
-      }
+      font-size: 1rem;
     }
   }
 
@@ -132,19 +108,7 @@ $content-width: 90%;
     line-height: 1;
 
     .header__navigation {
-      display: flex;
       overflow-x: initial;
-
-      a.button,
-      button.button {
-        margin: 0 0.25rem;
-        padding: 0 0.1rem;
-        line-height: 1.4;
-
-        svg {
-          margin: 0;
-        }
-      }
     }
 
     small {
