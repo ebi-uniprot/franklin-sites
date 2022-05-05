@@ -9,6 +9,7 @@ type ExpandableMessageProps = {
   expanded?: boolean;
   setExpanded: (expanded: boolean) => unknown;
   descriptionString?: string;
+  showHideWording?: boolean;
   nHiddenItems?: number;
 };
 
@@ -16,13 +17,19 @@ export const ExpandableMessage: FC<ExpandableMessageProps> = ({
   descriptionString = 'items',
   expanded,
   setExpanded,
+  showHideWording,
   nHiddenItems,
 }) => {
-  let message = `Less ${descriptionString}`;
+  let message = `${showHideWording ? 'Hide' : 'Less'} ${descriptionString}`;
   if (!expanded) {
-    message = `${
-      nHiddenItems === undefined ? 'More' : `${nHiddenItems} more`
-    } ${descriptionString}`;
+    if (nHiddenItems === undefined) {
+      message = showHideWording ? 'Show' : 'More';
+    } else {
+      message = showHideWording
+        ? `Show ${nHiddenItems}`
+        : `${nHiddenItems} more`;
+    }
+    message += ` ${descriptionString}`;
   }
   return (
     <Button
@@ -111,6 +118,7 @@ export const ExpandableList = ({
             expanded={expanded}
             setExpanded={setExpanded}
             descriptionString={descriptionString || 'items'}
+            showHideWording={numberCollapsedItems === 0}
             nHiddenItems={
               displayNumberOfHiddenItems
                 ? children.length - numberCollapsedItems

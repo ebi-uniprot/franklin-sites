@@ -65,6 +65,38 @@ describe('ExpandableMessage', () => {
       expect(button.textContent).toEqual(`4 more ${descriptionString}`);
     });
   });
+
+  describe('button text, show/hide', () => {
+    it('should be "Hide descriptionString"', () => {
+      render(
+        <ExpandableMessage
+          expanded
+          setExpanded={setExpanded}
+          descriptionString={descriptionString}
+          showHideWording
+        />
+      );
+      const button = screen.getByRole('button');
+      fireEvent.click(button);
+      expect(setExpanded).toHaveBeenCalled();
+      expect(button.textContent).toEqual(`Hide ${descriptionString}`);
+    });
+
+    it('should include the number of hidden items', () => {
+      render(
+        <ExpandableMessage
+          setExpanded={setExpanded}
+          descriptionString={descriptionString}
+          nHiddenItems={4}
+          showHideWording
+        />
+      );
+      const button = screen.getByRole('button');
+      fireEvent.click(button);
+      expect(setExpanded).toHaveBeenCalled();
+      expect(button.textContent).toEqual(`Show 4 ${descriptionString}`);
+    });
+  });
 });
 
 describe('ExpandableList', () => {
@@ -118,6 +150,11 @@ describe('ExpandableList', () => {
       </ExpandableList>
     );
     expect(screen.queryByTestId('expandable-message')).toBeNull();
+  });
+
+  it('should show "show" button if numberCollapsedItems === 0', () => {
+    render(<ExpandableList numberCollapsedItems={0}>{items}</ExpandableList>);
+    expect(screen.getByTestId('expandable-message')).toBeInTheDocument();
   });
 
   it('should not show more button if numberItems > numberCollapsedItems + 1', () => {

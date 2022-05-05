@@ -21,7 +21,7 @@ export const expandableList = () => (
     numberCollapsedItems={number(
       'Number of displayed items',
       5,
-      { min: 1, step: 1 },
+      { min: 0, step: 1 },
       'Props'
     )}
     descriptionString={text('Description string', 'lorem ipsum items', 'Props')}
