@@ -1,0 +1,9 @@
+@import 'mixins';
+
+html {
+  --top-header-margin: 55px;
+
+  @include fs-breakpoints('large') {
+    --top-header-margin: 70px;
+  }
+}

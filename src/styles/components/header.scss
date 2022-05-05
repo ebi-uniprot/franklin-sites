@@ -126,6 +126,10 @@
   }
 }
 
+.header {
+  height: var(--top-header-margin);
+}
+
 .hero-header {
   @include box-shadow();
   flex-direction: column;
