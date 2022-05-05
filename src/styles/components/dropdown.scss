@@ -31,27 +31,9 @@
   }
 
   & > :first-child::after {
-    content: '▸';
+    content: '▾';
     position: absolute;
     margin-inline-start: 0.5ch;
-
-    transition: transform 0.25s ease-out;
-    transform: rotateZ(0);
-
-    @media (prefers-reduced-motion: reduce) {
-      transition-duration: 0s;
-    }
-
-    &:hover,
-    &:focus {
-      &:after {
-        will-change: transform;
-      }
-    }
-  }
-
-  &[aria-expanded='true'] > :first-child::after {
-    transform: rotateZ(90deg);
   }
 
   /* Override of franklin patterns when used within */
