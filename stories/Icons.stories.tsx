@@ -52,6 +52,7 @@ import {
   ZoomToSequence,
   FullViewIcon,
   ShareNodesIcon,
+  RedundantProteomeIcon,
 } from '../src/components';
 
 import colors from '../src/styles/colours.json';
@@ -317,6 +318,11 @@ const iconDefinition = [
     name: 'share-nodes.svg',
     description: 'Share',
     icon: <ShareNodesIcon width={size} height={size} />,
+  },
+  {
+    name: 'redundant-proteome.svg',
+    description: 'Redundant proteome',
+    icon: <RedundantProteomeIcon width={size} height={size} />,
   },
 ];
 

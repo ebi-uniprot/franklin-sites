@@ -84,6 +84,7 @@ export { default as ObsoleteIcon } from '../svg/obsolete.svg';
 export { default as ProteinIcon } from '../svg/protein.svg';
 export { default as ProtVistaIcon } from '../svg/protvista.svg';
 export { default as PublicationIcon } from '../svg/publication.svg';
+export { default as RedundantProteomeIcon } from '../svg/redundant-proteome.svg';
 export { default as ReferenceProteomeIcon } from '../svg/reference-proteome.svg';
 export { default as RefreshIcon } from '../svg/refresh.svg';
 export { default as ReSubmitIcon } from '../svg/re-submit.svg';
