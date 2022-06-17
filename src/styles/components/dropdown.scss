@@ -61,7 +61,8 @@
   border-radius: 0 0 0.2rem 0.2rem;
 
   button.button,
-  a {
+  a,
+  a.button {
     display: inline-block;
     color: $colour-yankees-blue;
     margin: 0;

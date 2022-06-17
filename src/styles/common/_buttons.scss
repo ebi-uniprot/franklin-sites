@@ -80,7 +80,9 @@
   }
 }
 
+/* overriding Foundation */
 .button-group {
+  align-items: baseline;
   margin-bottom: $global-margin * 0.5;
 
   .tertiary {
