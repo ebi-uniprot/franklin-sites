@@ -23,6 +23,7 @@ $alt-decorative-bar: 0.25rem solid $colour-pastel-blue;
   }
 
   &__content {
+    flex-grow: 1;
     padding-left: 0.7rem;
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
