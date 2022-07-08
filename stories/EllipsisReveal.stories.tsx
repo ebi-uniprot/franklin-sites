@@ -15,8 +15,25 @@ export default {
   },
 };
 
-export const expandableList = () => (
+export const ellipsisReveal = () => (
   <>
     Some text <EllipsisReveal>{getLipsumSentences()}</EllipsisReveal>
   </>
+);
+
+export const ellipsisRevealInGroup = () => (
+  <EllipsisReveal.Provider>
+    <p>
+      Some text{' '}
+      <EllipsisReveal contextKey="group">{getLipsumSentences()}</EllipsisReveal>
+    </p>
+    <p>
+      Some other text{' '}
+      <EllipsisReveal contextKey="group">{getLipsumSentences()}</EllipsisReveal>
+    </p>
+    <p>
+      Some other text again{' '}
+      <EllipsisReveal contextKey="group">{getLipsumSentences()}</EllipsisReveal>
+    </p>
+  </EllipsisReveal.Provider>
 );
