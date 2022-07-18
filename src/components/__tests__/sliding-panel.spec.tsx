@@ -25,12 +25,7 @@ describe('SlidingPanel component', () => {
   it('should call onClose when closing through the close button', async () => {
     const onClose = jest.fn();
     renderWithRouter(
-      <SlidingPanel
-        onClose={onClose}
-        position="left"
-        title="Title"
-        withCloseButton
-      >
+      <SlidingPanel onClose={onClose} position="left" title="Title">
         Sliding panel content
       </SlidingPanel>
     );
@@ -84,8 +79,8 @@ describe('SlidingPanel component', () => {
         </SlidingPanel>
       </>
     );
-    const insideInput = screen.getByRole('textbox');
-    expect(document.activeElement).toBe(insideInput);
+    const closeButton = screen.getByRole('button', { name: 'Close panel' });
+    expect(document.activeElement).toBe(closeButton);
 
     // Third render, unmounted
     rendered.rerender(

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';
 
 import { Button, SlidingPanel } from '../src/components';
@@ -24,20 +24,17 @@ const usePositionLR = () => select('Position', ['right', 'left'], 'left');
 const useTitle = () => text('Title', 'Title');
 const useSize = () =>
   select('Size', ['small', 'medium', 'large', 'full-screen'], 'medium');
-const useWithCloseButton = () => boolean('withCloseButton', false);
 
 export const SlidingPanels = () => {
   const title = useTitle();
   const position = usePosition();
   const size = useSize();
-  const withCloseButton = useWithCloseButton();
 
   return (
     <SlidingPanel
       title={title}
       position={position}
       size={size}
-      withCloseButton={withCloseButton}
       onClose={action('Closing')}
     >
       {loremIpsum({ count: 25 })}
@@ -52,7 +49,6 @@ export const SlidingPanelsWithArrow = () => {
   const position = usePositionLR();
   const title = useTitle();
   const size = useSize();
-  const withCloseButton = useWithCloseButton();
 
   const buttonRef = useCallback(
     (node) => {
@@ -86,7 +82,6 @@ export const SlidingPanelsWithArrow = () => {
           title={title}
           position={position}
           size={size}
-          withCloseButton={withCloseButton}
           onClose={(reason) => {
             setShowPanel(false);
             action('onClose')(reason);
@@ -107,7 +102,6 @@ export const SlidingPanelInSlidingPanel = () => {
   const position = usePositionLR();
   const title = useTitle();
   const size = useSize();
-  const withCloseButton = useWithCloseButton();
 
   return (
     <>
@@ -127,7 +121,6 @@ export const SlidingPanelInSlidingPanel = () => {
           title={`Sliding panel 1: ${title}`}
           position={position}
           size={size}
-          withCloseButton={withCloseButton}
           onClose={(reason) => {
             setShowPanel(false);
             setShowPanel2(false);
@@ -143,7 +136,6 @@ export const SlidingPanelInSlidingPanel = () => {
                 title={`Sliding panel 2: ${title}`}
                 position={position}
                 size={size}
-                withCloseButton={withCloseButton}
                 onClose={(reason) => {
                   setShowPanel2(false);
                   action('onClose 2')(reason);

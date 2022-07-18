@@ -141,18 +141,30 @@ $arrow-size: 1rem;
 
   &--left--small,
   &--right--small {
-    width: min(max(30vw, 22rem), calc(40vw));
+    width: 100vw;
+
+    @include fs-breakpoints('medium') {
+      width: min(max(30vw, 22rem), calc(40vw));
+    }
   }
 
   &--left--medium,
   &--right--medium {
-    // Values are eyeballed to fit the Query builder
-    width: min(max(40vw, 55rem), calc(90vw));
+    width: 100vw;
+
+    @include fs-breakpoints('medium') {
+      // Values are eyeballed to fit the Query builder
+      width: min(max(40vw, 55rem), calc(90vw));
+    }
   }
 
   &--left--large,
   &--right--large {
-    width: min(max(60vw, 77rem), calc(95vw));
+    width: 100vw;
+
+    @include fs-breakpoints('medium') {
+      width: min(max(60vw, 77rem), calc(95vw));
+    }
   }
 
   &--left--full-screen,

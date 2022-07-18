@@ -9,9 +9,9 @@ import {
 } from 'react';
 import { v1 } from 'uuid';
 import cn from 'classnames';
+import { Except } from 'type-fest';
 
 import '../styles/components/tabs.scss';
-import { Except } from 'type-fest';
 
 type TabProps = {
   /**
@@ -157,24 +157,27 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
             defaultSelected: __,
             cache: ___,
             ...props // eslint-disable-line no-shadow
-          }) => (
-            <div
-              key={id}
-              data-testid="tab-title"
-              data-target={id}
-              role="tab"
-              aria-controls={idRef.current}
-              className={cn(
-                'tabs__header__item',
-                { 'tabs__header__item--active': id === activeFromPropsOrState },
-                className
-              )}
-              {...unmanagedProps}
-              {...props}
-            >
-              {title}
-            </div>
-          )
+          }) =>
+            title && (
+              <div
+                key={id}
+                data-testid="tab-title"
+                data-target={id}
+                role="tab"
+                aria-controls={idRef.current}
+                className={cn(
+                  'tabs__header__item',
+                  {
+                    'tabs__header__item--active': id === activeFromPropsOrState,
+                  },
+                  className
+                )}
+                {...unmanagedProps}
+                {...props}
+              >
+                {title}
+              </div>
+            )
         )}
       </div>
       <div role="tabpanel" id={idRef.current} data-testid="tab-content">

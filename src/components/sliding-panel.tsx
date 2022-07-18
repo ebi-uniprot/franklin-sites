@@ -44,10 +44,6 @@ type SlidingPanelProps = {
    * Title of the panel
    */
   title?: ReactNode;
-  /**
-   * Add a close button in the panel header
-   */
-  withCloseButton?: boolean;
 } & (LRBelowHeader | TBSlidingPanel);
 
 const SlidingPanel: FC<
@@ -58,7 +54,6 @@ const SlidingPanel: FC<
   position,
   size = 'medium',
   title,
-  withCloseButton = false,
   arrowX,
   className,
   ...props
@@ -174,21 +169,20 @@ const SlidingPanel: FC<
       ref={node}
       {...props}
     >
-      {(title || withCloseButton) && (
+      {title && (
         <div className="sliding-panel__header">
           {title && (
             <span className="small sliding-panel__header__title">{title}</span>
           )}
-          {withCloseButton && (
-            <Button
-              variant="tertiary"
-              onClick={() => onCloseRef.current?.('button')}
-              className="sliding-panel__header__buttons"
-              title="Close panel"
-            >
-              <CloseIcon />
-            </Button>
-          )}
+
+          <Button
+            variant="tertiary"
+            onClick={() => onCloseRef.current?.('button')}
+            className="sliding-panel__header__buttons"
+            title="Close panel"
+          >
+            <CloseIcon />
+          </Button>
           {Number.isFinite(arrowX) && (
             <div
               className="sliding-panel__header__arrow"
