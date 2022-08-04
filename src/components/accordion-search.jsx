@@ -68,7 +68,7 @@ AccordionSearchItem.propTypes = {
   /**
    * Array of the selected items' IDs
    */
-  selected: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selected: PropTypes.arrayOf(PropTypes.shape).isRequired,
   /**
    * A boolean indicating whether the component should span multiple
    * columns: 2 columns for medium to 3 columns for large+ screens.
@@ -212,7 +212,7 @@ AccordionSearch.propTypes = {
   /**
    * Array of the selected items' IDs
    */
-  selected: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selected: PropTypes.arrayOf(PropTypes.shape).isRequired,
   /**
    * The width of the text input box
    */
