@@ -1,5 +1,6 @@
 @import '../settings';
 @import '../colours';
+@import '../mixins';
 
 $grid-name: 'uniprot-grid';
 $gap: 1rem;
@@ -24,6 +25,24 @@ $n-columns: 12;
     @for $i from 1 through $n-columns {
       &--offset-#{$i} {
         grid-column-start: $i + 1;
+      }
+    }
+  }
+
+  @each $bp in map-keys($fs-breakpoint-values) {
+    @include fs-breakpoints($bp) {
+      & > .#{$grid-name}-cell {
+        @for $i from 1 through $n-columns {
+          &--#{$bp}-span-#{$i} {
+            grid-column: auto / span $i;
+          }
+        }
+
+        @for $i from 1 through $n-columns {
+          &--#{$bp}-offset-#{$i} {
+            grid-column-start: $i + 1;
+          }
+        }
       }
     }
   }
