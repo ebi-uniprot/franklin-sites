@@ -1,4 +1,5 @@
-import { FC, HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
+import cn from 'classnames';
 
 import '../styles/components/code-block.scss';
 
@@ -7,21 +8,11 @@ type Props = HTMLAttributes<HTMLPreElement> & {
    * Activate light mode or defaults to dark mode
    */
   lightMode?: boolean;
-  /**
-   * The content of the code block
-   */
-  children: string;
-  /**
-   * Optional class names to merge into the component
-   */
-  className?: string;
 };
 
-const CodeBlock: FC<Props> = ({ lightMode, children, className, ...props }) => (
+const CodeBlock = ({ lightMode, children, className, ...props }: Props) => (
   <pre
-    className={`codeblock${lightMode ? ' codeblock-light' : ''}${
-      className ? ` ${className}` : ''
-    }`}
+    className={cn('codeblock', { 'codeblock-light': lightMode }, className)}
     {...props}
   >
     <code>{children}</code>

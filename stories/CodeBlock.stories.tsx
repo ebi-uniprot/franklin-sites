@@ -1,3 +1,4 @@
+import { boolean } from '@storybook/addon-knobs';
 import { LoremIpsum } from 'lorem-ipsum';
 
 import { CodeBlock } from '../src/components';
@@ -23,6 +24,6 @@ const li = new LoremIpsum({
   },
 }).generateParagraphs(10);
 
-export const darkMode = () => <CodeBlock>{li}</CodeBlock>;
-
-export const lightMode = () => <CodeBlock lightMode>{li}</CodeBlock>;
+export const codeBlock = () => (
+  <CodeBlock lightMode={boolean('lightMode', false)}>{li}</CodeBlock>
+);
