@@ -13,7 +13,7 @@ $n-columns: 12;
 .#{$grid-name} {
   display: grid;
   gap: $gap; /* or we can implement that differently */
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 
   & > .#{$grid-name}-cell {
     @for $i from 1 through $n-columns {
@@ -40,7 +40,7 @@ $n-columns: 12;
 
         @for $i from 1 through $n-columns {
           &--#{$bp}-offset-#{$i} {
-            grid-column-start: $i + 1;
+            grid-column-start: $i;
           }
         }
       }
