@@ -83,7 +83,7 @@ export const Tile: FC<Props> = ({
         {
           ...style,
           '--tile-background': backgroundColor,
-          width: width || '100%',
+          width,
         } as CSSProperties
       }
     >

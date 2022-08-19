@@ -15,6 +15,7 @@ $tile: '.tile';
   background: var(--tile-background, #{$colour-sea-blue});
   text-align: center;
   color: $colour-sky-white;
+  aspect-ratio: 1/1;
 
   &.tile-gradient {
     background: linear-gradient(
