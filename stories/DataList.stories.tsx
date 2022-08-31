@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 
 import { DataList, DataListWithLoader, Card } from '../src/components';
 import {
@@ -18,6 +18,7 @@ export default {
 };
 
 const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
+const useClickToLoadContent = () => text('clickToLoad content', '');
 
 export const dataList = () => (
   <DataDecorator>
@@ -51,13 +52,17 @@ export const dataListLoading = () => (
 
 export const dataListWithLoader = () => (
   <DataLoaderDecorator>
-    {(props) => (
-      <DataListWithLoader
-        {...props}
-        dataRenderer={(content) => <>{Object.values(content)}</>}
-        clickToLoad={useClickToLoad()}
-      />
-    )}
+    {(props) => {
+      const clickToLoad = useClickToLoad();
+      const clickToLoadContent = useClickToLoadContent();
+      return (
+        <DataListWithLoader
+          {...props}
+          dataRenderer={(content) => <>{Object.values(content)}</>}
+          clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
+        />
+      );
+    }}
   </DataLoaderDecorator>
 );
 
@@ -65,6 +70,8 @@ export const dataListWithLoaderAndCards = () => (
   <DataLoaderDecorator>
     {(props) => {
       const selectable = boolean('selectable', false, 'Props');
+      const clickToLoad = useClickToLoad();
+      const clickToLoadContent = useClickToLoadContent();
       return (
         <DataListWithLoader
           {...props}
@@ -79,7 +86,7 @@ export const dataListWithLoaderAndCards = () => (
             </Card>
           )}
           onSelectionChange={selectable ? action('onSelect') : undefined}
-          clickToLoad={useClickToLoad()}
+          clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
         />
       );
     }}

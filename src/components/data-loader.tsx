@@ -34,9 +34,10 @@ export type WrapperProps<D> = {
    */
   data: D[];
   /**
-   * Use a button to load more data instead of having infinite scrolling
+   * Use a button to load more data instead of having infinite scrolling.
+   * If this prop is a string or a node, it will render this within the button
    */
-  clickToLoad?: boolean;
+  clickToLoad?: boolean | ReactNode;
 };
 
 type BaseComponentProps<D> = {
@@ -123,7 +124,7 @@ function withDataLoader<
           onClick={handleAskForMoreData}
           data-testid="click-to-load-more"
         >
-          Load more data
+          {(typeof clickToLoad === 'string' && clickToLoad) || 'Load more data'}
         </Button>
       );
     }
