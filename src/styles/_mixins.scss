@@ -4,19 +4,6 @@
 @import './colours';
 @import './franklin-settings';
 
-$global-left: if($global-text-direction == rtl, right, left);
-$global-right: if($global-text-direction == rtl, left, right);
-
-@mixin chevron($direction, $color) {
-  $size: 0.4em;
-  $offset: get-side($button-padding, right);
-  @include css-triangle($size, $color, $direction);
-  position: relative;
-  top: -0.1em;
-  display: inline-block;
-  margin-#{$global-left}: $offset;
-}
-
 @mixin columns($base-class, $number) {
   .#{$base-class}--columns {
     column-count: $number;
