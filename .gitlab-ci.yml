@@ -9,8 +9,8 @@ build_static_assets:
     - mv .out build
 
 build_docker_image:
-  rules:
-    - when: never
+  only:
+    - never
 
 deploy:
   only:
