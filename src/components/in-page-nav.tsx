@@ -140,7 +140,7 @@ const InPageNav = ({
     if (
       !(
         marker.current &&
-        marker.current.animate &&
+        'animate' in marker.current &&
         'IntersectionObserver' in window
       )
     ) {
