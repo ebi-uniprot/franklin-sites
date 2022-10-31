@@ -5,7 +5,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
   <svg
     height="80"
     style="top: 0px;"
-    width="100"
+    width="100%"
   >
     <g
       fill="none"
@@ -15,7 +15,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
     >
       <path
         class="domain"
-        d="M0.5,0.5H100.5"
+        d="M0.5,0.5H250.5"
         stroke="currentColor"
       />
       <g
@@ -38,7 +38,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
       <g
         class="tick"
         opacity="1"
-        transform="translate(50.5,0)"
+        transform="translate(125.5,0)"
       >
         <line
           stroke="currentColor"
@@ -55,7 +55,7 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
       <g
         class="tick"
         opacity="1"
-        transform="translate(100.5,0)"
+        transform="translate(250.5,0)"
       >
         <line
           stroke="currentColor"
@@ -70,6 +70,12 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
         </text>
       </g>
     </g>
+    <text
+      style="text-anchor: middle;"
+      transform="translate(125, 40)"
+    >
+      My label
+    </text>
   </svg>
 </DocumentFragment>
 `;

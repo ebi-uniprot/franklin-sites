@@ -22,9 +22,7 @@ module.exports = [
       'react-dom': 'react-dom',
       'react-router-dom': 'react-router-dom',
     },
-    resolve: {
-      extensions: ['.jsx', '.js', '.tsx', '.ts'],
-    },
+    resolve: { extensions: ['.tsx', '.ts'] },
     module: {
       rules: [
         {

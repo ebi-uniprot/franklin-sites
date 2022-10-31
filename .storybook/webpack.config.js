@@ -46,10 +46,10 @@ module.exports = async ({ config }) => {
     include: path.resolve(__dirname, '../'),
   });
 
-  // use react-svg-loader for svg files in jsx
+  // use react-svg-loader for svg files in react components
   config.module.rules.push({
     test: /\.svg$/i,
-    issuer: /\.(j|t)sx?$/,
+    issuer: /\.tsx?$/,
     use: [
       {
         loader: '@svgr/webpack',

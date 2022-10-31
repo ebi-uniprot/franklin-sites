@@ -1,5 +1,6 @@
 import { useRef, useEffect, useMemo } from 'react';
 import { scaleLinear, axisBottom, select, range } from 'd3';
+import useSize from '../hooks/useSize';
 
 type Props = {
   /**
@@ -19,21 +20,20 @@ type Props = {
    */
   yPos: number;
   /**
-   * The width of the axis
-   */
-  width?: number;
-  /**
    * Label to appear under the axis
    */
-  label?: string;
+  label: string;
 };
 
-const XAxis = ({ min, max, interval, yPos, width, label }: Props) => {
-  const height = 80;
-  const d3Container = useRef(null);
+const HEIGHT = 80;
+
+const XAxis = ({ min, max, interval, yPos, label }: Props) => {
+  const d3Container = useRef<SVGSVGElement>(null);
+  const [size] = useSize(d3Container);
+
   useEffect(() => {
-    if (width && d3Container.current) {
-      const scale = scaleLinear().domain([min, max]).range([0, width]);
+    if (size?.width && d3Container.current) {
+      const scale = scaleLinear().domain([min, max]).range([0, size.width]);
       const axis = axisBottom(scale)
         .tickValues(range(min, max + interval, interval))
         .tickPadding(6);
@@ -41,20 +41,17 @@ const XAxis = ({ min, max, interval, yPos, width, label }: Props) => {
       const svg = select(d3Container.current);
       svg.selectAll('*').remove();
       svg.append('g').call(axis);
-
-      if (label) {
-        svg
-          .append('text')
-          .attr('transform', `translate(${width / 2},${height / 2})`)
-          .style('text-anchor', 'middle')
-          .text(label);
-      }
+      svg
+        .append('text')
+        .attr('transform', `translate(${size.width / 2}, ${HEIGHT / 2})`)
+        .style('text-anchor', 'middle')
+        .text(label);
     }
-  }, [interval, label, max, min, width]);
+  }, [interval, label, max, min, size?.width]);
 
   const style = useMemo(() => ({ top: yPos }), [yPos]);
 
-  return <svg style={style} width={width} height={height} ref={d3Container} />;
+  return <svg style={style} width="100%" height={HEIGHT} ref={d3Container} />;
 };
 
 export default XAxis;
