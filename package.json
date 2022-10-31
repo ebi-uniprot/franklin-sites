@@ -49,7 +49,7 @@
         "lines": 80.14,
         "statements": 79.64,
         "functions": 78.67,
-        "branches": 70.23
+        "branches": 70.16
       }
     },
     "setupFilesAfterEnv": [
