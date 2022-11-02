@@ -1,5 +1,6 @@
 import { useRef, useEffect, useMemo } from 'react';
 import { scaleLinear, axisBottom, select, range } from 'd3';
+
 import useSize from '../hooks/useSize';
 
 type Props = {
