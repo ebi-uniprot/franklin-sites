@@ -1,17 +1,21 @@
+import { ReactElement, ReactNode } from 'react';
 import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { createMemoryHistory, History, InitialEntry } from 'history';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { render } from '@testing-library/react';
 
 export default (
-  ui,
+  ui: ReactElement,
   {
     route = '/',
     history = createMemoryHistory({ initialEntries: [route] }),
+  }: {
+    route?: InitialEntry;
+    history?: History<unknown>;
   } = {}
 ) => {
   // eslint-disable-next-line react/prop-types
-  const Wrapper = ({ children }) => (
+  const Wrapper = ({ children }: { children: ReactNode }) => (
     <Router history={history}>{children}</Router>
   );
   return {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`XAxis component should render with correct tickmarks 1`] = `
+exports[`YAxis component should render with correct tickmarks 1`] = `
 <DocumentFragment>
   <svg
     class="y-axis"
@@ -207,6 +207,14 @@ exports[`XAxis component should render with correct tickmarks 1`] = `
         </text>
       </g>
     </g>
+    <text
+      style="text-anchor: middle;"
+      transform="rotate(-90)"
+      x="-50"
+      y="20"
+    >
+      My label
+    </text>
   </svg>
 </DocumentFragment>
 `;

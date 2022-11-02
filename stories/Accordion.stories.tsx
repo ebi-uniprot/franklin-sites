@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
-import { action } from '@storybook/addon-actions';
 
-import { Accordion, AccordionSearch } from '../src/components';
+import { Accordion, AccordionSearch as AS } from '../src/components';
+
+import { SelectedItem } from '../src/components/accordion-search';
 
 export default {
   title: 'Layout/Accordion',
@@ -60,11 +62,27 @@ const accordionData = [
   },
 ];
 
-export const accordionSearch = () => (
-  <AccordionSearch
-    placeholder="Filter"
-    accordionData={accordionData}
-    selected={[]}
-    onSelect={action('onSelect')}
-  />
-);
+export const AccordionSearch = () => {
+  const [selected, setSelected] = useState<SelectedItem[]>([]);
+
+  return (
+    <AS
+      placeholder="Filter"
+      accordionData={accordionData}
+      selected={selected}
+      onSelect={(accordionId, itemId) => {
+        setSelected((selected) => {
+          const indexFound = selected.findIndex(
+            (item) => item.accordionId === accordionId && item.itemId === itemId
+          );
+          if (indexFound === -1) {
+            return [...selected, { accordionId, itemId }];
+          }
+          const output = [...selected]; // copy to avoid mutation original
+          output.splice(indexFound, 1); // remove at found index
+          return output; // return mutated copy
+        });
+      }}
+    />
+  );
+};

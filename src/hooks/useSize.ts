@@ -13,7 +13,7 @@ import { MutableRefObject, useCallback, useEffect, useState } from 'react';
  *          for whatever reason (e.g. content changed)
  */
 function useSize(
-  ref: MutableRefObject<HTMLElement | null>
+  ref: MutableRefObject<Element | null>
 ): [rect: DOMRect | undefined, onResize: () => void] {
   const [rect, setRect] = useState<DOMRect>();
 

@@ -18,17 +18,17 @@ export const getGaussianSample = (
   mu: number,
   sigma: number,
   n: number,
-  min = null,
-  max = null
+  min?: number,
+  max?: number
 ) => {
   const values = Array.from({ length: n }, () => normal(mu, sigma));
   // If we want to bound the sampling
-  if (min || max) {
+  if (min !== undefined || max !== undefined) {
     return values.map((number) => {
-      if (min !== null && number < min) {
+      if (min !== undefined && number < min) {
         return min;
       }
-      if (max !== null && number > max) {
+      if (max !== undefined && number > max) {
         return max;
       }
       return number;

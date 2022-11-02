@@ -35,7 +35,7 @@ const PageIntro: FC<
   PageIntroProps & Except<HTMLAttributes<HTMLDivElement>, 'title'>
 > = ({
   title,
-  resultsCount = 0,
+  resultsCount,
   titlePostscript,
   headingLevel = 'h1',
   titleClassName,
@@ -49,7 +49,7 @@ const PageIntro: FC<
       { className: cn(titleClassName) },
       <>
         {title}
-        {resultsCount > 0 && (
+        {resultsCount !== undefined && (
           <small>
             {' '}
             {formatLargeNumber(resultsCount)} result
