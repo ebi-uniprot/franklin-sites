@@ -3,7 +3,10 @@ import { loremIpsum } from 'lorem-ipsum';
 
 import { Accordion, AccordionSearch as AS } from '../src/components';
 
-import { SelectedItem } from '../src/components/accordion-search';
+import {
+  AccordionItem,
+  SelectedItem,
+} from '../src/components/accordion-search';
 
 export default {
   title: 'Layout/Accordion',
@@ -27,36 +30,76 @@ export const accordionCount = () => (
   </Accordion>
 );
 
-const accordionData = [
+const accordionData: AccordionItem<string>[] = [
   {
-    title: 'Gene',
-    id: '1',
+    label: 'Data',
+    id: 'data',
     items: [
       {
-        label: 'BRCA1',
-        id: '1-1',
+        label: 'Gene',
+        id: 'gene',
+        items: [
+          {
+            label: 'BRCA1',
+            id: 'brca1',
+          },
+          {
+            label: 'BRCA2',
+            id: 'brca2',
+          },
+          {
+            label: 'TP53',
+            id: 'tp53',
+          },
+        ],
       },
       {
-        label: 'BRCA2',
-        id: '1-2',
-      },
-      {
-        label: 'TP53',
-        id: '1-3',
+        label: 'Organelle',
+        id: 'organelle',
+        items: [
+          {
+            label: 'Ribosome',
+            id: 'ribosome',
+          },
+          {
+            label: 'Nucleus',
+            id: 'nucleus',
+          },
+        ],
       },
     ],
   },
   {
-    title: 'Organelle',
-    id: '2',
+    label: 'External links',
+    id: 'external-links',
     items: [
       {
-        label: 'Ribosome',
-        id: '2-1',
+        label: 'Sequence',
+        id: 'sequence',
+        items: [
+          {
+            label: 'CCDS',
+            id: 'ccds',
+          },
+          {
+            label: 'PIR',
+            id: 'pir',
+          },
+        ],
       },
       {
-        label: 'Nucleus',
-        id: '2-2',
+        label: '3d structure',
+        id: '3d-structure',
+        items: [
+          {
+            label: 'AlphaFoldDB',
+            id: 'alphafolddb',
+          },
+          {
+            label: 'BMRB',
+            id: 'bmrb',
+          },
+        ],
       },
     ],
   },
