@@ -59,6 +59,7 @@ type AccordionSearchItemProps = {
    * The title, works as a trigger to open/close
    */
   label: ReactNode;
+  query?: string;
 };
 
 const AccordionSearchItem = ({
@@ -69,9 +70,9 @@ const AccordionSearchItem = ({
   columns,
   onSelect,
   id,
-}: AccordionSearchItemProps) => {
-  console.log(label, items, id);
-  return items ? (
+  query,
+}: AccordionSearchItemProps) =>
+  items ? (
     <Accordion
       title={label}
       count={selected.length}
@@ -111,11 +112,10 @@ const AccordionSearchItem = ({
           onChange={() => onSelect(id)}
           checked={selected.some((item) => item.itemId === id)}
         />
-        {label}
+        {highlightSubstring(label || '', query || '')}
       </label>
     </li>
   );
-};
 
 // const highlightItems = (items: Item[], query: string): Item<ReactNode>[] =>
 //   items.map((item) => ({
@@ -123,35 +123,35 @@ const AccordionSearchItem = ({
 //     label: highlightSubstring(item.label, query),
 //   }));
 
-// export const filterAccordionData = (
-//   accordionData: AccordionItem[],
-//   query: string
-// ) => {
-//   if (!query) {
-//     return accordionData;
-//   }
-//   const filteredAccordionData: AccordionItem<ReactNode>[] = [];
-//   for (const AccordionItem of accordionData) {
-//     if (getLastIndexOfSubstringIgnoreCase(AccordionItem.label, query) >= 0) {
-//       filteredAccordionData.push({
-//         ...AccordionItem,
-//         label: highlightSubstring(AccordionItem.label, query),
-//         items: highlightItems(AccordionItem.items, query),
-//       });
-//     } else {
-//       const filteredItems = AccordionItem.items.filter(
-//         ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0
-//       );
-//       if (filteredItems.length > 0) {
-//         filteredAccordionData.push({
-//           ...AccordionItem,
-//           items: highlightItems(filteredItems, query),
-//         });
-//       }
-//     }
-//   }
-//   return filteredAccordionData;
-// };
+export const filterAccordionData = (
+  accordionData: AccordionItem<string>[],
+  query: string
+) => {
+  if (!query) {
+    return accordionData;
+  }
+  const filteredAccordionData: AccordionItem<ReactNode>[] = [];
+  for (const item of accordionData) {
+    if (getLastIndexOfSubstringIgnoreCase(item.label, query) >= 0) {
+      filteredAccordionData.push({
+        ...item,
+        label: highlightSubstring(item.label, query),
+        items: highlightItems(item.items || [], query),
+      });
+    } else {
+      const filteredItems = (item.items || []).filter(
+        ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0
+      );
+      if (filteredItems.length > 0) {
+        filteredAccordionData.push({
+          ...item,
+          items: highlightItems(filteredItems, query),
+        });
+      }
+    }
+  }
+  return filteredAccordionData;
+};
 
 type AccordionSearchProps = {
   /**
@@ -181,6 +181,47 @@ type AccordionSearchProps = {
   columns?: boolean;
 };
 
+const getWordTokens = (word: string) => {
+  /* gene
+  /  4: g e n e
+  /  3: ge en ne
+  /  2: gen ene
+  /  1: gene
+  */
+  const l = word.length;
+  const n = (l * (l + 1)) / 2;
+  const z = new Array(n);
+  const tokens = {};
+  const lowerCaseWord = word.toLowerCase();
+  for (let i = 1; i <= l; i += 1) {
+    for (let j = 0; j < l - i + 1; j += 1) {
+      tokens[lowerCaseWord.slice(j, j + i)] = true;
+    }
+  }
+  return z;
+};
+
+const getTokens = (item: AccordionItem) => {
+  if (item.items)
+    items.map((d) => {
+      if (d.items) {
+        const tokens = getTokens(d.items);
+      }
+    });
+};
+
+// const getItemTokens= (accordionItem: AccordionItem[]): Set<string> => {
+//    new Set(
+//      accordionData.flatMap(({ label, items = [] }) => [
+//        label.toLowerCase(),
+//        ...getSearchIndex(items),
+//      ])
+//    );
+// };
+// const searchAccordionData = () => {
+
+// }
+
 const AccordionSearch = ({
   accordionData,
   placeholder = '',
@@ -208,6 +249,9 @@ const AccordionSearch = ({
     return <Loader />;
   }
 
+  // const searchIndex = getSearchIndex(accordionData);
+  const query = (inputValue || '').trim().toLowerCase();
+  console.log(getWordTokens('gene'));
   const accordionGroupNode = accordionData.map(({ label, id, items }) => (
     <AccordionSearchItem
       label={label}
@@ -218,25 +262,10 @@ const AccordionSearch = ({
       onSelect={onSelect}
       id={id}
       key={id}
+      query={query}
     />
   ));
-  // let accordionGroupNode = <div>No matches found</div>;
-  // if (filteredAccordionData && filteredAccordionData.length) {
-  //   accordionGroupNode = (
-  //         <AccordionSearchItem
-  //           title={label}
-  //           key={}
-  //           id={"top"}
-  //           alwaysOpen={!!inputValue}
-  //           items={accordionData}
-  //           selected={selected.filter((item) => item.accordionId === id)}
-  //           columns={columns}
-  //           onSelect={onSelect}
-  //         />
-  //       ))}
-  //     </div>
-  //   );
-  // }
+  // <div>No matches found</div>
 
   return (
     <>
