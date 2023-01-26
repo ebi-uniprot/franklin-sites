@@ -69,9 +69,9 @@ const AccordionSearchItem = ({
   columns,
   onSelect,
   id,
-}: AccordionSearchItemProps) => {
-  console.log(label, items, id);
-  return items ? (
+}: AccordionSearchItemProps) =>
+  // console.log(label, items, id);
+  items ? (
     <Accordion
       title={label}
       count={selected.length}
@@ -115,43 +115,61 @@ const AccordionSearchItem = ({
       </label>
     </li>
   );
+
+const highlightItems = (items: Item[], query: string): Item<ReactNode>[] =>
+  items.map((item) => ({
+    ...item,
+    label: highlightSubstring(item.label, query),
+  }));
+
+export const filterAccordionData = (
+  accordionData: AccordionItem[],
+  query: string
+) => {
+  if (!query) {
+    return accordionData;
+  }
+
+  // const filteredAccordionData: AccordionItem<ReactNode>[] = [];
+  const foo = accordionData
+    .map((item) => {
+      if (
+        item.items?.length &&
+        getLastIndexOfSubstringIgnoreCase(item.label, query) >= 0
+      ) {
+        return item;
+      }
+      if (item.items?.length) {
+        const items = filterAccordionData(item.items, query);
+        return { ...item, items };
+      }
+      return getLastIndexOfSubstringIgnoreCase(item.label, query) >= 0 && item;
+    })
+    .filter(Boolean);
+  console.log(accordionData);
+  console.log(foo);
+  console.log('----');
+  // for (const accordionItem of accordionData) {
+  //   if (getLastIndexOfSubstringIgnoreCase(accordionItem.label, query) >= 0) {
+  //     filteredAccordionData.push({
+  //       ...accordionItem,
+  //       label: highlightSubstring(accordionItem.label, query),
+  //       items: highlightItems(accordionItem.items, query),
+  //     });
+  //   } else {
+  //     const foundItems = accordionItem.items.filter(
+  //       ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0
+  //     );
+  //     if (filteredItems.length > 0) {
+  //       filteredAccordionData.push({
+  //         ...accordionItem,
+  //         items: highlightItems(filteredItems, query),
+  //       });
+  //     }
+  //   }
+  // }
+  // return filteredAccordionData;
 };
-
-// const highlightItems = (items: Item[], query: string): Item<ReactNode>[] =>
-//   items.map((item) => ({
-//     ...item,
-//     label: highlightSubstring(item.label, query),
-//   }));
-
-// export const filterAccordionData = (
-//   accordionData: AccordionItem[],
-//   query: string
-// ) => {
-//   if (!query) {
-//     return accordionData;
-//   }
-//   const filteredAccordionData: AccordionItem<ReactNode>[] = [];
-//   for (const AccordionItem of accordionData) {
-//     if (getLastIndexOfSubstringIgnoreCase(AccordionItem.label, query) >= 0) {
-//       filteredAccordionData.push({
-//         ...AccordionItem,
-//         label: highlightSubstring(AccordionItem.label, query),
-//         items: highlightItems(AccordionItem.items, query),
-//       });
-//     } else {
-//       const filteredItems = AccordionItem.items.filter(
-//         ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0
-//       );
-//       if (filteredItems.length > 0) {
-//         filteredAccordionData.push({
-//           ...AccordionItem,
-//           items: highlightItems(filteredItems, query),
-//         });
-//       }
-//     }
-//   }
-//   return filteredAccordionData;
-// };
 
 type AccordionSearchProps = {
   /**
@@ -198,7 +216,7 @@ const AccordionSearch = ({
   //   const filteredData = filterAccordionData(accordionData, inputValue.trim());
   //   setFilteredAccordionData(filteredData);
   // }, [accordionData, inputValue]);
-
+  console.log(filterAccordionData(accordionData, inputValue.trim()));
   const style: CSSProperties | undefined = useMemo(
     () => (searchInputWidth ? { width: searchInputWidth } : undefined),
     [searchInputWidth]
