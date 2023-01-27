@@ -73,6 +73,9 @@ export function formatLargeNumber(x: string | number) {
 }
 
 export function highlightSubstring(string: string, substring: string) {
+  if (!string || !substring) {
+    return string;
+  }
   const i = getLastIndexOfSubstringIgnoreCase(string, substring);
   if (i < 0) return string;
   const prestring = string.slice(0, i);
