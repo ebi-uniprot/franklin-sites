@@ -1,16 +1,13 @@
 import { useState, useEffect, ReactNode, useMemo, CSSProperties } from 'react';
+import { cloneDeep } from 'lodash-es';
 
 import Accordion from './accordion';
 import SearchInput from './search-input';
 import Loader from './loader';
 
-import {
-  getLastIndexOfSubstringIgnoreCase,
-  highlightSubstring,
-} from '../utils';
+import { highlightSubstring } from '../utils';
 
 import '../styles/components/accordion-search.scss';
-import { cloneDeep } from 'lodash-es';
 
 export type AccordionItem<T extends ReactNode = string> = {
   label: T;
@@ -33,7 +30,7 @@ type AccordionSearchItemProps = {
   /**
    * An array of objects which populates the list items
    */
-  items?: Item<ReactNode>[];
+  items?: Item<string>[];
   /**
    * String used to fill in the search input when empty
    */
@@ -59,7 +56,8 @@ type AccordionSearchItemProps = {
   /**
    * The title, works as a trigger to open/close
    */
-  label: ReactNode;
+  label: string;
+  query: string;
 };
 
 const AccordionSearchItem = ({
@@ -70,11 +68,11 @@ const AccordionSearchItem = ({
   columns,
   onSelect,
   id,
+  query,
 }: AccordionSearchItemProps) =>
-  // console.log(label, items, id);
   items ? (
     <Accordion
-      title={label}
+      title={highlightSubstring(label, query)}
       count={selected.length}
       alwaysOpen={alwaysOpen}
       key={id}
@@ -94,6 +92,7 @@ const AccordionSearchItem = ({
             onSelect={onSelect}
             id={item.id}
             key={item.id}
+            query={query}
           />
         ))}
       </ul>
@@ -112,16 +111,10 @@ const AccordionSearchItem = ({
           onChange={() => onSelect(id)}
           checked={selected.some((item) => item.itemId === id)}
         />
-        {label}
+        {highlightSubstring(label, query)}
       </label>
     </li>
   );
-
-const highlightItems = (items: Item[], query: string): Item<ReactNode>[] =>
-  items.map((item) => ({
-    ...item,
-    label: highlightSubstring(item.label, query),
-  }));
 
 export const filterAccordionData = (
   accordionData: AccordionItem[],
@@ -140,26 +133,6 @@ export const filterAccordionData = (
     }
     return item.label.toLowerCase().includes(query);
   });
-  // for (const accordionItem of accordionData) {
-  //   if (getLastIndexOfSubstringIgnoreCase(accordionItem.label, query) >= 0) {
-  //     filteredAccordionData.push({
-  //       ...accordionItem,
-  //       label: highlightSubstring(accordionItem.label, query),
-  //       items: highlightItems(accordionItem.items, query),
-  //     });
-  //   } else {
-  //     const foundItems = accordionItem.items.filter(
-  //       ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0
-  //     );
-  //     if (filteredItems.length > 0) {
-  //       filteredAccordionData.push({
-  //         ...accordionItem,
-  //         items: highlightItems(filteredItems, query),
-  //       });
-  //     }
-  //   }
-  // }
-  // return filteredAccordionData;
 };
 
 type AccordionSearchProps = {
@@ -238,6 +211,7 @@ const AccordionSearch = ({
         onSelect={onSelect}
         id={id}
         key={id}
+        query={inputValue}
       />
     ))
   ) : (
