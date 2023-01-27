@@ -10,6 +10,7 @@ import {
 } from '../utils';
 
 import '../styles/components/accordion-search.scss';
+import { cloneDeep } from 'lodash-es';
 
 export type AccordionItem<T extends ReactNode = string> = {
   label: T;
@@ -129,26 +130,16 @@ export const filterAccordionData = (
   if (!query) {
     return accordionData;
   }
-
-  // const filteredAccordionData: AccordionItem<ReactNode>[] = [];
-  const foo = accordionData
-    .map((item) => {
-      if (
-        item.items?.length &&
-        getLastIndexOfSubstringIgnoreCase(item.label, query) >= 0
-      ) {
-        return item;
+  return accordionData.filter((item): boolean => {
+    if (item.items?.length) {
+      if (item.label.toLowerCase().includes(query)) {
+        return true;
       }
-      if (item.items?.length) {
-        const items = filterAccordionData(item.items, query);
-        return { ...item, items };
-      }
-      return getLastIndexOfSubstringIgnoreCase(item.label, query) >= 0 && item;
-    })
-    .filter(Boolean);
-  console.log(accordionData);
-  console.log(foo);
-  console.log('----');
+      item.items = filterAccordionData(item.items, query);
+      return !!item.items?.length;
+    }
+    return item.label.toLowerCase().includes(query);
+  });
   // for (const accordionItem of accordionData) {
   //   if (getLastIndexOfSubstringIgnoreCase(accordionItem.label, query) >= 0) {
   //     filteredAccordionData.push({
@@ -208,15 +199,25 @@ const AccordionSearch = ({
   columns,
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
-  // const [filteredAccordionData, setFilteredAccordionData] = useState<
-  //   Array<AccordionItem<ReactNode>>
-  // >([]);
+  const [filteredAccordionData, setFilteredAccordionData] = useState<
+    Array<AccordionItem<string>>
+  >([]);
+  const [previousInputValue, setPreviousInputValue] = useState(inputValue);
 
-  // useEffect(() => {
-  //   const filteredData = filterAccordionData(accordionData, inputValue.trim());
-  //   setFilteredAccordionData(filteredData);
-  // }, [accordionData, inputValue]);
-  console.log(filterAccordionData(accordionData, inputValue.trim()));
+  useEffect(() => {
+    const inputValueLower = inputValue.toLowerCase();
+    const dataToFilter =
+      inputValue && inputValue.includes(previousInputValue)
+        ? filteredAccordionData
+        : cloneDeep(accordionData);
+    const filteredData = filterAccordionData(
+      dataToFilter,
+      inputValueLower.trim()
+    );
+    setFilteredAccordionData(filteredData);
+    setPreviousInputValue(inputValue.toLowerCase());
+  }, [accordionData, inputValue]);
+
   const style: CSSProperties | undefined = useMemo(
     () => (searchInputWidth ? { width: searchInputWidth } : undefined),
     [searchInputWidth]
@@ -226,35 +227,22 @@ const AccordionSearch = ({
     return <Loader />;
   }
 
-  const accordionGroupNode = accordionData.map(({ label, id, items }) => (
-    <AccordionSearchItem
-      label={label}
-      alwaysOpen={!!inputValue}
-      items={items}
-      selected={selected}
-      columns={columns}
-      onSelect={onSelect}
-      id={id}
-      key={id}
-    />
-  ));
-  // let accordionGroupNode = <div>No matches found</div>;
-  // if (filteredAccordionData && filteredAccordionData.length) {
-  //   accordionGroupNode = (
-  //         <AccordionSearchItem
-  //           title={label}
-  //           key={}
-  //           id={"top"}
-  //           alwaysOpen={!!inputValue}
-  //           items={accordionData}
-  //           selected={selected.filter((item) => item.accordionId === id)}
-  //           columns={columns}
-  //           onSelect={onSelect}
-  //         />
-  //       ))}
-  //     </div>
-  //   );
-  // }
+  const accordionGroupNode = filteredAccordionData.length ? (
+    filteredAccordionData.map(({ label, id, items }) => (
+      <AccordionSearchItem
+        label={label}
+        alwaysOpen={!!inputValue}
+        items={items}
+        selected={selected}
+        columns={columns}
+        onSelect={onSelect}
+        id={id}
+        key={id}
+      />
+    ))
+  ) : (
+    <div>No matches found</div>
+  );
 
   return (
     <>
