@@ -1,6 +1,5 @@
 import {
   useState,
-  useEffect,
   ReactNode,
   useMemo,
   CSSProperties,
@@ -37,7 +36,7 @@ type AccordionSearchItemProps = {
   /**
    * An array of objects which populates the list items
    */
-  items?: Item<string>[];
+  items: Item<string>[];
   /**
    * String used to fill in the search input when empty
    */
@@ -49,7 +48,7 @@ type AccordionSearchItemProps = {
   /**
    * Array of the selected items' IDs
    */
-  selected: SelectedItem[];
+  selected: string[];
   /**
    * A boolean indicating whether the component should span multiple
    * columns: 2 columns for medium to 3 columns for large+ screens.
@@ -64,7 +63,47 @@ type AccordionSearchItemProps = {
    * The title, works as a trigger to open/close
    */
   label: string;
+  /**
+   * The user's query, passed to highlight in the item's label
+   */
   query: string;
+};
+
+const AccordionSearchCheckbox = ({
+  onSelect,
+  selected,
+  id,
+  label,
+  query,
+}: Omit<AccordionSearchItemProps, 'items' | 'alwaysOpen' | 'columns'>) => (
+  <li
+    key={id}
+    className="accordion-search__list__item"
+    data-testid="accordion-search-list-item"
+  >
+    <label key={id} htmlFor={`checkbox-${id}`}>
+      <input
+        type="checkbox"
+        id={`checkbox-${id}`}
+        className="accordion-search__list__item-checkbox"
+        onChange={() => {
+          onSelect(id);
+        }}
+        checked={selected.includes(id)}
+      />
+      {highlightSubstring(label, query)}
+    </label>
+  </li>
+);
+
+const getKeys = (item: Item<string>[] | Item): string[] | string => {
+  if (Array.isArray(item)) {
+    return item.flatMap((i) => getKeys(i));
+  }
+  if (item.items) {
+    return getKeys(item.items);
+  }
+  return item.id;
 };
 
 const AccordionSearchItem = ({
@@ -76,11 +115,13 @@ const AccordionSearchItem = ({
   onSelect,
   id,
   query,
-}: AccordionSearchItemProps) =>
-  items ? (
+}: AccordionSearchItemProps) => {
+  const itemKeys = useMemo(() => new Set(getKeys(items)), [items]);
+  const count = selected.filter((s) => itemKeys.has(s)).length;
+  return (
     <Accordion
       title={highlightSubstring(label, query)}
-      count={selected.length}
+      count={count}
       alwaysOpen={alwaysOpen}
       key={id}
     >
@@ -89,39 +130,34 @@ const AccordionSearchItem = ({
           columns ? ' accordion-search__list--columns' : ''
         }`}
       >
-        {items.map((item) => (
-          <AccordionSearchItem
-            label={item.label}
-            alwaysOpen={alwaysOpen}
-            items={item.items}
-            selected={selected}
-            columns={columns}
-            onSelect={onSelect}
-            id={item.id}
-            key={item.id}
-            query={query}
-          />
-        ))}
+        {items.map((item) =>
+          item.items ? (
+            <AccordionSearchItem
+              label={item.label}
+              alwaysOpen={alwaysOpen}
+              items={item.items}
+              selected={selected}
+              columns={columns}
+              onSelect={onSelect}
+              id={item.id}
+              key={item.id}
+              query={query}
+            />
+          ) : (
+            <AccordionSearchCheckbox
+              label={item.label}
+              selected={selected}
+              onSelect={onSelect}
+              id={item.id}
+              key={item.id}
+              query={query}
+            />
+          )
+        )}
       </ul>
     </Accordion>
-  ) : (
-    <li
-      key={id}
-      className="accordion-search__list__item"
-      data-testid="accordion-search-list-item"
-    >
-      <label key={id} htmlFor={`checkbox-${id}`}>
-        <input
-          type="checkbox"
-          id={`checkbox-${id}`}
-          className="accordion-search__list__item-checkbox"
-          onChange={() => onSelect(id)}
-          checked={selected.includes(id)}
-        />
-        {highlightSubstring(label, query)}
-      </label>
-    </li>
   );
+};
 
 export const filterAccordionData = (
   accordionData: AccordionItem[],

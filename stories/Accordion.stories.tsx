@@ -3,10 +3,7 @@ import { loremIpsum } from 'lorem-ipsum';
 
 import { Accordion, AccordionSearch as AS } from '../src/components';
 
-import {
-  AccordionItem,
-  SelectedItem,
-} from '../src/components/accordion-search';
+import { AccordionItem } from '../src/components/accordion-search';
 
 export default {
   title: 'Layout/Accordion',
@@ -115,14 +112,10 @@ export const AccordionSearch = () => {
       selected={selected}
       onSelect={(itemId) => {
         setSelected((selected) => {
-          console.log(selected);
-          const indexFound = selected.indexOf(itemId);
-          if (indexFound === -1) {
-            return [...selected, itemId];
-          }
-          const output = [...selected]; // copy to avoid mutation original
-          output.splice(indexFound, 1); // remove at found index
-          return output; // return mutated copy
+          const index = selected.indexOf(itemId);
+          return index === -1
+            ? [...selected, itemId]
+            : [...selected.slice(0, index), ...selected.slice(index + 1)];
         });
       }}
     />
