@@ -1,14 +1,12 @@
 @import '../franklin-settings';
 @import '../colours';
 
-$border-color: $colour-pastel-blue;
-
 .accordion {
   width: 100%;
-  border: 1px solid $border-color;
 
   &__title {
     padding: 0.25rem 0.5rem;
+    margin-bottom: 0.25rem;
     width: 100%;
     outline: 0;
     background-color: $colour-platinum;
@@ -41,8 +39,7 @@ $border-color: $colour-pastel-blue;
   }
 
   &__content {
-    border-top: 1px solid $border-color;
-    padding: 0.75rem;
+    padding-left: 2rem;
 
     &--hide-content {
       display: none;
