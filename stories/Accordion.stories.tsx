@@ -27,7 +27,7 @@ export const accordionCount = () => (
   </Accordion>
 );
 
-const accordionData: AccordionItem<string>[] = [
+const accordionData: AccordionItem[] = [
   {
     label: 'Data',
     id: 'data',

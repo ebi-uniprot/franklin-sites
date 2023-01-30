@@ -1,10 +1,4 @@
-import {
-  useState,
-  ReactNode,
-  useMemo,
-  CSSProperties,
-  useCallback,
-} from 'react';
+import { useState, useMemo, CSSProperties, useCallback } from 'react';
 import { cloneDeep, debounce } from 'lodash-es';
 
 import Accordion from './accordion';
@@ -15,28 +9,17 @@ import { highlightSubstring } from '../utils';
 
 import '../styles/components/accordion-search.scss';
 
-export type AccordionItem<T extends ReactNode = string> = {
-  label: T;
+export type AccordionItem = {
+  label: string;
   id: string;
-  items?: AccordionItem<T>[];
-};
-
-type Item<T extends ReactNode = string> = {
-  label: T;
-  id: string;
-  items?: Item<T>[];
-};
-
-export type SelectedItem = {
-  accordionId: string;
-  itemId: string;
+  items?: AccordionItem[];
 };
 
 type AccordionSearchItemProps = {
   /**
    * An array of objects which populates the list items
    */
-  items: Item<string>[];
+  items: AccordionItem[];
   /**
    * String used to fill in the search input when empty
    */
@@ -96,7 +79,7 @@ const AccordionSearchCheckbox = ({
   </li>
 );
 
-const getKeys = (item: Item<string>[] | Item): string[] | string => {
+const getKeys = (item: AccordionItem[] | AccordionItem): string[] | string => {
   if (Array.isArray(item)) {
     return item.flatMap((i) => getKeys(i));
   }
@@ -171,6 +154,7 @@ export const filterAccordionData = (
       if (item.label.toLowerCase().includes(query)) {
         return true;
       }
+      // eslint-disable-next-line no-param-reassign
       item.items = filterAccordionData(item.items, query);
       return !!item.items?.length;
     }
@@ -182,7 +166,7 @@ type AccordionSearchProps = {
   /**
    * An array of objects each of which is used to populate an accordion.
    */
-  accordionData: AccordionItem<string>[];
+  accordionData: AccordionItem[];
   /**
    * String used to fill in the search input when empty
    */
@@ -194,7 +178,7 @@ type AccordionSearchProps = {
   /**
    * Array of the selected items' IDs
    */
-  selected: SelectedItem[];
+  selected: string[];
   /**
    * The width of the text input box
    */
@@ -216,7 +200,7 @@ const AccordionSearch = ({
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] =
-    useState<Array<AccordionItem<string>>>(accordionData);
+    useState<Array<AccordionItem>>(accordionData);
   const [previousInputValue, setPreviousInputValue] = useState(inputValue);
 
   const debouncedFilterAccordionData = useCallback(
@@ -246,19 +230,22 @@ const AccordionSearch = ({
   }
 
   const accordionGroupNode = filteredAccordionData.length ? (
-    filteredAccordionData.map(({ label, id, items }) => (
-      <AccordionSearchItem
-        label={label}
-        alwaysOpen={!!inputValue}
-        items={items}
-        selected={selected}
-        columns={columns}
-        onSelect={onSelect}
-        id={id}
-        key={id}
-        query={inputValue}
-      />
-    ))
+    filteredAccordionData.map(
+      ({ label, id, items }) =>
+        items?.length && (
+          <AccordionSearchItem
+            label={label}
+            alwaysOpen={!!inputValue}
+            items={items}
+            selected={selected}
+            columns={columns}
+            onSelect={onSelect}
+            id={id}
+            key={id}
+            query={inputValue}
+          />
+        )
+    )
   ) : (
     <div>No matches found</div>
   );
