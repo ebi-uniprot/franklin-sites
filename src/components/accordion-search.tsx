@@ -1,5 +1,12 @@
-import { useState, useEffect, ReactNode, useMemo, CSSProperties } from 'react';
-import { cloneDeep } from 'lodash-es';
+import {
+  useState,
+  useEffect,
+  ReactNode,
+  useMemo,
+  CSSProperties,
+  useCallback,
+} from 'react';
+import { cloneDeep, debounce } from 'lodash-es';
 
 import Accordion from './accordion';
 import SearchInput from './search-input';
@@ -109,7 +116,7 @@ const AccordionSearchItem = ({
           id={`checkbox-${id}`}
           className="accordion-search__list__item-checkbox"
           onChange={() => onSelect(id)}
-          checked={selected.some((item) => item.itemId === id)}
+          checked={selected.includes(id)}
         />
         {highlightSubstring(label, query)}
       </label>
@@ -172,24 +179,26 @@ const AccordionSearch = ({
   columns,
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
-  const [filteredAccordionData, setFilteredAccordionData] = useState<
-    Array<AccordionItem<string>>
-  >([]);
+  const [filteredAccordionData, setFilteredAccordionData] =
+    useState<Array<AccordionItem<string>>>(accordionData);
   const [previousInputValue, setPreviousInputValue] = useState(inputValue);
 
-  useEffect(() => {
-    const inputValueLower = inputValue.toLowerCase();
-    const dataToFilter =
-      inputValue && inputValue.includes(previousInputValue)
-        ? filteredAccordionData
-        : cloneDeep(accordionData);
-    const filteredData = filterAccordionData(
-      dataToFilter,
-      inputValueLower.trim()
-    );
-    setFilteredAccordionData(filteredData);
-    setPreviousInputValue(inputValue.toLowerCase());
-  }, [accordionData, inputValue]);
+  const debouncedFilterAccordionData = useCallback(
+    debounce((value) => {
+      const inputValueLower = value.toLowerCase();
+      const dataToFilter =
+        inputValue && inputValue.includes(previousInputValue)
+          ? filteredAccordionData
+          : cloneDeep(accordionData);
+      const filteredData = filterAccordionData(
+        dataToFilter,
+        inputValueLower.trim()
+      );
+      setFilteredAccordionData(filteredData);
+      setPreviousInputValue(inputValueLower);
+    }, 500),
+    []
+  );
 
   const style: CSSProperties | undefined = useMemo(
     () => (searchInputWidth ? { width: searchInputWidth } : undefined),
@@ -218,13 +227,19 @@ const AccordionSearch = ({
     <div>No matches found</div>
   );
 
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setInputValue(event.target.value);
+    debouncedFilterAccordionData(event.target.value);
+  };
   return (
     <>
       <div style={style}>
         <SearchInput
           type="text"
           value={inputValue}
-          onChange={(event) => setInputValue(event.target.value)}
+          onChange={handleSearchInputChange}
           placeholder={placeholder}
         />
       </div>

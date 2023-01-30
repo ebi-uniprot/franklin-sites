@@ -106,20 +106,19 @@ const accordionData: AccordionItem<string>[] = [
 ];
 
 export const AccordionSearch = () => {
-  const [selected, setSelected] = useState<SelectedItem[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
 
   return (
     <AS
       placeholder="Filter"
       accordionData={accordionData}
       selected={selected}
-      onSelect={(accordionId, itemId) => {
+      onSelect={(itemId) => {
         setSelected((selected) => {
-          const indexFound = selected.findIndex(
-            (item) => item.accordionId === accordionId && item.itemId === itemId
-          );
+          console.log(selected);
+          const indexFound = selected.indexOf(itemId);
           if (indexFound === -1) {
-            return [...selected, { accordionId, itemId }];
+            return [...selected, itemId];
           }
           const output = [...selected]; // copy to avoid mutation original
           output.splice(indexFound, 1); // remove at found index
