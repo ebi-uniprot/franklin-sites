@@ -1,4 +1,4 @@
-import { useState, useMemo, CSSProperties, useCallback } from 'react';
+import { useState, useMemo, CSSProperties, useRef } from 'react';
 import { cloneDeep, debounce } from 'lodash-es';
 
 import Accordion from './accordion';
@@ -33,8 +33,7 @@ type AccordionSearchItemProps = {
    */
   selected: string[];
   /**
-   * A boolean indicating whether the component should span multiple
-   * columns: 2 columns for medium to 3 columns for large+ screens.
+   * Indicates if the accordion should always be open
    */
   alwaysOpen?: boolean;
   /**
@@ -101,6 +100,7 @@ const AccordionSearchItem = ({
 }: AccordionSearchItemProps) => {
   const itemKeys = useMemo(() => new Set(getKeys(items)), [items]);
   const count = selected.filter((s) => itemKeys.has(s)).length;
+  const areChildrenCheckboxes = items.every((item) => !item.items);
   return (
     <Accordion
       title={highlightSubstring(label, query)}
@@ -108,25 +108,13 @@ const AccordionSearchItem = ({
       alwaysOpen={alwaysOpen}
       key={id}
     >
-      <ul
-        className={`no-bullet accordion-search__list${
-          columns ? ' accordion-search__list--columns' : ''
-        }`}
-      >
-        {items.map((item) =>
-          item.items ? (
-            <AccordionSearchItem
-              label={item.label}
-              alwaysOpen={alwaysOpen}
-              items={item.items}
-              selected={selected}
-              columns={columns}
-              onSelect={onSelect}
-              id={item.id}
-              key={item.id}
-              query={query}
-            />
-          ) : (
+      {areChildrenCheckboxes ? (
+        <ul
+          className={`no-bullet accordion-search__list${
+            columns ? ' accordion-search__list--columns' : ''
+          }`}
+        >
+          {items.map((item) => (
             <AccordionSearchCheckbox
               label={item.label}
               selected={selected}
@@ -135,9 +123,28 @@ const AccordionSearchItem = ({
               key={item.id}
               query={query}
             />
-          )
-        )}
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        <ul className="no-bullet accordion-search__list">
+          {items.map(
+            (item) =>
+              item.items?.length && (
+                <AccordionSearchItem
+                  label={item.label}
+                  alwaysOpen={alwaysOpen}
+                  items={item.items}
+                  selected={selected}
+                  columns={columns}
+                  onSelect={onSelect}
+                  id={item.id}
+                  key={item.id}
+                  query={query}
+                />
+              )
+          )}
+        </ul>
+      )}
     </Accordion>
   );
 };
@@ -201,24 +208,35 @@ const AccordionSearch = ({
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] =
     useState<Array<AccordionItem>>(accordionData);
-  const [previousInputValue, setPreviousInputValue] = useState(inputValue);
+  const previousInputValue = useRef(inputValue);
 
-  const debouncedFilterAccordionData = useCallback(
-    debounce((value) => {
-      const inputValueLower = value.toLowerCase();
-      const dataToFilter =
-        inputValue && inputValue.includes(previousInputValue)
-          ? filteredAccordionData
-          : cloneDeep(accordionData);
-      const filteredData = filterAccordionData(
-        dataToFilter,
-        inputValueLower.trim()
-      );
-      setFilteredAccordionData(filteredData);
-      setPreviousInputValue(inputValueLower);
-    }, 500),
-    []
+  // TODO: fix
+  const debouncedFilterAccordionData = useMemo(
+    () =>
+      debounce((value) => {
+        const inputValueLower = value.toLowerCase();
+        // const dataToFilter =
+        //   inputValue && inputValue.includes(previousInputValue)
+        //     ? filteredAccordionData
+        //     : cloneDeep(accordionData);
+        // const filteredData = filterAccordionData(
+        //   dataToFilter,
+        //   inputValueLower.trim()
+        // );
+        setFilteredAccordionData(() => {
+          const dataToFilter = cloneDeep(accordionData);
+          const filteredData = filterAccordionData(
+            dataToFilter,
+            inputValueLower.trim()
+          );
+          return filteredData;
+        });
+        previousInputValue.current = inputValueLower;
+      }, 500),
+    [accordionData]
   );
+
+  // add flush and cancel within useEffect with an empty dep array
 
   const style: CSSProperties | undefined = useMemo(
     () => (searchInputWidth ? { width: searchInputWidth } : undefined),
