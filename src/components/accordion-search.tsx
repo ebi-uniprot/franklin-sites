@@ -1,4 +1,4 @@
-import { useState, useMemo, CSSProperties, useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { cloneDeep, debounce } from 'lodash-es';
 
 import Accordion from './accordion';
@@ -187,10 +187,6 @@ type AccordionSearchProps = {
    */
   selected: string[];
   /**
-   * The width of the text input box
-   */
-  searchInputWidth?: string | number;
-  /**
    * A boolean indicating whether the component should span multiple
    * columns: 2 columns for medium to 3 columns for large+ screens.
    */
@@ -202,7 +198,6 @@ const AccordionSearch = ({
   placeholder = '',
   onSelect,
   selected,
-  searchInputWidth = '18rem',
   columns,
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
@@ -238,11 +233,6 @@ const AccordionSearch = ({
 
   // add flush and cancel within useEffect with an empty dep array
 
-  const style: CSSProperties | undefined = useMemo(
-    () => (searchInputWidth ? { width: searchInputWidth } : undefined),
-    [searchInputWidth]
-  );
-
   if (!accordionData || !accordionData.length) {
     return <Loader />;
   }
@@ -276,14 +266,12 @@ const AccordionSearch = ({
   };
   return (
     <>
-      <div style={style}>
-        <SearchInput
-          type="text"
-          value={inputValue}
-          onChange={handleSearchInputChange}
-          placeholder={placeholder}
-        />
-      </div>
+      <SearchInput
+        type="text"
+        value={inputValue}
+        onChange={handleSearchInputChange}
+        placeholder={placeholder}
+      />
       {accordionGroupNode}
     </>
   );
