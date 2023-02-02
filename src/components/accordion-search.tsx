@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { cloneDeep, debounce } from 'lodash-es';
 
 import Accordion from './accordion';
@@ -205,21 +205,15 @@ const AccordionSearch = ({
     useState<Array<AccordionItem>>(accordionData);
   const previousInputValue = useRef(inputValue);
 
-  // TODO: fix
   const debouncedFilterAccordionData = useMemo(
     () =>
       debounce((value) => {
         const inputValueLower = value.toLowerCase();
-        // const dataToFilter =
-        //   inputValue && inputValue.includes(previousInputValue)
-        //     ? filteredAccordionData
-        //     : cloneDeep(accordionData);
-        // const filteredData = filterAccordionData(
-        //   dataToFilter,
-        //   inputValueLower.trim()
-        // );
         setFilteredAccordionData(() => {
-          const dataToFilter = cloneDeep(accordionData);
+          const dataToFilter =
+            inputValue && inputValue.includes(previousInputValue.current)
+              ? filteredAccordionData
+              : cloneDeep(accordionData);
           const filteredData = filterAccordionData(
             dataToFilter,
             inputValueLower.trim()
@@ -228,10 +222,14 @@ const AccordionSearch = ({
         });
         previousInputValue.current = inputValueLower;
       }, 500),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [accordionData]
   );
 
-  // add flush and cancel within useEffect with an empty dep array
+  useEffect(
+    () => debouncedFilterAccordionData.cancel,
+    [debouncedFilterAccordionData]
+  );
 
   if (!accordionData || !accordionData.length) {
     return <Loader />;
