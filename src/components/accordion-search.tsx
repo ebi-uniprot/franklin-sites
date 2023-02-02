@@ -37,6 +37,11 @@ type AccordionSearchItemProps = {
    */
   alwaysOpen?: boolean;
   /**
+   * Indicates if the item should initially be open ie the user can
+   * still collapse after intial load.
+   */
+  initialOpen?: boolean;
+  /**
    * A boolean indicating whether the component should span multiple
    * columns: 2 columns for medium to 3 columns for large+ screens.
    */
@@ -97,6 +102,7 @@ const AccordionSearchItem = ({
   onSelect,
   id,
   query,
+  initialOpen = false,
 }: AccordionSearchItemProps) => {
   const itemKeys = useMemo(() => new Set(getKeys(items)), [items]);
   const count = selected.filter((s) => itemKeys.has(s)).length;
@@ -107,6 +113,7 @@ const AccordionSearchItem = ({
       count={count}
       alwaysOpen={alwaysOpen}
       key={id}
+      initialOpen={initialOpen}
     >
       {areChildrenCheckboxes ? (
         <ul
@@ -203,6 +210,8 @@ const AccordionSearch = ({
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] =
     useState<Array<AccordionItem>>(accordionData);
+  const loaded = useRef(false);
+
   const previousInputValue = useRef(inputValue);
 
   const debouncedFilterAccordionData = useMemo(
@@ -226,10 +235,10 @@ const AccordionSearch = ({
     [accordionData]
   );
 
-  useEffect(
-    () => debouncedFilterAccordionData.cancel,
-    [debouncedFilterAccordionData]
-  );
+  useEffect(() => {
+    loaded.current = true;
+    return debouncedFilterAccordionData.cancel;
+  }, [debouncedFilterAccordionData]);
 
   if (!accordionData || !accordionData.length) {
     return <Loader />;
@@ -237,10 +246,11 @@ const AccordionSearch = ({
 
   const accordionGroupNode = filteredAccordionData.length ? (
     filteredAccordionData.map(
-      ({ label, id, items }) =>
+      ({ label, id, items }, index) =>
         items?.length && (
           <AccordionSearchItem
             label={label}
+            initialOpen={!loaded.current && index === 0}
             alwaysOpen={!!inputValue}
             items={items}
             selected={selected}

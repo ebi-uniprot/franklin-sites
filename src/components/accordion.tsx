@@ -23,10 +23,17 @@ type Props = {
    * Disable toggling and always open accordion
    */
   alwaysOpen?: boolean;
+  initialOpen?: boolean;
 };
 
-const Accordion: FC<Props> = ({ title, count = 0, children, alwaysOpen }) => {
-  const [open, setOpen] = useState(false);
+const Accordion: FC<Props> = ({
+  title,
+  count = 0,
+  children,
+  alwaysOpen,
+  initialOpen = false,
+}) => {
+  const [open, setOpen] = useState(initialOpen);
   const toggleOpen = () => {
     setOpen(!open);
   };
@@ -36,9 +43,11 @@ const Accordion: FC<Props> = ({ title, count = 0, children, alwaysOpen }) => {
     }
   };
   useEffect(() => {
-    if (alwaysOpen === false) {
+    if (!initialOpen && !alwaysOpen) {
       setOpen(false);
     }
+    // We only care about initialOpen on first load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [alwaysOpen]);
   return (
     <div className="accordion">
