@@ -7,12 +7,14 @@ import { highlightSubstring } from '../utils';
 
 import '../styles/components/accordion-search.scss';
 
-const getKeys = (item: AccordionItem[] | AccordionItem): string[] | string => {
+export const getLeafKeys = (
+  item: AccordionItem[] | AccordionItem
+): string[] | string => {
   if (Array.isArray(item)) {
-    return item.flatMap((i) => getKeys(i));
+    return item.flatMap((i) => getLeafKeys(i));
   }
   if (item.items) {
-    return getKeys(item.items);
+    return getLeafKeys(item.items);
   }
   return item.id;
 };
@@ -127,7 +129,7 @@ const AccordionSearchItem = ({
   query,
   initialOpen = false,
 }: AccordionSearchItemProps) => {
-  const itemKeys = useMemo(() => new Set(getKeys(items)), [items]);
+  const itemKeys = useMemo(() => new Set(getLeafKeys(items)), [items]);
   const count = selected.filter((s) => itemKeys.has(s)).length;
   const areChildrenCheckboxes = items.every((item) => !item.items);
   return (

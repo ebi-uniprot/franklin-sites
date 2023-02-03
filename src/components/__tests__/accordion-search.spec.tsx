@@ -1,6 +1,9 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 
-import AccordionSearch, { filterAccordionData } from '../accordion-search';
+import AccordionSearch, {
+  filterAccordionData,
+  getLeafKeys,
+} from '../accordion-search';
 
 jest.mock('lodash-es', () => ({
   debounce: (fn: unknown) => fn,
@@ -100,5 +103,17 @@ describe('AccordionSearch', () => {
       fireEvent.click(listItemCheckbox);
     }
     expect(props.onSelect).toHaveBeenCalled();
+  });
+
+  describe('getLeafKeys', () => {
+    it('should get all of the leaf keys', () => {
+      expect(getLeafKeys(props.accordionData)).toEqual([
+        '1-1',
+        '1-2',
+        '1-3',
+        '2-1',
+        '2-2',
+      ]);
+    });
   });
 });
