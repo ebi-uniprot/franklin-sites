@@ -46,9 +46,7 @@ const Accordion: FC<Props> = ({
     if (!initialOpen && !alwaysOpen) {
       setOpen(false);
     }
-    // We only care about initialOpen on first load
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [alwaysOpen]);
+  }, [alwaysOpen, initialOpen]);
   return (
     <div className="accordion">
       <div
