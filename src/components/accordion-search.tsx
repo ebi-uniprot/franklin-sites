@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { cloneDeep, debounce } from 'lodash-es';
+import { debounce } from 'lodash-es';
 
 import Accordion from './accordion';
 import SearchInput from './search-input';
@@ -8,6 +8,41 @@ import Loader from './loader';
 import { highlightSubstring } from '../utils';
 
 import '../styles/components/accordion-search.scss';
+
+const getKeys = (item: AccordionItem[] | AccordionItem): string[] | string => {
+  if (Array.isArray(item)) {
+    return item.flatMap((i) => getKeys(i));
+  }
+  if (item.items) {
+    return getKeys(item.items);
+  }
+  return item.id;
+};
+
+export const filterAccordionData = (
+  accordionData: AccordionItem[],
+  query: string
+): AccordionItem[] => {
+  if (!query) {
+    return accordionData;
+  }
+  const result = [];
+  for (const item of accordionData) {
+    if (item.label.toLowerCase().includes(query)) {
+      result.push(item);
+    } else if (item.items?.length) {
+      if (item.label.toLowerCase().includes(query)) {
+        result.push(item);
+      } else {
+        const items = filterAccordionData(item.items, query);
+        if (items.length) {
+          result.push({ ...item, items });
+        }
+      }
+    }
+  }
+  return result;
+};
 
 export type AccordionItem = {
   label: string;
@@ -83,16 +118,6 @@ const AccordionSearchCheckbox = ({
   </li>
 );
 
-const getKeys = (item: AccordionItem[] | AccordionItem): string[] | string => {
-  if (Array.isArray(item)) {
-    return item.flatMap((i) => getKeys(i));
-  }
-  if (item.items) {
-    return getKeys(item.items);
-  }
-  return item.id;
-};
-
 const AccordionSearchItem = ({
   label,
   alwaysOpen,
@@ -156,26 +181,6 @@ const AccordionSearchItem = ({
   );
 };
 
-export const filterAccordionData = (
-  accordionData: AccordionItem[],
-  query: string
-) => {
-  if (!query) {
-    return accordionData;
-  }
-  return accordionData.filter((item): boolean => {
-    if (item.items?.length) {
-      if (item.label.toLowerCase().includes(query)) {
-        return true;
-      }
-      // eslint-disable-next-line no-param-reassign
-      item.items = filterAccordionData(item.items, query);
-      return !!item.items?.length;
-    }
-    return item.label.toLowerCase().includes(query);
-  });
-};
-
 type AccordionSearchProps = {
   /**
    * An array of objects each of which is used to populate an accordion.
@@ -212,26 +217,18 @@ const AccordionSearch = ({
     useState<Array<AccordionItem>>(accordionData);
   const loaded = useRef(false);
 
-  const previousInputValue = useRef(inputValue);
-
   const debouncedFilterAccordionData = useMemo(
     () =>
       debounce((value) => {
         const inputValueLower = value.toLowerCase();
         setFilteredAccordionData(() => {
-          const dataToFilter =
-            inputValue && inputValue.includes(previousInputValue.current)
-              ? filteredAccordionData
-              : cloneDeep(accordionData);
           const filteredData = filterAccordionData(
-            dataToFilter,
+            accordionData,
             inputValueLower.trim()
           );
           return filteredData;
         });
-        previousInputValue.current = inputValueLower;
       }, 500),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [accordionData]
   );
 
