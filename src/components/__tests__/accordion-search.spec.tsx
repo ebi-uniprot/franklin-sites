@@ -1,9 +1,10 @@
 import { screen, render, fireEvent } from '@testing-library/react';
-import lodash, { cloneDeep } from 'lodash-es';
 
 import AccordionSearch, { filterAccordionData } from '../accordion-search';
 
-lodash.debounce = jest.fn((fn: never) => fn);
+jest.mock('lodash-es', () => ({
+  debounce: (fn: unknown) => fn,
+}));
 
 const props = {
   placeholder: 'Filter',
@@ -54,7 +55,7 @@ describe('AccordionSearch', () => {
   describe('filterAccordionData', () => {
     it('should return filtered data with matching query', () => {
       const filteredAccordionData = filterAccordionData(
-        cloneDeep(props.accordionData),
+        props.accordionData,
         'nucleus'
       );
       expect(filteredAccordionData).toHaveLength(1);
@@ -63,7 +64,7 @@ describe('AccordionSearch', () => {
 
     it('should return no data with nonmatching query', () => {
       const filteredAccordionData = filterAccordionData(
-        cloneDeep(props.accordionData),
+        props.accordionData,
         'zap'
       );
       expect(filteredAccordionData).toHaveLength(0);
@@ -81,7 +82,7 @@ describe('AccordionSearch', () => {
     expect(allListItems).toBe(5);
   });
 
-  it('should match snapshot when input is entered', async () => {
+  it('should find correct number of items when input is entered', async () => {
     render(<AccordionSearch {...props} />);
     const input = screen.getByTestId('search-input');
     fireEvent.change(input, { target: { value: 'Nucleus' } });
