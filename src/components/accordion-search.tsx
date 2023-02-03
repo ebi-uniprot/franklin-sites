@@ -1,9 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { debounce } from 'lodash-es';
 
-import Accordion from './accordion';
-import SearchInput from './search-input';
-import Loader from './loader';
+import { Accordion, Loader, Message, SearchInput } from '.';
 
 import { highlightSubstring } from '../utils';
 
@@ -260,7 +258,7 @@ const AccordionSearch = ({
         )
     )
   ) : (
-    <div>No matches found</div>
+    <Message level="failure">No matches found</Message>
   );
 
   const handleSearchInputChange = (
