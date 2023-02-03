@@ -1,6 +1,9 @@
 import { screen, render, fireEvent } from '@testing-library/react';
+import lodash, { cloneDeep } from 'lodash-es';
 
 import AccordionSearch, { filterAccordionData } from '../accordion-search';
+
+lodash.debounce = jest.fn((fn: never) => fn);
 
 const props = {
   placeholder: 'Filter',
@@ -8,7 +11,7 @@ const props = {
   selected: [],
   accordionData: [
     {
-      title: 'Gene',
+      label: 'Gene',
       id: '1',
       items: [
         {
@@ -26,7 +29,7 @@ const props = {
       ],
     },
     {
-      title: 'Organelle',
+      label: 'Organelle',
       id: '2',
       items: [
         {
@@ -51,17 +54,17 @@ describe('AccordionSearch', () => {
   describe('filterAccordionData', () => {
     it('should return filtered data with matching query', () => {
       const filteredAccordionData = filterAccordionData(
-        props.accordionData,
-        'Nucleus'
+        cloneDeep(props.accordionData),
+        'nucleus'
       );
       expect(filteredAccordionData).toHaveLength(1);
-      expect(filteredAccordionData[0].items[0].id).toBe('2-2');
+      expect(filteredAccordionData[0].items?.[0].id).toBe('2-2');
     });
 
     it('should return no data with nonmatching query', () => {
       const filteredAccordionData = filterAccordionData(
-        props.accordionData,
-        'Zap'
+        cloneDeep(props.accordionData),
+        'zap'
       );
       expect(filteredAccordionData).toHaveLength(0);
     });
@@ -78,11 +81,11 @@ describe('AccordionSearch', () => {
     expect(allListItems).toBe(5);
   });
 
-  it('should match snapshot when input is entered', () => {
+  it('should match snapshot when input is entered', async () => {
     render(<AccordionSearch {...props} />);
     const input = screen.getByTestId('search-input');
     fireEvent.change(input, { target: { value: 'Nucleus' } });
-    const content = screen.queryAllByTestId('accordion-content');
+    const content = await screen.findAllByTestId('accordion-content');
     expect(content).toHaveLength(1);
     const listItems = content[0].querySelectorAll('li');
     expect(listItems).toHaveLength(1);
