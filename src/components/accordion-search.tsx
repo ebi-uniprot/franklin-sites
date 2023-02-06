@@ -31,13 +31,9 @@ export const filterAccordionData = (
     if (item.label.toLowerCase().includes(query)) {
       result.push(item);
     } else if (item.items?.length) {
-      if (item.label.toLowerCase().includes(query)) {
-        result.push(item);
-      } else {
-        const items = filterAccordionData(item.items, query);
-        if (items.length) {
-          result.push({ ...item, items });
-        }
+      const items = filterAccordionData(item.items, query);
+      if (items.length) {
+        result.push({ ...item, items });
       }
     }
   }
