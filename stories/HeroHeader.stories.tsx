@@ -1,7 +1,7 @@
 import { loremIpsum } from 'lorem-ipsum';
 import { withKnobs, text } from '@storybook/addon-knobs';
 
-import { HeroHeader as HH } from '../src/components';
+import { HeroHeader as HH } from '../src';
 
 const useTitle = () => text('Title', 'Title');
 const useFooter = () =>

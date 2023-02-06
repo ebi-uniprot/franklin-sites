@@ -3,10 +3,10 @@ import {
   HTMLAttributes,
   PropsWithChildren,
   createContext,
-  FC,
   SetStateAction,
   Dispatch,
   useContext,
+  ReactNode,
 } from 'react';
 import cn from 'classnames';
 
@@ -19,7 +19,7 @@ const Context = createContext<
 >(null);
 Context.displayName = 'EllipsisRevealContext';
 
-const Provider: FC = ({ children }) => {
+const Provider = ({ children }: { children: ReactNode }) => {
   const state = useState(new Set<string>());
 
   return <Context.Provider value={state}>{children}</Context.Provider>;

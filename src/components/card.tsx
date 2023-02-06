@@ -1,4 +1,4 @@
-import { forwardRef, FC, ReactNode, HTMLAttributes, ReactText } from 'react';
+import { forwardRef, ReactNode, HTMLAttributes, ReactText } from 'react';
 import { NavLink, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -18,7 +18,7 @@ type CardActionProps = {
     }
 );
 
-const CardAction: FC<CardActionProps> = ({ name, link, color }) => (
+const CardAction = ({ name, link, color }: CardActionProps) => (
   <NavLink
     to={link}
     className="card-action"

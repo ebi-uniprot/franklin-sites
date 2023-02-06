@@ -1,5 +1,5 @@
 import { loremIpsum } from 'lorem-ipsum';
-import { Window } from '../src/components';
+import { Window } from '../src';
 
 export default {
   title: 'Layout/Window',

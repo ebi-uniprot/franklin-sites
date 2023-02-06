@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { sleep } from 'timing-functions';
 
-import { Sequence, SequenceTools, Button } from '../src/components';
+import { Sequence, SequenceTools, Button } from '../src';
 
 import sequenceData from '../src/mock-data/sequence-data';
 

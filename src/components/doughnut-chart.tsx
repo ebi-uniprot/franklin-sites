@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 
 import '../styles/components/doughnut-chart.scss';
 
@@ -19,15 +19,16 @@ type Props = {
    * The ratio to be displayed in percent.
    */
   percent?: number;
+  children: ReactNode;
 };
 
-const DoughnutChart: FC<Props> = ({
+const DoughnutChart = ({
   size = 'medium',
   percent = 0,
   bgColorClass = 'colour-platinum',
   colorClass = 'colour-sea-blue',
   children,
-}) => {
+}: Props) => {
   let leftTransformerDegree;
   let rightTransformerDegree;
   if (percent >= 50) {

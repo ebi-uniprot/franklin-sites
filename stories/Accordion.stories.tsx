@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Accordion, AccordionSearch as AS } from '../src/components';
+import { Accordion, AccordionSearch as AS } from '../src';
 
 import { SelectedItem } from '../src/components/accordion-search';
 

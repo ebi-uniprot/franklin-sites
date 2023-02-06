@@ -1,4 +1,4 @@
-import { createElement, CSSProperties, FC, ReactNode } from 'react';
+import { createElement, CSSProperties, ReactNode } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -48,7 +48,7 @@ type Props = (LinkProps | ExternalLinkProps) & {
 const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
   `h${+level[1] + 1}`;
 
-export const Tile: FC<Props> = ({
+export const Tile = ({
   title,
   headingLevel = 'h2',
   subtitle,
@@ -61,7 +61,7 @@ export const Tile: FC<Props> = ({
   children,
   descriptionSlideUp = false,
   ...props
-}) => {
+}: Props) => {
   const isExternal = 'url' in props;
 
   const mainContent = (

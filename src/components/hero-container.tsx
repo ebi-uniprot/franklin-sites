@@ -1,4 +1,4 @@
-import { createElement, FC, HTMLAttributes } from 'react';
+import { createElement, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import { HeadingLevels } from '../types/common';
@@ -24,14 +24,14 @@ type HeroContainerProps = HTMLAttributes<HTMLElement> & {
   noSidePadding?: boolean;
 };
 
-export const HeroContainer: FC<HeroContainerProps> = ({
+export const HeroContainer = ({
   title,
   headingLevel = 'h2',
   children,
   className,
   titleClassName,
   noSidePadding = false,
-}) => (
+}: HeroContainerProps) => (
   <section
     className={cn(
       'hero-container',

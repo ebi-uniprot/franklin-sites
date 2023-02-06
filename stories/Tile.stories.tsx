@@ -2,7 +2,7 @@ import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Tile } from '../src/components';
+import { Tile } from '../src';
 
 import SVG from '../assets/uniprotkb_illustration.svg';
 import colors from '../src/styles/colours.json';

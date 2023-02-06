@@ -1,4 +1,4 @@
-import { useState, useEffect, FC, ReactNode, KeyboardEvent } from 'react';
+import { useState, useEffect, ReactNode, KeyboardEvent } from 'react';
 
 import Bubble from './bubble';
 
@@ -23,9 +23,13 @@ type Props = {
    * Disable toggling and always open accordion
    */
   alwaysOpen?: boolean;
+  /**
+   * React children
+   */
+  children?: ReactNode;
 };
 
-const Accordion: FC<Props> = ({ title, count = 0, children, alwaysOpen }) => {
+const Accordion = ({ title, count = 0, children, alwaysOpen }: Props) => {
   const [open, setOpen] = useState(false);
   const toggleOpen = () => {
     setOpen(!open);

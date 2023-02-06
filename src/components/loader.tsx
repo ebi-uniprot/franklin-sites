@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import ProteinIcon from '../svg/protein.svg';
@@ -9,11 +9,11 @@ type Props = {
   progress?: number;
 };
 
-const Loader: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
+const Loader = ({
   progress,
   className,
   ...props
-}) => {
+}: Props & HTMLAttributes<HTMLDivElement>) => {
   let p: number | undefined;
   if (progress || progress === 0) {
     if (progress < 0 || progress > 1) {

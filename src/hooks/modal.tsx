@@ -1,4 +1,4 @@
-import { useState, FC } from 'react';
+import { useState, FC, ReactNode } from 'react';
 
 import '../styles/components/modal.scss';
 
@@ -9,12 +9,13 @@ type Props = {
   handleExitModal: () => void;
   withHeaderCloseButton?: boolean;
   withFooterCloseButton?: boolean;
+  children: ReactNode;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function useModal(Backdrop: FC<any>, Content: FC<any>) {
   const [displayModal, setDisplayModal] = useState(false);
-  const Modal: FC<Props> = ({
+  const Modal = ({
     children,
     title,
     width = '50vw',
@@ -23,7 +24,7 @@ export default function useModal(Backdrop: FC<any>, Content: FC<any>) {
     withHeaderCloseButton,
     withFooterCloseButton,
     ...rest
-  }) => (
+  }: Props) => (
     <div className="modal">
       <Backdrop
         className="modal__backdrop--visible"

@@ -1,10 +1,10 @@
-import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
+import { useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import { frame } from 'timing-functions';
 
-import { Button, CloseIcon } from './index';
+import { Button, CloseIcon } from '../index';
 
 import '../styles/components/sliding-panel.scss';
 
@@ -46,9 +46,7 @@ type SlidingPanelProps = {
   title?: ReactNode;
 } & (LRBelowHeader | TBSlidingPanel);
 
-const SlidingPanel: FC<
-  SlidingPanelProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>
-> = ({
+const SlidingPanel = ({
   children,
   onClose,
   position,
@@ -57,7 +55,7 @@ const SlidingPanel: FC<
   arrowX,
   className,
   ...props
-}) => {
+}: SlidingPanelProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>) => {
   const node = useRef<HTMLDivElement>(null);
 
   const onCloseRef = useRef<SlidingPanelProps['onClose']>(onClose);

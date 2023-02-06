@@ -1,6 +1,6 @@
 import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
 
-import { ExpandableList } from '../src/components';
+import { ExpandableList } from '../src';
 
 import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 

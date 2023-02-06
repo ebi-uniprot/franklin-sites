@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { Chip } from '../src/components';
+import { Chip } from '../src';
 
 import colors from '../src/styles/colours.json';
 

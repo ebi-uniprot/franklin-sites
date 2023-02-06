@@ -1,17 +1,14 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 
 import { DefaultCloseButton } from './window-buttons';
 
 type Props = {
   withCloseButton?: boolean;
   onWindowClose?: () => void;
+  children: ReactNode;
 };
 
-const WindowFooter: FC<Props> = ({
-  withCloseButton,
-  onWindowClose,
-  children,
-}) => (
+const WindowFooter = ({ withCloseButton, onWindowClose, children }: Props) => (
   <div className="window__footer">
     {children}
     {withCloseButton && onWindowClose && (

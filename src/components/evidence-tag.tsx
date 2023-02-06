@@ -2,9 +2,9 @@ import {
   useState,
   useRef,
   cloneElement,
-  FC,
   ReactElement,
   HTMLAttributes,
+  ReactNode,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
@@ -24,16 +24,17 @@ type EvidenceTagProps = {
    * Icon to display
    */
   iconComponent?: ReactElement<{ width: number; height: number }>;
+  children: ReactNode;
 };
 
-const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
+const EvidenceTag = ({
   label,
   title,
   className,
   iconComponent = <EvidenceTagIcon />,
   children,
   ...props
-}) => {
+}: EvidenceTagProps & HTMLAttributes<HTMLButtonElement>) => {
   const idRef = useRef(v1());
   const [contentDisplay, setContentDisplay] = useState(false);
   return (

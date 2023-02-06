@@ -1,7 +1,7 @@
 import { boolean } from '@storybook/addon-knobs';
 import { LoremIpsum } from 'lorem-ipsum';
 
-import { CodeBlock } from '../src/components';
+import { CodeBlock } from '../src';
 
 export default {
   title: 'Layout/CodeBlock',

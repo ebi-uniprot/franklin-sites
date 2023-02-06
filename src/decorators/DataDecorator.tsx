@@ -1,4 +1,4 @@
-import { useState, HTMLAttributes } from 'react';
+import { useState, HTMLAttributes, ReactNode } from 'react';
 
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
@@ -9,7 +9,7 @@ import {
   NonSortableColumn,
 } from '../components/data-table';
 import { WrapperProps } from '../components/data-loader';
-import { ExternalLink } from '../components';
+import { ExternalLink } from '..';
 
 type DataType = Record<string, string>;
 type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;

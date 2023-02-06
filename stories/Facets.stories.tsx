@@ -1,6 +1,6 @@
 import { MemoryRouter, useLocation } from 'react-router-dom';
 
-import { Facets, Facet } from '../src/components';
+import { Facets, Facet } from '../src';
 
 import facetData from '../src/mock-data/facetData';
 

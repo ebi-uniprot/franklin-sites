@@ -12,7 +12,7 @@ import {
   MainSearch,
   Dropdown,
   ExternalLink,
-} from '../src/components';
+} from '../src';
 
 import UniProtLogo from '../src/svg/swissprot.svg';
 

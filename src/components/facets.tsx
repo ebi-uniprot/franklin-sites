@@ -1,4 +1,4 @@
-import { FC, ReactNode, HTMLAttributes, Children } from 'react';
+import { ReactNode, HTMLAttributes, Children } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import {
@@ -95,12 +95,12 @@ type FacetProps = {
   queryStringKey?: string;
 };
 
-export const Facet: FC<FacetProps & HTMLAttributes<HTMLDivElement>> = ({
+export const Facet = ({
   data,
   extraActions,
   queryStringKey = 'facets',
   ...props
-}) => {
+}: FacetProps & HTMLAttributes<HTMLDivElement>) => {
   const location = useLocation();
   const search = parse(location.search, queryStringKey);
 
@@ -169,14 +169,14 @@ type FacetsProps = {
   queryStringKey?: string;
 };
 
-export const Facets: FC<FacetsProps & HTMLAttributes<HTMLDivElement>> = ({
+export const Facets = ({
   data,
   extraActionsFor,
   queryStringKey = 'facets',
   children,
   className,
   ...props
-}) => {
+}: FacetsProps & HTMLAttributes<HTMLDivElement>) => {
   if (!(data?.length || Children.count(children))) {
     return null;
   }

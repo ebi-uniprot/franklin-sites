@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Button, SlidingPanel } from '../src/components';
+import { Button, SlidingPanel } from '../src';
 
 export default {
   title: 'Layout/Sliding Panel',

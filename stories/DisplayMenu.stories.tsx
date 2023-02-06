@@ -1,4 +1,4 @@
-import { DisplayMenu } from '../src/components';
+import { DisplayMenu } from '../src';
 
 import displayMenuData from '../src/components/__mocks__/displayMenu';
 

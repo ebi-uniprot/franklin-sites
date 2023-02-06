@@ -47,15 +47,29 @@ module.exports = async ({ config }) => {
   });
 
   // use react-svg-loader for svg files in react components
-  config.module.rules.push({
-    test: /\.svg$/i,
-    issuer: /\.tsx?$/,
-    use: [
-      {
-        loader: '@svgr/webpack',
-      },
-    ],
-  });
+  config.module.rules.push(
+    {
+      test: /\.svg$/i,
+      issuer: /\.(j|t)sx?$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            prettier: false,
+            svgo: false,
+            svgoConfig: {
+              plugins: [{ removeViewBox: false }],
+            },
+          },
+        },
+      ],
+    },
+    {
+      test: /\.svg$/i,
+      issuer: /\.(css|scss)?$/,
+      loader: 'svg-url-loader',
+    }
+  );
 
   // Otherwise use svg-url-loader
   config.module.rules.push({

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Tabs, Tab, ConfigureIcon } from '../src/components';
+import { Tabs, Tab, ConfigureIcon } from '../src';
 
 export default {
   title: 'Layout/Tabs',

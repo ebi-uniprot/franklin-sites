@@ -3,12 +3,9 @@
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "declaration": true,
-    "declarationDir": "./dist/types/",
-    // those 2 need to be removed after complete transition
-    "allowJs": false,
-    "strict": false
+    "declarationDir": "./dist/types/"
   },
   "include": ["src/types/**/*"],
-  "exclude": ["node_modules", "src/**/*.spec.ts*", "src/**/*.spec.js*"],
-  "files": ["src/components/index.ts"]
+  "exclude": ["node_modules", "src/**/*.spec.ts*"],
+  "files": ["src/index.ts"]
 }

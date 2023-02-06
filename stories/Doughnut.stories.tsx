@@ -1,4 +1,4 @@
-import { DoughnutChart } from '../src/components';
+import { DoughnutChart } from '../src';
 
 export default {
   title: 'Visualisation/Doughnut',

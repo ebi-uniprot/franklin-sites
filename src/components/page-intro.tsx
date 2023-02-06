@@ -1,4 +1,4 @@
-import { createElement, FC, ReactNode, HTMLAttributes } from 'react';
+import { createElement, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 import { Except } from 'type-fest';
 
@@ -31,9 +31,7 @@ type PageIntroProps = {
   resultsCount?: number;
 };
 
-const PageIntro: FC<
-  PageIntroProps & Except<HTMLAttributes<HTMLDivElement>, 'title'>
-> = ({
+const PageIntro = ({
   title,
   resultsCount,
   titlePostscript,
@@ -42,7 +40,7 @@ const PageIntro: FC<
   children,
   className,
   ...props
-}) => (
+}: PageIntroProps & Except<HTMLAttributes<HTMLDivElement>, 'title'>) => (
   <div className={cn(className, 'page-intro')} {...props}>
     {createElement(
       headingLevel,

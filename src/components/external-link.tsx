@@ -1,4 +1,4 @@
-import { FC, AnchorHTMLAttributes } from 'react';
+import { AnchorHTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import { tidyUrlString } from '../utils';
@@ -20,7 +20,7 @@ export type Props = Exclude<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
   noIcon?: boolean;
 };
 
-const ExternalLink: FC<Props> = ({
+const ExternalLink = ({
   children,
   url,
   tidyUrl = false,
@@ -29,7 +29,7 @@ const ExternalLink: FC<Props> = ({
   rel,
   noIcon = false,
   ...props
-}) => (
+}: Props) => (
   <a
     {...props}
     className={cn('external-link', className)}

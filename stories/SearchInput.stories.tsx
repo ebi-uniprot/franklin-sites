@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchInput as SI } from '../src/components';
+import { SearchInput as SI } from '../src';
 
 export default {
   title: 'Forms/Search Input',

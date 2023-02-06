@@ -1,4 +1,4 @@
-import { SwissProtIcon } from '..';
+import { SwissProtIcon } from '../..';
 
 export const displayMenuDummyContent1 = 'Page 1 main content';
 export const displayMenuDummyContent2 = 'Page 2 main content';

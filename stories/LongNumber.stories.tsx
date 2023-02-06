@@ -1,4 +1,4 @@
-import { LongNumber } from '../src/components';
+import { LongNumber } from '../src';
 
 export default {
   title: 'Visualisation/Long number',
