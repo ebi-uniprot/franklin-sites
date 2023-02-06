@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { debounce } from 'lodash-es';
 
 import { Accordion, Loader, Message, SearchInput } from '.';
@@ -215,7 +215,6 @@ const AccordionSearch = ({
   const [inputValue, setInputValue] = useState('');
   const [filteredAccordionData, setFilteredAccordionData] =
     useState<Array<AccordionItem>>(accordionData);
-  const loaded = useRef(false);
 
   const debouncedFilterAccordionData = useMemo(
     () =>
@@ -232,23 +231,22 @@ const AccordionSearch = ({
     [accordionData]
   );
 
-  useEffect(() => {
-    loaded.current = true;
-    return debouncedFilterAccordionData.cancel;
-  }, [debouncedFilterAccordionData]);
+  useEffect(
+    () => debouncedFilterAccordionData.cancel,
+    [debouncedFilterAccordionData]
+  );
 
   if (!accordionData || !accordionData.length) {
     return <Loader />;
   }
-
   const accordionGroupNode = filteredAccordionData.length ? (
     filteredAccordionData.map(
       ({ label, id, items }, index) =>
         items?.length && (
           <AccordionSearchItem
             label={label}
-            initialOpen={!loaded.current && index === 0}
-            alwaysOpen={!!inputValue}
+            initialOpen={index === 0}
+            alwaysOpen={Boolean(inputValue)}
             items={items}
             selected={selected}
             columns={columns}

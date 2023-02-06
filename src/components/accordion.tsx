@@ -1,4 +1,11 @@
-import { useState, useEffect, FC, ReactNode, KeyboardEvent } from 'react';
+import {
+  useState,
+  useEffect,
+  FC,
+  ReactNode,
+  KeyboardEvent,
+  useRef,
+} from 'react';
 
 import Bubble from './bubble';
 
@@ -34,6 +41,7 @@ const Accordion: FC<Props> = ({
   initialOpen = false,
 }) => {
   const [open, setOpen] = useState(initialOpen);
+  const loaded = useRef(false);
   const toggleOpen = () => {
     setOpen(!open);
   };
@@ -43,10 +51,16 @@ const Accordion: FC<Props> = ({
     }
   };
   useEffect(() => {
-    if (!initialOpen && !alwaysOpen) {
-      setOpen(false);
+    setOpen(Boolean(alwaysOpen));
+  }, [alwaysOpen]);
+  useEffect(() => {
+    if (initialOpen && !loaded.current) {
+      setOpen(true);
     }
-  }, [alwaysOpen, initialOpen]);
+  }, [initialOpen]);
+  useEffect(() => {
+    loaded.current = true;
+  }, []);
   return (
     <div className="accordion">
       <div
