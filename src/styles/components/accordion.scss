@@ -5,49 +5,28 @@
   width: 100%;
 
   &__title {
+    width: 100%;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.5ch;
+
     padding: 0.25rem 0.5rem;
     margin-bottom: 0.25rem;
-    width: 100%;
-    outline: 0;
+
     background-color: $colour-platinum;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     font-family: $fs-headers-font-face;
+    font-size: 1.25rem;
 
-    &__text {
-      margin: 0;
-      font-size: 1.25rem;
-    }
-
-    &__side {
-      &__count {
-        position: relative;
-        top: 0.05rem;
-      }
-
-      &__chevron {
-        position: relative;
-        top: 0.4rem;
-        margin-left: 0.5rem;
-      }
+    & > :first-child {
+      flex-grow: 1;
+      text-align: start;
     }
   }
 
   &__content {
     padding-left: 2rem;
-
-    &--hide-content {
-      display: none;
-    }
-
-    &--display-content {
-      display: block;
-    }
   }
 }
 

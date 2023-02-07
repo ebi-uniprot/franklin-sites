@@ -25,30 +25,20 @@ exports[`AccordionSearch should render 1`] = `
   <div
     class="accordion"
   >
-    <div
+    <button
       class="accordion__title"
-      data-testid="accordion-title"
-      role="button"
-      tabindex="0"
+      type="button"
     >
-      <div
-        class="accordion__title__text"
-      >
+      <span>
         Gene
-      </div>
-      <div
-        class="accordion__title__side"
-      >
-        <test-file-stub
-          classname="accordion__title__side__chevron"
-          height="16"
-          width="16"
-        />
-      </div>
-    </div>
+      </span>
+      <test-file-stub
+        height="16"
+        width="16"
+      />
+    </button>
     <div
-      class="accordion__content accordion__content--display-content"
-      data-testid="accordion-content"
+      class="accordion__content"
     >
       <ul
         class="no-bullet accordion-search__list"
@@ -104,66 +94,18 @@ exports[`AccordionSearch should render 1`] = `
   <div
     class="accordion"
   >
-    <div
+    <button
       class="accordion__title"
-      data-testid="accordion-title"
-      role="button"
-      tabindex="0"
+      type="button"
     >
-      <div
-        class="accordion__title__text"
-      >
+      <span>
         Organelle
-      </div>
-      <div
-        class="accordion__title__side"
-      >
-        <test-file-stub
-          classname="accordion__title__side__chevron"
-          height="16"
-          width="16"
-        />
-      </div>
-    </div>
-    <div
-      class="accordion__content accordion__content--hide-content"
-      data-testid="accordion-content"
-    >
-      <ul
-        class="no-bullet accordion-search__list"
-      >
-        <li
-          class="accordion-search__list__item"
-          data-testid="accordion-search-list-item"
-        >
-          <label
-            for="checkbox-2-1"
-          >
-            <input
-              class="accordion-search__list__item-checkbox"
-              id="checkbox-2-1"
-              type="checkbox"
-            />
-            Ribosome
-          </label>
-        </li>
-        <li
-          class="accordion-search__list__item"
-          data-testid="accordion-search-list-item"
-        >
-          <label
-            for="checkbox-2-2"
-          >
-            <input
-              class="accordion-search__list__item-checkbox"
-              id="checkbox-2-2"
-              type="checkbox"
-            />
-            Nucleus
-          </label>
-        </li>
-      </ul>
-    </div>
+      </span>
+      <test-file-stub
+        height="16"
+        width="16"
+      />
+    </button>
   </div>
 </DocumentFragment>
 `;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
+import { boolean, number, text } from '@storybook/addon-knobs';
 
 import { Accordion, AccordionSearch as AS } from '../src/components';
 
@@ -16,13 +17,12 @@ export default {
 };
 
 export const accordion = () => (
-  <Accordion title="Title">
-    <div>{loremIpsum({ count: 25, units: 'words' })}</div>
-  </Accordion>
-);
-
-export const accordionCount = () => (
-  <Accordion title="Title" count={12}>
+  <Accordion
+    accordionTitle={text('title', 'Title')}
+    count={number('count', 0)}
+    alwaysOpen={boolean('alwaysOpen', false)}
+    initialOpen={boolean('initialOpen', false)}
+  >
     <div>{loremIpsum({ count: 25, units: 'words' })}</div>
   </Accordion>
 );

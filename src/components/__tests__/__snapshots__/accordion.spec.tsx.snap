@@ -5,40 +5,23 @@ exports[`Accordion should render 1`] = `
   <div
     class="accordion"
   >
-    <div
+    <button
       class="accordion__title"
-      data-testid="accordion-title"
-      role="button"
-      tabindex="0"
+      type="button"
     >
-      <div
-        class="accordion__title__text"
-      >
+      <span>
         foo
-      </div>
-      <div
-        class="accordion__title__side"
+      </span>
+      <span
+        class="bubble--small"
       >
-        <span
-          class="accordion__title__side__count bubble--small"
-        >
-          10
-        </span>
-        <test-file-stub
-          classname="accordion__title__side__chevron"
-          height="16"
-          width="16"
-        />
-      </div>
-    </div>
-    <div
-      class="accordion__content accordion__content--hide-content"
-      data-testid="accordion-content"
-    >
-      <div>
-        Foo bar baz qux quux quuz
-      </div>
-    </div>
+        10
+      </span>
+      <test-file-stub
+        height="16"
+        width="16"
+      />
+    </button>
   </div>
 </DocumentFragment>
 `;

@@ -130,7 +130,7 @@ const AccordionSearchItem = ({
   const areChildrenCheckboxes = items.every((item) => !item.items);
   return (
     <Accordion
-      title={highlightSubstring(label, query)}
+      accordionTitle={highlightSubstring(label, query)}
       count={count}
       alwaysOpen={alwaysOpen}
       key={id}
@@ -201,6 +201,12 @@ type AccordionSearchProps = {
   columns?: boolean;
 };
 
+// Augment a normal array to attach a field (like a ref)
+type FilteredArrayAndQuery = {
+  filteredAccordionData: Array<AccordionItem>;
+  query: string;
+};
+
 const AccordionSearch = ({
   accordionData,
   placeholder = '',
@@ -209,21 +215,37 @@ const AccordionSearch = ({
   columns,
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
-  const [filteredAccordionData, setFilteredAccordionData] =
-    useState<Array<AccordionItem>>(accordionData);
+  const [{ filteredAccordionData }, setFilteredAccordionData] =
+    useState<FilteredArrayAndQuery>({
+      filteredAccordionData: accordionData,
+      query: '',
+    });
 
   const debouncedFilterAccordionData = useMemo(
     () =>
-      debounce((value) => {
-        const inputValueLower = value.toLowerCase();
-        setFilteredAccordionData(() => {
-          const filteredData = filterAccordionData(
-            accordionData,
-            inputValueLower.trim()
-          );
-          return filteredData;
-        });
-      }, 500),
+      debounce(
+        (value: string) => {
+          const cleanedInputValue = value.trim().toLowerCase();
+          setFilteredAccordionData((previous) => {
+            // can reuse only if next string includes current string
+            const canReuse =
+              previous.query && cleanedInputValue.includes(previous.query);
+            const filteredAccordionData =
+              // apply filtering, either on prefiltered or full data
+              filterAccordionData(
+                canReuse ? previous.filteredAccordionData : accordionData,
+                cleanedInputValue
+              );
+            return {
+              filteredAccordionData,
+              query: cleanedInputValue,
+            };
+          });
+        },
+        500,
+        // allows to start applying filter right away when typing
+        { leading: true }
+      ),
     [accordionData]
   );
 
@@ -235,6 +257,7 @@ const AccordionSearch = ({
   if (!accordionData || !accordionData.length) {
     return <Loader />;
   }
+
   const accordionGroupNode = filteredAccordionData.length ? (
     filteredAccordionData.map(
       ({ label, id, items }, index) =>
@@ -263,6 +286,7 @@ const AccordionSearch = ({
     setInputValue(event.target.value);
     debouncedFilterAccordionData(event.target.value);
   };
+
   return (
     <>
       <SearchInput
