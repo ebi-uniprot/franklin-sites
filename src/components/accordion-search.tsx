@@ -197,8 +197,9 @@ type AccordionSearchProps = {
   columns?: boolean;
 };
 
-// Augment a normal array to attach a field (like a ref)
-type FilteredArrayAndQuery = {
+// Marry filteredAccordionData and query to be able to check
+// if filteredAccordionData can be recycled for efficiency
+type FilteredAccordionDataAndQuery = {
   filteredAccordionData: Array<AccordionItem>;
   query: string;
 };
@@ -212,7 +213,7 @@ const AccordionSearch = ({
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
   const [{ filteredAccordionData }, setFilteredAccordionData] =
-    useState<FilteredArrayAndQuery>({
+    useState<FilteredAccordionDataAndQuery>({
       filteredAccordionData: accordionData,
       query: '',
     });

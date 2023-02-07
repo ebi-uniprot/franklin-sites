@@ -74,22 +74,19 @@ describe('AccordionSearch', () => {
     });
   });
 
-  it.skip('should find correct number of items when input is entered', async () => {
+  it('should find correct number of items when input is entered', async () => {
     render(<AccordionSearch {...props} />);
     const input = screen.getByTestId('search-input');
     fireEvent.change(input, { target: { value: 'Nucleus' } });
-    const content = await screen.findAllByTestId('accordion-content');
-    expect(content).toHaveLength(1);
-    const listItems = content[0].querySelectorAll('li');
-    expect(listItems).toHaveLength(1);
+    const checkboxes = await screen.findAllByRole('checkbox');
+    expect(checkboxes).toHaveLength(1);
   });
 
-  it.skip('should call onSelect when item clicked', () => {
+  it('should call onSelect when item clicked', () => {
     render(<AccordionSearch {...props} />);
-    const content = screen.queryAllByTestId('accordion-content');
-    const listItemCheckbox = content[0].querySelector('li>label>input');
-    if (listItemCheckbox) {
-      fireEvent.click(listItemCheckbox);
+    const checkboxes = screen.getAllByRole('checkbox');
+    if (checkboxes.length) {
+      fireEvent.click(checkboxes[0]);
     }
     expect(props.onSelect).toHaveBeenCalled();
   });

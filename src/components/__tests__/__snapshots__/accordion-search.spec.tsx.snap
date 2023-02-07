@@ -45,7 +45,6 @@ exports[`AccordionSearch should render 1`] = `
       >
         <li
           class="accordion-search__list__item"
-          data-testid="accordion-search-list-item"
         >
           <label
             for="checkbox-1-1"
@@ -60,7 +59,6 @@ exports[`AccordionSearch should render 1`] = `
         </li>
         <li
           class="accordion-search__list__item"
-          data-testid="accordion-search-list-item"
         >
           <label
             for="checkbox-1-2"
@@ -75,7 +73,6 @@ exports[`AccordionSearch should render 1`] = `
         </li>
         <li
           class="accordion-search__list__item"
-          data-testid="accordion-search-list-item"
         >
           <label
             for="checkbox-1-3"
