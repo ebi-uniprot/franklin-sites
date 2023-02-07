@@ -94,11 +94,7 @@ const AccordionSearchCheckbox = ({
   label,
   query,
 }: Omit<AccordionSearchItemProps, 'items' | 'alwaysOpen' | 'columns'>) => (
-  <li
-    key={id}
-    className="accordion-search__list__item"
-    data-testid="accordion-search-list-item"
-  >
+  <li key={id} className="accordion-search__list__item">
     <label key={id} htmlFor={`checkbox-${id}`}>
       <input
         type="checkbox"
