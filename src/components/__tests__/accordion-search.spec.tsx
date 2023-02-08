@@ -1,6 +1,13 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 
-import AccordionSearch, { filterAccordionData } from '../accordion-search';
+import AccordionSearch, {
+  filterAccordionData,
+  getLeafKeys,
+} from '../accordion-search';
+
+jest.mock('lodash-es', () => ({
+  debounce: (fn: unknown) => fn,
+}));
 
 const props = {
   placeholder: 'Filter',
@@ -8,7 +15,7 @@ const props = {
   selected: [],
   accordionData: [
     {
-      title: 'Gene',
+      label: 'Gene',
       id: '1',
       items: [
         {
@@ -26,7 +33,7 @@ const props = {
       ],
     },
     {
-      title: 'Organelle',
+      label: 'Organelle',
       id: '2',
       items: [
         {
@@ -52,49 +59,47 @@ describe('AccordionSearch', () => {
     it('should return filtered data with matching query', () => {
       const filteredAccordionData = filterAccordionData(
         props.accordionData,
-        'Nucleus'
+        'nucleus'
       );
       expect(filteredAccordionData).toHaveLength(1);
-      expect(filteredAccordionData[0].items[0].id).toBe('2-2');
+      expect(filteredAccordionData[0].items?.[0].id).toBe('2-2');
     });
 
     it('should return no data with nonmatching query', () => {
       const filteredAccordionData = filterAccordionData(
         props.accordionData,
-        'Zap'
+        'zap'
       );
       expect(filteredAccordionData).toHaveLength(0);
     });
   });
 
-  it('should be two accordions with a total of five list items', () => {
-    render(<AccordionSearch {...props} />);
-    const content = screen.queryAllByTestId('accordion-content');
-    expect(content).toHaveLength(2);
-    const allListItems = content.reduce(
-      (acc, node) => acc + node.querySelectorAll('li').length,
-      0
-    );
-    expect(allListItems).toBe(5);
-  });
-
-  it('should match snapshot when input is entered', () => {
+  it('should find correct number of items when input is entered', async () => {
     render(<AccordionSearch {...props} />);
     const input = screen.getByTestId('search-input');
     fireEvent.change(input, { target: { value: 'Nucleus' } });
-    const content = screen.queryAllByTestId('accordion-content');
-    expect(content).toHaveLength(1);
-    const listItems = content[0].querySelectorAll('li');
-    expect(listItems).toHaveLength(1);
+    const checkboxes = await screen.findAllByRole('checkbox');
+    expect(checkboxes).toHaveLength(1);
   });
 
   it('should call onSelect when item clicked', () => {
     render(<AccordionSearch {...props} />);
-    const content = screen.queryAllByTestId('accordion-content');
-    const listItemCheckbox = content[0].querySelector('li>label>input');
-    if (listItemCheckbox) {
-      fireEvent.click(listItemCheckbox);
+    const checkboxes = screen.getAllByRole('checkbox');
+    if (checkboxes.length) {
+      fireEvent.click(checkboxes[0]);
     }
     expect(props.onSelect).toHaveBeenCalled();
+  });
+
+  describe('getLeafKeys', () => {
+    it('should get all of the leaf keys', () => {
+      expect(getLeafKeys(props.accordionData)).toEqual([
+        '1-1',
+        '1-2',
+        '1-3',
+        '2-1',
+        '2-2',
+      ]);
+    });
   });
 });

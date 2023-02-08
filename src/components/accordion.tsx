@@ -1,4 +1,5 @@
-import { useState, useEffect, FC, ReactNode, KeyboardEvent } from 'react';
+import { useState, FC, ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 
 import Bubble from './bubble';
 
@@ -13,7 +14,7 @@ type Props = {
   /**
    * The title, works as a trigger to open/close
    */
-  title: ReactNode;
+  accordionTitle: ReactNode;
   /**
    * Number displayed at the right of the accordion. This could, for example, be used to inform
      the user how many checkboxes have selected in the accodion's hidden content.
@@ -23,67 +24,40 @@ type Props = {
    * Disable toggling and always open accordion
    */
   alwaysOpen?: boolean;
+  initialOpen?: boolean;
 };
 
-const Accordion: FC<Props> = ({ title, count = 0, children, alwaysOpen }) => {
-  const [open, setOpen] = useState(false);
-  const toggleOpen = () => {
-    setOpen(!open);
-  };
-  const handleKeyPress = (key: KeyboardEvent) => {
-    if (key.key === 'Enter') {
-      toggleOpen();
-    }
-  };
-  useEffect(() => {
-    if (alwaysOpen === false) {
-      setOpen(false);
-    }
-  }, [alwaysOpen]);
-  return (
-    <div className="accordion">
-      <div
-        data-testid="accordion-title"
-        role="button"
-        tabIndex={0}
-        className="accordion__title"
-        onClick={() => toggleOpen()}
-        onKeyPress={(key) => handleKeyPress(key)}
-      >
-        <div className="accordion__title__text">{title}</div>
+const Accordion: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
+  accordionTitle,
+  count = 0,
+  children,
+  alwaysOpen,
+  initialOpen = false,
+  className,
+  ...props
+}) => {
+  const [open, setOpen] = useState(initialOpen);
 
-        <div className="accordion__title__side">
-          {count > 0 && (
-            <Bubble size="small" className="accordion__title__side__count">
-              {count}
-            </Bubble>
-          )}
-          {!alwaysOpen &&
-            (open ? (
-              <ChevronUp
-                width={chevronSize}
-                height={chevronSize}
-                className="accordion__title__side__chevron"
-              />
-            ) : (
-              <ChevronDown
-                width={chevronSize}
-                height={chevronSize}
-                className="accordion__title__side__chevron"
-              />
-            ))}
-        </div>
-      </div>
-      <div
-        data-testid="accordion-content"
-        className={`accordion__content ${
-          open || alwaysOpen
-            ? 'accordion__content--display-content'
-            : 'accordion__content--hide-content'
-        }`}
-      >
-        {children}
-      </div>
+  const toggleOpen = () => {
+    setOpen((open) => !open);
+  };
+
+  // Note: might be good to use details/summary elements in the future for this
+  return (
+    <div className={cn(className, 'accordion')} {...props}>
+      <button type="button" className="accordion__title" onClick={toggleOpen}>
+        <span>{accordionTitle}</span>
+        {count > 0 && <Bubble size="small">{count}</Bubble>}
+        {!alwaysOpen &&
+          (open ? (
+            <ChevronUp width={chevronSize} height={chevronSize} />
+          ) : (
+            <ChevronDown width={chevronSize} height={chevronSize} />
+          ))}
+      </button>
+      {(open || alwaysOpen) && (
+        <div className="accordion__content">{children}</div>
+      )}
     </div>
   );
 };
