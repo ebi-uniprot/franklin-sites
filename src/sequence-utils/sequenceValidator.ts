@@ -163,7 +163,7 @@ export function findLikelyType(sequence: string) {
   // type of sequence. 'X' can be safely removed since it only exists in AA sequences
   // and not a valid character in NA sequences.
   const cleanUpRegEx = /[^A-Z]|[NX]/gi;
-  const cleanSequence = sequence.replace(cleanUpRegEx, '');
+  const cleanSequence = sequence.replace(cleanUpRegEx, '').toUpperCase();
   const nucleicAcidBaseThreshold = 90;
 
   return guessSequenceType(cleanSequence, nucleicAcidBaseThreshold);
