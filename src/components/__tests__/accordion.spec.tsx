@@ -2,10 +2,12 @@ import { screen, render, fireEvent } from '@testing-library/react';
 
 import Accordion from '../accordion';
 
+const accordionContent = 'Foo bar baz qux quux quuz';
+
 const props = {
-  title: 'foo',
+  accordionTitle: 'foo',
   count: 10,
-  children: <div>Foo bar baz qux quux quuz</div>,
+  children: <div>{accordionContent}</div>,
 };
 
 describe('Accordion', () => {
@@ -14,26 +16,13 @@ describe('Accordion', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should show content when expand title is clicked', () => {
+  it('should show content according to accordion state', () => {
     render(<Accordion {...props} />);
-    const title = screen.getByTestId('accordion-title');
+    const title = screen.getByRole('button', { name: /foo/ });
+    expect(screen.queryByText(accordionContent)).not.toBeInTheDocument();
     fireEvent.click(title);
-    const content = screen.getByTestId('accordion-content');
-    expect(content).toHaveClass(
-      'accordion__content',
-      'accordion__content--display-content'
-    );
-  });
-
-  it('should not show content when expand title is clicked twice', () => {
-    render(<Accordion {...props} />);
-    const title = screen.getByTestId('accordion-title');
+    expect(screen.getByText(accordionContent)).toBeInTheDocument();
     fireEvent.click(title);
-    fireEvent.click(title);
-    const content = screen.getByTestId('accordion-content');
-    expect(content).toHaveClass(
-      'accordion__content',
-      'accordion__content--hide-content'
-    );
+    expect(screen.queryByText(accordionContent)).not.toBeInTheDocument();
   });
 });

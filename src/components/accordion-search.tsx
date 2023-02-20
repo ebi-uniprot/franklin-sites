@@ -1,31 +1,56 @@
-import { useState, useEffect, ReactNode, useMemo, CSSProperties } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { debounce } from 'lodash-es';
 
-import Accordion from './accordion';
-import SearchInput from './search-input';
-import Loader from './loader';
+import { Accordion, Loader, Message, SearchInput } from '.';
 
-import {
-  getLastIndexOfSubstringIgnoreCase,
-  highlightSubstring,
-} from '../utils';
+import { highlightSubstring } from '../utils';
 
 import '../styles/components/accordion-search.scss';
 
-type Item<T extends ReactNode = string> = {
-  label: T;
-  id: string;
+export const getLeafKeys = (
+  item: AccordionItem[] | AccordionItem
+): string[] | string => {
+  if (Array.isArray(item)) {
+    return item.flatMap((i) => getLeafKeys(i));
+  }
+  if (item.items) {
+    return getLeafKeys(item.items);
+  }
+  return item.id;
 };
 
-export type SelectedItem = {
-  accordionId: string;
-  itemId: string;
+export const filterAccordionData = (
+  accordionData: AccordionItem[],
+  query: string
+): AccordionItem[] => {
+  if (!query) {
+    return accordionData;
+  }
+  const result = [];
+  for (const item of accordionData) {
+    if (item.label.toLowerCase().includes(query)) {
+      result.push(item);
+    } else if (item.items?.length) {
+      const items = filterAccordionData(item.items, query);
+      if (items.length) {
+        result.push({ ...item, items });
+      }
+    }
+  }
+  return result;
+};
+
+export type AccordionItem = {
+  label: string;
+  id: string;
+  items?: AccordionItem[];
 };
 
 type AccordionSearchItemProps = {
   /**
    * An array of objects which populates the list items
    */
-  items: Item<ReactNode>[];
+  items: AccordionItem[];
   /**
    * String used to fill in the search input when empty
    */
@@ -33,16 +58,20 @@ type AccordionSearchItemProps = {
   /**
    * Callback that is fired when an accordion's item is selected
    */
-  onSelect: (accordionId: string, itemId: string) => unknown;
+  onSelect: (id: string) => unknown;
   /**
    * Array of the selected items' IDs
    */
-  selected: SelectedItem[];
+  selected: string[];
   /**
-   * A boolean indicating whether the component should span multiple
-   * columns: 2 columns for medium to 3 columns for large+ screens.
+   * Indicates if the accordion should always be open
    */
   alwaysOpen?: boolean;
+  /**
+   * Indicates if the item should initially be open ie the user can
+   * still collapse after intial load.
+   */
+  initialOpen?: boolean;
   /**
    * A boolean indicating whether the component should span multiple
    * columns: 2 columns for medium to 3 columns for large+ screens.
@@ -51,93 +80,104 @@ type AccordionSearchItemProps = {
   /**
    * The title, works as a trigger to open/close
    */
-  title: ReactNode;
+  label: string;
+  /**
+   * The user's query, passed to highlight in the item's label
+   */
+  query: string;
 };
 
+const AccordionSearchCheckbox = ({
+  onSelect,
+  selected,
+  id,
+  label,
+  query,
+}: Omit<AccordionSearchItemProps, 'items' | 'alwaysOpen' | 'columns'>) => (
+  <li key={id} className="accordion-search__list__item">
+    <label key={id} htmlFor={`checkbox-${id}`}>
+      <input
+        type="checkbox"
+        id={`checkbox-${id}`}
+        className="accordion-search__list__item-checkbox"
+        onChange={() => {
+          onSelect(id);
+        }}
+        checked={selected.includes(id)}
+      />
+      {highlightSubstring(label, query)}
+    </label>
+  </li>
+);
+
 const AccordionSearchItem = ({
-  title,
+  label,
   alwaysOpen,
   items,
   selected,
   columns,
   onSelect,
   id,
-}: AccordionSearchItemProps) => (
-  <Accordion title={title} count={selected.length} alwaysOpen={alwaysOpen}>
-    <ul
-      className={`no-bullet accordion-search__list${
-        columns ? ' accordion-search__list--columns' : ''
-      }`}
+  query,
+  initialOpen = false,
+}: AccordionSearchItemProps) => {
+  const itemKeys = useMemo(() => new Set(getLeafKeys(items)), [items]);
+  const count = selected.filter((s) => itemKeys.has(s)).length;
+  const areChildrenCheckboxes = items.every((item) => !item.items);
+  return (
+    <Accordion
+      accordionTitle={highlightSubstring(label, query)}
+      count={count}
+      alwaysOpen={alwaysOpen}
+      key={id}
+      initialOpen={initialOpen}
     >
-      {items.map(({ label, id: itemId }) => (
-        <li
-          key={itemId}
-          className="accordion-search__list__item"
-          data-testid="accordion-search-list-item"
+      {areChildrenCheckboxes ? (
+        <ul
+          className={`no-bullet accordion-search__list${
+            columns ? ' accordion-search__list--columns' : ''
+          }`}
         >
-          <label key={itemId} htmlFor={`checkbox-${itemId}`}>
-            <input
-              type="checkbox"
-              id={`checkbox-${itemId}`}
-              className="accordion-search__list__item-checkbox"
-              onChange={() => onSelect(id, itemId)}
-              checked={selected.some((item) => item.itemId === itemId)}
+          {items.map((item) => (
+            <AccordionSearchCheckbox
+              label={item.label}
+              selected={selected}
+              onSelect={onSelect}
+              id={item.id}
+              key={item.id}
+              query={query}
             />
-            {label}
-          </label>
-        </li>
-      ))}
-    </ul>
-  </Accordion>
-);
-
-const highlightItems = (items: Item[], query: string): Item<ReactNode>[] =>
-  items.map((item) => ({
-    ...item,
-    label: highlightSubstring(item.label, query),
-  }));
-
-type AccordionDatum<T extends ReactNode = string> = {
-  title: T;
-  id: string;
-  items: Item<T>[];
-};
-
-export const filterAccordionData = (
-  accordionData: AccordionDatum[],
-  query: string
-) => {
-  if (!query) {
-    return accordionData;
-  }
-  const filteredAccordionData: AccordionDatum<ReactNode>[] = [];
-  for (const accordionDatum of accordionData) {
-    if (getLastIndexOfSubstringIgnoreCase(accordionDatum.title, query) >= 0) {
-      filteredAccordionData.push({
-        ...accordionDatum,
-        title: highlightSubstring(accordionDatum.title, query),
-        items: highlightItems(accordionDatum.items, query),
-      });
-    } else {
-      const filteredItems = accordionDatum.items.filter(
-        ({ label }) => getLastIndexOfSubstringIgnoreCase(label, query) >= 0
-      );
-      if (filteredItems.length > 0) {
-        filteredAccordionData.push({
-          ...accordionDatum,
-          items: highlightItems(filteredItems, query),
-        });
-      }
-    }
-  }
-  return filteredAccordionData;
+          ))}
+        </ul>
+      ) : (
+        <ul className="no-bullet accordion-search__list">
+          {items.map(
+            (item) =>
+              item.items?.length && (
+                <AccordionSearchItem
+                  label={item.label}
+                  alwaysOpen={alwaysOpen}
+                  items={item.items}
+                  selected={selected}
+                  columns={columns}
+                  onSelect={onSelect}
+                  id={item.id}
+                  key={item.id}
+                  query={query}
+                />
+              )
+          )}
+        </ul>
+      )}
+    </Accordion>
+  );
 };
 
 type AccordionSearchProps = {
   /**
    * An array of objects each of which is used to populate an accordion.
    */
-  accordionData: AccordionDatum<string>[];
+  accordionData: AccordionItem[];
   /**
    * String used to fill in the search input when empty
    */
@@ -145,15 +185,11 @@ type AccordionSearchProps = {
   /**
    * Callback that is fired when an accordion's item is selected
    */
-  onSelect: (accordionId: string, itemId: string) => unknown;
+  onSelect: (itemId: string) => unknown;
   /**
    * Array of the selected items' IDs
    */
-  selected: SelectedItem[];
-  /**
-   * The width of the text input box
-   */
-  searchInputWidth?: string | number;
+  selected: string[];
   /**
    * A boolean indicating whether the component should span multiple
    * columns: 2 columns for medium to 3 columns for large+ screens.
@@ -161,65 +197,101 @@ type AccordionSearchProps = {
   columns?: boolean;
 };
 
+// Marry filteredAccordionData and query to be able to check
+// if filteredAccordionData can be recycled for efficiency
+type FilteredAccordionDataAndQuery = {
+  filteredAccordionData: Array<AccordionItem>;
+  query: string;
+};
+
 const AccordionSearch = ({
   accordionData,
   placeholder = '',
   onSelect,
   selected,
-  searchInputWidth = '18rem',
   columns,
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
-  const [filteredAccordionData, setFilteredAccordionData] = useState<
-    Array<AccordionDatum<ReactNode>>
-  >([]);
+  const [{ filteredAccordionData }, setFilteredAccordionData] =
+    useState<FilteredAccordionDataAndQuery>({
+      filteredAccordionData: accordionData,
+      query: '',
+    });
 
-  useEffect(() => {
-    const filteredData = filterAccordionData(accordionData, inputValue.trim());
-    setFilteredAccordionData(filteredData);
-  }, [accordionData, inputValue]);
+  const debouncedFilterAccordionData = useMemo(
+    () =>
+      debounce(
+        (value: string) => {
+          const cleanedInputValue = value.trim().toLowerCase();
+          setFilteredAccordionData((previous) => {
+            // can reuse only if next string includes current string
+            const canReuse =
+              previous.query && cleanedInputValue.includes(previous.query);
+            const filteredAccordionData =
+              // apply filtering, either on prefiltered or full data
+              filterAccordionData(
+                canReuse ? previous.filteredAccordionData : accordionData,
+                cleanedInputValue
+              );
+            return {
+              filteredAccordionData,
+              query: cleanedInputValue,
+            };
+          });
+        },
+        500,
+        // allows to start applying filter right away when typing
+        { leading: true }
+      ),
+    [accordionData]
+  );
 
-  const style: CSSProperties | undefined = useMemo(
-    () => (searchInputWidth ? { width: searchInputWidth } : undefined),
-    [searchInputWidth]
+  useEffect(
+    () => debouncedFilterAccordionData.cancel,
+    [debouncedFilterAccordionData]
   );
 
   if (!accordionData || !accordionData.length) {
     return <Loader />;
   }
 
-  let accordionGroupNode = <div>No matches found</div>;
-  if (filteredAccordionData && filteredAccordionData.length) {
-    accordionGroupNode = (
-      <div className="accordion-group accordion-search">
-        {filteredAccordionData.map(({ title, id: accordionId, items }) => (
+  const accordionGroupNode = filteredAccordionData.length ? (
+    filteredAccordionData.map(
+      ({ label, id, items }, index) =>
+        items?.length && (
           <AccordionSearchItem
-            title={title}
-            key={accordionId}
-            id={accordionId}
-            alwaysOpen={!!inputValue}
+            label={label}
+            initialOpen={index === 0}
+            alwaysOpen={Boolean(inputValue)}
             items={items}
-            selected={selected.filter(
-              (item) => item.accordionId === accordionId
-            )}
+            selected={selected}
             columns={columns}
             onSelect={onSelect}
+            id={id}
+            key={id}
+            query={inputValue}
           />
-        ))}
-      </div>
-    );
-  }
+        )
+    )
+  ) : (
+    <Message level="failure">No matches found</Message>
+  );
+
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setInputValue(event.target.value);
+    debouncedFilterAccordionData(event.target.value);
+  };
 
   return (
     <>
-      <div style={style}>
-        <SearchInput
-          type="text"
-          value={inputValue}
-          onChange={(event) => setInputValue(event.target.value)}
-          placeholder={placeholder}
-        />
-      </div>
+      <SearchInput
+        type="text"
+        value={inputValue}
+        onChange={handleSearchInputChange}
+        placeholder={placeholder}
+      />
       {accordionGroupNode}
     </>
   );
