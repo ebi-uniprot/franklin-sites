@@ -10,9 +10,11 @@ exports[`AutocompleteItem component should render 1`] = `
       type="button"
     >
       A path to &gt; some 
-      <b>
+      <span
+        class="highlight"
+      >
         item
-      </b>
+      </span>
     </button>
   </li>
 </DocumentFragment>
