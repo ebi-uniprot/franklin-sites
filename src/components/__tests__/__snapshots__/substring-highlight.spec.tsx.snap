@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubstringHighlight should highlight substring (case insensitive 1`] = `
+<DocumentFragment>
+  Item 1 / 
+  <span
+    class="highlight"
+  >
+    Item 1
+  </span>
+  a
+</DocumentFragment>
+`;
