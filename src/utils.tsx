@@ -72,25 +72,6 @@ export function formatLargeNumber(x: string | number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-export function highlightSubstring(string: string, substring: string) {
-  if (!string || !substring) {
-    return string;
-  }
-  const trimmed = substring.trim();
-  const i = getLastIndexOfSubstringIgnoreCase(string, trimmed);
-  if (i < 0) return string;
-  const prestring = string.slice(0, i);
-  const highlight = string.slice(i, i + trimmed.length);
-  const poststring = string.slice(i + trimmed.length);
-  return (
-    <>
-      {prestring}
-      <b>{highlight}</b>
-      {poststring}
-    </>
-  );
-}
-
 const reProtocol = /^(https?:)?(\/\/)?/;
 const reTrailingSlashes = /(\/+$)/;
 

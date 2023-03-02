@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { highlightSubstring } from '../utils';
+import { SubstringHighlight } from '.';
 
 export type AutocompleteItemType = {
   id: string;
@@ -40,9 +40,13 @@ const AutocompleteItem = ({
         onClick={(e) => handleOnClick(item, e)}
         className={active ? 'hover' : ''}
       >
-        {substringToHighlight
-          ? highlightSubstring(item.pathLabel, substringToHighlight)
-          : item.itemLabel}
+        {substringToHighlight ? (
+          <SubstringHighlight substring={substringToHighlight}>
+            {item.pathLabel}
+          </SubstringHighlight>
+        ) : (
+          item.itemLabel
+        )}
       </button>
     </li>
   );

@@ -1,12 +1,8 @@
-/* eslint-disable no-multi-spaces */
-import { render } from '@testing-library/react';
-
 import {
   getNodePaths,
   getLastIndexOfSubstringIgnoreCase,
   prepareTreeDataForAutocomplete,
   getSingleChildren,
-  highlightSubstring,
   tidyUrlString,
 } from '../utils';
 
@@ -171,19 +167,6 @@ it('should prepare all tree data for autocomplete', () => {
 
 it('should yield single children from a tree of items', () => {
   expect(Array.from(getSingleChildren(treeData))).toEqual(['item_3a']);
-});
-
-describe('highlightSubstring', () => {
-  const string = 'Item 1 / Item 1a';
-  it('should highlight substring (case insensitive', () => {
-    const { asFragment } = render(
-      highlightSubstring(string, 'item 1') as JSX.Element
-    );
-    expect(asFragment()).toMatchSnapshot();
-  });
-  it('should return string if no substring found', () => {
-    expect(highlightSubstring(string, 'zap')).toEqual(string);
-  });
 });
 
 describe('tidyUrlString', () => {

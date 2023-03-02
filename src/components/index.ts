@@ -43,6 +43,7 @@ export { default as Sequence } from './sequence';
 export { default as SequenceSubmission } from './sequence-submission';
 export { default as SequenceTools } from './sequence-tools';
 export { default as SlidingPanel } from './sliding-panel';
+export { default as SubstringHighlight } from './substring-highlight';
 export { Tab, Tabs } from './tabs';
 export { default as Tile } from './tile';
 export { default as TreeSelect } from './tree-select';
