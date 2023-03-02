@@ -3,11 +3,11 @@ import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 import '../styles/components/substring-highlight.scss';
 
 type Props = {
-  string: string;
+  children: string;
   substring: string;
 };
 
-const SubstringHighlight = ({ string, substring }: Props) => {
+const SubstringHighlight = ({ children: string, substring }: Props) => {
   if (!string || !substring) {
     return <>{string}</>;
   }

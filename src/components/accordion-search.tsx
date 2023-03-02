@@ -103,7 +103,7 @@ const AccordionSearchCheckbox = ({
         }}
         checked={selected.includes(id)}
       />
-      <SubstringHighlight string={label} substring={query} />
+      <SubstringHighlight substring={query}>{label}</SubstringHighlight>
     </label>
   </li>
 );
@@ -124,7 +124,9 @@ const AccordionSearchItem = ({
   const areChildrenCheckboxes = items.every((item) => !item.items);
   return (
     <Accordion
-      accordionTitle={<SubstringHighlight string={label} substring={query} />}
+      accordionTitle={
+        <SubstringHighlight substring={query}>{label}</SubstringHighlight>
+      }
       count={count}
       alwaysOpen={alwaysOpen}
       key={id}
