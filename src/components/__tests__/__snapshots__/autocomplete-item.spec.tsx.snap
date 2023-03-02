@@ -10,9 +10,7 @@ exports[`AutocompleteItem component should render 1`] = `
       type="button"
     >
       A path to &gt; some 
-      <mark
-        class="highlight"
-      >
+      <mark>
         item
       </mark>
     </button>
