@@ -41,10 +41,9 @@ const AutocompleteItem = ({
         className={active ? 'hover' : ''}
       >
         {substringToHighlight ? (
-          <SubstringHighlight
-            string={item.pathLabel}
-            substring={substringToHighlight}
-          />
+          <SubstringHighlight substring={substringToHighlight}>
+            {item.pathLabel}
+          </SubstringHighlight>
         ) : (
           item.itemLabel
         )}
