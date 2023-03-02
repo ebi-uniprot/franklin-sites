@@ -1,7 +1,5 @@
 import { getLastIndexOfSubstringIgnoreCase } from '../utils';
 
-import '../styles/components/substring-highlight.scss';
-
 type Props = {
   children: string;
   substring: string;
@@ -22,7 +20,7 @@ const SubstringHighlight = ({ children: string, substring }: Props) => {
   return (
     <>
       {prestring}
-      <mark className="highlight">{highlight}</mark>
+      <mark>{highlight}</mark>
       {poststring}
     </>
   );
