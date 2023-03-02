@@ -1,9 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { debounce } from 'lodash-es';
 
-import { Accordion, Loader, Message, SearchInput } from '.';
-
-import { highlightSubstring } from '../utils';
+import { Accordion, Loader, Message, SearchInput, SubstringHighlight } from '.';
 
 import '../styles/components/accordion-search.scss';
 
@@ -105,7 +103,7 @@ const AccordionSearchCheckbox = ({
         }}
         checked={selected.includes(id)}
       />
-      {highlightSubstring(label, query)}
+      <SubstringHighlight string={label} substring={query} />
     </label>
   </li>
 );
@@ -126,7 +124,7 @@ const AccordionSearchItem = ({
   const areChildrenCheckboxes = items.every((item) => !item.items);
   return (
     <Accordion
-      accordionTitle={highlightSubstring(label, query)}
+      accordionTitle={<SubstringHighlight string={label} substring={query} />}
       count={count}
       alwaysOpen={alwaysOpen}
       key={id}

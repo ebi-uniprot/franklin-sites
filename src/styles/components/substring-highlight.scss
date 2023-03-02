@@ -1,0 +1,11 @@
+@import '../colours';
+
+.highlight {
+  font-weight: bold;
+  background-color: rgba(
+    red($colour-medium-turquoise),
+    green($colour-medium-turquoise),
+    blue($colour-medium-turquoise),
+    0.4
+  );
+}
