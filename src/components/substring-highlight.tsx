@@ -22,7 +22,7 @@ const SubstringHighlight = ({ children: string, substring }: Props) => {
   return (
     <>
       {prestring}
-      <span className="highlight">{highlight}</span>
+      <mark className="highlight">{highlight}</mark>
       {poststring}
     </>
   );
