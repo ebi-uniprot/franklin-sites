@@ -90,16 +90,16 @@ export function formatBytesNumber(bytes: string | number, decimals = 0) {
   }
   const positiveDecimals = decimals < 0 ? 0 : decimals;
   const baseFactor = 1024;
-  const prefixes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  const prefixesIndex = Math.min(
+  const units = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const unitsIndex = Math.min(
     Math.floor(Math.log(bytesNumber) / Math.log(baseFactor)),
-    prefixes.length - 1
+    units.length - 1
   );
-  const number = (bytesNumber / baseFactor ** prefixesIndex).toFixed(
+  const number = (bytesNumber / baseFactor ** unitsIndex).toFixed(
     positiveDecimals
   );
-  const prefix = prefixes[prefixesIndex];
-  return `${formatLargeNumber(parseFloat(number))} ${prefix}`;
+  const unit = units[unitsIndex];
+  return `${formatLargeNumber(parseFloat(number))} ${unit}`;
 }
 
 const reProtocol = /^(https?:)?(\/\/)?/;
