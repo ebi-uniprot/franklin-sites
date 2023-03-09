@@ -69,7 +69,37 @@ export function* getSingleChildren<Item extends BasicItem<Item>>(
 }
 
 export function formatLargeNumber(x: string | number) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const string = x.toString();
+
+  // If number is converted to scientific notation return as is
+  // because commas can't be added as the coefficient will be < 10
+  if (string.includes('e')) {
+    return string;
+  }
+  const [integer, decimal] = x.toString().split('.');
+  const integerWithCommas = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return [integerWithCommas, decimal]
+    .filter((el) => typeof el !== 'undefined')
+    .join('.');
+}
+
+export function formatBytesNumber(bytes: string | number, decimals = 0) {
+  const bytesNumber = +bytes;
+  if (!bytesNumber) {
+    return '0 Bytes';
+  }
+  const positiveDecimals = decimals < 0 ? 0 : decimals;
+  const baseFactor = 1024;
+  const prefixes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const prefixesIndex = Math.min(
+    Math.floor(Math.log(bytesNumber) / Math.log(baseFactor)),
+    prefixes.length - 1
+  );
+  const number = (bytesNumber / baseFactor ** prefixesIndex).toFixed(
+    positiveDecimals
+  );
+  const prefix = prefixes[prefixesIndex];
+  return `${formatLargeNumber(parseFloat(number))} ${prefix}`;
 }
 
 const reProtocol = /^(https?:)?(\/\/)?/;
