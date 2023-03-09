@@ -209,9 +209,11 @@ describe('formatLargeNumber', () => {
 
 describe('formatBytesNumber', () => {
   it.each([
+    [0, 0, '0 Bytes'],
     [1, 1, '1 Bytes'],
     [2000, 1, '2 KB'],
     [30000, 1, '29.3 KB'],
+    [30000, -1, '29 KB'],
     [400000, 1, '390.6 KB'],
     [4372255, 1, '4.2 MB'], // Source macOS: ls -l vs ls -lh
     [5000000, 1, '4.8 MB'],
