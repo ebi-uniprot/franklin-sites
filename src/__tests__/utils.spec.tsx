@@ -4,6 +4,8 @@ import {
   prepareTreeDataForAutocomplete,
   getSingleChildren,
   tidyUrlString,
+  formatLargeNumber,
+  formatBytesNumber,
 } from '../utils';
 
 import { treeData } from '../mock-data/tree-data';
@@ -190,4 +192,43 @@ describe('tidyUrlString', () => {
   it('should handle a schema-relative URL', () => {
     expect(tidyUrlString('//www.ebi.ac.uk/')).toEqual('www.ebi.ac.uk');
   });
+});
+
+describe('formatLargeNumber', () => {
+  it.each([
+    [1000, '1,000'],
+    [-1000, '-1,000'],
+    [999, '999'],
+    [1000.0001, '1,000.0001'],
+    [999.0001, '999.0001'],
+    [0.0000001, '1e-7'],
+  ])('.formatLargeNumber(%p)', (input: number, expected: string) => {
+    expect(formatLargeNumber(input)).toBe(expected);
+  });
+});
+
+describe('formatBytesNumber', () => {
+  it.each([
+    [1, 1, '1 Bytes'],
+    [2000, 1, '2 KB'],
+    [30000, 1, '29.3 KB'],
+    [400000, 1, '390.6 KB'],
+    [4372255, 1, '4.2 MB'], // Source macOS: ls -l vs ls -lh
+    [5000000, 1, '4.8 MB'],
+    [60000000, 1, '57.2 MB'],
+    [700000000, 1, '667.6 MB'],
+    [2621388791, 1, '2.4 GB'], // Source macOS: ls -l vs ls -lh
+    [8000000000, 1, '7.5 GB'],
+    [90000000000, 1, '83.8 GB'],
+    [100000000000, 1, '93.1 GB'],
+    [1100000000000, 1, '1 TB'],
+    [12000000000000, 1, '10.9 TB'],
+    [130000000000000, 1, '118.2 TB'],
+    [1e30, 4, '827,180.6126 YB'], // If bigger than available prefix then use thousands
+  ])(
+    '.formatBytesNumber(%p, %p)',
+    (bytes: number, decimals: number, expected: string) => {
+      expect(formatBytesNumber(bytes, decimals)).toBe(expected);
+    }
+  );
 });
