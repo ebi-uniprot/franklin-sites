@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { debounce } from 'lodash-es';
 
-import { Accordion, Loader, Message, SearchInput } from '.';
+import { Accordion, Loader, Message, SearchInput } from '..';
 
 import { highlightSubstring } from '../utils';
 

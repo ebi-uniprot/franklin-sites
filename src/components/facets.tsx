@@ -1,11 +1,6 @@
 import { ReactNode, HTMLAttributes, Children } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
-import {
-  parse as qsParse,
-  stringify as qsStringify,
-  ParsedQuery,
-} from 'query-string';
 
 import ExpandableList from './expandable-list';
 
@@ -25,7 +20,7 @@ export type FacetObject = {
 // To hold facets, record of sets
 type CustomQueryValue = Record<string, Set<string>>;
 // The modified query object, with our custom facet object
-type CustomParsedQuery = ParsedQuery<string | CustomQueryValue>;
+type CustomParsedQuery = Record<string, string | CustomQueryValue>;
 
 /**
  * Takes a search string and parse it, handle facets specifically, keeps them
@@ -35,7 +30,7 @@ export const parse = (
   string: string,
   queryStringKey = 'facets'
 ): CustomParsedQuery => {
-  const parsed = qsParse(string);
+  const parsed = Object.fromEntries(new URLSearchParams(string).entries());
   let queryStringFacet = parsed[queryStringKey];
   if (!queryStringFacet) {
     return parsed;
@@ -74,10 +69,11 @@ export const stringify = (
     )
     .flat()
     .join(',');
-  if (!facetString) {
-    return qsStringify(rest);
+  const urlSP = new URLSearchParams(rest as Record<string, string>);
+  if (facetString) {
+    urlSP.set(queryStringKey, facetString);
   }
-  return qsStringify({ ...rest, [queryStringKey]: facetString });
+  return urlSP.toString();
 };
 
 type FacetProps = {

@@ -51,7 +51,7 @@ function withDataLoader<
   // props types of wrapped component
   P extends BaseComponentProps<D>
 >(BaseComponent: ComponentType<P>) {
-  const Wrapper: ComponentType<P & WrapperProps<P['data'][0]>> = ({
+  const Wrapper: ComponentType<P & WrapperProps<D>> = ({
     onLoadMoreItems,
     hasMoreData,
     loaderComponent = <Loader />,
@@ -129,12 +129,9 @@ function withDataLoader<
       );
     }
 
-    // TS doesn't like when I separate data from props when asserting as P
-    const baseComponentProps = { ...props, data };
-
     return (
       <>
-        <BaseComponent {...(baseComponentProps as P)} />
+        <BaseComponent {...props} data={data} />
         <div className="data-loader__loading" ref={sentinelRef}>
           {hasMoreData && sentinelContent}
         </div>

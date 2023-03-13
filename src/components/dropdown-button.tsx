@@ -11,8 +11,11 @@ import {
   cloneElement,
   useCallback,
   forwardRef,
+  MutableRefObject,
+  Ref,
 } from 'react';
 import cn from 'classnames';
+import { Except } from 'type-fest';
 
 import Button, { ButtonProps } from './button';
 
@@ -33,7 +36,7 @@ export type DropdownButtonProps = {
    * Open on pointer over (useful for dropdowns in header)
    */
   openOnHover?: boolean;
-} & ButtonProps;
+} & Except<ButtonProps, 'children'>;
 
 // Keep it around for now as it's still used in TreeSelect
 /** @deprecated */

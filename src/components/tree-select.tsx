@@ -121,6 +121,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
           return (
             <li
               key={node.id}
+              // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
               role="treeitem"
               aria-expanded={ariaExpanded}
               className={cn({ branch: node.items })}

@@ -4,6 +4,8 @@ import {
   useState,
   HTMLAttributes,
   ReactNode,
+  ChangeEventHandler,
+  KeyboardEventHandler,
 } from 'react';
 import cn from 'classnames';
 import { Except } from 'type-fest';
@@ -94,7 +96,7 @@ const Autocomplete = ({
     [onDropdownChange]
   );
 
-  const handleInputChange = useCallback(
+  const handleInputChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (event) => {
       const { value: textInputValue } = event.target;
       const showDropdown = shouldShowDropdown(
@@ -128,7 +130,7 @@ const Autocomplete = ({
     [clearOnSelect, onSelect, onDropdownChange]
   );
 
-  const handleOnKeyDown = useCallback(
+  const handleOnKeyDown = useCallback<KeyboardEventHandler<HTMLInputElement>>(
     (event) => {
       if (event.key === 'ArrowUp') {
         event.preventDefault();

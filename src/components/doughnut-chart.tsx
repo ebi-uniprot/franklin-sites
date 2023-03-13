@@ -19,7 +19,7 @@ type Props = {
    * The ratio to be displayed in percent.
    */
   percent?: number;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const DoughnutChart = ({
