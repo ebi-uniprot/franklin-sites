@@ -11,8 +11,6 @@ import {
   cloneElement,
   useCallback,
   forwardRef,
-  MutableRefObject,
-  Ref,
 } from 'react';
 import cn from 'classnames';
 import { Except } from 'type-fest';

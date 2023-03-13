@@ -1,4 +1,7 @@
 import { useState, HTMLAttributes } from 'react';
+import { Except } from 'type-fest';
+
+import { ExternalLink } from '..';
 
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
@@ -9,8 +12,6 @@ import {
   NonSortableColumn,
 } from '../components/data-table';
 import { WrapperProps } from '../components/data-loader';
-import { ExternalLink } from '..';
-import { Except } from 'type-fest';
 
 type DataType = Record<string, string>;
 type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
