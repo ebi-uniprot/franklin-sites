@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import SubstringHighlight from '../substring-highlight';
+import { SubstringHighlight } from '../..';
 
 // TODO: Can't get mark by role yet but it should be possible in the future:
 // https://github.com/testing-library/dom-testing-library/issues/1150

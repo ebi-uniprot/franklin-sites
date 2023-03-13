@@ -1,7 +1,6 @@
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
-import Tile from '../tile';
-import { ProtVistaIcon } from '../..';
+import { ProtVistaIcon, Tile } from '../..';
 
 import colors from '../../styles/colours.json';
 

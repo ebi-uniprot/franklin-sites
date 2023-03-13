@@ -29,7 +29,7 @@ describe('DataTable', () => {
     content3: 'baz',
   }));
 
-  type DataType = typeof data[0];
+  type DataType = (typeof data)[0];
   const columns: Array<SortableColumn<DataType> | NonSortableColumn<DataType>> =
     [
       {
@@ -142,7 +142,7 @@ describe('DataTable', () => {
     expect(getBodyCheckboxes({ checked: true })).toHaveLength(3);
   });
 
-  it.skip('should select and unselect all checkboxes when select all checkbox is ticked', async () => {
+  it('should select and unselect all checkboxes when select all checkbox is ticked', async () => {
     renderTable();
     const selectAll = screen.getByRole('checkbox', {
       name: /Selection control/i,
@@ -179,14 +179,12 @@ describe('DataTable', () => {
     await waitFor(() => expect(selectAll.indeterminate).toBe(true));
     fireEvent.click(selectAll); // uncheck everything, get out of mixed state
     // No checked checkboxes to find, helper function should throw
-    await waitFor(
-      () =>
-        expect(() =>
-          queryAllByRole(screen.getByRole('table'), 'checkbox', {
-            checked: true,
-          })
-        )
-      // expect(() => getBodyCheckboxes({ checked: true })).toThrow()
+    await waitFor(() =>
+      expect(() =>
+        queryAllByRole(screen.getByRole('table'), 'checkbox', {
+          checked: true,
+        })
+      )
     );
     expect(selectAll.indeterminate).toBe(false); // not in a mixed state
   });
