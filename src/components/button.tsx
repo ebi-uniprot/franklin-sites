@@ -8,6 +8,9 @@ import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';
 
+// NOTE: need to improve the types of this component eventually
+// possible inspiration: https://twitter.com/glnnrys/status/1602202089312043009
+
 type PossibleElements =
   | HTMLAnchorElement // <a></a>
   | HTMLButtonElement // <button></button>
