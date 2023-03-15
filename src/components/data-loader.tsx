@@ -13,7 +13,7 @@ import Loader from './loader';
 
 import '../styles/components/data-loader.scss';
 
-export type WrapperProps<D> = {
+export type WrapperProps = {
   /**
    * Callback to request more items if user scrolled to the bottom of the scroll-container or if
    * the scroll-container isn't scrollable yet because not enough items have been loaded yet. If
@@ -32,7 +32,7 @@ export type WrapperProps<D> = {
   /**
    * Data that is being represented in the wrapped component
    */
-  data: D[];
+  data: unknown[];
   /**
    * Use a button to load more data instead of having infinite scrolling.
    * If this prop is a string or a node, it will render this within the button
@@ -40,18 +40,19 @@ export type WrapperProps<D> = {
   clickToLoad?: boolean | ReactNode;
 };
 
-type BaseComponentProps<D> = {
-  data: D[];
+type BaseComponentProps = {
+  data: unknown[];
 };
 
 function withDataLoader<
   // data type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  D extends Record<string, any>,
+  // D extends Record<string, any>,
   // props types of wrapped component
-  P extends BaseComponentProps<D>
->(BaseComponent: ComponentType<P>) {
-  const Wrapper: ComponentType<P & WrapperProps<D>> = ({
+  BC extends ComponentType<BaseComponentProps>,
+  P extends BaseComponentProps
+>(BaseComponent: BC) {
+  const Wrapper: ComponentType<WrapperProps> = ({
     onLoadMoreItems,
     hasMoreData,
     loaderComponent = <Loader />,

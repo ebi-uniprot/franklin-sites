@@ -306,5 +306,5 @@ export const DataTable = <Datum extends BasicDatum>({
 };
 
 export const DataTableWithLoader = <Datum extends BasicDatum>(
-  props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLTableElement>
-) => withDataLoader<Datum, typeof props>(DataTable)(props);
+  props: WrapperProps & Props<Datum> & HTMLAttributes<HTMLTableElement>
+) => withDataLoader(DataTable)(props);
