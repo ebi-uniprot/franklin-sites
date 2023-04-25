@@ -35,7 +35,7 @@ type SlidingPanelProps = {
   /**
    * What happens when close is triggered. Responsability of the user of the compoent
    */
-  onClose?: (reason: 'outside' | 'button' | 'navigation' | 'escape') => void;
+  onClose?: (reason: 'outside' | 'x-button' | 'navigation' | 'escape') => void;
   /**
    * Size of the panel once opened
    */
@@ -177,7 +177,7 @@ const SlidingPanel: FC<
 
           <Button
             variant="tertiary"
-            onClick={() => onCloseRef.current?.('button')}
+            onClick={() => onCloseRef.current?.('x-button')}
             className="sliding-panel__header__buttons"
             title="Close panel"
           >

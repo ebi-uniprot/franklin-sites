@@ -30,7 +30,7 @@ describe('SlidingPanel component', () => {
       </SlidingPanel>
     );
     fireEvent.click(screen.getByRole('button', { name: /close/i }));
-    await waitFor(() => expect(onClose).toHaveBeenCalledWith('button'));
+    await waitFor(() => expect(onClose).toHaveBeenCalledWith('x-button'));
   });
 
   it('should call onClose when pressing escape (within and outside the panel)', async () => {
