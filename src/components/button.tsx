@@ -1,7 +1,15 @@
-import { forwardRef, ComponentClass, FunctionComponent } from 'react';
+import {
+  forwardRef,
+  ComponentClass,
+  FunctionComponent,
+  ReactNode,
+} from 'react';
 import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';
+
+// NOTE: need to improve the types of this component eventually
+// possible inspiration: https://twitter.com/glnnrys/status/1602202089312043009
 
 type PossibleElements =
   | HTMLAnchorElement // <a></a>
@@ -31,40 +39,42 @@ export type ButtonProps = {
    */
   className?: string;
   /**
+   * Children
+   */
+  children?: ReactNode;
+  /**
    * Any other prop to pass down to the rendered element
    */
   [key: string]: unknown;
 };
 
-export const Button = forwardRef<PossibleElements, ButtonProps>(
-  (
-    { element = 'button', className, variant = 'primary', children, ...props },
-    ref
-  ) => {
-    const rest = props;
+const Button = ({
+  element = 'button',
+  className,
+  variant = 'primary',
+  children,
+  type,
+  ...props
+}: ButtonProps) => {
+  // eslint-disable-next-line no-underscore-dangle
+  let _type = type;
 
-    if (element === 'button') {
-      rest.type = props.type || 'button';
-    }
-
-    const Element = element;
-    return (
-      <Element
-        className={cn(
-          'button',
-          variant,
-          { disabled: props.disabled },
-          className
-        )}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </Element>
-    );
+  if (element === 'button') {
+    _type = type || 'button';
   }
-);
 
-export default Button;
+  const Element = element;
+  return (
+    <Element
+      className={cn('button', variant, { disabled: props.disabled }, className)}
+      type={_type}
+      {...props}
+    >
+      {children}
+    </Element>
+  );
+};
+
+export default forwardRef<PossibleElements, ButtonProps>((props, ref) => (
+  <Button {...props} ref={ref} />
+));

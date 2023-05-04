@@ -60,97 +60,7 @@ exports[`<Facet /> should render facet with a lot of data 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Facet /> should render facet with a lot of data 2`] = `
-<DocumentFragment>
-  <div>
-    <div
-      class="facet-name"
-    >
-      Proteins with
-    </div>
-    <ul
-      class="expandable-list no-bullet"
-    >
-      <li>
-        <a
-          href="/?facets=proteins_with%3A3dstructure"
-        >
-          3D structure (1,858)
-        </a>
-      </li>
-      <li>
-        <a
-          href="/?facets=proteins_with%3Aact_site"
-        >
-          Active site (386,659)
-        </a>
-      </li>
-      <li>
-        <a
-          href="/?facets=proteins_with%3Aactivity_regulation"
-        >
-          Activity regulation (30,848)
-        </a>
-      </li>
-      <li>
-        <a
-          href="/?facets=proteins_with%3Aallergen"
-        >
-          Allergen (21)
-        </a>
-      </li>
-      <li>
-        <a
-          href="/?facets=proteins_with%3Aalternative_products"
-        >
-          Alternative products(isoforms) (1,066)
-        </a>
-      </li>
-      <li>
-        <button
-          class="button tertiary expandable-list__action"
-          data-testid="expandable-message"
-          type="button"
-        >
-          More items
-        </button>
-      </li>
-    </ul>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`<Facet /> should render facet with few data 1`] = `
-<DocumentFragment>
-  <div>
-    <div
-      class="facet-name"
-    >
-      Status
-    </div>
-    <ul
-      class="expandable-list no-bullet"
-    >
-      <li>
-        <a
-          href="/?facets=reviewed%3Afalse"
-        >
-          Unreviewed (TrEMBL) (1,271,454)
-        </a>
-      </li>
-      <li>
-        <a
-          href="/?facets=reviewed%3Atrue"
-        >
-          Reviewed (Swiss-Prot) (11,729)
-        </a>
-      </li>
-    </ul>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`<Facet /> should render facet with few data 2`] = `
 <DocumentFragment>
   <div>
     <div
@@ -241,7 +151,7 @@ exports[`<Facets /> should render multiple facets 1`] = `
             </li>
             <li>
               <a
-                href="/?facets=model_organism%3AA.%20thaliana"
+                href="/?facets=model_organism%3AA.+thaliana"
               >
                 A. thaliana (1,239)
               </a>
@@ -428,35 +338,35 @@ exports[`<Facets /> should render multiple facets 1`] = `
           >
             <li>
               <a
-                href="/?facets=length%3A%5B1%20TO%20200%5D"
+                href="/?facets=length%3A%5B1+TO+200%5D"
               >
                 1 - 200 (101,062)
               </a>
             </li>
             <li>
               <a
-                href="/?facets=length%3A%5B201%20TO%20400%5D"
+                href="/?facets=length%3A%5B201+TO+400%5D"
               >
                 201 - 400 (553,257)
               </a>
             </li>
             <li>
               <a
-                href="/?facets=length%3A%5B401%20TO%20600%5D"
+                href="/?facets=length%3A%5B401+TO+600%5D"
               >
                 401 - 600 (423,158)
               </a>
             </li>
             <li>
               <a
-                href="/?facets=length%3A%5B601%20TO%20800%5D"
+                href="/?facets=length%3A%5B601+TO+800%5D"
               >
                 601 - 800 (120,501)
               </a>
             </li>
             <li>
               <a
-                href="/?facets=length%3A%5B801%20TO%20%2A%5D"
+                href="/?facets=length%3A%5B801+TO+*%5D"
               >
                 &gt;= 801 (85,205)
               </a>

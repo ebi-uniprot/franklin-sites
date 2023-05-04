@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { Button, DownloadIcon } from '../src/components';
+import { Button, DownloadIcon } from '../src';
 
 import colors from '../src/styles/colours.json';
 

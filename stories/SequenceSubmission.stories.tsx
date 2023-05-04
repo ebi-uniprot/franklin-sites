@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { SequenceSubmission } from '../src/components';
+import { SequenceSubmission } from '../src';
 
 import { SequenceObject } from '../src/sequence-utils/sequence-processor';
 

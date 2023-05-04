@@ -53,7 +53,7 @@ import {
   FullViewIcon,
   ShareNodesIcon,
   RedundantProteomeIcon,
-} from '../src/components';
+} from '../src';
 
 import colors from '../src/styles/colours.json';
 

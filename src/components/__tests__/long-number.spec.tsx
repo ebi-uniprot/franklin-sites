@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { LongNumber } from '..';
+import { LongNumber } from '../..';
 
 describe('Long number component', () => {
   it('should render', () => {

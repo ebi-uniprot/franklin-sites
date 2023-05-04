@@ -40,7 +40,7 @@ const SequenceSubmission = ({
   const [processed, setProcessed] = useState<SequenceObject[]>([]);
 
   const onChangeWithValidation = useCallback(
-    (newValue) => {
+    (newValue: string) => {
       const processed = sequenceProcessor(newValue, minimumLength);
       setProcessed(processed);
 

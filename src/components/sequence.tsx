@@ -18,7 +18,7 @@ import {
   SequenceTools,
   CopyToClipboard,
   Button,
-} from '.';
+} from '..';
 
 import { InfoListItem } from './info-list';
 

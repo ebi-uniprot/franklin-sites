@@ -1,6 +1,6 @@
 import { loremIpsum } from 'lorem-ipsum';
 
-import { ButtonModal } from '../src/components';
+import { ButtonModal } from '../src';
 
 export default {
   title: 'Layout/Modal',

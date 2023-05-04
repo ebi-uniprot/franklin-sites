@@ -10,7 +10,7 @@ exports[`Tile component should render 1`] = `
       aria-hidden="true"
       class="tile__background-image"
     >
-      test-file-stub
+      <test-file-stub />
     </div>
     <a
       class="tile__main-content"

@@ -1,5 +1,4 @@
 import {
-  FC,
   useCallback,
   useRef,
   ReactNode,
@@ -16,7 +15,7 @@ type ChipProps = {
   /**
    * What is displayed within the chip
    */
-  children: string | ReactNode;
+  children: ReactNode;
   /**
    * Call back which, if present, will display a remove icon and is fired when this is clicked
    */
@@ -47,9 +46,7 @@ type ChipProps = {
   onKeyPress?: () => void;
 };
 
-export const Chip: FC<
-  ChipProps & HTMLAttributes<HTMLButtonElement | HTMLSpanElement>
-> = ({
+export const Chip = ({
   children,
   onRemove,
   className = '',
@@ -59,7 +56,7 @@ export const Chip: FC<
   onClick,
   onKeyPress,
   ...rest
-}) => {
+}: ChipProps & HTMLAttributes<HTMLButtonElement | HTMLSpanElement>) => {
   const onRemoveRef = useRef(onRemove);
   onRemoveRef.current = onRemove;
 

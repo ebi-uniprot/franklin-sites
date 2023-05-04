@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { select, boolean, text } from '@storybook/addon-knobs';
 
-import { Message } from '../src/components';
+import { Message } from '../src';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 

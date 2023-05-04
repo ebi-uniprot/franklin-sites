@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 
-import { HistogramFilter } from '..';
+import { HistogramFilter } from '../..';
 
 import useSize from '../../hooks/useSize';
 

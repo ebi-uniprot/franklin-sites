@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { withKnobs, select, text } from '@storybook/addon-knobs';
 
-import { TreeSelect as TS } from '../src/components';
+import { TreeSelect as TS } from '../src';
 
 import { treeData } from '../src/mock-data/tree-data';
 

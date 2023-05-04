@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Button, SlidingPanel } from '../src/components';
+import { Button, SlidingPanel } from '../src';
 
 export default {
   title: 'Layout/Sliding Panel',
@@ -44,14 +44,14 @@ export const SlidingPanels = () => {
 
 export const SlidingPanelsWithArrow = () => {
   const [showPanel, setShowPanel] = useState(false);
-  const [arrowX, setArrowX] = useState();
+  const [arrowX, setArrowX] = useState<number>();
 
   const position = usePositionLR();
   const title = useTitle();
   const size = useSize();
 
   const buttonRef = useCallback(
-    (node) => {
+    (node: HTMLButtonElement) => {
       if (node) {
         const bcr = node.getBoundingClientRect();
         setArrowX(bcr.x + bcr.width / 2);

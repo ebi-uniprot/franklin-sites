@@ -6,6 +6,8 @@ import {
   HTMLAttributes,
   ReactElement,
   ReactNode,
+  SyntheticEvent,
+  EventHandler,
 } from 'react';
 import { v1 } from 'uuid';
 import cn from 'classnames';
@@ -93,7 +95,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
     return tabs[0].id;
   });
 
-  const handleClick = useCallback(
+  const handleClick = useCallback<EventHandler<SyntheticEvent<HTMLElement>>>(
     (event) => {
       if (isManaged) {
         return;
@@ -103,6 +105,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
       // mouse click event, or if keyboard event, restrict to 'Enter' and spacebar keys
       if (
         event &&
+        target &&
         (!('key' in event) || event.key === 'Enter' || event.key === ' ')
       ) {
         setSelectedState(target);

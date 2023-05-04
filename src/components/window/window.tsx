@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import cn from 'classnames';
 
 import WindowHeader from './window-header';
@@ -20,7 +20,7 @@ type WindowProps = {
   children?: ReactNode;
 };
 
-const Window: FC<WindowProps> = ({
+const Window = ({
   width = '50vw',
   height = '50vh',
   title,
@@ -32,7 +32,7 @@ const Window: FC<WindowProps> = ({
   withShadow = false,
   className,
   children,
-}) => {
+}: WindowProps) => {
   const styles = {
     width,
     minHeight: height,

@@ -1,4 +1,4 @@
-import { FC, Children, useState, ReactNode, HTMLAttributes } from 'react';
+import { Children, useState, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import Button from './button';
@@ -13,13 +13,13 @@ type ExpandableMessageProps = {
   nHiddenItems?: number;
 };
 
-export const ExpandableMessage: FC<ExpandableMessageProps> = ({
+export const ExpandableMessage = ({
   descriptionString = 'items',
   expanded,
   setExpanded,
   showHideWording,
   nHiddenItems,
-}) => {
+}: ExpandableMessageProps) => {
   let message = `${showHideWording ? 'Hide' : 'Less'} ${descriptionString}`;
   if (!expanded) {
     if (nHiddenItems === undefined) {

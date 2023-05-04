@@ -2,7 +2,7 @@ import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 import { withKnobs, select, text, number } from '@storybook/addon-knobs';
 
-import { Histogram } from '../src/components';
+import { Histogram } from '../src';
 
 import {
   getUniformSample,

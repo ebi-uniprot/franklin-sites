@@ -7,7 +7,7 @@ import {
   HelpIcon,
   MainSearch,
   Dropdown,
-} from '..';
+} from '../..';
 
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 

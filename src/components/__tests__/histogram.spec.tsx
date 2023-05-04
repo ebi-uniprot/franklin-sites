@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { Histogram } from '..';
+import { Histogram } from '../..';
 
 import useSize from '../../hooks/useSize';
 

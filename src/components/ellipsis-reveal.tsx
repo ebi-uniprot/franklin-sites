@@ -3,14 +3,14 @@ import {
   HTMLAttributes,
   PropsWithChildren,
   createContext,
-  FC,
   SetStateAction,
   Dispatch,
   useContext,
+  ReactNode,
 } from 'react';
 import cn from 'classnames';
 
-import { Button } from './button';
+import { Button } from '..';
 
 import '../styles/components/ellipsis-reveal.scss';
 
@@ -19,7 +19,7 @@ const Context = createContext<
 >(null);
 Context.displayName = 'EllipsisRevealContext';
 
-const Provider: FC = ({ children }) => {
+const Provider = ({ children }: { children: ReactNode }) => {
   const state = useState(new Set<string>());
 
   return <Context.Provider value={state}>{children}</Context.Provider>;
@@ -35,8 +35,7 @@ const EllipsisReveal = ({
   HTMLAttributes<HTMLButtonElement> & { contextKey?: string }
 >) => {
   const contextState = useContext(Context);
-  const openFromContext =
-    contextState && contextKey && contextState[0].has(contextKey);
+  const openFromContext = contextKey && contextState?.[0].has(contextKey);
   const [open, setOpen] = useState(false);
   if (open || openFromContext) {
     return <>{children}</>;
@@ -46,8 +45,8 @@ const EllipsisReveal = ({
       variant="tertiary"
       onClick={() => {
         setOpen(true);
-        if (contextKey && contextState) {
-          contextState[1](
+        if (contextKey) {
+          contextState?.[1](
             (previousSet) => new Set([...previousSet, contextKey])
           );
         }

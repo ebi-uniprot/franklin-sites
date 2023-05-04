@@ -1,7 +1,6 @@
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
-import Tile from '../tile';
-import { ProtVistaIcon } from '..';
+import { ProtVistaIcon, Tile } from '../..';
 
 import colors from '../../styles/colours.json';
 
@@ -11,7 +10,7 @@ describe('Tile component', () => {
       <Tile
         title="Tile title"
         subtitle="Subtitle"
-        backgroundImage={ProtVistaIcon}
+        backgroundImage={<ProtVistaIcon />}
         backgroundColor={colors.seaBlue}
         to="/"
         gradient

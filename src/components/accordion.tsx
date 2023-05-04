@@ -1,4 +1,4 @@
-import { useState, FC, ReactNode, HTMLAttributes } from 'react';
+import { useState, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import Bubble from './bubble';
@@ -24,10 +24,17 @@ type Props = {
    * Disable toggling and always open accordion
    */
   alwaysOpen?: boolean;
+  /**
+   * Initial state of the component
+   */
   initialOpen?: boolean;
+  /**
+   * React children
+   */
+  children?: ReactNode;
 };
 
-const Accordion: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
+const Accordion = ({
   accordionTitle,
   count = 0,
   children,
@@ -35,7 +42,7 @@ const Accordion: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
   initialOpen = false,
   className,
   ...props
-}) => {
+}: Props & HTMLAttributes<HTMLDivElement>) => {
   const [open, setOpen] = useState(initialOpen);
 
   const toggleOpen = () => {

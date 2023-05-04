@@ -1,7 +1,7 @@
 import { number, select } from '@storybook/addon-knobs';
 import { CSSProperties } from 'react';
 
-import { Bubble } from '../src/components';
+import { Bubble } from '../src';
 
 import colors from '../src/styles/colours.json';
 

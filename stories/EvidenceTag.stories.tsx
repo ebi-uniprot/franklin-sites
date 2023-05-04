@@ -5,7 +5,7 @@ import {
   EvidenceTagIcon,
   InformationIcon,
   HelpIcon,
-} from '../src/components';
+} from '../src';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 

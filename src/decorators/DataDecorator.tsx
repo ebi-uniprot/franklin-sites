@@ -1,4 +1,7 @@
 import { useState, HTMLAttributes } from 'react';
+import { Except } from 'type-fest';
+
+import { ExternalLink } from '..';
 
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
@@ -9,7 +12,6 @@ import {
   NonSortableColumn,
 } from '../components/data-table';
 import { WrapperProps } from '../components/data-loader';
-import { ExternalLink } from '../components';
 
 type DataType = Record<string, string>;
 type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
@@ -58,7 +60,7 @@ export const columns: Array<
     sortable: true,
   },
   {
-    label: () => (
+    label: (
       <>
         Column 5 <small>FC</small>
       </>
@@ -76,7 +78,7 @@ const generateData = (numberElements: number) =>
 
 type Args<P> = {
   children: (props: P) => JSX.Element;
-} & HTMLAttributes<HTMLDivElement>;
+} & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export const DataLoaderDecorator = ({
   children,

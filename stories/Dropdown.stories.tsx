@@ -1,7 +1,7 @@
 import { boolean } from '@storybook/addon-knobs';
 import { Fragment } from 'react';
 
-import { Button, ControlledDropdown, Dropdown } from '../src/components';
+import { Button, ControlledDropdown, Dropdown } from '../src';
 
 export default {
   title: 'Forms/Dropdown button',

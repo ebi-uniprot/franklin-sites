@@ -1,6 +1,6 @@
 import { boolean } from '@storybook/addon-knobs';
 
-import { Card as CardComponent, SwissProtIcon } from '../src/components';
+import { Card as CardComponent, SwissProtIcon } from '../src';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 

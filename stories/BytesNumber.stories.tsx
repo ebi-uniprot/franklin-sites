@@ -1,6 +1,6 @@
 import { number } from '@storybook/addon-knobs';
 
-import { BytesNumber } from '../src/components';
+import { BytesNumber } from '../src';
 
 export default {
   title: 'Visualisation/Bytes number',

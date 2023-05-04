@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { loremIpsum } from 'lorem-ipsum';
 import { boolean, number, text } from '@storybook/addon-knobs';
 
-import { Accordion, AccordionSearch as AS } from '../src/components';
+import { Accordion, AccordionSearch as AS } from '../src';
 
 import { AccordionItem } from '../src/components/accordion-search';
 

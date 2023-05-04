@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes, FC } from 'react';
+import { ReactNode, HTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -27,7 +27,7 @@ type HeaderProps = {
   isNegative?: boolean;
 };
 
-const Header: FC<HeaderProps & HTMLAttributes<HTMLDivElement>> = ({
+const Header = ({
   logo,
   search,
   secondaryItems,
@@ -36,7 +36,7 @@ const Header: FC<HeaderProps & HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props
-}) => (
+}: HeaderProps & HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(className, 'header', { 'header--negative': isNegative })}
     {...props}

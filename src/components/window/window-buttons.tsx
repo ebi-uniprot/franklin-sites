@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import cn from 'classnames';
 
 import CloseIcon from '../../svg/times.svg';
@@ -10,13 +10,13 @@ type WindowActionButtonProps = {
   primary?: boolean;
   className?: string;
 };
-export const WindowActionButton: FC<WindowActionButtonProps> = ({
+export const WindowActionButton = ({
   icon,
   text,
   onClick,
   primary = false,
   className,
-}) => {
+}: WindowActionButtonProps) => {
   const baseClassName = 'window__action-button';
   const iconOnly = icon && !text;
 
@@ -42,12 +42,12 @@ type DefaultCloseButtonProps = {
   onClick: () => void;
 };
 
-export const DefaultCloseButton: FC<DefaultCloseButtonProps> = ({
+export const DefaultCloseButton = ({
   iconOnly = false,
   text,
   onClick,
   ...otherProps
-}) => {
+}: DefaultCloseButtonProps) => {
   const baseClassName = 'window__default-close-button';
   const iconOnlyClass = `${baseClassName}--icon-only`;
 

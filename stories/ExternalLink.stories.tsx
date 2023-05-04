@@ -1,5 +1,5 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { ExternalLink } from '../src/components';
+import { ExternalLink } from '../src';
 
 export default {
   title: 'Core/External link',

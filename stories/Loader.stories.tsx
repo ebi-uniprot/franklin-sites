@@ -1,6 +1,6 @@
 import { number } from '@storybook/addon-knobs';
 
-import { Loader } from '../src/components';
+import { Loader } from '../src';
 
 export default {
   title: 'Core/Loader',

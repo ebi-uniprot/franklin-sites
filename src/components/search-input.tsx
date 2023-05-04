@@ -1,13 +1,12 @@
 import {
   useRef,
-  FC,
   KeyboardEvent,
   ChangeEventHandler,
   ChangeEvent,
   InputHTMLAttributes,
 } from 'react';
 
-import { SearchIcon, SpinnerIcon, CloseIcon } from '.';
+import { SearchIcon, SpinnerIcon, CloseIcon } from '..';
 
 import '../styles/components/search-input.scss';
 
@@ -34,14 +33,14 @@ type Props = {
   isLoading?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const SearchInput: FC<Props> = ({
+const SearchInput = ({
   value,
   onChange,
   onKeyDown,
   placeholder,
   isLoading = false,
   ...props
-}) => {
+}: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleSuffixInteraction = () => {
     inputRef?.current?.focus();

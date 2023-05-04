@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
-import { DataTable, DataTableWithLoader } from '../src/components';
+import { DataTable, DataTableWithLoader } from '../src';
 import {
   DataDecorator,
   DataLoaderDecorator,

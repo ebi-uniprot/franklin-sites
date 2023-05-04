@@ -5,6 +5,7 @@ import {
   getAllByRole,
   ByRoleOptions,
   waitFor,
+  queryAllByRole,
 } from '@testing-library/react';
 
 import {
@@ -28,7 +29,7 @@ describe('DataTable', () => {
     content3: 'baz',
   }));
 
-  type DataType = typeof data[0];
+  type DataType = (typeof data)[0];
   const columns: Array<SortableColumn<DataType> | NonSortableColumn<DataType>> =
     [
       {
@@ -179,7 +180,11 @@ describe('DataTable', () => {
     fireEvent.click(selectAll); // uncheck everything, get out of mixed state
     // No checked checkboxes to find, helper function should throw
     await waitFor(() =>
-      expect(() => getBodyCheckboxes({ checked: true })).toThrow()
+      expect(() =>
+        queryAllByRole(screen.getByRole('table'), 'checkbox', {
+          checked: true,
+        })
+      )
     );
     expect(selectAll.indeterminate).toBe(false); // not in a mixed state
   });

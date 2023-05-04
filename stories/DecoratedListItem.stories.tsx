@@ -1,4 +1,4 @@
-import { DecoratedListItem } from '../src/components';
+import { DecoratedListItem } from '../src';
 
 export default {
   title: 'Data/Decorated List Item',

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 
 import ModalBackdrop from './modal-backdrop';
 import Window from './window/window';
@@ -13,9 +13,10 @@ type DialogWindowProps = {
   onWindowOpen?: () => void;
   withHeaderCloseButton?: boolean;
   withFooterCloseButton?: boolean;
+  children: ReactNode;
 };
 
-const DialogWindow: FC<DialogWindowProps> = ({
+const DialogWindow = ({
   title,
   width,
   height,
@@ -25,7 +26,7 @@ const DialogWindow: FC<DialogWindowProps> = ({
   withHeaderCloseButton,
   withFooterCloseButton,
   children,
-}) => (
+}: DialogWindowProps) => (
   <Window
     width={width}
     height={height}
@@ -54,9 +55,10 @@ type ButtonModalProps = {
   withHeaderCloseButton?: boolean;
   /** Display the close button in the footer */
   withFooterCloseButton?: boolean;
+  children: ReactNode;
 };
 
-const ButtonModal: FC<ButtonModalProps> = ({
+const ButtonModal = ({
   buttonText,
   title,
   width = '70vw',
@@ -64,7 +66,7 @@ const ButtonModal: FC<ButtonModalProps> = ({
   withHeaderCloseButton,
   withFooterCloseButton = true,
   children,
-}) => {
+}: ButtonModalProps) => {
   const { displayModal, setDisplayModal, Modal } = useModal(
     ModalBackdrop,
     DialogWindow

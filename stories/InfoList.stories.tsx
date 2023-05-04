@@ -1,6 +1,6 @@
 import { loremIpsum } from 'lorem-ipsum';
 
-import { InfoList, SwissProtIcon } from '../src/components';
+import { InfoList, SwissProtIcon } from '../src';
 
 export default {
   title: 'Data/Info List',

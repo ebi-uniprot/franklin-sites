@@ -1,6 +1,6 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
 
-import { PageIntro } from '../src/components';
+import { PageIntro } from '../src';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {

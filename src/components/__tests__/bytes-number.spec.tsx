@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { BytesNumber } from '..';
+import { BytesNumber } from '../..';
 
 describe('Bytes number component', () => {
   it('should render', () => {

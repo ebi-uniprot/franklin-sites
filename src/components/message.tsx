@@ -1,4 +1,4 @@
-import { FC, ReactNode, HTMLAttributes, MouseEvent } from 'react';
+import { ReactNode, HTMLAttributes, MouseEvent } from 'react';
 import cn from 'classnames';
 
 import {
@@ -7,7 +7,7 @@ import {
   WarningTriangleIcon,
   ErrorIcon,
   CloseIcon,
-} from '.';
+} from '..';
 
 import '../styles/components/message.scss';
 
@@ -41,7 +41,7 @@ type Props = {
   forFullPage?: boolean;
 };
 
-const Message: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
+const Message = ({
   children,
   level = 'info',
   subtitle,
@@ -51,7 +51,7 @@ const Message: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
   forFullPage,
   className,
   ...props
-}) => {
+}: Props & HTMLAttributes<HTMLDivElement>) => {
   let maybeIcon = null;
   if (!noIcon && !forFullPage) {
     maybeIcon = <InformationIcon width={iconSize} height={iconSize} />;

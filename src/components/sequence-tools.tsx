@@ -1,4 +1,4 @@
-import { Button } from '.';
+import { Button } from '..';
 import { Dropdown } from './dropdown-button';
 
 const expasyPrefixUrl = '//web.expasy.org/cgi-bin';

@@ -66,15 +66,8 @@ type HeadProps<Datum> = {
   onHeaderClick?: (columnName: SortableColumn<Datum>['name']) => void;
 };
 
-const LabelContent = ({ label }: { label: ReactNode }): JSX.Element =>
-  typeof label === 'function' ? label() : label;
-
 const TippyLabelContent = forwardRef<HTMLElement, { label: ReactNode }>(
-  ({ label }, ref) => (
-    <span ref={ref}>
-      <LabelContent label={label} />
-    </span>
-  )
+  ({ label }, ref) => <span ref={ref}>{label}</span>
 );
 
 const DataTableHead = <Datum extends BasicDatum>({
@@ -106,7 +99,7 @@ const DataTableHead = <Datum extends BasicDatum>({
               <TippyLabelContent label={label} />
             </Tippy>
           ) : (
-            <LabelContent label={label} />
+            label
           )}
         </th>
       ))}
@@ -313,5 +306,5 @@ export const DataTable = <Datum extends BasicDatum>({
 };
 
 export const DataTableWithLoader = <Datum extends BasicDatum>(
-  props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLTableElement>
-) => withDataLoader<Datum, typeof props>(DataTable)(props);
+  props: WrapperProps & Props<Datum> & HTMLAttributes<HTMLTableElement>
+) => withDataLoader(DataTable)(props);

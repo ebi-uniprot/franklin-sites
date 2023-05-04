@@ -1,15 +1,13 @@
-const path = require('path');
-
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable @typescript-eslint/no-var-requires, global-require, import/no-extraneous-dependencies */
 const jsonImporter = require('node-sass-json-importer');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = [
   {
     name: 'library',
     mode: 'production',
-    entry: [`${__dirname}/src/components/index.ts`],
+    entry: [`${__dirname}/src/index.ts`],
     output: {
       path: `${__dirname}/dist`,
       filename: 'franklin-components.js',
@@ -42,8 +40,8 @@ module.exports = [
           sideEffects: true,
           use: [
             {
-              // translates CSS into something importable into the code
-              loader: 'style-loader',
+              // dumps CSS into a file
+              loader: MiniCssExtractPlugin.loader,
             },
             {
               loader: 'css-loader', // translates CSS into CommonJS
@@ -67,8 +65,19 @@ module.exports = [
           use: [
             {
               loader: '@svgr/webpack',
+              options: {
+                prettier: false,
+                svgo: false,
+                svgoConfig: {
+                  plugins: [{ removeViewBox: false }],
+                },
+              },
             },
           ],
+          type: 'asset/resource',
+          generator: {
+            filename: 'svg/[name][ext]',
+          },
         },
         {
           test: /\.svg$/i,
@@ -83,6 +92,7 @@ module.exports = [
         generateStatsFile: true,
         statsOptions: { source: false },
       }),
+      new MiniCssExtractPlugin({ filename: 'styles.css', runtime: false }),
     ],
     stats: {
       children: false,

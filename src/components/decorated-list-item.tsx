@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import cn from 'classnames';
 import { Link, LinkProps } from 'react-router-dom';
 
@@ -37,9 +37,10 @@ type Props = {
    * Switches to an alternative style for the decorative line
    */
   altStyle?: boolean;
+  children: ReactNode;
 };
 
-const DecoratedListItem: FC<Props> = ({
+const DecoratedListItem = ({
   title,
   children,
   to,
@@ -50,7 +51,7 @@ const DecoratedListItem: FC<Props> = ({
   className,
   altStyle,
   ...props
-}) => (
+}: Props) => (
   <div
     className={cn(className, 'decorated-list-item', {
       'decorated-list-item--compact': compact,
