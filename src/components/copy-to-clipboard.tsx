@@ -16,6 +16,7 @@ type Props = {
    * The text placed in the button after copy event
    */
   afterCopy?: string;
+  onCopy?: (copied: string) => void;
 };
 
 const CopyToClipboard = memo(
@@ -23,6 +24,7 @@ const CopyToClipboard = memo(
     textToCopy,
     beforeCopy = 'Copy',
     afterCopy = 'Copied',
+    onCopy,
     ...props
   }: Props & ButtonProps) => {
     const [copied, setCopied] = useState(false);
@@ -43,6 +45,7 @@ const CopyToClipboard = memo(
           if (copyPromise.current === p) {
             // Display copied for 10 seconds
             setCopied(true);
+            onCopy?.(textToCopy);
             return sleep(10000);
           }
           return null;
@@ -53,7 +56,7 @@ const CopyToClipboard = memo(
           }
         });
       copyPromise.current = p;
-    }, [textToCopy]);
+    }, [onCopy, textToCopy]);
 
     if (!('clipboard' in navigator) || !('writeText' in navigator.clipboard)) {
       return null;
