@@ -145,12 +145,14 @@ type SequenceProps = {
    */
   addToBasketButton?: ReactNode;
   showActionBar?: boolean;
+  onCopy?: (copied: string) => void;
 };
 
 const Sequence = ({
   sequence,
   accession,
   onShowSequence,
+  onCopy,
   isCollapsible = false,
   isLoading = false,
   infoData,
@@ -247,6 +249,7 @@ const Sequence = ({
               beforeCopy="Copy sequence"
               afterCopy="Copied"
               className="tertiary"
+              onCopy={onCopy}
             />
           </div>
         )}
