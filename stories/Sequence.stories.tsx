@@ -28,6 +28,7 @@ export const sequence = () => (
     accession="P05067"
     downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
     onBlastClick={action('onBlastClick')}
+    onCopy={action('onCopy')}
     addToBasketButton={<AddToBasketButton />}
   />
 );
