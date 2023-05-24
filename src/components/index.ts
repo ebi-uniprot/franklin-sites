@@ -111,3 +111,4 @@ export { default as ZoomToSequence } from '../svg/zoom-to-sequence.svg';
 // Sequence Utilities
 export { formatFASTA, extractNameFromFASTAHeader } from '../sequence-utils';
 export { default as sequenceProcessor } from '../sequence-utils/sequence-processor';
+export { formatLargeNumber, formatBytesNumber, tidyUrlString } from '../utils';
