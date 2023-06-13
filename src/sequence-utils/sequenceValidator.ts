@@ -41,6 +41,10 @@ export const validResponse = Object.freeze({ valid: true });
 // Matches all alphabet letters, except for the letter O (case-insensitive)
 // Accepts * . -
 const validCharacters = /^[A-NP-Z*.-]+$/i;
+const validCharactersUnderStrictMode = new RegExp(
+  `^[${naturalAminoAcids}*.-]+$`,
+  'g'
+);
 
 /**
  * Very basic check on if a string is likely to be a FASTA-formatted string
@@ -175,7 +179,11 @@ export function findLikelyType(sequence: string) {
  * @param {string} sequence - A sequence
  * @return {object} The result
  */
-export function sequenceValidator(sequence: string, minimumLength?: number) {
+export function sequenceValidator(
+  sequence: string,
+  minimumLength?: number,
+  strict?: boolean
+) {
   // Sequence was not passed at all
   if (!sequence) {
     return errorResponses.missingSequence;
@@ -203,7 +211,9 @@ export function sequenceValidator(sequence: string, minimumLength?: number) {
   }
 
   // Check and fail if there are any invalid characters in the sequence
-  const onlyValidChar = validCharacters.test(cleanSequence);
+  const onlyValidChar = (
+    strict ? validCharactersUnderStrictMode : validCharacters
+  ).test(cleanSequence);
 
   if (!onlyValidChar) {
     return errorResponses.invalidSequence;

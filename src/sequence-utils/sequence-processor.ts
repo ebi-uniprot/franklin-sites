@@ -20,17 +20,27 @@ const getNewSequenceObject = (): SequenceObject => ({
   sequence: '',
 });
 
-const validate = (
-  sequenceObject: SequenceObject,
-  minimumLength?: number
-): SequenceObject => {
-  const validation = sequenceValidator(sequenceObject.sequence, minimumLength);
+const validate = ({
+  sequenceObject,
+  minimumLength,
+  strict,
+}: {
+  sequenceObject: SequenceObject;
+  minimumLength?: number;
+  strict?: boolean;
+}): SequenceObject => {
+  const validation = sequenceValidator(
+    sequenceObject.sequence,
+    minimumLength,
+    strict
+  );
   return { ...validation, ...sequenceObject };
 };
 
 const sequenceProcessor = (
   rawText: string,
-  minimumLength?: number
+  minimumLength?: number,
+  strict?: boolean // Strict validates only conventional amino acids (no ambiguous amino acids)
 ): SequenceObject[] => {
   const sequences: SequenceObject[] = [];
   let currentSequence = getNewSequenceObject();
@@ -43,7 +53,9 @@ const sequenceProcessor = (
       if (currentSequence.sequence) {
         // if we already have sequence data being processed
         // store current sequence
-        sequences.push(validate(currentSequence, minimumLength));
+        sequences.push(
+          validate({ sequenceObject: currentSequence, minimumLength, strict })
+        );
 
         // and start new sequence
         currentSequence = getNewSequenceObject();
@@ -73,7 +85,7 @@ const sequenceProcessor = (
   }
 
   if (currentSequence.raw) {
-    sequences.push(validate(currentSequence));
+    sequences.push(validate({ sequenceObject: currentSequence, strict }));
   }
 
   return sequences;
