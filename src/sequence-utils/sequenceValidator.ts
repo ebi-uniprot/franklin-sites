@@ -43,9 +43,8 @@ export const validResponse = Object.freeze({ valid: true });
 const validCharacters = /^[A-NP-Z*.-]+$/i;
 const validCharactersUnderStrictMode = new RegExp(
   `^[${naturalAminoAcids}*.-]+$`,
-  'g'
+  'i'
 );
-
 /**
  * Very basic check on if a string is likely to be a FASTA-formatted string
  *
@@ -206,7 +205,7 @@ export function sequenceValidator(
   if (!cleanSequence) {
     return errorResponses.missingSequence;
   }
-  if (minimumLength && cleanSequence.length <= minimumLength) {
+  if (minimumLength && cleanSequence.length < minimumLength) {
     return errorResponses.shortSequence;
   }
 

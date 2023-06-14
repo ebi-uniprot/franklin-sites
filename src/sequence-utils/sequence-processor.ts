@@ -20,15 +20,11 @@ const getNewSequenceObject = (): SequenceObject => ({
   sequence: '',
 });
 
-const validate = ({
-  sequenceObject,
-  minimumLength,
-  strict,
-}: {
-  sequenceObject: SequenceObject;
-  minimumLength?: number;
-  strict?: boolean;
-}): SequenceObject => {
+const validate = (
+  sequenceObject: SequenceObject,
+  minimumLength?: number,
+  strict?: boolean
+): SequenceObject => {
   const validation = sequenceValidator(
     sequenceObject.sequence,
     minimumLength,
@@ -53,9 +49,7 @@ const sequenceProcessor = (
       if (currentSequence.sequence) {
         // if we already have sequence data being processed
         // store current sequence
-        sequences.push(
-          validate({ sequenceObject: currentSequence, minimumLength, strict })
-        );
+        sequences.push(validate(currentSequence, minimumLength, strict));
 
         // and start new sequence
         currentSequence = getNewSequenceObject();
@@ -85,7 +79,7 @@ const sequenceProcessor = (
   }
 
   if (currentSequence.raw) {
-    sequences.push(validate({ sequenceObject: currentSequence, strict }));
+    sequences.push(validate(currentSequence, minimumLength, strict));
   }
 
   return sequences;
