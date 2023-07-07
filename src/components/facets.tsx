@@ -93,12 +93,17 @@ type FacetProps = {
    * Key with which to add the facets in the querystring (defaults to "facets")
    */
   queryStringKey?: string;
+  /**
+   * ClickHandler for specific behaviour
+   */
+  facetClickHandler?: (event: React.MouseEvent<HTMLElement>) => void;
 };
 
 export const Facet: FC<FacetProps & HTMLAttributes<HTMLDivElement>> = ({
   data,
   extraActions,
   queryStringKey = 'facets',
+  facetClickHandler,
   ...props
 }) => {
   const location = useLocation();
@@ -143,6 +148,7 @@ export const Facet: FC<FacetProps & HTMLAttributes<HTMLDivElement>> = ({
               key={`${data.name}_${value}`}
               to={to}
               className={isActive ? 'facet-active' : undefined}
+              onClick={facetClickHandler}
             >
               {label || value}
               {` (${formatLargeNumber(count)})`}
@@ -167,6 +173,10 @@ type FacetsProps = {
    * Key with which to add the facets in the querystring (defaults to "facets")
    */
   queryStringKey?: string;
+  /**
+   * ClickHandler for specific behaviour
+   */
+  facetClickHandler?: (event: React.MouseEvent<HTMLElement>) => void;
 };
 
 export const Facets: FC<FacetsProps & HTMLAttributes<HTMLDivElement>> = ({
@@ -175,6 +185,7 @@ export const Facets: FC<FacetsProps & HTMLAttributes<HTMLDivElement>> = ({
   queryStringKey = 'facets',
   children,
   className,
+  facetClickHandler,
   ...props
 }) => {
   if (!(data?.length || Children.count(children))) {
@@ -191,6 +202,7 @@ export const Facets: FC<FacetsProps & HTMLAttributes<HTMLDivElement>> = ({
                 data={facet}
                 extraActions={extraActionsFor?.get(facet.name)}
                 queryStringKey={queryStringKey}
+                facetClickHandler={facetClickHandler}
               />
             </li>
           ) : null
