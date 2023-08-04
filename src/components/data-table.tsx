@@ -291,7 +291,7 @@ export const DataTable = <Datum extends BasicDatum>({
         onHeaderClick={onHeaderClick}
         checkbox={selectAllCheckbox}
       />
-      <tbody ref={checkboxContainerRef}>
+      <tbody ref={checkboxContainerRef} translate="no">
         {data.map((datum, index) => {
           const id = getIdKey(datum, index, data);
           return (
