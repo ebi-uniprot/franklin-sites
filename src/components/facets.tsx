@@ -25,7 +25,7 @@ export type FacetObject = {
 // To hold facets, record of sets
 type CustomQueryValue = Record<string, Set<string>>;
 // The modified query object, with our custom facet object
-type CustomParsedQuery = ParsedQuery<string | CustomQueryValue>;
+export type CustomParsedQuery = ParsedQuery<string | CustomQueryValue>;
 
 /**
  * Takes a search string and parse it, handle facets specifically, keeps them

@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { Facet, Facets, stringify, parse } from '../facets';
+import { Facet, Facets, stringify, parse, CustomParsedQuery } from '../facets';
 
 import renderWithRouter from '../../testHelpers/renderWithRouter';
 
@@ -49,22 +49,51 @@ describe('<Facet />', () => {
   });
 });
 
-describe('parse facets and stringify', () => {
-  it('should handle just facets', () => {
-    const oneFacet = 'facets=identity%3A1.0';
-    const twoFacets = 'facets=identity%3A1.0%2Cblabla%3Avalue';
-    expect(stringify(parse(oneFacet))).toBe(oneFacet);
-    expect(stringify(parse(twoFacets))).toBe(twoFacets);
-  });
+const testCases: {
+  description: string;
+  parsed: CustomParsedQuery;
+  query: string;
+  key?: string;
+}[] = [
+  {
+    description: 'should handle just one facets',
+    parsed: { facets: { identity: new Set(['1.0']) } },
+    query: 'facets=identity%3A1.0',
+  },
+  {
+    description: 'should handle just two facets',
+    parsed: {
+      facets: { blabla: new Set(['value']), identity: new Set(['1.0']) },
+    },
+    query: 'facets=blabla%3Avalue%2Cidentity%3A1.0',
+  },
+  {
+    description: 'should handle facets and something else',
+    parsed: {
+      facets: { identity: new Set(['1.0']) },
+      query: 'glucose',
+    },
+    query: 'facets=identity%3A1.0&query=glucose',
+  },
+  {
+    description: 'should handle facets with another name',
+    parsed: {
+      filter: { identity: new Set(['1.0']) },
+      query: 'glucose',
+    },
+    key: 'filter',
+    query: 'filter=identity%3A1.0&query=glucose',
+  },
+];
 
-  it('should handle facets and something else', () => {
-    const query = 'facets=identity%3A1.0&query=glucose';
-    expect(stringify(parse(query))).toBe(query);
+describe('parse facets', () => {
+  test.each(testCases)('parse $description', ({ parsed, query, key }) => {
+    expect(parse(query, key)).toEqual(parsed);
   });
+});
 
-  it('should handle facets with another name', () => {
-    const key = 'filter';
-    const query = 'filter=identity%3A1.0&query=glucose';
-    expect(stringify(parse(query, key), key)).toBe(query);
+describe('stringify facets', () => {
+  test.each(testCases)('parse $description', ({ parsed, query, key }) => {
+    expect(stringify(parsed, key)).toEqual(query);
   });
 });
