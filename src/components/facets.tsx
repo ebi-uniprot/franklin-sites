@@ -36,11 +36,9 @@ export const parse = (
   if (!queryStringFacet) {
     return customParsed;
   }
-  const facetTokens = (
-    Array.isArray(queryStringFacet)
-      ? queryStringFacet
-      : queryStringFacet.split(',')
-  ).map((stringTuple) => stringTuple.split(':'));
+  const facetTokens = queryStringFacet
+    .split(',')
+    .map((stringTuple) => stringTuple.split(':'));
   const facets: CustomQueryValue = {};
   for (const [name, value] of facetTokens) {
     if (!facets[name]) {
