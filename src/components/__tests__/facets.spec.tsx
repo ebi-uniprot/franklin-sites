@@ -73,7 +73,7 @@ const testCases: {
       facets: { identity: new Set(['1.0']) },
       query: 'glucose',
     },
-    query: 'facets=identity%3A1.0&query=glucose',
+    query: 'query=glucose&facets=identity%3A1.0',
   },
   {
     description: 'should handle facets with another name',
@@ -82,7 +82,7 @@ const testCases: {
       query: 'glucose',
     },
     key: 'filter',
-    query: 'filter=identity%3A1.0&query=glucose',
+    query: 'query=glucose&filter=identity%3A1.0',
   },
 ];
 
@@ -93,7 +93,7 @@ describe('parse facets', () => {
 });
 
 describe('stringify facets', () => {
-  test.each(testCases)('parse $description', ({ parsed, query, key }) => {
+  test.each(testCases)('stringify $description', ({ parsed, query, key }) => {
     expect(stringify(parsed, key)).toEqual(query);
   });
 });
