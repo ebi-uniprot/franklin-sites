@@ -16,18 +16,11 @@ export default {
   },
 };
 
+const propFacetData = facetData.slice(0, 2);
+const childFacetData = facetData.slice(2);
+
 const Demo = () => {
   const location = useLocation();
-
-  const extraActionsFor = new Map([
-    [
-      'long_facet',
-      // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a className="button tertiary expandable-list__action">
-        Link to somewhere
-      </a>,
-    ],
-  ]);
 
   return (
     <>
@@ -35,9 +28,9 @@ const Demo = () => {
         pathname: {location.pathname + location.search}
       </code>
       <div style={{ border: '1px solid black', padding: '1ch' }}>
-        <Facets data={facetData} extraActionsFor={extraActionsFor}>
+        <Facets data={propFacetData}>
           injected content
-          {facetData.map((facet) => (
+          {childFacetData.map((facet) => (
             <Facet data={facet} key={facet.name} />
           ))}
         </Facets>
