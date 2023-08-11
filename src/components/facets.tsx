@@ -1,11 +1,6 @@
 import { FC, ReactNode, HTMLAttributes, Children } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
-import {
-  parse as qsParse,
-  stringify as qsStringify,
-  ParsedQuery,
-} from 'query-string';
 
 import ExpandableList from './expandable-list';
 
@@ -25,7 +20,7 @@ export type FacetObject = {
 // To hold facets, record of sets
 type CustomQueryValue = Record<string, Set<string>>;
 // The modified query object, with our custom facet object
-export type CustomParsedQuery = ParsedQuery<string | CustomQueryValue>;
+export type CustomParsedQuery = Record<string, string | CustomQueryValue>;
 
 /**
  * Takes a search string and parse it, handle facets specifically, keeps them
@@ -35,27 +30,28 @@ export const parse = (
   string: string,
   queryStringKey = 'facets'
 ): CustomParsedQuery => {
-  const parsed = qsParse(string);
-  let queryStringFacet = parsed[queryStringKey];
+  const parsed = new URLSearchParams(string);
+  let queryStringFacet = parsed.get(queryStringKey);
+  const customParsed: CustomParsedQuery = Object.fromEntries(parsed);
   if (!queryStringFacet) {
-    return parsed;
+    return customParsed;
   }
   if (Array.isArray(queryStringFacet)) {
     queryStringFacet = queryStringFacet.join(',');
   }
-  const facets = queryStringFacet
+  const facetTokens = queryStringFacet
     .split(',')
     .map((stringTuple) => stringTuple.split(':'));
-  // change variable name and assert another type of TS (ok to mutate here)
-  const customParsed: CustomParsedQuery = parsed;
-  customParsed[queryStringKey] = {};
-  const field = customParsed[queryStringKey] as CustomQueryValue;
-  for (const [name, value] of facets) {
-    if (!field[name]) {
-      field[name] = new Set();
+  const facets: CustomQueryValue = {};
+  for (const [name, value] of facetTokens) {
+    if (!facets[name]) {
+      facets[name] = new Set();
     }
-    field[name].add(value);
+    if (facets[name] instanceof Set) {
+      facets[name].add(value);
+    }
   }
+  customParsed[queryStringKey] = facets;
   return customParsed;
 };
 
@@ -74,10 +70,12 @@ export const stringify = (
     )
     .flat()
     .join(',');
+  const sp = new URLSearchParams(rest as Record<string, string>);
   if (!facetString) {
-    return qsStringify(rest);
+    return sp.toString();
   }
-  return qsStringify({ ...rest, [queryStringKey]: facetString });
+  sp.set(queryStringKey, facetString);
+  return sp.toString();
 };
 
 type FacetProps = {
