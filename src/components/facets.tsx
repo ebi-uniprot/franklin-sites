@@ -43,11 +43,10 @@ export const parse = (
   ).map((stringTuple) => stringTuple.split(':'));
   const facets: CustomQueryValue = {};
   for (const [name, value] of facetTokens) {
-    if (facets[name]) {
-      facets[name].add(value);
-    } else {
-      facets[name] = new Set([value]);
+    if (!facets[name]) {
+      facets[name] = new Set();
     }
+    facets[name].add(value);
   }
   customParsed[queryStringKey] = facets;
   return customParsed;
