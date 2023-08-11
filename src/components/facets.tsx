@@ -31,8 +31,8 @@ export const parse = (
   queryStringKey = 'facets'
 ): CustomParsedQuery => {
   const parsed = new URLSearchParams(string);
-  const queryStringFacet = parsed.get(queryStringKey);
   const customParsed: CustomParsedQuery = Object.fromEntries(parsed);
+  const queryStringFacet = parsed.get(queryStringKey);
   if (!queryStringFacet) {
     return customParsed;
   }
