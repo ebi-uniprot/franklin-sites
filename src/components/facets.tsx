@@ -31,17 +31,16 @@ export const parse = (
   queryStringKey = 'facets'
 ): CustomParsedQuery => {
   const parsed = new URLSearchParams(string);
-  let queryStringFacet = parsed.get(queryStringKey);
+  const queryStringFacet = parsed.get(queryStringKey);
   const customParsed: CustomParsedQuery = Object.fromEntries(parsed);
   if (!queryStringFacet) {
     return customParsed;
   }
-  if (Array.isArray(queryStringFacet)) {
-    queryStringFacet = queryStringFacet.join(',');
-  }
-  const facetTokens = queryStringFacet
-    .split(',')
-    .map((stringTuple) => stringTuple.split(':'));
+  const facetTokens = (
+    Array.isArray(queryStringFacet)
+      ? queryStringFacet
+      : queryStringFacet.split(',')
+  ).map((stringTuple) => stringTuple.split(':'));
   const facets: CustomQueryValue = {};
   for (const [name, value] of facetTokens) {
     if (!facets[name]) {
