@@ -27,16 +27,15 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
       class="message__side-border"
     />
     <test-file-stub
+      classname="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
-    <section
-      class="message__content"
+    <div
+      class="message__title"
     >
-      <small>
-        Your input contains 1 sequence
-      </small>
-    </section>
+      Your input contains 1 sequence
+    </div>
   </div>
   <div
     class="message message--failure"
@@ -47,19 +46,18 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
       class="message__side-border"
     />
     <test-file-stub
+      classname="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
-    <section
-      class="message__content"
+    <div
+      class="message__title"
     >
-      <small>
-        <code>
-          sequence 1
-        </code>
-        : The sequence is invalid
-      </small>
-    </section>
+      <code>
+        sequence 1
+      </code>
+      : The sequence is invalid
+    </div>
   </div>
 </DocumentFragment>
 `;

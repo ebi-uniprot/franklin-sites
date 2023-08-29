@@ -10,18 +10,17 @@ exports[`Message component should render 1`] = `
       class="message__side-border"
     />
     <test-file-stub
+      classname="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
-    <section
-      class="message__content"
+    <div
+      class="message__title"
     >
-      <small>
-        <div>
-          Some content
-        </div>
-      </small>
-    </section>
+      <div>
+        Some content
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -36,18 +35,17 @@ exports[`Message component should render with a different level 1`] = `
       class="message__side-border"
     />
     <test-file-stub
+      classname="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
-    <section
-      class="message__content"
+    <div
+      class="message__title"
     >
-      <small>
-        <div>
-          Some content
-        </div>
-      </small>
-    </section>
+      <div>
+        Some content
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -62,18 +60,17 @@ exports[`Message component should render with a subtitle 1`] = `
       class="message__side-border"
     />
     <test-file-stub
+      classname="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
-    <section
-      class="message__content"
+    <div
+      class="message__title"
     >
-      <small>
-        <div>
-          Some content
-        </div>
-      </small>
-    </section>
+      <div>
+        Some content
+      </div>
+    </div>
     <div
       class="message__subtitle"
     >
@@ -94,15 +91,13 @@ exports[`Message component should render without default icon 1`] = `
     <div
       class="message__side-border"
     />
-    <section
-      class="message__content"
+    <div
+      class="message__title"
     >
-      <small>
-        <div>
-          Some content
-        </div>
-      </small>
-    </section>
+      <div>
+        Some content
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
