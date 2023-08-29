@@ -25,12 +25,12 @@ export const message = () => (
       'info',
       'Props'
     )}
+    heading={<h3>Lipsum generator</h3>}
     subtitle={text('subtitle', '', 'Props')}
     onDismiss={
       boolean('Dismissable', false, 'Props') ? action('Dismiss') : undefined
     }
-    forFullPage={boolean('forFullPage', false, 'Props')}
   >
-    {getLipsumSentences()}
+    <small>{getLipsumSentences()}</small>
   </Message>
 );
