@@ -82,6 +82,38 @@ exports[`Message component should render with a subtitle 1`] = `
 </DocumentFragment>
 `;
 
+exports[`Message component should render with a title passed as prop 1`] = `
+<DocumentFragment>
+  <div
+    class="message message--info"
+    role="status"
+  >
+    <div
+      class="message__side-border"
+    />
+    <test-file-stub
+      classname="message--icon-align-center"
+      height="1.125em"
+      width="1.125em"
+    />
+    <div
+      class="message__title"
+    >
+      <h1>
+        Test
+      </h1>
+    </div>
+    <div
+      class="message__text"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Message component should render without default icon 1`] = `
 <DocumentFragment>
   <div
