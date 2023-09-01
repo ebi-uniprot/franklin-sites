@@ -19,6 +19,10 @@ type Props = {
    */
   level?: 'warning' | 'failure' | 'success' | 'info';
   /**
+   * The title of the message
+   */
+  heading?: ReactNode;
+  /**
    * The content to appear underneath of the main message
    */
   subtitle?: ReactNode;
@@ -34,41 +38,55 @@ type Props = {
    * To hide the default box shadow
    */
   noShadow?: boolean;
-  /**
-   * To apply any specific styles required for messages shown in
-   * full-page error pages
-   */
-  forFullPage?: boolean;
 };
 
 const Message: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
   children,
   level = 'info',
+  heading,
   subtitle,
   onDismiss,
   noIcon,
   noShadow,
-  forFullPage,
   className,
   ...props
 }) => {
   let maybeIcon = null;
-  if (!noIcon && !forFullPage) {
-    maybeIcon = <InformationIcon width={iconSize} height={iconSize} />;
+  const iconAlign = heading
+    ? 'message--icon-align-center'
+    : 'message--icon-align-top';
+
+  if (!noIcon) {
+    maybeIcon = (
+      <InformationIcon
+        width={iconSize}
+        height={iconSize}
+        className={iconAlign}
+      />
+    );
     if (level === 'warning') {
-      maybeIcon = <WarningTriangleIcon width={iconSize} height={iconSize} />;
+      maybeIcon = (
+        <WarningTriangleIcon
+          width={iconSize}
+          height={iconSize}
+          className={iconAlign}
+        />
+      );
     } else if (level === 'failure') {
-      maybeIcon = <ErrorIcon width={iconSize} height={iconSize} />;
+      maybeIcon = (
+        <ErrorIcon width={iconSize} height={iconSize} className={iconAlign} />
+      );
     } else if (level === 'success') {
-      maybeIcon = <SuccessIcon width={iconSize} height={iconSize} />;
+      maybeIcon = (
+        <SuccessIcon width={iconSize} height={iconSize} className={iconAlign} />
+      );
     }
   }
 
   return (
     <div
       className={cn(className, 'message', `message--${level}`, {
-        'message--no-shadow': noShadow || forFullPage,
-        'message--for-full-page': forFullPage,
+        'message--no-shadow': noShadow,
       })}
       role="status"
       {...props}
@@ -77,9 +95,20 @@ const Message: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
 
       {maybeIcon}
 
-      <section className="message__content">
-        {forFullPage ? <h3>{children}</h3> : <small>{children}</small>}
-      </section>
+      {heading ? (
+        <>
+          <div
+            className={cn('message__title', {
+              'message__title--no-icon': noIcon,
+            })}
+          >
+            {heading}
+          </div>
+          <div className="message__text">{children}</div>
+        </>
+      ) : (
+        <div className="message__title">{children}</div>
+      )}
 
       {onDismiss && (
         <button type="button" className="message__dismiss" onClick={onDismiss}>

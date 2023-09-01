@@ -49,4 +49,13 @@ describe('Message component', () => {
     );
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it('should render with a title passed as prop', () => {
+    const { asFragment } = render(
+      <Message heading={<h1>Test</h1>}>
+        <div>Some content</div>
+      </Message>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

@@ -22,14 +22,23 @@
 
   display: grid;
   grid-template-areas:
-    'border icon message dismiss'
-    '. . subtitle .';
+    'border icon title dismiss'
+    'border . text .'
+    'border . subtitle .';
   grid-template-columns: 1rem minmax(0, max-content) auto minmax(0, max-content);
+
+  &--icon-align-center {
+    align-self: center;
+  }
+
+  &--icon-align-top {
+    align-self: start;
+  }
 
   & > svg {
     grid-area: icon;
     height: 1.5rem;
-    align-self: center;
+    margin-right: 0.5rem;
   }
 
   &--no-shadow {
@@ -37,17 +46,21 @@
   }
 
   &__side-border {
+    grid-area: border;
     width: 0.25rem;
     height: auto;
   }
 
-  &__content {
-    padding-left: 0.5rem;
-    grid-area: message;
+  &__title {
+    grid-area: title;
 
-    & > h3 {
+    &--no-icon > * {
       color: $colour-weldon-blue;
     }
+  }
+
+  &__text {
+    grid-area: text;
   }
 
   &__subtitle {
