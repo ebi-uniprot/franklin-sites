@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Fragment } from 'react';
 
 import sequenceProcessor, {
   SequenceObject,
@@ -84,26 +84,44 @@ const SequenceSubmission = ({
   const warningMessages = [];
   if (processed.length > 1) {
     // loop and match all the sequences together, only once
-    for (let i = 0; i < processed.length; i += 1) {
-      for (let j = i + 1; j < processed.length; j += 1) {
-        const a = processed[i];
-        const b = processed[j];
-        if (a.sequence.toLowerCase() === b.sequence.toLowerCase()) {
-          // use index to name the sequences, because name might be the same
-          warningMessages.push(
-            <Message
-              level="info"
-              data-testid="sequence-submission-warning"
-              // eslint-disable-next-line react/no-array-index-key
-              key={`${i}-${j}`}
-            >
-              Sequences {i + 1}
-              {a.name ? ` (${a.name})` : ''} and {j + 1}
-              {b.name ? ` (${b.name})` : ''} are identical, this might be
-              unintended.
-            </Message>
-          );
-        }
+    const unique = new Map<
+      string,
+      Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
+    >();
+    for (const [index, sequenceObject] of processed.entries()) {
+      const sequence = sequenceObject.sequence.toLowerCase();
+      const itemList = unique.get(sequence) ?? [];
+      itemList.push({ sequenceIndex: index + 1, sequenceObject });
+      unique.set(sequence, itemList);
+    }
+    for (const sameSequences of unique.values()) {
+      if (sameSequences.length > 1) {
+        warningMessages.push(
+          <Message
+            level="info"
+            key={sameSequences
+              .map(({ sequenceIndex }) => sequenceIndex)
+              .join('-')}
+          >
+            Sequences{' '}
+            {sameSequences.map(
+              ({ sequenceIndex, sequenceObject: { name } }, index) => (
+                <Fragment key={sequenceIndex}>
+                  {index ? ', ' : ''}
+                  {sequenceIndex}{' '}
+                  {name ? (
+                    <>
+                      (<code>{name}</code>)
+                    </>
+                  ) : (
+                    ''
+                  )}
+                </Fragment>
+              )
+            )}{' '}
+            are identical, this might be unintended.
+          </Message>
+        );
       }
     }
   }
