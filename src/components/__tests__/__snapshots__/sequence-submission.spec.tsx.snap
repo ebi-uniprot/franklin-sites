@@ -53,10 +53,7 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
     <div
       class="message__title"
     >
-      <code>
-        sequence 1
-      </code>
-      : The sequence is invalid
+      Sequence 1 : The sequence is invalid
     </div>
   </div>
 </DocumentFragment>

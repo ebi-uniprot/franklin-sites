@@ -58,43 +58,65 @@ const SequenceSubmission = ({
     }
   }, [value, defaultValue, onChangeWithValidation]);
 
-  let errorMessages = null;
+  const errorMessages = [];
+  const warningMessages = [];
   if (
     processed.length > 1 ||
     (processed.length === 1 && processed[0].sequence.length > 10)
   ) {
-    errorMessages = processed
-      .map(
-        (item, index) =>
-          !item.valid && (
-            <Message
-              level="failure"
-              data-testid="sequence-submission-error"
-              // eslint-disable-next-line react/no-array-index-key
-              key={index}
-            >
-              <code>{item.name || `sequence ${index + 1}`}</code>:&nbsp;
-              {item.message}
-            </Message>
-          )
-      )
-      .filter(Boolean);
-  }
-
-  const warningMessages = [];
-  if (processed.length > 1) {
+    // loop and match all the errors together, only once
+    const uniqueErrors = new Map<
+      string,
+      Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
+    >();
     // loop and match all the sequences together, only once
-    const unique = new Map<
+    const uniqueSequences = new Map<
       string,
       Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
     >();
     for (const [index, sequenceObject] of processed.entries()) {
+      const { valid, message } = sequenceObject;
+      if (!valid && message) {
+        const itemList = uniqueErrors.get(message) ?? [];
+        itemList.push({ sequenceIndex: index + 1, sequenceObject });
+        uniqueErrors.set(message, itemList);
+      }
+
       const sequence = sequenceObject.sequence.toLowerCase();
-      const itemList = unique.get(sequence) ?? [];
+      const itemList = uniqueSequences.get(sequence) ?? [];
       itemList.push({ sequenceIndex: index + 1, sequenceObject });
-      unique.set(sequence, itemList);
+      uniqueSequences.set(sequence, itemList);
     }
-    for (const sameSequences of unique.values()) {
+
+    for (const [errorMessage, sameErrors] of uniqueErrors.entries()) {
+      errorMessages.push(
+        <Message
+          level="failure"
+          data-testid="sequence-submission-error"
+          key={sameErrors.map(({ sequenceIndex }) => sequenceIndex).join('-')}
+        >
+          Sequence{sameErrors.length === 1 ? ' ' : 's '}
+          {sameErrors.map(
+            ({ sequenceIndex, sequenceObject: { name } }, index) => (
+              <Fragment key={sequenceIndex}>
+                {index ? ', ' : ''}
+                {sequenceIndex}{' '}
+                {name ? (
+                  <>
+                    (<code>{name}</code>)
+                  </>
+                ) : (
+                  ''
+                )}
+              </Fragment>
+            )
+          )}
+          : {errorMessage}
+        </Message>
+      );
+    }
+
+    for (const sameSequences of uniqueSequences.values()) {
       if (sameSequences.length > 1) {
         warningMessages.push(
           <Message
