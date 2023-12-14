@@ -208,7 +208,7 @@ const Sequence = ({
   }
 
   return (
-    <>
+    <div>
       {isCollapsible && (
         <Button variant="secondary" onClick={() => setIsCollapsed(true)}>
           Hide sequence
@@ -259,7 +259,7 @@ const Sequence = ({
           computeHighlights={computeHighlights}
         />
       </section>
-    </>
+    </div>
   );
 };
 
