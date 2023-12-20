@@ -95,7 +95,7 @@ const SequenceSubmission = ({
           data-testid="sequence-submission-error"
           key={sameErrors.map(({ sequenceIndex }) => sequenceIndex).join('-')}
         >
-          Sequence{sameErrors.length === 1 ? ' ' : 's '}
+          Error: {errorMessage}. Sequence{sameErrors.length === 1 ? ' ' : 's '}
           {sameErrors.map(
             ({ sequenceIndex, sequenceObject: { name } }, index) => (
               <Fragment key={sequenceIndex}>
@@ -111,7 +111,6 @@ const SequenceSubmission = ({
               </Fragment>
             )
           )}
-          : {errorMessage}
         </Message>
       );
     }
