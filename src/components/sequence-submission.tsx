@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Fragment } from 'react';
 
 import sequenceProcessor, {
   SequenceObject,
@@ -58,52 +58,91 @@ const SequenceSubmission = ({
     }
   }, [value, defaultValue, onChangeWithValidation]);
 
-  let errorMessages = null;
+  const errorMessages = [];
+  const warningMessages = [];
   if (
     processed.length > 1 ||
     (processed.length === 1 && processed[0].sequence.length > 10)
   ) {
-    errorMessages = processed
-      .map(
-        (item, index) =>
-          !item.valid && (
-            <Message
-              level="failure"
-              data-testid="sequence-submission-error"
-              // eslint-disable-next-line react/no-array-index-key
-              key={index}
-            >
-              <code>{item.name || `sequence ${index + 1}`}</code>:&nbsp;
-              {item.message}
-            </Message>
-          )
-      )
-      .filter(Boolean);
-  }
-
-  const warningMessages = [];
-  if (processed.length > 1) {
+    // loop and match all the errors together, only once
+    const uniqueErrors = new Map<
+      string,
+      Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
+    >();
     // loop and match all the sequences together, only once
-    for (let i = 0; i < processed.length; i += 1) {
-      for (let j = i + 1; j < processed.length; j += 1) {
-        const a = processed[i];
-        const b = processed[j];
-        if (a.sequence.toLowerCase() === b.sequence.toLowerCase()) {
-          // use index to name the sequences, because name might be the same
-          warningMessages.push(
-            <Message
-              level="info"
-              data-testid="sequence-submission-warning"
-              // eslint-disable-next-line react/no-array-index-key
-              key={`${i}-${j}`}
-            >
-              Sequences {i + 1}
-              {a.name ? ` (${a.name})` : ''} and {j + 1}
-              {b.name ? ` (${b.name})` : ''} are identical, this might be
-              unintended.
-            </Message>
-          );
-        }
+    const uniqueSequences = new Map<
+      string,
+      Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
+    >();
+    for (const [index, sequenceObject] of processed.entries()) {
+      const { valid, message } = sequenceObject;
+      if (!valid && message) {
+        const itemList = uniqueErrors.get(message) ?? [];
+        itemList.push({ sequenceIndex: index + 1, sequenceObject });
+        uniqueErrors.set(message, itemList);
+      }
+
+      const sequence = sequenceObject.sequence.toLowerCase();
+      const itemList = uniqueSequences.get(sequence) ?? [];
+      itemList.push({ sequenceIndex: index + 1, sequenceObject });
+      uniqueSequences.set(sequence, itemList);
+    }
+
+    for (const [errorMessage, sameErrors] of uniqueErrors.entries()) {
+      errorMessages.push(
+        <Message
+          level="failure"
+          data-testid="sequence-submission-error"
+          key={sameErrors.map(({ sequenceIndex }) => sequenceIndex).join('-')}
+        >
+          Error: {errorMessage}. Sequence{sameErrors.length === 1 ? ' ' : 's '}
+          {sameErrors.map(
+            ({ sequenceIndex, sequenceObject: { name } }, index) => (
+              <Fragment key={sequenceIndex}>
+                {index ? ', ' : ''}
+                {sequenceIndex}{' '}
+                {name ? (
+                  <>
+                    (<code>{name}</code>)
+                  </>
+                ) : (
+                  ''
+                )}
+              </Fragment>
+            )
+          )}
+        </Message>
+      );
+    }
+
+    for (const sameSequences of uniqueSequences.values()) {
+      if (sameSequences.length > 1) {
+        warningMessages.push(
+          <Message
+            level="info"
+            key={sameSequences
+              .map(({ sequenceIndex }) => sequenceIndex)
+              .join('-')}
+          >
+            Sequences{' '}
+            {sameSequences.map(
+              ({ sequenceIndex, sequenceObject: { name } }, index) => (
+                <Fragment key={sequenceIndex}>
+                  {index ? ', ' : ''}
+                  {sequenceIndex}{' '}
+                  {name ? (
+                    <>
+                      (<code>{name}</code>)
+                    </>
+                  ) : (
+                    ''
+                  )}
+                </Fragment>
+              )
+            )}{' '}
+            are identical, this might be unintended.
+          </Message>
+        );
       }
     }
   }
