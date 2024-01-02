@@ -36,7 +36,7 @@ describe('MainSearch component', () => {
 
   it('should detect the search term', () => {
     render(<MainSearch {...props} />);
-    fireEvent.change(screen.getByRole('textbox'), {
+    fireEvent.change(screen.getByRole('searchbox'), {
       target: { value: 'foo' },
     });
     expect(handleChange).toHaveBeenCalledWith('foo');
@@ -44,7 +44,7 @@ describe('MainSearch component', () => {
 
   it('should set searchTerm', () => {
     render(<MainSearch {...props} searchTerm="blah" />);
-    expect((screen.getByRole('textbox') as HTMLInputElement).value).toBe(
+    expect((screen.getByRole('searchbox') as HTMLInputElement).value).toBe(
       'blah'
     );
   });

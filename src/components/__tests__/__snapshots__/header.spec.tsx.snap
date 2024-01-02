@@ -68,7 +68,7 @@ exports[`Header component should render 1`] = `
         >
           <input
             aria-label="Text query"
-            type="text"
+            type="search"
             value=""
           />
         </div>

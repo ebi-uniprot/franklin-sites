@@ -180,7 +180,6 @@ const Autocomplete = ({
   return (
     <div className={cn('autocomplete-container', className)} {...props}>
       <SearchInput
-        type="text"
         value={textInputValue}
         onChange={handleInputChange}
         onKeyDown={handleOnKeyDown}

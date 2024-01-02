@@ -112,7 +112,7 @@ const MainSearch = ({
       )}
       <div className="main-search__input-container">
         <input
-          type="text"
+          type="search"
           aria-label={`Text query${
             selectedNamespace ? ` in ${selectedNamespace}` : ''
           }`}

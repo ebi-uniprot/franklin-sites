@@ -287,7 +287,6 @@ const AccordionSearch = ({
   return (
     <>
       <SearchInput
-        type="text"
         value={inputValue}
         onChange={handleSearchInputChange}
         placeholder={placeholder}

@@ -8,7 +8,7 @@ exports[`SearchInput should render 1`] = `
     <input
       data-testid="search-input"
       placeholder="This is the initial value"
-      type="text"
+      type="search"
       value=""
     />
     <span

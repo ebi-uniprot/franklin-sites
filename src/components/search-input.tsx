@@ -63,7 +63,7 @@ const SearchInput: FC<Props> = ({
     <span className="search-input">
       <input
         data-testid="search-input"
-        type="text"
+        type="search"
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
