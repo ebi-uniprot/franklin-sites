@@ -42,6 +42,7 @@ export type AccordionItem = {
   label: string;
   id: string;
   items?: AccordionItem[];
+  addAsterisk?: boolean;
 };
 
 type AccordionSearchItemProps = {
@@ -83,6 +84,10 @@ type AccordionSearchItemProps = {
    * The user's query, passed to highlight in the item's label
    */
   query: string;
+  /**
+   * Appends an asterisk to selected items (in the case of xrefs this indicates full xrefs)
+   */
+  addAsterisk?: boolean;
 };
 
 const AccordionSearchCheckbox = ({
@@ -91,6 +96,7 @@ const AccordionSearchCheckbox = ({
   id,
   label,
   query,
+  addAsterisk,
 }: Omit<AccordionSearchItemProps, 'items' | 'alwaysOpen' | 'columns'>) => (
   <li key={id} className="accordion-search__list__item">
     <label key={id} htmlFor={`checkbox-${id}`}>
@@ -104,6 +110,7 @@ const AccordionSearchCheckbox = ({
         checked={selected.includes(id)}
       />
       <SubstringHighlight substring={query}>{label}</SubstringHighlight>
+      {addAsterisk && selected.includes(id) ? '*' : ''}
     </label>
   </li>
 );
@@ -117,6 +124,7 @@ const AccordionSearchItem = ({
   onSelect,
   id,
   query,
+  addAsterisk,
   initialOpen = false,
 }: AccordionSearchItemProps) => {
   const itemKeys = useMemo(() => new Set(getLeafKeys(items)), [items]);
@@ -146,6 +154,7 @@ const AccordionSearchItem = ({
               id={item.id}
               key={item.id}
               query={query}
+              addAsterisk={item.addAsterisk}
             />
           ))}
         </ul>
@@ -164,6 +173,7 @@ const AccordionSearchItem = ({
                   id={item.id}
                   key={item.id}
                   query={query}
+                  addAsterisk={addAsterisk}
                 />
               )
           )}
@@ -257,7 +267,7 @@ const AccordionSearch = ({
 
   const accordionGroupNode = filteredAccordionData.length ? (
     filteredAccordionData.map(
-      ({ label, id, items }, index) =>
+      ({ label, id, items, addAsterisk }, index) =>
         items?.length && (
           <AccordionSearchItem
             label={label}
@@ -270,6 +280,7 @@ const AccordionSearch = ({
             id={id}
             key={id}
             query={inputValue}
+            addAsterisk={addAsterisk}
           />
         )
     )
