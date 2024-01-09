@@ -42,7 +42,7 @@ export type AccordionItem = {
   label: string;
   id: string;
   items?: AccordionItem[];
-  addAsterix?: boolean;
+  addAsterisk?: boolean;
 };
 
 type AccordionSearchItemProps = {
@@ -85,9 +85,9 @@ type AccordionSearchItemProps = {
    */
   query: string;
   /**
-   * Indicates if the item has more values to return on request (in case of xrefs)
+   * Appends an asterisk to selected items (in the case of xrefs this indicates full xrefs)
    */
-  addAsterix?: boolean;
+  addAsterisk?: boolean;
 };
 
 const AccordionSearchCheckbox = ({
@@ -96,7 +96,7 @@ const AccordionSearchCheckbox = ({
   id,
   label,
   query,
-  addAsterix,
+  addAsterisk,
 }: Omit<AccordionSearchItemProps, 'items' | 'alwaysOpen' | 'columns'>) => (
   <li key={id} className="accordion-search__list__item">
     <label key={id} htmlFor={`checkbox-${id}`}>
@@ -110,7 +110,7 @@ const AccordionSearchCheckbox = ({
         checked={selected.includes(id)}
       />
       <SubstringHighlight substring={query}>{label}</SubstringHighlight>
-      {selected.includes(id) && addAsterix ? '*' : ''}
+      {addAsterisk && selected.includes(id) ? '*' : ''}
     </label>
   </li>
 );
@@ -124,7 +124,7 @@ const AccordionSearchItem = ({
   onSelect,
   id,
   query,
-  addAsterix,
+  addAsterisk,
   initialOpen = false,
 }: AccordionSearchItemProps) => {
   const itemKeys = useMemo(() => new Set(getLeafKeys(items)), [items]);
@@ -154,7 +154,7 @@ const AccordionSearchItem = ({
               id={item.id}
               key={item.id}
               query={query}
-              addAsterix={item.addAsterix}
+              addAsterisk={item.addAsterisk}
             />
           ))}
         </ul>
@@ -173,7 +173,7 @@ const AccordionSearchItem = ({
                   id={item.id}
                   key={item.id}
                   query={query}
-                  addAsterix={addAsterix}
+                  addAsterisk={addAsterisk}
                 />
               )
           )}
@@ -267,7 +267,7 @@ const AccordionSearch = ({
 
   const accordionGroupNode = filteredAccordionData.length ? (
     filteredAccordionData.map(
-      ({ label, id, items, addAsterix }, index) =>
+      ({ label, id, items, addAsterisk }, index) =>
         items?.length && (
           <AccordionSearchItem
             label={label}
@@ -280,7 +280,7 @@ const AccordionSearch = ({
             id={id}
             key={id}
             query={inputValue}
-            addAsterix={addAsterix}
+            addAsterisk={addAsterisk}
           />
         )
     )
