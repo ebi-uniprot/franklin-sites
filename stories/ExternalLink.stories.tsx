@@ -29,3 +29,7 @@ export const externalLinkWithoutPassingText = () => (
     noIcon={boolean('Hide icon?', false)}
   />
 );
+
+export const externalLinkWithNullUrl = () => (
+  <ExternalLink url={null}>Not a link because no URL</ExternalLink>
+);

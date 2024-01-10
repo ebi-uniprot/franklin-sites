@@ -11,7 +11,7 @@ export type Props = Exclude<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
   /**
    * The location that is visted when clicked
    */
-  url: string;
+  url: string | null;
   /**
    * Decides if a new browser tab should be opened or not, defaults to true
    */
@@ -29,19 +29,22 @@ const ExternalLink: FC<Props> = ({
   rel,
   noIcon = false,
   ...props
-}) => (
-  <a
-    {...props}
-    className={cn('external-link', className)}
-    rel={cn('noopener', rel)}
-    href={url}
-    {...(newTab ? { target: '_blank' } : {})}
-  >
-    {children || (tidyUrl ? tidyUrlString(url) : url)}
-    {!noIcon && (
-      <ExternalLinkIcon data-testid="external-link-icon" width={12.5} />
-    )}
-  </a>
-);
+}) =>
+  url ? (
+    <a
+      {...props}
+      className={cn('external-link', className)}
+      rel={cn('noopener', rel)}
+      href={url}
+      {...(newTab ? { target: '_blank' } : {})}
+    >
+      {children || (tidyUrl ? tidyUrlString(url) : url)}
+      {!noIcon && (
+        <ExternalLinkIcon data-testid="external-link-icon" width={12.5} />
+      )}
+    </a>
+  ) : (
+    <>{children}</>
+  );
 
 export default ExternalLink;

@@ -28,8 +28,16 @@ describe('ExternalLink component', () => {
     );
     expect(asFragment()).toMatchSnapshot();
   });
+
   it('should not include icon if noIcon is passed', () => {
     render(<ExternalLink url="https://www.ebi.ac.uk/" noIcon />);
     expect(screen.queryByTestId('external-link-icon')).not.toBeInTheDocument();
+  });
+
+  it('should not render anchor tag if no url', () => {
+    render(<ExternalLink url={null}>foo</ExternalLink>);
+    const el = screen.queryByText('foo');
+    expect(el).toBeInTheDocument();
+    expect(el?.tagName.toLowerCase()).not.toBe('a');
   });
 });
