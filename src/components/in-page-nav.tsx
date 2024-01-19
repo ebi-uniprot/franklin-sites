@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, HTMLAttributes } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { sleep, schedule, frame } from 'timing-functions';
 import cn from 'classnames';
 
@@ -21,7 +21,7 @@ const InPageNav = ({
   rootElement,
   ...props
 }: Props & HTMLAttributes<HTMLUListElement>) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const [active, setActive] = useState(sections[0].id);
 

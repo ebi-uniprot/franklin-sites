@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { NavLink, Route, useRouteMatch } from 'react-router-dom';
+import { NavLink, Route, useMatch } from 'react-router-dom';
 
 import '../styles/components/display-menu.scss';
 
@@ -15,7 +15,7 @@ type Props = {
 };
 
 const DisplayMenu = ({ data }: Props) => {
-  const { path, url } = useRouteMatch();
+  const { path, url } = useMatch();
   return (
     <ul className="display-menu">
       <ul className="no-bullet">

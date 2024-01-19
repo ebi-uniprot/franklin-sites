@@ -1,4 +1,4 @@
-import { MemoryRouter, useLocation, useHistory } from 'react-router-dom';
+import { MemoryRouter, useLocation, useNavigate } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
 import { InPageNav } from '../src/components';
 
@@ -52,7 +52,7 @@ const content = [
 ];
 
 const Demo = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const location = useLocation();
 
   return (

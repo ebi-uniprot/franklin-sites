@@ -4,7 +4,7 @@ module.exports = {
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-knobs',
-    '@storybook/addon-actions/register',
+    '@storybook/addon-actions',
     './purposeFunction/register.js',
   ],
 
