@@ -23,7 +23,7 @@ import 'tippy.js/dist/tippy.css';
 
 type BasicDatum = Record<string, unknown>;
 
-type CommonColumn<Datum> = {
+export type CommonColumn<Datum> = {
   label?: ReactNode;
   name: string;
   render: (datum: Datum) => ReactNode;

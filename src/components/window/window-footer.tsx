@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import { DefaultCloseButton } from './window-buttons';
 
@@ -7,7 +7,7 @@ type Props = {
   onWindowClose?: () => void;
 };
 
-const WindowFooter: FC<Props> = ({
+const WindowFooter: FC<PropsWithChildren<Props>> = ({
   withCloseButton,
   onWindowClose,
   children,

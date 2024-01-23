@@ -11,7 +11,7 @@ import {
 import { WrapperProps } from '../components/data-loader';
 import { ExternalLink } from '../components';
 
-type DataType = Record<string, string>;
+export type DataType = Record<string, string>;
 export type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
 
 const Column5 = () => (
