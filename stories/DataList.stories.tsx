@@ -1,7 +1,11 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 
-import { DataList, DataListWithLoader, Card } from '../src/components';
+import {
+  DataList as DataListComponent,
+  DataListWithLoader as DataListWithLoaderComponent,
+  Card,
+} from '../src/components';
 import {
   DataDecorator,
   DataLoaderDecorator,
@@ -20,10 +24,10 @@ export default {
 const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
 const useClickToLoadContent = () => text('clickToLoad content', '');
 
-export const dataList = () => (
+export const DataList = () => (
   <DataDecorator>
     {(props) => (
-      <DataList
+      <DataListComponent
         {...props}
         dataRenderer={(content) => <>{Object.values(content)}</>}
       />
@@ -31,10 +35,10 @@ export const dataList = () => (
   </DataDecorator>
 );
 
-export const dataListLoading = () => (
+export const DataListLoading = () => (
   <DataDecorator>
     {(props) => (
-      <DataList
+      <DataListComponent
         {...props}
         loading
         dataRenderer={(content) => (
@@ -50,13 +54,13 @@ export const dataListLoading = () => (
   </DataDecorator>
 );
 
-export const dataListWithLoader = () => (
+export const DataListWithLoader = () => (
   <DataLoaderDecorator>
     {(props) => {
       const clickToLoad = useClickToLoad();
       const clickToLoadContent = useClickToLoadContent();
       return (
-        <DataListWithLoader
+        <DataListWithLoaderComponent
           {...props}
           dataRenderer={(content) => <>{Object.values(content)}</>}
           clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
@@ -66,14 +70,14 @@ export const dataListWithLoader = () => (
   </DataLoaderDecorator>
 );
 
-export const dataListWithLoaderAndCards = () => (
+export const DataListWithLoaderAndCards = () => (
   <DataLoaderDecorator>
     {(props) => {
       const selectable = boolean('selectable', false, 'Props');
       const clickToLoad = useClickToLoad();
       const clickToLoadContent = useClickToLoadContent();
       return (
-        <DataListWithLoader
+        <DataListWithLoaderComponent
           {...props}
           dataRenderer={(content) => (
             <Card>

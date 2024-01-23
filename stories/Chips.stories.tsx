@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { Chip } from '../src/components';
+import { Chip as ChipComponent } from '../src/components';
 
 import colors from '../src/styles/colours.json';
 
@@ -23,8 +23,8 @@ interface Style extends CSSProperties {
   '--main-chip-color': string;
 }
 
-export const chips = () => (
-  <Chip
+export const Chip = () => (
+  <ChipComponent
     title={text('title', 'this is a chip', 'Props')}
     compact={boolean('compact', false, 'Props')}
     disabled={boolean('disabled', false, 'Props')}
@@ -46,39 +46,45 @@ export const chips = () => (
     }
   >
     Chip content
-  </Chip>
+  </ChipComponent>
 );
 
-export const withClick = () => (
+export const WithClick = () => (
   <>
-    <Chip title="this is a primary chip" onClick={action('click on primary')}>
+    <ChipComponent
+      title="this is a primary chip"
+      onClick={action('click on primary')}
+    >
       Primary
-    </Chip>
-    <Chip className="secondary" onClick={action('click on secondary')}>
+    </ChipComponent>
+    <ChipComponent className="secondary" onClick={action('click on secondary')}>
       Secondary
-    </Chip>
+    </ChipComponent>
   </>
 );
 
-export const withKeyPress = () => (
+export const WithKeyPress = () => (
   <>
-    <Chip
+    <ChipComponent
       title="this is a primary chip"
       onKeyPress={action('key press on primary')}
     >
       Primary
-    </Chip>
-    <Chip className="secondary" onKeyPress={action('key press on secondary')}>
+    </ChipComponent>
+    <ChipComponent
+      className="secondary"
+      onKeyPress={action('key press on secondary')}
+    >
       Secondary
-    </Chip>
+    </ChipComponent>
   </>
 );
 
-export const removable = () => (
+export const Removable = () => (
   <>
-    <Chip onRemove={action('Remove chip')}>Primary</Chip>
-    <Chip onRemove={action('Remove chip')} className="secondary">
+    <ChipComponent onRemove={action('Remove chip')}>Primary</ChipComponent>
+    <ChipComponent onRemove={action('Remove chip')} className="secondary">
       Secondary
-    </Chip>
+    </ChipComponent>
   </>
 );

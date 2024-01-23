@@ -1,7 +1,7 @@
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 
 import {
-  EvidenceTag,
+  EvidenceTag as EvidenceTagComponent,
   EvidenceTagIcon,
   InformationIcon,
   HelpIcon,
@@ -28,8 +28,8 @@ const IconComponentOptions = {
   HelpIcon: <HelpIcon />,
 };
 
-export const evidenceTag = () => (
-  <EvidenceTag
+export const EvidenceTag = () => (
+  <EvidenceTagComponent
     label={text('label', 'this is an evidence tag', 'Props')}
     iconComponent={
       IconComponentOptions[
@@ -53,5 +53,5 @@ export const evidenceTag = () => (
       <p>{getLipsumSentences()}</p>
       <p>{getLipsumSentences()}</p>
     </div>
-  </EvidenceTag>
+  </EvidenceTagComponent>
 );

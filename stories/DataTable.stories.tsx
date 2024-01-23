@@ -1,7 +1,10 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
-import { DataTable, DataTableWithLoader } from '../src/components';
+import {
+  DataTable as DataTableComponent,
+  DataTableWithLoader as DataTableWithLoaderComponent,
+} from '../src/components';
 import {
   DataDecorator,
   DataLoaderDecorator,
@@ -25,10 +28,10 @@ const useDensity = () =>
 const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
 const useClickToLoadContent = () => text('clickToLoad content', '');
 
-export const dataTable = () => (
+export const DataTable = () => (
   <DataDecorator>
     {(props) => (
-      <DataTable
+      <DataTableComponent
         {...props}
         columns={columns}
         onSelectionChange={
@@ -42,13 +45,13 @@ export const dataTable = () => (
   </DataDecorator>
 );
 
-export const dataTableWithLoader = () => (
+export const DataTableWithLoader = () => (
   <DataLoaderDecorator>
     {(props) => {
       const clickToLoad = useClickToLoad();
       const clickToLoadContent = useClickToLoadContent();
       return (
-        <DataTableWithLoader
+        <DataTableWithLoaderComponent
           {...props}
           columns={columns}
           onSelectionChange={
@@ -64,13 +67,13 @@ export const dataTableWithLoader = () => (
   </DataLoaderDecorator>
 );
 
-export const dataTableColumnLoading = () => (
+export const DataTableColumnLoading = () => (
   <DataLoaderDecorator>
     {(props) => {
       const clickToLoad = useClickToLoad();
       const clickToLoadContent = useClickToLoadContent();
       return (
-        <DataTableWithLoader
+        <DataTableWithLoaderWithComponent
           {...props}
           loading
           columns={[

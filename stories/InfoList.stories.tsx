@@ -1,6 +1,9 @@
 import { loremIpsum } from 'lorem-ipsum';
 
-import { InfoList, SwissProtIcon } from '../src/components';
+import {
+  InfoList as InfoListComponent,
+  SwissProtIcon,
+} from '../src/components';
 
 export default {
   title: 'Data/Info List',
@@ -42,20 +45,20 @@ const data = [
   },
 ];
 
-export const infoList = () => <InfoList infoData={data} />;
+export const InfoList = () => <InfoListComponent infoData={data} />;
 
-export const highlightFirstItem = () => (
+export const HighlightFirstItem = () => (
   <InfoList infoData={data} highlightFirstItem />
 );
 
-export const compact = () => <InfoList infoData={data} isCompact />;
+export const Compact = () => <InfoListComponent infoData={data} isCompact />;
 
-export const noTitles = () => <InfoList infoData={data} noTitles />;
+export const NoTitles = () => <InfoListComponent infoData={data} noTitles />;
 
-export const columns = () => <InfoList infoData={data} columns />;
+export const Columns = () => <InfoListComponent infoData={data} columns />;
 
-export const columnsCompact = () => (
-  <InfoList infoData={data} columns isCompact />
+export const ColumnsCompact = () => (
+  <InfoListComponent infoData={data} columns isCompact />
 );
 
-infoList.storyName = 'Simple data';
+InfoList.storyName = 'Simple data';

@@ -1,4 +1,4 @@
-import EllipsisReveal from '../src/components/ellipsis-reveal';
+import { EllipsisReveal as EllipsisRevealComponent } from '../src/components';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
@@ -15,25 +15,32 @@ export default {
   },
 };
 
-export const ellipsisReveal = () => (
+export const EllipsisReveal = () => (
   <>
-    Some text <EllipsisReveal>{getLipsumSentences()}</EllipsisReveal>
+    Some text{' '}
+    <EllipsisRevealComponent>{getLipsumSentences()}</EllipsisRevealComponent>
   </>
 );
 
-export const ellipsisRevealInGroup = () => (
-  <EllipsisReveal.Provider>
+export const EllipsisRevealInGroup = () => (
+  <EllipsisRevealComponent.Provider>
     <p>
       Some text{' '}
-      <EllipsisReveal contextKey="group">{getLipsumSentences()}</EllipsisReveal>
+      <EllipsisRevealComponent contextKey="group">
+        {getLipsumSentences()}
+      </EllipsisRevealComponent>
     </p>
     <p>
       Some other text{' '}
-      <EllipsisReveal contextKey="group">{getLipsumSentences()}</EllipsisReveal>
+      <EllipsisRevealComponent contextKey="group">
+        {getLipsumSentences()}
+      </EllipsisRevealComponent>
     </p>
     <p>
       Some other text again{' '}
-      <EllipsisReveal contextKey="group">{getLipsumSentences()}</EllipsisReveal>
+      <EllipsisRevealComponent contextKey="group">
+        {getLipsumSentences()}
+      </EllipsisRevealComponent>
     </p>
-  </EllipsisReveal.Provider>
+  </EllipsisRevealComponent.Provider>
 );

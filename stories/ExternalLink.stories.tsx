@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ExternalLink } from '../src/components';
+import { ExternalLink as EL } from '../src/components';
 
-const meta: Meta<typeof ExternalLink> = {
-  component: ExternalLink,
+const meta: Meta<typeof EL> = {
+  component: EL,
   title: 'Core/External link',
   parameters: {
     purposeFunction: {
@@ -15,9 +15,9 @@ const meta: Meta<typeof ExternalLink> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof ExternalLink>;
+type Story = StoryObj<typeof EL>;
 
-export const Default: Story = {
+export const ExternalLink: Story = {
   args: {
     url: 'https://www.ebi.ac.uk/',
     children: 'external link',
@@ -28,14 +28,14 @@ export const Default: Story = {
 
 export const ExternalLinkWithoutPassingText: Story = {
   args: {
-    ...Default.args,
+    ...ExternalLink.args,
     children: undefined,
   },
 };
 
 export const ExternalLinkWithNullUrl: Story = {
   args: {
-    ...Default.args,
+    ...ExternalLink.args,
     url: null,
   },
 };

@@ -1,6 +1,6 @@
 import { MemoryRouter, useLocation, useNavigate } from 'react-router-dom';
 import { loremIpsum } from 'lorem-ipsum';
-import { InPageNav } from '../src/components';
+import { InPageNav as InPageNavComponent } from '../src/components';
 
 const sections = [
   {
@@ -85,7 +85,10 @@ const Demo = () => {
       <div style={{ border: '1px solid black' }}>
         <div style={{ height: '200px', display: 'flex' }}>
           <div style={{ width: '200px' }}>
-            <InPageNav sections={sections} rootElement=".main-content" />
+            <InPageNavComponent
+              sections={sections}
+              rootElement=".main-content"
+            />
           </div>
           <main className="main-content" style={{ overflow: 'scroll' }}>
             <section id="id1">
@@ -107,7 +110,7 @@ const Demo = () => {
   );
 };
 
-export const inPageNav = () => (
+export const InPageNav = () => (
   <MemoryRouter initialEntries={['/initial/path']}>
     <Demo />
   </MemoryRouter>

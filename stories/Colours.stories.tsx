@@ -7,6 +7,6 @@ export default {
   title: 'Core/Colours',
 };
 
-export const colours = () => (
+export const Colors = () => (
   <ReactMarkdown rehypePlugins={[rehypeRaw]}>{coloursFile}</ReactMarkdown>
 );

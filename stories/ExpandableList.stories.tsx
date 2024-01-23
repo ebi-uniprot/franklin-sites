@@ -1,6 +1,6 @@
 import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
 
-import { ExpandableList } from '../src/components';
+import { ExpandableList as EvidenceTagComponent } from '../src/components';
 
 import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 
@@ -16,8 +16,8 @@ export default {
   },
 };
 
-export const expandableList = () => (
-  <ExpandableList
+export const ExpandableList = () => (
+  <EvidenceTagComponent
     numberCollapsedItems={number(
       'Number of displayed items',
       5,
@@ -38,11 +38,11 @@ export const expandableList = () => (
     }).map(({ id, content }) => (
       <span key={id}>{content}</span>
     ))}
-  </ExpandableList>
+  </EvidenceTagComponent>
 );
 
-export const expandableListWithExtraAction = () => (
-  <ExpandableList
+export const ExpandableListWithExtraAction = () => (
+  <EvidenceTagComponent
     numberCollapsedItems={5}
     descriptionString="Lorem ipsum items"
     extraActions={
@@ -57,5 +57,5 @@ export const expandableListWithExtraAction = () => (
     }).map(({ id, content }) => (
       <span key={id}>{content}</span>
     ))}
-  </ExpandableList>
+  </EvidenceTagComponent>
 );

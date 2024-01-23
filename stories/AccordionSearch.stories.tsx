@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { AccordionSearch } from '../src/components';
+import { AccordionSearch as AccordionSearchComponent } from '../src/components';
 
 import { AccordionItem } from '../src/components/accordion-search';
 
-const meta: Meta<typeof AccordionSearch> = {
-  component: AccordionSearch,
+const meta: Meta<typeof AccordionSearchComponent> = {
+  component: AccordionSearchComponent,
   argTypes: { onSelect: { action: 'selected' } },
   title: 'Layout/AccordionSearch',
   parameters: {
@@ -17,7 +17,7 @@ const meta: Meta<typeof AccordionSearch> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof AccordionSearch>;
+type Story = StoryObj<typeof AccordionSearchComponent>;
 
 const accordionData: AccordionItem[] = [
   {

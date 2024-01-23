@@ -7,7 +7,7 @@ import {
   BasketIcon,
   Button,
   EnvelopeIcon,
-  Header,
+  Header as HeaderComponent,
   HelpIcon,
   MainSearch,
   Dropdown,
@@ -55,8 +55,8 @@ const Search = () => {
   );
 };
 
-export const header = () => (
-  <Header
+export const Header = () => (
+  <HeaderComponent
     logo={<UniProtLogo width={30} />}
     search={boolean('With Search', true) && <Search />}
     secondaryItems={
@@ -81,5 +81,5 @@ export const header = () => (
     <Button variant="tertiary" onClick={action('onClick')}>
       action
     </Button>
-  </Header>
+  </HeaderComponent>
 );

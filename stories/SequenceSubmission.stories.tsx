@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { SequenceSubmission } from '../src/components';
+import { SequenceSubmission as SequenceSubmissionComponent } from '../src/components';
 
 import { SequenceObject } from '../src/sequence-utils/sequence-processor';
 
@@ -14,12 +14,12 @@ export default {
   },
 };
 
-export const sequenceSubmission = () => (
-  <SequenceSubmission placeholder="Enter a sequence..." />
+export const SequenceSubmission = () => (
+  <SequenceSubmissionComponent placeholder="Enter a sequence..." />
 );
 
-export const withInvalidSequenceError = () => (
-  <SequenceSubmission
+export const WithInvalidSequenceError = () => (
+  <SequenceSubmissionComponent
     placeholder="Enter a sequence..."
     defaultValue="ACTGUACTGUACTGU+"
   />
@@ -30,8 +30,8 @@ ACTGUACTGUACTGU
 > sequence_2
 ACTGAUTTGUATTGUUUGU
 `;
-export const withMultipleSequences = () => (
-  <SequenceSubmission
+export const WithMultipleSequences = () => (
+  <SequenceSubmissionComponent
     placeholder="Enter a sequence..."
     defaultValue={multipleSequences1}
   />
@@ -44,8 +44,8 @@ ACTGAUTTGUATTGUUUGU
 > sequence_3
 ACTGUACTGUACTGU
 `;
-export const withMultipleSequencesWarning = () => (
-  <SequenceSubmission
+export const WithMultipleSequencesWarning = () => (
+  <SequenceSubmissionComponent
     placeholder="Enter a sequence..."
     defaultValue={multipleSequences2}
   />
@@ -57,7 +57,7 @@ export const DynamicallyChangeValue = () => {
 
   return (
     <form>
-      <SequenceSubmission
+      <SequenceSubmissionComponent
         placeholder="Enter a sequence..."
         value={sequence}
         onChange={(event) => {

@@ -1,7 +1,7 @@
 import { boolean } from '@storybook/addon-knobs';
 import { LoremIpsum } from 'lorem-ipsum';
 
-import { CodeBlock } from '../src/components';
+import { CodeBlock as CodeBlockComponent } from '../src/components';
 
 export default {
   title: 'Layout/CodeBlock',
@@ -24,6 +24,8 @@ const li = new LoremIpsum({
   },
 }).generateParagraphs(10);
 
-export const codeBlock = () => (
-  <CodeBlock lightMode={boolean('lightMode', false)}>{li}</CodeBlock>
+export const CodeBlock = () => (
+  <CodeBlockComponent lightMode={boolean('lightMode', false)}>
+    {li}
+  </CodeBlockComponent>
 );

@@ -1,4 +1,4 @@
-import { DisplayMenu } from '../src/components';
+import { DisplayMenu as DisplayMenuComponent } from '../src/components';
 
 import displayMenuData from '../src/components/__mocks__/displayMenu';
 
@@ -12,4 +12,6 @@ export default {
   },
 };
 
-export const displayMenu = () => <DisplayMenu data={displayMenuData} />;
+export const DisplayMenu = () => (
+  <DisplayMenuComponent data={displayMenuData} />
+);

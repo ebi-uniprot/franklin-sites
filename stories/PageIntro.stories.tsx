@@ -1,6 +1,6 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
 
-import { PageIntro } from '../src/components';
+import { PageIntro as PageIntroComponent } from '../src/components';
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 export default {
@@ -16,12 +16,12 @@ export default {
   },
 };
 
-export const pageIntro = () => (
-  <PageIntro
+export const PageIntro = () => (
+  <PageIntroComponent
     title="UniProt"
     resultsCount={1000}
     titlePostscript={text('Title Postcript', '', 'Props')}
   >
     {getLipsumSentences()}
-  </PageIntro>
+  </PageIntroComponent>
 );

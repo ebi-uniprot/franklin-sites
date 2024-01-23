@@ -1,6 +1,6 @@
 import { MemoryRouter, useLocation } from 'react-router-dom';
 
-import { Facets, Facet } from '../src/components';
+import { Facets as FacetsComponent, Facet } from '../src/components';
 
 import facetData from '../src/mock-data/facetData';
 
@@ -28,18 +28,18 @@ const Demo = () => {
         pathname: {location.pathname + location.search}
       </code>
       <div style={{ border: '1px solid black', padding: '1ch' }}>
-        <Facets data={propFacetData}>
+        <FacetsComponent data={propFacetData}>
           injected content
           {childFacetData.map((facet) => (
             <Facet data={facet} key={facet.name} />
           ))}
-        </Facets>
+        </FacetsComponent>
       </div>
     </>
   );
 };
 
-export const facets = () => (
+export const Facets = () => (
   <MemoryRouter
     initialEntries={[
       '/initial/path/id1?facets=facet_2%3Avalue_2&other_field&yet_another=value',

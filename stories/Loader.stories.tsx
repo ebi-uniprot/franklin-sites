@@ -1,6 +1,6 @@
 import { number } from '@storybook/addon-knobs';
 
-import { Loader } from '../src/components';
+import { Loader as LoaderComponent } from '../src/components';
 
 export default {
   title: 'Core/Loader',
@@ -12,9 +12,9 @@ export default {
   },
 };
 
-export const loader = () => (
+export const Loader = () => (
   <div style={{ width: '100%', height: '300px', background: 'lightblue' }}>
-    <Loader
+    <LoaderComponent
       progress={number(
         'Progress',
         0.5,

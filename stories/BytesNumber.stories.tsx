@@ -1,13 +1,13 @@
 import { number } from '@storybook/addon-knobs';
 
-import { BytesNumber } from '../src/components';
+import { BytesNumber as BytesNumberComponent } from '../src/components';
 
 export default {
   title: 'Visualisation/Bytes number',
 };
 
-export const bytesNumber = () => (
-  <BytesNumber decimals={number('decimals', 0)}>
+export const BytesNumber = () => (
+  <BytesNumberComponent decimals={number('decimals', 0)}>
     {number('bytes', 1024)}
-  </BytesNumber>
+  </BytesNumberComponent>
 );

@@ -1,4 +1,4 @@
-import { DecoratedListItem } from '../src/components';
+import { DecoratedListItem as DecoratedListItemComponent } from '../src/components';
 
 export default {
   title: 'Data/Decorated List Item',
@@ -29,16 +29,16 @@ const data = [
   },
 ];
 
-export const decoratedListItem = () => (
+export const DecoratedListItem = () => (
   <div className="uniprot-grid">
     {data.map((i) => (
       <div key={i.title} className="uniprot-grid-cell--span-3">
-        <DecoratedListItem compact altStyle>
+        <DecoratedListItemComponent compact altStyle>
           <h3>{i.title}</h3>
-        </DecoratedListItem>
+        </DecoratedListItemComponent>
       </div>
     ))}
   </div>
 );
 
-decoratedListItem.storyName = 'Alternative Style';
+DecoratedListItem.storyName = 'Alternative Style';

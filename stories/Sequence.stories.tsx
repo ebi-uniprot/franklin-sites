@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { sleep } from 'timing-functions';
 
-import { Sequence, SequenceTools, Button } from '../src/components';
+import {
+  Sequence as SequenceComponent,
+  SequenceTools as SequenceToolsComponent,
+  Button,
+} from '../src/components';
 
 import sequenceData from '../src/mock-data/sequence-data';
 
@@ -22,8 +26,8 @@ const AddToBasketButton = () => (
   </Button>
 );
 
-export const sequence = () => (
-  <Sequence
+export const Sequence = () => (
+  <SequenceComponent
     sequence={sequenceData}
     accession="P05067"
     downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
@@ -32,11 +36,11 @@ export const sequence = () => (
     addToBasketButton={<AddToBasketButton />}
   />
 );
-export const sequenceWithoutActionBar = () => (
-  <Sequence sequence={sequenceData} showActionBar={false} />
+export const SequenceWithoutActionBar = () => (
+  <SequenceComponent sequence={sequenceData} showActionBar={false} />
 );
 
-export const sequenceCollapsableWithInfoData = () => {
+export const SequenceCollapsableWithInfoData = () => {
   const data = [
     {
       title: 'Item 1',
@@ -47,7 +51,9 @@ export const sequenceCollapsableWithInfoData = () => {
       content: <div>Some more content</div>,
     },
   ];
-  return <Sequence sequence={sequenceData} infoData={data} isCollapsible />;
+  return (
+    <SequenceComponent sequence={sequenceData} infoData={data} isCollapsible />
+  );
 };
 
 export const SequenceAsyncLoad = () => {
@@ -62,7 +68,7 @@ export const SequenceAsyncLoad = () => {
   };
 
   return (
-    <Sequence
+    <SequenceComponent
       sequence={sequence}
       isLoading={isLoading}
       onShowSequence={onShowSequence}
@@ -70,6 +76,9 @@ export const SequenceAsyncLoad = () => {
   );
 };
 
-export const sequenceTools = () => (
-  <SequenceTools accession="P05067" onBlastClick={action('onBlastClick')} />
+export const SequenceTools = () => (
+  <SequenceToolsComponent
+    accession="P05067"
+    onBlastClick={action('onBlastClick')}
+  />
 );
