@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { Button, DownloadIcon } from '../src/components';
@@ -8,7 +8,7 @@ import colors from '../src/styles/colours.json';
 
 export default {
   title: 'Forms/Button',
-  decorators: [withKnobs()],
+  argTypes: { onClick: { action: 'selected' } },
   parameters: {
     purposeFunction: {
       purpose: '',
