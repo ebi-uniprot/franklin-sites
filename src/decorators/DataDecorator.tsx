@@ -12,7 +12,13 @@ import { WrapperProps } from '../components/data-loader';
 import { ExternalLink } from '../components';
 
 type DataType = Record<string, string>;
-type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
+export type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
+
+const Column5 = () => (
+  <>
+    Column 5 <small>FC</small>
+  </>
+);
 
 const totalNumberDataPoints = 50;
 const getIdKey = (datum: DataType) => datum.id;
@@ -58,11 +64,7 @@ export const columns: Array<
     sortable: true,
   },
   {
-    label: () => (
-      <>
-        Column 5 <small>FC</small>
-      </>
-    ),
+    label: <Column5 />,
     name: 'content5',
     render: (row) => row.content5,
   },
