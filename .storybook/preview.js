@@ -9,6 +9,10 @@ export const parameters = {
   docs: {
     theme: franklinTheme,
   },
+  options: {
+    storySort: {
+      method: 'alphabetical'
+    }}
 };
 
 export const decorators = [
