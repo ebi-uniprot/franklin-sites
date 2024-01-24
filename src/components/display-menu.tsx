@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { NavLink, Route, useMatch } from 'react-router-dom';
+import { NavLink, Route, useLocation, useResolvedPath } from 'react-router-dom';
 
 import '../styles/components/display-menu.scss';
 
@@ -15,7 +15,9 @@ type Props = {
 };
 
 const DisplayMenu = ({ data }: Props) => {
-  const { path, url } = useMatch();
+  // TODO: figure out how to get path
+  const { pathname: path } = useLocation();
+  const url = useResolvedPath('').pathname;
   return (
     <ul className="display-menu">
       <ul className="no-bullet">
