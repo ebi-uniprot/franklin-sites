@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, PropsWithChildren, ReactNode } from 'react';
 import cn from 'classnames';
 import { Link, LinkProps } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ type Props = {
   altStyle?: boolean;
 };
 
-const DecoratedListItem: FC<Props> = ({
+const DecoratedListItem: FC<PropsWithChildren<Props>> = ({
   title,
   children,
   to,

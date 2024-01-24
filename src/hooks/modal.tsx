@@ -1,4 +1,4 @@
-import { useState, FC } from 'react';
+import { useState, FC, PropsWithChildren } from 'react';
 
 import '../styles/components/modal.scss';
 
@@ -14,7 +14,7 @@ type Props = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function useModal(Backdrop: FC<any>, Content: FC<any>) {
   const [displayModal, setDisplayModal] = useState(false);
-  const Modal: FC<Props> = ({
+  const Modal: FC<PropsWithChildren<Props>> = ({
     children,
     title,
     width = '50vw',

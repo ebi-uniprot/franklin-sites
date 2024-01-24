@@ -21,8 +21,9 @@ type CardActionProps = {
 const CardAction: FC<CardActionProps> = ({ name, link, color }) => (
   <NavLink
     to={link}
-    className="card-action"
-    activeClassName="card-action--active"
+    className={({ isActive }) =>
+      cn('card-action', { 'card-action--active': isActive })
+    }
     style={color ? { borderBottom: `0.125rem solid ${color}` } : undefined}
   >
     {name}

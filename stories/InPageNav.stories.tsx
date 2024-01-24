@@ -52,7 +52,7 @@ const content = [
 ];
 
 const Demo = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
 
   return (
@@ -60,10 +60,10 @@ const Demo = () => {
       <button
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        disabled={history.index === 0}
+        disabled={navigate.index === 0}
         type="button"
         className="button"
-        onClick={history.goBack}
+        onClick={() => navigate(-1)}
       >
         Browser back
       </button>
@@ -75,10 +75,10 @@ const Demo = () => {
       <button
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        disabled={history.index + 1 === history.length}
+        disabled={navigate.index + 1 === navigate.length}
         type="button"
         className="button"
-        onClick={history.goForward}
+        onClick={() => navigate(1)}
       >
         Browser forward
       </button>

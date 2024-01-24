@@ -48,7 +48,7 @@ const data = [
 export const InfoList = () => <InfoListComponent infoData={data} />;
 
 export const HighlightFirstItem = () => (
-  <InfoList infoData={data} highlightFirstItem />
+  <InfoListComponent infoData={data} highlightFirstItem />
 );
 
 export const Compact = () => <InfoListComponent infoData={data} isCompact />;

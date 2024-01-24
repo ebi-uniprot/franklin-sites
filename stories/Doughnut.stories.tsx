@@ -1,4 +1,4 @@
-import { DoughnutChart as DoughnutChartComponent } from '../src/components';
+import { DoughnutChart } from '../src/components';
 
 export default {
   title: 'Visualisation/Doughnut',
@@ -12,21 +12,19 @@ export default {
 };
 
 export const SmallDoughnut = () => (
-  <DoughnutChartComponent percent={90} size="small">
+  <DoughnutChart percent={90} size="small">
     9
-  </DoughnutChartComponent>
+  </DoughnutChart>
 );
 
 export const RegularDoughnut = () => (
-  <DoughnutChartComponent
+  <DoughnutChart
     percent={60}
     colorClass="colour-uniref"
     bgColorClass="colour-sky-white"
   >
     3/5
-  </DoughnutChartComponent>
+  </DoughnutChart>
 );
 
-export const LargeDoughnut = () => (
-  <DoughnutChartComponent percent={20} size="large" />
-);
+export const LargeDoughnut = () => <DoughnutChart percent={20} size="large" />;

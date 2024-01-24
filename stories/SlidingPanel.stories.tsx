@@ -44,14 +44,14 @@ export const SlidingPanels = () => {
 
 export const SlidingPanelsWithArrow = () => {
   const [showPanel, setShowPanel] = useState(false);
-  const [arrowX, setArrowX] = useState();
+  const [arrowX, setArrowX] = useState<number>();
 
   const position = usePositionLR();
   const title = useTitle();
   const size = useSize();
 
   const buttonRef = useCallback(
-    (node) => {
+    (node: HTMLButtonElement) => {
       if (node) {
         const bcr = node.getBoundingClientRect();
         setArrowX(bcr.x + bcr.width / 2);
