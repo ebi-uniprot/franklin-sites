@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, HTMLAttributes } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { sleep, schedule, frame } from 'timing-functions';
 import cn from 'classnames';
 
@@ -21,7 +21,7 @@ const InPageNav = ({
   rootElement,
   ...props
 }: Props & HTMLAttributes<HTMLUListElement>) => {
-  const history = useNavigate();
+  const location = useLocation();
 
   const [active, setActive] = useState(sections[0].id);
 
@@ -96,26 +96,23 @@ const InPageNav = ({
 
     // eslint-disable-next-line consistent-return
     return () => elements.forEach((element) => io.unobserve(element));
-  }, [sections, history]);
+  }, [sections, location]);
 
   // listen for changes in location hash to move corresponding element into view
   useEffect(() => {
-    const unlisten = history.listen((location) =>
-      frame().then(() => {
-        const id = location.hash.replace('#', '');
-        if (id) {
-          document.getElementById(id)?.scrollIntoView();
-        } else if (rootElement) {
-          const element =
-            typeof rootElement === 'string'
-              ? document.querySelector(rootElement)
-              : rootElement;
-          element?.scrollTo({ top: 0 });
-        }
-      })
-    );
-    return unlisten;
-  }, [history, rootElement]);
+    frame().then(() => {
+      const id = location.hash.replace('#', '');
+      if (id) {
+        document.getElementById(id)?.scrollIntoView();
+      } else if (rootElement) {
+        const element =
+          typeof rootElement === 'string'
+            ? document.querySelector(rootElement)
+            : rootElement;
+        element?.scrollTo({ top: 0 });
+      }
+    });
+  }, [location, rootElement]);
 
   // move element into view on mount
   useEffect(() => {
@@ -125,14 +122,14 @@ const InPageNav = ({
     sleep(500)
       .then(() => schedule(1000))
       .then(() => {
-        const id = history.location.hash.replace('#', '');
+        const id = location.hash.replace('#', '');
         if (!id) {
           // no id to navigate to
           return;
         }
         document.getElementById(id)?.scrollIntoView();
       });
-  }, [history]); // history won't change, unlike location
+  }, [location.hash]); // history won't change, unlike location
 
   // move active marker
   useEffect(() => {
