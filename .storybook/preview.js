@@ -1,5 +1,5 @@
 import React from "react"; // Still needed for deployed storybook to work
-import StoryRouter from "storybook-react-router";
+// import StoryRouter from "storybook-react-router";
 
 import franklinTheme from "./franklin-theme";
 
@@ -16,7 +16,7 @@ export const parameters = {
 };
 
 export const decorators = [
-  StoryRouter(),
+  // StoryRouter(),
   (storyFn) => (
     <div
       style={{
