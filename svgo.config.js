@@ -1,5 +1,7 @@
 module.export = {
   plugins: [
-    "removeViewBox"
+    {
+      name: "removeViewBox"
+    },
   ]
 }
