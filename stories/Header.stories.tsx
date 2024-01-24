@@ -1,5 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
+// Part of '@storybook/addon-essentials'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 

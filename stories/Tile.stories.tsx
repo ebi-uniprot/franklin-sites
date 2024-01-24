@@ -1,6 +1,8 @@
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 // Part of '@storybook/addon-essentials'
 // eslint-disable-next-line import/no-extraneous-dependencies
+// Part of '@storybook/addon-essentials'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
 import { loremIpsum } from 'lorem-ipsum';

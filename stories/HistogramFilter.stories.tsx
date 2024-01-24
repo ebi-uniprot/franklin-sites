@@ -1,6 +1,8 @@
 import { CSSProperties, useState } from 'react';
 
 import { withKnobs, select, text } from '@storybook/addon-knobs';
+// Part of '@storybook/addon-essentials'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
 import { HistogramFilter } from '../src/components';

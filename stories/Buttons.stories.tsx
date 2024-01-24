@@ -1,5 +1,7 @@
 import { CSSProperties } from 'react';
 import { select, boolean } from '@storybook/addon-knobs';
+// Part of '@storybook/addon-essentials'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
 import { Button, DownloadIcon } from '../src/components';
