@@ -11,7 +11,7 @@ describe('Tile component', () => {
       <Tile
         title="Tile title"
         subtitle="Subtitle"
-        backgroundImage={ProtVistaIcon}
+        backgroundImage={<ProtVistaIcon />}
         backgroundColor={colors.seaBlue}
         to="/"
         gradient
