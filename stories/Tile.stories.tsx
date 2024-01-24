@@ -1,15 +1,20 @@
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
+// Part of '@storybook/addon-essentials'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
+
 import { loremIpsum } from 'lorem-ipsum';
 
 import { Tile } from '../src/components';
+
+import ReactRouterDecorator from '../src/decorators/RouterDecorator';
 
 import SVG from '../assets/uniprotkb_illustration.svg';
 import colors from '../src/styles/colours.json';
 
 export default {
   title: 'Navigation/Tile',
-  decorators: [withKnobs()],
+  decorators: [withKnobs(), ReactRouterDecorator],
   parameters: {
     purposeFunction: {
       purpose:
