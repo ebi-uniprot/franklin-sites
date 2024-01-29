@@ -9,13 +9,13 @@ import {
   Dropdown,
 } from '..';
 
-import renderWithRouter from '../../testHelpers/renderWithRouter';
+import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
 
 import Header from '../header';
 
 describe('Header component', () => {
   it('should render', () => {
-    const { asFragment } = renderWithRouter(
+    const { asFragment } = renderWithBrowserRouter(
       <Header
         secondaryItems={
           <>

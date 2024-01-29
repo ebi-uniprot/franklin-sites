@@ -1,6 +1,7 @@
 import { screen, fireEvent, render } from '@testing-library/react';
 
-import renderWithRouter from '../../testHelpers/renderWithRouter';
+import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
+import renderWithMemoryRouter from '../../testHelpers/renderWithMemoryRouter';
 
 import DecoratedListItem from '../decorated-list-item';
 
@@ -42,12 +43,19 @@ describe('DecoratedListItem component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should render link and navigate when clicked', () => {
-    const { asFragment, history } = renderWithRouter(
+  it('should render link', () => {
+    const { asFragment } = renderWithBrowserRouter(
       <DecoratedListItem to="/target">Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render link and navigate when clicked', () => {
+    renderWithMemoryRouter(
+      <DecoratedListItem to="/target">Content</DecoratedListItem>
+    );
     fireEvent.click(screen.getByTestId('background-link'));
-    expect(history.location.pathname).toBe('/target');
+    // verify location display is rendered
+    expect(screen.getByTestId('location-display')).toHaveTextContent('/target');
   });
 });

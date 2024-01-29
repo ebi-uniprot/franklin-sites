@@ -9,7 +9,6 @@ const renderWithHistoryRouter = (ui: ReactElement, route?: string) => {
   if (route) {
     history.push(route);
   }
-  console.log(history.location);
   return {
     ...render(<HistoryRouter history={history}>{ui}</HistoryRouter>),
     history,

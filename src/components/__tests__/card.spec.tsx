@@ -1,10 +1,10 @@
 import Card from '../card';
 
-import renderWithRouter from '../../testHelpers/renderWithRouter';
+import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
 
 describe('Card component', () => {
   it('should render', () => {
-    const { asFragment } = renderWithRouter(
+    const { asFragment } = renderWithBrowserRouter(
       <Card header={<h2>Title</h2>}>
         <span>Some content</span>
       </Card>
@@ -21,7 +21,7 @@ describe('Card component', () => {
       },
     ];
 
-    const { asFragment } = renderWithRouter(
+    const { asFragment } = renderWithBrowserRouter(
       <Card header={<h2>Title</h2>} links={links}>
         <span>Some content</span>
       </Card>

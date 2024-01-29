@@ -103,7 +103,7 @@ const InPageNav = ({
     frame().then(() => {
       const id = location.hash.replace('#', '');
       if (id) {
-        document.getElementById(id)?.scrollIntoView();
+        document.getElementById(id)?.scrollIntoView?.();
       } else if (rootElement) {
         const element =
           typeof rootElement === 'string'
@@ -127,7 +127,7 @@ const InPageNav = ({
           // no id to navigate to
           return;
         }
-        document.getElementById(id)?.scrollIntoView();
+        document.getElementById(id)?.scrollIntoView?.();
       });
   }, [location.hash]); // history won't change, unlike location
 

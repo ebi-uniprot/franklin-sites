@@ -1,6 +1,6 @@
 import Window from '../window/window';
 import { WindowActionButton } from '../window/window-buttons';
-import renderWithRouter from '../../testHelpers/renderWithRouter';
+import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
 
 const customActionButtons = [
   <WindowActionButton text="No" key="window-action-no" onClick={() => null} />,
@@ -14,7 +14,7 @@ const customActionButtons = [
 
 describe('Window component', () => {
   it('should render', () => {
-    const { asFragment } = renderWithRouter(
+    const { asFragment } = renderWithBrowserRouter(
       <Window
         width="20rem"
         height="15rem"
@@ -33,7 +33,7 @@ describe('Window component', () => {
   });
 
   it('should render with custom action buttons', () => {
-    const { asFragment } = renderWithRouter(
+    const { asFragment } = renderWithBrowserRouter(
       <Window
         width="20rem"
         height="10rem"

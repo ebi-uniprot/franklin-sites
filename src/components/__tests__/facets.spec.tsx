@@ -2,13 +2,15 @@ import { screen } from '@testing-library/react';
 
 import { Facet, Facets, stringify, parse, CustomParsedQuery } from '../facets';
 
-import renderWithRouter from '../../testHelpers/renderWithRouter';
+import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
 
 import facets, { statusFacet, proteinsWithFacet } from '../__mocks__/facets';
 
 describe('<Facet />', () => {
   it('should render facet with few data', () => {
-    const { asFragment } = renderWithRouter(<Facet data={statusFacet} />);
+    const { asFragment } = renderWithBrowserRouter(
+      <Facet data={statusFacet} />
+    );
     expect(
       screen.queryByRole('button', { name: /More items/i })
     ).not.toBeInTheDocument();
@@ -16,7 +18,9 @@ describe('<Facet />', () => {
   });
 
   it('should render facet with a lot of data', () => {
-    const { asFragment } = renderWithRouter(<Facet data={proteinsWithFacet} />);
+    const { asFragment } = renderWithBrowserRouter(
+      <Facet data={proteinsWithFacet} />
+    );
     expect(
       screen.getByRole('button', { name: /More items/i })
     ).toBeInTheDocument();
@@ -26,14 +30,16 @@ describe('<Facet />', () => {
 
 describe('<Facets />', () => {
   it('should render multiple facets', () => {
-    const { asFragment } = renderWithRouter(<Facets data={facets} />);
+    const { asFragment } = renderWithBrowserRouter(<Facets data={facets} />);
     expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('<Facet />', () => {
   it('should render facet with few data', () => {
-    const { asFragment } = renderWithRouter(<Facet data={statusFacet} />);
+    const { asFragment } = renderWithBrowserRouter(
+      <Facet data={statusFacet} />
+    );
     expect(
       screen.queryByRole('button', { name: /More items/i })
     ).not.toBeInTheDocument();
@@ -41,7 +47,9 @@ describe('<Facet />', () => {
   });
 
   it('should render facet with a lot of data', () => {
-    const { asFragment } = renderWithRouter(<Facet data={proteinsWithFacet} />);
+    const { asFragment } = renderWithBrowserRouter(
+      <Facet data={proteinsWithFacet} />
+    );
     expect(
       screen.getByRole('button', { name: /More items/i })
     ).toBeInTheDocument();

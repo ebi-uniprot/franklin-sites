@@ -7,18 +7,18 @@ import displayMenuData, {
   displayMenuDummyLeft2,
 } from '../__mocks__/displayMenu';
 
-import renderWithRouter from '../../testHelpers/renderWithRouter';
+import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
 
 describe('Display menu component', () => {
   it('should render', () => {
-    const { asFragment } = renderWithRouter(
+    const { asFragment } = renderWithBrowserRouter(
       <DisplayMenu data={displayMenuData} />
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should toggle item content', async () => {
-    renderWithRouter(<DisplayMenu data={displayMenuData} />);
+    renderWithBrowserRouter(<DisplayMenu data={displayMenuData} />);
     expect(
       screen
         .getAllByText(displayMenuDummyLeft1)[0]

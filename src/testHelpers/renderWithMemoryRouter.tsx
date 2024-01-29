@@ -7,7 +7,9 @@ import { render } from '@testing-library/react';
 
 export const LocationDisplay = () => {
   const location = useLocation();
-  return <div data-testid="location-display">{location.pathname}</div>;
+  return (
+    <div data-testid="location-display">{`${location.pathname}#${location.hash}`}</div>
+  );
 };
 
 const getWithLocation =

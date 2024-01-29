@@ -1,9 +1,10 @@
 /* eslint-disable class-methods-use-this, lines-between-class-members */
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 
-import renderWithRouter from '../../testHelpers/renderWithRouter';
+import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
 
 import InPageNav from '../in-page-nav';
+import renderWithHistoryRouter from '../../testHelpers/renderWithHistoryRouter';
 
 describe('InPageNav component', () => {
   beforeAll(() => {
@@ -26,6 +27,8 @@ describe('InPageNav component', () => {
     };
   });
 
+  beforeEach(() => jest.resetAllMocks());
+
   const sections = [
     {
       id: 'id1',
@@ -42,12 +45,14 @@ describe('InPageNav component', () => {
   ];
 
   it('should render', () => {
-    const { asFragment } = renderWithRouter(<InPageNav sections={sections} />);
+    const { asFragment } = renderWithBrowserRouter(
+      <InPageNav sections={sections} />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should scroll the default target element into view', async () => {
-    renderWithRouter(
+    renderWithBrowserRouter(
       <div>
         <InPageNav sections={sections} />
         <div id="id3" data-testid="target" />
@@ -60,34 +65,32 @@ describe('InPageNav component', () => {
   });
 
   it('should scroll the target element into view after hash change', async () => {
-    const { history } = renderWithRouter(
+    const { history } = renderWithHistoryRouter(
       <div>
         <InPageNav sections={sections} />
         <div id="id3" data-testid="target" />
       </div>
     );
-
     const target = screen.getByTestId('target');
     target.scrollIntoView = jest.fn();
-
-    history.push({ ...history.location, hash: '#id3' });
-
+    act(() => {
+      history.push({ ...history.location, hash: '#id3' });
+    });
     await waitFor(() => expect(target.scrollIntoView).toHaveBeenCalledTimes(1));
   });
 
   it('should scroll to top of rootElement after hash removed', async () => {
-    const { history } = renderWithRouter(
+    const { history } = renderWithHistoryRouter(
       <div>
         <InPageNav sections={sections} rootElement={document.body} />
         <div id="id3" data-testid="target" />
       </div>,
-      { route: '/#id3' }
+      '/#id3'
     );
-
     document.body.scrollTo = jest.fn();
-
-    history.push({ ...history.location, hash: '' });
-
+    act(() => {
+      history.push({ ...history.location, hash: '' });
+    });
     await waitFor(() =>
       expect(document.body.scrollTo).toHaveBeenCalledTimes(1)
     );
