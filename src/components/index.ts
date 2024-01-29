@@ -13,7 +13,6 @@ export { default as CopyToClipboard } from './copy-to-clipboard';
 export { DataList, DataListWithLoader } from './data-list';
 export { DataTable, DataTableWithLoader } from './data-table';
 export { default as DecoratedListItem } from './decorated-list-item';
-export { default as DisplayMenu } from './display-menu';
 export { default as DoughnutChart } from './doughnut-chart';
 export {
   default as DropdownButton,
