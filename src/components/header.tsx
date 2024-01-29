@@ -1,14 +1,13 @@
 import { ReactNode, HTMLAttributes, FC } from 'react';
-import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
 import '../styles/components/header.scss';
 
 type HeaderProps = {
   /**
-   * Logo to display where the link to the home page will be
+   * Component to display where the link to the home page will be
    */
-  logo?: ReactNode;
+  homepageLink?: ReactNode;
   /**
    * Search component
    */
@@ -34,6 +33,7 @@ const Header: FC<HeaderProps & HTMLAttributes<HTMLDivElement>> = ({
   subtext,
   isNegative = false,
   className,
+  homepageLink,
   children,
   ...props
 }) => (
@@ -41,9 +41,7 @@ const Header: FC<HeaderProps & HTMLAttributes<HTMLDivElement>> = ({
     className={cn(className, 'header', { 'header--negative': isNegative })}
     {...props}
   >
-    <div className="header__logo">
-      <Link to="/">{logo}</Link>
-    </div>
+    <div className="header__link">{homepageLink}</div>
     <div className="header__navigation">{children}</div>
     <div className="header__search">{search}</div>
     {(secondaryItems || subtext) && (
