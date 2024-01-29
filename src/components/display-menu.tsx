@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { NavLink, Route, useLocation, useResolvedPath } from 'react-router-dom';
+import cn from 'classnames';
 
 import '../styles/components/display-menu.scss';
 
@@ -15,8 +16,10 @@ type Props = {
 };
 
 const DisplayMenu = ({ data }: Props) => {
-  // TODO: figure out how to get path
+  // TODO 2024: figure out how to get path
+  // TODO 2024: can't have Route without being a child of Router
   const { pathname: path } = useLocation();
+  console.log(path);
   const url = useResolvedPath('').pathname;
   return (
     <ul className="display-menu">
@@ -30,8 +33,10 @@ const DisplayMenu = ({ data }: Props) => {
                     ? `/${displayItem.path}`
                     : displayItem.path
                 }`}
-                activeClassName="display-menu__item_title--active"
-                exact={displayItem.exact}
+                className={({ isActive }) =>
+                  cn({ 'display-menu__item_title--active': isActive })
+                }
+                end={displayItem.exact}
               >
                 <span className="display-menu__item_icon">
                   {displayItem.icon && displayItem.icon}
@@ -40,14 +45,12 @@ const DisplayMenu = ({ data }: Props) => {
               </NavLink>
             </h5>
             <Route
-              path={`${path}/${displayItem.path}`}
-              render={() => (
-                <div className="display-menu__item_content">
-                  {displayItem.itemContent}
-                </div>
-              )}
-              exact={displayItem.exact}
-            />
+              path={`${path}/${displayItem.path}${displayItem.exact ? '' : '*'}`}
+            >
+              <div className="display-menu__item_content">
+                {displayItem.itemContent}
+              </div>
+            </Route>
           </li>
         ))}
       </ul>
