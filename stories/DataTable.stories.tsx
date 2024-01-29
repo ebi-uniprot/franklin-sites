@@ -13,15 +13,21 @@ import {
   columns,
 } from '../src/decorators/DataDecorator';
 
-export default {
+const meta: Meta<typeof DataTableComponent> = {
+  component: AccordionSearchComponent,
+  // argTypes: { onSelect: { action: 'selected' } },
   title: 'Data/Data Table',
   parameters: {
     purposeFunction: {
-      purpose: '',
       function: '',
+      purpose: '',
     },
   },
 };
+export default meta;
+
+// TODO 2024: fix this
+type Story = StoryObj<typeof AccordionSearchComponent>;
 
 const useCheckbox = () => boolean('onSelectionChange', false, 'Props');
 const useFixedLayout = () => boolean('fixedLayout', false, 'Props');
