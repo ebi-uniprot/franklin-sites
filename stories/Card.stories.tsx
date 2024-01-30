@@ -4,25 +4,35 @@ import { Card as CardComponent, SwissProtIcon } from '../src/components';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
+const ActionLink = ({ name, link, color }) => (
+  <a
+    href={link}
+    key={link}
+    style={{ borderBottom: color ? `0.125rem solid ${color}` : undefined }}
+  >
+    {name}
+  </a>
+);
+
 const links = [
   {
     name: '10 Protein Interactions',
-    link: '/red',
+    link: '#red',
     color: 'red',
   },
   {
     name: '9 Pathways',
-    link: '/blue',
+    link: '#blue',
     color: 'blue',
   },
   {
     name: '5 Diseases',
-    link: '/diseases',
+    link: '#diseases',
     color: '#bada55',
   },
   {
     name: '72 Variants',
-    link: '/burlywood',
+    link: '#burlywood',
     color: 'burlywood',
   },
   {
@@ -32,7 +42,7 @@ const links = [
         <SwissProtIcon width="1.5ch" /> Reviewed
       </>
     ),
-    link: '/reviewed',
+    link: '#reviewed',
   },
 ];
 
@@ -68,7 +78,13 @@ export const Card = () => {
         ) : undefined
       }
       headerSeparator={hasHeaderSeparator}
-      links={boolean('links', false, 'Props') ? links : undefined}
+      links={links.map(({ name, color, link }) => (
+        <ActionLink
+          name={name}
+          color={color}
+          link={`${window.parent.location.href.split('#')[0]}${link}`}
+        />
+      ))}
     >
       {getLipsumSentences()}
     </CardComponent>
