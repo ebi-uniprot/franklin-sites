@@ -1,9 +1,11 @@
-import { MemoryRouter, useLocation } from 'react-router-dom';
-
-import { Facets as FacetsComponent, Facet } from '../src/components';
+import cn from 'classnames';
+import {
+  Facets as FacetsComponent,
+  Facet,
+  formatLargeNumber,
+} from '../src/components';
 
 import facetData from '../src/mock-data/facetData';
-import { convertValuesToLinks } from '../src/components/facetsutils';
 
 export default {
   title: 'Data/Facets',
@@ -17,37 +19,33 @@ export default {
   },
 };
 
-const Demo = () => {
-  const location = useLocation();
-  const facetsWithLinks = facetData.map((d) =>
-    convertValuesToLinks(d, location)
-  );
-  const propFacetData = facetsWithLinks.slice(0, 2);
-  const childFacetData = facetsWithLinks.slice(2);
+const active = new Set(['facet_2_value_2']);
+const facetDataWithReactValues = facetData.map((fd) => ({
+  ...fd,
+  values: fd.values?.map(({ label, value, count }) => (
+    <a
+      href={window.parent.location.href}
+      key={`${fd.name}_${value}`}
+      className={cn({ active: active.has(`${fd.name}_${value}`) })}
+    >
+      {label || value}
+      {` (${formatLargeNumber(count)})`}
+    </a>
+  )),
+}));
+
+export const Facets = () => {
+  const propFacetData = facetDataWithReactValues.slice(0, 2);
+  const childFacetData = facetDataWithReactValues.slice(2);
 
   return (
-    <>
-      <code style={{ margin: '0 1ch' }}>
-        pathname: {location.pathname + location.search}
-      </code>
-      <div style={{ border: '1px solid black', padding: '1ch' }}>
-        <FacetsComponent data={propFacetData}>
-          injected content
-          {childFacetData.map((facet) => (
-            <Facet data={facet} key={facet.name} />
-          ))}
-        </FacetsComponent>
-      </div>
-    </>
+    <div style={{ border: '1px solid black', padding: '1ch' }}>
+      <FacetsComponent data={propFacetData}>
+        injected content
+        {childFacetData.map((facet) => (
+          <Facet data={facet} key={facet.name} />
+        ))}
+      </FacetsComponent>
+    </div>
   );
 };
-
-export const Facets = () => (
-  <MemoryRouter
-    initialEntries={[
-      '/initial/path/id1?facets=facet_2%3Avalue_2&other_field&yet_another=value',
-    ]}
-  >
-    <Demo />
-  </MemoryRouter>
-);

@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 import { Link, Location } from 'react-router-dom';
 import { formatLargeNumber } from '.';
 
+// TODO: move to uniprot codebase
+
 type FacetValue = { label?: ReactNode; value: string; count: number };
 
 export type FacetObject = {
@@ -98,7 +100,7 @@ export const convertValuesToLinks = (
       <Link
         key={`${facet.name}_${value}`}
         to={to}
-        className={isActive ? 'facet-active' : undefined}
+        className={isActive ? 'active' : undefined}
         onClick={facetClickHandler}
       >
         {label || value}
