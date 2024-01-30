@@ -3,6 +3,7 @@ import { MemoryRouter, useLocation } from 'react-router-dom';
 import { Facets as FacetsComponent, Facet } from '../src/components';
 
 import facetData from '../src/mock-data/facetData';
+import { convertValuesToLinks } from '../src/components/facetsutils';
 
 export default {
   title: 'Data/Facets',
@@ -16,11 +17,13 @@ export default {
   },
 };
 
-const propFacetData = facetData.slice(0, 2);
-const childFacetData = facetData.slice(2);
-
 const Demo = () => {
   const location = useLocation();
+  const facetsWithLinks = facetData.map((d) =>
+    convertValuesToLinks(d, location)
+  );
+  const propFacetData = facetsWithLinks.slice(0, 2);
+  const childFacetData = facetsWithLinks.slice(2);
 
   return (
     <>
