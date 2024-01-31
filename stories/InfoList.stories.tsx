@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import { loremIpsum } from 'lorem-ipsum';
 
 import {
@@ -41,7 +42,8 @@ const data = [
   {
     title: 'This item is a link',
     content: loremIpsum({ count: 25, units: 'words' }),
-    to: '#',
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label
+    link: <a href={`${window.parent.location.href}#`} />,
   },
 ];
 

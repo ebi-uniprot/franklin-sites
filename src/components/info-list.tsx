@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes } from 'react';
+import { ReactNode, HTMLAttributes, ReactElement } from 'react';
 import cn from 'classnames';
 
 import DecoratedListItem from './decorated-list-item';
@@ -9,7 +9,7 @@ export type InfoListItem = {
   title: ReactNode;
   content: ReactNode;
   key?: string;
-  to?: string;
+  link?: ReactElement;
 };
 
 type Props = {
@@ -59,7 +59,7 @@ const InfoList = ({
     >
       {infoData.map(
         // Only draw if there is content
-        ({ content, title, key, to }, index) =>
+        ({ content, title, key, link }, index) =>
           content && (
             <li key={key || (typeof title === 'string' ? title : index)}>
               <DecoratedListItem
@@ -67,7 +67,7 @@ const InfoList = ({
                 highlight={index === 0 && highlightFirstItem}
                 compact={isCompact}
                 hideTitle={noTitles}
-                to={to}
+                link={link}
               >
                 {content}
               </DecoratedListItem>
