@@ -1,5 +1,4 @@
 import { createElement, CSSProperties, FC, ReactNode } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
 import ExternalLink, { Props as ExternalLinkProps } from './external-link';
@@ -60,12 +59,21 @@ export const Tile: FC<Props> = ({
   style,
   children,
   descriptionSlideUp = false,
-  ...props
-}) => {
-  const isExternal = 'url' in props;
-
-  const mainContent = (
-    <span>
+}) => (
+  <div
+    className={cn(className, 'tile', { 'tile-gradient': gradient })}
+    style={
+      {
+        ...style,
+        '--tile-background': backgroundColor,
+        width,
+      } as CSSProperties
+    }
+  >
+    <div className="tile__background-image" aria-hidden="true">
+      {backgroundImage}
+    </div>
+    <div className="tile__main-content">
       {createElement(headingLevel, { className: 'tile__header big' }, title)}
       {subtitle &&
         createElement(
@@ -73,48 +81,18 @@ export const Tile: FC<Props> = ({
           { className: 'tile__subtitle small' },
           subtitle
         )}
-    </span>
-  );
-
-  return (
-    <div
-      className={cn(className, 'tile', { 'tile-gradient': gradient })}
-      style={
-        {
-          ...style,
-          '--tile-background': backgroundColor,
-          width,
-        } as CSSProperties
-      }
-    >
-      <div className="tile__background-image" aria-hidden="true">
-        {backgroundImage}
-      </div>
-      {isExternal ? (
-        <ExternalLink
-          className="tile__main-content"
-          {...(props as ExternalLinkProps)}
-          noIcon
-        >
-          {mainContent}
-        </ExternalLink>
-      ) : (
-        <Link className="tile__main-content" {...(props as LinkProps)}>
-          {mainContent}
-        </Link>
-      )}
-      {children && (
-        <small
-          className={cn(
-            'tile__description',
-            descriptionSlideUp && 'tile__description--animated'
-          )}
-        >
-          {children}
-        </small>
-      )}
     </div>
-  );
-};
+    {children && (
+      <small
+        className={cn(
+          'tile__description',
+          descriptionSlideUp && 'tile__description--animated'
+        )}
+      >
+        {children}
+      </small>
+    )}
+  </div>
+);
 
 export default Tile;

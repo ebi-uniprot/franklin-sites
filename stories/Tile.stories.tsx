@@ -1,22 +1,18 @@
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 // Part of '@storybook/addon-essentials'
 // eslint-disable-next-line import/no-extraneous-dependencies
-// Part of '@storybook/addon-essentials'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 
 import { loremIpsum } from 'lorem-ipsum';
 
 import { Tile } from '../src/components';
 
-import ReactRouterDecorator from '../src/decorators/RouterDecorator';
-
 import SVG from '../assets/uniprotkb_illustration.svg';
 import colors from '../src/styles/colours.json';
 
 export default {
   title: 'Navigation/Tile',
-  decorators: [withKnobs(), ReactRouterDecorator],
+  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose:
@@ -46,7 +42,6 @@ export const BasicTile = () => (
       backgroundImage={boolean('with background?', false) ? <SVG /> : null}
       subtitle={text('subtitle', 'subtitle', 'Props')}
       gradient={boolean('gradient', false, 'Props')}
-      to="/"
       descriptionSlideUp={boolean('Slide up description', false, 'Props')}
     >
       {loremIpsum()}
