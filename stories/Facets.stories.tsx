@@ -24,7 +24,7 @@ const facetDataWithReactValues = facetData.map((fd) => ({
   ...fd,
   values: fd.values?.map(({ label, value, count }) => (
     <a
-      href={window.parent.location.href}
+      href={`${window.parent.location.href}#`}
       key={`${fd.name}_${value}`}
       className={cn({ active: active.has(`${fd.name}_${value}`) })}
     >
