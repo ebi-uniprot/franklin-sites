@@ -1,6 +1,5 @@
 import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
-import { useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import { frame } from 'timing-functions';
 
@@ -44,6 +43,10 @@ type SlidingPanelProps = {
    * Title of the panel
    */
   title?: ReactNode;
+  /**
+   * Pathname of current location. When this changes the panel is closed.
+   */
+  pathname: string;
 } & (LRBelowHeader | TBSlidingPanel);
 
 const SlidingPanel: FC<
@@ -56,6 +59,7 @@ const SlidingPanel: FC<
   title,
   arrowX,
   className,
+  pathname,
   ...props
 }) => {
   const node = useRef<HTMLDivElement>(null);
@@ -131,7 +135,6 @@ const SlidingPanel: FC<
   }, []);
 
   // Handle closing the sliding panel when there's a path change
-  const { pathname } = useLocation();
   const firstTime = useRef(true);
   useEffect(() => {
     if (firstTime.current) {
