@@ -27,7 +27,6 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps & HTMLAttributes<HTMLDivElement>> = ({
-  logo,
   search,
   secondaryItems,
   subtext,

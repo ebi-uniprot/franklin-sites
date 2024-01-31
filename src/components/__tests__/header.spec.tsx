@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import { render } from '@testing-library/react';
 import {
   BasketIcon,
   Button,
@@ -9,40 +10,36 @@ import {
   Dropdown,
 } from '..';
 
-import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
-
 import Header from '../header';
 
 describe('Header component', () => {
   it('should render', () => {
-    const { asFragment } = renderWithBrowserRouter(
+    const { asFragment } = render(
       <Header
         secondaryItems={
           <>
-            <Link to="/">
+            <a href="/">
               <HelpIcon />
-            </Link>
-            <Link to="/">
+            </a>
+            <a href="/">
               <EnvelopeIcon />
-            </Link>
-            <Link to="/">
+            </a>
+            <a href="/">
               <BasketIcon />
-            </Link>
+            </a>
           </>
         }
         search={<MainSearch onTextChange={jest.fn()} onSubmit={jest.fn()} />}
       >
-        <Link to="/here">here</Link>
-        <Link to="/there">there</Link>
+        <a href="/here">here</a>
+        <a href="/there">there</a>
         <ExternalLink url="www.ebi.ac.uk">EBI</ExternalLink>
         <Button onClick={jest.fn()}>Action</Button>
         <Dropdown
           visibleElement={<Button variant="tertiary">sub links</Button>}
         >
-          <Link to="/sub-link-a">sub link A</Link>
-          <Link to="/sub-link-b">
-            <span>sub link B</span>
-          </Link>
+          <a href="/sub-link-a">sub link A</a>
+          <a href="/sub-link-b">sub link B</a>
         </Dropdown>
       </Header>
     );
