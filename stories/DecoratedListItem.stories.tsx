@@ -26,6 +26,8 @@ const data = [
   {
     title: 'Fourth',
     content: <div>Number four</div>,
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+    link: <a href={`${window.parent.location.href}#`} />,
   },
 ];
 
@@ -33,7 +35,7 @@ export const DecoratedListItem = () => (
   <div className="uniprot-grid">
     {data.map((i) => (
       <div key={i.title} className="uniprot-grid-cell--span-3">
-        <DecoratedListItemComponent compact altStyle>
+        <DecoratedListItemComponent compact altStyle link={i.link}>
           <h3>{i.title}</h3>
         </DecoratedListItemComponent>
       </div>
