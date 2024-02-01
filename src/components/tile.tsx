@@ -1,13 +1,18 @@
-import { createElement, CSSProperties, FC, ReactNode } from 'react';
+import {
+  createElement,
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 import cn from 'classnames';
-
-import ExternalLink, { Props as ExternalLinkProps } from './external-link';
 
 import { HeadingLevels } from '../types/common';
 
 import '../styles/components/tile.scss';
 
-type Props = (LinkProps | ExternalLinkProps) & {
+type Props = {
   /**
    * The tile title
    */
@@ -47,7 +52,9 @@ type Props = (LinkProps | ExternalLinkProps) & {
 const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
   `h${+level[1] + 1}`;
 
-export const Tile: FC<Props> = ({
+export const Tile: FC<
+  PropsWithChildren<Props> & HTMLAttributes<HTMLDivElement>
+> = ({
   title,
   headingLevel = 'h2',
   subtitle,
