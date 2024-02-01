@@ -66,10 +66,10 @@ type HeadProps<Datum> = {
   onHeaderClick?: (columnName: SortableColumn<Datum>['name']) => void;
 };
 
-const LabelContent = ({ label }: { label: ReactNode }): JSX.Element =>
+const LabelContent = ({ label }: { label: () => ReactNode }): ReactNode =>
   typeof label === 'function' ? label() : label;
 
-const TippyLabelContent = forwardRef<HTMLElement, { label: ReactNode }>(
+const TippyLabelContent = forwardRef<HTMLElement, { label: () => ReactNode }>(
   ({ label }, ref) => (
     <span ref={ref}>
       <LabelContent label={label} />
