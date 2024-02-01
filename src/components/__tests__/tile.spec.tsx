@@ -1,4 +1,4 @@
-import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
+import { render } from '@testing-library/react';
 
 import Tile from '../tile';
 import { ProtVistaIcon } from '..';
@@ -7,7 +7,7 @@ import colors from '../../styles/colours.json';
 
 describe('Tile component', () => {
   it('should render', () => {
-    const { asFragment } = renderWithBrowserRouter(
+    const { asFragment } = render(
       <Tile
         title="Tile title"
         subtitle="Subtitle"
@@ -23,7 +23,7 @@ describe('Tile component', () => {
   });
 
   it('should render with default specified width', () => {
-    const { asFragment } = renderWithBrowserRouter(
+    const { asFragment } = render(
       <Tile title="Tile title" width="20rem" to="/" />
     );
     expect(asFragment()).toMatchSnapshot();

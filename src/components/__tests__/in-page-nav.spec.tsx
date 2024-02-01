@@ -1,10 +1,7 @@
 /* eslint-disable class-methods-use-this, lines-between-class-members */
-import { act, screen, waitFor } from '@testing-library/react';
-
-import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
+import { act, render, screen, waitFor } from '@testing-library/react';
 
 import InPageNav from '../in-page-nav';
-import renderWithHistoryRouter from '../../testHelpers/renderWithHistoryRouter';
 
 describe('InPageNav component', () => {
   beforeAll(() => {
@@ -45,14 +42,12 @@ describe('InPageNav component', () => {
   ];
 
   it('should render', () => {
-    const { asFragment } = renderWithBrowserRouter(
-      <InPageNav sections={sections} />
-    );
+    const { asFragment } = render(<InPageNav sections={sections} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should scroll the default target element into view', async () => {
-    renderWithBrowserRouter(
+    render(
       <div>
         <InPageNav sections={sections} />
         <div id="id3" data-testid="target" />
@@ -65,7 +60,7 @@ describe('InPageNav component', () => {
   });
 
   it('should scroll the target element into view after hash change', async () => {
-    const { history } = renderWithHistoryRouter(
+    const { history } = renderHistoryRouter(
       <div>
         <InPageNav sections={sections} />
         <div id="id3" data-testid="target" />
@@ -80,7 +75,7 @@ describe('InPageNav component', () => {
   });
 
   it('should scroll to top of rootElement after hash removed', async () => {
-    const { history } = renderWithHistoryRouter(
+    const { history } = renderHistoryRouter(
       <div>
         <InPageNav sections={sections} rootElement={document.body} />
         <div id="id3" data-testid="target" />

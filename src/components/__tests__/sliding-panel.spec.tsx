@@ -1,14 +1,12 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { sleep } from 'timing-functions';
-
-import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
 
 import SlidingPanel from '../sliding-panel';
 
 describe('SlidingPanel component', () => {
   it('should call onClose when mouse clicks outside but not inside', async () => {
     const onClose = jest.fn();
-    renderWithBrowserRouter(
+    render(
       <>
         <div data-testid="outside-element" />
         <SlidingPanel onClose={onClose} position="left" title="Title">
@@ -24,7 +22,7 @@ describe('SlidingPanel component', () => {
 
   it('should call onClose when closing through the close button', async () => {
     const onClose = jest.fn();
-    renderWithBrowserRouter(
+    render(
       <SlidingPanel onClose={onClose} position="left" title="Title">
         Sliding panel content
       </SlidingPanel>
@@ -35,7 +33,7 @@ describe('SlidingPanel component', () => {
 
   it('should call onClose when pressing escape (within and outside the panel)', async () => {
     const onClose = jest.fn();
-    renderWithBrowserRouter(
+    render(
       <>
         <input data-testid="outside-element" />
         <SlidingPanel onClose={onClose} position="left" title="Title">
@@ -58,7 +56,7 @@ describe('SlidingPanel component', () => {
 
   it('should move focus around correctly', async () => {
     // First render, not mounted yet
-    const rendered = renderWithBrowserRouter(
+    const rendered = render(
       <>
         <div data-testid="outside-component" />
         <button type="button">Button</button>
