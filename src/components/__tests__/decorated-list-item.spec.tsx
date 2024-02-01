@@ -1,7 +1,4 @@
-import { screen, fireEvent, render } from '@testing-library/react';
-
-import renderWithBrowserRouter from '../../testHelpers/renderWithBrowserRouter';
-import renderWithMemoryRouter from '../../testHelpers/renderWithMemoryRouter';
+import { render } from '@testing-library/react';
 
 import DecoratedListItem from '../decorated-list-item';
 
@@ -44,18 +41,10 @@ describe('DecoratedListItem component', () => {
   });
 
   it('should render link', () => {
-    const { asFragment } = renderWithBrowserRouter(
-      <DecoratedListItem to="/target">Content</DecoratedListItem>
+    const { asFragment } = render(
+      // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+      <DecoratedListItem link={<a href="/target" />}>Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('should render link and navigate when clicked', () => {
-    renderWithMemoryRouter(
-      <DecoratedListItem to="/target">Content</DecoratedListItem>
-    );
-    fireEvent.click(screen.getByTestId('background-link'));
-    // verify location display is rendered
-    expect(screen.getByTestId('location-display')).toHaveTextContent('/target');
   });
 });

@@ -73,8 +73,6 @@ exports[`DecoratedListItem component should render link 1`] = `
   >
     <a
       aria-hidden="true"
-      class="decorated-list-item__link"
-      data-testid="background-link"
       href="/target"
       tabindex="-1"
     />
