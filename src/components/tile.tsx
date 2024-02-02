@@ -4,6 +4,7 @@ import {
   FC,
   HTMLAttributes,
   PropsWithChildren,
+  ReactElement,
   ReactNode,
 } from 'react';
 import cn from 'classnames';
@@ -47,6 +48,10 @@ type Props = {
    * Can be useful if the description text is long.
    */
   descriptionSlideUp?: boolean;
+  /**
+   * Target/link of the list item when clicking on it
+   */
+  link?: ReactElement;
 };
 
 const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
@@ -66,9 +71,13 @@ export const Tile: FC<
   style,
   children,
   descriptionSlideUp = false,
+  link,
 }) => (
   <div
-    className={cn(className, 'tile', { 'tile-gradient': gradient })}
+    className={cn(className, 'tile', {
+      'tile-gradient': gradient,
+      'tile--has-link': link,
+    })}
     style={
       {
         ...style,
@@ -77,6 +86,7 @@ export const Tile: FC<
       } as CSSProperties
     }
   >
+    {link && <link.type {...link.props} aria-hidden="true" tabIndex={-1} />}
     <div className="tile__background-image" aria-hidden="true">
       {backgroundImage}
     </div>
