@@ -1,10 +1,19 @@
 import { boolean } from '@storybook/addon-knobs';
 
+import { ReactNode } from 'react';
 import { Card as CardComponent, SwissProtIcon } from '../src/components';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
-const ActionLink = ({ name, link, color }) => (
+const ActionLink = ({
+  name,
+  link,
+  color,
+}: {
+  name: ReactNode;
+  link: string;
+  color?: string;
+}) => (
   <a
     href={link}
     key={link}
