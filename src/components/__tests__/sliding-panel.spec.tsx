@@ -9,7 +9,12 @@ describe('SlidingPanel component', () => {
     render(
       <>
         <div data-testid="outside-element" />
-        <SlidingPanel onClose={onClose} position="left" title="Title">
+        <SlidingPanel
+          onClose={onClose}
+          position="left"
+          title="Title"
+          pathname="/"
+        >
           Sliding panel content
         </SlidingPanel>
       </>
@@ -23,7 +28,12 @@ describe('SlidingPanel component', () => {
   it('should call onClose when closing through the close button', async () => {
     const onClose = jest.fn();
     render(
-      <SlidingPanel onClose={onClose} position="left" title="Title">
+      <SlidingPanel
+        onClose={onClose}
+        position="left"
+        title="Title"
+        pathname="/"
+      >
         Sliding panel content
       </SlidingPanel>
     );
@@ -36,7 +46,12 @@ describe('SlidingPanel component', () => {
     render(
       <>
         <input data-testid="outside-element" />
-        <SlidingPanel onClose={onClose} position="left" title="Title">
+        <SlidingPanel
+          onClose={onClose}
+          position="left"
+          title="Title"
+          pathname="/"
+        >
           <input data-testid="inside-element" />
         </SlidingPanel>
       </>
@@ -71,7 +86,12 @@ describe('SlidingPanel component', () => {
       <>
         <div data-testid="outside-component" />
         <button type="button">Button</button>
-        <SlidingPanel onClose={jest.fn()} position="left" title="Title">
+        <SlidingPanel
+          onClose={jest.fn()}
+          position="left"
+          title="Title"
+          pathname="/"
+        >
           Sliding panel content
           <input type="text" />
         </SlidingPanel>
