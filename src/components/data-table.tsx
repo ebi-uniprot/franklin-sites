@@ -103,10 +103,10 @@ const DataTableHead = <Datum extends BasicDatum>({
         >
           {tooltip && typeof tooltip !== 'undefined' ? (
             <Tippy content={tooltip} interactive placement="bottom">
-              <TippyLabelContent label={label} />
+              <TippyLabelContent label={() => label} />
             </Tippy>
           ) : (
-            <LabelContent label={label} />
+            <LabelContent label={() => label} />
           )}
         </th>
       ))}
