@@ -1,5 +1,6 @@
 import { useState, HTMLAttributes } from 'react';
 
+import { Except } from 'type-fest';
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
 import { Props as DataListProps } from '../components/data-list';
@@ -78,7 +79,7 @@ const generateData = (numberElements: number) =>
 
 type Args<P> = {
   children: (props: P) => JSX.Element;
-} & HTMLAttributes<HTMLDivElement>;
+} & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export const DataLoaderDecorator = ({
   children,

@@ -14,6 +14,7 @@ import {
   DataType,
   DataLoaderDecorator,
 } from '../src/decorators/DataDecorator';
+import { WrapperProps } from '../src/components/data-loader';
 
 export default {
   title: 'Data/Data List',
@@ -57,7 +58,11 @@ export const DataListLoading = () => {
   );
 };
 
-const DataListWithLoaderChildren = ({ props }: { props: CommonProps }) => {
+const DataListWithLoaderChildren = ({
+  props,
+}: {
+  props: CommonProps & WrapperProps<DataType>;
+}) => {
   const clickToLoad = useClickToLoad();
   const clickToLoadContent = useClickToLoadContent();
   const dataRenderer = (content: DataType) => <>{Object.values(content)}</>;
@@ -72,14 +77,16 @@ const DataListWithLoaderChildren = ({ props }: { props: CommonProps }) => {
 
 export const DataListWithLoader = () => (
   <DataLoaderDecorator>
-    {(props: CommonProps) => <DataListWithLoaderChildren props={props} />}
+    {(props: CommonProps & WrapperProps<DataType>) => (
+      <DataListWithLoaderChildren props={props} />
+    )}
   </DataLoaderDecorator>
 );
 
 const DataListWithLoaderAndCardsChildren = ({
   props,
 }: {
-  props: CommonProps;
+  props: CommonProps & WrapperProps<DataType>;
 }) => {
   const selectable = boolean('selectable', false, 'Props');
   const clickToLoad = useClickToLoad();
@@ -106,7 +113,7 @@ const DataListWithLoaderAndCardsChildren = ({
 
 export const DataListWithLoaderAndCards = () => (
   <DataLoaderDecorator>
-    {(props: CommonProps) => (
+    {(props: CommonProps & WrapperProps<DataType>) => (
       <DataListWithLoaderAndCardsChildren props={props} />
     )}
   </DataLoaderDecorator>

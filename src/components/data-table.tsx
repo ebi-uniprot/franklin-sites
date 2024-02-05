@@ -6,6 +6,7 @@ import {
   useRef,
   useMemo,
   forwardRef,
+  ReactElement,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
@@ -251,7 +252,7 @@ export const DataTable = <Datum extends BasicDatum>({
   optimisedRendering,
   className,
   ...props
-}: Props<Datum> & HTMLAttributes<HTMLTableElement>): JSX.Element => {
+}: Props<Datum> & HTMLAttributes<HTMLTableElement>): ReactElement => {
   const idRef = useRef(v1());
 
   const { selectAllRef, checkboxContainerRef, checkSelectAllSync } =

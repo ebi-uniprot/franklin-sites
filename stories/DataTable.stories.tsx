@@ -11,8 +11,10 @@ import {
   CommonProps,
   DataDecorator,
   DataLoaderDecorator,
+  DataType,
   columns,
 } from '../src/decorators/DataDecorator';
+import { WrapperProps } from '../src/components/data-loader';
 
 export default {
   title: 'Data/Data Table',
@@ -61,7 +63,7 @@ export const DataTableWithLoader = () => {
 
   return (
     <DataLoaderDecorator>
-      {(props: CommonProps) => (
+      {(props: CommonProps & WrapperProps<DataType>) => (
         <DataTableWithLoaderComponent
           {...props}
           columns={columns}
@@ -84,7 +86,7 @@ export const DataTableColumnLoading = () => {
   const clickToLoadContent = useClickToLoadContent();
   return (
     <DataLoaderDecorator>
-      {(props: CommonProps) => (
+      {(props: CommonProps & WrapperProps<DataType>) => (
         <DataTableWithLoaderComponent
           {...props}
           loading
