@@ -1,5 +1,3 @@
-// Part of '@storybook/addon-essentials'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 

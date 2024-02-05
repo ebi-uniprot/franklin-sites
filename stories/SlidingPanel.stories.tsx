@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
-// Part of '@storybook/addon-essentials'
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { action } from '@storybook/addon-actions';
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';

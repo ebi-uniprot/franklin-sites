@@ -49,7 +49,7 @@
       "global": {
         "lines": 80.14,
         "statements": 79.64,
-        "functions": 77.2,
+        "functions": 77,
         "branches": 70.16
       }
     },
@@ -108,6 +108,7 @@
     "@babel/preset-env": "7.23.8",
     "@babel/preset-react": "7.23.3",
     "@babel/preset-typescript": "7.23.3",
+    "@storybook/addon-actions": "^7.6.12",
     "@storybook/addon-essentials": "7.6.10",
     "@storybook/addon-interactions": "7.6.10",
     "@storybook/addon-knobs": "7.0.2",

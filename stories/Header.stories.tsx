@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { SyntheticEvent, useState } from 'react';
-// Part of '@storybook/addon-essentials'
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 

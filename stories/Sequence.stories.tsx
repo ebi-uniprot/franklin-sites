@@ -1,6 +1,5 @@
 import { useState } from 'react';
-// Part of '@storybook/addon-essentials'
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { action } from '@storybook/addon-actions';
 import { sleep } from 'timing-functions';
 
