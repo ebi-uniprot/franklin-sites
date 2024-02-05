@@ -30,10 +30,13 @@ const useClickToLoadContent = () => text('clickToLoad content', '');
 
 export const DataList = () => {
   const dataRenderer = (content: DataType) => <>{Object.values(content)}</>;
-  const children = (props: CommonProps) => (
-    <DataListComponent {...props} dataRenderer={dataRenderer} />
+  return (
+    <DataDecorator>
+      {(props: CommonProps) => (
+        <DataListComponent {...props} dataRenderer={dataRenderer} />
+      )}
+    </DataDecorator>
   );
-  return <DataDecorator>{children}</DataDecorator>;
 };
 
 export const DataListLoading = () => {
@@ -45,10 +48,13 @@ export const DataListLoading = () => {
       {content.complex.value}
     </>
   );
-  const children = (props: CommonProps) => (
-    <DataListComponent {...props} loading dataRenderer={dataRenderer} />
+  return (
+    <DataDecorator>
+      {(props: CommonProps) => (
+        <DataListComponent {...props} loading dataRenderer={dataRenderer} />
+      )}
+    </DataDecorator>
   );
-  return <DataDecorator>{children}</DataDecorator>;
 };
 
 const DataListWithLoaderChildren = ({ props }: { props: CommonProps }) => {
@@ -64,12 +70,11 @@ const DataListWithLoaderChildren = ({ props }: { props: CommonProps }) => {
   );
 };
 
-export const DataListWithLoader = () => {
-  const children = (props: CommonProps) => (
-    <DataListWithLoaderChildren props={props} />
-  );
-  return <DataLoaderDecorator>{children}</DataLoaderDecorator>;
-};
+export const DataListWithLoader = () => (
+  <DataLoaderDecorator>
+    {(props: CommonProps) => <DataListWithLoaderChildren props={props} />}
+  </DataLoaderDecorator>
+);
 
 const DataListWithLoaderAndCardsChildren = ({
   props,
@@ -99,10 +104,10 @@ const DataListWithLoaderAndCardsChildren = ({
   );
 };
 
-export const DataListWithLoaderAndCards = () => {
-  const children = (props: CommonProps) => (
-    <DataListWithLoaderAndCardsChildren props={props} />
-  );
-
-  return <DataLoaderDecorator>{children}</DataLoaderDecorator>;
-};
+export const DataListWithLoaderAndCards = () => (
+  <DataLoaderDecorator>
+    {(props: CommonProps) => (
+      <DataListWithLoaderAndCardsChildren props={props} />
+    )}
+  </DataLoaderDecorator>
+);
