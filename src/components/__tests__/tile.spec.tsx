@@ -13,7 +13,8 @@ describe('Tile component', () => {
         subtitle="Subtitle"
         backgroundImage={<ProtVistaIcon />}
         backgroundColor={colors.seaBlue}
-        to="/"
+        // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+        link={<a href="https://www.uniprot.org" />}
         gradient
       >
         My description
