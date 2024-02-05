@@ -43,9 +43,14 @@ exports[`Tile component should render 1`] = `
 exports[`Tile component should render with default specified width 1`] = `
 <DocumentFragment>
   <div
-    class="tile"
+    class="tile tile--has-link"
     style="width: 20rem;"
   >
+    <a
+      aria-hidden="true"
+      href="https://www.uniprot.org"
+      tabindex="-1"
+    />
     <div
       aria-hidden="true"
       class="tile__background-image"

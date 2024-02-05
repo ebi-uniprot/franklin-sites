@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { render } from '@testing-library/react';
 
 import Tile from '../tile';
@@ -13,7 +15,6 @@ describe('Tile component', () => {
         subtitle="Subtitle"
         backgroundImage={<ProtVistaIcon />}
         backgroundColor={colors.seaBlue}
-        // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
         link={<a href="https://www.uniprot.org" />}
         gradient
       >
@@ -25,7 +26,11 @@ describe('Tile component', () => {
 
   it('should render with default specified width', () => {
     const { asFragment } = render(
-      <Tile title="Tile title" width="20rem" to="/" />
+      <Tile
+        title="Tile title"
+        width="20rem"
+        link={<a href="https://www.uniprot.org" />}
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
