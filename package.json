@@ -14,7 +14,7 @@
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -r dist; yarn build-library && yarn build-types && yarn build-storybook",
+    "build": "rm -r dist; npm run build-library && npm run build-types && npm run build-storybook",
     "build-library": "webpack",
     "build-types": "tsc --project tsconfig.declaration.json",
     "analyse": "webpack-bundle-analyzer dist/stats.json",
@@ -26,8 +26,8 @@
     "test:unit": "jest --coverage",
     "test-watch": "jest --watch",
     "prettier": "prettier src --write",
-    "prerelease": "yarn test && yarn build",
-    "release": "yarn publish && git push --follow-tags origin main",
+    "prerelease": "npm test && npm build",
+    "release": "npm publish && git push --follow-tags origin main",
     "start": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install",
@@ -169,6 +169,5 @@
     "webpack": "5.90.0",
     "webpack-bundle-analyzer": "4.10.1",
     "webpack-cli": "5.1.4"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }
