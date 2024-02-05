@@ -3,32 +3,34 @@
 exports[`Tile component should render 1`] = `
 <DocumentFragment>
   <div
-    class="tile tile-gradient"
+    class="tile tile-gradient tile--has-link"
     style="--tile-background: #00639a;"
   >
+    <a
+      aria-hidden="true"
+      href="https://www.uniprot.org"
+      tabindex="-1"
+    />
     <div
       aria-hidden="true"
       class="tile__background-image"
     >
       <test-file-stub />
     </div>
-    <a
+    <div
       class="tile__main-content"
-      href="/"
     >
-      <span>
-        <h2
-          class="tile__header big"
-        >
-          Tile title
-        </h2>
-        <h3
-          class="tile__subtitle small"
-        >
-          Subtitle
-        </h3>
-      </span>
-    </a>
+      <h2
+        class="tile__header big"
+      >
+        Tile title
+      </h2>
+      <h3
+        class="tile__subtitle small"
+      >
+        Subtitle
+      </h3>
+    </div>
     <small
       class="tile__description"
     >
@@ -48,18 +50,15 @@ exports[`Tile component should render with default specified width 1`] = `
       aria-hidden="true"
       class="tile__background-image"
     />
-    <a
+    <div
       class="tile__main-content"
-      href="/"
     >
-      <span>
-        <h2
-          class="tile__header big"
-        >
-          Tile title
-        </h2>
-      </span>
-    </a>
+      <h2
+        class="tile__header big"
+      >
+        Tile title
+      </h2>
+    </div>
   </div>
 </DocumentFragment>
 `;
