@@ -26,8 +26,8 @@ const data = [
   {
     title: 'Fourth',
     content: <div>Number four</div>,
-    // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
-    link: <a href={`${window.parent.location.href}#`} />,
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid
+    link: <a />,
   },
 ];
 

@@ -42,8 +42,8 @@ export const BasicTile = () => (
       subtitle={text('subtitle', 'subtitle', 'Props')}
       gradient={boolean('gradient', false, 'Props')}
       descriptionSlideUp={boolean('Slide up description', false, 'Props')}
-      // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
-      link={<a href={`${window.parent.location.href}#`} />}
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content
+      link={<a />}
     >
       {loremIpsum()}
       {boolean('button in description', false) ? (
