@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import { debounce } from 'lodash-es';
 import { schedule } from 'timing-functions';
 
@@ -54,9 +54,10 @@ const useDataCheckboxes = (
     HTMLTableSectionElement | HTMLUListElement | null
   >(null);
   const lastTickedRef = useRef<HTMLInputElement | null>(null);
+  const [selectAll, selectAllRef] = useState<HTMLInputElement | null>(null);
 
   // Bind click event to native event on select-all checkbox
-  const selectAllRef = useCallback((selectAll: HTMLInputElement | null) => {
+  useEffect(() => {
     privateSelectAllRef.current = selectAll;
     if (!selectAll) {
       return;
@@ -87,7 +88,7 @@ const useDataCheckboxes = (
     return () => {
       selectAll.removeEventListener('click', listener);
     };
-  }, []);
+  }, [selectAll]);
 
   // Bind click event to native event using event delegation on container
   const checkboxContainerRef = useCallback(
