@@ -55,6 +55,9 @@ const useDataCheckboxes = (
   >(null);
   const lastTickedRef = useRef<HTMLInputElement | null>(null);
   const [selectAll, selectAllRef] = useState<HTMLInputElement | null>(null);
+  const [checkboxContainer, checkboxContainerRef] = useState<
+    HTMLTableSectionElement | HTMLUListElement | null
+  >(null);
 
   // Bind click event to native event on select-all checkbox
   useEffect(() => {
@@ -91,93 +94,88 @@ const useDataCheckboxes = (
   }, [selectAll]);
 
   // Bind click event to native event using event delegation on container
-  const checkboxContainerRef = useCallback(
-    (checkboxContainer: HTMLTableSectionElement | HTMLUListElement | null) => {
-      privateCheckboxContainerRef.current = checkboxContainer;
-      if (!(onSelectionChange && checkboxContainer)) {
+  useEffect(() => {
+    privateCheckboxContainerRef.current = checkboxContainer;
+    if (!(onSelectionChange && checkboxContainer)) {
+      return;
+    }
+
+    const listener = (event: Event) => {
+      const { target } = event;
+      if (
+        !(
+          (event instanceof MouseEvent || event instanceof KeyboardEvent) &&
+          target instanceof HTMLElement &&
+          target.parentElement?.matches(checkboxCellSelector)
+        )
+      ) {
+        // Not the target labels or checkboxes, bail
         return;
       }
 
-      const listener = (event: Event) => {
-        const { target } = event;
-        if (
-          !(
-            (event instanceof MouseEvent || event instanceof KeyboardEvent) &&
-            target instanceof HTMLElement &&
-            target.parentElement?.matches(checkboxCellSelector)
-          )
-        ) {
-          // Not the target labels or checkboxes, bail
-          return;
+      if (event.shiftKey) {
+        // Remove the default text selection that might happen
+        window.getSelection()?.removeAllRanges();
+      }
+
+      if (!(target instanceof HTMLInputElement)) {
+        // If it's not the checkbox, it's the label, bail, another event will come
+        return;
+      }
+
+      if (event.shiftKey) {
+        const checkboxes = Array.from(
+          checkboxContainer.querySelectorAll<HTMLInputElement>(
+            `${checkboxCellSelector} > input[type="checkbox"]`
+          ) || []
+        );
+        let firstIndex = Math.max(
+          0,
+          lastTickedRef.current ? checkboxes.indexOf(lastTickedRef.current) : 0
+        );
+        let lastIndex = checkboxes.indexOf(target);
+        if (lastIndex < firstIndex) {
+          // Switch order if the last is before the first
+          [firstIndex, lastIndex] = [lastIndex, firstIndex + 1];
         }
 
-        if (event.shiftKey) {
-          // Remove the default text selection that might happen
-          window.getSelection()?.removeAllRanges();
-        }
-
-        if (!(target instanceof HTMLInputElement)) {
-          // If it's not the checkbox, it's the label, bail, another event will come
-          return;
-        }
-
-        if (event.shiftKey) {
-          const checkboxes = Array.from(
-            checkboxContainer.querySelectorAll<HTMLInputElement>(
-              `${checkboxCellSelector} > input[type="checkbox"]`
-            ) || []
-          );
-          let firstIndex = Math.max(
-            0,
-            lastTickedRef.current
-              ? checkboxes.indexOf(lastTickedRef.current)
-              : 0
-          );
-          let lastIndex = checkboxes.indexOf(target);
-          if (lastIndex < firstIndex) {
-            // Switch order if the last is before the first
-            [firstIndex, lastIndex] = [lastIndex, firstIndex + 1];
-          }
-
-          // not immediately, fires native events that are handled synchronously
-          schedule().then(() => {
-            // loop on all the checkboxes within the range
-            for (const checkbox of checkboxes.slice(firstIndex, lastIndex)) {
-              if (
-                // if the target is checked, check all the others
-                (target.checked && !checkbox.checked) ||
-                // if the target is unchecked, uncheck all the others
-                (!target.checked && checkbox.checked)
-              ) {
-                // Artificially click them all to trigger click events
-                checkbox.click();
-              }
+        // not immediately, fires native events that are handled synchronously
+        schedule().then(() => {
+          // loop on all the checkboxes within the range
+          for (const checkbox of checkboxes.slice(firstIndex, lastIndex)) {
+            if (
+              // if the target is checked, check all the others
+              (target.checked && !checkbox.checked) ||
+              // if the target is unchecked, uncheck all the others
+              (!target.checked && checkbox.checked)
+            ) {
+              // Artificially click them all to trigger click events
+              checkbox.click();
             }
-          });
-        }
+          }
+        });
+      }
 
-        // No way to test that as we can't generate trusted events in tests
-        /* istanbul ignore next */
-        if (event.isTrusted) {
-          // user-generated event, keep track of target as last toggled checkbox
-          lastTickedRef.current = target;
-        }
+      // No way to test that as we can't generate trusted events in tests
+      /* istanbul ignore next */
+      if (event.isTrusted) {
+        // user-generated event, keep track of target as last toggled checkbox
+        lastTickedRef.current = target;
+      }
 
-        // Toggle select all accordingly
-        updateSelectAllCheckbox(checkboxContainer, privateSelectAllRef.current);
+      // Toggle select all accordingly
+      updateSelectAllCheckbox(checkboxContainer, privateSelectAllRef.current);
 
-        // Call user event handler with the native event
-        onSelectionChange(event);
-      };
+      // Call user event handler with the native event
+      onSelectionChange(event);
+    };
 
-      checkboxContainer?.addEventListener('click', listener);
-      // eslint-disable-next-line consistent-return
-      return () => {
-        checkboxContainer?.removeEventListener('click', listener);
-      };
-    },
-    [onSelectionChange]
-  );
+    checkboxContainer?.addEventListener('click', listener);
+    // eslint-disable-next-line consistent-return
+    return () => {
+      checkboxContainer?.removeEventListener('click', listener);
+    };
+  }, [checkboxContainer, onSelectionChange]);
 
   const checkSelectAllSync = useCallback(() => {
     updateSelectAllCheckbox(
