@@ -4,8 +4,8 @@ include:
 
 build_static_assets:
   script:
-    - npm ci
-    - npm run build
+    - yarn
+    - yarn build
     - mv .out build
 
 build_docker_image:
