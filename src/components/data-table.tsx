@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import {
   memo,
   useEffect,
@@ -315,4 +316,4 @@ export const DataTable = <Datum extends BasicDatum>({
 
 export const DataTableWithLoader = <Datum extends BasicDatum>(
   props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLTableElement>
-) => withDataLoader<Datum, typeof props>(DataTable)(props);
+) => <>{withDataLoader<Datum, typeof props>(DataTable)(props)}</>;
