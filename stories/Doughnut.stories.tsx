@@ -11,13 +11,13 @@ export default {
   },
 };
 
-export const smallDoughnut = () => (
+export const SmallDoughnut = () => (
   <DoughnutChart percent={90} size="small">
     9
   </DoughnutChart>
 );
 
-export const regularDoughnut = () => (
+export const RegularDoughnut = () => (
   <DoughnutChart
     percent={60}
     colorClass="colour-uniref"
@@ -27,4 +27,4 @@ export const regularDoughnut = () => (
   </DoughnutChart>
 );
 
-export const largeDoughnut = () => <DoughnutChart percent={20} size="large" />;
+export const LargeDoughnut = () => <DoughnutChart percent={20} size="large" />;

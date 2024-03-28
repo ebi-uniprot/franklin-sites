@@ -1,9 +1,10 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { ExternalLink } from '../src/components';
+import type { Meta, StoryObj } from '@storybook/react';
 
-export default {
+import { ExternalLink as EL } from '../src/components';
+
+const meta: Meta<typeof EL> = {
+  component: EL,
   title: 'Core/External link',
-  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose:
@@ -12,24 +13,29 @@ export default {
     },
   },
 };
+export default meta;
 
-export const externalLink = () => (
-  <ExternalLink
-    url="https://www.ebi.ac.uk/"
-    noIcon={boolean('Hide icon?', false)}
-  >
-    external link
-  </ExternalLink>
-);
+type Story = StoryObj<typeof EL>;
 
-export const externalLinkWithoutPassingText = () => (
-  <ExternalLink
-    url="https://www.ebi.ac.uk/"
-    tidyUrl={boolean('Tidy URL string?', false)}
-    noIcon={boolean('Hide icon?', false)}
-  />
-);
+export const ExternalLink: Story = {
+  args: {
+    url: 'https://www.ebi.ac.uk/',
+    children: 'external link',
+    noIcon: false,
+    tidyUrl: false,
+  },
+};
 
-export const externalLinkWithNullUrl = () => (
-  <ExternalLink url={null}>Not a link because no URL</ExternalLink>
-);
+export const ExternalLinkWithoutPassingText: Story = {
+  args: {
+    ...ExternalLink.args,
+    children: undefined,
+  },
+};
+
+export const ExternalLinkWithNullUrl: Story = {
+  args: {
+    ...ExternalLink.args,
+    url: null,
+  },
+};

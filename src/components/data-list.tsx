@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import { memo, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
@@ -105,4 +106,4 @@ export const DataList = <Datum extends BasicDatum>({
 
 export const DataListWithLoader = <Datum extends BasicDatum>(
   props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLElement>
-) => withDataLoader<Datum, typeof props>(DataList)(props);
+) => <>{withDataLoader<Datum, typeof props>(DataList)(props)}</>;

@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+
 import { action } from '@storybook/addon-actions';
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { loremIpsum } from 'lorem-ipsum';
@@ -36,6 +37,7 @@ export const SlidingPanels = () => {
       position={position}
       size={size}
       onClose={action('Closing')}
+      pathname="#"
     >
       {loremIpsum({ count: 25 })}
     </SlidingPanel>
@@ -44,14 +46,14 @@ export const SlidingPanels = () => {
 
 export const SlidingPanelsWithArrow = () => {
   const [showPanel, setShowPanel] = useState(false);
-  const [arrowX, setArrowX] = useState();
+  const [arrowX, setArrowX] = useState<number>();
 
   const position = usePositionLR();
   const title = useTitle();
   const size = useSize();
 
   const buttonRef = useCallback(
-    (node) => {
+    (node: HTMLButtonElement) => {
       if (node) {
         const bcr = node.getBoundingClientRect();
         setArrowX(bcr.x + bcr.width / 2);
@@ -69,7 +71,7 @@ export const SlidingPanelsWithArrow = () => {
         }}
         style={{
           position: 'absolute',
-          top: '-2rem',
+          top: '1rem',
           left: position === 'left' ? '1rem' : '',
           right: position === 'right' ? '1rem' : '',
         }}
@@ -87,6 +89,7 @@ export const SlidingPanelsWithArrow = () => {
             action('onClose')(reason);
           }}
           arrowX={arrowX}
+          pathname="#"
         >
           {loremIpsum({ count: 25 })}
         </SlidingPanel>
@@ -109,7 +112,7 @@ export const SlidingPanelInSlidingPanel = () => {
         onClick={() => setShowPanel(true)}
         style={{
           position: 'absolute',
-          top: '-2rem',
+          top: '1rem',
           left: position === 'left' ? '1rem' : '',
           right: position === 'right' ? '1rem' : '',
         }}
@@ -126,6 +129,7 @@ export const SlidingPanelInSlidingPanel = () => {
             setShowPanel2(false);
             action('onClose 1')(reason);
           }}
+          pathname="#"
         >
           <>
             <Button onClick={() => setShowPanel2(true)}>Click me too</Button>
@@ -140,6 +144,7 @@ export const SlidingPanelInSlidingPanel = () => {
                   setShowPanel2(false);
                   action('onClose 2')(reason);
                 }}
+                pathname="#"
               >
                 {loremIpsum({ count: 25 })}
               </SlidingPanel>

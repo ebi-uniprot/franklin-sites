@@ -1,4 +1,4 @@
-import { DecoratedListItem } from '../src/components';
+import { DecoratedListItem as DecoratedListItemComponent } from '../src/components';
 
 export default {
   title: 'Data/Decorated List Item',
@@ -26,19 +26,21 @@ const data = [
   {
     title: 'Fourth',
     content: <div>Number four</div>,
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid
+    link: <a />,
   },
 ];
 
-export const decoratedListItem = () => (
+export const DecoratedListItem = () => (
   <div className="uniprot-grid">
     {data.map((i) => (
       <div key={i.title} className="uniprot-grid-cell--span-3">
-        <DecoratedListItem compact altStyle>
+        <DecoratedListItemComponent compact altStyle link={i.link}>
           <h3>{i.title}</h3>
-        </DecoratedListItem>
+        </DecoratedListItemComponent>
       </div>
     ))}
   </div>
 );
 
-decoratedListItem.storyName = 'Alternative Style';
+DecoratedListItem.storyName = 'Alternative Style';

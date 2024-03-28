@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import ModalBackdrop from './modal-backdrop';
 import Window from './window/window';
@@ -15,7 +15,7 @@ type DialogWindowProps = {
   withFooterCloseButton?: boolean;
 };
 
-const DialogWindow: FC<DialogWindowProps> = ({
+const DialogWindow: FC<PropsWithChildren<DialogWindowProps>> = ({
   title,
   width,
   height,
@@ -56,7 +56,7 @@ type ButtonModalProps = {
   withFooterCloseButton?: boolean;
 };
 
-const ButtonModal: FC<ButtonModalProps> = ({
+const ButtonModal: FC<PropsWithChildren<ButtonModalProps>> = ({
   buttonText,
   title,
   width = '70vw',

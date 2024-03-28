@@ -1,6 +1,7 @@
 import { CSSProperties, useState } from 'react';
 
 import { withKnobs, select, text } from '@storybook/addon-knobs';
+
 import { action } from '@storybook/addon-actions';
 
 import { HistogramFilter } from '../src/components';

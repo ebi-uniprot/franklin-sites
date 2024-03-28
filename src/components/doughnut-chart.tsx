@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import '../styles/components/doughnut-chart.scss';
 
@@ -21,7 +21,7 @@ type Props = {
   percent?: number;
 };
 
-const DoughnutChart: FC<Props> = ({
+const DoughnutChart: FC<PropsWithChildren<Props>> = ({
   size = 'medium',
   percent = 0,
   bgColorClass = 'colour-platinum',

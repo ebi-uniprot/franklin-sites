@@ -326,7 +326,7 @@ const iconDefinition = [
   },
 ];
 
-export const icons = () => (
+export const Icons = () => (
   <div
     style={{
       display: 'flex',

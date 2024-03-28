@@ -52,30 +52,33 @@ $card-link-padding: 0.5rem;
     overflow-x: auto;
     padding: 0;
     background-color: $colour-selected;
-  }
-}
 
-.card-action {
-  margin: 0;
-  padding: $card-link-padding;
-  font-weight: 600;
-  white-space: nowrap;
-  background-color: $colour-gainsborough;
+    a {
+      margin: 0;
+      padding: $card-link-padding;
+      font-weight: 600;
+      white-space: nowrap;
+      background-color: $colour-gainsborough;
 
-  &:hover,
-  &:focus,
-  &:focus-within {
-    transition: 0.5s background-color ease;
-    background-color: $colour-hover;
-  }
+      &:hover,
+      &:focus,
+      &:focus-within {
+        transition: 0.5s background-color ease;
+        background-color: $colour-hover;
+      }
 
-  &:not(:first-child)::before {
-    content: ' · ';
-    margin-left: -$card-link-padding;
-    margin-right: $card-link-padding;
-  }
+      &:not(:first-child)::before {
+        content: ' · ';
+        margin-left: -$card-link-padding;
+        margin-right: $card-link-padding;
+      }
 
-  &--active {
-    background-color: scale-color($color: $colour-platinum, $lightness: 20%);
+      &.active {
+        background-color: scale-color(
+          $color: $colour-platinum,
+          $lightness: 20%
+        );
+      }
+    }
   }
 }

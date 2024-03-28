@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { select, boolean, text } from '@storybook/addon-knobs';
 
-import { Message } from '../src/components';
+import { Message as MessageComponent } from '../src/components';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
@@ -17,8 +17,8 @@ export default {
   },
 };
 
-export const message = () => (
-  <Message
+export const Message = () => (
+  <MessageComponent
     level={select(
       'level',
       ['success', 'warning', 'failure', 'info'],
@@ -32,5 +32,5 @@ export const message = () => (
     }
   >
     <small>{getLipsumSentences()}</small>
-  </Message>
+  </MessageComponent>
 );

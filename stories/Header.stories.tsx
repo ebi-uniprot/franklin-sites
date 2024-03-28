@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { SyntheticEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 
@@ -7,7 +8,7 @@ import {
   BasketIcon,
   Button,
   EnvelopeIcon,
-  Header,
+  Header as HeaderComponent,
   HelpIcon,
   MainSearch,
   Dropdown,
@@ -29,15 +30,15 @@ export default {
 
 const headerSecondaryItems = (
   <>
-    <Link to="/">
+    <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
       <HelpIcon width="1.8ch" />
-    </Link>
-    <Link to="/">
+    </a>
+    <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
       <EnvelopeIcon width="2ch" />
-    </Link>
-    <Link to="/">
+    </a>
+    <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
       <BasketIcon width="2ch" />
-    </Link>
+    </a>
   </>
 );
 
@@ -55,9 +56,13 @@ const Search = () => {
   );
 };
 
-export const header = () => (
-  <Header
-    logo={<UniProtLogo width={30} />}
+export const Header = () => (
+  <HeaderComponent
+    homepageLink={
+      <a href="https://www.uniprot.org">
+        <UniProtLogo width={30} />
+      </a>
+    }
     search={boolean('With Search', true) && <Search />}
     secondaryItems={
       boolean('Secondary items', true) ? headerSecondaryItems : undefined
@@ -65,21 +70,31 @@ export const header = () => (
     subtext={boolean('Subtext', true) && 'Release info | Statistics'}
     isNegative={boolean('Negative', true)}
   >
-    <Link to="/">Link 1</Link>
+    <a target="_blank" href="https://www.uniprot.org/" rel="noreferrer">
+      Link 1
+    </a>
     <Dropdown visibleElement={<Button variant="tertiary">Links 2</Button>}>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Link to="/">sublink 1</Link>
-        <Link to="/">sublink 2</Link>
-        <Link to="/">sublink 3</Link>
+        <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+          sublink 1
+        </a>
+        <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+          sublink 2
+        </a>
+        <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+          sublink 3
+        </a>
         <ExternalLink url="//www.uniprot.org">external link</ExternalLink>
         <Button variant="tertiary" onClick={action('onClick')}>
           action
         </Button>
       </div>
     </Dropdown>
-    <Link to="/">Link 3</Link>
+    <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+      Link 3
+    </a>
     <Button variant="tertiary" onClick={action('onClick')}>
       action
     </Button>
-  </Header>
+  </HeaderComponent>
 );

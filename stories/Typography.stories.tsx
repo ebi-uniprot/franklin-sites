@@ -7,6 +7,6 @@ export default {
   title: 'Core/Typography',
 };
 
-export const typography = () => (
+export const Typography = () => (
   <ReactMarkdown rehypePlugins={[rehypeRaw]}>{typographyFile}</ReactMarkdown>
 );

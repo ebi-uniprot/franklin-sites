@@ -1,19 +1,25 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
-import { DataTable, DataTableWithLoader } from '../src/components';
 import {
+  DataTable as DataTableComponent,
+  DataTableWithLoader as DataTableWithLoaderComponent,
+} from '../src/components';
+import {
+  CommonProps,
   DataDecorator,
   DataLoaderDecorator,
+  DataType,
   columns,
 } from '../src/decorators/DataDecorator';
+import { WrapperProps } from '../src/components/data-loader';
 
 export default {
   title: 'Data/Data Table',
   parameters: {
     purposeFunction: {
-      purpose: '',
       function: '',
+      purpose: '',
     },
   },
 };
@@ -25,52 +31,61 @@ const useDensity = () =>
 const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
 const useClickToLoadContent = () => text('clickToLoad content', '');
 
-export const dataTable = () => (
-  <DataDecorator>
-    {(props) => (
-      <DataTable
-        {...props}
-        columns={columns}
-        onSelectionChange={
-          useCheckbox() ? action('onSelectionChange') : undefined
-        }
-        onHeaderClick={action('onHeaderClick')}
-        fixedLayout={useFixedLayout()}
-        density={useDensity()}
-      />
-    )}
-  </DataDecorator>
-);
+export const DataTable = () => {
+  const checkbox = useCheckbox();
+  const fixedLayout = useFixedLayout();
+  const density = useDensity();
 
-export const dataTableWithLoader = () => (
-  <DataLoaderDecorator>
-    {(props) => {
-      const clickToLoad = useClickToLoad();
-      const clickToLoadContent = useClickToLoadContent();
-      return (
-        <DataTableWithLoader
+  return (
+    <DataDecorator>
+      {(props: CommonProps) => (
+        <DataTableComponent
           {...props}
           columns={columns}
-          onSelectionChange={
-            useCheckbox() ? action('onSelectionChange') : undefined
-          }
+          onSelectionChange={checkbox ? action('onSelectionChange') : undefined}
           onHeaderClick={action('onHeaderClick')}
-          fixedLayout={useFixedLayout()}
-          density={useDensity()}
+          fixedLayout={fixedLayout}
+          density={density}
+        />
+      )}
+    </DataDecorator>
+  );
+};
+
+export const DataTableWithLoader = () => {
+  const checkbox = useCheckbox();
+  const fixedLayout = useFixedLayout();
+  const density = useDensity();
+  const clickToLoad = useClickToLoad();
+  const clickToLoadContent = useClickToLoadContent();
+
+  return (
+    <DataLoaderDecorator>
+      {(props: CommonProps & WrapperProps<DataType>) => (
+        <DataTableWithLoaderComponent
+          {...props}
+          columns={columns}
+          onSelectionChange={checkbox ? action('onSelectionChange') : undefined}
+          onHeaderClick={action('onHeaderClick')}
+          fixedLayout={fixedLayout}
+          density={density}
           clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
         />
-      );
-    }}
-  </DataLoaderDecorator>
-);
+      )}
+    </DataLoaderDecorator>
+  );
+};
 
-export const dataTableColumnLoading = () => (
-  <DataLoaderDecorator>
-    {(props) => {
-      const clickToLoad = useClickToLoad();
-      const clickToLoadContent = useClickToLoadContent();
-      return (
-        <DataTableWithLoader
+export const DataTableColumnLoading = () => {
+  const checkbox = useCheckbox();
+  const fixedLayout = useFixedLayout();
+  const density = useDensity();
+  const clickToLoad = useClickToLoad();
+  const clickToLoadContent = useClickToLoadContent();
+  return (
+    <DataLoaderDecorator>
+      {(props: CommonProps & WrapperProps<DataType>) => (
+        <DataTableWithLoaderComponent
           {...props}
           loading
           columns={[
@@ -83,15 +98,13 @@ export const dataTableColumnLoading = () => (
               render: (row) => row.content6.complexValue,
             },
           ]}
-          onSelectionChange={
-            useCheckbox() ? action('onSelectionChange') : undefined
-          }
+          onSelectionChange={checkbox ? action('onSelectionChange') : undefined}
           onHeaderClick={action('onHeaderClick')}
-          fixedLayout={useFixedLayout()}
-          density={useDensity()}
+          fixedLayout={fixedLayout}
+          density={density}
           clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
         />
-      );
-    }}
-  </DataLoaderDecorator>
-);
+      )}
+    </DataLoaderDecorator>
+  );
+};

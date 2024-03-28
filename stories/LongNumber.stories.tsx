@@ -1,9 +1,13 @@
-import { LongNumber } from '../src/components';
+import { LongNumber as LongNumberComponent } from '../src/components';
 
 export default {
   title: 'Visualisation/Long number',
 };
 
-export const longNumber = () => <LongNumber>{1000000000}</LongNumber>;
+export const LongNumber = () => (
+  <LongNumberComponent>{1000000000}</LongNumberComponent>
+);
 
-export const shortNumber = () => <LongNumber>{100}</LongNumber>;
+export const ShortNumber = () => (
+  <LongNumberComponent>{100}</LongNumberComponent>
+);

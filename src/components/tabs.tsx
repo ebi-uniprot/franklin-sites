@@ -94,8 +94,8 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
   });
 
   const handleClick = useCallback(
-    (event) => {
-      if (isManaged) {
+    (event: MouseEvent | KeyboardEvent) => {
+      if (isManaged || !(event.currentTarget instanceof HTMLElement)) {
         return;
       }
 
@@ -103,6 +103,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
       // mouse click event, or if keyboard event, restrict to 'Enter' and spacebar keys
       if (
         event &&
+        target !== undefined &&
         (!('key' in event) || event.key === 'Enter' || event.key === ' ')
       ) {
         setSelectedState(target);

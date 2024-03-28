@@ -35,7 +35,7 @@
     a:visited,
     a:hover,
     a:active,
-    .header__logo > a {
+    .header__link > a {
       color: $colour-sapphire-blue;
     }
 
@@ -50,14 +50,13 @@
   a:visited,
   a:hover,
   a:active,
-  .header__logo > a {
+  .header__link > a {
+    display: inline-block;
     color: $colour-sky-white;
     margin-bottom: 0;
-    transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  }
-
-  &__logo {
-    display: inline-block;
+    transition:
+      background-color 0.25s ease-out,
+      color 0.25s ease-out;
   }
 
   &__navigation {

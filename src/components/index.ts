@@ -13,7 +13,6 @@ export { default as CopyToClipboard } from './copy-to-clipboard';
 export { DataList, DataListWithLoader } from './data-list';
 export { DataTable, DataTableWithLoader } from './data-table';
 export { default as DecoratedListItem } from './decorated-list-item';
-export { default as DisplayMenu } from './display-menu';
 export { default as DoughnutChart } from './doughnut-chart';
 export {
   default as DropdownButton,
@@ -24,14 +23,12 @@ export { default as EllipsisReveal } from './ellipsis-reveal';
 export { default as EvidenceTag } from './evidence-tag';
 export { default as ExpandableList } from './expandable-list';
 export { default as ExternalLink } from './external-link';
-export { Facets, Facet } from './facets';
 export { default as FranklinSite } from './franklin-site';
 export { default as Header } from './header';
 export { default as HeroContainer } from './hero-container';
 export { default as HeroHeader } from './hero-header';
 export { default as Histogram } from './histogram';
 export { default as HistogramFilter } from './histogram-filter';
-export { default as InPageNav } from './in-page-nav';
 export { default as InfoList } from './info-list';
 export { default as Loader } from './loader';
 export { default as LongNumber } from './long-number';

@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { Autocomplete } from '../src/components';
+import { Autocomplete as A } from '../src/components';
 import { flattenedPaths } from '../src/mock-data/tree-data';
 
 export default {
@@ -12,8 +12,8 @@ export default {
   },
 };
 
-export const autocomplete = () => (
-  <Autocomplete
+export const AutocompleteComponent = () => (
+  <A
     data={flattenedPaths}
     onSelect={action('onSelect')}
     placeholder="Item A"
@@ -21,8 +21,8 @@ export const autocomplete = () => (
   />
 );
 
-export const loadingAutocomplete = () => (
-  <Autocomplete
+export const LoadingAutocomplete = () => (
+  <A
     data={flattenedPaths}
     onSelect={action('onSelect')}
     placeholder="Item A"

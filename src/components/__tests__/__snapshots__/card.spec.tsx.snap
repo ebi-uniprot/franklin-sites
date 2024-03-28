@@ -54,9 +54,7 @@ exports[`Card component should render card with links 1`] = `
       class="card__actions"
     >
       <a
-        class="card-action"
-        href="/example.com"
-        style="border-bottom: 0.125rem solid red;"
+        href="https://www.uniprot.org"
       >
         link
       </a>

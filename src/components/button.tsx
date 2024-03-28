@@ -1,4 +1,9 @@
-import { forwardRef, ComponentClass, FunctionComponent } from 'react';
+import {
+  forwardRef,
+  ComponentClass,
+  FunctionComponent,
+  PropsWithChildren,
+} from 'react';
 import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';
@@ -36,7 +41,10 @@ export type ButtonProps = {
   [key: string]: unknown;
 };
 
-export const Button = forwardRef<PossibleElements, ButtonProps>(
+export const Button = forwardRef<
+  PossibleElements,
+  PropsWithChildren<ButtonProps>
+>(
   (
     { element = 'button', className, variant = 'primary', children, ...props },
     ref

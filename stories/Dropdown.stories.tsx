@@ -1,7 +1,11 @@
 import { boolean } from '@storybook/addon-knobs';
 import { Fragment } from 'react';
 
-import { Button, ControlledDropdown, Dropdown } from '../src/components';
+import {
+  Button,
+  ControlledDropdown as ControlledDropdownComponent,
+  Dropdown as DropdownComponent,
+} from '../src/components';
 
 export default {
   title: 'Forms/Dropdown button',
@@ -15,7 +19,7 @@ export default {
 
 const variants = ['primary', 'secondary', 'tertiary'] as const;
 
-export const controlledDropdown = () => {
+export const ControlledDropdown = () => {
   const expanded = boolean('expanded', false);
 
   return (
@@ -23,7 +27,7 @@ export const controlledDropdown = () => {
       <p>Controlled dropdowns (trigger through storybook knobs)</p>
       {variants.map((variant) => (
         <Fragment key={variant}>
-          <ControlledDropdown
+          <ControlledDropdownComponent
             visibleElement={<Button variant={variant}>Download</Button>}
             expanded={expanded}
           >
@@ -36,19 +40,21 @@ export const controlledDropdown = () => {
                 <a href="//www.ensembl.org">Ensembl</a>
               </li>
             </ul>
-          </ControlledDropdown>{' '}
+          </ControlledDropdownComponent>{' '}
         </Fragment>
       ))}
     </div>
   );
 };
 
-export const dropdown = () => (
+export const Dropdown = () => (
   <div>
     <p>Uncontrolled/automatic dropdowns</p>
     {variants.map((variant) => (
       <Fragment key={variant}>
-        <Dropdown visibleElement={<Button variant={variant}>Download</Button>}>
+        <DropdownComponent
+          visibleElement={<Button variant={variant}>Download</Button>}
+        >
           <div>
             <p>Download content from:</p>
             <ul className="no-bullet">
@@ -60,7 +66,7 @@ export const dropdown = () => (
               </li>
             </ul>
           </div>
-        </Dropdown>{' '}
+        </DropdownComponent>{' '}
       </Fragment>
     ))}
   </div>

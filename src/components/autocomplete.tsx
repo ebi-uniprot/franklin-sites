@@ -95,7 +95,7 @@ const Autocomplete = ({
   );
 
   const handleInputChange = useCallback(
-    (event) => {
+    (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value: textInputValue } = event.target;
       const showDropdown = shouldShowDropdown(
         textInputValue,
@@ -129,7 +129,7 @@ const Autocomplete = ({
   );
 
   const handleOnKeyDown = useCallback(
-    (event) => {
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'ArrowUp') {
         event.preventDefault();
         setHoverIndex(hoverIndex <= 0 ? -1 : hoverIndex - 1);

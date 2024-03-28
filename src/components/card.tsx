@@ -1,33 +1,7 @@
-import { forwardRef, FC, ReactNode, HTMLAttributes, ReactText } from 'react';
-import { NavLink, LinkProps } from 'react-router-dom';
+import { forwardRef, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/card.scss';
-
-type CardActionProps = {
-  link: LinkProps['to'];
-  color?: string;
-} & (
-  | {
-      key?: ReactText;
-      name: string;
-    }
-  | {
-      key: ReactText;
-      name: ReactNode;
-    }
-);
-
-const CardAction: FC<CardActionProps> = ({ name, link, color }) => (
-  <NavLink
-    to={link}
-    className="card-action"
-    activeClassName="card-action--active"
-    style={color ? { borderBottom: `0.125rem solid ${color}` } : undefined}
-  >
-    {name}
-  </NavLink>
-);
 
 type Props = {
   /**
@@ -39,9 +13,9 @@ type Props = {
    */
   headerSeparator?: boolean;
   /**
-   * Links to be displayed at the bottom of the card
+   * Link components to be displayed at the bottom of the card
    */
-  links?: Array<CardActionProps>;
+  links?: ReactNode[];
 };
 
 const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
@@ -62,20 +36,7 @@ const Card = forwardRef<HTMLElement, Props & HTMLAttributes<HTMLElement>>(
         )}
         {children && <div className="card__content">{children}</div>}
       </div>
-      {links?.length ? (
-        <div className="card__actions">
-          {links.map((link, index) => (
-            <CardAction
-              key={
-                link.key ||
-                (typeof link.name === 'string' ? link.name : index) ||
-                index
-              }
-              {...link}
-            />
-          ))}
-        </div>
-      ) : undefined}
+      {!!links?.length && <div className="card__actions">{links}</div>}
     </section>
   )
 );

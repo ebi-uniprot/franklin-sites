@@ -1,7 +1,7 @@
 import { number, select } from '@storybook/addon-knobs';
 import { CSSProperties } from 'react';
 
-import { Bubble } from '../src/components';
+import { Bubble as BubbleComponent } from '../src/components';
 
 import colors from '../src/styles/colours.json';
 
@@ -15,8 +15,8 @@ export default {
   },
 };
 
-export const bubble = () => (
-  <Bubble
+export const Bubble = () => (
+  <BubbleComponent
     size={select('size', ['small', 'medium', 'large'], 'small', 'Props')}
     style={
       {
@@ -35,5 +35,5 @@ export const bubble = () => (
       { min: 0, max: 200, step: 0.5 },
       'Props'
     )}
-  </Bubble>
+  </BubbleComponent>
 );

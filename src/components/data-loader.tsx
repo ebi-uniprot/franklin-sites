@@ -49,7 +49,7 @@ function withDataLoader<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   D extends Record<string, any>,
   // props types of wrapped component
-  P extends BaseComponentProps<D>
+  P extends BaseComponentProps<D>,
 >(BaseComponent: ComponentType<P>) {
   const Wrapper: ComponentType<P & WrapperProps<P['data'][0]>> = ({
     onLoadMoreItems,
@@ -134,7 +134,7 @@ function withDataLoader<
 
     return (
       <>
-        <BaseComponent {...(baseComponentProps as P)} />
+        <BaseComponent {...(baseComponentProps as unknown as P)} />
         <div className="data-loader__loading" ref={sentinelRef}>
           {hasMoreData && sentinelContent}
         </div>

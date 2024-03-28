@@ -111,7 +111,12 @@ const Message: FC<Props & HTMLAttributes<HTMLDivElement>> = ({
       )}
 
       {onDismiss && (
-        <button type="button" className="message__dismiss" onClick={onDismiss}>
+        <button
+          type="button"
+          aria-label="dismiss"
+          className="message__dismiss"
+          onClick={onDismiss}
+        >
           <CloseIcon width="10" height="10" />
         </button>
       )}

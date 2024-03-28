@@ -123,6 +123,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
               key={node.id}
               role="treeitem"
               aria-expanded={ariaExpanded}
+              aria-selected={ariaExpanded}
               className={cn({ branch: node.items })}
             >
               <Button

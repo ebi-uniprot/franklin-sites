@@ -13,7 +13,7 @@ export default {
   },
 };
 
-export const modal = () => (
+export const Modal = () => (
   <ButtonModal buttonText="click me" title="Example modal window">
     {loremIpsum({ count: 45 })}
   </ButtonModal>

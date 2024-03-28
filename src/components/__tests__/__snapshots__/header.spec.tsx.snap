@@ -6,12 +6,8 @@ exports[`Header component should render 1`] = `
     class="header"
   >
     <div
-      class="header__logo"
-    >
-      <a
-        href="/"
-      />
-    </div>
+      class="header__link"
+    />
     <div
       class="header__navigation"
     >
