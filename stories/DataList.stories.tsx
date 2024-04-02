@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import {
   DataList as DataListComponent,
@@ -28,6 +29,7 @@ const meta: Meta<DataListComponentAndWrapperProps> = {
     },
   },
 };
+
 export default meta;
 
 type Story = StoryObj<DataListComponentAndWrapperProps>;
@@ -62,7 +64,7 @@ const DataListWithLoaderChildren = ({
 
 export const DataListWithLoader: Story = {
   args: {
-    clickToLoad: true,
+    clickToLoad: false,
   },
   render: ({ clickToLoad }) => (
     <DataLoaderDecorator>
@@ -73,58 +75,14 @@ export const DataListWithLoader: Story = {
   ),
 };
 
-/*
-const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
-const useClickToLoadContent = () => text('clickToLoad content', '');
-
-export const DataList = () => {
-  const dataRenderer = (content: DataType) => <>{Object.values(content)}</>;
-  return (
-    <DataDecorator>
-      {(props: CommonProps) => (
-        <DataListComponent {...props} dataRenderer={dataRenderer} />
-      )}
-    </DataDecorator>
-  );
-};
-
-
-const DataListWithLoaderChildren = ({
-  props,
-}: {
-  props: CommonProps & WrapperProps<DataType>;
-}) => {
-  const clickToLoad = useClickToLoad();
-  const clickToLoadContent = useClickToLoadContent();
-  const dataRenderer = (content: DataType) => <>{Object.values(content)}</>;
-  return (
-    <DataListWithLoaderComponent
-      {...props}
-      dataRenderer={dataRenderer}
-      clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
-    />
-  );
-};
-
-export const DataListWithLoader = () => (
-  <DataLoaderDecorator>
-    {(props: CommonProps & WrapperProps<DataType>) => (
-      <DataListWithLoaderChildren props={props} />
-    )}
-  </DataLoaderDecorator>
-);
-
 const DataListWithLoaderAndCardsChildren = ({
   props,
 }: {
   props: CommonProps & WrapperProps<DataType>;
 }) => {
-  const selectable = boolean('selectable', true, 'Props');
-  const clickToLoad = useClickToLoad();
-  const clickToLoadContent = useClickToLoadContent();
   const dataRenderer = (content: DataType) => (
     <Card>
-      {selectable && (
+      {props.onSelectionChange && (
         <div className="checkbox-cell">
           <input type="checkbox" />
         </div>
@@ -132,21 +90,28 @@ const DataListWithLoaderAndCardsChildren = ({
       {Object.values(content)}
     </Card>
   );
-  return (
-    <DataListWithLoaderComponent
-      {...props}
-      dataRenderer={dataRenderer}
-      onSelectionChange={selectable ? action('onSelect') : undefined}
-      clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
-    />
-  );
+  return <DataListWithLoaderComponent {...props} dataRenderer={dataRenderer} />;
 };
 
-export const DataListWithLoaderAndCards = () => (
-  <DataLoaderDecorator>
-    {(props: CommonProps & WrapperProps<DataType>) => (
-      <DataListWithLoaderAndCardsChildren props={props} />
-    )}
-  </DataLoaderDecorator>
-);
-*/
+export const DataListWithLoaderAndCards: Story = {
+  args: {
+    clickToLoad: false,
+  },
+  argTypes: {
+    onSelectionChange: {
+      name: 'Selectable (onSelectionChange)',
+      options: [true, false],
+      mapping: { true: action('selectChange'), false: null },
+      control: 'boolean',
+    },
+  },
+  render: ({ clickToLoad, onSelectionChange }) => (
+    <DataLoaderDecorator>
+      {(props: CommonProps & WrapperProps<DataType>) => (
+        <DataListWithLoaderAndCardsChildren
+          props={{ ...props, clickToLoad, onSelectionChange }}
+        />
+      )}
+    </DataLoaderDecorator>
+  ),
+};
