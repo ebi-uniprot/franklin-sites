@@ -1,5 +1,4 @@
-import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   DataList as DataListComponent,
@@ -14,16 +13,67 @@ import {
 } from '../src/decorators/DataDecorator';
 import { WrapperProps } from '../src/components/data-loader';
 
-export default {
+type DataListComponentAndWrapperProps = React.ComponentProps<
+  typeof DataListComponent
+> &
+  WrapperProps<DataType>;
+
+const meta: Meta<DataListComponentAndWrapperProps> = {
+  component: DataListComponent,
   title: 'Data/Data List',
   parameters: {
     purposeFunction: {
-      purpose: '',
       function: '',
+      purpose: '',
     },
   },
 };
+export default meta;
 
+type Story = StoryObj<DataListComponentAndWrapperProps>;
+
+export const DataList: Story = {
+  render: () => {
+    const dataRenderer = (content: DataType) => <>{Object.values(content)}</>;
+    return (
+      <DataDecorator>
+        {(props: CommonProps) => (
+          <DataListComponent {...props} dataRenderer={dataRenderer} />
+        )}
+      </DataDecorator>
+    );
+  },
+};
+
+const DataListWithLoaderChildren = ({
+  props,
+}: {
+  props: CommonProps & WrapperProps<DataType>;
+}) => {
+  const dataRenderer = (content: DataType) => <>{Object.values(content)}</>;
+  return (
+    <DataListWithLoaderComponent
+      {...props}
+      dataRenderer={dataRenderer}
+      clickToLoad={props.clickToLoad}
+    />
+  );
+};
+
+export const DataListWithLoader: Story = {
+  args: {
+    clickToLoad: true,
+  },
+  render: ({ clickToLoad }) => (
+    <DataLoaderDecorator>
+      {(props: CommonProps & WrapperProps<DataType>) => (
+        <DataListWithLoaderChildren props={{ ...props, clickToLoad }} />
+      )}
+    </DataLoaderDecorator>
+  ),
+};
+
+/*
 const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
 const useClickToLoadContent = () => text('clickToLoad content', '');
 
@@ -38,23 +88,6 @@ export const DataList = () => {
   );
 };
 
-export const DataListLoading = () => {
-  const dataRenderer = (content: DataType) => (
-    <>
-      {Object.values(content)}
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-      {/* @ts-ignore we know it doesn't exist, it's on purpose */}
-      {content.complex.value}
-    </>
-  );
-  return (
-    <DataDecorator>
-      {(props: CommonProps) => (
-        <DataListComponent {...props} loading dataRenderer={dataRenderer} />
-      )}
-    </DataDecorator>
-  );
-};
 
 const DataListWithLoaderChildren = ({
   props,
@@ -86,7 +119,7 @@ const DataListWithLoaderAndCardsChildren = ({
 }: {
   props: CommonProps & WrapperProps<DataType>;
 }) => {
-  const selectable = boolean('selectable', false, 'Props');
+  const selectable = boolean('selectable', true, 'Props');
   const clickToLoad = useClickToLoad();
   const clickToLoadContent = useClickToLoadContent();
   const dataRenderer = (content: DataType) => (
@@ -116,3 +149,4 @@ export const DataListWithLoaderAndCards = () => (
     )}
   </DataLoaderDecorator>
 );
+*/

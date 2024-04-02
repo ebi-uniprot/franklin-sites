@@ -24,7 +24,7 @@ export default {
   },
 };
 
-const useCheckbox = () => boolean('onSelectionChange', false, 'Props');
+const useCheckbox = () => boolean('onSelectionChange', true, 'Props');
 const useFixedLayout = () => boolean('fixedLayout', false, 'Props');
 const useDensity = () =>
   select('density', ['normal', 'compact'], 'normal', 'Props');
