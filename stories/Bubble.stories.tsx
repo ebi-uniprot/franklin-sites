@@ -1,39 +1,44 @@
-import { number, select } from '@storybook/addon-knobs';
 import { CSSProperties } from 'react';
 
+import { Meta, StoryObj } from '@storybook/react';
 import { Bubble as BubbleComponent } from '../src/components';
 
 import colors from '../src/styles/colours.json';
 
-export default {
-  title: 'Visualisation/Bubble',
+const meta: Meta<typeof BubbleComponent> = {
+  component: BubbleComponent,
+  title: 'Visualisation',
   parameters: {
     purposeFunction: {
       purpose: 'Highlight numbers.',
       function: 'If there is more than 100 items the bubble will show 99+.',
     },
   },
+  argTypes: {
+    children: {
+      control: { type: 'number', min: 400, max: 1200, step: 50 },
+      name: 'children (bubbble number)',
+    },
+    size: { control: 'select', options: ['small', 'medium', 'large'] },
+    color: { control: 'select', name: '--main-bubble-color', options: colors },
+  },
+  args: { children: 20, color: colors.seaBlue },
+  render: ({ children, size, color }) => (
+    <BubbleComponent
+      size={size}
+      style={
+        {
+          '--main-bubble-color': color,
+        } as CSSProperties
+      }
+    >
+      {children}
+    </BubbleComponent>
+  ),
 };
 
-export const Bubble = () => (
-  <BubbleComponent
-    size={select('size', ['small', 'medium', 'large'], 'small', 'Props')}
-    style={
-      {
-        '--main-bubble-color': select(
-          '--main-bubble-color',
-          colors,
-          colors.seaBlue,
-          'Custom Properties'
-        ),
-      } as CSSProperties
-    }
-  >
-    {number(
-      'children (bubble number value)',
-      20,
-      { min: 0, max: 200, step: 0.5 },
-      'Props'
-    )}
-  </BubbleComponent>
-);
+export default meta;
+
+type Story = StoryObj<typeof BubbleComponent>;
+
+export const Bubble: Story = {};
