@@ -103,6 +103,7 @@ export const DataListWithLoaderAndCards: Story = {
       options: [true, false],
       mapping: { true: action('selectChange'), false: null },
       control: 'boolean',
+      defaultValue: true,
     },
   },
   render: ({ clickToLoad, onSelectionChange }) => (
