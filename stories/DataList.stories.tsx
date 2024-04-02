@@ -75,14 +75,12 @@ export const DataListWithLoader: Story = {
   ),
 };
 
-const DataListWithLoaderAndCardsChildren = ({
-  props,
-}: {
-  props: CommonProps & WrapperProps<DataType>;
-}) => {
+const DataListWithLoaderAndCardsChildren = (
+  props: CommonProps & WrapperProps<DataType>
+) => {
   const dataRenderer = (content: DataType) => (
     <Card>
-      {props.onSelectionChange && (
+      {props?.onSelectionChange && (
         <div className="checkbox-cell">
           <input type="checkbox" />
         </div>
@@ -94,24 +92,19 @@ const DataListWithLoaderAndCardsChildren = ({
 };
 
 export const DataListWithLoaderAndCards: Story = {
-  args: {
-    clickToLoad: false,
-  },
   argTypes: {
     onSelectionChange: {
       name: 'Selectable (onSelectionChange)',
       options: [true, false],
       mapping: { true: action('selectChange'), false: null },
       control: 'boolean',
-      defaultValue: true,
     },
+    clickToLoad: { control: 'boolean' },
   },
-  render: ({ clickToLoad, onSelectionChange }) => (
+  render: (storyProps) => (
     <DataLoaderDecorator>
       {(props: CommonProps & WrapperProps<DataType>) => (
-        <DataListWithLoaderAndCardsChildren
-          props={{ ...props, clickToLoad, onSelectionChange }}
-        />
+        <DataListWithLoaderAndCardsChildren {...props} {...storyProps} />
       )}
     </DataLoaderDecorator>
   ),
