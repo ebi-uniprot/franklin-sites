@@ -4,21 +4,6 @@ import { AccordionSearch as AccordionSearchComponent } from '../src/components';
 
 import { AccordionItem } from '../src/components/accordion-search';
 
-const meta: Meta<typeof AccordionSearchComponent> = {
-  component: AccordionSearchComponent,
-  argTypes: { onSelect: { action: 'selected' } },
-  title: 'Layout/AccordionSearch',
-  parameters: {
-    purposeFunction: {
-      function: 'Show/hide blocks of content',
-      purpose: 'Minimise information-overload',
-    },
-  },
-};
-export default meta;
-
-type Story = StoryObj<typeof AccordionSearchComponent>;
-
 const accordionData: AccordionItem[] = [
   {
     label: 'Data',
@@ -94,10 +79,24 @@ const accordionData: AccordionItem[] = [
   },
 ];
 
-export const Default: Story = {
+const meta: Meta<typeof AccordionSearchComponent> = {
+  component: AccordionSearchComponent,
+  argTypes: { onSelect: { action: 'selected' } },
+  title: 'Layout',
+  parameters: {
+    purposeFunction: {
+      function: 'Show/hide blocks of content',
+      purpose: 'Minimise information-overload',
+    },
+  },
   args: {
     accordionData,
     placeholder: 'Filter',
     selected: [],
   },
 };
+export default meta;
+
+type Story = StoryObj<typeof AccordionSearchComponent>;
+
+export const AccordionSearch: Story = {};

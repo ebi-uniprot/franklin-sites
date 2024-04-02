@@ -1,23 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Accordion } from '../src/components';
+import { Accordion as AccordionComponent } from '../src/components';
 
-const meta: Meta<typeof Accordion> = {
-  component: Accordion,
-  title: 'Layout/Accordion',
+const meta: Meta<typeof AccordionComponent> = {
+  component: AccordionComponent,
+  title: 'Layout',
   parameters: {
     purposeFunction: {
       function: 'Show/hide blocks of content',
       purpose: 'Minimise information-overload',
     },
   },
-};
-export default meta;
-
-type Story = StoryObj<typeof Accordion>;
-
-export const Default: Story = {
   args: {
     accordionTitle: 'Title',
     count: 0,
@@ -26,3 +20,8 @@ export const Default: Story = {
     children: loremIpsum({ count: 25, units: 'words' }),
   },
 };
+export default meta;
+
+type Story = StoryObj<typeof AccordionComponent>;
+
+export const Accordion: Story = {};
