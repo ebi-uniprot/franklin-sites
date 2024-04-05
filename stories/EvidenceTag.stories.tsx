@@ -1,4 +1,4 @@
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 
 import {
   EvidenceTag as EvidenceTagComponent,
@@ -9,9 +9,15 @@ import {
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
-export default {
+const IconComponentOptions = {
+  EvidenceTag: <EvidenceTagIcon />,
+  InformationIcon: <InformationIcon />,
+  HelpIcon: <HelpIcon />,
+};
+
+const meta: Meta<typeof EvidenceTagComponent> = {
+  component: EvidenceTagComponent,
   title: 'Biocomponents/Evidence Tag',
-  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       function:
@@ -20,38 +26,36 @@ export default {
         'Inform the user so they can make a decision regarding the trustworthyness of a piece of text',
     },
   },
+  argTypes: {
+    iconComponent: {
+      options: ['EvidenceTag', 'InformationIcon', 'HelpIcon'],
+      mapping: IconComponentOptions,
+      control: { type: 'select' },
+    },
+  },
+  args: {
+    label: 'this is an evidence tag',
+    iconComponent: 'EvidenceTag',
+  },
+  render: ({ label, iconComponent }) => (
+    <EvidenceTagComponent label={label} iconComponent={iconComponent}>
+      <div>
+        <h5>Some title</h5>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+      </div>
+    </EvidenceTagComponent>
+  ),
 };
 
-const IconComponentOptions = {
-  EvidenceTag: <EvidenceTagIcon />,
-  InformationIcon: <InformationIcon />,
-  HelpIcon: <HelpIcon />,
-};
+export default meta;
 
-export const EvidenceTag = () => (
-  <EvidenceTagComponent
-    label={text('label', 'this is an evidence tag', 'Props')}
-    iconComponent={
-      IconComponentOptions[
-        select(
-          'iconComponent',
-          ['EvidenceTag', 'InformationIcon', 'HelpIcon'],
-          'EvidenceTag',
-          'Props'
-        )
-      ]
-    }
-  >
-    <div>
-      <h5>Some title</h5>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-    </div>
-  </EvidenceTagComponent>
-);
+type Story = StoryObj<StoryProps>;
+
+export const EvidenceTag: Story = {};
