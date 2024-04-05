@@ -1,6 +1,6 @@
-import { boolean } from '@storybook/addon-knobs';
+import React, { ReactNode } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { ReactNode } from 'react';
 import { Card as CardComponent, SwissProtIcon } from '../src/components';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
@@ -55,7 +55,15 @@ const links = [
   },
 ];
 
-export default {
+const meta: Meta<
+  React.ComponentProps<typeof CardComponent> & {
+    hasHeader: boolean;
+    hasCheckbox: boolean;
+    hasHeaderSeparator: boolean;
+    hasLinks: boolean;
+  }
+> = {
+  component: CardComponent,
   title: 'Layout/Card',
   parameters: {
     purposeFunction: {
@@ -65,13 +73,29 @@ export default {
         'Create visually delimited areas to allow for easier scanning of content.',
     },
   },
-};
-
-export const Card = () => {
-  const hasHeader = boolean('header', true, 'Props');
-  const hasHeaderSeparator = boolean('headerSeparator', true, 'Props');
-  const hasCheckbox = boolean('checkbox (only if header)', false, 'Props');
-  return (
+  argTypes: {
+    hasHeader: {
+      control: { type: 'boolean' },
+      name: 'header',
+    },
+    hasCheckbox: {
+      control: { type: 'boolean' },
+      name: 'checkbox (only if header)',
+    },
+    hasHeaderSeparator: {
+      control: { type: 'boolean' },
+      name: 'header separator',
+    },
+    hasLinks: {
+      control: { type: 'boolean' },
+      name: 'links',
+    },
+  },
+  args: {
+    hasHeader: true,
+    hasHeaderSeparator: true,
+  },
+  render: ({ hasHeader, hasCheckbox, hasHeaderSeparator, hasLinks }) => (
     <CardComponent
       header={
         hasHeader ? (
@@ -87,15 +111,25 @@ export const Card = () => {
         ) : undefined
       }
       headerSeparator={hasHeaderSeparator}
-      links={links.map(({ name, color, link }) => (
-        <ActionLink
-          name={name}
-          color={color}
-          link={`${window.parent.location.href.split('#')[0]}${link}`}
-        />
-      ))}
+      links={
+        hasLinks
+          ? links.map(({ name, color, link }) => (
+              <ActionLink
+                name={name}
+                color={color}
+                link={`${window.parent.location.href.split('#')[0]}${link}`}
+              />
+            ))
+          : undefined
+      }
     >
       {getLipsumSentences()}
     </CardComponent>
-  );
+  ),
 };
+
+export default meta;
+
+type Story = StoryObj<typeof CardComponent>;
+
+export const Card: Story = {};
