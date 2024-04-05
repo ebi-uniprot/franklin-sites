@@ -4,7 +4,7 @@ import { BytesNumber as BytesNumberComponent } from '../src/components';
 
 const meta: Meta<typeof BytesNumberComponent> = {
   component: BytesNumberComponent,
-  title: 'Visualisation/Bytes number',
+  title: 'Visualisation',
   parameters: {
     purposeFunction: {
       purpose: '',
@@ -24,4 +24,4 @@ export default meta;
 
 type Story = StoryObj<typeof BytesNumberComponent>;
 
-export const Bubble: Story = {};
+export const BytesNumber: Story = {};

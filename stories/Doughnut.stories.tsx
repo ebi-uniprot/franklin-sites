@@ -1,7 +1,9 @@
-import { DoughnutChart } from '../src/components';
+import { Meta, StoryObj } from '@storybook/react';
+import { DoughnutChart as DoughnutChartComponent } from '../src/components';
 
-export default {
-  title: 'Visualisation/Doughnut',
+const meta: Meta<typeof DoughnutChartComponent> = {
+  component: DoughnutChartComponent,
+  title: 'Visualisation',
   parameters: {
     purposeFunction: {
       purpose: 'Highlight a ratio.',
@@ -9,22 +11,32 @@ export default {
         'Used to represent numbers which represent a quantity relative to a total. By default shown as percentages but custom text can be shown instead',
     },
   },
+  argTypes: {
+    size: {
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' },
+    },
+  },
+  args: {
+    percent: 100 / 3,
+    children: '1/3',
+    colorClass: 'colour-uniref',
+    bgColorClass: 'colour-sky-white',
+  },
+  render: ({ colorClass, bgColorClass, children, percent, size }) => (
+    <DoughnutChartComponent
+      percent={percent}
+      colorClass={colorClass}
+      bgColorClass={bgColorClass}
+      size={size}
+    >
+      {children}
+    </DoughnutChartComponent>
+  ),
 };
 
-export const SmallDoughnut = () => (
-  <DoughnutChart percent={90} size="small">
-    9
-  </DoughnutChart>
-);
+export default meta;
 
-export const RegularDoughnut = () => (
-  <DoughnutChart
-    percent={60}
-    colorClass="colour-uniref"
-    bgColorClass="colour-sky-white"
-  >
-    3/5
-  </DoughnutChart>
-);
+type Story = StoryObj<typeof DoughnutChartComponent>;
 
-export const LargeDoughnut = () => <DoughnutChart percent={20} size="large" />;
+export const DoughnutChart: Story = {};
