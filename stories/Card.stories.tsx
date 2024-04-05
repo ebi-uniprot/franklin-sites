@@ -55,14 +55,14 @@ const links = [
   },
 ];
 
-const meta: Meta<
-  React.ComponentProps<typeof CardComponent> & {
-    hasHeader: boolean;
-    hasCheckbox: boolean;
-    hasHeaderSeparator: boolean;
-    hasLinks: boolean;
-  }
-> = {
+type StoryProps = React.ComponentProps<typeof CardComponent> & {
+  hasHeader: boolean;
+  hasCheckbox: boolean;
+  hasHeaderSeparator: boolean;
+  hasLinks: boolean;
+};
+
+const meta: Meta<StoryProps> = {
   component: CardComponent,
   title: 'Layout/Card',
   parameters: {
@@ -130,6 +130,6 @@ const meta: Meta<
 
 export default meta;
 
-type Story = StoryObj<typeof CardComponent>;
+type Story = StoryObj<StoryProps>;
 
 export const Card: Story = {};

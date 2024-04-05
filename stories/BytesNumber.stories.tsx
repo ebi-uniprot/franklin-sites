@@ -11,17 +11,9 @@ const meta: Meta<typeof BytesNumberComponent> = {
       function: '',
     },
   },
-  argTypes: {
-    decimals: {
-      control: { type: 'number' },
-    },
-    children: {
-      control: { type: 'number' },
-      name: 'bytes',
-    },
-  },
   args: {
     children: 1024,
+    decimals: 0,
   },
   render: ({ decimals, children }) => (
     <BytesNumberComponent decimals={decimals}>{children}</BytesNumberComponent>

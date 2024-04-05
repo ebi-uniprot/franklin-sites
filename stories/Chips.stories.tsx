@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { action } from '@storybook/addon-actions';
 
@@ -7,85 +7,61 @@ import { Chip as ChipComponent } from '../src/components';
 
 import colors from '../src/styles/colours.json';
 
-export default {
-  title: 'Core/Chip',
-  decorators: [withKnobs()],
-  parameters: {
-    purposeFunction: {
-      function: 'Can be used to make selections or trigger actions',
-      purpose: 'Display compact discrete information',
-    },
-  },
-};
-
 interface Style extends CSSProperties {
   // TODO: define and extend the supported custom properties in franklin
   // TODO: find a way to expose them globally when using franklin elements
   '--main-chip-color': string;
 }
 
-export const Chip = () => (
-  <ChipComponent
-    title={text('title', 'this is a chip', 'Props')}
-    compact={boolean('compact', false, 'Props')}
-    disabled={boolean('disabled', false, 'Props')}
-    className={select(
-      'className',
-      ['primary', 'secondary'],
-      'primary',
-      'Props'
-    )}
-    style={
-      {
-        '--main-chip-color': select(
-          '--main-chip-color',
-          colors,
-          colors.sapphireBlue,
-          'Custom Properties'
-        ),
-      } as Style
-    }
-  >
-    Chip content
-  </ChipComponent>
-);
+type StoryProps = React.ComponentProps<typeof ChipComponent> & {
+  removable: boolean;
+};
 
-export const WithClick = () => (
-  <>
+const meta: Meta<StoryProps> = {
+  component: ChipComponent,
+  title: 'Core/Chip',
+  parameters: {
+    purposeFunction: {
+      function: 'Can be used to make selections or trigger actions',
+      purpose: 'Display compact discrete information',
+    },
+  },
+  argTypes: {
+    className: {
+      options: ['primary', 'secondary'],
+      control: { type: 'select' },
+    },
+    color: { control: 'select', name: '--main-chip-color', options: colors },
+  },
+  args: {
+    title: 'this is a chip',
+    compact: false,
+    disabled: false,
+    className: 'primary',
+    removable: false,
+  },
+  render: ({ title, compact, className, disabled, color, removable }) => (
     <ChipComponent
-      title="this is a primary chip"
-      onClick={action('click on primary')}
-    >
-      Primary
-    </ChipComponent>
-    <ChipComponent className="secondary" onClick={action('click on secondary')}>
-      Secondary
-    </ChipComponent>
-  </>
-);
-
-export const WithKeyPress = () => (
-  <>
-    <ChipComponent
-      title="this is a primary chip"
+      title={title}
+      compact={compact}
+      disabled={disabled}
+      className={className}
+      onClick={action('click on chip')}
       onKeyPress={action('key press on primary')}
+      onRemove={removable ? action('Remove chip') : undefined}
+      style={
+        {
+          '--main-chip-color': color,
+        } as Style
+      }
     >
-      Primary
+      Chip content
     </ChipComponent>
-    <ChipComponent
-      className="secondary"
-      onKeyPress={action('key press on secondary')}
-    >
-      Secondary
-    </ChipComponent>
-  </>
-);
+  ),
+};
 
-export const Removable = () => (
-  <>
-    <ChipComponent onRemove={action('Remove chip')}>Primary</ChipComponent>
-    <ChipComponent onRemove={action('Remove chip')} className="secondary">
-      Secondary
-    </ChipComponent>
-  </>
-);
+export default meta;
+
+type Story = StoryObj<StoryProps>;
+
+export const Chip: Story = {};
