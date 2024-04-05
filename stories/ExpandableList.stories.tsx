@@ -1,12 +1,10 @@
-import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
-
-import { ExpandableList as EvidenceTagComponent } from '../src/components';
+import { ExpandableList as ExpandableListComponent } from '../src/components';
 
 import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 
-export default {
+const meta: Meta<typeof ExpandableListComponent> = {
+  component: ExpandableListComponent,
   title: 'Data/Expandable List',
-  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose: 'Provide a way of truncating long unordered lists of items.',
@@ -14,22 +12,32 @@ export default {
         'Display an unordered list of items which is initially collapsed.',
     },
   },
+  argTypes: {
+    numberCollapsedItems: {
+      name: 'Number of displayed items',
+      control: { type: 'number', min: 0, step: 1 },
+    },
+  },
+  args: {
+    numberCollapsedItems: 5,
+    descriptionString: 'lorem ipsum items',
+    displayNumberOfHiddenItems: false,
+  },
 };
 
-export const ExpandableList = () => (
-  <EvidenceTagComponent
-    numberCollapsedItems={number(
-      'Number of displayed items',
-      5,
-      { min: 0, step: 1 },
-      'Props'
-    )}
-    descriptionString={text('Description string', 'lorem ipsum items', 'Props')}
-    displayNumberOfHiddenItems={boolean(
-      'Display number of hidden items',
-      false,
-      'Props'
-    )}
+export default meta;
+
+type Story = StoryObj<typeof ExpandableListComponent>;
+
+export const ExpandableList: Story = ({
+  numberCollapsedItems,
+  descriptionString,
+  displayNumberOfHiddenItems,
+}) => (
+  <ExpandableListComponent
+    numberCollapsedItems={numberCollapsedItems}
+    descriptionString={descriptionString}
+    displayNumberOfHiddenItems={displayNumberOfHiddenItems}
   >
     {getLipsumObjectArray({
       numberElements: 10,
@@ -38,13 +46,18 @@ export const ExpandableList = () => (
     }).map(({ id, content }) => (
       <span key={id}>{content}</span>
     ))}
-  </EvidenceTagComponent>
+  </ExpandableListComponent>
 );
 
-export const ExpandableListWithExtraAction = () => (
-  <EvidenceTagComponent
-    numberCollapsedItems={5}
-    descriptionString="Lorem ipsum items"
+export const ExpandableListWithExtraAction: Story = ({
+  numberCollapsedItems,
+  descriptionString,
+  displayNumberOfHiddenItems,
+}) => (
+  <ExpandableListComponent
+    numberCollapsedItems={numberCollapsedItems}
+    descriptionString={descriptionString}
+    displayNumberOfHiddenItems={displayNumberOfHiddenItems}
     extraActions={
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
       <a className="button tertiary expandable-list__action">some link</a>
@@ -57,5 +70,5 @@ export const ExpandableListWithExtraAction = () => (
     }).map(({ id, content }) => (
       <span key={id}>{content}</span>
     ))}
-  </EvidenceTagComponent>
+  </ExpandableListComponent>
 );
