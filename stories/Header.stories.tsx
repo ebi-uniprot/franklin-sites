@@ -2,7 +2,6 @@
 import { SyntheticEvent, useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import {
   BasketIcon,
@@ -16,17 +15,6 @@ import {
 } from '../src/components';
 
 import UniProtLogo from '../src/svg/swissprot.svg';
-
-export default {
-  title: 'Layout/Header',
-  parameters: {
-    purposeFunction: {
-      purpose: '',
-      function: '',
-    },
-  },
-  decorators: [withKnobs],
-};
 
 const headerSecondaryItems = (
   <>
@@ -56,45 +44,60 @@ const Search = () => {
   );
 };
 
-export const Header = () => (
-  <HeaderComponent
-    homepageLink={
-      <a href="https://www.uniprot.org">
-        <UniProtLogo width={30} />
+const meta: Meta<typeof HeaderComponent> = {
+  title: 'Layout/Header',
+  parameters: {
+    purposeFunction: {
+      purpose: '',
+      function: '',
+    },
+  },
+  args: { search: true, secondaryItems: true, isNegative: true, subtext: true },
+
+  render: ({ search, secondaryItems, isNegative, subtext }) => (
+    <HeaderComponent
+      homepageLink={
+        <a href="https://www.uniprot.org">
+          <UniProtLogo width={30} />
+        </a>
+      }
+      search={search && <Search />}
+      secondaryItems={secondaryItems && headerSecondaryItems}
+      subtext={subtext && 'Release info | Statistics'}
+      isNegative={isNegative}
+    >
+      <a target="_blank" href="https://www.uniprot.org/" rel="noreferrer">
+        Link 1
       </a>
-    }
-    search={boolean('With Search', true) && <Search />}
-    secondaryItems={
-      boolean('Secondary items', true) ? headerSecondaryItems : undefined
-    }
-    subtext={boolean('Subtext', true) && 'Release info | Statistics'}
-    isNegative={boolean('Negative', true)}
-  >
-    <a target="_blank" href="https://www.uniprot.org/" rel="noreferrer">
-      Link 1
-    </a>
-    <Dropdown visibleElement={<Button variant="tertiary">Links 2</Button>}>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
-          sublink 1
-        </a>
-        <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
-          sublink 2
-        </a>
-        <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
-          sublink 3
-        </a>
-        <ExternalLink url="//www.uniprot.org">external link</ExternalLink>
-        <Button variant="tertiary" onClick={action('onClick')}>
-          action
-        </Button>
-      </div>
-    </Dropdown>
-    <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
-      Link 3
-    </a>
-    <Button variant="tertiary" onClick={action('onClick')}>
-      action
-    </Button>
-  </HeaderComponent>
-);
+      <Dropdown visibleElement={<Button variant="tertiary">Links 2</Button>}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+            sublink 1
+          </a>
+          <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+            sublink 2
+          </a>
+          <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+            sublink 3
+          </a>
+          <ExternalLink url="//www.uniprot.org">external link</ExternalLink>
+          <Button variant="tertiary" onClick={action('onClick')}>
+            action
+          </Button>
+        </div>
+      </Dropdown>
+      <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
+        Link 3
+      </a>
+      <Button variant="tertiary" onClick={action('onClick')}>
+        action
+      </Button>
+    </HeaderComponent>
+  ),
+};
+
+export default meta;
+
+type Story = StoryObj<typeof HeaderComponent>;
+
+export const Header: Story = {};
