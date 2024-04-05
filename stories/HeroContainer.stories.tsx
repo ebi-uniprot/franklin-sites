@@ -1,24 +1,29 @@
 import { loremIpsum } from 'lorem-ipsum';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
 import { HeroContainer as HeroContainerComponent } from '../src/components';
 
-export default {
+const meta: Meta<typeof HeroContainerComponent> = {
+  component: HeroContainerComponent,
   title: 'Layout/Hero Container',
-  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose: 'Differentiate section from others',
       function: 'Highlight a specific section',
     },
   },
+  args: {
+    title: 'Title',
+    noSidePadding: false,
+  },
+  render: ({ title, noSidePadding }) => (
+    <HeroContainerComponent title={title} noSidePadding={noSidePadding}>
+      {loremIpsum({ count: 25, units: 'words' })}
+    </HeroContainerComponent>
+  ),
 };
 
-export const HeroContainer = () => (
-  <HeroContainerComponent
-    title={text('Title', 'Title', 'Props')}
-    noSidePadding={boolean('No side padding', false, 'Props')}
-  >
-    {loremIpsum({ count: 25, units: 'words' })}
-  </HeroContainerComponent>
-);
+export default meta;
+
+type Story = StoryObj<typeof HeroContainerComponent>;
+
+export const HeroContainer: Story = {};
