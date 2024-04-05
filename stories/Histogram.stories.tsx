@@ -1,8 +1,6 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 
-import { withKnobs, select, text, number } from '@storybook/addon-knobs';
-
-import { Histogram } from '../src/components';
+import { Histogram as HistogramComponent } from '../src/components';
 
 import {
   getUniformSample,
@@ -11,16 +9,12 @@ import {
 
 import colors from '../src/styles/colours.json';
 
-export default {
-  title: 'Visualisation/Histogram',
-  decorators: [withKnobs()],
-  parameters: {
-    purposeFunction: {
-      purpose: 'purpose',
-      function: 'function',
-    },
-  },
-};
+interface Style extends CSSProperties {
+  // TODO: define and extend the supported custom properties in franklin
+  // TODO: find a way to expose them globally when using franklin elements
+  '--main-histogram-color': string;
+  '--histogram-bar-gap': string;
+}
 
 const nValues = 1000;
 const gaussianSample = getGaussianSample(0, 1, nValues);
@@ -32,17 +26,62 @@ const gaussianMax = Math.max(...gaussianSample);
 // take about half of the values
 const randomFilter = () => Math.random() > 0.5;
 
-interface Style extends CSSProperties {
-  // TODO: define and extend the supported custom properties in franklin
-  // TODO: find a way to expose them globally when using franklin elements
-  '--main-histogram-color': string;
-  '--histogram-bar-gap': string;
-}
+const meta: Meta<typeof HistogramComponent> = {
+  component: HistogramComponent,
+  title: 'Visualisation/Histogram',
+  parameters: {
+    purposeFunction: {
+      purpose: 'purpose',
+      function: 'function',
+    },
+  },
+  argTypes: {
+    nBins: { control: 'number', min: 1, step: 1, name: 'Number of bins' },
+    color: {
+      control: 'select',
+      name: '--main-histogram-color',
+      options: colors,
+    },
+  },
+  args: {
+    nBins: 20,
+    xLabel: 'X label',
+    yLabel: 'Y label',
+    barGap: '-1px',
+  },
+  render: ({ values, nBins, xLabel, yLabel, barGap, color }) => (
+    <HistogramComponent
+      values={values}
+      nBins={nBins}
+      xLabel={xLabel}
+      yLabel={yLabel}
+      style={
+        {
+          '--main-histogram-color': color,
+          '--histogram-bar-gap': barGap,
+        } as Style
+      }
+    />
+  ),
+};
 
-export const ChangingGaussian = () => {
+export const Gaussian: Story = {
+  args: {
+    ...meta.args,
+    values: gaussianSample,
+  },
+};
+
+export const Uniform: Story = {
+  args: {
+    ...meta.args,
+    values: uniformSample,
+  },
+};
+
+const ChangingGaussianRender = ({ nBins, xLabel, yLabel, barGap, color }) => {
   const interval = useRef<number>();
 
-  // eslint-disable-next-line no-shadow
   const [filteredSample, setFilteredSample] = useState(
     gaussianSample.filter(randomFilter)
   );
@@ -53,80 +92,33 @@ export const ChangingGaussian = () => {
     }, 3000);
     return () => window.clearInterval(interval.current);
   }, []);
-
   return (
-    <Histogram
+    <HistogramComponent
       values={filteredSample}
       unfilteredValues={gaussianSample}
-      nBins={number('Number of bins', 20, { min: 1, step: 1 }, 'Props')}
+      nBins={nBins}
+      xLabel={xLabel}
+      yLabel={yLabel}
       min={gaussianMin}
       max={gaussianMax}
-      xLabel={text('X label', 'Value', 'Props')}
-      yLabel={text('Y label', 'Count', 'Props')}
       unfilteredValuesShadow={0.1}
       style={
         {
-          '--main-histogram-color': select(
-            '--main-histogram-color',
-            colors,
-            colors.weldonBlue,
-            'Custom Properties'
-          ),
-          '--histogram-bar-gap': text(
-            '--histogram-bar-gap',
-            '-1px',
-            'Custom Properties'
-          ),
+          '--main-histogram-color': color,
+          '--histogram-bar-gap': barGap,
         } as Style
       }
     />
   );
 };
 
-export const Gaussian = () => (
-  <Histogram
-    values={gaussianSample}
-    nBins={number('Number of bins', 20, { min: 1, step: 1 }, 'Props')}
-    xLabel={text('X label', 'Value', 'Props')}
-    yLabel={text('Y label', 'Count', 'Props')}
-    style={
-      {
-        '--main-histogram-color': select(
-          '--main-histogram-color',
-          colors,
-          colors.weldonBlue,
-          'Custom Properties'
-        ),
-        '--histogram-bar-gap': text(
-          '--histogram-bar-gap',
-          '-1px',
-          'Custom Properties'
-        ),
-      } as Style
-    }
-  />
-);
+export const ChangingGaussian: Story = {
+  args: {
+    ...meta.args,
+  },
+  render: ChangingGaussianRender,
+};
 
-export const Uniform = () => (
-  <Histogram
-    values={uniformSample}
-    binSize={number('Bin size', 1, undefined, 'Props')}
-    xLabel={text('X label', 'Value', 'Props')}
-    yLabel={text('Y label', 'Count', 'Props')}
-    style={
-      {
-        '--main-histogram-color': select(
-          '--main-histogram-color',
-          colors,
-          colors.weldonBlue,
-          'Custom Properties'
-        ),
-        '--histogram-bar-gap': text(
-          '--histogram-bar-gap',
-          '-1px',
-          'Custom Properties'
-        ),
-      } as Style
-    }
-  />
-);
+export default meta;
+
+type Story = StoryObj<typeof HistogramComponent>;
