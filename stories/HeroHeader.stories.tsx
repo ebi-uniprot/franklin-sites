@@ -1,25 +1,31 @@
 import { loremIpsum } from 'lorem-ipsum';
-import { withKnobs, text } from '@storybook/addon-knobs';
 
 import { HeroHeader as HH } from '../src/components';
 
-const useTitle = () => text('Title', 'Title');
-const useFooter = () =>
-  text('Footer', loremIpsum({ count: 25, units: 'words' }));
-
-export default {
+const meta: Meta<typeof HH> = {
+  component: HH,
   title: 'Layout/Hero Header',
-  decorators: [withKnobs()],
   parameters: {
     purposeFunction: {
       purpose: 'Provide an entry point',
       function: 'Tell the user what the resource is about and offer a way in',
     },
   },
+  argTypes: {
+    title: { control: 'text' },
+    footer: { control: 'text' },
+  },
+
+  args: { title: 'Title', footer: loremIpsum({ count: 25, units: 'words' }) },
+  render: ({ title, footer }) => (
+    <HH title={title} footer={footer}>
+      <input type="text" />
+    </HH>
+  ),
 };
 
-export const HeroHeader = () => (
-  <HH title={useTitle()} footer={useFooter()}>
-    <input type="text" />
-  </HH>
-);
+export default meta;
+
+type Story = StoryObj<typeof HH>;
+
+export const HeroHeader: Story = {};
