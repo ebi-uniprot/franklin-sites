@@ -1,5 +1,6 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 
+import { Meta, StoryObj } from '@storybook/react';
 import { Histogram as HistogramComponent } from '../src/components';
 
 import {
@@ -26,7 +27,12 @@ const gaussianMax = Math.max(...gaussianSample);
 // take about half of the values
 const randomFilter = () => Math.random() > 0.5;
 
-const meta: Meta<typeof HistogramComponent> = {
+type StoryProps = React.ComponentProps<typeof HistogramComponent> & {
+  color: string;
+  barGap: string;
+};
+
+const meta: Meta<StoryProps> = {
   component: HistogramComponent,
   title: 'Visualisation/Histogram',
   parameters: {
@@ -52,7 +58,7 @@ const meta: Meta<typeof HistogramComponent> = {
   render: ({ values, nBins, xLabel, yLabel, barGap, color }) => (
     <HistogramComponent
       values={values}
-      nBins={nBins}
+      nBins={nBins!}
       xLabel={xLabel}
       yLabel={yLabel}
       style={
@@ -79,7 +85,13 @@ export const Uniform: Story = {
   },
 };
 
-const ChangingGaussianRender = ({ nBins, xLabel, yLabel, barGap, color }) => {
+const ChangingGaussianRender = ({
+  nBins,
+  xLabel,
+  yLabel,
+  barGap,
+  color,
+}: StoryProps) => {
   const interval = useRef<number>();
 
   const [filteredSample, setFilteredSample] = useState(
@@ -96,7 +108,7 @@ const ChangingGaussianRender = ({ nBins, xLabel, yLabel, barGap, color }) => {
     <HistogramComponent
       values={filteredSample}
       unfilteredValues={gaussianSample}
-      nBins={nBins}
+      nBins={nBins!}
       xLabel={xLabel}
       yLabel={yLabel}
       min={gaussianMin}
