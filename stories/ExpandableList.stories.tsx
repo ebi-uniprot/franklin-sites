@@ -30,46 +30,50 @@ export default meta;
 
 type Story = StoryObj<typeof ExpandableListComponent>;
 
-export const ExpandableList: Story = ({
-  numberCollapsedItems,
-  descriptionString,
-  displayNumberOfHiddenItems,
-}) => (
-  <ExpandableListComponent
-    numberCollapsedItems={numberCollapsedItems}
-    descriptionString={descriptionString}
-    displayNumberOfHiddenItems={displayNumberOfHiddenItems}
-  >
-    {getLipsumObjectArray({
-      numberElements: 10,
-      keys: ['content'],
-      type: 'words',
-    }).map(({ id, content }) => (
-      <span key={id}>{content}</span>
-    ))}
-  </ExpandableListComponent>
-);
+export const ExpandableList: Story = {
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems,
+  }) => (
+    <ExpandableListComponent
+      numberCollapsedItems={numberCollapsedItems}
+      descriptionString={descriptionString}
+      displayNumberOfHiddenItems={displayNumberOfHiddenItems}
+    >
+      {getLipsumObjectArray({
+        numberElements: 10,
+        keys: ['content'],
+        type: 'words',
+      }).map(({ id, content }) => (
+        <span key={id}>{content}</span>
+      ))}
+    </ExpandableListComponent>
+  ),
+};
 
-export const ExpandableListWithExtraAction: Story = ({
-  numberCollapsedItems,
-  descriptionString,
-  displayNumberOfHiddenItems,
-}) => (
-  <ExpandableListComponent
-    numberCollapsedItems={numberCollapsedItems}
-    descriptionString={descriptionString}
-    displayNumberOfHiddenItems={displayNumberOfHiddenItems}
-    extraActions={
-      // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a className="button tertiary expandable-list__action">some link</a>
-    }
-  >
-    {getLipsumObjectArray({
-      numberElements: 10,
-      keys: ['content'],
-      type: 'words',
-    }).map(({ id, content }) => (
-      <span key={id}>{content}</span>
-    ))}
-  </ExpandableListComponent>
-);
+export const ExpandableListWithExtraAction: Story = {
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems,
+  }) => (
+    <ExpandableListComponent
+      numberCollapsedItems={numberCollapsedItems}
+      descriptionString={descriptionString}
+      displayNumberOfHiddenItems={displayNumberOfHiddenItems}
+      extraActions={
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        <a className="button tertiary expandable-list__action">some link</a>
+      }
+    >
+      {getLipsumObjectArray({
+        numberElements: 10,
+        keys: ['content'],
+        type: 'words',
+      }).map(({ id, content }) => (
+        <span key={id}>{content}</span>
+      ))}
+    </ExpandableListComponent>
+  ),
+};

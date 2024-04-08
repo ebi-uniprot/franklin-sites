@@ -1,4 +1,11 @@
-import { CSSProperties, useEffect, useRef, useState } from 'react';
+import {
+  CSSProperties,
+  ComponentProps,
+  FC,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
 import { Histogram as HistogramComponent } from '../src/components';
@@ -27,12 +34,25 @@ const gaussianMax = Math.max(...gaussianSample);
 // take about half of the values
 const randomFilter = () => Math.random() > 0.5;
 
-type StoryProps = React.ComponentProps<typeof HistogramComponent> & {
-  color: string;
-  barGap: string;
-};
+type OtherArgs = { color: string; barGap?: string };
 
-const meta: Meta<StoryProps> = {
+type WithNBins = FC<
+  Omit<ComponentProps<typeof HistogramComponent>, 'position'> &
+    OtherArgs & {
+      nBins: number;
+      binSize: never;
+    }
+>;
+
+type WithBinSize = FC<
+  Omit<ComponentProps<typeof HistogramComponent>, 'position'> &
+    OtherArgs & {
+      nBins?: number;
+      binSize: number;
+    }
+>;
+
+const meta: Meta<WithNBins> = {
   component: HistogramComponent,
   title: 'Visualisation/Histogram',
   parameters: {
@@ -42,7 +62,6 @@ const meta: Meta<StoryProps> = {
     },
   },
   argTypes: {
-    nBins: { control: 'number', min: 1, step: 1, name: 'Number of bins' },
     color: {
       control: 'select',
       name: '--main-histogram-color',
@@ -50,15 +69,15 @@ const meta: Meta<StoryProps> = {
     },
   },
   args: {
-    nBins: 20,
     xLabel: 'X label',
     yLabel: 'Y label',
     barGap: '-1px',
   },
-  render: ({ values, nBins, xLabel, yLabel, barGap, color }) => (
+  render: ({ values, nBins, binSize, xLabel, yLabel, barGap, color }) => (
     <HistogramComponent
       values={values}
-      nBins={nBins!}
+      nBins={nBins}
+      binSize={binSize}
       xLabel={xLabel}
       yLabel={yLabel}
       style={
@@ -71,27 +90,37 @@ const meta: Meta<StoryProps> = {
   ),
 };
 
-export const Gaussian: Story = {
+export const Gaussian: StoryObj<WithNBins> = {
+  argTypes: {
+    ...meta.argTypes,
+    nBins: { control: 'number', min: 1, step: 1, name: 'Number of bins' },
+  },
   args: {
     ...meta.args,
     values: gaussianSample,
+    nBins: 20,
   },
 };
 
-export const Uniform: Story = {
+export const Uniform: StoryObj<WithBinSize> = {
+  argTypes: {
+    ...meta.argTypes,
+    binSize: { control: 'number', min: 1, step: 1 },
+  },
   args: {
     ...meta.args,
     values: uniformSample,
+    binSize: 1,
   },
 };
 
-const ChangingGaussianRender = ({
+const ChangingGaussianRender: WithNBins = ({
   nBins,
   xLabel,
   yLabel,
   barGap,
   color,
-}: StoryProps) => {
+}) => {
   const interval = useRef<number>();
 
   const [filteredSample, setFilteredSample] = useState(
@@ -117,20 +146,23 @@ const ChangingGaussianRender = ({
       style={
         {
           '--main-histogram-color': color,
-          '--histogram-bar-gap': barGap,
+          '--histogram-bar-gap': barGap!,
         } as Style
       }
     />
   );
 };
 
-export const ChangingGaussian: Story = {
+export const ChangingGaussian: StoryObj<WithNBins> = {
+  argTypes: {
+    ...meta.argTypes,
+    nBins: { control: 'number', min: 1, step: 1, name: 'Number of bins' },
+  },
   args: {
     ...meta.args,
+    nBins: 20,
   },
   render: ChangingGaussianRender,
 };
 
 export default meta;
-
-type Story = StoryObj<typeof HistogramComponent>;

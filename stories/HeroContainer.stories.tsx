@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from '@storybook/react';
 import { loremIpsum } from 'lorem-ipsum';
 
 import { HeroContainer as HeroContainerComponent } from '../src/components';
