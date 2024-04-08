@@ -1,11 +1,11 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { PageIntro as PageIntroComponent } from '../src/components';
+
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
-export default {
+const meta: Meta<typeof PageIntroComponent> = {
   title: 'Layout/Page Intro',
-  decorators: [withKnobs],
   parameters: {
     purposeFunction: {
       function:
@@ -14,14 +14,20 @@ export default {
         'People might land on areas of the website they don’t know much about. The intro is a place they can get some contextual help, some introductory info and links to further help, information and downloads',
     },
   },
+  args: { titlePostscript: '' },
+  render: ({ titlePostscript }) => (
+    <PageIntroComponent
+      title="UniProt"
+      resultsCount={1000}
+      titlePostscript={titlePostscript}
+    >
+      {getLipsumSentences()}
+    </PageIntroComponent>
+  ),
 };
 
-export const PageIntro = () => (
-  <PageIntroComponent
-    title="UniProt"
-    resultsCount={1000}
-    titlePostscript={text('Title Postcript', '', 'Props')}
-  >
-    {getLipsumSentences()}
-  </PageIntroComponent>
-);
+export default meta;
+
+type Story = StoryObj<typeof PageIntroComponent>;
+
+export const Message: Story = {};
