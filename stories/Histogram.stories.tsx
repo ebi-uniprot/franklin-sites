@@ -114,7 +114,7 @@ export const Uniform: StoryObj<WithBinSize> = {
   },
 };
 
-const ChangingGaussianRender: WithNBins = ({
+const ChangingGaussianRender: typeof meta.render = ({
   nBins,
   xLabel,
   yLabel,
@@ -146,7 +146,7 @@ const ChangingGaussianRender: WithNBins = ({
       style={
         {
           '--main-histogram-color': color,
-          '--histogram-bar-gap': barGap!,
+          '--histogram-bar-gap': barGap,
         } as Style
       }
     />
