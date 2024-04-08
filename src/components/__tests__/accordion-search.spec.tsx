@@ -5,10 +5,6 @@ import AccordionSearch, {
   getLeafKeys,
 } from '../accordion-search';
 
-jest.mock('lodash-es', () => ({
-  debounce: (fn: unknown) => fn,
-}));
-
 const props = {
   placeholder: 'Filter',
   onSelect: jest.fn(),
