@@ -1,11 +1,13 @@
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import { SequenceSubmission as SequenceSubmissionComponent } from '../src/components';
 
 import { SequenceObject } from '../src/sequence-utils/sequence-processor';
 
-export default {
+const meta: Meta<typeof SequenceSubmissionComponent> = {
   title: 'Forms/Sequence Submission',
+  component: SequenceSubmissionComponent,
   parameters: {
     purposeFunction: {
       function: 'Accepts a sequence from user',
@@ -14,28 +16,38 @@ export default {
   },
 };
 
-export const SequenceSubmission = () => (
-  <SequenceSubmissionComponent placeholder="Enter a sequence..." />
-);
+export default meta;
 
-export const WithInvalidSequenceError = () => (
-  <SequenceSubmissionComponent
-    placeholder="Enter a sequence..."
-    defaultValue="ACTGUACTGUACTGU+"
-  />
-);
+type Story = StoryObj<typeof SequenceSubmissionComponent>;
+
+export const SequenceSubmission: Story = {
+  render: () => (
+    <SequenceSubmissionComponent placeholder="Enter a sequence..." />
+  ),
+};
+
+export const WithInvalidSequenceError: Story = {
+  render: () => (
+    <SequenceSubmissionComponent
+      placeholder="Enter a sequence..."
+      defaultValue="ACTGUACTGUACTGU+"
+    />
+  ),
+};
 
 const multipleSequences1 = `> sequence_1
 ACTGUACTGUACTGU
 > sequence_2
 ACTGAUTTGUATTGUUUGU
 `;
-export const WithMultipleSequences = () => (
-  <SequenceSubmissionComponent
-    placeholder="Enter a sequence..."
-    defaultValue={multipleSequences1}
-  />
-);
+export const WithMultipleSequences: Story = {
+  render: () => (
+    <SequenceSubmissionComponent
+      placeholder="Enter a sequence..."
+      defaultValue={multipleSequences1}
+    />
+  ),
+};
 
 const multipleSequences2 = `> sequence_1
 ACTGUACTGUACTGU
@@ -44,14 +56,16 @@ ACTGAUTTGUATTGUUUGU
 > sequence_3
 ACTGUACTGUACTGU
 `;
-export const WithMultipleSequencesWarning = () => (
-  <SequenceSubmissionComponent
-    placeholder="Enter a sequence..."
-    defaultValue={multipleSequences2}
-  />
-);
+export const WithMultipleSequencesWarning: Story = {
+  render: () => (
+    <SequenceSubmissionComponent
+      placeholder="Enter a sequence..."
+      defaultValue={multipleSequences2}
+    />
+  ),
+};
 
-export const DynamicallyChangeValue = () => {
+const DynamicallyChangeValueRender = () => {
   const [sequence, setSequence] = useState('ACTG');
   const [likelyType, setLikelyType] = useState<SequenceObject['likelyType']>();
 
@@ -87,4 +101,8 @@ export const DynamicallyChangeValue = () => {
       />
     </form>
   );
+};
+
+export const DynamicallyChangeValue: Story = {
+  render: DynamicallyChangeValueRender,
 };
