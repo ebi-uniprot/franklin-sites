@@ -35,7 +35,7 @@ const meta: Meta<typeof EvidenceTagComponent> = {
   },
   args: {
     label: 'this is an evidence tag',
-    iconComponent: 'EvidenceTag',
+    iconComponent: <EvidenceTagIcon />,
   },
   render: ({ label, iconComponent }) => (
     <EvidenceTagComponent label={label} iconComponent={iconComponent}>
@@ -56,6 +56,6 @@ const meta: Meta<typeof EvidenceTagComponent> = {
 
 export default meta;
 
-type Story = StoryObj<StoryProps>;
+type Story = StoryObj<typeof EvidenceTagComponent>;
 
 export const EvidenceTag: Story = {};
