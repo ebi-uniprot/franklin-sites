@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from '@storybook/react';
 import { ExpandableList as ExpandableListComponent } from '../src/components';
 
 import { getLipsumObjectArray } from '../src/mock-data/lipsum';
