@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
 
+import { Meta, StoryObj } from '@storybook/react';
 import MainSearchComponent, {
   MainSearchProps,
 } from '../src/components/main-search';
@@ -17,28 +17,25 @@ const namespaces = {
   toolResults: 'Tool results',
 };
 
-// Custom decorator
-export default {
-  title: 'Forms/Main Search',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Allow selection of item from flat data set',
-      function: 'Search through an array to make a selection',
-    },
-  },
+type StoryProps = React.ComponentProps<typeof MainSearchComponent> & {
+  withNamespace: boolean;
+  withSecondaryButtons: boolean;
 };
 
-export const MainSearch = () => {
+export const MainSearch = ({
+  withNamespace,
+  withSecondaryButtons,
+}: StoryProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [namespace, setNamespace] = useState('uniprotkb');
 
   const props: Partial<MainSearchProps> = {};
-  if (boolean('with namespace', false)) {
+  if (withNamespace) {
     props.namespaces = namespaces;
     props.selectedNamespace = namespace;
     props.onNamespaceChange = (value) => setNamespace(value);
   }
-  if (boolean('with secondary buttons', false)) {
+  if (withSecondaryButtons) {
     props.secondaryButtons = [
       { label: 'Advanced', action: action('Advanced') },
       { label: 'List', action: action('List') },
@@ -53,3 +50,25 @@ export const MainSearch = () => {
     />
   );
 };
+
+const meta: Meta<StoryProps> = {
+  title: 'Forms/Main Search',
+  component: MainSearchComponent,
+  parameters: {
+    purposeFunction: {
+      purpose: 'Allow selection of item from flat data set',
+      function: 'Search through an array to make a selection',
+    },
+  },
+  args: {
+    withNamespace: false,
+    withSecondaryButtons: false,
+  },
+  render: MainSearch,
+};
+
+export default meta;
+
+type Story = StoryObj<typeof MainSearchComponent>;
+
+export const HeroHeader: Story = {};
