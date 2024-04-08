@@ -10,7 +10,7 @@ import '../styles/components/sliding-panel.scss';
 const focusable =
   'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])';
 
-type LRBelowHeader = {
+export type LRBelowHeader = {
   /**
    * Where the sliding panel should appear
    */
@@ -22,7 +22,7 @@ type LRBelowHeader = {
   arrowX?: number;
 };
 
-type TBSlidingPanel = {
+export type TBSlidingPanel = {
   /**
    * Where the sliding panel should appear
    */
