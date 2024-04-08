@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
@@ -11,7 +12,14 @@ import {
 
 import sequenceData from '../src/mock-data/sequence-data';
 
-export default {
+const AddToBasketButton = () => (
+  <Button variant="tertiary" onClick={action('AddToBasketButton clicked')}>
+    Add To Basket
+  </Button>
+);
+
+const meta: Meta<typeof SequenceComponent> = {
+  component: SequenceComponent,
   title: 'Biocomponents/Sequence',
   parameters: {
     purposeFunction: {
@@ -21,43 +29,52 @@ export default {
   },
 };
 
-const AddToBasketButton = () => (
-  <Button variant="tertiary" onClick={action('AddToBasketButton clicked')}>
-    Add To Basket
-  </Button>
-);
+export default meta;
 
-export const Sequence = () => (
-  <SequenceComponent
-    sequence={sequenceData}
-    accession="P05067"
-    downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
-    onBlastClick={action('onBlastClick')}
-    onCopy={action('onCopy')}
-    addToBasketButton={<AddToBasketButton />}
-  />
-);
-export const SequenceWithoutActionBar = () => (
-  <SequenceComponent sequence={sequenceData} showActionBar={false} />
-);
+type Story = StoryObj<typeof SequenceComponent>;
 
-export const SequenceCollapsableWithInfoData = () => {
-  const data = [
-    {
-      title: 'Item 1',
-      content: <div>Some content</div>,
-    },
-    {
-      title: 'Another item',
-      content: <div>Some more content</div>,
-    },
-  ];
-  return (
-    <SequenceComponent sequence={sequenceData} infoData={data} isCollapsible />
-  );
+export const Sequence: Story = {
+  render: () => (
+    <SequenceComponent
+      sequence={sequenceData}
+      accession="P05067"
+      downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
+      onBlastClick={action('onBlastClick')}
+      onCopy={action('onCopy')}
+      addToBasketButton={<AddToBasketButton />}
+    />
+  ),
 };
 
-export const SequenceAsyncLoad = () => {
+export const SequenceWithoutActionBar: Story = {
+  render: () => (
+    <SequenceComponent sequence={sequenceData} showActionBar={false} />
+  ),
+};
+
+export const SequenceCollapsableWithInfoData: Story = {
+  render: () => {
+    const data = [
+      {
+        title: 'Item 1',
+        content: <div>Some content</div>,
+      },
+      {
+        title: 'Another item',
+        content: <div>Some more content</div>,
+      },
+    ];
+    return (
+      <SequenceComponent
+        sequence={sequenceData}
+        infoData={data}
+        isCollapsible
+      />
+    );
+  },
+};
+
+const SequenceAsyncLoadRender = () => {
   const [sequence, setSequence] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -75,6 +92,10 @@ export const SequenceAsyncLoad = () => {
       onShowSequence={onShowSequence}
     />
   );
+};
+
+export const SequenceAsyncLoad = {
+  render: SequenceAsyncLoadRender,
 };
 
 export const SequenceTools = () => (
