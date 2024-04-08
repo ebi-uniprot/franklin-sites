@@ -84,6 +84,11 @@
     "react": "18.x",
     "react-dom": "18.x"
   },
+  "resolutions": {
+    "strip-ansi": "6.0.1",
+    "string-width": "4.2.2",
+    "wrap-ansi": "7.0.0"
+  },
   "dependencies": {
     "@tippyjs/react": "4.2.6",
     "classnames": "2.5.1",
