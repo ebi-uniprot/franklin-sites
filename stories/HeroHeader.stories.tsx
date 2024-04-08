@@ -1,3 +1,5 @@
+import { Meta, StoryObj } from '@storybook/react';
+
 import { loremIpsum } from 'lorem-ipsum';
 
 import { HeroHeader as HH } from '../src/components';
