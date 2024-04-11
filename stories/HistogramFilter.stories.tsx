@@ -66,12 +66,6 @@ const StoryRender = ({ values, barGap, color, outRangeColor }: StoryProps) => {
 const meta: Meta<StoryProps> = {
   component: HistogramFilterComponent,
   title: 'Forms/Histogram Filter',
-  parameters: {
-    purposeFunction: {
-      purpose: 'purpose',
-      function: 'function',
-    },
-  },
   argTypes: {
     // selectedRange: {
     //   control: { type: 'range', min, max, step: 1 },

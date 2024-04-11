@@ -22,12 +22,6 @@ type DataListComponentAndWrapperProps = React.ComponentProps<
 const meta: Meta<DataListComponentAndWrapperProps> = {
   component: DataListComponent,
   title: 'Data/Data List',
-  parameters: {
-    purposeFunction: {
-      function: '',
-      purpose: '',
-    },
-  },
 };
 
 export default meta;

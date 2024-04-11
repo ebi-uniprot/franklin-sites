@@ -19,14 +19,6 @@ type StoryProps = React.ComponentProps<typeof TileComponent> & {
 const meta: Meta<StoryProps> = {
   title: 'Navigation/Tile',
   component: TileComponent,
-  parameters: {
-    purposeFunction: {
-      purpose:
-        'Advertise a specific dataset of the website and provide searchable access to it.',
-      function:
-        'Provide a sneak peak and navigate to a searchable data section of the website.',
-    },
-  },
   argTypes: {
     headingLevel: {
       control: 'select',

@@ -11,12 +11,6 @@ const variants = ['primary', 'secondary', 'tertiary'] as const;
 const meta: Meta<typeof ControlledDropdownComponent> = {
   component: ControlledDropdownComponent,
   title: 'Forms/Dropdown',
-  parameters: {
-    purposeFunction: {
-      function: 'Shows a dropdown area when clicked',
-      purpose: 'Allow the user to perform actions',
-    },
-  },
   args: { expanded: false },
   render: ({ expanded }) => (
     <div>

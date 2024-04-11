@@ -6,12 +6,6 @@ import { flattenedPaths } from '../src/mock-data/tree-data';
 const meta: Meta<typeof A> = {
   component: A,
   title: 'Forms',
-  parameters: {
-    purposeFunction: {
-      function: 'Search through an array to make a selection',
-      purpose: 'Allow selection of item from flat data set',
-    },
-  },
   args: {
     data: flattenedPaths,
     onSelect: action('onSelect'),

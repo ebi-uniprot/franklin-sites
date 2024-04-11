@@ -9,12 +9,6 @@ import colors from '../src/styles/colours.json';
 const meta: Meta<typeof ButtonComponent> = {
   component: ButtonComponent,
   title: 'Forms/Button',
-  parameters: {
-    purposeFunction: {
-      purpose: '',
-      function: '',
-    },
-  },
   argTypes: {
     color: { control: 'select', name: '--main-bubble-color', options: colors },
     disabled: { control: 'boolean' },

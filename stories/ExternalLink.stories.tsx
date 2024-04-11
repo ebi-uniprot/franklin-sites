@@ -5,13 +5,6 @@ import { ExternalLink as EL } from '../src/components';
 const meta: Meta<typeof EL> = {
   component: EL,
   title: 'Core/External link',
-  parameters: {
-    purposeFunction: {
-      purpose:
-        'Indicate to the user that the link will take them to another website.',
-      function: 'Provide a link to another web resource.',
-    },
-  },
 };
 export default meta;
 

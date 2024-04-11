@@ -102,12 +102,6 @@ export const AccordionSearchRender = () => {
 const meta: Meta<typeof AccordionSearchComponent> = {
   component: AccordionSearchComponent,
   title: 'Layout',
-  parameters: {
-    purposeFunction: {
-      function: 'Show/hide blocks of content',
-      purpose: 'Minimise information-overload',
-    },
-  },
   args: {
     accordionData,
     placeholder: 'Filter',

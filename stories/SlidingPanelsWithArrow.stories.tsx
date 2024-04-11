@@ -71,13 +71,6 @@ const SlidingPanelsWithArrowRender: SlidingPanelLR = ({
 const meta: Meta<SlidingPanelLR> = {
   title: 'Layout/Sliding Panel',
   component: SlidingPanelComponent as SlidingPanelLR,
-  parameters: {
-    purposeFunction: {
-      purpose:
-        'Display additional information or options without leaving the page',
-      function: 'Overlayed on top of the page, obfuscating part of the page.',
-    },
-  },
   argTypes: {
     size: {
       control: 'select',

@@ -7,12 +7,6 @@ import { HeroHeader as HH } from '../src/components';
 const meta: Meta<typeof HH> = {
   component: HH,
   title: 'Layout/Hero Header',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Provide an entry point',
-      function: 'Tell the user what the resource is about and offer a way in',
-    },
-  },
   argTypes: {
     title: { control: 'text' },
     footer: { control: 'text' },

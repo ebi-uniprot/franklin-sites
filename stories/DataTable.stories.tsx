@@ -33,12 +33,6 @@ const meta: Meta<DataTableComponentAndWrapperProps> = {
   args: {
     onHeaderClick: action('headerClick'),
   },
-  parameters: {
-    purposeFunction: {
-      function: '',
-      purpose: '',
-    },
-  },
 };
 
 export default meta;

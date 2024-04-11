@@ -11,14 +11,6 @@ type StoryProps = React.ComponentProps<typeof MessageComponent> & {
 
 const meta: Meta<StoryProps> = {
   title: 'Layout/Message',
-  parameters: {
-    purposeFunction: {
-      function:
-        'Give the user some feedback about something happening (tool running, error) or time-boxed information about the website (downtime, etc.)',
-      purpose:
-        'They are noticeable but do not disrup the user experience. Some can be dismissed.',
-    },
-  },
   argTypes: {
     level: {
       options: ['success', 'warning', 'failure', 'info'],

@@ -4,13 +4,6 @@ import { DoughnutChart as DoughnutChartComponent } from '../src/components';
 const meta: Meta<typeof DoughnutChartComponent> = {
   component: DoughnutChartComponent,
   title: 'Visualisation',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Highlight a ratio.',
-      function:
-        'Used to represent numbers which represent a quantity relative to a total. By default shown as percentages but custom text can be shown instead',
-    },
-  },
   argTypes: {
     size: {
       options: ['small', 'medium', 'large'],

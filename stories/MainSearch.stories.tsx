@@ -54,12 +54,6 @@ export const MainSearch = ({
 const meta: Meta<StoryProps> = {
   title: 'Forms/Main Search',
   component: MainSearchComponent,
-  parameters: {
-    purposeFunction: {
-      purpose: 'Allow selection of item from flat data set',
-      function: 'Search through an array to make a selection',
-    },
-  },
   args: {
     withNamespace: false,
     withSecondaryButtons: false,

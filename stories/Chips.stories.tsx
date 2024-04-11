@@ -20,12 +20,6 @@ type StoryProps = React.ComponentProps<typeof ChipComponent> & {
 const meta: Meta<StoryProps> = {
   component: ChipComponent,
   title: 'Core/Chip',
-  parameters: {
-    purposeFunction: {
-      function: 'Can be used to make selections or trigger actions',
-      purpose: 'Display compact discrete information',
-    },
-  },
   argTypes: {
     className: {
       options: ['primary', 'secondary'],

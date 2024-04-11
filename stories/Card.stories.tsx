@@ -65,14 +65,6 @@ type StoryProps = React.ComponentProps<typeof CardComponent> & {
 const meta: Meta<StoryProps> = {
   component: CardComponent,
   title: 'Layout/Card',
-  parameters: {
-    purposeFunction: {
-      function:
-        'Provide a contained section to show content for a given category.',
-      purpose:
-        'Create visually delimited areas to allow for easier scanning of content.',
-    },
-  },
   argTypes: {
     hasHeader: {
       control: { type: 'boolean' },

@@ -26,12 +26,6 @@ const data = [
 const meta: Meta<typeof DecoratedListItemComponent> = {
   component: DecoratedListItemComponent,
   title: 'Data/Decorated List Item',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Provides a re-usable styled list element.',
-      function: 'Display a list item in various visual styles.',
-    },
-  },
   args: {
     compact: true,
     altStyle: true,

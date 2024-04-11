@@ -6,13 +6,6 @@ import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 const meta: Meta<typeof ExpandableListComponent> = {
   component: ExpandableListComponent,
   title: 'Data/Expandable List',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Provide a way of truncating long unordered lists of items.',
-      function:
-        'Display an unordered list of items which is initially collapsed.',
-    },
-  },
   argTypes: {
     numberCollapsedItems: {
       name: 'Number of displayed items',

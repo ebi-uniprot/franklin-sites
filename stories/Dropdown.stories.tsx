@@ -8,12 +8,6 @@ const variants = ['primary', 'secondary', 'tertiary'] as const;
 const meta: Meta<typeof DropdownComponent> = {
   component: DropdownComponent,
   title: 'Forms/Dropdown',
-  parameters: {
-    purposeFunction: {
-      function: 'Shows a dropdown area when clicked',
-      purpose: 'Allow the user to perform actions',
-    },
-  },
   render: () => (
     <div>
       <p>Uncontrolled/automatic dropdowns</p>

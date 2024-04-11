@@ -17,12 +17,6 @@ const li = new LoremIpsum({
 const meta: Meta<typeof CodeBlockComponent> = {
   component: CodeBlockComponent,
   title: 'Layout/CodeBlock',
-  parameters: {
-    purposeFunction: {
-      function: 'Display of preformatted text/code',
-      purpose: 'Provide pre-styled code blocks',
-    },
-  },
   args: { lightMode: false },
   render: ({ lightMode }) => (
     <CodeBlockComponent lightMode={lightMode}>{li}</CodeBlockComponent>

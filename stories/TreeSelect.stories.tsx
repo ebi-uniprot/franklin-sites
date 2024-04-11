@@ -8,12 +8,6 @@ import { treeData } from '../src/mock-data/tree-data';
 const meta: Meta<typeof TS> = {
   title: 'Forms/Tree Select',
   component: TS,
-  parameters: {
-    purposeFunction: {
-      purpose: 'Allow selection of item(s) from nested data set',
-      function: 'Navigate through a tree to make a selection',
-    },
-  },
   argTypes: {
     variant: {
       control: 'select',

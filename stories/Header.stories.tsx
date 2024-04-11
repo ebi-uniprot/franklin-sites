@@ -47,12 +47,6 @@ const Search = () => {
 
 const meta: Meta<typeof HeaderComponent> = {
   title: 'Layout/Header',
-  parameters: {
-    purposeFunction: {
-      purpose: '',
-      function: '',
-    },
-  },
   args: { search: true, secondaryItems: true, isNegative: true, subtext: true },
 
   render: ({ search, secondaryItems, isNegative, subtext }) => (

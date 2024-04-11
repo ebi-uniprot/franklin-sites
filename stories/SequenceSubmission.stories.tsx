@@ -8,12 +8,6 @@ import { SequenceObject } from '../src/sequence-utils/sequence-processor';
 const meta: Meta<typeof SequenceSubmissionComponent> = {
   title: 'Forms/Sequence Submission',
   component: SequenceSubmissionComponent,
-  parameters: {
-    purposeFunction: {
-      function: 'Accepts a sequence from user',
-      purpose: 'Enable input validation on sequences entered by the user',
-    },
-  },
 };
 
 export default meta;

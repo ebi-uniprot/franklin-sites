@@ -5,12 +5,6 @@ import { Loader as LoaderComponent } from '../src/components';
 const meta: Meta<typeof LoaderComponent> = {
   title: 'Core/Loader',
   component: LoaderComponent,
-  parameters: {
-    purposeFunction: {
-      purpose: '',
-      function: '',
-    },
-  },
   argTypes: {
     progress: { type: 'number', min: 0, max: 1, step: 0.01 },
   },

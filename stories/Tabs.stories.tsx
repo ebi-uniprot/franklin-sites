@@ -5,13 +5,6 @@ import { Tabs, Tab, ConfigureIcon } from '../src/components';
 
 export default {
   title: 'Layout/Tabs',
-  parameters: {
-    purposeFunction: {
-      purpose:
-        'Prevent information overload by categorising data to display and only showing one category at a time',
-      function: 'Allow users to switch between different views.',
-    },
-  },
 };
 
 export const UnmanagedTabs = () => (

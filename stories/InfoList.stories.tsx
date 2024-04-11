@@ -8,14 +8,6 @@ import {
 
 export default {
   title: 'Data/Info List',
-  parameters: {
-    purposeFunction: {
-      purpose:
-        'Provide a way of easily scanning for attribute names in order to view their associated data.',
-      function:
-        'Display a list of attribute names/values. The values can be of any form. Attribute names can have extra information attached to them in the form of tooltips.',
-    },
-  },
 };
 
 const data = [

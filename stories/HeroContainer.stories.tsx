@@ -6,12 +6,6 @@ import { HeroContainer as HeroContainerComponent } from '../src/components';
 const meta: Meta<typeof HeroContainerComponent> = {
   component: HeroContainerComponent,
   title: 'Layout/Hero Container',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Differentiate section from others',
-      function: 'Highlight a specific section',
-    },
-  },
   args: {
     title: 'Title',
     noSidePadding: false,

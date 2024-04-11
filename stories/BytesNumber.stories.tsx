@@ -5,12 +5,6 @@ import { BytesNumber as BytesNumberComponent } from '../src/components';
 const meta: Meta<typeof BytesNumberComponent> = {
   component: BytesNumberComponent,
   title: 'Visualisation',
-  parameters: {
-    purposeFunction: {
-      purpose: '',
-      function: '',
-    },
-  },
   args: {
     children: 1024,
     decimals: 0,

@@ -8,12 +8,6 @@ import colors from '../src/styles/colours.json';
 const meta: Meta<typeof BubbleComponent> = {
   component: BubbleComponent,
   title: 'Visualisation',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Highlight numbers.',
-      function: 'If there is more than 100 items the bubble will show 99+.',
-    },
-  },
   argTypes: {
     children: {
       control: { type: 'number', min: 400, max: 1200, step: 50 },

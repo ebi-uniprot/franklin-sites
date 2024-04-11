@@ -55,12 +55,6 @@ type WithBinSize = FC<
 const meta: Meta<WithNBins> = {
   component: HistogramComponent,
   title: 'Visualisation/Histogram',
-  parameters: {
-    purposeFunction: {
-      purpose: 'purpose',
-      function: 'function',
-    },
-  },
   argTypes: {
     color: {
       control: 'select',

@@ -21,12 +21,6 @@ const AddToBasketButton = () => (
 const meta: Meta<typeof SequenceComponent> = {
   component: SequenceComponent,
   title: 'Biocomponents/Sequence',
-  parameters: {
-    purposeFunction: {
-      function: 'Display protein/nucleotide sequence, allow users to copy it',
-      purpose: 'Allow users to see a protein / nucleotide sequence',
-    },
-  },
 };
 
 export default meta;
