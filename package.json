@@ -30,8 +30,7 @@
     "release": "yarn publish && git push --follow-tags origin main",
     "start": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky install",
-    "storybook": "storybook dev -p 6006"
+    "prepare": "husky install"
   },
   "browserslist": [
     "last 2 version",
