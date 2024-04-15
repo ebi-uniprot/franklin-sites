@@ -3,82 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { AccordionSearch as AccordionSearchComponent } from '../src/components';
 
-import { AccordionItem } from '../src/components/accordion-search';
+import accordionData from '../src/components/__mocks__/accordionData';
 
-const accordionData: AccordionItem[] = [
-  {
-    label: 'Data',
-    id: 'data',
-    items: [
-      {
-        label: 'Gene',
-        id: 'gene',
-        items: [
-          {
-            label: 'BRCA1',
-            id: 'brca1',
-          },
-          {
-            label: 'BRCA2',
-            id: 'brca2',
-          },
-          {
-            label: 'TP53',
-            id: 'tp53',
-          },
-        ],
-      },
-      {
-        label: 'Organelle',
-        id: 'organelle',
-        items: [
-          {
-            label: 'Ribosome',
-            id: 'ribosome',
-          },
-          {
-            label: 'Nucleus',
-            id: 'nucleus',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'External links',
-    id: 'external-links',
-    items: [
-      {
-        label: 'Sequence',
-        id: 'sequence',
-        items: [
-          {
-            label: 'CCDS',
-            id: 'ccds',
-          },
-          {
-            label: 'PIR',
-            id: 'pir',
-          },
-        ],
-      },
-      {
-        label: '3d structure',
-        id: '3d-structure',
-        items: [
-          {
-            label: 'AlphaFoldDB',
-            id: 'alphafolddb',
-          },
-          {
-            label: 'BMRB',
-            id: 'bmrb',
-          },
-        ],
-      },
-    ],
-  },
-];
 export const AccordionSearchRender = () => {
   const [selected, setSelected] = useState<string[]>([]);
 
