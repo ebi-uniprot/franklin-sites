@@ -1,10 +1,4 @@
-import {
-  useState,
-  useMemo,
-  useDeferredValue,
-  useEffect,
-  useCallback,
-} from 'react';
+import { useState, useMemo, useDeferredValue, useCallback } from 'react';
 
 import { Accordion, Loader, Message, SearchInput, SubstringHighlight } from '.';
 
@@ -220,17 +214,16 @@ const AccordionSearch = ({
   columns,
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
-  const [filteredAccordionData, setFilteredAccordionData] =
-    useState<AccordionItem[]>(accordionData);
-
   const deferredInputValue = useDeferredValue(inputValue);
-  const deferredFilteredAccordionData = useDeferredValue(filteredAccordionData);
 
-  useEffect(() => {
-    setFilteredAccordionData(
-      filterAccordionData(accordionData, inputValue.trim().toLowerCase())
-    );
-  }, [accordionData, inputValue]);
+  const filteredAccordionData = useMemo(
+    () =>
+      filterAccordionData(
+        accordionData,
+        deferredInputValue.trim().toLowerCase()
+      ),
+    [accordionData, deferredInputValue]
+  );
 
   const handleSearchInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -243,8 +236,8 @@ const AccordionSearch = ({
     return <Loader />;
   }
 
-  const accordionGroupNode = deferredFilteredAccordionData.length ? (
-    deferredFilteredAccordionData.map(
+  const accordionGroupNode = filteredAccordionData.length ? (
+    filteredAccordionData.map(
       ({ label, id, items, addAsterisk }, index) =>
         items?.length && (
           <AccordionSearchItem
