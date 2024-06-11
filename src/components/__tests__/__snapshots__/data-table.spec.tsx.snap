@@ -25,16 +25,19 @@ exports[`DataTable should render autoload 1`] = `
         </th>
         <th
           class="data-table__header-cell--sortable data-table__header-cell--ascend"
+          data-column-name="content1"
         >
           Column 1
         </th>
         <th
           class=""
+          data-column-name="content2"
         >
           Column 2
         </th>
         <th
           class="data-table__header-cell--sortable"
+          data-column-name="content3"
         >
           <h1>
             Column 3
@@ -338,16 +341,19 @@ exports[`DataTable should render click-to-load 1`] = `
         </th>
         <th
           class="data-table__header-cell--sortable data-table__header-cell--ascend"
+          data-column-name="content1"
         >
           Column 1
         </th>
         <th
           class=""
+          data-column-name="content2"
         >
           Column 2
         </th>
         <th
           class="data-table__header-cell--sortable"
+          data-column-name="content3"
         >
           <h1>
             Column 3
