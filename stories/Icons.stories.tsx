@@ -1,4 +1,4 @@
-import { select } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 
 import {
   BasketIcon,
@@ -56,10 +56,6 @@ import {
 } from '../src/components';
 
 import colors from '../src/styles/colours.json';
-
-export default {
-  title: 'Core/Icons',
-};
 
 const size = 30;
 
@@ -325,13 +321,12 @@ const iconDefinition = [
     icon: <RedundantProteomeIcon width={size} height={size} />,
   },
 ];
-
-export const icons = () => (
+const IconComponents = ({ color }: { color: string }) => (
   <div
     style={{
       display: 'flex',
       flexWrap: 'wrap',
-      color: select('CSS color', colors, colors.sapphireBlue),
+      color,
     }}
   >
     {iconDefinition.map((d) => (
@@ -352,3 +347,19 @@ export const icons = () => (
     ))}
   </div>
 );
+
+const meta: Meta = {
+  title: 'Core/Icons',
+  component: IconComponents,
+  render: ({ color }) => <IconComponents color={color} />,
+  argTypes: {
+    color: { control: 'select', name: 'CSS color', options: colors },
+  },
+  args: { color: colors.sapphireBlue },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof IconComponents>;
+
+export const Icon: Story = {};

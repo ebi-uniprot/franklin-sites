@@ -1,20 +1,12 @@
 import { loremIpsum } from 'lorem-ipsum';
-import { Window } from '../src/components';
+import { Window as WindowComponent } from '../src/components';
 
 export default {
   title: 'Layout/Window',
-  parameters: {
-    purposeFunction: {
-      purpose:
-        'Improve the User Experience by providing another way of conent-isoloation.',
-      function:
-        'Provide reusable window component with various configurations possible.',
-    },
-  },
 };
 
-export const window = () => (
-  <Window
+export const Window = () => (
+  <WindowComponent
     title="Alert"
     key="full-featured-window"
     withHeaderCloseButton
@@ -22,5 +14,5 @@ export const window = () => (
     withShadow
   >
     {loremIpsum({ count: 25, units: 'words' })}
-  </Window>
+  </WindowComponent>
 );

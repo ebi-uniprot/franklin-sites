@@ -1,77 +1,75 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
 
-import { DataTable, DataTableWithLoader } from '../src/components';
+import { Meta, StoryObj } from '@storybook/react';
 import {
+  DataTable as DataTableComponent,
+  DataTableWithLoader as DataTableWithLoaderComponent,
+} from '../src/components';
+import {
+  CommonProps,
   DataDecorator,
   DataLoaderDecorator,
+  DataType,
   columns,
 } from '../src/decorators/DataDecorator';
+import { WrapperProps } from '../src/components/data-loader';
 
-export default {
+type DataTableComponentAndWrapperProps = React.ComponentProps<
+  typeof DataTableComponent
+> &
+  WrapperProps<DataType>;
+
+const meta: Meta<DataTableComponentAndWrapperProps> = {
+  component: DataTableComponent,
   title: 'Data/Data Table',
-  parameters: {
-    purposeFunction: {
-      purpose: '',
-      function: '',
+  argTypes: {
+    onSelectionChange: {
+      name: 'Selectable (onSelectionChange)',
+      mapping: { true: action('selectChange'), false: null },
+      control: 'boolean',
     },
+    clickToLoad: { control: 'boolean' },
+  },
+  args: {
+    onHeaderClick: action('headerClick'),
   },
 };
 
-const useCheckbox = () => boolean('onSelectionChange', false, 'Props');
-const useFixedLayout = () => boolean('fixedLayout', false, 'Props');
-const useDensity = () =>
-  select('density', ['normal', 'compact'], 'normal', 'Props');
-const useClickToLoad = () => boolean('clickToLoad', false, 'Props');
-const useClickToLoadContent = () => text('clickToLoad content', '');
+export default meta;
 
-export const dataTable = () => (
-  <DataDecorator>
-    {(props) => (
-      <DataTable
-        {...props}
-        columns={columns}
-        onSelectionChange={
-          useCheckbox() ? action('onSelectionChange') : undefined
-        }
-        onHeaderClick={action('onHeaderClick')}
-        fixedLayout={useFixedLayout()}
-        density={useDensity()}
-      />
-    )}
-  </DataDecorator>
-);
+type Story = StoryObj<DataTableComponentAndWrapperProps>;
 
-export const dataTableWithLoader = () => (
-  <DataLoaderDecorator>
-    {(props) => {
-      const clickToLoad = useClickToLoad();
-      const clickToLoadContent = useClickToLoadContent();
-      return (
-        <DataTableWithLoader
+export const DataTable: Story = {
+  render: (storyProps) => (
+    <DataDecorator>
+      {(props: CommonProps) => (
+        <DataTableComponent {...props} {...storyProps} columns={columns} />
+      )}
+    </DataDecorator>
+  ),
+};
+
+export const DataTableWithLoader: Story = {
+  render: (storyProps) => (
+    <DataLoaderDecorator>
+      {(props: CommonProps & WrapperProps<DataType>) => (
+        <DataTableWithLoaderComponent
           {...props}
+          {...storyProps}
           columns={columns}
-          onSelectionChange={
-            useCheckbox() ? action('onSelectionChange') : undefined
-          }
-          onHeaderClick={action('onHeaderClick')}
-          fixedLayout={useFixedLayout()}
-          density={useDensity()}
-          clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
         />
-      );
-    }}
-  </DataLoaderDecorator>
-);
+      )}
+    </DataLoaderDecorator>
+  ),
+};
 
-export const dataTableColumnLoading = () => (
-  <DataLoaderDecorator>
-    {(props) => {
-      const clickToLoad = useClickToLoad();
-      const clickToLoadContent = useClickToLoadContent();
-      return (
-        <DataTableWithLoader
+export const DataTableColumnLoading: Story = {
+  render: (storyProps) => (
+    <DataLoaderDecorator>
+      {(props: CommonProps & WrapperProps<DataType>) => (
+        <DataTableWithLoaderComponent
           {...props}
+          {...storyProps}
           loading
           columns={[
             ...columns,
@@ -83,15 +81,8 @@ export const dataTableColumnLoading = () => (
               render: (row) => row.content6.complexValue,
             },
           ]}
-          onSelectionChange={
-            useCheckbox() ? action('onSelectionChange') : undefined
-          }
-          onHeaderClick={action('onHeaderClick')}
-          fixedLayout={useFixedLayout()}
-          density={useDensity()}
-          clickToLoad={clickToLoad && (clickToLoadContent || clickToLoad)}
         />
-      );
-    }}
-  </DataLoaderDecorator>
-);
+      )}
+    </DataLoaderDecorator>
+  ),
+};

@@ -1,5 +1,6 @@
 import { useState, HTMLAttributes } from 'react';
 
+import { Except } from 'type-fest';
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
 import { Props as DataListProps } from '../components/data-list';
@@ -11,8 +12,14 @@ import {
 import { WrapperProps } from '../components/data-loader';
 import { ExternalLink } from '../components';
 
-type DataType = Record<string, string>;
-type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
+export type DataType = Record<string, string>;
+export type CommonProps = DataListProps<DataType> | DataTableProps<DataType>;
+
+const Column5 = () => (
+  <>
+    Column 5 <small>FC</small>
+  </>
+);
 
 const totalNumberDataPoints = 50;
 const getIdKey = (datum: DataType) => datum.id;
@@ -58,11 +65,7 @@ export const columns: Array<
     sortable: true,
   },
   {
-    label: () => (
-      <>
-        Column 5 <small>FC</small>
-      </>
-    ),
+    label: <Column5 />,
     name: 'content5',
     render: (row) => row.content5,
   },
@@ -76,7 +79,7 @@ const generateData = (numberElements: number) =>
 
 type Args<P> = {
   children: (props: P) => JSX.Element;
-} & HTMLAttributes<HTMLDivElement>;
+} & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export const DataLoaderDecorator = ({
   children,

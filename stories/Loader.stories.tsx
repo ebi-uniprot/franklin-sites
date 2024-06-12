@@ -1,26 +1,23 @@
-import { number } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Loader } from '../src/components';
+import { Loader as LoaderComponent } from '../src/components';
 
-export default {
+const meta: Meta<typeof LoaderComponent> = {
   title: 'Core/Loader',
-  parameters: {
-    purposeFunction: {
-      purpose: '',
-      function: '',
-    },
+  component: LoaderComponent,
+  argTypes: {
+    progress: { type: 'number', min: 0, max: 1, step: 0.01 },
   },
+  args: { progress: 0.5 },
+  render: ({ progress }) => (
+    <div style={{ width: '100%', height: '300px', background: 'lightblue' }}>
+      <LoaderComponent progress={progress} />
+    </div>
+  ),
 };
 
-export const loader = () => (
-  <div style={{ width: '100%', height: '300px', background: 'lightblue' }}>
-    <Loader
-      progress={number(
-        'Progress',
-        0.5,
-        { min: 0, step: 0.01, max: 1 },
-        'Props'
-      )}
-    />
-  </div>
-);
+export default meta;
+
+type Story = StoryObj<typeof LoaderComponent>;
+
+export const HeroHeader: Story = {};

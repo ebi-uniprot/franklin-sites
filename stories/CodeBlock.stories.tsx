@@ -1,17 +1,7 @@
-import { boolean } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import { LoremIpsum } from 'lorem-ipsum';
 
-import { CodeBlock } from '../src/components';
-
-export default {
-  title: 'Layout/CodeBlock',
-  parameters: {
-    purposeFunction: {
-      function: 'Display of preformatted text/code',
-      purpose: 'Provide pre-styled code blocks',
-    },
-  },
-};
+import { CodeBlock as CodeBlockComponent } from '../src/components';
 
 const li = new LoremIpsum({
   sentencesPerParagraph: {
@@ -24,6 +14,16 @@ const li = new LoremIpsum({
   },
 }).generateParagraphs(10);
 
-export const codeBlock = () => (
-  <CodeBlock lightMode={boolean('lightMode', false)}>{li}</CodeBlock>
-);
+const meta: Meta<typeof CodeBlockComponent> = {
+  component: CodeBlockComponent,
+  title: 'Layout/CodeBlock',
+  args: { lightMode: false },
+  render: ({ lightMode }) => (
+    <CodeBlockComponent lightMode={lightMode}>{li}</CodeBlockComponent>
+  ),
+};
+export default meta;
+
+type Story = StoryObj<typeof CodeBlockComponent>;
+
+export const CodeBlock: Story = {};

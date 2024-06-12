@@ -1,20 +1,25 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Fragment } from 'react';
 
-import { Button, Dropdown as DropdownComponent } from '../src/components';
+import {
+  Button,
+  ControlledDropdown as ControlledDropdownComponent,
+} from '../src/components';
 
 const variants = ['primary', 'secondary', 'tertiary'] as const;
 
-const meta: Meta<typeof DropdownComponent> = {
-  component: DropdownComponent,
+const meta: Meta<typeof ControlledDropdownComponent> = {
+  component: ControlledDropdownComponent,
   title: 'Forms/Dropdown',
-  render: () => (
+  args: { expanded: false },
+  render: ({ expanded }) => (
     <div>
-      <p>Uncontrolled/automatic dropdowns</p>
+      <p>Controlled dropdowns (trigger through storybook knobs)</p>
       {variants.map((variant) => (
         <Fragment key={variant}>
-          <DropdownComponent
+          <ControlledDropdownComponent
             visibleElement={<Button variant={variant}>Download</Button>}
+            expanded={expanded}
           >
             <div>
               <p>Download content from:</p>
@@ -27,7 +32,7 @@ const meta: Meta<typeof DropdownComponent> = {
                 </li>
               </ul>
             </div>
-          </DropdownComponent>
+          </ControlledDropdownComponent>{' '}
         </Fragment>
       ))}
     </div>
@@ -36,6 +41,6 @@ const meta: Meta<typeof DropdownComponent> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DropdownComponent>;
+type Story = StoryObj<typeof ControlledDropdownComponent>;
 
-export const Dropdown: Story = {};
+export const ControlledDropdown: Story = {};

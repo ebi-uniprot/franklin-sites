@@ -18,7 +18,7 @@ const gridStyles = {
   },
 };
 
-export const grid = () => (
+export const Grid = () => (
   <>
     <div>
       <h3>Uniprot Grid</h3>

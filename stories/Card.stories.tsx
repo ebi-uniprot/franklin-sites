@@ -1,28 +1,47 @@
-import { boolean } from '@storybook/addon-knobs';
+import React, { ReactNode } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { Card as CardComponent, SwissProtIcon } from '../src/components';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
+const ActionLink = ({
+  name,
+  link,
+  color,
+}: {
+  name: ReactNode;
+  link: string;
+  color?: string;
+}) => (
+  <a
+    href={link}
+    key={link}
+    style={{ borderBottom: color ? `0.125rem solid ${color}` : undefined }}
+  >
+    {name}
+  </a>
+);
+
 const links = [
   {
     name: '10 Protein Interactions',
-    link: '/red',
+    link: '#red',
     color: 'red',
   },
   {
     name: '9 Pathways',
-    link: '/blue',
+    link: '#blue',
     color: 'blue',
   },
   {
     name: '5 Diseases',
-    link: '/diseases',
+    link: '#diseases',
     color: '#bada55',
   },
   {
     name: '72 Variants',
-    link: '/burlywood',
+    link: '#burlywood',
     color: 'burlywood',
   },
   {
@@ -32,27 +51,43 @@ const links = [
         <SwissProtIcon width="1.5ch" /> Reviewed
       </>
     ),
-    link: '/reviewed',
+    link: '#reviewed',
   },
 ];
 
-export default {
-  title: 'Layout/Card',
-  parameters: {
-    purposeFunction: {
-      function:
-        'Provide a contained section to show content for a given category.',
-      purpose:
-        'Create visually delimited areas to allow for easier scanning of content.',
-    },
-  },
+type StoryProps = React.ComponentProps<typeof CardComponent> & {
+  hasHeader: boolean;
+  hasCheckbox: boolean;
+  hasHeaderSeparator: boolean;
+  hasLinks: boolean;
 };
 
-export const Card = () => {
-  const hasHeader = boolean('header', true, 'Props');
-  const hasHeaderSeparator = boolean('headerSeparator', true, 'Props');
-  const hasCheckbox = boolean('checkbox (only if header)', false, 'Props');
-  return (
+const meta: Meta<StoryProps> = {
+  component: CardComponent,
+  title: 'Layout/Card',
+  argTypes: {
+    hasHeader: {
+      control: { type: 'boolean' },
+      name: 'header',
+    },
+    hasCheckbox: {
+      control: { type: 'boolean' },
+      name: 'checkbox (only if header)',
+    },
+    hasHeaderSeparator: {
+      control: { type: 'boolean' },
+      name: 'header separator',
+    },
+    hasLinks: {
+      control: { type: 'boolean' },
+      name: 'links',
+    },
+  },
+  args: {
+    hasHeader: true,
+    hasHeaderSeparator: true,
+  },
+  render: ({ hasHeader, hasCheckbox, hasHeaderSeparator, hasLinks }) => (
     <CardComponent
       header={
         hasHeader ? (
@@ -68,9 +103,25 @@ export const Card = () => {
         ) : undefined
       }
       headerSeparator={hasHeaderSeparator}
-      links={boolean('links', false, 'Props') ? links : undefined}
+      links={
+        hasLinks
+          ? links.map(({ name, color, link }) => (
+              <ActionLink
+                name={name}
+                color={color}
+                link={`${window.parent.location.href.split('#')[0]}${link}`}
+              />
+            ))
+          : undefined
+      }
     >
       {getLipsumSentences()}
     </CardComponent>
-  );
+  ),
 };
+
+export default meta;
+
+type Story = StoryObj<StoryProps>;
+
+export const Card: Story = {};
