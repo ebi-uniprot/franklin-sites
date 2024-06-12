@@ -6,7 +6,7 @@ build_static_assets:
   script:
     - yarn
     - yarn build
-    - mv .out build
+    - mv storybook-static build
 
 build_docker_image:
   only:
