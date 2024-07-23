@@ -37,7 +37,7 @@ describe('ExpandableMessage', () => {
   });
 
   describe('button text', () => {
-    it('should be "Less descriptionString"', () => {
+    it('should be "Fewer descriptionString"', () => {
       render(
         <ExpandableMessage
           expanded
@@ -48,7 +48,7 @@ describe('ExpandableMessage', () => {
       const button = screen.getByRole('button');
       fireEvent.click(button);
       expect(setExpanded).toHaveBeenCalled();
-      expect(button.textContent).toEqual(`Less ${descriptionString}`);
+      expect(button.textContent).toEqual(`Fewer ${descriptionString}`);
     });
 
     it('should include the number of hidden items', () => {
