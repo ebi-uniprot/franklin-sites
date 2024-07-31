@@ -7,11 +7,14 @@ const meta: Meta<typeof HeroContainerComponent> = {
   component: HeroContainerComponent,
   title: 'Layout/Hero Container',
   args: {
-    title: 'Title',
+    headingContent: 'Heading Content',
     noSidePadding: false,
   },
-  render: ({ title, noSidePadding }) => (
-    <HeroContainerComponent title={title} noSidePadding={noSidePadding}>
+  render: ({ headingContent, noSidePadding }) => (
+    <HeroContainerComponent
+      headingContent={headingContent}
+      noSidePadding={noSidePadding}
+    >
       {loremIpsum({ count: 25, units: 'words' })}
     </HeroContainerComponent>
   ),
