@@ -30,6 +30,9 @@ const meta: Meta<typeof ControlledDropdownComponent> = {
                 <li>
                   <a href="//www.ensembl.org">Ensembl</a>
                 </li>
+                <li>
+                  <Button variant="tertiary">Some button</Button>
+                </li>
               </ul>
             </div>
           </ControlledDropdownComponent>{' '}

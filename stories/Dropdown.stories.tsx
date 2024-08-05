@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { Fragment } from 'react';
 
 import { Button, Dropdown as DropdownComponent } from '../src/components';
@@ -16,17 +17,30 @@ const meta: Meta<typeof DropdownComponent> = {
           <DropdownComponent
             visibleElement={<Button variant={variant}>Download</Button>}
           >
-            <div>
-              <p>Download content from:</p>
-              <ul className="no-bullet">
-                <li>
-                  <a href="//www.uniprot.org">UniProt</a>
-                </li>
-                <li>
-                  <a href="//www.ensembl.org">Ensembl</a>
-                </li>
-              </ul>
-            </div>
+            {(closeDropdown) => (
+              <div>
+                <p>Download content from:</p>
+                <ul className="no-bullet">
+                  <li>
+                    <a href="//www.uniprot.org">UniProt</a>
+                  </li>
+                  <li>
+                    <a href="//www.ensembl.org">Ensembl</a>
+                  </li>
+                  <li>
+                    <Button
+                      variant="tertiary"
+                      onClick={() => {
+                        action('button within clicked')();
+                        closeDropdown();
+                      }}
+                    >
+                      Some button
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            )}
           </DropdownComponent>
         </Fragment>
       ))}
