@@ -20,7 +20,7 @@ export const ExpandableMessage: FC<ExpandableMessageProps> = ({
   showHideWording,
   nHiddenItems,
 }) => {
-  let message = `${showHideWording ? 'Hide' : 'Less'} ${descriptionString}`;
+  let message = `${showHideWording ? 'Hide' : 'Fewer'} ${descriptionString}`;
   if (!expanded) {
     if (nHiddenItems === undefined) {
       message = showHideWording ? 'Show' : 'More';

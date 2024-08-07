@@ -17,6 +17,28 @@ $tile: '.tile';
   color: $colour-sky-white;
   aspect-ratio: 1/1;
 
+  &--has-link {
+    & > * {
+      pointer-events: none;
+    }
+
+    & > a,
+    & > button,
+    & > input,
+    & > label {
+      pointer-events: initial;
+    }
+
+    & > a {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      cursor: pointer;
+    }
+  }
+
   &.tile-gradient {
     background: linear-gradient(
         45deg,

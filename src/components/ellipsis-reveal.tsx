@@ -19,7 +19,7 @@ const Context = createContext<
 >(null);
 Context.displayName = 'EllipsisRevealContext';
 
-const Provider: FC = ({ children }) => {
+const Provider: FC<PropsWithChildren> = ({ children }) => {
   const state = useState(new Set<string>());
 
   return <Context.Provider value={state}>{children}</Context.Provider>;

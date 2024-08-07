@@ -1,67 +1,55 @@
-import { boolean } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { Fragment } from 'react';
 
-import { Button, ControlledDropdown, Dropdown } from '../src/components';
-
-export default {
-  title: 'Forms/Dropdown button',
-  parameters: {
-    purposeFunction: {
-      function: 'Shows a dropdown area when clicked',
-      purpose: 'Allow the user to perform actions',
-    },
-  },
-};
+import { Button, Dropdown as DropdownComponent } from '../src/components';
 
 const variants = ['primary', 'secondary', 'tertiary'] as const;
 
-export const controlledDropdown = () => {
-  const expanded = boolean('expanded', false);
-
-  return (
+const meta: Meta<typeof DropdownComponent> = {
+  component: DropdownComponent,
+  title: 'Forms/Dropdown',
+  render: () => (
     <div>
-      <p>Controlled dropdowns (trigger through storybook knobs)</p>
+      <p>Uncontrolled/automatic dropdowns</p>
       {variants.map((variant) => (
         <Fragment key={variant}>
-          <ControlledDropdown
+          <DropdownComponent
             visibleElement={<Button variant={variant}>Download</Button>}
-            expanded={expanded}
           >
-            <p>Download content from:</p>
-            <ul className="no-bullet">
-              <li>
-                <a href="//www.uniprot.org">UniProt</a>
-              </li>
-              <li>
-                <a href="//www.ensembl.org">Ensembl</a>
-              </li>
-            </ul>
-          </ControlledDropdown>{' '}
+            {(closeDropdown) => (
+              <div>
+                <p>Download content from:</p>
+                <ul className="no-bullet">
+                  <li>
+                    <a href="//www.uniprot.org">UniProt</a>
+                  </li>
+                  <li>
+                    <a href="//www.ensembl.org">Ensembl</a>
+                  </li>
+                  <li>
+                    <Button
+                      variant="tertiary"
+                      onClick={() => {
+                        action('button within clicked')();
+                        closeDropdown();
+                      }}
+                    >
+                      Some button
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </DropdownComponent>
         </Fragment>
       ))}
     </div>
-  );
+  ),
 };
 
-export const dropdown = () => (
-  <div>
-    <p>Uncontrolled/automatic dropdowns</p>
-    {variants.map((variant) => (
-      <Fragment key={variant}>
-        <Dropdown visibleElement={<Button variant={variant}>Download</Button>}>
-          <div>
-            <p>Download content from:</p>
-            <ul className="no-bullet">
-              <li>
-                <a href="//www.uniprot.org">UniProt</a>
-              </li>
-              <li>
-                <a href="//www.ensembl.org">Ensembl</a>
-              </li>
-            </ul>
-          </div>
-        </Dropdown>{' '}
-      </Fragment>
-    ))}
-  </div>
-);
+export default meta;
+
+type Story = StoryObj<typeof DropdownComponent>;
+
+export const Dropdown: Story = {};

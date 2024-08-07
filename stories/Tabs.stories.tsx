@@ -5,16 +5,9 @@ import { Tabs, Tab, ConfigureIcon } from '../src/components';
 
 export default {
   title: 'Layout/Tabs',
-  parameters: {
-    purposeFunction: {
-      purpose:
-        'Prevent information overload by categorising data to display and only showing one category at a time',
-      function: 'Allow users to switch between different views.',
-    },
-  },
 };
 
-export const unmanagedTabs = () => (
+export const UnmanagedTabs = () => (
   <Tabs>
     <Tab
       title={
@@ -35,7 +28,7 @@ export const unmanagedTabs = () => (
   </Tabs>
 );
 
-export const unmanagedTabsWithDifferentDefault = () => (
+export const UnmanagedTabsWithDifferentDefault = () => (
   <Tabs>
     <Tab
       title={
@@ -59,7 +52,7 @@ export const unmanagedTabsWithDifferentDefault = () => (
 );
 
 const options = ['option a', 'option 2', 'option III'];
-const ManagedTabs = () => {
+const ManagedTabsComponent = () => {
   const interval = useRef<number>();
 
   const [selected, setSelected] = useState(options[0]);
@@ -103,9 +96,9 @@ const ManagedTabs = () => {
   );
 };
 
-export const managedTabs = () => <ManagedTabs />;
+export const ManagedTabs = () => <ManagedTabsComponent />;
 
-export const cachedTabs = () => (
+export const CachedTabs = () => (
   <Tabs>
     <Tab
       cache

@@ -1,61 +1,72 @@
-import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
-
-import { ExpandableList } from '../src/components';
+import { Meta, StoryObj } from '@storybook/react';
+import { ExpandableList as ExpandableListComponent } from '../src/components';
 
 import { getLipsumObjectArray } from '../src/mock-data/lipsum';
 
-export default {
+const meta: Meta<typeof ExpandableListComponent> = {
+  component: ExpandableListComponent,
   title: 'Data/Expandable List',
-  decorators: [withKnobs()],
-  parameters: {
-    purposeFunction: {
-      purpose: 'Provide a way of truncating long unordered lists of items.',
-      function:
-        'Display an unordered list of items which is initially collapsed.',
+  argTypes: {
+    numberCollapsedItems: {
+      name: 'Number of displayed items',
+      control: { type: 'number', min: 0, step: 1 },
     },
+  },
+  args: {
+    numberCollapsedItems: 5,
+    descriptionString: 'lorem ipsum items',
+    displayNumberOfHiddenItems: false,
   },
 };
 
-export const expandableList = () => (
-  <ExpandableList
-    numberCollapsedItems={number(
-      'Number of displayed items',
-      5,
-      { min: 0, step: 1 },
-      'Props'
-    )}
-    descriptionString={text('Description string', 'lorem ipsum items', 'Props')}
-    displayNumberOfHiddenItems={boolean(
-      'Display number of hidden items',
-      false,
-      'Props'
-    )}
-  >
-    {getLipsumObjectArray({
-      numberElements: 10,
-      keys: ['content'],
-      type: 'words',
-    }).map(({ id, content }) => (
-      <span key={id}>{content}</span>
-    ))}
-  </ExpandableList>
-);
+export default meta;
 
-export const expandableListWithExtraAction = () => (
-  <ExpandableList
-    numberCollapsedItems={5}
-    descriptionString="Lorem ipsum items"
-    extraActions={
-      // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a className="button tertiary expandable-list__action">some link</a>
-    }
-  >
-    {getLipsumObjectArray({
-      numberElements: 10,
-      keys: ['content'],
-      type: 'words',
-    }).map(({ id, content }) => (
-      <span key={id}>{content}</span>
-    ))}
-  </ExpandableList>
-);
+type Story = StoryObj<typeof ExpandableListComponent>;
+
+export const ExpandableList: Story = {
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems,
+  }) => (
+    <ExpandableListComponent
+      numberCollapsedItems={numberCollapsedItems}
+      descriptionString={descriptionString}
+      displayNumberOfHiddenItems={displayNumberOfHiddenItems}
+    >
+      {getLipsumObjectArray({
+        numberElements: 10,
+        keys: ['content'],
+        type: 'words',
+      }).map(({ id, content }) => (
+        <span key={id}>{content}</span>
+      ))}
+    </ExpandableListComponent>
+  ),
+};
+
+export const ExpandableListWithExtraAction: Story = {
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems,
+  }) => (
+    <ExpandableListComponent
+      numberCollapsedItems={numberCollapsedItems}
+      descriptionString={descriptionString}
+      displayNumberOfHiddenItems={displayNumberOfHiddenItems}
+      extraActions={
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        <a className="button tertiary expandable-list__action">some link</a>
+      }
+    >
+      {getLipsumObjectArray({
+        numberElements: 10,
+        keys: ['content'],
+        type: 'words',
+      }).map(({ id, content }) => (
+        <span key={id}>{content}</span>
+      ))}
+    </ExpandableListComponent>
+  ),
+};

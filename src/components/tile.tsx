@@ -1,14 +1,19 @@
-import { createElement, CSSProperties, FC, ReactNode } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import {
+  createElement,
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  PropsWithChildren,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import cn from 'classnames';
-
-import ExternalLink, { Props as ExternalLinkProps } from './external-link';
 
 import { HeadingLevels } from '../types/common';
 
 import '../styles/components/tile.scss';
 
-type Props = (LinkProps | ExternalLinkProps) & {
+type Props = {
   /**
    * The tile title
    */
@@ -43,12 +48,18 @@ type Props = (LinkProps | ExternalLinkProps) & {
    * Can be useful if the description text is long.
    */
   descriptionSlideUp?: boolean;
+  /**
+   * Target/link of the list item when clicking on it
+   */
+  link?: ReactElement;
 };
 
 const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
   `h${+level[1] + 1}`;
 
-export const Tile: FC<Props> = ({
+export const Tile: FC<
+  PropsWithChildren<Props> & HTMLAttributes<HTMLDivElement>
+> = ({
   title,
   headingLevel = 'h2',
   subtitle,
@@ -60,12 +71,26 @@ export const Tile: FC<Props> = ({
   style,
   children,
   descriptionSlideUp = false,
-  ...props
-}) => {
-  const isExternal = 'url' in props;
-
-  const mainContent = (
-    <span>
+  link,
+}) => (
+  <div
+    className={cn(className, 'tile', {
+      'tile-gradient': gradient,
+      'tile--has-link': link,
+    })}
+    style={
+      {
+        ...style,
+        '--tile-background': backgroundColor,
+        width,
+      } as CSSProperties
+    }
+  >
+    {link && <link.type {...link.props} aria-hidden="true" tabIndex={-1} />}
+    <div className="tile__background-image" aria-hidden="true">
+      {backgroundImage}
+    </div>
+    <div className="tile__main-content">
       {createElement(headingLevel, { className: 'tile__header big' }, title)}
       {subtitle &&
         createElement(
@@ -73,48 +98,18 @@ export const Tile: FC<Props> = ({
           { className: 'tile__subtitle small' },
           subtitle
         )}
-    </span>
-  );
-
-  return (
-    <div
-      className={cn(className, 'tile', { 'tile-gradient': gradient })}
-      style={
-        {
-          ...style,
-          '--tile-background': backgroundColor,
-          width,
-        } as CSSProperties
-      }
-    >
-      <div className="tile__background-image" aria-hidden="true">
-        {backgroundImage}
-      </div>
-      {isExternal ? (
-        <ExternalLink
-          className="tile__main-content"
-          {...(props as ExternalLinkProps)}
-          noIcon
-        >
-          {mainContent}
-        </ExternalLink>
-      ) : (
-        <Link className="tile__main-content" {...(props as LinkProps)}>
-          {mainContent}
-        </Link>
-      )}
-      {children && (
-        <small
-          className={cn(
-            'tile__description',
-            descriptionSlideUp && 'tile__description--animated'
-          )}
-        >
-          {children}
-        </small>
-      )}
     </div>
-  );
-};
+    {children && (
+      <small
+        className={cn(
+          'tile__description',
+          descriptionSlideUp && 'tile__description--animated'
+        )}
+      >
+        {children}
+      </small>
+    )}
+  </div>
+);
 
 export default Tile;

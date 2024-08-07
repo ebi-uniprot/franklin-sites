@@ -1,29 +1,16 @@
 import { CSSProperties, useState } from 'react';
-
-import { withKnobs, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { HistogramFilter } from '../src/components';
+import { Meta, StoryObj } from '@storybook/react';
+import { HistogramFilter as HistogramFilterComponent } from '../src/components';
+import { Range } from '../src/components/histogram';
 
 import {
   getUniformSample,
   getGaussianSample,
 } from '../src/mock-data/probability-distribution-sample';
 
-import { Range } from '../src/components/histogram';
-
 import colors from '../src/styles/colours.json';
-
-export default {
-  title: 'Forms/Histogram Filter',
-  decorators: [withKnobs()],
-  parameters: {
-    purposeFunction: {
-      purpose: 'purpose',
-      function: 'function',
-    },
-  },
-};
 
 const [min, max] = [0, 1000];
 const nValues = 1000;
@@ -44,7 +31,13 @@ interface Style extends CSSProperties {
   '--histogram-bar-gap': string;
 }
 
-export const Gaussian = () => {
+type StoryProps = React.ComponentProps<typeof HistogramFilterComponent> & {
+  color: string;
+  outRangeColor: string;
+  barGap: string;
+};
+
+const StoryRender = ({ values, barGap, color, outRangeColor }: StoryProps) => {
   const [selectedRange, setSelectedRange] = useState<Range>([min, max]);
 
   const handleChange = (range: Range) => {
@@ -53,75 +46,65 @@ export const Gaussian = () => {
   };
 
   return (
-    <HistogramFilter
+    <HistogramFilterComponent
+      values={values}
       min={min}
       max={max}
       selectedRange={selectedRange}
       onChange={handleChange}
-      values={gaussianSample}
       style={
         {
-          width: '25rem',
-          '--main-histogram-color': select(
-            '--main-histogram-color',
-            colors,
-            colors.weldonBlue,
-            'Custom Properties'
-          ),
-          '--out-range-histogram-color': select(
-            '--out-range-histogram-color',
-            colors,
-            colors.platinum,
-            'Custom Properties'
-          ),
-          '--histogram-bar-gap': text(
-            '--histogram-bar-gap',
-            '-1px',
-            'Custom Properties'
-          ),
+          '--main-histogram-color': color,
+          '--out-range-histogram-color': outRangeColor,
+          '--histogram-bar-gap': barGap,
         } as Style
       }
     />
   );
 };
 
-export const Uniform = () => {
-  const [selectedRange, setSelectedRange] = useState<Range>([min, max]);
+const meta: Meta<StoryProps> = {
+  component: HistogramFilterComponent,
+  title: 'Forms/Histogram Filter',
+  argTypes: {
+    // selectedRange: {
+    //   control: { type: 'range', min, max, step: 1 },
+    //   name: 'min/max',
+    // },
+    color: {
+      control: 'select',
+      name: '--main-histogram-color',
+      options: colors,
+    },
+    outRangeColor: {
+      control: 'select',
+      name: '--out-range-histogram-color',
+      options: colors,
+    },
+  },
+  args: {
+    // selectedRange: [min, max],
+    barGap: '-1px',
+    color: colors.weldonBlue,
+    outRangeColor: colors.platinum,
+  },
+  render: StoryRender,
+};
 
-  const handleChange = (range: Range) => {
-    action('range selected')(range);
-    setSelectedRange(range);
-  };
+export default meta;
 
-  return (
-    <HistogramFilter
-      min={min}
-      max={max}
-      selectedRange={selectedRange}
-      onChange={handleChange}
-      values={uniformSample}
-      style={
-        {
-          width: '25rem',
-          '--main-histogram-color': select(
-            '--main-histogram-color',
-            colors,
-            colors.weldonBlue,
-            'Custom Properties'
-          ),
-          '--out-range-histogram-color': select(
-            '--out-range-histogram-color',
-            colors,
-            colors.platinum,
-            'Custom Properties'
-          ),
-          '--histogram-bar-gap': text(
-            '--histogram-bar-gap',
-            '-1px',
-            'Custom Properties'
-          ),
-        } as Style
-      }
-    />
-  );
+type Story = StoryObj<typeof HistogramFilterComponent>;
+
+export const Gaussian: Story = {
+  args: {
+    ...meta.args,
+    values: gaussianSample,
+  },
+};
+
+export const Uniform: Story = {
+  args: {
+    ...meta.args,
+    values: uniformSample,
+  },
 };

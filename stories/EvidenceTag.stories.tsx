@@ -1,7 +1,7 @@
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 
 import {
-  EvidenceTag,
+  EvidenceTag as EvidenceTagComponent,
   EvidenceTagIcon,
   InformationIcon,
   HelpIcon,
@@ -9,49 +9,45 @@ import {
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
-export default {
-  title: 'Biocomponents/Evidence Tag',
-  decorators: [withKnobs()],
-  parameters: {
-    purposeFunction: {
-      function:
-        'Provide the user with information about the evidence associated to a piece of text.',
-      purpose:
-        'Inform the user so they can make a decision regarding the trustworthyness of a piece of text',
-    },
-  },
-};
-
 const IconComponentOptions = {
   EvidenceTag: <EvidenceTagIcon />,
   InformationIcon: <InformationIcon />,
   HelpIcon: <HelpIcon />,
 };
 
-export const evidenceTag = () => (
-  <EvidenceTag
-    label={text('label', 'this is an evidence tag', 'Props')}
-    iconComponent={
-      IconComponentOptions[
-        select(
-          'iconComponent',
-          ['EvidenceTag', 'InformationIcon', 'HelpIcon'],
-          'EvidenceTag',
-          'Props'
-        )
-      ]
-    }
-  >
-    <div>
-      <h5>Some title</h5>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-      <p>{getLipsumSentences()}</p>
-    </div>
-  </EvidenceTag>
-);
+const meta: Meta<typeof EvidenceTagComponent> = {
+  component: EvidenceTagComponent,
+  title: 'Biocomponents/Evidence Tag',
+  argTypes: {
+    iconComponent: {
+      options: ['EvidenceTag', 'InformationIcon', 'HelpIcon'],
+      mapping: IconComponentOptions,
+      control: { type: 'select' },
+    },
+  },
+  args: {
+    label: 'this is an evidence tag',
+    iconComponent: <EvidenceTagIcon />,
+  },
+  render: ({ label, iconComponent }) => (
+    <EvidenceTagComponent label={label} iconComponent={iconComponent}>
+      <div>
+        <h5>Some title</h5>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+        <p>{getLipsumSentences()}</p>
+      </div>
+    </EvidenceTagComponent>
+  ),
+};
+
+export default meta;
+
+type Story = StoryObj<typeof EvidenceTagComponent>;
+
+export const EvidenceTag: Story = {};

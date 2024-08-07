@@ -1,3 +1,6 @@
+// Following exception used because of false positives on linting rule:
+// https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#false-positives-sfc
+/* eslint-disable react/no-unused-prop-types */
 import {
   memo,
   useEffect,
@@ -5,6 +8,7 @@ import {
   HTMLAttributes,
   useRef,
   useMemo,
+  ReactElement,
 } from 'react';
 import cn from 'classnames';
 import { v1 } from 'uuid';
@@ -19,7 +23,7 @@ import '../styles/components/data-table.scss';
 
 type BasicDatum = Record<string, unknown>;
 
-type CommonColumn<Datum> = {
+export type CommonColumn<Datum> = {
   label?: ReactNode;
   name: string;
   render: (datum: Datum) => ReactNode;
@@ -62,9 +66,6 @@ type HeadProps<Datum> = {
   onHeaderClick?: (columnName: SortableColumn<Datum>['name']) => void;
 };
 
-const LabelContent = ({ label }: { label: ReactNode }): JSX.Element =>
-  typeof label === 'function' ? label() : label;
-
 const DataTableHead = <Datum extends BasicDatum>({
   columns,
   onHeaderClick,
@@ -90,7 +91,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           style={width ? { width } : undefined}
           data-column-name={name}
         >
-          <LabelContent label={label} />
+          {typeof label === 'function' ? (label as () => JSX.Element)() : label}
         </th>
       ))}
     </tr>
@@ -234,7 +235,7 @@ export const DataTable = <Datum extends BasicDatum>({
   optimisedRendering,
   className,
   ...props
-}: Props<Datum> & HTMLAttributes<HTMLTableElement>): JSX.Element => {
+}: Props<Datum> & HTMLAttributes<HTMLTableElement>): ReactElement => {
   const idRef = useRef(v1());
 
   const { selectAllRef, checkboxContainerRef, checkSelectAllSync } =
@@ -297,4 +298,4 @@ export const DataTable = <Datum extends BasicDatum>({
 
 export const DataTableWithLoader = <Datum extends BasicDatum>(
   props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLTableElement>
-) => withDataLoader<Datum, typeof props>(DataTable)(props);
+) => <>{withDataLoader<Datum, typeof props>(DataTable)(props)}</>;

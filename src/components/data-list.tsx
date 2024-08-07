@@ -1,3 +1,7 @@
+// Following exception used because of false positives on linting rule:
+// https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#false-positives-sfc
+/* eslint-disable react/no-unused-prop-types */
+
 import { memo, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
@@ -105,4 +109,4 @@ export const DataList = <Datum extends BasicDatum>({
 
 export const DataListWithLoader = <Datum extends BasicDatum>(
   props: WrapperProps<Datum> & Props<Datum> & HTMLAttributes<HTMLElement>
-) => withDataLoader<Datum, typeof props>(DataList)(props);
+) => <>{withDataLoader<Datum, typeof props>(DataList)(props)}</>;

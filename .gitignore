@@ -9,6 +9,8 @@
 # coverage
 /coverage
 
+/storybook-static
+
 # doc - keep in for now
 # /doc
 

@@ -1,20 +1,16 @@
+import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+
 import { action } from '@storybook/addon-actions';
 import { sleep } from 'timing-functions';
 
-import { Sequence, SequenceTools, Button } from '../src/components';
+import {
+  Sequence as SequenceComponent,
+  SequenceTools as SequenceToolsComponent,
+  Button,
+} from '../src/components';
 
 import sequenceData from '../src/mock-data/sequence-data';
-
-export default {
-  title: 'Biocomponents/Sequence',
-  parameters: {
-    purposeFunction: {
-      function: 'Display protein/nucleotide sequence, allow users to copy it',
-      purpose: 'Allow users to see a protein / nucleotide sequence',
-    },
-  },
-};
 
 const AddToBasketButton = () => (
   <Button variant="tertiary" onClick={action('AddToBasketButton clicked')}>
@@ -22,35 +18,57 @@ const AddToBasketButton = () => (
   </Button>
 );
 
-export const sequence = () => (
-  <Sequence
-    sequence={sequenceData}
-    accession="P05067"
-    downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
-    onBlastClick={action('onBlastClick')}
-    onCopy={action('onCopy')}
-    addToBasketButton={<AddToBasketButton />}
-  />
-);
-export const sequenceWithoutActionBar = () => (
-  <Sequence sequence={sequenceData} showActionBar={false} />
-);
-
-export const sequenceCollapsableWithInfoData = () => {
-  const data = [
-    {
-      title: 'Item 1',
-      content: <div>Some content</div>,
-    },
-    {
-      title: 'Another item',
-      content: <div>Some more content</div>,
-    },
-  ];
-  return <Sequence sequence={sequenceData} infoData={data} isCollapsible />;
+const meta: Meta<typeof SequenceComponent> = {
+  component: SequenceComponent,
+  title: 'Biocomponents/Sequence',
 };
 
-export const SequenceAsyncLoad = () => {
+export default meta;
+
+type Story = StoryObj<typeof SequenceComponent>;
+
+export const Sequence: Story = {
+  render: () => (
+    <SequenceComponent
+      sequence={sequenceData}
+      accession="P05067"
+      downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
+      onBlastClick={action('onBlastClick')}
+      onCopy={action('onCopy')}
+      addToBasketButton={<AddToBasketButton />}
+    />
+  ),
+};
+
+export const SequenceWithoutActionBar: Story = {
+  render: () => (
+    <SequenceComponent sequence={sequenceData} showActionBar={false} />
+  ),
+};
+
+export const SequenceCollapsableWithInfoData: Story = {
+  render: () => {
+    const data = [
+      {
+        title: 'Item 1',
+        content: <div>Some content</div>,
+      },
+      {
+        title: 'Another item',
+        content: <div>Some more content</div>,
+      },
+    ];
+    return (
+      <SequenceComponent
+        sequence={sequenceData}
+        infoData={data}
+        isCollapsible
+      />
+    );
+  },
+};
+
+const SequenceAsyncLoadRender = () => {
   const [sequence, setSequence] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -62,7 +80,7 @@ export const SequenceAsyncLoad = () => {
   };
 
   return (
-    <Sequence
+    <SequenceComponent
       sequence={sequence}
       isLoading={isLoading}
       onShowSequence={onShowSequence}
@@ -70,6 +88,13 @@ export const SequenceAsyncLoad = () => {
   );
 };
 
-export const sequenceTools = () => (
-  <SequenceTools accession="P05067" onBlastClick={action('onBlastClick')} />
+export const SequenceAsyncLoad = {
+  render: SequenceAsyncLoadRender,
+};
+
+export const SequenceTools = () => (
+  <SequenceToolsComponent
+    accession="P05067"
+    onBlastClick={action('onBlastClick')}
+  />
 );

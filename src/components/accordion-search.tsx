@@ -1,5 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
-import { debounce } from 'lodash-es';
+import { useState, useMemo, useDeferredValue, useCallback } from 'react';
 
 import { Accordion, Loader, Message, SearchInput, SubstringHighlight } from '.';
 
@@ -207,13 +206,6 @@ type AccordionSearchProps = {
   columns?: boolean;
 };
 
-// Marry filteredAccordionData and query to be able to check
-// if filteredAccordionData can be recycled for efficiency
-type FilteredAccordionDataAndQuery = {
-  filteredAccordionData: Array<AccordionItem>;
-  query: string;
-};
-
 const AccordionSearch = ({
   accordionData,
   placeholder = '',
@@ -222,43 +214,22 @@ const AccordionSearch = ({
   columns,
 }: AccordionSearchProps) => {
   const [inputValue, setInputValue] = useState('');
-  const [{ filteredAccordionData }, setFilteredAccordionData] =
-    useState<FilteredAccordionDataAndQuery>({
-      filteredAccordionData: accordionData,
-      query: '',
-    });
+  const deferredInputValue = useDeferredValue(inputValue);
 
-  const debouncedFilterAccordionData = useMemo(
+  const filteredAccordionData = useMemo(
     () =>
-      debounce(
-        (value: string) => {
-          const cleanedInputValue = value.trim().toLowerCase();
-          setFilteredAccordionData((previous) => {
-            // can reuse only if next string includes current string
-            const canReuse =
-              previous.query && cleanedInputValue.includes(previous.query);
-            const filteredAccordionData =
-              // apply filtering, either on prefiltered or full data
-              filterAccordionData(
-                canReuse ? previous.filteredAccordionData : accordionData,
-                cleanedInputValue
-              );
-            return {
-              filteredAccordionData,
-              query: cleanedInputValue,
-            };
-          });
-        },
-        500,
-        // allows to start applying filter right away when typing
-        { leading: true }
+      filterAccordionData(
+        accordionData,
+        deferredInputValue.trim().toLowerCase()
       ),
-    [accordionData]
+    [accordionData, deferredInputValue]
   );
 
-  useEffect(
-    () => debouncedFilterAccordionData.cancel,
-    [debouncedFilterAccordionData]
+  const handleSearchInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(event.target.value);
+    },
+    []
   );
 
   if (!accordionData || !accordionData.length) {
@@ -272,14 +243,14 @@ const AccordionSearch = ({
           <AccordionSearchItem
             label={label}
             initialOpen={index === 0}
-            alwaysOpen={Boolean(inputValue)}
+            alwaysOpen={Boolean(deferredInputValue)}
             items={items}
             selected={selected}
             columns={columns}
             onSelect={onSelect}
             id={id}
             key={id}
-            query={inputValue}
+            query={deferredInputValue}
             addAsterisk={addAsterisk}
           />
         )
@@ -287,13 +258,6 @@ const AccordionSearch = ({
   ) : (
     <Message level="failure">No matches found</Message>
   );
-
-  const handleSearchInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setInputValue(event.target.value);
-    debouncedFilterAccordionData(event.target.value);
-  };
 
   return (
     <>

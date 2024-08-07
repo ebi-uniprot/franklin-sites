@@ -172,22 +172,29 @@ type DropdownProps = {
    * Prop that, when it changes, will cause the dropdown to close
    */
   propChangeToClose?: unknown;
+  /**
+   * Close if a clickable element within is clicked
+   */
+  children: ReactNode | ((closeDropdown: () => unknown) => ReactNode);
 };
 
 export const Dropdown = ({
   visibleElement,
   propChangeToClose,
+  children,
   ...props
 }: Omit<ControlledDropdownProps, 'expanded'> &
   DropdownProps &
-  HTMLAttributes<HTMLSpanElement>) => {
+  Omit<HTMLAttributes<HTMLSpanElement>, 'children'>) => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
+  const close = useCallback(() => setExpanded(false), []);
+
   // Effect in order to close the dropdown when the corresponding prop changes
   useEffect(() => {
-    setExpanded(false);
-  }, [propChangeToClose]);
+    close();
+  }, [close, propChangeToClose]);
 
   // effect to handle a click on anything closing the dropdown
   useEffect(() => {
@@ -202,7 +209,7 @@ export const Dropdown = ({
       ) {
         return;
       }
-      setExpanded(false);
+      close();
     };
 
     window.document.addEventListener('mouseup', listener, { passive: true });
@@ -212,7 +219,7 @@ export const Dropdown = ({
       window.document.removeEventListener('mouseup', listener);
       window.document.removeEventListener('touchend', listener);
     };
-  }, [expanded]);
+  }, [close, expanded]);
 
   const handleClick = useCallback(
     () => setExpanded((expanded) => !expanded),
@@ -225,7 +232,9 @@ export const Dropdown = ({
       {...props}
       expanded={expanded}
       ref={ref}
-    />
+    >
+      {typeof children === 'function' ? children(close) : children}
+    </ControlledDropdown>
   );
 };
 

@@ -1,13 +1,21 @@
-import { number } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { BytesNumber } from '../src/components';
+import { BytesNumber as BytesNumberComponent } from '../src/components';
 
-export default {
-  title: 'Visualisation/Bytes number',
+const meta: Meta<typeof BytesNumberComponent> = {
+  component: BytesNumberComponent,
+  title: 'Visualisation',
+  args: {
+    children: 1024,
+    decimals: 0,
+  },
+  render: ({ decimals, children }) => (
+    <BytesNumberComponent decimals={decimals}>{children}</BytesNumberComponent>
+  ),
 };
 
-export const bytesNumber = () => (
-  <BytesNumber decimals={number('decimals', 0)}>
-    {number('bytes', 1024)}
-  </BytesNumber>
-);
+export default meta;
+
+type Story = StoryObj<typeof BytesNumberComponent>;
+
+export const BytesNumber: Story = {};

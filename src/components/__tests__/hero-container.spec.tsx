@@ -5,7 +5,7 @@ import HeroContainer from '../hero-container';
 describe('Hero Container component', () => {
   it('should render', () => {
     const { asFragment } = render(
-      <HeroContainer title="Title">
+      <HeroContainer headingContent="Title">
         <p>Body content</p>
       </HeroContainer>
     );

@@ -1,14 +1,6 @@
-import { DecoratedListItem } from '../src/components';
+import { Meta, StoryObj } from '@storybook/react';
 
-export default {
-  title: 'Data/Decorated List Item',
-  parameters: {
-    purposeFunction: {
-      purpose: 'Provides a re-usable styled list element.',
-      function: 'Display a list item in various visual styles.',
-    },
-  },
-};
+import { DecoratedListItem as DecoratedListItemComponent } from '../src/components';
 
 const data = [
   {
@@ -26,19 +18,37 @@ const data = [
   {
     title: 'Fourth',
     content: <div>Number four</div>,
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid
+    link: <a />,
   },
 ];
 
-export const decoratedListItem = () => (
-  <div className="uniprot-grid">
-    {data.map((i) => (
-      <div key={i.title} className="uniprot-grid-cell--span-3">
-        <DecoratedListItem compact altStyle>
-          <h3>{i.title}</h3>
-        </DecoratedListItem>
-      </div>
-    ))}
-  </div>
-);
+const meta: Meta<typeof DecoratedListItemComponent> = {
+  component: DecoratedListItemComponent,
+  title: 'Data/Decorated List Item',
+  args: {
+    compact: true,
+    altStyle: true,
+  },
+  render: ({ compact, altStyle }) => (
+    <div className="uniprot-grid">
+      {data.map((i) => (
+        <div key={i.title} className="uniprot-grid-cell--span-3">
+          <DecoratedListItemComponent
+            compact={compact}
+            altStyle={altStyle}
+            link={i.link}
+          >
+            <h3>{i.title}</h3>
+          </DecoratedListItemComponent>
+        </div>
+      ))}
+    </div>
+  ),
+};
 
-decoratedListItem.storyName = 'Alternative Style';
+export default meta;
+
+type Story = StoryObj<typeof DecoratedListItemComponent>;
+
+export const DecoratedListItem: Story = {};
