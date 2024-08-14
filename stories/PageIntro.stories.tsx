@@ -9,7 +9,7 @@ const meta: Meta<typeof PageIntroComponent> = {
   args: { headingPostscript: '' },
   render: ({ headingPostscript }) => (
     <PageIntroComponent
-      title="UniProt"
+      heading="UniProt"
       resultsCount={1000}
       headingPostscript={headingPostscript}
     >

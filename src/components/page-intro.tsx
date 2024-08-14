@@ -1,6 +1,5 @@
 import { createElement, FC, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
-import { Except } from 'type-fest';
 
 import { formatLargeNumber } from '../utils';
 
@@ -12,7 +11,7 @@ type PageIntroProps = {
   /**
    * The title
    */
-  title: ReactNode;
+  heading: ReactNode;
   /**
    * The heading level
    */
@@ -31,10 +30,8 @@ type PageIntroProps = {
   resultsCount?: number;
 };
 
-const PageIntro: FC<
-  PageIntroProps & Except<HTMLAttributes<HTMLDivElement>, 'title'>
-> = ({
-  title,
+const PageIntro: FC<PageIntroProps & HTMLAttributes<HTMLDivElement>> = ({
+  heading,
   resultsCount,
   headingPostscript,
   headingLevel = 'h1',
@@ -48,7 +45,7 @@ const PageIntro: FC<
       headingLevel,
       { className: cn(headingClassName) },
       <>
-        {title}
+        {heading}
         {resultsCount !== undefined && (
           <small>
             {' '}
