@@ -40,7 +40,7 @@ describe('PageIntro component', () => {
       <PageIntro
         title="Title"
         resultsCount={1000}
-        titlePostscript={<i>from job ID123</i>}
+        headingPostscript={<i>from job ID123</i>}
       />
     );
     expect(

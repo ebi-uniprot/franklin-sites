@@ -14,17 +14,17 @@ type PageIntroProps = {
    */
   title: ReactNode;
   /**
-   * The tile title heading level
+   * The heading level
    */
   headingLevel?: HeadingLevels;
   /**
-   * CSS classes to pass to the component title
+   * CSS classes to pass to the component heading
    */
-  titleClassName?: string;
+  headingClassName?: string;
   /**
-   * Optional title postscript to follow resultsCount
+   * Optional heading postscript to follow resultsCount
    */
-  titlePostscript?: ReactNode;
+  headingPostscript?: ReactNode;
   /**
    * Number of results
    */
@@ -36,9 +36,9 @@ const PageIntro: FC<
 > = ({
   title,
   resultsCount,
-  titlePostscript,
+  headingPostscript,
   headingLevel = 'h1',
-  titleClassName,
+  headingClassName,
   children,
   className,
   ...props
@@ -46,7 +46,7 @@ const PageIntro: FC<
   <div className={cn(className, 'page-intro')} {...props}>
     {createElement(
       headingLevel,
-      { className: cn(titleClassName) },
+      { className: cn(headingClassName) },
       <>
         {title}
         {resultsCount !== undefined && (
@@ -56,7 +56,7 @@ const PageIntro: FC<
             {resultsCount === 1 ? '' : 's'}{' '}
           </small>
         )}
-        {titlePostscript}
+        {headingPostscript}
       </>
     )}
     {children}
