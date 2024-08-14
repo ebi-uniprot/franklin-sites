@@ -5,6 +5,11 @@
 
   input {
     padding-right: 1.75rem;
+
+    /* Hide this because we have our own close button */
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+    }
   }
 
   &__suffix {
