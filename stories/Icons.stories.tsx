@@ -353,9 +353,14 @@ const meta: Meta = {
   component: IconComponents,
   render: ({ color }) => <IconComponents color={color} />,
   argTypes: {
-    color: { control: 'select', name: 'CSS color', options: colors },
+    color: {
+      control: 'select',
+      name: 'CSS color',
+      options: Object.keys(colors),
+      mapping: colors,
+    },
   },
-  args: { color: colors.sapphireBlue },
+  args: { color: 'sapphireBlue' },
 };
 
 export default meta;

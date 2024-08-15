@@ -27,14 +27,15 @@ const meta: Meta<StoryProps> = {
     backgroundColor: {
       control: 'select',
       name: '--tile-background',
-      options: colors,
+      options: Object.keys(colors),
+      mapping: colors,
     },
   },
   args: {
     headingLevel: 'h3',
     title: 'title',
     subtitle: 'subtitle',
-    backgroundColor: colors.seaBlue,
+    backgroundColor: 'seaBlue',
     containerSize: '40%',
     buttonInDescription: false,
   },

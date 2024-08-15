@@ -25,7 +25,12 @@ const meta: Meta<StoryProps> = {
       options: ['primary', 'secondary'],
       control: { type: 'select' },
     },
-    color: { control: 'select', name: '--main-chip-color', options: colors },
+    color: {
+      control: 'select',
+      name: '--main-chip-color',
+      options: Object.keys(colors),
+      mapping: colors,
+    },
   },
   args: {
     title: 'this is a chip',

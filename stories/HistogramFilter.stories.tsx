@@ -74,19 +74,21 @@ const meta: Meta<StoryProps> = {
     color: {
       control: 'select',
       name: '--main-histogram-color',
-      options: colors,
+      options: Object.keys(colors),
+      mapping: colors,
     },
     outRangeColor: {
       control: 'select',
       name: '--out-range-histogram-color',
-      options: colors,
+      options: Object.keys(colors),
+      mapping: colors,
     },
   },
   args: {
     // selectedRange: [min, max],
     barGap: '-1px',
-    color: colors.weldonBlue,
-    outRangeColor: colors.platinum,
+    color: 'weldonBlue',
+    outRangeColor: 'platinum',
   },
   render: StoryRender,
 };

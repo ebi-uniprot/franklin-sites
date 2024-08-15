@@ -1,13 +1,12 @@
 import {
   useState,
   useCallback,
-  useRef,
   Children,
   HTMLAttributes,
   ReactElement,
   ReactNode,
+  useId,
 } from 'react';
-import { v1 } from 'uuid';
 import cn from 'classnames';
 import { Except } from 'type-fest';
 
@@ -57,7 +56,7 @@ type TabsProps = {
 } & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
-  const idRef = useRef(v1());
+  const tabId = useId();
 
   const isManaged = typeof active !== 'undefined';
 
@@ -165,7 +164,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
                 data-testid="tab-title"
                 data-target={id}
                 role="tab"
-                aria-controls={idRef.current}
+                aria-controls={tabId}
                 className={cn(
                   'tabs__header__item',
                   {
@@ -181,7 +180,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
             )
         )}
       </div>
-      <div role="tabpanel" id={idRef.current} data-testid="tab-content">
+      <div role="tabpanel" id={tabId} data-testid="tab-content">
         {content}
       </div>
     </div>

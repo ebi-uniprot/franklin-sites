@@ -10,7 +10,7 @@ exports[`Tabs should render 1`] = `
       role="tablist"
     >
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item tabs__header__item--active"
         data-target="0"
         data-testid="tab-title"
@@ -22,7 +22,7 @@ exports[`Tabs should render 1`] = `
         </div>
       </div>
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item"
         data-target="1"
         data-testid="tab-title"
@@ -32,7 +32,7 @@ exports[`Tabs should render 1`] = `
         Title 2
       </div>
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item"
         data-target="2"
         data-testid="tab-title"
@@ -44,7 +44,7 @@ exports[`Tabs should render 1`] = `
     </div>
     <div
       data-testid="tab-content"
-      id="abcd"
+      id="1"
       role="tabpanel"
     >
       blah
@@ -63,7 +63,7 @@ exports[`Tabs should render other default tab 1`] = `
       role="tablist"
     >
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item"
         data-target="0"
         data-testid="tab-title"
@@ -75,7 +75,7 @@ exports[`Tabs should render other default tab 1`] = `
         </div>
       </div>
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item"
         data-target="1"
         data-testid="tab-title"
@@ -85,7 +85,7 @@ exports[`Tabs should render other default tab 1`] = `
         Title 2
       </div>
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item tabs__header__item--active"
         data-target="2"
         data-testid="tab-title"
@@ -97,7 +97,7 @@ exports[`Tabs should render other default tab 1`] = `
     </div>
     <div
       data-testid="tab-content"
-      id="abcd"
+      id="1"
       role="tabpanel"
     >
       blahest
@@ -117,7 +117,7 @@ exports[`Tabs should render tabs and pass extra props 1`] = `
       role="tablist"
     >
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         aria-label="blah!"
         class="tabs__header__item tabs__header__item--active"
         data-target="0"
@@ -130,7 +130,7 @@ exports[`Tabs should render tabs and pass extra props 1`] = `
         </div>
       </div>
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item"
         data-target="1"
         data-testid="tab-title"
@@ -140,7 +140,7 @@ exports[`Tabs should render tabs and pass extra props 1`] = `
         Title 2
       </div>
       <div
-        aria-controls="abcd"
+        aria-controls="1"
         class="tabs__header__item merged-class"
         data-key="3"
         data-target="2"
@@ -153,7 +153,7 @@ exports[`Tabs should render tabs and pass extra props 1`] = `
     </div>
     <div
       data-testid="tab-content"
-      id="abcd"
+      id="1"
       role="tabpanel"
     >
       blah

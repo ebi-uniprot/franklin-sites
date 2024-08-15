@@ -59,7 +59,8 @@ const meta: Meta<WithNBins> = {
     color: {
       control: 'select',
       name: '--main-histogram-color',
-      options: colors,
+      options: Object.keys(colors),
+      mapping: colors,
     },
   },
   args: {

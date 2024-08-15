@@ -6,13 +6,12 @@ import {
   useEffect,
   ReactNode,
   HTMLAttributes,
-  useRef,
   useMemo,
   forwardRef,
   ReactElement,
+  useId,
 } from 'react';
 import cn from 'classnames';
-import { v1 } from 'uuid';
 import Tippy from '@tippyjs/react';
 
 import Loader from './loader';
@@ -177,15 +176,15 @@ const DataTableRow = <Datum extends BasicDatum>({
   fixedLayout,
   firstColumn,
 }: RowProps<Datum> & SharedProps<Datum> & { firstColumn: boolean }) => {
-  const idRef = useRef(v1());
+  const labelId = useId();
   return (
     <tr>
       {selectable && (
         <td className="checkbox-cell">
-          <input type="checkbox" data-id={id} id={idRef.current} />
+          <input type="checkbox" data-id={id} id={labelId} />
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label
-            htmlFor={idRef.current}
+            htmlFor={labelId}
             aria-label={id}
             title="click to select, shift+click for multiple selection"
           />
@@ -256,7 +255,7 @@ export const DataTable = <Datum extends BasicDatum>({
   className,
   ...props
 }: Props<Datum> & HTMLAttributes<HTMLTableElement>): ReactElement => {
-  const idRef = useRef(v1());
+  const labelId = useId();
 
   const { selectAllRef, checkboxContainerRef, checkSelectAllSync } =
     useDataCheckboxes(onSelectionChange);
@@ -270,15 +269,15 @@ export const DataTable = <Datum extends BasicDatum>({
     () =>
       selectable && (
         <>
-          <input type="checkbox" id={idRef.current} ref={selectAllRef} />
+          <input type="checkbox" id={labelId} ref={selectAllRef} />
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label
-            htmlFor={idRef.current}
+            htmlFor={labelId}
             aria-label="Selection control for all visible items"
           />
         </>
       ),
-    [selectAllRef, selectable]
+    [labelId, selectAllRef, selectable]
   );
 
   return (

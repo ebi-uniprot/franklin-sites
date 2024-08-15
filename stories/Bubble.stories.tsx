@@ -14,7 +14,12 @@ const meta: Meta<typeof BubbleComponent> = {
       name: 'children (bubbble number)',
     },
     size: { control: 'select', options: ['small', 'medium', 'large'] },
-    color: { control: 'select', name: '--main-bubble-color', options: colors },
+    color: {
+      control: 'select',
+      name: '--main-bubble-color',
+      options: Object.keys(colors),
+      mapping: colors,
+    },
   },
   args: { children: 20, color: colors.seaBlue },
   render: ({ children, size, color }) => (

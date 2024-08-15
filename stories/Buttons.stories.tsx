@@ -10,7 +10,12 @@ const meta: Meta<typeof ButtonComponent> = {
   component: ButtonComponent,
   title: 'Forms/Button',
   argTypes: {
-    color: { control: 'select', name: '--main-bubble-color', options: colors },
+    color: {
+      control: 'select',
+      name: '--main-bubble-color',
+      options: Object.keys(colors),
+      mapping: colors,
+    },
     disabled: { control: 'boolean' },
   },
 };

@@ -1,13 +1,12 @@
 import {
   useState,
-  useRef,
   cloneElement,
   FC,
   ReactElement,
   HTMLAttributes,
+  useId,
 } from 'react';
 import cn from 'classnames';
-import { v1 } from 'uuid';
 
 import EvidenceTagIcon from '../svg/evidence-tag.svg';
 
@@ -34,7 +33,7 @@ const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
   children,
   ...props
 }) => {
-  const idRef = useRef(v1());
+  const buttonId = useId();
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
     <>
@@ -44,7 +43,7 @@ const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
         type="button"
         data-testid="evidence-tag-trigger"
         aria-expanded={contentDisplay}
-        aria-controls={idRef.current}
+        aria-controls={buttonId}
         {...props}
       >
         {cloneElement(iconComponent, { width: size, height: size })}
@@ -56,7 +55,7 @@ const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
             contentDisplay ? 'evidence-tag-content--visible' : ''
           }`}
           data-testid="evidence-tag-content"
-          id={idRef.current}
+          id={buttonId}
         >
           {contentDisplay && children}
         </div>
