@@ -9,8 +9,6 @@ import {
 import { Dropdown } from './dropdown-button';
 import Button from './button';
 
-import color from '../styles/colours.json';
-
 import { FranklinStyle } from '../types/common';
 
 import '../styles/components/main-search.scss';
@@ -65,8 +63,7 @@ const MainSearch = ({
 }: MainSearchProps) => {
   const style = useMemo<FranklinStyle>(
     () => ({
-      '--main-button-color':
-        color[selectedNamespace as keyof typeof color] || color.seaBlue,
+      '--main-button-color': `var(--fr-color-${selectedNamespace}, --fr-color-sea-blue)`,
     }),
     [selectedNamespace]
   );

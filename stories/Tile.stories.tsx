@@ -8,8 +8,6 @@ import { Button, Tile as TileComponent } from '../src/components';
 
 import SVG from '../assets/uniprotkb_illustration.svg';
 
-import colors from '../src/styles/colours.json';
-
 type StoryProps = React.ComponentProps<typeof TileComponent> & {
   containerSize: string;
   withBackgroundImage: boolean;
@@ -27,15 +25,22 @@ const meta: Meta<StoryProps> = {
     backgroundColor: {
       control: 'select',
       name: '--tile-background',
-      options: Object.keys(colors),
-      mapping: colors,
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'white',
+        'blue',
+      ],
     },
   },
   args: {
     headingLevel: 'h3',
     title: 'title',
     subtitle: 'subtitle',
-    backgroundColor: 'seaBlue',
+    backgroundColor: 'var(--fr--color-sea-blue)',
     containerSize: '40%',
     buttonInDescription: false,
   },

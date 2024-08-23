@@ -55,8 +55,6 @@ import {
   RedundantProteomeIcon,
 } from '../src/components';
 
-import colors from '../src/styles/colours.json';
-
 const size = 30;
 
 const iconDefinition = [
@@ -356,8 +354,15 @@ const meta: Meta = {
     color: {
       control: 'select',
       name: 'CSS color',
-      options: Object.keys(colors),
-      mapping: colors,
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'white',
+        'blue',
+      ],
     },
   },
   args: { color: 'sapphireBlue' },

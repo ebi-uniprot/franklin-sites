@@ -15,8 +15,6 @@ import {
   getGaussianSample,
 } from '../src/mock-data/probability-distribution-sample';
 
-import colors from '../src/styles/colours.json';
-
 interface Style extends CSSProperties {
   // TODO: define and extend the supported custom properties in franklin
   // TODO: find a way to expose them globally when using franklin elements
@@ -59,8 +57,15 @@ const meta: Meta<WithNBins> = {
     color: {
       control: 'select',
       name: '--main-histogram-color',
-      options: Object.keys(colors),
-      mapping: colors,
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'white',
+        'blue',
+      ],
     },
   },
   args: {

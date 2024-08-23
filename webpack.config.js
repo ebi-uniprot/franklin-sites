@@ -1,7 +1,3 @@
-const path = require('path');
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-const jsonImporter = require('node-sass-json-importer');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -52,11 +48,6 @@ module.exports = [
             },
             {
               loader: 'sass-loader',
-              options: {
-                sassOptions: {
-                  importer: jsonImporter({ convertCase: true }),
-                },
-              },
             },
           ],
         },

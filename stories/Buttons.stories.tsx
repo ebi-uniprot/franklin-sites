@@ -4,8 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Button as ButtonComponent, DownloadIcon } from '../src/components';
 
-import colors from '../src/styles/colours.json';
-
 const meta: Meta<typeof ButtonComponent> = {
   component: ButtonComponent,
   title: 'Forms/Button',
@@ -13,8 +11,15 @@ const meta: Meta<typeof ButtonComponent> = {
     color: {
       control: 'select',
       name: '--main-bubble-color',
-      options: Object.keys(colors),
-      mapping: colors,
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'white',
+        'blue',
+      ],
     },
     disabled: { control: 'boolean' },
   },

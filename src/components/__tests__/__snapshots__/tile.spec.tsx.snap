@@ -4,7 +4,7 @@ exports[`Tile component should render 1`] = `
 <DocumentFragment>
   <div
     class="tile tile-gradient tile--has-link"
-    style="--tile-background: #00639a;"
+    style="--tile-background: var(--fr--color-sea-blue);"
   >
     <a
       aria-hidden="true"

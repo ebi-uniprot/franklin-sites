@@ -4,54 +4,107 @@
 ** @text-only
 */
 @import './settings';
-@import './colours.json';
 
 // PRIMARY COLOURS
-$colour-sapphire-blue: $sapphire-blue;
-$colour-sea-blue: $sea-blue;
-$colour-vivid-cerulean: $vivid-cerulean;
-$colour-medium-turquoise: $medium-turquoise;
-$colour-gainsborough: $gainsborough;
+$colour-sapphire-blue: #014371;
+$colour-sea-blue: #00639a;
+$colour-vivid-cerulean: #00a6d5;
+$colour-medium-turquoise: #46d6fa;
+$colour-gainsborough: #d2dce3;
 
 // GREYSCALE
-$colour-yankees-blue: $yankees-blue;
-$colour-independence: $independence;
-$colour-weldon-blue: $weldon-blue;
-$colour-pastel-blue: $pastel-blue;
-$colour-platinum: $platinum;
-$colour-sky-white: $sky-white;
+$colour-yankees-blue: #161d39;
+$colour-independence: #4e5a71;
+$colour-weldon-blue: #8194a1;
+$colour-pastel-blue: #abc7d6;
+$colour-platinum: #e4e8eb;
+$colour-sky-white: #fbfeff;
 
 // CURATION
-$colour-reviewed: $reviewed;
-$colour-unreviewed: $unreviewed;
-$colour-reference-proteome: $reference-proteome;
+$colour-reviewed: #c39b00;
+$colour-unreviewed: #c0c0c0;
+$colour-reference-proteome: #9d4a4d;
 
 // NAMESPACES
-$colour-uniref: $uniref;
-$colour-uniparc: $uniparc;
-$colour-proteomes: $proteomes;
+$colour-uniref: #f2994c;
+$colour-uniparc: #88c19d;
+$colour-proteomes: #e56358;
 
 // TOOLS
-$colour-peptide-search: $peptide-search;
-$colour-id-mapping: $id-mapping;
-$colour-blast: $blast;
-$colour-align: $align;
+$colour-peptide-search: #a748bd;
+$colour-id-mapping: #357b92;
+$colour-blast: #00a6d5;
+$colour-align: #b8ce48;
 
 // HELP
-$colour-help-green: $help-green;
+$colour-help-green: #28aa50;
+
+// MESSAGE COLOURS
+$colour-warning: #ffcc33;
+$colour-failure: #f36968;
+$colour-success: #108f3b;
+$colour-info: #79cbf8;
+
+// DATA VISUALISATION
+$colour-coyote-brown: #966336;
+$colour-outer-space: #374343;
+$colour-bronze: #a65708;
 
 // COLOUR VARIABLES
 $colour-link: $colour-sapphire-blue;
 $colour-selected: $colour-gainsborough;
 $colour-hover: lighten($colour-platinum, 5%);
 
-// MESSAGE COLOURS
-$colour-warning: $warning;
-$colour-failure: $failure;
-$colour-success: $success;
-$colour-info: $info;
+:root {
+  // PRIMARY COLOURS
+  --fr--color-sapphire-blue: #014371;
+  --fr--color-sea-blue: #00639a;
+  --fr--color-vivid-cerulean: #00a6d5;
+  --fr--color-medium-turquoise: #46d6fa;
+  --fr--color-gainsborough: #d2dce3;
 
-// DATA VISUALISATION
-$colour-coyote-brown: $coyote-brown;
-$colour-outer-space: $outer-space;
-$colour-bronze: $bronze;
+  // GREYSCALE
+  --fr--color-yankees-blue: #161d39;
+  --fr--color-independence: #4e5a71;
+  --fr--color-weldon-blue: #8194a1;
+  --fr--color-pastel-blue: #abc7d6;
+  --fr--color-platinum: #e4e8eb;
+  --fr--color-sky-white: #fbfeff;
+
+  // CURATION
+  --fr--color-reviewed: #c39b00;
+  --fr--color-unreviewed: #c0c0c0;
+  --fr--color-reference-proteome: #9d4a4d;
+
+  // NAMESPACES
+  --fr--color-uniref: #f2994c;
+  --fr--color-uniparc: #88c19d;
+  --fr--color-proteomes: #e56358;
+
+  // TOOLS
+  --fr--color-peptide-search: #a748bd;
+  --fr--color-id-mapping: #357b92;
+  --fr--color-blast: #00a6d5;
+  --fr--color-align: #b8ce48;
+
+  // HELP
+  --fr--color-help-green: #28aa50;
+
+  // MESSAGE COLOURS
+  --fr--color-warning: #ffcc33;
+  --fr--color-failure: #f36968;
+  --fr--color-success: #108f3b;
+  --fr--color-info: #79cbf8;
+
+  // DATA VISUALISATION
+  --fr--color-coyote-brown: #966336;
+  --fr--color-outer-space: #374343;
+  --fr--color-bronze: #a65708;
+
+  // COLOUR VARIABLES
+  --fr--color-link: var(--fr--color-sapphire-blue);
+  --fr--color-selected: var(--fr--color-gainsborough);
+  --fr--color-hover: oklch(from var(--fr--color-platinum) calc(l + 5%) c h);
+  // Static fallback in case color function are not supported
+  --fr--color-hover: #f5f9fc;
+}
