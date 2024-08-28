@@ -63,7 +63,7 @@ const MainSearch = ({
 }: MainSearchProps) => {
   const style = useMemo<FranklinStyle>(
     () => ({
-      '--main-button-color': `var(--fr-color-${selectedNamespace}, --fr-color-sea-blue)`,
+      '--main-button-color': `var(--fr--color-${selectedNamespace}, var(--fr--color-sea-blue))`,
     }),
     [selectedNamespace]
   );

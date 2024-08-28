@@ -38,7 +38,7 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
     >
       <button
         class="button primary"
-        style="--main-button-color: var(--fr-color-one, --fr-color-sea-blue);"
+        style="--main-button-color: var(--fr--color-one, var(--fr--color-sea-blue));"
         type="button"
       >
         One
