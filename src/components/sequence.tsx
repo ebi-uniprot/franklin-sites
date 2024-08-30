@@ -223,15 +223,26 @@ const Sequence = ({
       <section className="sequence-container" style={sequenceStyle}>
         {showActionBar && accession && (
           <div className="action-bar button-group">
-            <SequenceTools accession={accession} onBlastClick={onBlastClick} />
+            {/* Not sure why keys are needed, but otherwise gets the React key
+            warnings messages and children are rendered as array... */}
+            <SequenceTools
+              accession={accession}
+              onBlastClick={onBlastClick}
+              key="tools"
+            />
             {downloadUrl && (
-              <a className="button tertiary" href={downloadUrl} download>
+              <a
+                className="button tertiary"
+                href={downloadUrl}
+                download
+                key="link"
+              >
                 <DownloadIcon />
                 Download
               </a>
             )}
             {addToBasketButton}
-            <Dropdown visibleElement={visibleElement}>
+            <Dropdown visibleElement={visibleElement} key="highlight">
               {aaProps.map((aaProp) => {
                 const inputId = `${accession}-${aaProp.name}`;
                 return (
@@ -254,6 +265,7 @@ const Sequence = ({
               afterCopy="Copied"
               className="tertiary"
               onCopy={onCopy}
+              key="copy"
             />
           </div>
         )}
