@@ -3,6 +3,7 @@ import {
   ComponentClass,
   FunctionComponent,
   PropsWithChildren,
+  HTMLAttributes,
 } from 'react';
 import cn from 'classnames';
 
@@ -35,11 +36,7 @@ export type ButtonProps = {
    * Classnames to be added to the button
    */
   className?: string;
-  /**
-   * Any other prop to pass down to the rendered element
-   */
-  [key: string]: unknown;
-};
+} & HTMLAttributes<PossibleElements>;
 
 export const Button = forwardRef<
   PossibleElements,

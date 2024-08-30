@@ -26,7 +26,7 @@ const CopyToClipboard = memo(
     afterCopy = 'Copied',
     onCopy,
     ...props
-  }: Props & ButtonProps) => {
+  }: Props & Omit<ButtonProps, 'onCopy'>) => {
     const [copied, setCopied] = useState(false);
     const copyPromise = useRef<Promise<void> | null>(null);
 

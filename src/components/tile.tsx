@@ -97,9 +97,11 @@ export const Tile: FC<
         <TitleHeadingLevel className="tile__header big">
           {title}
         </TitleHeadingLevel>
-        <SubtitleHeadingLevel className="tile__subtitle small">
-          {subtitle}
-        </SubtitleHeadingLevel>
+        {subtitle && (
+          <SubtitleHeadingLevel className="tile__subtitle small">
+            {subtitle}
+          </SubtitleHeadingLevel>
+        )}
       </div>
       {children && (
         <small

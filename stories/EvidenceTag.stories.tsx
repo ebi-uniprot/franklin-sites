@@ -10,7 +10,7 @@ import {
 import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 const IconComponentOptions = {
-  EvidenceTag: <EvidenceTagIcon />,
+  EvidenceTag: <EvidenceTagIcon width={12} height={12} />,
   InformationIcon: <InformationIcon />,
   HelpIcon: <HelpIcon />,
 };
@@ -27,7 +27,7 @@ const meta: Meta<typeof EvidenceTagComponent> = {
   },
   args: {
     label: 'this is an evidence tag',
-    iconComponent: <EvidenceTagIcon />,
+    iconComponent: <EvidenceTagIcon width={12} height={12} />,
   },
   render: ({ label, iconComponent }) => (
     <EvidenceTagComponent label={label} iconComponent={iconComponent}>
