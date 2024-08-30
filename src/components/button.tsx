@@ -1,25 +1,9 @@
-import {
-  forwardRef,
-  ComponentClass,
-  FunctionComponent,
-  PropsWithChildren,
-  HTMLAttributes,
-} from 'react';
+import { forwardRef, PropsWithChildren, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';
 
-type PossibleElements =
-  | HTMLAnchorElement // <a></a>
-  | HTMLButtonElement // <button></button>
-  | FunctionComponent
-  | ComponentClass;
-
 export type ButtonProps = {
-  /**
-   * The element to use as a button
-   */
-  element?: 'button' | 'a' | FunctionComponent | ComponentClass;
   /**
    * Flag to disable the button
    */
@@ -36,40 +20,26 @@ export type ButtonProps = {
    * Classnames to be added to the button
    */
   className?: string;
-} & HTMLAttributes<PossibleElements>;
+} & HTMLAttributes<HTMLButtonElement>;
 
 export const Button = forwardRef<
-  PossibleElements,
+  HTMLButtonElement,
   PropsWithChildren<ButtonProps>
 >(
   (
-    { element = 'button', className, variant = 'primary', children, ...props },
+    { className, variant = 'primary', type = 'button', children, ...props },
     ref
-  ) => {
-    const rest = props;
-
-    if (element === 'button') {
-      rest.type = props.type || 'button';
-    }
-
-    const Element = element;
-    return (
-      <Element
-        className={cn(
-          'button',
-          variant,
-          { disabled: props.disabled },
-          className
-        )}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </Element>
-    );
-  }
+  ) => (
+    <button
+      className={cn('button', variant, { disabled: props.disabled }, className)}
+      // eslint-disable-next-line react/button-has-type
+      type={type}
+      ref={ref}
+      {...props}
+    >
+      {children}
+    </button>
+  )
 );
 
 export default Button;
