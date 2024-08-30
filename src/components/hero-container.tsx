@@ -1,4 +1,4 @@
-import { createElement, FC, HTMLAttributes, ReactNode } from 'react';
+import { FC, HTMLAttributes, ReactNode } from 'react';
 import cn from 'classnames';
 
 import { HeadingLevels } from '../types/common';
@@ -27,7 +27,7 @@ type HeroContainerProps = HTMLAttributes<HTMLElement> & {
 export const HeroContainer: FC<HeroContainerProps> &
   HTMLAttributes<HTMLElement> = ({
   headingContent,
-  headingLevel = 'h2',
+  headingLevel: HeadingLevel = 'h2',
   headingClassName,
   children,
   className,
@@ -42,12 +42,13 @@ export const HeroContainer: FC<HeroContainerProps> &
     )}
     {...props}
   >
-    {headingContent &&
-      createElement(
-        headingLevel,
-        { className: cn(headingClassName, 'hero-container__title', 'big') },
-        headingContent
-      )}
+    {headingContent && (
+      <HeadingLevel
+        className={cn(headingClassName, 'hero-container__title', 'big')}
+      >
+        {headingContent}
+      </HeadingLevel>
+    )}
     {children}
   </section>
 );

@@ -103,6 +103,12 @@ const SequenceChunks = memo(
   }
 );
 
+const visibleElement = (onClick: () => unknown) => (
+  <Button variant="tertiary" onClick={onClick}>
+    Highlight
+  </Button>
+);
+
 type SequenceProps = {
   /**
    * The sequence
@@ -225,9 +231,7 @@ const Sequence = ({
               </a>
             )}
             {addToBasketButton}
-            <Dropdown
-              visibleElement={<Button variant="tertiary">Highlight</Button>}
-            >
+            <Dropdown visibleElement={visibleElement}>
               {aaProps.map((aaProp) => {
                 const inputId = `${accession}-${aaProp.name}`;
                 return (

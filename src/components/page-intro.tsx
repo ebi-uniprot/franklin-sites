@@ -1,4 +1,4 @@
-import { createElement, FC, ReactNode, HTMLAttributes } from 'react';
+import { FC, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import { formatLargeNumber } from '../utils';
@@ -34,28 +34,24 @@ const PageIntro: FC<PageIntroProps & HTMLAttributes<HTMLDivElement>> = ({
   heading,
   resultsCount,
   headingPostscript,
-  headingLevel = 'h1',
+  headingLevel: HeadingLevel = 'h1',
   headingClassName,
   children,
   className,
   ...props
 }) => (
   <div className={cn(className, 'page-intro')} {...props}>
-    {createElement(
-      headingLevel,
-      { className: cn(headingClassName) },
-      <>
-        {heading}
-        {resultsCount !== undefined && (
-          <small>
-            {' '}
-            {formatLargeNumber(resultsCount)} result
-            {resultsCount === 1 ? '' : 's'}{' '}
-          </small>
-        )}
-        {headingPostscript}
-      </>
-    )}
+    <HeadingLevel className={cn(headingClassName)}>
+      {heading}
+      {resultsCount !== undefined && (
+        <small>
+          {' '}
+          {formatLargeNumber(resultsCount)} result
+          {resultsCount === 1 ? '' : 's'}{' '}
+        </small>
+      )}
+      {headingPostscript}
+    </HeadingLevel>
     {children}
   </div>
 );

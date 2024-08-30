@@ -1,11 +1,4 @@
-import {
-  useState,
-  cloneElement,
-  FC,
-  ReactElement,
-  HTMLAttributes,
-  useId,
-} from 'react';
+import { useState, FC, ReactElement, HTMLAttributes, useId } from 'react';
 import cn from 'classnames';
 
 import EvidenceTagIcon from '../svg/evidence-tag.svg';
@@ -13,6 +6,8 @@ import EvidenceTagIcon from '../svg/evidence-tag.svg';
 import '../styles/components/evidence-tag.scss';
 
 const size = 12;
+
+const defaultIcon = <EvidenceTagIcon width={size} height={size} />;
 
 type EvidenceTagProps = {
   /**
@@ -22,14 +17,14 @@ type EvidenceTagProps = {
   /**
    * Icon to display
    */
-  iconComponent?: ReactElement<{ width: number; height: number }>;
+  iconComponent?: ReactElement;
 };
 
 const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
   label,
   title,
   className,
-  iconComponent = <EvidenceTagIcon />,
+  iconComponent = defaultIcon,
   children,
   ...props
 }) => {
@@ -46,7 +41,7 @@ const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
         aria-controls={buttonId}
         {...props}
       >
-        {cloneElement(iconComponent, { width: size, height: size })}
+        {iconComponent}
         <span className="evidence-tag__label">{label}</span>
       </button>
       {children && (

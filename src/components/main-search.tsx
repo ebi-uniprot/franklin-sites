@@ -75,20 +75,22 @@ const MainSearch = ({
     return count ? { '--input-padding': `${count}ch` } : undefined;
   }, [secondaryButtons]);
 
+  const visibleElement = (onClick: () => unknown) => (
+    <Button variant="primary" style={style} onClick={onClick}>
+      {
+        namespaces[
+          // Pick the first item if nothing defined
+          selectedNamespace || Object.keys(namespaces)[0]
+        ]
+      }
+    </Button>
+  );
+
   return (
     <form onSubmit={onSubmit} aria-label="Main search" className="main-search">
       {Object.keys(namespaces).length > 0 && onNamespaceChange && (
         <Dropdown
-          visibleElement={
-            <Button variant="primary" style={style}>
-              {
-                namespaces[
-                  // Pick the first item if nothing defined
-                  selectedNamespace || Object.keys(namespaces)[0]
-                ]
-              }
-            </Button>
-          }
+          visibleElement={visibleElement}
           propChangeToClose={selectedNamespace}
         >
           <ul className="no-bullet">
