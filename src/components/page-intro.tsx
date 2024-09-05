@@ -44,7 +44,9 @@ const PageIntro: FC<PageIntroProps & HTMLAttributes<HTMLDivElement>> = ({
     <HeadingLevel className={cn(headingClassName)}>
       {heading}
       {resultsCount !== undefined && (
-        <small>
+        /* Not sure why fragments and keys are needed, but otherwise gets the
+        React key warnings messages and children are rendered as array... */
+        <small key="count">
           {' '}
           {formatLargeNumber(resultsCount)} result
           {resultsCount === 1 ? '' : 's'}{' '}
