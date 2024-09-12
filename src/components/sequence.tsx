@@ -207,9 +207,11 @@ const Sequence = ({
 
   if (isCollapsed || !sequence) {
     return (
-      <Button variant="secondary" onClick={handleShowSequenceClick}>
-        Show sequence {isLoading && <SpinnerIcon />}
-      </Button>
+      <div>
+        <Button variant="secondary" onClick={handleShowSequenceClick}>
+          Show sequence {isLoading && <SpinnerIcon />}
+        </Button>
+      </div>
     );
   }
 
