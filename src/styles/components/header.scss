@@ -23,6 +23,10 @@
     flex: 0 0 auto;
   }
 
+  .header__link {
+    align-self: baseline;
+  }
+
   &.header--negative,
   & .dropdown__content {
     justify-content: space-between;
