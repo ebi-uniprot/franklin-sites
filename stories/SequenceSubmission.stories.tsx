@@ -59,6 +59,37 @@ export const WithMultipleSequencesWarning: Story = {
   ),
 };
 
+const multipleSequences3 = `> sequence_1
+ACTGUACTGUACTGU`;
+export const WithTooFewSequencesError: Story = {
+  render: () => (
+    <SequenceSubmissionComponent
+      placeholder="Enter a sequence..."
+      defaultValue={multipleSequences3}
+      minimumSequences={2}
+    />
+  ),
+};
+
+const multipleSequences4 = `> sequence_1
+ACTGUACTGUACTGU
+> sequence_2
+ACTGAUTTGUATTGUUUGU
+> sequence_3
+ACTGCTGUAGU
+> sequence_4
+GUACTGU
+`;
+export const WithTooManySequencesError: Story = {
+  render: () => (
+    <SequenceSubmissionComponent
+      placeholder="Enter a sequence..."
+      defaultValue={multipleSequences4}
+      maximumSequences={3}
+    />
+  ),
+};
+
 const DynamicallyChangeValueRender = () => {
   const [sequence, setSequence] = useState('ACTG');
   const [likelyType, setLikelyType] = useState<SequenceObject['likelyType']>();
