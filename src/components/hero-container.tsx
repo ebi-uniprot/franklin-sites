@@ -1,4 +1,4 @@
-import { createElement, FC, HTMLAttributes, ReactNode } from 'react';
+import { FC, HTMLAttributes, ReactNode } from 'react';
 import cn from 'classnames';
 
 import { HeadingLevels } from '../types/common';
@@ -7,17 +7,17 @@ import '../styles/components/hero-container.scss';
 
 type HeroContainerProps = HTMLAttributes<HTMLElement> & {
   /**
-   * The title of the component
+   * The heading of the component
    */
   headingContent?: ReactNode;
   /**
-   * The tile title heading level
+   * The heading level
    */
   headingLevel?: HeadingLevels;
   /**
-   * CSS classes to pass to the component title
+   * CSS classes to pass to the component heading
    */
-  titleClassName?: string;
+  headingClassName?: string;
   /**
    * Remove left and right padding
    */
@@ -27,10 +27,10 @@ type HeroContainerProps = HTMLAttributes<HTMLElement> & {
 export const HeroContainer: FC<HeroContainerProps> &
   HTMLAttributes<HTMLElement> = ({
   headingContent,
-  headingLevel = 'h2',
+  headingLevel: HeadingLevel = 'h2',
+  headingClassName,
   children,
   className,
-  titleClassName,
   noSidePadding = false,
   ...props
 }) => (
@@ -42,12 +42,13 @@ export const HeroContainer: FC<HeroContainerProps> &
     )}
     {...props}
   >
-    {headingContent &&
-      createElement(
-        headingLevel,
-        { className: cn(titleClassName, 'hero-container__title', 'big') },
-        headingContent
-      )}
+    {headingContent && (
+      <HeadingLevel
+        className={cn(headingClassName, 'hero-container__title', 'big')}
+      >
+        {headingContent}
+      </HeadingLevel>
+    )}
     {children}
   </section>
 );

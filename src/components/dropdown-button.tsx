@@ -8,9 +8,8 @@ import {
   Dispatch,
   SetStateAction,
   HTMLAttributes,
-  cloneElement,
   useCallback,
-  forwardRef,
+  Fragment,
 } from 'react';
 import cn from 'classnames';
 
@@ -33,7 +32,7 @@ export type DropdownButtonProps = {
    * Open on pointer over (useful for dropdowns in header)
    */
   openOnHover?: boolean;
-} & ButtonProps;
+} & Omit<ButtonProps, 'children'>;
 
 // Keep it around for now as it's still used in TreeSelect
 /** @deprecated */
@@ -139,32 +138,27 @@ type ControlledDropdownProps = {
   expanded: boolean;
 };
 
-export const ControlledDropdown = forwardRef<
-  HTMLDivElement,
-  ControlledDropdownProps & HTMLAttributes<HTMLSpanElement>
->(
-  (
-    {
-      visibleElement,
-      expanded,
-      children,
-      className,
-      'aria-haspopup': ariaHaspopup,
-      ...props
-    },
-    ref
-  ) => (
-    <div
-      className={cn(className, 'dropdown')}
-      {...props}
-      aria-expanded={expanded}
-      aria-haspopup={ariaHaspopup || true}
-      ref={ref}
-    >
-      {visibleElement}
+export const ControlledDropdown = ({
+  visibleElement,
+  expanded,
+  children,
+  className,
+  'aria-haspopup': ariaHaspopup,
+  ...props
+}: ControlledDropdownProps & HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(className, 'dropdown')}
+    {...props}
+    aria-expanded={expanded}
+    aria-haspopup={ariaHaspopup || true}
+  >
+    {/* Not sure why fragments and keys are needed, but otherwise gets the
+    React key warnings messages and children are rendered as array... */}
+    <Fragment key="visible">{visibleElement}</Fragment>
+    <Fragment key="content">
       {expanded && <div className="dropdown__content">{children}</div>}
-    </div>
-  )
+    </Fragment>
+  </div>
 );
 
 type DropdownProps = {
@@ -172,6 +166,10 @@ type DropdownProps = {
    * Prop that, when it changes, will cause the dropdown to close
    */
   propChangeToClose?: unknown;
+  /**
+   * Render for element always visible used to open and close the dropdown
+   */
+  visibleElement: (onClick: () => unknown) => ReactElement;
   /**
    * Close if a clickable element within is clicked
    */
@@ -181,11 +179,13 @@ type DropdownProps = {
 export const Dropdown = ({
   visibleElement,
   propChangeToClose,
+  className,
+  'aria-haspopup': ariaHaspopup,
   children,
   ...props
-}: Omit<ControlledDropdownProps, 'expanded'> &
+}: Omit<ControlledDropdownProps, 'expanded' | 'visibleElement'> &
   DropdownProps &
-  Omit<HTMLAttributes<HTMLSpanElement>, 'children'>) => {
+  Omit<HTMLAttributes<HTMLDivElement>, 'children'>) => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -227,14 +227,24 @@ export const Dropdown = ({
   );
 
   return (
-    <ControlledDropdown
-      visibleElement={cloneElement(visibleElement, { onClick: handleClick })}
+    <div
+      className={cn(className, 'dropdown')}
       {...props}
-      expanded={expanded}
+      aria-expanded={expanded}
+      aria-haspopup={ariaHaspopup || true}
       ref={ref}
     >
-      {typeof children === 'function' ? children(close) : children}
-    </ControlledDropdown>
+      {/* Not sure why fragments and keys are needed, but otherwise gets the
+      React key warnings messages and children are rendered as array... */}
+      <Fragment key="visible">{visibleElement(handleClick)}</Fragment>
+      <Fragment key="content">
+        {expanded && (
+          <div className="dropdown__content">
+            {typeof children === 'function' ? children(close) : children}
+          </div>
+        )}
+      </Fragment>
+    </div>
   );
 };
 

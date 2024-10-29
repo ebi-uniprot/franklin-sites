@@ -1,3 +1,5 @@
+import '../styles/index.scss';
+
 // Components
 export { default as Accordion } from './accordion';
 export { default as AccordionSearch } from './accordion-search';
@@ -23,7 +25,6 @@ export { default as EllipsisReveal } from './ellipsis-reveal';
 export { default as EvidenceTag } from './evidence-tag';
 export { default as ExpandableList } from './expandable-list';
 export { default as ExternalLink } from './external-link';
-export { default as FranklinSite } from './franklin-site';
 export { default as Header } from './header';
 export { default as HeroContainer } from './hero-container';
 export { default as HeroHeader } from './hero-header';

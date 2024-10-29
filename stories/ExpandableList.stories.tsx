@@ -38,8 +38,9 @@ export const ExpandableList: Story = {
         numberElements: 10,
         keys: ['content'],
         type: 'words',
-      }).map(({ id, content }) => (
-        <span key={id}>{content}</span>
+      }).map(({ content }, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <span key={index}>{content}</span>
       ))}
     </ExpandableListComponent>
   ),
@@ -64,8 +65,9 @@ export const ExpandableListWithExtraAction: Story = {
         numberElements: 10,
         keys: ['content'],
         type: 'words',
-      }).map(({ id, content }) => (
-        <span key={id}>{content}</span>
+      }).map(({ content }, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <span key={index}>{content}</span>
       ))}
     </ExpandableListComponent>
   ),

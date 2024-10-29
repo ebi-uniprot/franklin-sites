@@ -1,19 +1,13 @@
-import {
-  useState,
-  useRef,
-  cloneElement,
-  FC,
-  ReactElement,
-  HTMLAttributes,
-} from 'react';
+import { useState, FC, ReactElement, HTMLAttributes, useId } from 'react';
 import cn from 'classnames';
-import { v1 } from 'uuid';
 
 import EvidenceTagIcon from '../svg/evidence-tag.svg';
 
 import '../styles/components/evidence-tag.scss';
 
 const size = 12;
+
+const defaultIcon = <EvidenceTagIcon width={size} height={size} />;
 
 type EvidenceTagProps = {
   /**
@@ -23,18 +17,18 @@ type EvidenceTagProps = {
   /**
    * Icon to display
    */
-  iconComponent?: ReactElement<{ width: number; height: number }>;
+  iconComponent?: ReactElement;
 };
 
 const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
   label,
   title,
   className,
-  iconComponent = <EvidenceTagIcon />,
+  iconComponent = defaultIcon,
   children,
   ...props
 }) => {
-  const idRef = useRef(v1());
+  const buttonId = useId();
   const [contentDisplay, setContentDisplay] = useState(false);
   return (
     <>
@@ -44,10 +38,10 @@ const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
         type="button"
         data-testid="evidence-tag-trigger"
         aria-expanded={contentDisplay}
-        aria-controls={idRef.current}
+        aria-controls={buttonId}
         {...props}
       >
-        {cloneElement(iconComponent, { width: size, height: size })}
+        {iconComponent}
         <span className="evidence-tag__label">{label}</span>
       </button>
       {children && (
@@ -56,7 +50,7 @@ const EvidenceTag: FC<EvidenceTagProps & HTMLAttributes<HTMLButtonElement>> = ({
             contentDisplay ? 'evidence-tag-content--visible' : ''
           }`}
           data-testid="evidence-tag-content"
-          id={idRef.current}
+          id={buttonId}
         >
           {contentDisplay && children}
         </div>

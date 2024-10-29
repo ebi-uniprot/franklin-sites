@@ -56,7 +56,7 @@ const TreeSelect = <Item extends BasicItem<Item>>({
   defaultActiveNodes = [],
   label,
   ...props
-}: Except<DropdownButtonProps, 'children' | 'label'> &
+}: Except<DropdownButtonProps, 'children' | 'label' | 'onSelect'> &
   TreeSelectProps<Item>) => {
   const [activeNodes, setActiveNodes] = useState(defaultActiveNodes);
 

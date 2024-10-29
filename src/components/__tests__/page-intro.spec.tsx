@@ -6,7 +6,7 @@ import PageIntro from '../page-intro';
 describe('PageIntro component', () => {
   it('should render', () => {
     const { asFragment } = render(
-      <PageIntro title="Title" resultsCount={1000}>
+      <PageIntro heading="Title" resultsCount={1000}>
         <div>Some content</div>
       </PageIntro>
     );
@@ -17,7 +17,11 @@ describe('PageIntro component', () => {
     const level = 5;
     const headingLevel = `h${level}` as HeadingLevels;
     render(
-      <PageIntro title="Title" resultsCount={1000} headingLevel={headingLevel}>
+      <PageIntro
+        heading="Title"
+        resultsCount={1000}
+        headingLevel={headingLevel}
+      >
         <div>Some content</div>
       </PageIntro>
     );
@@ -26,7 +30,7 @@ describe('PageIntro component', () => {
 
   it('should render 1 singular result', () => {
     render(
-      <PageIntro title="Title" resultsCount={1}>
+      <PageIntro heading="Title" resultsCount={1}>
         <div>Some content</div>
       </PageIntro>
     );
@@ -38,9 +42,9 @@ describe('PageIntro component', () => {
   it('should render title postscript', () => {
     render(
       <PageIntro
-        title="Title"
+        heading="Title"
         resultsCount={1000}
-        titlePostscript={<i>from job ID123</i>}
+        headingPostscript={<i>from job ID123</i>}
       />
     );
     expect(

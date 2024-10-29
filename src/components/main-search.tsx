@@ -9,8 +9,6 @@ import {
 import { Dropdown } from './dropdown-button';
 import Button from './button';
 
-import color from '../styles/colours.json';
-
 import { FranklinStyle } from '../types/common';
 
 import '../styles/components/main-search.scss';
@@ -65,8 +63,7 @@ const MainSearch = ({
 }: MainSearchProps) => {
   const style = useMemo<FranklinStyle>(
     () => ({
-      '--main-button-color':
-        color[selectedNamespace as keyof typeof color] || color.seaBlue,
+      '--main-button-color': `var(--fr--color-${selectedNamespace}, var(--fr--color-sea-blue))`,
     }),
     [selectedNamespace]
   );
@@ -78,20 +75,22 @@ const MainSearch = ({
     return count ? { '--input-padding': `${count}ch` } : undefined;
   }, [secondaryButtons]);
 
+  const visibleElement = (onClick: () => unknown) => (
+    <Button variant="primary" style={style} onClick={onClick}>
+      {
+        namespaces[
+          // Pick the first item if nothing defined
+          selectedNamespace || Object.keys(namespaces)[0]
+        ]
+      }
+    </Button>
+  );
+
   return (
     <form onSubmit={onSubmit} aria-label="Main search" className="main-search">
       {Object.keys(namespaces).length > 0 && onNamespaceChange && (
         <Dropdown
-          visibleElement={
-            <Button variant="primary" style={style}>
-              {
-                namespaces[
-                  // Pick the first item if nothing defined
-                  selectedNamespace || Object.keys(namespaces)[0]
-                ]
-              }
-            </Button>
-          }
+          visibleElement={visibleElement}
           propChangeToClose={selectedNamespace}
         >
           <ul className="no-bullet">

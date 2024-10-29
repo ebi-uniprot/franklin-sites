@@ -64,7 +64,13 @@ const meta: Meta<typeof HeaderComponent> = {
       <a target="_blank" href="https://www.uniprot.org/" rel="noreferrer">
         Link 1
       </a>
-      <Dropdown visibleElement={<Button variant="tertiary">Links 2</Button>}>
+      <Dropdown
+        visibleElement={(onClick) => (
+          <Button variant="tertiary" onClick={onClick}>
+            Links 2
+          </Button>
+        )}
+      >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
             sublink 1

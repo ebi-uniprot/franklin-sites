@@ -13,10 +13,6 @@ import {
   NonSortableColumn,
 } from '../data-table';
 
-jest.mock('uuid', () => ({
-  v1: jest.fn(() => 'abcd'),
-}));
-
 describe('DataTable', () => {
   const onSelectionChange = jest.fn();
   const onHeaderClick = jest.fn();
@@ -28,7 +24,7 @@ describe('DataTable', () => {
     content3: 'baz',
   }));
 
-  type DataType = typeof data[0];
+  type DataType = (typeof data)[0];
   const columns: Array<SortableColumn<DataType> | NonSortableColumn<DataType>> =
     [
       {

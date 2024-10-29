@@ -10,8 +10,6 @@ import {
   getGaussianSample,
 } from '../src/mock-data/probability-distribution-sample';
 
-import colors from '../src/styles/colours.json';
-
 const [min, max] = [0, 1000];
 const nValues = 1000;
 const gaussianSample = getGaussianSample(
@@ -74,19 +72,39 @@ const meta: Meta<StoryProps> = {
     color: {
       control: 'select',
       name: '--main-histogram-color',
-      options: colors,
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'var(--fr--color-weldon-blue)',
+        'var(--fr--color-platinum)',
+        'white',
+        'blue',
+      ],
     },
     outRangeColor: {
       control: 'select',
       name: '--out-range-histogram-color',
-      options: colors,
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'var(--fr--color-weldon-blue)',
+        'var(--fr--color-platinum)',
+        'white',
+        'blue',
+      ],
     },
   },
   args: {
     // selectedRange: [min, max],
     barGap: '-1px',
-    color: colors.weldonBlue,
-    outRangeColor: colors.platinum,
+    color: 'var(--fr--color-weldon-blue)',
+    outRangeColor: 'var(--fr--color-platinum)',
   },
   render: StoryRender,
 };

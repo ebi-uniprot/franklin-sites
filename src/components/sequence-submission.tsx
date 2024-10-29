@@ -28,6 +28,14 @@ type Props = {
    * Minimum acceptable length for a sequence
    */
   minimumLength?: number;
+  /**
+   * Minimum acceptable number of sequences
+   */
+  minimumSequences?: number;
+  /**
+   * Maximum acceptable number of sequences
+   */
+  maximumSequences?: number;
 };
 
 const SequenceSubmission = ({
@@ -36,6 +44,8 @@ const SequenceSubmission = ({
   placeholder,
   defaultValue,
   minimumLength,
+  minimumSequences,
+  maximumSequences,
 }: Props) => {
   const [processed, setProcessed] = useState<SequenceObject[]>([]);
 
@@ -147,6 +157,29 @@ const SequenceSubmission = ({
     }
   }
 
+  const sequenceCountMessage =
+    (maximumSequences && processed.length > maximumSequences && (
+      <Message level="failure">
+        Your input contains {processed.length} sequences which exceeds the
+        submission limit of {maximumSequences}.
+      </Message>
+    )) ||
+    (minimumSequences &&
+      processed.length &&
+      processed.length < minimumSequences && (
+        <Message level="failure">
+          Your input contains {processed.length} sequence
+          {processed.length === 1 ? '' : 's'}. At least {minimumSequences}{' '}
+          sequences are required.
+        </Message>
+      )) ||
+    (processed[0] && processed[0].sequence.length > 10 && (
+      <Message level="info">
+        Your input contains {processed.length} sequence
+        {processed.length === 1 ? '' : 's'}.
+      </Message>
+    ));
+
   return (
     <>
       <textarea
@@ -158,12 +191,7 @@ const SequenceSubmission = ({
         defaultValue={defaultValue}
         spellCheck="false"
       />
-      {processed[0] && processed[0].sequence.length > 10 && (
-        <Message level="info">
-          Your input contains {processed.length} sequence
-          {processed.length === 1 ? '' : 's'}
-        </Message>
-      )}
+      {sequenceCountMessage}
       {errorMessages}
       {warningMessages}
     </>

@@ -5,8 +5,6 @@ import { action } from '@storybook/addon-actions';
 
 import { Chip as ChipComponent } from '../src/components';
 
-import colors from '../src/styles/colours.json';
-
 interface Style extends CSSProperties {
   // TODO: define and extend the supported custom properties in franklin
   // TODO: find a way to expose them globally when using franklin elements
@@ -25,7 +23,19 @@ const meta: Meta<StoryProps> = {
       options: ['primary', 'secondary'],
       control: { type: 'select' },
     },
-    color: { control: 'select', name: '--main-chip-color', options: colors },
+    color: {
+      control: 'select',
+      name: '--main-chip-color',
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'white',
+        'blue',
+      ],
+    },
   },
   args: {
     title: 'this is a chip',

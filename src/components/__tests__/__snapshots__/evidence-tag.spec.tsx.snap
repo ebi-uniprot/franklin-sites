@@ -3,7 +3,7 @@
 exports[`EvidenceTag component should render tag and toggle visibility of content 1`] = `
 <DocumentFragment>
   <button
-    aria-controls="abcd"
+    aria-controls="2"
     aria-expanded="true"
     class="evidence-tag"
     data-testid="evidence-tag-trigger"
@@ -22,7 +22,7 @@ exports[`EvidenceTag component should render tag and toggle visibility of conten
   <div
     class="evidence-tag-content evidence-tag-content--visible"
     data-testid="evidence-tag-content"
-    id="abcd"
+    id="2"
   >
     <p>
       Some content

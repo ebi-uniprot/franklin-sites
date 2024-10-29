@@ -103,6 +103,12 @@ const SequenceChunks = memo(
   }
 );
 
+const visibleElement = (onClick: () => unknown) => (
+  <Button variant="tertiary" onClick={onClick}>
+    Highlight
+  </Button>
+);
+
 type SequenceProps = {
   /**
    * The sequence
@@ -201,9 +207,11 @@ const Sequence = ({
 
   if (isCollapsed || !sequence) {
     return (
-      <Button variant="secondary" onClick={handleShowSequenceClick}>
-        Show sequence {isLoading && <SpinnerIcon />}
-      </Button>
+      <div>
+        <Button variant="secondary" onClick={handleShowSequenceClick}>
+          Show sequence {isLoading && <SpinnerIcon />}
+        </Button>
+      </div>
     );
   }
 
@@ -217,17 +225,26 @@ const Sequence = ({
       <section className="sequence-container" style={sequenceStyle}>
         {showActionBar && accession && (
           <div className="action-bar button-group">
-            <SequenceTools accession={accession} onBlastClick={onBlastClick} />
+            {/* Not sure why keys are needed, but otherwise gets the React key
+            warnings messages and children are rendered as array... */}
+            <SequenceTools
+              accession={accession}
+              onBlastClick={onBlastClick}
+              key="tools"
+            />
             {downloadUrl && (
-              <a className="button tertiary" href={downloadUrl} download>
+              <a
+                className="button tertiary"
+                href={downloadUrl}
+                download
+                key="link"
+              >
                 <DownloadIcon />
                 Download
               </a>
             )}
             {addToBasketButton}
-            <Dropdown
-              visibleElement={<Button variant="tertiary">Highlight</Button>}
-            >
+            <Dropdown visibleElement={visibleElement} key="highlight">
               {aaProps.map((aaProp) => {
                 const inputId = `${accession}-${aaProp.name}`;
                 return (
@@ -250,6 +267,7 @@ const Sequence = ({
               afterCopy="Copied"
               className="tertiary"
               onCopy={onCopy}
+              key="copy"
             />
           </div>
         )}

@@ -1,5 +1,4 @@
 import { loremIpsum } from 'lorem-ipsum';
-import { v1 } from 'uuid';
 
 export const getLipsumWords = () => loremIpsum({ count: 2, units: 'words' });
 
@@ -18,17 +17,15 @@ type Args = {
 export const getLipsumObjectArray = ({
   numberElements,
   keys,
-  idKey = 'id',
   type = 'sentences',
 }: Args): Array<Record<string, string>> =>
   Array.from({ length: numberElements }, () =>
-    Object.fromEntries([
-      [[idKey], v1()],
-      ...keys.map((key) => [
+    Object.fromEntries(
+      keys.map((key) => [
         key,
         type === 'sentences' ? getLipsumSentences() : getLipsumWords(),
-      ]),
-    ])
+      ])
+    )
   );
 
 export default getLipsumObjectArray;

@@ -3,8 +3,6 @@ import { CSSProperties } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Bubble as BubbleComponent } from '../src/components';
 
-import colors from '../src/styles/colours.json';
-
 const meta: Meta<typeof BubbleComponent> = {
   component: BubbleComponent,
   title: 'Visualisation',
@@ -14,9 +12,21 @@ const meta: Meta<typeof BubbleComponent> = {
       name: 'children (bubbble number)',
     },
     size: { control: 'select', options: ['small', 'medium', 'large'] },
-    color: { control: 'select', name: '--main-bubble-color', options: colors },
+    color: {
+      control: 'select',
+      name: '--main-bubble-color',
+      options: [
+        'var(--fr--color-sapphire-blue)',
+        'var(--fr--color-sea-blue)',
+        'var(--fr--color-vivid-cerulean)',
+        'var(--fr--color-medium-turquoise)',
+        'var(--fr--color-gainsborough)',
+        'white',
+        'blue',
+      ],
+    },
   },
-  args: { children: 20, color: colors.seaBlue },
+  args: { children: 20, color: 'var(--fr--color-sea-blue)' },
   render: ({ children, size, color }) => (
     <BubbleComponent
       size={size}

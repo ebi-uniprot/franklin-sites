@@ -1,5 +1,4 @@
 import {
-  createElement,
   CSSProperties,
   FC,
   HTMLAttributes,
@@ -54,8 +53,8 @@ type Props = {
   link?: ReactElement;
 };
 
-const nextHeading = (level: Exclude<HeadingLevels, 'h6'>) =>
-  `h${+level[1] + 1}`;
+const nextHeading = (level: Exclude<HeadingLevels, 'h6'>): HeadingLevels =>
+  `h${+level[1] + 1}` as HeadingLevels;
 
 export const Tile: FC<
   PropsWithChildren<Props> & HTMLAttributes<HTMLDivElement>
@@ -72,44 +71,50 @@ export const Tile: FC<
   children,
   descriptionSlideUp = false,
   link,
-}) => (
-  <div
-    className={cn(className, 'tile', {
-      'tile-gradient': gradient,
-      'tile--has-link': link,
-    })}
-    style={
-      {
-        ...style,
-        '--tile-background': backgroundColor,
-        width,
-      } as CSSProperties
-    }
-  >
-    {link && <link.type {...link.props} aria-hidden="true" tabIndex={-1} />}
-    <div className="tile__background-image" aria-hidden="true">
-      {backgroundImage}
-    </div>
-    <div className="tile__main-content">
-      {createElement(headingLevel, { className: 'tile__header big' }, title)}
-      {subtitle &&
-        createElement(
-          nextHeading(headingLevel),
-          { className: 'tile__subtitle small' },
-          subtitle
+}) => {
+  const TitleHeadingLevel = headingLevel;
+  const SubtitleHeadingLevel = nextHeading(headingLevel);
+
+  return (
+    <div
+      className={cn(className, 'tile', {
+        'tile-gradient': gradient,
+        'tile--has-link': link,
+      })}
+      style={
+        {
+          ...style,
+          '--tile-background': backgroundColor,
+          width,
+        } as CSSProperties
+      }
+    >
+      {link && <link.type {...link.props} aria-hidden="true" tabIndex={-1} />}
+      <div className="tile__background-image" aria-hidden="true">
+        {backgroundImage}
+      </div>
+      <div className="tile__main-content">
+        <TitleHeadingLevel className="tile__header big">
+          {title}
+        </TitleHeadingLevel>
+        {subtitle && (
+          <SubtitleHeadingLevel className="tile__subtitle small">
+            {subtitle}
+          </SubtitleHeadingLevel>
         )}
+      </div>
+      {children && (
+        <small
+          className={cn(
+            'tile__description',
+            descriptionSlideUp && 'tile__description--animated'
+          )}
+        >
+          {children}
+        </small>
+      )}
     </div>
-    {children && (
-      <small
-        className={cn(
-          'tile__description',
-          descriptionSlideUp && 'tile__description--animated'
-        )}
-      >
-        {children}
-      </small>
-    )}
-  </div>
-);
+  );
+};
 
 export default Tile;

@@ -6,12 +6,12 @@ import { getLipsumSentences } from '../src/mock-data/lipsum';
 
 const meta: Meta<typeof PageIntroComponent> = {
   title: 'Layout/Page Intro',
-  args: { titlePostscript: '' },
-  render: ({ titlePostscript }) => (
+  args: { headingPostscript: '' },
+  render: ({ headingPostscript }) => (
     <PageIntroComponent
-      title="UniProt"
+      heading="UniProt"
       resultsCount={1000}
-      titlePostscript={titlePostscript}
+      headingPostscript={headingPostscript}
     >
       {getLipsumSentences()}
     </PageIntroComponent>

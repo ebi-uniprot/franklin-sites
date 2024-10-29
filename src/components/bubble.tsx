@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactText } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import cn from 'classnames';
 import { Except } from 'type-fest';
 
@@ -21,7 +21,7 @@ const Bubble = ({
   className,
   ...props
 }: Props & Except<HTMLAttributes<HTMLSpanElement>, 'children'>) => {
-  let displayValue: ReactText | undefined;
+  let displayValue: ReactNode | undefined;
   if (children !== undefined && Number.isFinite(children)) {
     displayValue = Math.round(children * 10) / 10;
   }

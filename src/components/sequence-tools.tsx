@@ -25,13 +25,19 @@ const sequenceTools = [
   },
 ];
 
+const visibleElement = (onClick: () => unknown) => (
+  <Button variant="tertiary" onClick={onClick}>
+    Tools
+  </Button>
+);
+
 type SequenceToolsProps = {
   accession: string;
   onBlastClick?: () => void;
 };
 
 const SequenceTools = ({ accession, onBlastClick }: SequenceToolsProps) => (
-  <Dropdown visibleElement={<Button variant="tertiary">Tools</Button>}>
+  <Dropdown visibleElement={visibleElement}>
     <ul>
       {onBlastClick && (
         <li>

@@ -2,10 +2,6 @@ import { screen, render, fireEvent } from '@testing-library/react';
 
 import { Tabs, Tab } from '../tabs';
 
-jest.mock('uuid', () => ({
-  v1: jest.fn(() => 'abcd'),
-}));
-
 describe('Tabs', () => {
   it('should render', () => {
     const { asFragment } = render(

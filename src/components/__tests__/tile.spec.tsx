@@ -5,8 +5,6 @@ import { render } from '@testing-library/react';
 import Tile from '../tile';
 import { ProtVistaIcon } from '..';
 
-import colors from '../../styles/colours.json';
-
 describe('Tile component', () => {
   it('should render', () => {
     const { asFragment } = render(
@@ -14,7 +12,7 @@ describe('Tile component', () => {
         title="Tile title"
         subtitle="Subtitle"
         backgroundImage={<ProtVistaIcon />}
-        backgroundColor={colors.seaBlue}
+        backgroundColor="var(--fr--color-sea-blue)"
         link={<a href="https://www.uniprot.org" />}
         gradient
       >

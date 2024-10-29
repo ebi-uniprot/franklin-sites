@@ -1,5 +1,4 @@
 @import '../settings';
-@import '../colours';
 @import '../common/utils';
 
 @mixin bubble($size) {
@@ -12,10 +11,9 @@
   height: $size;
   line-height: $size;
   font-size: bubbleFontSize($size);
-  color: $colour-sky-white;
+  color: var(--fr--color-sky-white);
 
-  --main-color: var(--main-bubble-color, #{$colour-sea-blue});
-  background-color: $colour-sea-blue;
+  --main-color: var(--main-bubble-color, var(--fr--color-sea-blue));
   background-color: var(--main-color);
 }
 

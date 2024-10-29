@@ -5,7 +5,7 @@ import { AccordionSearch as AccordionSearchComponent } from '../src/components';
 
 import accordionData from '../src/components/__mocks__/accordionData';
 
-export const AccordionSearchRender = () => {
+const AccordionSearchRender = () => {
   const [selected, setSelected] = useState<string[]>([]);
 
   return (

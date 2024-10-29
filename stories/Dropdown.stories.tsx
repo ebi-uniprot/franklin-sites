@@ -15,7 +15,11 @@ const meta: Meta<typeof DropdownComponent> = {
       {variants.map((variant) => (
         <Fragment key={variant}>
           <DropdownComponent
-            visibleElement={<Button variant={variant}>Download</Button>}
+            visibleElement={(onClick) => (
+              <Button variant={variant} onClick={onClick}>
+                Download
+              </Button>
+            )}
           >
             {(closeDropdown) => (
               <div>
