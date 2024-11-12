@@ -7,12 +7,10 @@ import {
   ReactNode,
   HTMLAttributes,
   useMemo,
-  forwardRef,
   ReactElement,
   useId,
 } from 'react';
 import cn from 'classnames';
-import Tippy from '@tippyjs/react';
 
 import Loader from './loader';
 
@@ -21,8 +19,6 @@ import useDataCheckboxes from '../hooks/useDataCheckboxes';
 import withDataLoader, { WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
-
-import 'tippy.js/dist/tippy.css';
 
 type BasicDatum = Record<string, unknown>;
 
@@ -69,17 +65,6 @@ type HeadProps<Datum> = {
   onHeaderClick?: (columnName: SortableColumn<Datum>['name']) => void;
 };
 
-const LabelContent = ({ label }: { label: () => ReactNode }): ReactNode =>
-  typeof label === 'function' ? label() : label;
-
-const TippyLabelContent = forwardRef<HTMLElement, { label: () => ReactNode }>(
-  ({ label }, ref) => (
-    <span ref={ref}>
-      <LabelContent label={label} />
-    </span>
-  )
-);
-
 const DataTableHead = <Datum extends BasicDatum>({
   columns,
   onHeaderClick,
@@ -93,7 +78,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           <div className="checkbox-cell">{checkbox}</div>
         </th>
       )}
-      {columns.map(({ sorted, name, label, tooltip, sortable, width }) => (
+      {columns.map(({ sorted, name, label, sortable, width }) => (
         <th
           key={name}
           className={cn({
@@ -103,14 +88,9 @@ const DataTableHead = <Datum extends BasicDatum>({
           })}
           onClick={sortable ? () => onHeaderClick?.(name) : undefined}
           style={width ? { width } : undefined}
+          data-column-name={name}
         >
-          {tooltip && typeof tooltip !== 'undefined' ? (
-            <Tippy content={tooltip} interactive placement="bottom">
-              <TippyLabelContent label={() => label} />
-            </Tippy>
-          ) : (
-            <LabelContent label={() => label} />
-          )}
+          {typeof label === 'function' ? (label as () => JSX.Element)() : label}
         </th>
       ))}
     </tr>
