@@ -19,6 +19,7 @@
 
   .sequence {
     font-family: $font-family-monospace;
+    font-size: inherit;
     overflow-wrap: anywhere;
 
     counter-reset: sequence;
