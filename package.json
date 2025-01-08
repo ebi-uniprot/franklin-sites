@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.250",
+  "version": "0.0.251",
   "main": "dist/franklin-components.js",
   "exports": {
     ".": "./dist/franklin-components.js",
