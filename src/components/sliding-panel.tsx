@@ -143,14 +143,12 @@ const SlidingPanel: FC<
   }, []);
 
   // Handle closing the sliding panel when there's a path change
-  const firstTime = useRef(true);
+  const pathnameRef = useRef(pathname);
   useEffect(() => {
-    if (firstTime.current) {
-      firstTime.current = false;
-    } else {
+    // If the pathname changed
+    if (pathnameRef.current !== pathname) {
       onCloseRef.current?.('navigation');
     }
-    // keep pathname below, this is to trigger the effect when it changes
   }, [pathname]);
 
   useEffect(() => {
