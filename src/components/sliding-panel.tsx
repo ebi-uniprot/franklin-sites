@@ -103,11 +103,19 @@ const SlidingPanel: FC<
       }
       // Disconnect here too, just in case it didn't have a chance to do so
       mutationObs?.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    // Make sure to add it to the reference anyway every time to handle the
+    // double renders in React in dev mode
+    onCloseRef.current = onClose;
+    return () => {
       // Lose the reference to the onClose function on unmount because we might
       // call it on the next frame but it will already be unmounted
       onCloseRef.current = undefined;
     };
-  }, []);
+  }, [onClose]);
 
   // Handle closing the sliding panel when there's a click outside
   useEffect(() => {
