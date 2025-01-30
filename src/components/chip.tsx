@@ -45,6 +45,7 @@ type ChipProps = {
    * key press event listener on the component
    */
   onKeyPress?: () => void;
+  innerRef?: (node: HTMLElement | null) => void;
 };
 
 export const Chip: FC<
@@ -58,6 +59,7 @@ export const Chip: FC<
   title,
   onClick,
   onKeyPress,
+  innerRef,
   ...rest
 }) => {
   const onRemoveRef = useRef(onRemove);
@@ -83,6 +85,7 @@ export const Chip: FC<
   const Element = element;
   return (
     <Element
+      ref={innerRef}
       className={cn(
         'chip',
         { 'chip--disabled': disabled, 'chip--compact': compact },
