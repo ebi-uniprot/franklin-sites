@@ -28,6 +28,27 @@ export const UnmanagedTabs = () => (
   </Tabs>
 );
 
+export const UnmanagedTabsBoxStyling = () => (
+  <Tabs bordered>
+    <Tab
+      title={
+        <>
+          Title 1
+          <ConfigureIcon
+            style={{ verticalAlign: 'text-top' }}
+            width={16}
+            height={16}
+          />
+        </>
+      }
+    >
+      {loremIpsum({ count: 2 })}
+    </Tab>
+    <Tab title="Title 2">{loremIpsum({ count: 2 })}</Tab>
+    <Tab title="Title 3">{loremIpsum({ count: 2 })}</Tab>
+  </Tabs>
+);
+
 export const UnmanagedTabsWithDifferentDefault = () => (
   <Tabs>
     <Tab

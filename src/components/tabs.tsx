@@ -53,9 +53,16 @@ type TabsProps = {
    * <Tab>
    */
   active?: string | number;
+  bordered?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
-export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
+export const Tabs = ({
+  children,
+  active,
+  className,
+  bordered = false,
+  ...props
+}: TabsProps) => {
   const tabId = useId();
 
   const isManaged = typeof active !== 'undefined';
@@ -168,6 +175,7 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
                 className={cn(
                   'tabs__header__item',
                   {
+                    'tabs__header__item--bordered': bordered,
                     'tabs__header__item--active': id === activeFromPropsOrState,
                   },
                   className
