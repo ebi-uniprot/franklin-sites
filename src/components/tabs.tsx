@@ -184,7 +184,7 @@ export const Tabs = ({
                   },
                   className
                 )}
-                aria-disabled={disabled}
+                aria-disabled={disabled ? true : undefined}
                 onFocus={disabled ? (event) => event.target.blur() : undefined}
                 {...unmanagedProps}
                 {...props}
