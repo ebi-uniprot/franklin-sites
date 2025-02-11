@@ -159,11 +159,11 @@ export const Tabs = ({
           ({
             title,
             id,
-            className, // eslint-disable-line no-shadow
+            className,
             children: _,
             defaultSelected: __,
             cache: ___,
-            ...props // eslint-disable-line no-shadow
+            ...props
           }) =>
             title && (
               <div
