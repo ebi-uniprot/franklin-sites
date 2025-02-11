@@ -33,6 +33,7 @@ type TabProps = {
    * Option to render and hide tab (display:none) rather than remove from the DOM
    */
   cache?: boolean;
+  disabled?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'title' | 'id'>;
 
 // This is just a configuration component, it doesn't need to render anything as
@@ -160,6 +161,8 @@ export const Tabs = ({
             title,
             id,
             className,
+            disabled = false,
+            tabIndex = 1,
             children: _,
             defaultSelected: __,
             cache: ___,
@@ -176,12 +179,16 @@ export const Tabs = ({
                   'tabs__header__item',
                   {
                     'tabs__header__item--bordered': bordered,
+                    'tabs__header__item--disabled': disabled,
                     'tabs__header__item--active': id === activeFromPropsOrState,
                   },
                   className
                 )}
+                aria-disabled={disabled}
+                onFocus={disabled ? (event) => event.target.blur() : undefined}
                 {...unmanagedProps}
                 {...props}
+                tabIndex={disabled ? -1 : tabIndex}
               >
                 {title}
               </div>

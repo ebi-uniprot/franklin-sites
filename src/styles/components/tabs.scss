@@ -10,6 +10,8 @@
     overflow-x: auto;
     box-shadow: inset 0 -0.1rem 0 0 $colour-platinum;
     margin-bottom: $global-margin;
+    color: $colour-sapphire-blue;
+    font-weight: 600;
 
     &__item {
       flex: 0 0 auto;
@@ -34,9 +36,20 @@
       &--active,
       &:hover,
       &:focus {
-        color: $colour-sapphire-blue;
         background-color: rgba($colour-pastel-blue, 0.19);
         box-shadow: inset 0 -0.2rem 0 0 $colour-sea-blue;
+      }
+
+      &[aria-disabled='true'] {
+        opacity: 0.5;
+        user-select: none;
+        cursor: not-allowed;
+        background-color: initial;
+        box-shadow: initial;
+
+        &:active {
+          pointer-events: none;
+        }
       }
     }
   }
