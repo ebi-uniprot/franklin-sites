@@ -162,7 +162,7 @@ export const Tabs = ({
             id,
             className,
             disabled = false,
-            tabIndex = 1,
+            tabIndex = 0,
             children: _,
             defaultSelected: __,
             cache: ___,
