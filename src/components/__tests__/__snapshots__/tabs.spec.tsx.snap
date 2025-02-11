@@ -11,11 +11,12 @@ exports[`Tabs should render 1`] = `
     >
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item tabs__header__item--active"
         data-target="0"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         <div>
           Title 1
@@ -23,21 +24,23 @@ exports[`Tabs should render 1`] = `
       </div>
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item"
         data-target="1"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         Title 2
       </div>
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item"
         data-target="2"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         Title 3
       </div>
@@ -64,11 +67,12 @@ exports[`Tabs should render other default tab 1`] = `
     >
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item"
         data-target="0"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         <div>
           Title 1
@@ -76,21 +80,23 @@ exports[`Tabs should render other default tab 1`] = `
       </div>
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item"
         data-target="1"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         Title 2
       </div>
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item tabs__header__item--active"
         data-target="2"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         Title 3
       </div>
@@ -118,12 +124,13 @@ exports[`Tabs should render tabs and pass extra props 1`] = `
     >
       <div
         aria-controls="1"
+        aria-disabled="false"
         aria-label="blah!"
         class="tabs__header__item tabs__header__item--active"
         data-target="0"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         <div>
           Title 1
@@ -131,22 +138,24 @@ exports[`Tabs should render tabs and pass extra props 1`] = `
       </div>
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item"
         data-target="1"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         Title 2
       </div>
       <div
         aria-controls="1"
+        aria-disabled="false"
         class="tabs__header__item merged-class"
         data-key="3"
         data-target="2"
         data-testid="tab-title"
         role="tab"
-        tabindex="0"
+        tabindex="1"
       >
         Title 3
       </div>
