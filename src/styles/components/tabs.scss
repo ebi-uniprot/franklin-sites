@@ -8,9 +8,9 @@
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
-    box-shadow: inset 0 -0.1rem 0 0 $colour-platinum;
+    box-shadow: inset 0 -0.1rem 0 0 var(--fr--color-platinum);
     margin-bottom: $global-margin;
-    color: $colour-sapphire-blue;
+    color: var(--fr--color-sapphire-blue);
     font-weight: 600;
 
     &__item {
@@ -23,21 +23,23 @@
       user-select: none;
 
       &--bordered {
-        border-right: 0.1rem solid $colour-platinum;
-        border-top: 0.1rem solid $colour-platinum;
+        border-right: 0.1rem solid var(--fr--color-platinum);
+        border-top: 0.1rem solid var(--fr--color-platinum);
         border-radius: 0.2rem 0.2rem 0 0;
         background-color: initial;
 
         &:first-child {
-          border-left: 0.1rem solid $colour-platinum;
+          border-left: 0.1rem solid var(--fr--color-platinum);
         }
       }
 
       &--active,
       &:hover,
       &:focus {
-        background-color: rgba($colour-pastel-blue, 0.19);
-        box-shadow: inset 0 -0.2rem 0 0 $colour-sea-blue;
+        background-color: color(
+          from var(--fr--color-pastel-blue) srgb r g b / 0.19
+        );
+        box-shadow: inset 0 -0.2rem 0 0 var(--fr--color-sea-blue);
       }
 
       &[aria-disabled='true'] {
@@ -62,7 +64,7 @@
     & > a {
       padding: 1rem;
       display: block;
-      color: $colour-sapphire-blue;
+      color: var(--fr--color-sapphire-blue);
     }
   }
 }
