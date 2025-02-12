@@ -28,6 +28,31 @@ export const UnmanagedTabs = () => (
   </Tabs>
 );
 
+export const UnmanagedTabsWithLinks = () => (
+  <Tabs>
+    <Tab
+      title={
+        <a href="https://www.uniprot.org">
+          Title 1
+          <ConfigureIcon
+            style={{ verticalAlign: 'text-top' }}
+            width={16}
+            height={16}
+          />
+        </a>
+      }
+    >
+      {loremIpsum({ count: 2 })}
+    </Tab>
+    <Tab title={<a href="https://www.uniprot.org">Title 2</a>}>
+      {loremIpsum({ count: 2 })}
+    </Tab>
+    <Tab title={<a href="https://www.uniprot.org">Title 3</a>}>
+      {loremIpsum({ count: 2 })}
+    </Tab>
+  </Tabs>
+);
+
 export const UnmanagedTabsDisabled = () => (
   <Tabs>
     <Tab

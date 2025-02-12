@@ -54,3 +54,15 @@
     }
   }
 }
+
+@supports (selector(:has(a))) {
+  .tabs__header__item:has(> a) {
+    padding: 0rem;
+
+    & > a {
+      padding: 1rem;
+      display: block;
+      color: $colour-sapphire-blue;
+    }
+  }
+}
