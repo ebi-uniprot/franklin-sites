@@ -24,7 +24,9 @@ export const UnmanagedTabs = () => (
       {loremIpsum({ count: 2 })}
     </Tab>
     <Tab title="Title 2">{loremIpsum({ count: 2 })}</Tab>
-    <Tab title="Title 3">{loremIpsum({ count: 2 })}</Tab>
+    <Tab disabled title="Title 3 (disabled)">
+      {loremIpsum({ count: 2 })}
+    </Tab>
   </Tabs>
 );
 
@@ -47,32 +49,12 @@ export const UnmanagedTabsWithLinks = () => (
     <Tab title={<a href="https://www.uniprot.org">Title 2</a>}>
       {loremIpsum({ count: 2 })}
     </Tab>
-    <Tab title={<a href="https://www.uniprot.org">Title 3</a>}>
-      {loremIpsum({ count: 2 })}
-    </Tab>
-  </Tabs>
-);
-
-export const UnmanagedTabsDisabled = () => (
-  <Tabs>
     <Tab
-      title={
-        <>
-          Title 1
-          <ConfigureIcon
-            style={{ verticalAlign: 'text-top' }}
-            width={16}
-            height={16}
-          />
-        </>
-      }
+      disabled
+      title={<a href="https://www.uniprot.org">Title 3 (disabled)</a>}
     >
       {loremIpsum({ count: 2 })}
     </Tab>
-    <Tab title="Title 2" disabled>
-      {loremIpsum({ count: 2 })}
-    </Tab>
-    <Tab title="Title 3">{loremIpsum({ count: 2 })}</Tab>
   </Tabs>
 );
 
