@@ -33,6 +33,9 @@ type TabProps = {
    * Option to render and hide tab (display:none) rather than remove from the DOM
    */
   cache?: boolean;
+  /**
+   * Option to disable selection of tab
+   */
   disabled?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'title' | 'id'>;
 
@@ -54,6 +57,9 @@ type TabsProps = {
    * <Tab>
    */
   active?: string | number;
+  /**
+   * Optional bordered styling of tab headers
+   */
   bordered?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
@@ -184,8 +190,7 @@ export const Tabs = ({
                   className
                 )}
                 aria-disabled={disabled ? true : undefined}
-                onFocus={disabled ? (event) => event.target.blur() : undefined}
-                {...unmanagedProps}
+                {...(disabled ? {} : unmanagedProps)}
                 {...props}
               >
                 {title}
