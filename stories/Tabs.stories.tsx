@@ -30,34 +30,6 @@ export const UnmanagedTabs = () => (
   </Tabs>
 );
 
-export const UnmanagedTabsWithLinks = () => (
-  <Tabs>
-    <Tab
-      title={
-        <a href="https://www.uniprot.org">
-          Title 1
-          <ConfigureIcon
-            style={{ verticalAlign: 'text-top' }}
-            width={16}
-            height={16}
-          />
-        </a>
-      }
-    >
-      {loremIpsum({ count: 2 })}
-    </Tab>
-    <Tab title={<a href="https://www.uniprot.org">Title 2</a>}>
-      {loremIpsum({ count: 2 })}
-    </Tab>
-    <Tab
-      disabled
-      title={<a href="https://www.uniprot.org">Title 3 (disabled)</a>}
-    >
-      {loremIpsum({ count: 2 })}
-    </Tab>
-  </Tabs>
-);
-
 export const UnmanagedTabsBoxStyling = () => (
   <Tabs bordered>
     <Tab
@@ -147,7 +119,62 @@ const ManagedTabsComponent = () => {
   );
 };
 
+const ManagedTabsWithLinksComponent = () => {
+  const interval = useRef<number>();
+
+  const [selected, setSelected] = useState(options[0]);
+
+  useEffect(() => {
+    interval.current = window.setInterval(() => {
+      // - 1 to not include the last option which is disabled
+      setSelected(options[Math.floor(Math.random() * (options.length - 1))]);
+    }, 3000);
+    return () => clearInterval(interval.current);
+  }, []);
+
+  return (
+    <>
+      <p>Selected: &quot;{selected}&quot;</p>
+      <p>Will change automatically every 3 seconds</p>
+
+      <Tabs active={selected}>
+        <Tab
+          id={options[0]}
+          title={
+            <a href="https://www.uniprot.org">
+              Title 1 (not interactive)
+              <ConfigureIcon
+                style={{ verticalAlign: 'text-top' }}
+                width={16}
+                height={16}
+              />
+            </a>
+          }
+        >
+          {loremIpsum({ count: 2 })}
+        </Tab>
+        <Tab
+          id={options[1]}
+          title={
+            <a href="https://www.uniprot.org">Title 2 (not interactive)</a>
+          }
+        >
+          {loremIpsum({ count: 2 })}
+        </Tab>
+        <Tab
+          id={options[2]}
+          disabled
+          title={<a href="https://www.uniprot.org">Title 3 (disabled)</a>}
+        >
+          {loremIpsum({ count: 2 })}
+        </Tab>
+      </Tabs>
+    </>
+  );
+};
+
 export const ManagedTabs = () => <ManagedTabsComponent />;
+export const ManagedTabsWithLinks = () => <ManagedTabsWithLinksComponent />;
 
 export const CachedTabs = () => (
   <Tabs>
