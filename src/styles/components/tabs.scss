@@ -63,6 +63,7 @@
 
     & > a {
       padding: 1rem;
+      margin: 1px; // So the focus border is visible
       display: block;
       color: var(--fr--color-sapphire-blue);
     }
