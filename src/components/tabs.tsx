@@ -162,7 +162,6 @@ export const Tabs = ({
             id,
             className,
             disabled = false,
-            tabIndex = 0,
             children: _,
             defaultSelected: __,
             cache: ___,
@@ -188,7 +187,6 @@ export const Tabs = ({
                 onFocus={disabled ? (event) => event.target.blur() : undefined}
                 {...unmanagedProps}
                 {...props}
-                tabIndex={disabled ? -1 : tabIndex}
               >
                 {title}
               </div>
