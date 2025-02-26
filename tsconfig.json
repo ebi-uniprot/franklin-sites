@@ -17,6 +17,8 @@
     "module": "esnext",
     "jsx": "react-jsx",
     "types": ["jest", "node", "@testing-library/jest-dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    // Generates a source map for .d.ts files which map back to the original .ts source file
+    "declarationMap": true
   }
 }
