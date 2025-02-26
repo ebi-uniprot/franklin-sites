@@ -33,6 +33,10 @@ type TabProps = {
    * Option to render and hide tab (display:none) rather than remove from the DOM
    */
   cache?: boolean;
+  /**
+   * Option to disable selection of tab
+   */
+  disabled?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'title' | 'id'>;
 
 // This is just a configuration component, it doesn't need to render anything as
@@ -53,9 +57,19 @@ type TabsProps = {
    * <Tab>
    */
   active?: string | number;
+  /**
+   * Optional bordered styling of tab headers
+   */
+  bordered?: boolean;
 } & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
-export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
+export const Tabs = ({
+  children,
+  active,
+  className,
+  bordered = false,
+  ...props
+}: TabsProps) => {
   const tabId = useId();
 
   const isManaged = typeof active !== 'undefined';
@@ -152,11 +166,12 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
           ({
             title,
             id,
-            className, // eslint-disable-line no-shadow
+            className,
+            disabled = false,
             children: _,
             defaultSelected: __,
             cache: ___,
-            ...props // eslint-disable-line no-shadow
+            ...props
           }) =>
             title && (
               <div
@@ -168,11 +183,14 @@ export const Tabs = ({ children, active, className, ...props }: TabsProps) => {
                 className={cn(
                   'tabs__header__item',
                   {
+                    'tabs__header__item--bordered': bordered,
+                    'tabs__header__item--disabled': disabled,
                     'tabs__header__item--active': id === activeFromPropsOrState,
                   },
                   className
                 )}
-                {...unmanagedProps}
+                aria-disabled={disabled ? true : undefined}
+                {...(disabled ? {} : unmanagedProps)}
                 {...props}
               >
                 {title}
