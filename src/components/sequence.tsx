@@ -152,6 +152,7 @@ type SequenceProps = {
   addToBasketButton?: ReactNode;
   showActionBar?: boolean;
   onCopy?: (copied: string) => void;
+  sequenceTools?: string[];
 };
 
 const Sequence = ({
@@ -166,6 +167,7 @@ const Sequence = ({
   addToBasketButton,
   downloadUrl,
   showActionBar = true,
+  sequenceTools,
 }: SequenceProps) => {
   const [highlights, setHighlights] = useState<AminoAcidProperty[]>([]);
   const [computeHighlights, setComputeHighlights] = useState(false);
@@ -230,6 +232,7 @@ const Sequence = ({
             <SequenceTools
               accession={accession}
               onBlastClick={onBlastClick}
+              tools={sequenceTools}
               key="tools"
             />
             {downloadUrl && (

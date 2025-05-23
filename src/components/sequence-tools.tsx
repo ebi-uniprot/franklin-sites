@@ -34,31 +34,44 @@ const visibleElement = (onClick: () => unknown) => (
 type SequenceToolsProps = {
   accession: string;
   onBlastClick?: () => void;
+  tools?: string[];
 };
 
-const SequenceTools = ({ accession, onBlastClick }: SequenceToolsProps) => (
-  <Dropdown visibleElement={visibleElement}>
-    <ul>
-      {onBlastClick && (
-        <li>
-          <Button variant="tertiary" onClick={onBlastClick}>
-            BLAST
-          </Button>
-        </li>
-      )}
-      {sequenceTools.map((sequenceTool) => (
-        <li key={sequenceTool.name}>
-          <a
-            href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {sequenceTool.name}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </Dropdown>
-);
+const SequenceTools = ({
+  accession,
+  onBlastClick,
+  tools,
+}: SequenceToolsProps) => {
+  const applicableTools = tools || sequenceTools.map((tool) => tool.name);
+  return (
+    <Dropdown visibleElement={visibleElement}>
+      <ul>
+        {onBlastClick && (
+          <li>
+            <Button variant="tertiary" onClick={onBlastClick}>
+              BLAST
+            </Button>
+          </li>
+        )}
+        {sequenceTools.map((sequenceTool) => {
+          if (applicableTools.includes(sequenceTool.name)) {
+            return (
+              <li key={sequenceTool.name}>
+                <a
+                  href={`${expasyPrefixUrl}${sequenceTool.url}${accession}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {sequenceTool.name}
+                </a>
+              </li>
+            );
+          }
+          return null;
+        })}
+      </ul>
+    </Dropdown>
+  );
+};
 
 export default SequenceTools;
