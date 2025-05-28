@@ -21,6 +21,7 @@ import {
 } from '.';
 
 import { InfoListItem } from './info-list';
+import { SequenceToolName } from './sequence-tools';
 
 import aminoAcidsProps from './data/amino-acid-properties.json';
 
@@ -152,7 +153,7 @@ type SequenceProps = {
   addToBasketButton?: ReactNode;
   showActionBar?: boolean;
   onCopy?: (copied: string) => void;
-  sequenceTools?: string[];
+  sequenceTools?: SequenceToolName[];
 };
 
 const Sequence = ({

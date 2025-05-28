@@ -23,7 +23,8 @@ const sequenceTools = [
     name: 'PeptideCutter',
     url: '/peptide_cutter/peptidecutter.pl?',
   },
-];
+] as const;
+export type SequenceToolName = (typeof sequenceTools)[number]['name'];
 
 const visibleElement = (onClick: () => unknown) => (
   <Button variant="tertiary" onClick={onClick}>
@@ -34,7 +35,7 @@ const visibleElement = (onClick: () => unknown) => (
 type SequenceToolsProps = {
   accession: string;
   onBlastClick?: () => void;
-  tools?: string[];
+  tools?: SequenceToolName[];
 };
 
 const SequenceTools = ({
