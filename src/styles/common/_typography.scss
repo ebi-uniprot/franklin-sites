@@ -91,6 +91,11 @@ dl {
   margin-bottom: 1rem;
   list-style-position: outside;
   line-height: 1.6;
+
+  li > &,
+  ol > & {
+    margin-bottom: 0;
+  }
 }
 
 ul {
