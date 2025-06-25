@@ -36,6 +36,10 @@ type Props = {
    * Maximum acceptable number of sequences
    */
   maximumSequences?: number;
+  /**
+   * Error if the same ID is used twice
+   */
+  noDuplicateID?: boolean;
 };
 
 const SequenceSubmission = ({
@@ -46,6 +50,7 @@ const SequenceSubmission = ({
   minimumLength,
   minimumSequences,
   maximumSequences,
+  noDuplicateID,
 }: Props) => {
   const [processed, setProcessed] = useState<SequenceObject[]>([]);
 
@@ -79,23 +84,32 @@ const SequenceSubmission = ({
       string,
       Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
     >();
+    // loop and match all the identifiers together, only once
+    const uniqueIdentifiers = new Map<
+      string,
+      Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
+    >();
     // loop and match all the sequences together, only once
     const uniqueSequences = new Map<
       string,
       Array<{ sequenceIndex: number; sequenceObject: SequenceObject }>
     >();
     for (const [index, sequenceObject] of processed.entries()) {
-      const { valid, message } = sequenceObject;
+      const { valid, message, name } = sequenceObject;
       if (!valid && message) {
         const itemList = uniqueErrors.get(message) ?? [];
         itemList.push({ sequenceIndex: index + 1, sequenceObject });
         uniqueErrors.set(message, itemList);
       }
 
+      const itemListID = uniqueIdentifiers.get(name) ?? [];
+      itemListID.push({ sequenceIndex: index + 1, sequenceObject });
+      uniqueIdentifiers.set(name, itemListID);
+
       const sequence = sequenceObject.sequence.toLowerCase();
-      const itemList = uniqueSequences.get(sequence) ?? [];
-      itemList.push({ sequenceIndex: index + 1, sequenceObject });
-      uniqueSequences.set(sequence, itemList);
+      const itemListSeq = uniqueSequences.get(sequence) ?? [];
+      itemListSeq.push({ sequenceIndex: index + 1, sequenceObject });
+      uniqueSequences.set(sequence, itemListSeq);
     }
 
     for (const [errorMessage, sameErrors] of uniqueErrors.entries()) {
@@ -125,6 +139,42 @@ const SequenceSubmission = ({
       );
     }
 
+    if (noDuplicateID) {
+      for (const [identifier, sameIdentifiers] of uniqueIdentifiers.entries()) {
+        if (sameIdentifiers.length > 1) {
+          warningMessages.push(
+            <Message
+              level="failure"
+              key={sameIdentifiers
+                .map(({ sequenceIndex }) => sequenceIndex)
+                .join('-id-')}
+            >
+              Sequences{' '}
+              {sameIdentifiers.map(({ sequenceIndex }, index) => {
+                let conjunction = '';
+                if (index) {
+                  if (sameIdentifiers.length === 2) {
+                    conjunction = ' and ';
+                  } else {
+                    conjunction =
+                      index + 1 === sameIdentifiers.length ? ', and ' : ', ';
+                  }
+                }
+                return (
+                  <Fragment key={sequenceIndex}>
+                    {conjunction}
+                    {sequenceIndex}
+                  </Fragment>
+                );
+              })}{' '}
+              have the same identifier (<code>{identifier}</code>), this is
+              invalid.
+            </Message>
+          );
+        }
+      }
+    }
+
     for (const sameSequences of uniqueSequences.values()) {
       if (sameSequences.length > 1) {
         warningMessages.push(
@@ -132,23 +182,34 @@ const SequenceSubmission = ({
             level="info"
             key={sameSequences
               .map(({ sequenceIndex }) => sequenceIndex)
-              .join('-')}
+              .join('-seq-')}
           >
             Sequences{' '}
             {sameSequences.map(
-              ({ sequenceIndex, sequenceObject: { name } }, index) => (
-                <Fragment key={sequenceIndex}>
-                  {index ? ', ' : ''}
-                  {sequenceIndex}{' '}
-                  {name ? (
-                    <>
-                      (<code>{name}</code>)
-                    </>
-                  ) : (
-                    ''
-                  )}
-                </Fragment>
-              )
+              ({ sequenceIndex, sequenceObject: { name } }, index) => {
+                let conjunction = '';
+                if (index) {
+                  if (sameSequences.length === 2) {
+                    conjunction = ' and ';
+                  } else {
+                    conjunction =
+                      index + 1 === sameSequences.length ? ', and ' : ', ';
+                  }
+                }
+                return (
+                  <Fragment key={sequenceIndex}>
+                    {conjunction}
+                    {sequenceIndex}{' '}
+                    {name ? (
+                      <>
+                        (<code>{name}</code>)
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </Fragment>
+                );
+              }
             )}{' '}
             are identical, this might be unintended.
           </Message>

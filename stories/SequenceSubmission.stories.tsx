@@ -90,6 +90,25 @@ export const WithTooManySequencesError: Story = {
   ),
 };
 
+const multipleSequences5 = `> sequence 1
+ACTGUACTGUACTGU
+> sequence 2
+ACTGAUTTGUATTGUUUGU
+> sequence 3
+ACTGCTGUAGU
+> sequence_4
+GUACTGU
+`;
+export const WithDuplicateIdentifiersError: Story = {
+  render: () => (
+    <SequenceSubmissionComponent
+      placeholder="Enter a sequence..."
+      defaultValue={multipleSequences5}
+      noDuplicateID
+    />
+  ),
+};
+
 const DynamicallyChangeValueRender = () => {
   const [sequence, setSequence] = useState('ACTG');
   const [likelyType, setLikelyType] = useState<SequenceObject['likelyType']>();
