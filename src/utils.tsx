@@ -8,7 +8,7 @@ export function getLastIndexOfSubstringIgnoreCase(
 }
 
 export type BasicItem<Item> = {
-  label: string;
+  label?: string;
   id: string;
   tags?: string[];
   items?: BasicItem<Item>[];
@@ -45,7 +45,7 @@ export function prepareTreeDataForAutocomplete<Item extends BasicItem<Item>>(
     const autocompleteItem: AutocompleteItemType = {
       id: items[items.length - 1].id,
       pathLabel: items.map((item) => item.label).join(' / '),
-      itemLabel: items[items.length - 1].label,
+      itemLabel: items[items.length - 1].label || items[items.length - 1].id,
     };
     const tags = items.flatMap((item) => item.tags || []);
     if (tags.length) {
