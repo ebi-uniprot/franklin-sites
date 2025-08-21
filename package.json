@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.256",
+  "version": "0.0.260",
   "main": "dist/franklin-components.js",
   "exports": {
     ".": "./dist/franklin-components.js",
@@ -74,7 +74,8 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|scss|sass)$": "<rootDir>/__mocks__/styleMock.js",
-      "^lodash-es$": "lodash"
+      "^lodash-es$": "lodash",
+      "\\.svg\\?raw$": "<rootDir>/__mocks__/rawSvgMock.js"
     },
     "testEnvironment": "jsdom"
   },
@@ -131,6 +132,7 @@
     "eslint": "^8",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-webpack": "0.13.10",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jest": "27.6.3",
     "eslint-plugin-jsx-a11y": "6.8.0",

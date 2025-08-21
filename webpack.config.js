@@ -53,11 +53,17 @@ module.exports = {
       {
         test: /\.svg$/i,
         issuer: /\.(j|t)sx?$/,
+        resourceQuery: { not: [/raw/] },
         use: [
           {
             loader: '@svgr/webpack',
           },
         ],
+      },
+      {
+        test: /\.svg$/i,
+        resourceQuery: /raw/,
+        type: 'asset/source',
       },
       {
         test: /\.svg$/i,

@@ -75,6 +75,7 @@ export { default as EnvelopeIcon } from '../svg/envelope.svg';
 export { default as ErrorIcon } from '../svg/error.svg';
 export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';
 export { default as ExternalLinkIcon } from '../svg/external-link.svg';
+export { default as ExternalLinkIconRaw } from '../svg/external-link.svg?raw';
 export { default as FullViewIcon } from '../svg/full-view.svg';
 export { default as HelpIcon } from '../svg/help.svg';
 export { default as InformationIcon } from '../svg/information.svg';
