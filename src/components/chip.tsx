@@ -34,10 +34,6 @@ type ChipProps = {
    */
   compact?: boolean;
   /**
-   * Title to display on mouse over
-   */
-  title?: string;
-  /**
    * click event listener on the component (except on the close button if present)
    */
   onClick?: () => void;
@@ -56,7 +52,6 @@ export const Chip: FC<
   className = '',
   disabled,
   compact = false,
-  title,
   onClick,
   onKeyPress,
   innerRef,
