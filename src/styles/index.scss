@@ -1,6 +1,6 @@
 @import './settings';
 @import './custom-properties';
-@import 'foundation-sites/scss/foundation';
+@import '~foundation-sites/scss/foundation';
 
 @include foundation-global-styles;
 @include foundation-forms;

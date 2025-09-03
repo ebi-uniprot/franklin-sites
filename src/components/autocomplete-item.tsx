@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { SubstringHighlight } from '.';
+
+import SubstringHighlight from './substring-highlight';
 
 export type AutocompleteItemType = {
   id: string;

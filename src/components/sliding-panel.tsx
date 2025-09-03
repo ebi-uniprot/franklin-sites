@@ -3,7 +3,9 @@ import { createPortal } from 'react-dom';
 import cn from 'classnames';
 import { frame } from 'timing-functions';
 
-import { Button, CloseIcon } from './index';
+import Button from './button';
+
+import CloseIcon from '../svg/times.svg';
 
 import '../styles/components/sliding-panel.scss';
 
