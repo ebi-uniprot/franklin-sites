@@ -4,8 +4,8 @@ import {
   useRef,
   useMemo,
   useCallback,
-  ReactNode,
-  ComponentType,
+  type ReactNode,
+  type ComponentType,
 } from 'react';
 
 import Button from './button';

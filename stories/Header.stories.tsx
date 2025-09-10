@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-import { SyntheticEvent, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-
-import { action } from '@storybook/addon-actions';
+import { type FormEventHandler, type SyntheticEvent, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import {
   BasketIcon,
@@ -31,7 +29,11 @@ const headerSecondaryItems = (
   </>
 );
 
-const Search = () => {
+const Search = ({
+  onSubmit,
+}: {
+  onSubmit?: FormEventHandler<HTMLInputElement>;
+}) => {
   const [value, setValue] = useState('');
   return (
     <MainSearch
@@ -39,7 +41,9 @@ const Search = () => {
       searchTerm={value}
       onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
-        action('onSubmit')(e);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        onSubmit?.(e);
       }}
     />
   );
@@ -47,16 +51,30 @@ const Search = () => {
 
 const meta: Meta<typeof HeaderComponent> = {
   title: 'Layout/Header',
-  args: { search: true, secondaryItems: true, isNegative: true, subtext: true },
+  args: {
+    search: true,
+    secondaryItems: true,
+    isNegative: true,
+    subtext: true,
+    onClick: fn(),
+    onSubmit: fn(),
+  },
 
-  render: ({ search, secondaryItems, isNegative, subtext }) => (
+  render: ({
+    search,
+    secondaryItems,
+    isNegative,
+    subtext,
+    onClick,
+    onSubmit,
+  }) => (
     <HeaderComponent
       homepageLink={
         <a href="https://www.uniprot.org">
           <UniProtLogo width={30} />
         </a>
       }
-      search={search && <Search />}
+      search={search && <Search onSubmit={onSubmit} />}
       secondaryItems={secondaryItems && headerSecondaryItems}
       subtext={subtext && 'Release info | Statistics'}
       isNegative={isNegative}
@@ -82,7 +100,12 @@ const meta: Meta<typeof HeaderComponent> = {
             sublink 3
           </a>
           <ExternalLink url="//www.uniprot.org">external link</ExternalLink>
-          <Button variant="tertiary" onClick={action('onClick')}>
+          <Button
+            variant="tertiary"
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            onClick={onClick}
+          >
             action
           </Button>
         </div>
@@ -90,7 +113,12 @@ const meta: Meta<typeof HeaderComponent> = {
       <a target="_blank" href="https://uniprot.org/" rel="noreferrer">
         Link 3
       </a>
-      <Button variant="tertiary" onClick={action('onClick')}>
+      <Button
+        variant="tertiary"
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        onClick={onClick}
+      >
         action
       </Button>
     </HeaderComponent>

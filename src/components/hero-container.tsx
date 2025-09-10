@@ -1,7 +1,7 @@
-import { FC, HTMLAttributes, ReactNode } from 'react';
+import { type FC, type HTMLAttributes, type ReactNode } from 'react';
 import cn from 'classnames';
 
-import { HeadingLevels } from '../types/common';
+import type { HeadingLevels } from '../types/common';
 
 import '../styles/components/hero-container.scss';
 

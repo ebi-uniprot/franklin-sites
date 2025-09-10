@@ -1,14 +1,13 @@
-import { ComponentProps, FC, useCallback, useState } from 'react';
-
-import { action } from '@storybook/addon-actions';
+import { type ComponentProps, type FC, useCallback, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Meta, StoryObj } from '@storybook/react';
 import {
   Button,
   SlidingPanel as SlidingPanelComponent,
 } from '../src/components';
-import { LRBelowHeader } from '../src/components/sliding-panel';
+import { type LRBelowHeader } from '../src/components/sliding-panel';
 
 export type SlidingPanelLR = FC<
   Omit<ComponentProps<typeof SlidingPanelComponent>, 'position'> & LRBelowHeader
@@ -18,6 +17,7 @@ const SlidingPanelsWithArrowRender: SlidingPanelLR = ({
   title,
   position,
   size,
+  onClose,
 }) => {
   const [showPanel, setShowPanel] = useState(false);
   const [arrowX, setArrowX] = useState<number>();
@@ -56,7 +56,7 @@ const SlidingPanelsWithArrowRender: SlidingPanelLR = ({
           size={size}
           onClose={(reason) => {
             setShowPanel(false);
-            action('onClose')(reason);
+            onClose?.(reason);
           }}
           arrowX={arrowX}
           pathname="#"
@@ -82,6 +82,7 @@ const meta: Meta<SlidingPanelLR> = {
     title: 'Title',
     size: 'medium',
     position: 'left',
+    onClose: fn(),
   },
   render: (props) => <SlidingPanelsWithArrowRender {...props} />,
 };

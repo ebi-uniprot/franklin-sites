@@ -1,6 +1,6 @@
 import {
   useState,
-  ReactNode,
+  type ReactNode,
   useMemo,
   useCallback,
   memo,

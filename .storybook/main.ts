@@ -1,26 +1,15 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  stories: ['../stories/**/*.stories.tsx'],
-
+  framework: '@storybook/react-vite',
+  stories: ['../stories/**/*.stories.@(ts|md)x'],
   core: {
     disableTelemetry: true,
+    builder: '@storybook/builder-vite',
   },
-
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-webpack5-compiler-babel',
-  ],
-
+  addons: ['@storybook/addon-docs'],
   staticDirs: ['../assets'],
-
-  framework: {
-    name: '@storybook/react-webpack5',
-    options: {},
-  },
-
   docs: {},
-
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },

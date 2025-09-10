@@ -1,4 +1,4 @@
-import { FC, AnchorHTMLAttributes } from 'react';
+import { type FC, type AnchorHTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import { tidyUrlString } from '../utils';

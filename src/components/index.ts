@@ -6,7 +6,6 @@ export { default as AccordionSearch } from './accordion-search';
 export { default as Autocomplete } from './autocomplete';
 export { default as Bubble } from './bubble';
 export { default as Button } from './button';
-export { default as ButtonModal } from './button-modal';
 export { default as BytesNumber } from './bytes-number';
 export { default as Card } from './card';
 export { default as Chip } from './chip';
@@ -35,7 +34,6 @@ export { default as Loader } from './loader';
 export { default as LongNumber } from './long-number';
 export { default as MainSearch } from './main-search';
 export { default as Message } from './message';
-export { default as ModalBackdrop } from './modal-backdrop';
 export { default as PageIntro } from './page-intro';
 export { default as SearchInput } from './search-input';
 export { default as Sequence } from './sequence';
@@ -46,11 +44,6 @@ export { default as SubstringHighlight } from './substring-highlight';
 export { Tab, Tabs } from './tabs';
 export { default as Tile } from './tile';
 export { default as TreeSelect } from './tree-select';
-export { default as Window } from './window/window';
-export { WindowActionButton } from './window/window-buttons';
-
-// Hooks
-export { default as useModal } from '../hooks/modal';
 
 // Icons
 export { default as BasketIcon } from '../svg/basket.svg';

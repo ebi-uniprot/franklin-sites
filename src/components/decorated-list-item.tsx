@@ -1,4 +1,9 @@
-import { FC, PropsWithChildren, ReactElement, ReactNode } from 'react';
+import {
+  type FC,
+  type PropsWithChildren,
+  type ReactElement,
+  type ReactNode,
+} from 'react';
 import cn from 'classnames';
 
 import '../styles/components/decorated-list-item.scss';

@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
   DataList as DataListComponent,
@@ -7,12 +6,12 @@ import {
   Card,
 } from '../src/components';
 import {
-  CommonProps,
+  type CommonProps,
   DataDecorator,
-  DataType,
+  type DataType,
   DataLoaderDecorator,
 } from '../src/decorators/DataDecorator';
-import { WrapperProps } from '../src/components/data-loader';
+import { type WrapperProps } from '../src/components/data-loader';
 
 type DataListComponentAndWrapperProps = React.ComponentProps<
   typeof DataListComponent
@@ -73,26 +72,13 @@ const DataListWithLoaderAndCardsChildren = (
   props: CommonProps & WrapperProps<DataType>
 ) => {
   const dataRenderer = (content: DataType) => (
-    <Card>
-      {props?.onSelectionChange && (
-        <div className="checkbox-cell">
-          <input type="checkbox" />
-        </div>
-      )}
-      {Object.values(content)}
-    </Card>
+    <Card>{Object.values(content)}</Card>
   );
   return <DataListWithLoaderComponent {...props} dataRenderer={dataRenderer} />;
 };
 
 export const DataListWithLoaderAndCards: Story = {
   argTypes: {
-    onSelectionChange: {
-      name: 'Selectable (onSelectionChange)',
-      options: [true, false],
-      mapping: { true: action('selectChange'), false: null },
-      control: 'boolean',
-    },
     clickToLoad: { control: 'boolean' },
   },
   render: (storyProps) => (

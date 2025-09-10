@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Message component should render 1`] = `
 <DocumentFragment>
@@ -10,7 +10,7 @@ exports[`Message component should render 1`] = `
       class="message__side-border"
     />
     <test-file-stub
-      classname="message--icon-align-top"
+      class="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
@@ -35,7 +35,7 @@ exports[`Message component should render with a different level 1`] = `
       class="message__side-border"
     />
     <test-file-stub
-      classname="message--icon-align-top"
+      class="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
@@ -60,7 +60,7 @@ exports[`Message component should render with a subtitle 1`] = `
       class="message__side-border"
     />
     <test-file-stub
-      classname="message--icon-align-top"
+      class="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
@@ -92,7 +92,7 @@ exports[`Message component should render with a title passed as prop 1`] = `
       class="message__side-border"
     />
     <test-file-stub
-      classname="message--icon-align-center"
+      class="message--icon-align-center"
       height="1.125em"
       width="1.125em"
     />

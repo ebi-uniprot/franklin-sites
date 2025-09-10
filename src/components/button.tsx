@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren, HTMLAttributes } from 'react';
+import { forwardRef, type PropsWithChildren, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';

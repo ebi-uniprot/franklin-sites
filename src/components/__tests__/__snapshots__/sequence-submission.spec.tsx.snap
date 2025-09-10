@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`SequenceSubmission should render 1`] = `
 <DocumentFragment>
@@ -27,7 +27,7 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
       class="message__side-border"
     />
     <test-file-stub
-      classname="message--icon-align-top"
+      class="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />
@@ -46,7 +46,7 @@ exports[`SequenceSubmission should render with sequence is invalid error 1`] = `
       class="message__side-border"
     />
     <test-file-stub
-      classname="message--icon-align-top"
+      class="message--icon-align-top"
       height="1.125em"
       width="1.125em"
     />

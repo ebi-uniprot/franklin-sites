@@ -1,15 +1,15 @@
 import {
-  CSSProperties,
+  type CSSProperties,
   Fragment,
-  InputHTMLAttributes,
-  SyntheticEvent,
+  type InputHTMLAttributes,
+  type SyntheticEvent,
   useMemo,
 } from 'react';
 
 import { Dropdown } from './dropdown-button';
 import Button from './button';
 
-import { FranklinStyle } from '../types/common';
+import type { FranklinStyle } from '../types/common';
 
 import '../styles/components/main-search.scss';
 

@@ -1,4 +1,10 @@
-import { FC, useRef, useEffect, ReactNode, HTMLAttributes } from 'react';
+import {
+  type FC,
+  useRef,
+  useEffect,
+  type ReactNode,
+  type HTMLAttributes,
+} from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames';
 import { frame } from 'timing-functions';

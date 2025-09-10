@@ -1,4 +1,10 @@
-import { useState, FC, ReactElement, HTMLAttributes, useId } from 'react';
+import {
+  useState,
+  type FC,
+  type ReactElement,
+  type HTMLAttributes,
+  useId,
+} from 'react';
 import cn from 'classnames';
 
 import EvidenceTagIcon from '../svg/evidence-tag.svg';

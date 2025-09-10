@@ -2,13 +2,13 @@ import {
   useState,
   useCallback,
   Children,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
   useId,
 } from 'react';
 import cn from 'classnames';
-import { Except } from 'type-fest';
+import type { Except } from 'type-fest';
 
 import '../styles/components/tabs.scss';
 
@@ -78,15 +78,12 @@ export const Tabs = ({
   const childrenArray = Children.toArray(children).filter(Boolean) as Array<
     ReactElement<TabProps>
   >;
-  const tabs = childrenArray.map(
-    // eslint-disable-next-line no-shadow
-    ({ props: { id, ...props } }, index) => ({
-      // set a default value for id depending on their index if needed
-      id: id === undefined ? `${index}` : id,
-      // and get the rest of the props as they are
-      ...props,
-    })
-  );
+  const tabs = childrenArray.map(({ props: { id, ...props } }, index) => ({
+    // set a default value for id depending on their index if needed
+    id: id === undefined ? `${index}` : id,
+    // and get the rest of the props as they are
+    ...props,
+  }));
 
   // state to use to decide which tab to render if this component is not managed
   const [selectedState, setSelectedState] = useState(() => {

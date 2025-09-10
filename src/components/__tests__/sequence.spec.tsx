@@ -48,6 +48,6 @@ describe('Sequence component show/hide', () => {
   it('should be collapsed and trigger loading of sequence', () => {
     render(<Sequence onShowSequence={handleSequenceLoad} accession="P05067" />);
     fireEvent.click(screen.getByRole('button', { name: /Show/ }));
-    expect(handleSequenceLoad).toBeCalled();
+    expect(handleSequenceLoad).toHaveBeenCalled();
   });
 });

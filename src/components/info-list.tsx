@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes, ReactElement } from 'react';
+import { type ReactNode, type HTMLAttributes, type ReactElement } from 'react';
 import cn from 'classnames';
 
 import DecoratedListItem from './decorated-list-item';

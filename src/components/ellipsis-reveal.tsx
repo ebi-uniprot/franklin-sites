@@ -1,11 +1,11 @@
 import {
   useState,
-  HTMLAttributes,
-  PropsWithChildren,
+  type HTMLAttributes,
+  type PropsWithChildren,
   createContext,
-  FC,
-  SetStateAction,
-  Dispatch,
+  type FC,
+  type SetStateAction,
+  type Dispatch,
   useContext,
 } from 'react';
 import cn from 'classnames';

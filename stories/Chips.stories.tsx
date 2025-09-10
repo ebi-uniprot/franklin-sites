@@ -1,7 +1,7 @@
-import { CSSProperties } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { type CSSProperties } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { action } from '@storybook/addon-actions';
+import { fn } from 'storybook/test';
 
 import { Chip as ChipComponent } from '../src/components';
 
@@ -43,16 +43,29 @@ const meta: Meta<StoryProps> = {
     disabled: false,
     className: 'primary',
     removable: false,
+    onClick: fn(),
+    onKeyPress: fn(),
+    onRemove: fn(),
   },
-  render: ({ title, compact, className, disabled, color, removable }) => (
+  render: ({
+    title,
+    compact,
+    className,
+    disabled,
+    color,
+    removable,
+    onClick,
+    onKeyPress,
+    onRemove,
+  }) => (
     <ChipComponent
       title={title}
       compact={compact}
       disabled={disabled}
       className={className}
-      onClick={action('click on chip')}
-      onKeyPress={action('key press on primary')}
-      onRemove={removable ? action('Remove chip') : undefined}
+      onClick={onClick}
+      onKeyPress={onKeyPress}
+      onRemove={removable ? onRemove : undefined}
       style={
         {
           '--main-chip-color': color,

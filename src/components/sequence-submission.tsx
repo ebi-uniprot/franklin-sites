@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, Fragment } from 'react';
 
 import sequenceProcessor, {
-  SequenceObject,
+  type SequenceObject,
 } from '../sequence-utils/sequence-processor';
 import Message from './message';
 

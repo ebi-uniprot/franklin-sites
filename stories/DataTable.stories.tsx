@@ -1,18 +1,18 @@
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react';
 import {
   DataTable as DataTableComponent,
   DataTableWithLoader as DataTableWithLoaderComponent,
 } from '../src/components';
 import {
-  CommonProps,
+  type CommonProps,
   DataDecorator,
   DataLoaderDecorator,
-  DataType,
+  type DataType,
   columns,
 } from '../src/decorators/DataDecorator';
-import { WrapperProps } from '../src/components/data-loader';
+import { type WrapperProps } from '../src/components/data-loader';
 
 type DataTableComponentAndWrapperProps = React.ComponentProps<
   typeof DataTableComponent
@@ -23,15 +23,10 @@ const meta: Meta<DataTableComponentAndWrapperProps> = {
   component: DataTableComponent,
   title: 'Data/Data Table',
   argTypes: {
-    onSelectionChange: {
-      name: 'Selectable (onSelectionChange)',
-      mapping: { true: action('selectChange'), false: null },
-      control: 'boolean',
-    },
     clickToLoad: { control: 'boolean' },
   },
   args: {
-    onHeaderClick: action('headerClick'),
+    onHeaderClick: fn(),
   },
 };
 

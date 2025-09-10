@@ -1,12 +1,15 @@
-import { CSSProperties } from 'react';
-import { action } from '@storybook/addon-actions';
-import { Meta, StoryObj } from '@storybook/react';
+import { type CSSProperties } from 'react';
+import { fn } from 'storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Button as ButtonComponent, DownloadIcon } from '../src/components';
 
 const meta: Meta<typeof ButtonComponent> = {
   component: ButtonComponent,
   title: 'Forms/Button',
+  args: {
+    onClick: fn(),
+  },
   argTypes: {
     color: {
       control: 'select',
@@ -30,10 +33,10 @@ export default meta;
 type Story = StoryObj<typeof ButtonComponent>;
 
 export const Button: Story = {
-  render: ({ color, disabled }) => (
+  render: ({ color, disabled, onClick }) => (
     <div style={{ '--main-button-color': color } as CSSProperties}>
       <div>
-        <ButtonComponent disabled={disabled} onClick={action('onClick')}>
+        <ButtonComponent disabled={disabled} onClick={onClick}>
           Primary
         </ButtonComponent>
       </div>
@@ -41,7 +44,7 @@ export const Button: Story = {
         <ButtonComponent
           variant="secondary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           Secondary
         </ButtonComponent>
@@ -50,7 +53,7 @@ export const Button: Story = {
         <ButtonComponent
           variant="tertiary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           Tertiary
         </ButtonComponent>
@@ -60,39 +63,27 @@ export const Button: Story = {
 };
 
 export const ButtonGroups: Story = {
-  render: ({ color, disabled }) => (
+  render: ({ color, disabled, onClick }) => (
     <div style={{ '--main-button-color': color } as CSSProperties}>
       <div className="button-group">
-        <button
-          className="button tertiary"
-          type="button"
-          onClick={action('onClick')}
-        >
+        <button className="button tertiary" type="button" onClick={onClick}>
           One
         </button>
-        <button
-          className="button tertiary"
-          type="button"
-          onClick={action('onClick')}
-        >
+        <button className="button tertiary" type="button" onClick={onClick}>
           Two
         </button>
-        <button
-          className="button tertiary"
-          type="button"
-          onClick={action('onClick')}
-        >
+        <button className="button tertiary" type="button" onClick={onClick}>
           Three
         </button>
       </div>
       <div className="button-group">
-        <ButtonComponent disabled={disabled} onClick={action('onClick')}>
+        <ButtonComponent disabled={disabled} onClick={onClick}>
           One
         </ButtonComponent>
-        <ButtonComponent disabled={disabled} onClick={action('onClick')}>
+        <ButtonComponent disabled={disabled} onClick={onClick}>
           Two
         </ButtonComponent>
-        <ButtonComponent disabled={disabled} onClick={action('onClick')}>
+        <ButtonComponent disabled={disabled} onClick={onClick}>
           Three
         </ButtonComponent>
       </div>
@@ -100,21 +91,21 @@ export const ButtonGroups: Story = {
         <ButtonComponent
           variant="secondary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           One
         </ButtonComponent>
         <ButtonComponent
           variant="secondary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           Two
         </ButtonComponent>
         <ButtonComponent
           variant="secondary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           Three
         </ButtonComponent>
@@ -123,21 +114,21 @@ export const ButtonGroups: Story = {
         <ButtonComponent
           variant="tertiary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           One
         </ButtonComponent>
         <ButtonComponent
           variant="tertiary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           Two
         </ButtonComponent>
         <ButtonComponent
           variant="tertiary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           Three
         </ButtonComponent>
@@ -147,10 +138,10 @@ export const ButtonGroups: Story = {
 };
 
 export const WithIcon: Story = {
-  render: ({ color, disabled }) => (
+  render: ({ color, disabled, onClick }) => (
     <div style={{ '--main-button-color': color } as CSSProperties}>
       <div>
-        <ButtonComponent disabled={disabled} onClick={action('onClick')}>
+        <ButtonComponent disabled={disabled} onClick={onClick}>
           <DownloadIcon />
           Primary
         </ButtonComponent>
@@ -159,7 +150,7 @@ export const WithIcon: Story = {
         <ButtonComponent
           variant="secondary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           <DownloadIcon />
           Secondary
@@ -169,7 +160,7 @@ export const WithIcon: Story = {
         <ButtonComponent
           variant="tertiary"
           disabled={disabled}
-          onClick={action('onClick')}
+          onClick={onClick}
         >
           <DownloadIcon />
           Tertiary

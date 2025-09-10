@@ -1,6 +1,6 @@
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Meta, StoryObj } from '@storybook/react';
 import { Bubble as BubbleComponent } from '../src/components';
 
 const meta: Meta<typeof BubbleComponent> = {

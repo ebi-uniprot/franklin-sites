@@ -1,4 +1,4 @@
-import { AutocompleteItemType } from './components/autocomplete-item';
+import { type AutocompleteItemType } from './components/autocomplete-item';
 
 export function getLastIndexOfSubstringIgnoreCase(
   string: string,

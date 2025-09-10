@@ -1,4 +1,9 @@
-import { FC, ReactNode, HTMLAttributes, MouseEvent } from 'react';
+import {
+  type FC,
+  type ReactNode,
+  type HTMLAttributes,
+  type MouseEvent,
+} from 'react';
 import cn from 'classnames';
 
 import InformationIcon from '../svg/information.svg';

@@ -1,4 +1,10 @@
-import { FC, Children, useState, ReactNode, HTMLAttributes } from 'react';
+import {
+  type FC,
+  Children,
+  useState,
+  type ReactNode,
+  type HTMLAttributes,
+} from 'react';
 import cn from 'classnames';
 
 import Button from './button';

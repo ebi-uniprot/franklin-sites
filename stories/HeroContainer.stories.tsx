@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { loremIpsum } from 'lorem-ipsum';
 
 import { HeroContainer as HeroContainerComponent } from '../src/components';

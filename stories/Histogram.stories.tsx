@@ -1,13 +1,13 @@
 import {
-  CSSProperties,
-  ComponentProps,
-  FC,
+  type CSSProperties,
+  type ComponentProps,
+  type FC,
   useEffect,
   useRef,
   useState,
 } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Histogram as HistogramComponent } from '../src/components';
 
 import {

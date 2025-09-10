@@ -14,6 +14,8 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     // "esModuleInterop": true,
+    // Force use of "import type..." or "import { type..."
+    "verbatimModuleSyntax": true,
     "module": "esnext",
     "jsx": "react-jsx",
     "types": ["jest", "node", "@testing-library/jest-dom"],

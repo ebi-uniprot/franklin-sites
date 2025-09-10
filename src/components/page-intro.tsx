@@ -1,9 +1,9 @@
-import { FC, ReactNode, HTMLAttributes } from 'react';
+import { type FC, type ReactNode, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import { formatLargeNumber } from '../utils';
 
-import { HeadingLevels } from '../types/common';
+import type { HeadingLevels } from '../types/common';
 
 import '../styles/components/page-intro.scss';
 

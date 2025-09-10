@@ -1,10 +1,10 @@
 import {
   useRef,
-  FC,
-  KeyboardEvent,
-  ChangeEventHandler,
-  ChangeEvent,
-  InputHTMLAttributes,
+  type FC,
+  type KeyboardEvent,
+  type ChangeEventHandler,
+  type ChangeEvent,
+  type InputHTMLAttributes,
 } from 'react';
 
 import SearchIcon from '../svg/search.svg';

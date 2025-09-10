@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, HTMLAttributes } from 'react';
+import { forwardRef, type ReactNode, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/card.scss';

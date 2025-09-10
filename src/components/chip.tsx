@@ -1,10 +1,10 @@
 import {
-  FC,
+  type FC,
   useCallback,
   useRef,
-  ReactNode,
-  MouseEvent as ReactMouseEvent,
-  HTMLAttributes,
+  type ReactNode,
+  type MouseEvent as ReactMouseEvent,
+  type HTMLAttributes,
 } from 'react';
 import cn from 'classnames';
 

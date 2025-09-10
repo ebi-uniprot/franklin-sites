@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Histogram component should render when binSize prop is provided and with the correct number of bins 1`] = `
 <DocumentFragment>

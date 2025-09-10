@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes, FC } from 'react';
+import { type ReactNode, type HTMLAttributes, type FC } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/header.scss';

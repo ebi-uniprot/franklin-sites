@@ -1,18 +1,19 @@
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 import { loremIpsum } from 'lorem-ipsum';
-
-import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+
 import {
   Button,
   SlidingPanel as SlidingPanelComponent,
 } from '../src/components';
-import { SlidingPanelLR } from './SlidingPanelsWithArrow.stories';
+import { type SlidingPanelLR } from './SlidingPanelsWithArrow.stories';
 
 const SlidingPanelInSlidingPanelRender: SlidingPanelLR = ({
   title,
   position,
   size,
+  onClose,
 }) => {
   const [showPanel, setShowPanel] = useState(false);
   const [showPanel2, setShowPanel2] = useState(false);
@@ -38,7 +39,7 @@ const SlidingPanelInSlidingPanelRender: SlidingPanelLR = ({
           onClose={(reason) => {
             setShowPanel(false);
             setShowPanel2(false);
-            action('onClose 1')(reason);
+            onClose?.(reason);
           }}
           pathname="#"
         >
@@ -53,7 +54,7 @@ const SlidingPanelInSlidingPanelRender: SlidingPanelLR = ({
                 size={size}
                 onClose={(reason) => {
                   setShowPanel2(false);
-                  action('onClose 2')(reason);
+                  onClose?.(reason);
                 }}
                 pathname="#"
               >
@@ -84,6 +85,7 @@ const meta: Meta<SlidingPanelLR> = {
     title: 'Title',
     size: 'medium',
     position: 'left',
+    onClose: fn(),
   },
   render: (props) => <SlidingPanelInSlidingPanelRender {...props} />,
 };

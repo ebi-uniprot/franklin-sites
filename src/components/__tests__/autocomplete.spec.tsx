@@ -6,7 +6,7 @@ import Autocomplete, {
 } from '../autocomplete';
 
 import { flattenedPaths } from '../../mock-data/tree-data';
-import { AutocompleteItemType } from '../autocomplete-item';
+import { type AutocompleteItemType } from '../autocomplete-item';
 
 describe('Autocomplete component', () => {
   it('should render', () => {

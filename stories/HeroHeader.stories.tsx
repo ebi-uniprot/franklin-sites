@@ -1,5 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { loremIpsum } from 'lorem-ipsum';
 
 import { HeroHeader as HH } from '../src/components';

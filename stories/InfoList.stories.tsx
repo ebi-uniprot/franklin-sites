@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import { loremIpsum } from 'lorem-ipsum';
 
 import {
@@ -6,19 +5,11 @@ import {
   SwissProtIcon,
 } from '../src/components';
 
-export default {
-  title: 'Data/Info List',
-};
+export default { title: 'Data/Info List' };
 
 const data = [
-  {
-    title: 'Item 1',
-    content: <div>Some content</div>,
-  },
-  {
-    title: 'Another item',
-    content: <div>Some more content</div>,
-  },
+  { title: 'Item 1', content: <div>Some content</div> },
+  { title: 'Another item', content: <div>Some more content</div> },
   {
     title: 'Yet another item',
     content: loremIpsum({ count: 25, units: 'words' }),
@@ -34,7 +25,7 @@ const data = [
   {
     title: 'This item is a link',
     content: loremIpsum({ count: 25, units: 'words' }),
-    // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-is-valid
+    // eslint-disable-next-line jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid
     link: <a />,
   },
 ];

@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect, memo } from 'react';
 import { sleep } from 'timing-functions';
 
-import { Button, ButtonProps } from './button';
+import { Button, type ButtonProps } from './button';
 
 type Props = {
   /**

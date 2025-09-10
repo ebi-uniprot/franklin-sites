@@ -1,4 +1,4 @@
-import { useState, FC, ReactNode, HTMLAttributes } from 'react';
+import { useState, type FC, type ReactNode, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import Bubble from './bubble';

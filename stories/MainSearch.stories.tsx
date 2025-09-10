@@ -1,10 +1,9 @@
 import { useState } from 'react';
+import { fn } from 'storybook/test';
 
-import { action } from '@storybook/addon-actions';
-
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import MainSearchComponent, {
-  MainSearchProps,
+  type MainSearchProps,
 } from '../src/components/main-search';
 
 const namespaces = {
@@ -20,11 +19,16 @@ const namespaces = {
 type StoryProps = React.ComponentProps<typeof MainSearchComponent> & {
   withNamespace: boolean;
   withSecondaryButtons: boolean;
+  onAdvancedClick: typeof fn;
+  onListClick: typeof fn;
 };
 
 export const MainSearch = ({
   withNamespace,
   withSecondaryButtons,
+  onAdvancedClick,
+  onListClick,
+  onSubmit,
 }: StoryProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [namespace, setNamespace] = useState('uniprotkb');
@@ -37,15 +41,15 @@ export const MainSearch = ({
   }
   if (withSecondaryButtons) {
     props.secondaryButtons = [
-      { label: 'Advanced', action: action('Advanced') },
-      { label: 'List', action: action('List') },
+      { label: 'Advanced', action: onAdvancedClick },
+      { label: 'List', action: onListClick },
     ];
   }
   return (
     <MainSearchComponent
       searchTerm={searchTerm}
       onTextChange={(value) => setSearchTerm(value)}
-      onSubmit={action('Submitted')}
+      onSubmit={onSubmit}
       {...props}
     />
   );
@@ -57,6 +61,9 @@ const meta: Meta<StoryProps> = {
   args: {
     withNamespace: false,
     withSecondaryButtons: false,
+    onAdvancedClick: fn(),
+    onListClick: fn(),
+    onSubmit: fn(),
   },
   render: MainSearch,
 };
