@@ -5,7 +5,8 @@
   "main": "dist/franklin-components.cjs.js",
   "exports": {
     ".": "./dist/franklin-components.es.js",
-    "./franklin.css": "./dist/franklin.css"
+    "./franklin.css": "./dist/franklin.css",
+    "./src/styles/": "./src/styles/"
   },
   "files": [
     "src",
