@@ -1,0 +1,73 @@
+$switch-width: 1.875rem;
+$switch-height: 1.0625rem;
+$knob-size: 0.8125rem;
+$knob-offset: 0.125rem;
+$knob-shift: 0.8125rem;
+
+.switch {
+  --toggle-switch-on: var(--fr--color-sea-blue);
+  --toggle-switch-off: var(--fr--color-platinum);
+  --toggle-switch-knob: var(--fr--color-sky-white);
+  --toggle-switch-disabled: var(--fr--color-platinum);
+  --toggle-switch-focus: var(--fr--color-yankees-blue);
+
+  display: inline-block;
+  width: $switch-width;
+  height: $switch-height;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .slider {
+      background-color: var(--toggle-switch-disabled);
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .slider {
+      background-color: var(--toggle-switch-on);
+
+      &::before {
+        transform: translateX($knob-shift);
+      }
+    }
+
+    &:focus-visible + .slider {
+      outline: 0.125rem solid var(--toggle-switch-focus);
+      outline-offset: 0.25rem;
+    }
+  }
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background-color: var(--toggle-switch-off);
+  transition: 0.4s;
+  border-radius: $switch-height;
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: $knob-size;
+    width: $knob-size;
+    left: $knob-offset;
+    bottom: $knob-offset;
+    background-color: var(--toggle-switch-knob);
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  &.round {
+    border-radius: $switch-height;
+  }
+}
