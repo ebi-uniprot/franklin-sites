@@ -19,7 +19,9 @@ const ToggleSwitch: FC<Props> = ({
   className = '',
 }) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
     onChange(event.target.checked);
   };
 
