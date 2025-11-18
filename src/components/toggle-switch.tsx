@@ -1,4 +1,5 @@
 import { useId, type ChangeEvent, type FC } from 'react';
+
 import '../styles/components/toggle-switch.scss';
 
 type Props = {
