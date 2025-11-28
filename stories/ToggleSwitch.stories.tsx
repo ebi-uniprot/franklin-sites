@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
 import ToggleSwitch from '../src/components/toggle-switch';
+import { UniParcIcon } from '../src/components';
 
 const meta: Meta<typeof ToggleSwitch> = {
   component: ToggleSwitch,
@@ -37,7 +38,7 @@ const ToggleSwitchControlled = ({
   ariaLabel,
   header,
   status,
-}: ToggleSwitch) => {
+}: ToggleSwitchArgs) => {
   const [checked, setChecked] = useState(false);
 
   const handleChange = (next: boolean) => {
@@ -53,6 +54,7 @@ const ToggleSwitchControlled = ({
       header={header}
       status={status}
       onChange={handleChange}
+      icon={<UniParcIcon />}
     />
   );
 };
@@ -76,6 +78,7 @@ const ToggleSwitchWithMockupContent = ({
       header="AI annotations"
       status="Showing AI predictions"
       onChange={handleChange}
+      icon={<UniParcIcon />}
     />
   );
 };
@@ -97,6 +100,7 @@ export const Disabled: Story = {
       header={header}
       status={status}
       onChange={action('onChange')}
+      icon={<UniParcIcon />}
     />
   ),
 };

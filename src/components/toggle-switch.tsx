@@ -1,9 +1,10 @@
-import { type FC } from 'react';
+import { FC } from 'react';
 import '../styles/components/toggle.scss';
 
 type Props = {
   header?: string;
   status?: string;
+  icon?: React.ReactNode;
   checked: boolean;
   onChange: (checked: boolean) => void;
   ariaLabel?: string;
@@ -14,6 +15,7 @@ type Props = {
 const ToggleSwitch: FC<Props> = ({
   header,
   status,
+  icon,
   checked,
   onChange,
   ariaLabel = 'Toggle',
@@ -21,15 +23,11 @@ const ToggleSwitch: FC<Props> = ({
   className = '',
 }) => {
   const handleToggle = () => {
-    if (!disabled) {
-      onChange(!checked);
-    }
+    if (!disabled) onChange(!checked);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disabled) {
-      onChange(e.target.checked);
-    }
+    if (!disabled) onChange(e.target.checked);
   };
 
   return (
@@ -47,8 +45,13 @@ const ToggleSwitch: FC<Props> = ({
       }}
     >
       <div className="toggle__content">
-        {header && <div className="toggle__header">{header}</div>}
-        {status && <div className="toggle__status">{status}</div>}
+        {icon && <div className="toggle__icon">{icon}</div>}
+
+        <div className="toggle__text">
+          {header && <div className="toggle__header">{header}</div>}
+          {status && <div className="toggle__status">{status}</div>}
+        </div>
+
         <label className="toggle__switch" onClick={(e) => e.stopPropagation()}>
           <input
             type="checkbox"
