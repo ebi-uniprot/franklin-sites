@@ -1,0 +1,125 @@
+@import '../settings';
+@import '../colours';
+@import '../mixins';
+
+$switch-width: 2.5rem;
+$switch-height: 1.5rem;
+$knob-size: 1rem;
+$knob-offset: 0.25rem;
+$knob-shift: 1rem;
+
+.toggle {
+  --toggle-text-color-off: #666f7d;
+  --toggle-header-color-off: var(--fr--color-yankees-blue);
+  --toggle-background-color-off: #fafaff;
+  --toggle-border-color-off: #d1d4df;
+  --toggle-switch-color-off: #9ca3b2;
+
+  --toggle-text-color-on: #8252a6;
+  --toggle-header-color-on: #561a88;
+  --toggle-background-color-on: #fbf4ff;
+  --toggle-border-color-on: #8f2eed;
+  --toggle-switch-color-on: #691eaa;
+
+  --toggle-switch-off-color-on: var(--fr--color-lavender-mist);
+  --toggle-knob-color: white;
+  --toggle-focus-color: var(--fr--color-deep-violet);
+
+  --toggle-border-color: var(--toggle-border-color-off);
+  --toggle-background-color: var(--toggle-background-color-off);
+  --toggle-header-color: var(--toggle-header-color-off);
+  --toggle-text-color: var(--toggle-text-color-off);
+  --toggle-switch-off-color: var(--toggle-switch-color-off);
+  --toggle-switch-on-color: var(--toggle-switch-color-off);
+
+  padding: 1.25rem;
+  border: 2px solid var(--toggle-border-color);
+  border-radius: 1rem;
+  background: var(--toggle-background-color);
+  width: 100%;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--toggle-header-color);
+  }
+
+  &__status {
+    font-size: 0.875rem;
+    color: var(--toggle-text-color);
+  }
+
+  &--on {
+    --toggle-border-color: var(--toggle-border-color-on);
+    --toggle-background-color: var(--toggle-background-color-on);
+    --toggle-header-color: var(--toggle-header-color-on);
+    --toggle-text-color: var(--toggle-text-color-on);
+    --toggle-switch-off-color: var(--toggle-switch-off-color-on);
+    --toggle-switch-on-color: var(--toggle-switch-color-on);
+  }
+
+  &--disabled {
+    --toggle-border-color: #d1d5db;
+    --toggle-background-color: #f9fafb;
+    --toggle-text-color: #374151;
+    --toggle-switch-off-color: #9ca3af;
+    --toggle-switch-on-color: #9ca3af;
+    --toggle-knob-color: white;
+  }
+
+  &__switch {
+    margin-left: auto;
+    display: inline-block;
+    width: $switch-width;
+    height: $switch-height;
+    position: relative;
+    cursor: pointer;
+    font-size: 1rem;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:checked + .slider {
+        background-color: var(--toggle-switch-on-color);
+
+        &::before {
+          transform: translateX($knob-shift);
+        }
+      }
+
+      &:focus-visible + .slider {
+        outline: 0.125rem solid var(--toggle-focus-color);
+        outline-offset: 0.25rem;
+      }
+    }
+  }
+
+  .slider {
+    position: absolute;
+    inset: 0;
+    background-color: var(--toggle-switch-off-color);
+    transition: 0.4s;
+    border-radius: $switch-height;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: $knob-size;
+      width: $knob-size;
+      left: $knob-offset;
+      bottom: $knob-offset;
+      background-color: var(--toggle-knob-color);
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+}

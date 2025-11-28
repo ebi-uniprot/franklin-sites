@@ -20,6 +20,12 @@ $colour-pastel-blue: #abc7d6;
 $colour-platinum: #e4e8eb;
 $colour-sky-white: #fbfeff;
 
+// PURPLES
+$colour-amethyst: #9333ea;
+$colour-lavender-mist: #faf5ff;
+$colour-deep-violet: #581c87;
+$colour-royal-purple: #6b21a8;
+
 // CURATION
 $colour-reviewed: #c39b00;
 $colour-unreviewed: #c0c0c0;
@@ -70,6 +76,12 @@ $colour-hover: lighten($colour-platinum, 5%);
   --fr--color-pastel-blue: #abc7d6;
   --fr--color-platinum: #e4e8eb;
   --fr--color-sky-white: #fbfeff;
+
+  // PURPLES
+  --fr--color-amethyst: #9333ea;
+  --fr--color-lavender-mist: #faf5ff;
+  --fr--color-deep-violet: #581c87;
+  --fr--color-royal-purple: #6b21a8;
 
   // CURATION
   --fr--color-reviewed: #c39b00;

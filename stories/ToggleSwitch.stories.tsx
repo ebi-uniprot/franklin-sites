@@ -2,83 +2,100 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { ToggleSwitch as ToggleSwitchComponent } from '../src/components';
+import ToggleSwitch from '../src/components/toggle-switch';
 
-const meta: Meta<typeof ToggleSwitchComponent> = {
-  component: ToggleSwitchComponent,
+const meta: Meta<typeof ToggleSwitch> = {
+  component: ToggleSwitch,
   title: 'Forms/ToggleSwitch',
   argTypes: {
     disabled: { control: 'boolean' },
     ariaLabel: { control: 'text' },
+    header: { control: 'text' },
+    status: { control: 'text' },
   },
   args: {
     disabled: false,
-    ariaLabel: 'Toggle',
+    ariaLabel: 'ToggleSwitch',
+    header: 'AI annotations',
+    status: 'Showing AI predictions',
   },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof ToggleSwitchComponent>;
+type Story = StoryObj<typeof ToggleSwitch>;
 
-type ToggleArgs = {
+type ToggleSwitchArgs = {
   disabled?: boolean;
   ariaLabel?: string;
+  header?: string;
+  status?: string;
 };
 
-const ToggleSwitchControlled = ({ disabled, ariaLabel }: ToggleArgs) => {
+const ToggleSwitchControlled = ({
+  disabled,
+  ariaLabel,
+  header,
+  status,
+}: ToggleSwitch) => {
   const [checked, setChecked] = useState(false);
 
-  const handleChange = (nextChecked: boolean) => {
-    setChecked(nextChecked);
-    action('onChange')(nextChecked);
+  const handleChange = (next: boolean) => {
+    setChecked(next);
+    action('onChange')(next);
   };
 
   return (
-    <ToggleSwitchComponent
+    <ToggleSwitch
       checked={checked}
       disabled={disabled}
       ariaLabel={ariaLabel}
+      header={header}
+      status={status}
       onChange={handleChange}
     />
   );
 };
 
-const ToggleSwitchWithLabel = ({ disabled, ariaLabel }: ToggleArgs) => {
+const ToggleSwitchWithMockupContent = ({
+  disabled,
+  ariaLabel,
+}: ToggleSwitchArgs) => {
   const [checked, setChecked] = useState(true);
 
-  const handleChange = (nextChecked: boolean) => {
-    setChecked(nextChecked);
-    action('onChange')(nextChecked);
+  const handleChange = (next: boolean) => {
+    setChecked(next);
+    action('onChange')(next);
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-      <ToggleSwitchComponent
-        checked={checked}
-        disabled={disabled}
-        ariaLabel={ariaLabel}
-        onChange={handleChange}
-      />
-      <span>Notifications</span>
-    </div>
+    <ToggleSwitch
+      checked={checked}
+      disabled={disabled}
+      ariaLabel={ariaLabel}
+      header="AI annotations"
+      status="Showing AI predictions"
+      onChange={handleChange}
+    />
   );
 };
 
-export const ToggleSwitch: Story = {
+export const Default: Story = {
   render: (args) => <ToggleSwitchControlled {...args} />,
 };
 
-export const WithLabel: Story = {
-  render: (args) => <ToggleSwitchWithLabel {...args} />,
+export const WithLabelAndStatus: Story = {
+  render: (args) => <ToggleSwitchWithMockupContent {...args} />,
 };
 
 export const Disabled: Story = {
-  render: ({ ariaLabel }) => (
-    <ToggleSwitchComponent
+  render: ({ ariaLabel, header, status }) => (
+    <ToggleSwitch
       checked={false}
       disabled
       ariaLabel={ariaLabel}
+      header={header}
+      status={status}
       onChange={action('onChange')}
     />
   ),

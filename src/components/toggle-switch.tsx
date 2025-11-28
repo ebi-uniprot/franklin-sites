@@ -1,49 +1,68 @@
-import { useId, type ChangeEvent, type FC } from 'react';
-
-import '../styles/components/toggle-switch.scss';
+import { type FC } from 'react';
+import '../styles/components/toggle.scss';
 
 type Props = {
+  header?: string;
+  status?: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
   ariaLabel?: string;
   disabled?: boolean;
   className?: string;
-  id?: string;
 };
 
 const ToggleSwitch: FC<Props> = ({
+  header,
+  status,
   checked,
   onChange,
   ariaLabel = 'Toggle',
   disabled = false,
   className = '',
-  id,
 }) => {
-  const generatedId = useId();
-  const inputId = id ?? generatedId;
+  const handleToggle = () => {
+    if (!disabled) {
+      onChange(!checked);
+    }
+  };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (disabled) return;
-    onChange(event.target.checked);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!disabled) {
+      onChange(e.target.checked);
+    }
   };
 
   return (
-    <label
-      className={`switch ${disabled ? 'switch--disabled' : ''} ${className}`}
-      htmlFor={inputId}
+    <section
+      className={`toggle ${checked ? 'toggle--on' : ''} ${disabled ? 'toggle--disabled' : ''} ${className}`}
+      aria-disabled={disabled}
+      onClick={handleToggle}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          handleToggle();
+        }
+      }}
     >
-      <input
-        id={inputId}
-        type="checkbox"
-        role="switch"
-        aria-checked={checked}
-        aria-label={ariaLabel}
-        checked={checked}
-        disabled={disabled}
-        onChange={handleChange}
-      />
-      <span className="slider round" />
-    </label>
+      <div className="toggle__content">
+        {header && <div className="toggle__header">{header}</div>}
+        {status && <div className="toggle__status">{status}</div>}
+        <label className="toggle__switch" onClick={(e) => e.stopPropagation()}>
+          <input
+            type="checkbox"
+            role="switch"
+            aria-checked={checked}
+            aria-label={ariaLabel}
+            checked={checked}
+            disabled={disabled}
+            onChange={handleInputChange}
+          />
+          <span className="slider round" />
+        </label>
+      </div>
+    </section>
   );
 };
 
