@@ -1,4 +1,7 @@
 import { FC } from 'react';
+
+import Chip from './chip';
+
 import '../styles/components/toggle.scss';
 
 type Props = {
@@ -48,7 +51,16 @@ const ToggleSwitch: FC<Props> = ({
         {icon && <div className="toggle__icon">{icon}</div>}
 
         <div className="toggle__text">
-          {header && <div className="toggle__header">{header}</div>}
+          {header && (
+            <div className="toggle__header">
+              {header}
+              {checked && (
+                <Chip compact className="toggle__header__chip">
+                  ON
+                </Chip>
+              )}
+            </div>
+          )}
           {status && <div className="toggle__status">{status}</div>}
         </div>
 
