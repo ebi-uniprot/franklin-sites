@@ -5,9 +5,11 @@ import Chip from './chip';
 import '../styles/components/toggle.scss';
 
 type Props = {
-  header?: string;
-  status?: string;
-  icon?: React.ReactNode;
+  header: string;
+  statusOff: string;
+  statusLoading: string;
+  statusOn: string;
+  icon: React.ReactNode;
   checked: boolean;
   onChange: (checked: boolean) => void;
   ariaLabel?: string;
@@ -17,7 +19,9 @@ type Props = {
 
 const ToggleSwitch: FC<Props> = ({
   header,
-  status,
+  statusOff,
+  statusLoading,
+  statusOn,
   icon,
   checked,
   onChange,
@@ -48,22 +52,19 @@ const ToggleSwitch: FC<Props> = ({
       }}
     >
       <div className="toggle__content">
-        {icon && <div className="toggle__icon">{icon}</div>}
+        <div className="toggle__icon">{icon}</div>
 
         <div className="toggle__text">
-          {header && (
-            <div className="toggle__header">
-              {header}
-              {checked && (
-                <Chip compact className="toggle__header__chip">
-                  ON
-                </Chip>
-              )}
-            </div>
-          )}
-          {status && <div className="toggle__status">{status}</div>}
+          <div className="toggle__header">
+            {header}
+            {checked && (
+              <Chip compact className="toggle__header__chip">
+                ON
+              </Chip>
+            )}
+          </div>
+          <div className="toggle__status">{checked ? statusOn : statusOff}</div>
         </div>
-
         <label className="toggle__switch" onClick={(e) => e.stopPropagation()}>
           <input
             type="checkbox"

@@ -12,13 +12,15 @@ const meta: Meta<typeof ToggleSwitch> = {
     disabled: { control: 'boolean' },
     ariaLabel: { control: 'text' },
     header: { control: 'text' },
-    status: { control: 'text' },
+    statusOn: { control: 'text' },
+    statusOff: { control: 'text' },
   },
   args: {
     disabled: false,
     ariaLabel: 'ToggleSwitch',
     header: 'AI annotations',
-    status: 'Showing AI predictions',
+    statusOn: 'Showing AI predictions',
+    statusOff: 'Click to enable',
   },
 };
 
@@ -29,15 +31,17 @@ type Story = StoryObj<typeof ToggleSwitch>;
 type ToggleSwitchArgs = {
   disabled?: boolean;
   ariaLabel?: string;
-  header?: string;
-  status?: string;
+  header: string;
+  statusOn: string;
+  statusOff: string;
 };
 
 const ToggleSwitchControlled = ({
   disabled,
   ariaLabel,
   header,
-  status,
+  statusOn,
+  statusOff,
 }: ToggleSwitchArgs) => {
   const [checked, setChecked] = useState(false);
 
@@ -52,31 +56,8 @@ const ToggleSwitchControlled = ({
       disabled={disabled}
       ariaLabel={ariaLabel}
       header={header}
-      status={status}
-      onChange={handleChange}
-      icon={<UniParcIcon />}
-    />
-  );
-};
-
-const ToggleSwitchWithMockupContent = ({
-  disabled,
-  ariaLabel,
-}: ToggleSwitchArgs) => {
-  const [checked, setChecked] = useState(true);
-
-  const handleChange = (next: boolean) => {
-    setChecked(next);
-    action('onChange')(next);
-  };
-
-  return (
-    <ToggleSwitch
-      checked={checked}
-      disabled={disabled}
-      ariaLabel={ariaLabel}
-      header="AI annotations"
-      status="Showing AI predictions"
+      statusOn={statusOn}
+      statusOff={statusOff}
       onChange={handleChange}
       icon={<UniParcIcon />}
     />
@@ -85,22 +66,4 @@ const ToggleSwitchWithMockupContent = ({
 
 export const Default: Story = {
   render: (args) => <ToggleSwitchControlled {...args} />,
-};
-
-export const WithLabelAndStatus: Story = {
-  render: (args) => <ToggleSwitchWithMockupContent {...args} />,
-};
-
-export const Disabled: Story = {
-  render: ({ ariaLabel, header, status }) => (
-    <ToggleSwitch
-      checked={false}
-      disabled
-      ariaLabel={ariaLabel}
-      header={header}
-      status={status}
-      onChange={action('onChange')}
-      icon={<UniParcIcon />}
-    />
-  ),
 };

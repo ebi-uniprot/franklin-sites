@@ -39,6 +39,7 @@ $knob-shift: 1rem;
   border-radius: 1rem;
   background: var(--toggle-background-color);
   width: 100%;
+  user-select: none;
 
   &__content {
     display: flex;
