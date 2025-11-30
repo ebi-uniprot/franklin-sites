@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import Chip from './chip';
 
 import '../styles/components/toggle.scss';
@@ -11,6 +10,7 @@ type Props = {
   statusOn: string;
   icon: React.ReactNode;
   checked: boolean;
+  isLoading?: boolean;
   onChange: (checked: boolean) => void;
   ariaLabel?: string;
   disabled?: boolean;
@@ -24,22 +24,39 @@ const ToggleSwitch: FC<Props> = ({
   statusOn,
   icon,
   checked,
+  isLoading = false,
   onChange,
   ariaLabel = 'Toggle',
   disabled = false,
   className = '',
 }) => {
   const handleToggle = () => {
-    if (!disabled) onChange(!checked);
+    if (!disabled) {
+      onChange(!checked);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disabled) onChange(e.target.checked);
+    if (!disabled) {
+      onChange(e.target.checked);
+    }
   };
+
+  // visual state logic
+  const isOn = checked && !isLoading;
+  const isShimmering = isLoading;
+
+  const status = isLoading ? statusLoading : checked ? statusOn : statusOff;
 
   return (
     <section
-      className={`toggle ${checked ? 'toggle--on' : ''} ${disabled ? 'toggle--disabled' : ''} ${className}`}
+      className={`
+        toggle
+        ${isOn ? 'toggle--on' : ''}
+        ${isShimmering ? 'toggle--loading' : ''}
+        ${disabled ? 'toggle--disabled' : ''}
+        ${className}
+      `}
       aria-disabled={disabled}
       onClick={handleToggle}
       role="button"
@@ -57,14 +74,16 @@ const ToggleSwitch: FC<Props> = ({
         <div className="toggle__text">
           <div className="toggle__header">
             {header}
-            {checked && (
+            {isOn && (
               <Chip compact className="toggle__header__chip">
                 ON
               </Chip>
             )}
           </div>
-          <div className="toggle__status">{checked ? statusOn : statusOff}</div>
+
+          <div className="toggle__status">{status}</div>
         </div>
+
         <label className="toggle__switch" onClick={(e) => e.stopPropagation()}>
           <input
             type="checkbox"

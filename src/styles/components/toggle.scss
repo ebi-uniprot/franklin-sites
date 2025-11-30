@@ -8,6 +8,18 @@ $knob-size: 1rem;
 $knob-offset: 0.25rem;
 $knob-shift: 1rem;
 
+@keyframes toggle-opacity-shimmer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .toggle {
   --toggle-knob-color: white;
   --toggle-focus-color: var(--fr--color-deep-violet);
@@ -158,5 +170,17 @@ $knob-shift: 1rem;
       transition: 0.4s;
       border-radius: 50%;
     }
+  }
+
+  &--loading {
+    animation: toggle-opacity-shimmer 1.8s ease-in-out infinite;
+
+    --toggle-border-color: var(--toggle-border-color-on);
+    --toggle-background-color: var(--toggle-background-color-on);
+    --toggle-header-color: var(--toggle-header-color-on);
+    --toggle-text-color: var(--toggle-text-color-on);
+    --toggle-switch-off-color: var(--toggle-switch-color-on);
+    --toggle-switch-on-color: var(--toggle-switch-color-on);
+    --toggle-icon-color: var(--toggle-icon-on);
   }
 }
