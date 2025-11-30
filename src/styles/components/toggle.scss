@@ -31,12 +31,12 @@ $knob-shift: 1rem;
   --toggle-switch-color-off: #9ca3b2;
   --toggle-icon-off: #9ca3b2;
 
-  --toggle-text-color-on: #8252a6;
-  --toggle-header-color-on: #561a88;
+  --toggle-text-color-on: var(--fr--color-purple-soft);
+  --toggle-header-color-on: var(--fr--color-purple-deep);
   --toggle-background-color-on: #fbf4ff;
-  --toggle-border-color-on: #8f2eed;
-  --toggle-switch-color-on: #691eaa;
-  --toggle-icon-on: #691eaa;
+  --toggle-border-color-on: var(--fr--color-purple-bright);
+  --toggle-switch-color-on: var(--fr--color-purple-mid);
+  --toggle-icon-on: var(--fr--color-purple-mid);
 
   --toggle-border-color: var(--toggle-border-color-off);
   --toggle-background-color: var(--toggle-background-color-off);
@@ -95,7 +95,7 @@ $knob-shift: 1rem;
       margin-left: 0.5rem;
       background-color: #e1e4dc;
       border: 0px;
-      color: #581c87;
+      color: var(--fr--color-purple-deep);
     }
   }
 
