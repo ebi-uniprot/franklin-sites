@@ -20,6 +20,15 @@ $colour-pastel-blue: #abc7d6;
 $colour-platinum: #e4e8eb;
 $colour-sky-white: #fbfeff;
 
+// NEUTRALS
+$colour-slate-grey: #666f7d;
+$colour-white-lilac: #fafaff;
+$colour-soft-grey: #d1d4df;
+$colour-blue-grey: #9ca3b2;
+$colour-mist-grey: #e1e4dc;
+$colour-charcoal-grey: #374151;
+$colour-ash-grey: #9ca3af;
+
 // PURPLES
 $colour-purple-deep: #561a88;
 $colour-purple-mid: #691eaa;
@@ -77,6 +86,15 @@ $colour-hover: lighten($colour-platinum, 5%);
   --fr--color-platinum: #e4e8eb;
   --fr--color-sky-white: #fbfeff;
 
+  // NEUTRALS
+  --fr--color-slate-grey: #666f7d;
+  --fr--color-white-lilac: #fafaff;
+  --fr--color-soft-grey: #d1d4df;
+  --fr--color-blue-grey: #9ca3b2;
+  --fr--color-mist-grey: #e1e4dc;
+  --fr--color-charcoal-grey: #374151;
+  --fr--color-ash-grey: #9ca3af;
+
   // PURPLES
   --fr--color-purple-deep: #561a88;
   --fr--color-purple-mid: #691eaa;
@@ -118,6 +136,7 @@ $colour-hover: lighten($colour-platinum, 5%);
   --fr--color-link: var(--fr--color-sapphire-blue);
   --fr--color-selected: var(--fr--color-gainsborough);
   --fr--color-hover: oklch(from var(--fr--color-platinum) calc(l + 5%) c h);
+
   // Static fallback in case color function are not supported
   --fr--color-hover: #f5f9fc;
 }
