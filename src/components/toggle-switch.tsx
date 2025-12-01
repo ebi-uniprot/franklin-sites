@@ -31,6 +31,7 @@ const ToggleSwitch: FC<Props> = ({
   ariaLabel = 'Toggle',
   disabled = false,
   className = '',
+  ...rest
 }) => {
   const isOn = checked && !isLoading;
   const status =
@@ -59,6 +60,7 @@ const ToggleSwitch: FC<Props> = ({
       aria-label={ariaLabel}
       disabled={disabled}
       onClick={handleToggle}
+      {...rest}
     >
       <div className="toggle__content">
         <div className="toggle__icon">{icon}</div>

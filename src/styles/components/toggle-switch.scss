@@ -19,10 +19,7 @@ $knob-shift: 1rem;
 }
 
 .toggle {
-  appearance: none;
-  -webkit-appearance: none;
   font: inherit;
-  color: inherit;
   cursor: pointer;
   user-select: none;
 
@@ -32,7 +29,7 @@ $knob-shift: 1rem;
 
   --toggle-focus-color: color-mix(in srgb, var(--toggle-on-base) 70%, white);
 
-  --toggle-text-color-off: var(--toggle-off-base);
+  --toggle-status-color-off: var(--toggle-off-base);
   --toggle-header-color-off: color-mix(
     in srgb,
     var(--toggle-off-base) 70%,
@@ -55,10 +52,14 @@ $knob-shift: 1rem;
   );
   --toggle-icon-color-off: var(--toggle-switch-color-off);
 
-  --toggle-text-color-on: color-mix(in srgb, var(--toggle-on-base) 90%, white);
+  --toggle-status-color-on: color-mix(
+    in srgb,
+    var(--toggle-on-base) 80%,
+    black
+  );
   --toggle-header-color-on: color-mix(
     in srgb,
-    var(--toggle-on-base) 100%,
+    var(--toggle-on-base) 80%,
     black
   );
   --toggle-background-color-on: color-mix(
@@ -74,7 +75,7 @@ $knob-shift: 1rem;
   --toggle-switch-color-on: var(--toggle-on-base);
   --toggle-icon-color-on: var(--toggle-on-base);
 
-  --toggle-text-color: var(--toggle-text-color-off);
+  --toggle-status-color: var(--toggle-status-color-off);
   --toggle-header-color: var(--toggle-header-color-off);
   --toggle-background-color: var(--toggle-background-color-off);
   --toggle-border-color: var(--toggle-border-color-off);
@@ -113,6 +114,7 @@ $knob-shift: 1rem;
     svg {
       width: 1.5rem;
       height: 1.5rem;
+      overflow: visible;
       fill: currentColor;
       stroke: currentColor;
     }
@@ -133,21 +135,21 @@ $knob-shift: 1rem;
     &__chip {
       position: absolute;
       margin-left: 0.5rem;
-      margin-top: 2px;
+      // margin-top: 2px;
       border: 0;
       pointer-events: none;
-      background: color-mix(in srgb, var(--toggle-on-base) 17%, white);
-      color: var(--toggle-on-base);
+      background: color-mix(in srgb, var(--toggle-on-base) 25%, white);
+      color: var(--toggle-header-color-on);
     }
   }
 
   &__status {
     font-size: 0.875rem;
-    color: var(--toggle-text-color);
+    color: var(--toggle-status-color);
   }
 
   &--on {
-    --toggle-text-color: var(--toggle-text-color-on);
+    --toggle-status-color: var(--toggle-status-color-on);
     --toggle-header-color: var(--toggle-header-color-on);
     --toggle-background-color: var(--toggle-background-color-on);
     --toggle-border-color: var(--toggle-border-color-on);
@@ -158,7 +160,11 @@ $knob-shift: 1rem;
   &--disabled {
     cursor: not-allowed;
 
-    --toggle-text-color: color-mix(in srgb, var(--toggle-off-base) 40%, white);
+    --toggle-status-color: color-mix(
+      in srgb,
+      var(--toggle-off-base) 40%,
+      white
+    );
     --toggle-header-color: color-mix(
       in srgb,
       var(--toggle-off-base) 40%,
@@ -229,7 +235,7 @@ $knob-shift: 1rem;
     animation: toggle-opacity-shimmer 1.8s ease-in-out infinite;
     will-change: opacity;
 
-    --toggle-text-color: var(--toggle-text-color-on);
+    --toggle-status-color: var(--toggle-status-color-on);
     --toggle-header-color: var(--toggle-header-color-on);
     --toggle-background-color: var(--toggle-background-color-on);
     --toggle-border-color: var(--toggle-border-color-on);
