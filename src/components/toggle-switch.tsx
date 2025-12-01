@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import cn from 'classnames';
+
 import Chip from './chip';
 
 import '../styles/components/toggle.scss';
@@ -30,47 +32,36 @@ const ToggleSwitch: FC<Props> = ({
   disabled = false,
   className = '',
 }) => {
+  const isOn = checked && !isLoading;
+  const status =
+    (isLoading && statusLoading) || (checked && statusOn) || statusOff;
+
   const handleToggle = () => {
     if (!disabled) {
       onChange(!checked);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disabled) {
-      onChange(e.target.checked);
-    }
-  };
-
-  // visual state logic
-  const isOn = checked && !isLoading;
-  const isShimmering = isLoading;
-
-  const status = isLoading ? statusLoading : checked ? statusOn : statusOff;
-
   return (
-    <section
-      className={`
-        toggle
-        ${isOn ? 'toggle--on' : ''}
-        ${isShimmering ? 'toggle--loading' : ''}
-        ${disabled ? 'toggle--disabled' : ''}
-        ${className}
-      `}
-      aria-disabled={disabled}
+    <button
+      type="button"
+      className={cn(
+        'toggle',
+        {
+          'toggle--on': isOn,
+          'toggle--loading': isLoading,
+          'toggle--disabled': disabled,
+        },
+        className
+      )}
+      role="switch"
+      aria-checked={checked}
+      aria-label={ariaLabel}
+      disabled={disabled}
       onClick={handleToggle}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          handleToggle();
-        }
-      }}
     >
       <div className="toggle__content">
         <div className="toggle__icon">{icon}</div>
-
         <div className="toggle__text">
           <div className="toggle__header">
             {header}
@@ -79,31 +70,20 @@ const ToggleSwitch: FC<Props> = ({
                 compact
                 className="toggle__header__chip"
                 tabIndex={-1}
-                aria-hidden
+                aria-hidden="true"
+                asSpan
               >
                 ON
               </Chip>
             )}
           </div>
-
           <div className="toggle__status">{status}</div>
         </div>
-
-        <label className="toggle__switch" onClick={(e) => e.stopPropagation()}>
-          <input
-            type="checkbox"
-            role="switch"
-            aria-checked={checked}
-            aria-label={ariaLabel}
-            checked={checked}
-            disabled={disabled}
-            onChange={handleInputChange}
-            tabIndex={-1}
-          />
-          <span className="slider round" />
-        </label>
+        <div className="toggle__switch" aria-hidden="true">
+          <span className="slider" />
+        </div>
       </div>
-    </section>
+    </button>
   );
 };
 

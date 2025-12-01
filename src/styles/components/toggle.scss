@@ -1,6 +1,4 @@
-@import '../settings';
 @import '../colours';
-@import '../mixins';
 
 $switch-width: 2.5rem;
 $switch-height: 1.5rem;
@@ -21,13 +19,19 @@ $knob-shift: 1rem;
 }
 
 .toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  user-select: none;
+
   --toggle-off-base: var(--fr--color-slate-grey);
   --toggle-on-base: var(--fr--color-purple-mid);
   --toggle-knob-color: white;
 
   --toggle-focus-color: color-mix(in srgb, var(--toggle-on-base) 70%, white);
 
-  // OFF
   --toggle-text-color-off: var(--toggle-off-base);
   --toggle-header-color-off: color-mix(
     in srgb,
@@ -51,7 +55,6 @@ $knob-shift: 1rem;
   );
   --toggle-icon-color-off: var(--toggle-switch-color-off);
 
-  // ON
   --toggle-text-color-on: color-mix(in srgb, var(--toggle-on-base) 90%, white);
   --toggle-header-color-on: color-mix(
     in srgb,
@@ -71,7 +74,6 @@ $knob-shift: 1rem;
   --toggle-switch-color-on: var(--toggle-on-base);
   --toggle-icon-color-on: var(--toggle-on-base);
 
-  // CURRENT
   --toggle-text-color: var(--toggle-text-color-off);
   --toggle-header-color: var(--toggle-header-color-off);
   --toggle-background-color: var(--toggle-background-color-off);
@@ -79,31 +81,36 @@ $knob-shift: 1rem;
   --toggle-switch-color: var(--toggle-switch-color-off);
   --toggle-icon-color: var(--toggle-icon-color-off);
 
-  padding: 0.75rem;
+  padding: clamp(0.5rem, 2vw, 0.75rem);
   border: 2px solid var(--toggle-border-color);
   border-radius: 1rem;
-  background: var(--toggle-background-color);
+  background-color: var(--toggle-background-color);
   min-width: 17.5rem;
   width: 100%;
-  user-select: none;
-  transition: all 0.25s ease;
+  text-align: left;
 
-  &:focus {
-    outline-offset: 0.25rem;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
+
+  &:focus-visible {
+    outline-offset: 3px;
   }
 
   &__content {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: clamp(0.5rem, 1vw, 1rem);
     width: 100%;
   }
 
   &__icon {
+    flex-shrink: 0;
     color: var(--toggle-icon-color);
 
     svg {
-      overflow: visible;
       width: 1.5rem;
       height: 1.5rem;
       fill: currentColor;
@@ -112,7 +119,8 @@ $knob-shift: 1rem;
   }
 
   &__text {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 8rem;
     display: flex;
     flex-direction: column;
   }
@@ -127,11 +135,9 @@ $knob-shift: 1rem;
       margin-left: 0.5rem;
       margin-top: 2px;
       border: 0;
+      pointer-events: none;
       background: color-mix(in srgb, var(--toggle-on-base) 17%, white);
       color: var(--toggle-on-base);
-      &:focus {
-        outline: none;
-      }
     }
   }
 
@@ -140,7 +146,6 @@ $knob-shift: 1rem;
     color: var(--toggle-text-color);
   }
 
-  // ON
   &--on {
     --toggle-text-color: var(--toggle-text-color-on);
     --toggle-header-color: var(--toggle-header-color-on);
@@ -150,8 +155,9 @@ $knob-shift: 1rem;
     --toggle-icon-color: var(--toggle-icon-color-on);
   }
 
-  // DISABLED
   &--disabled {
+    cursor: not-allowed;
+
     --toggle-text-color: color-mix(in srgb, var(--toggle-off-base) 40%, white);
     --toggle-header-color: color-mix(
       in srgb,
@@ -180,48 +186,48 @@ $knob-shift: 1rem;
     width: $switch-width;
     height: $switch-height;
     position: relative;
-    cursor: pointer;
+    flex-shrink: 0;
+    pointer-events: none;
 
     input {
       position: absolute;
       opacity: 0;
 
-      &:checked + .slider {
-        background-color: var(--toggle-switch-color);
-
-        &::before {
-          transform: translateX($knob-shift);
-        }
-      }
-
-      &:focus {
-        outline: none;
+      &:checked + .slider::before {
+        transform: translateX($knob-shift);
       }
     }
   }
 
   .slider {
-    inset: 0;
     position: absolute;
+    inset: 0;
     background-color: var(--toggle-switch-color);
     border-radius: $switch-height;
-    transition: 0.4s;
+    transition: background-color 180ms ease;
 
     &::before {
       content: '';
+      position: absolute;
       width: $knob-size;
       height: $knob-size;
       left: $knob-offset;
       bottom: $knob-offset;
       background-color: var(--toggle-knob-color);
       border-radius: 50%;
-      position: absolute;
-      transition: 0.4s;
+      transition:
+        transform 180ms ease,
+        background-color 180ms ease;
     }
+  }
+
+  &--on .slider::before {
+    transform: translateX($knob-shift);
   }
 
   &--loading {
     animation: toggle-opacity-shimmer 1.8s ease-in-out infinite;
+    will-change: opacity;
 
     --toggle-text-color: var(--toggle-text-color-on);
     --toggle-header-color: var(--toggle-header-color-on);
