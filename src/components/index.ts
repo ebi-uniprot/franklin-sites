@@ -49,6 +49,7 @@ export { default as Window } from './window/window';
 export { WindowActionButton } from './window/window-buttons';
 
 // Icons
+export { default as AiAnnotationsIcon } from '../svg/ai-annotations.svg';
 export { default as BasketIcon } from '../svg/basket.svg';
 export { default as BinIcon } from '../svg/bin.svg';
 export { default as BookIcon } from '../svg/book.svg';
