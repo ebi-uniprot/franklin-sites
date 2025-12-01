@@ -37,3 +37,11 @@ import { FranklinSite } from "franklin-sites";
   //Your content goes here//
 </FranklinSite>
 ```
+
+## How to release
+
+```
+Releasing franklin
+npm login
+rm -rf node_modules; yarn; yarn release
+```
