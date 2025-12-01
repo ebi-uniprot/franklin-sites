@@ -1,83 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ToggleSwitch component should render when checked 1`] = `
+exports[`ToggleSwitch component should render in the OFF state and match snapshot 1`] = `
 <DocumentFragment>
-  <label
-    class="switch  "
-    for="1"
+  <button
+    aria-checked="false"
+    aria-label="AI toggle"
+    class="toggle"
+    role="switch"
+    type="button"
   >
-    <input
-      aria-checked="true"
-      aria-label="Toggle"
-      checked=""
-      id="1"
-      role="switch"
-      type="checkbox"
-    />
-    <span
-      class="slider round"
-    />
-  </label>
-</DocumentFragment>
-`;
-
-exports[`ToggleSwitch component should render when disabled 1`] = `
-<DocumentFragment>
-  <label
-    class="switch switch--disabled "
-    for="1"
-  >
-    <input
-      aria-checked="false"
-      aria-label="Toggle"
-      disabled=""
-      id="1"
-      role="switch"
-      type="checkbox"
-    />
-    <span
-      class="slider round"
-    />
-  </label>
-</DocumentFragment>
-`;
-
-exports[`ToggleSwitch component should render when not checked 1`] = `
-<DocumentFragment>
-  <label
-    class="switch  "
-    for="1"
-  >
-    <input
-      aria-checked="false"
-      aria-label="Toggle"
-      id="1"
-      role="switch"
-      type="checkbox"
-    />
-    <span
-      class="slider round"
-    />
-  </label>
-</DocumentFragment>
-`;
-
-exports[`ToggleSwitch component should render with custom aria label and className 1`] = `
-<DocumentFragment>
-  <label
-    class="switch  my-toggle"
-    for="1"
-  >
-    <input
-      aria-checked="false"
-      aria-label="Enable notifications"
-      id="1"
-      role="switch"
-      type="checkbox"
-    />
-    <span
-      class="slider round"
-    />
-  </label>
+    <div
+      class="toggle__content"
+    >
+      <div
+        class="toggle__icon"
+      >
+        <span
+          data-testid="toggle-icon"
+        >
+          icon
+        </span>
+      </div>
+      <div
+        class="toggle__text"
+      >
+        <div
+          class="toggle__header"
+        >
+          AI annotations
+        </div>
+        <div
+          class="toggle__status"
+        >
+          Click to enable
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        class="toggle__switch"
+      >
+        <span
+          class="slider"
+        />
+      </div>
+    </div>
+  </button>
 </DocumentFragment>
 `;
