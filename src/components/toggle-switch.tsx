@@ -75,7 +75,12 @@ const ToggleSwitch: FC<Props> = ({
           <div className="toggle__header">
             {header}
             {isOn && (
-              <Chip compact className="toggle__header__chip">
+              <Chip
+                compact
+                className="toggle__header__chip"
+                tabIndex={-1}
+                aria-hidden
+              >
                 ON
               </Chip>
             )}
@@ -93,6 +98,7 @@ const ToggleSwitch: FC<Props> = ({
             checked={checked}
             disabled={disabled}
             onChange={handleInputChange}
+            tabIndex={-1}
           />
           <span className="slider round" />
         </label>

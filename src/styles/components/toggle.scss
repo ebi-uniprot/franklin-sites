@@ -23,9 +23,9 @@ $knob-shift: 1rem;
 .toggle {
   --toggle-off-base: var(--fr--color-slate-grey);
   --toggle-on-base: var(--fr--color-purple-mid);
-
   --toggle-knob-color: white;
-  --toggle-focus-color: var(--fr--color-deep-violet);
+
+  --toggle-focus-color: color-mix(in srgb, var(--toggle-on-base) 70%, white);
 
   // OFF
   --toggle-text-color-off: var(--toggle-off-base);
@@ -83,10 +83,14 @@ $knob-shift: 1rem;
   border: 2px solid var(--toggle-border-color);
   border-radius: 1rem;
   background: var(--toggle-background-color);
-  min-width: 15rem;
+  min-width: 17.5rem;
   width: 100%;
   user-select: none;
   transition: all 0.25s ease;
+
+  &:focus {
+    outline-offset: 0.25rem;
+  }
 
   &__content {
     display: flex;
@@ -125,6 +129,9 @@ $knob-shift: 1rem;
       border: 0;
       background: color-mix(in srgb, var(--toggle-on-base) 17%, white);
       color: var(--toggle-on-base);
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -187,9 +194,8 @@ $knob-shift: 1rem;
         }
       }
 
-      &:focus-visible + .slider {
-        outline: 0.125rem solid var(--toggle-focus-color);
-        outline-offset: 0.25rem;
+      &:focus {
+        outline: none;
       }
     }
   }
