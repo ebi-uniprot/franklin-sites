@@ -109,14 +109,20 @@ $knob-shift: 1rem;
 
   &__icon {
     flex-shrink: 0;
-    color: var(--toggle-icon-color);
+    background-color: var(--toggle-switch-color);
+    padding: 0.333rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 180ms ease;
 
     svg {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.25rem;
+      height: 1.25rem;
       overflow: visible;
-      fill: currentColor;
-      stroke: currentColor;
+      fill: var(--toggle-switch-color);
+      stroke: white;
     }
   }
 
@@ -135,7 +141,6 @@ $knob-shift: 1rem;
     &__chip {
       position: absolute;
       margin-left: 0.5rem;
-      // margin-top: 2px;
       border: 0;
       pointer-events: none;
       background: color-mix(in srgb, var(--toggle-on-base) 25%, white);
