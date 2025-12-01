@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import Chip from './chip';
 
-import '../styles/components/toggle.scss';
+import '../styles/components/toggle-switch.scss';
 
 type Props = {
   header: string;
