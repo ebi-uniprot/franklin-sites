@@ -2,8 +2,7 @@ import { CSSProperties, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import ToggleSwitchComponent from '../src/components/toggle-switch';
-
+import ToggleSwitch from '../src/components/toggle-switch';
 import {
   AiAnnotationsIcon,
   UniParcIcon,
@@ -12,7 +11,7 @@ import {
   InformationIcon,
 } from '../src/components';
 
-const LOADING_TIME = 2_000;
+const LOADING_TIME = 2000;
 
 const COLOR_OPTIONS = [
   'var(--fr--color-purple-mid)',
@@ -28,9 +27,14 @@ const ICON_OPTIONS = {
   Information: <InformationIcon />,
 };
 
-const meta: Meta<typeof ToggleSwitchComponent> = {
-  component: ToggleSwitchComponent,
+type StoryProps = React.ComponentProps<typeof ToggleSwitch> & {
+  baseColor: string;
+  icon: React.ReactNode;
+};
+
+const meta: Meta<StoryProps> = {
   title: 'Forms/ToggleSwitch',
+  component: ToggleSwitch,
   argTypes: {
     disabled: { control: 'boolean' },
     ariaLabel: { control: 'text' },
@@ -38,11 +42,13 @@ const meta: Meta<typeof ToggleSwitchComponent> = {
     statusOn: { control: 'text' },
     statusOff: { control: 'text' },
     statusLoading: { control: 'text' },
+
     baseColor: {
       control: 'select',
       name: '--toggle-on-base',
       options: COLOR_OPTIONS,
     },
+
     icon: {
       options: Object.keys(ICON_OPTIONS),
       mapping: ICON_OPTIONS,
@@ -63,29 +69,20 @@ const meta: Meta<typeof ToggleSwitchComponent> = {
 
 export default meta;
 
-type Story = StoryObj<typeof ToggleSwitchComponent>;
+type Story = StoryObj<StoryProps>;
 
-type ToggleSwitchArgs = {
-  disabled?: boolean;
-  ariaLabel?: string;
-  header: string;
-  statusOn: string;
-  statusOff: string;
-  statusLoading: string;
-  baseColor: string;
-  icon: React.ReactNode; // ← NEW
-};
+const ToggleSwitchStoryWrapper = (props: StoryProps) => {
+  const {
+    disabled,
+    ariaLabel,
+    header,
+    statusOn,
+    statusOff,
+    statusLoading,
+    baseColor,
+    icon,
+  } = props;
 
-const ToggleSwitch = ({
-  disabled,
-  ariaLabel,
-  header,
-  statusOn,
-  statusOff,
-  statusLoading,
-  baseColor,
-  icon,
-}: ToggleSwitchArgs) => {
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -105,7 +102,7 @@ const ToggleSwitch = ({
   };
 
   return (
-    <ToggleSwitchComponent
+    <ToggleSwitch
       checked={checked}
       disabled={disabled}
       ariaLabel={ariaLabel}
@@ -114,7 +111,7 @@ const ToggleSwitch = ({
       statusOff={statusOff}
       statusLoading={statusLoading}
       onChange={handleChange}
-      icon={icon} // ← NEW
+      icon={icon}
       isLoading={loading}
       style={
         {
@@ -127,5 +124,5 @@ const ToggleSwitch = ({
 };
 
 export const Default: Story = {
-  render: (args) => <ToggleSwitch {...args} />,
+  render: (args) => <ToggleSwitchStoryWrapper {...args} />,
 };

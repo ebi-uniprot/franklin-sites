@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 import cn from 'classnames';
 
 import Chip from './chip';
@@ -15,9 +15,8 @@ type Props = {
   isLoading?: boolean;
   onChange: (checked: boolean) => void;
   ariaLabel?: string;
-  disabled?: boolean;
   className?: string;
-};
+} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'>;
 
 const ToggleSwitch: FC<Props> = ({
   header,
