@@ -42,6 +42,7 @@ type ChipProps = {
    */
   onKeyPress?: () => void;
   innerRef?: (node: HTMLElement | null) => void;
+  asSpan?: boolean;
 };
 
 export const Chip: FC<
@@ -55,6 +56,7 @@ export const Chip: FC<
   onClick,
   onKeyPress,
   innerRef,
+  asSpan = false,
   ...rest
 }) => {
   const onRemoveRef = useRef(onRemove);
@@ -69,7 +71,7 @@ export const Chip: FC<
   );
   const props = { ...rest };
   let element: 'button' | 'span' = 'button';
-  if (onRemove) {
+  if (onRemove || asSpan) {
     element = 'span';
     if (onClick || onKeyPress) {
       props.role = 'button';
