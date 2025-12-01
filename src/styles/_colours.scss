@@ -43,6 +43,7 @@ $colour-reference-proteome: #9d4a4d;
 // NAMESPACES
 $colour-uniref: #f2994c;
 $colour-uniparc: #88c19d;
+$colour-uniparc-dark: #1e5738;
 $colour-proteomes: #e56358;
 
 // TOOLS
@@ -98,6 +99,7 @@ $colour-hover: lighten($colour-platinum, 5%);
   --fr--color-uniprotkb: var(--fr--color-sea-blue);
   --fr--color-uniref: #f2994c;
   --fr--color-uniparc: #88c19d;
+  --fr--color-uniparc-dark: #2d7a4f;
   --fr--color-proteomes: #e56358;
 
   // TOOLS
