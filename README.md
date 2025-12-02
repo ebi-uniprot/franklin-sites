@@ -41,7 +41,6 @@ import { FranklinSite } from "franklin-sites";
 ## How to release
 
 ```
-Releasing franklin
 npm login
 rm -rf node_modules; yarn; yarn release
 ```
