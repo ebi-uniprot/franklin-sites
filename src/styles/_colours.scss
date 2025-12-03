@@ -20,6 +20,9 @@ $colour-pastel-blue: #abc7d6;
 $colour-platinum: #e4e8eb;
 $colour-sky-white: #fbfeff;
 
+// PURPLE
+$colour-purple-mid: #691eaa;
+
 // CURATION
 $colour-reviewed: #c39b00;
 $colour-unreviewed: #c0c0c0;
@@ -28,6 +31,7 @@ $colour-reference-proteome: #9d4a4d;
 // NAMESPACES
 $colour-uniref: #f2994c;
 $colour-uniparc: #88c19d;
+$colour-uniparc-dark: #1e5738;
 $colour-proteomes: #e56358;
 
 // TOOLS
@@ -71,6 +75,9 @@ $colour-hover: lighten($colour-platinum, 5%);
   --fr--color-platinum: #e4e8eb;
   --fr--color-sky-white: #fbfeff;
 
+  // PURPLE
+  --fr--color-purple-mid: #691eaa;
+
   // CURATION
   --fr--color-reviewed: #c39b00;
   --fr--color-unreviewed: #c0c0c0;
@@ -80,6 +87,7 @@ $colour-hover: lighten($colour-platinum, 5%);
   --fr--color-uniprotkb: var(--fr--color-sea-blue);
   --fr--color-uniref: #f2994c;
   --fr--color-uniparc: #88c19d;
+  --fr--color-uniparc-dark: #2d7a4f;
   --fr--color-proteomes: #e56358;
 
   // TOOLS
@@ -106,6 +114,7 @@ $colour-hover: lighten($colour-platinum, 5%);
   --fr--color-link: var(--fr--color-sapphire-blue);
   --fr--color-selected: var(--fr--color-gainsborough);
   --fr--color-hover: oklch(from var(--fr--color-platinum) calc(l + 5%) c h);
+
   // Static fallback in case color function are not supported
   --fr--color-hover: #f5f9fc;
 }

@@ -1,0 +1,250 @@
+@import '../colours';
+
+$switch-width: 2.5rem;
+$switch-height: 1.5rem;
+$knob-size: 1rem;
+$knob-offset: 0.25rem;
+$knob-shift: 1rem;
+
+@keyframes toggle-opacity-shimmer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.toggle {
+  font: inherit;
+  cursor: pointer;
+  user-select: none;
+
+  --toggle-off-base: var(--fr--color-weldon-blue);
+  --toggle-on-base: var(--fr--color-purple-mid);
+  --toggle-knob-color: white;
+
+  --toggle-focus-color: color-mix(in srgb, var(--toggle-on-base) 70%, white);
+
+  --toggle-status-color-off: var(--toggle-off-base);
+  --toggle-header-color-off: color-mix(
+    in srgb,
+    var(--toggle-off-base) 70%,
+    var(--fr--color-yankees-blue)
+  );
+  --toggle-background-color-off: color-mix(
+    in srgb,
+    var(--toggle-off-base) 6%,
+    white
+  );
+  --toggle-border-color-off: color-mix(
+    in srgb,
+    var(--toggle-off-base) 40%,
+    white
+  );
+  --toggle-switch-color-off: color-mix(
+    in srgb,
+    var(--toggle-off-base) 80%,
+    white
+  );
+  --toggle-icon-color-off: var(--toggle-switch-color-off);
+
+  --toggle-status-color-on: color-mix(
+    in srgb,
+    var(--toggle-on-base) 80%,
+    black
+  );
+  --toggle-header-color-on: color-mix(
+    in srgb,
+    var(--toggle-on-base) 80%,
+    black
+  );
+  --toggle-background-color-on: color-mix(
+    in srgb,
+    var(--toggle-on-base) 6%,
+    white
+  );
+  --toggle-border-color-on: color-mix(
+    in srgb,
+    var(--toggle-on-base) 80%,
+    white
+  );
+  --toggle-switch-color-on: var(--toggle-on-base);
+  --toggle-icon-color-on: var(--toggle-on-base);
+
+  --toggle-status-color: var(--toggle-status-color-off);
+  --toggle-header-color: var(--toggle-header-color-off);
+  --toggle-background-color: var(--toggle-background-color-off);
+  --toggle-border-color: var(--toggle-border-color-off);
+  --toggle-switch-color: var(--toggle-switch-color-off);
+  --toggle-icon-color: var(--toggle-icon-color-off);
+
+  padding: clamp(0.5rem, 2vw, 0.75rem);
+  border: 2px solid var(--toggle-border-color);
+  border-radius: 1rem;
+  background-color: var(--toggle-background-color);
+  min-width: 17.5rem;
+  width: 100%;
+  text-align: left;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
+
+  &:focus-visible {
+    outline-offset: 3px;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 1vw, 1rem);
+    width: 100%;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    background-color: var(--toggle-switch-color);
+    padding: 0.333rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 180ms ease;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      overflow: visible;
+      fill: var(--toggle-switch-color);
+      stroke: white;
+    }
+  }
+
+  &__text {
+    flex: 1 1 auto;
+    min-width: 8rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--toggle-header-color);
+
+    &__chip {
+      position: absolute;
+      margin-left: 0.5rem;
+      border: 0;
+      pointer-events: none;
+      background: color-mix(in srgb, var(--toggle-on-base) 25%, white);
+      color: var(--toggle-header-color-on);
+    }
+  }
+
+  &__status {
+    font-size: 0.875rem;
+    color: var(--toggle-status-color);
+  }
+
+  &--on {
+    --toggle-status-color: var(--toggle-status-color-on);
+    --toggle-header-color: var(--toggle-header-color-on);
+    --toggle-background-color: var(--toggle-background-color-on);
+    --toggle-border-color: var(--toggle-border-color-on);
+    --toggle-switch-color: var(--toggle-switch-color-on);
+    --toggle-icon-color: var(--toggle-icon-color-on);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    --toggle-status-color: color-mix(
+      in srgb,
+      var(--toggle-off-base) 40%,
+      white
+    );
+    --toggle-header-color: color-mix(
+      in srgb,
+      var(--toggle-off-base) 40%,
+      white
+    );
+    --toggle-background-color: color-mix(
+      in srgb,
+      var(--toggle-off-base) 5%,
+      white
+    );
+    --toggle-border-color: color-mix(
+      in srgb,
+      var(--toggle-off-base) 30%,
+      white
+    );
+    --toggle-switch-color: color-mix(
+      in srgb,
+      var(--toggle-off-base) 20%,
+      white
+    );
+    --toggle-icon-color: color-mix(in srgb, var(--toggle-off-base) 20%, white);
+  }
+
+  &__switch {
+    width: $switch-width;
+    height: $switch-height;
+    position: relative;
+    flex-shrink: 0;
+    pointer-events: none;
+
+    input {
+      position: absolute;
+      opacity: 0;
+
+      &:checked + .slider::before {
+        transform: translateX($knob-shift);
+      }
+    }
+  }
+
+  .slider {
+    position: absolute;
+    inset: 0;
+    background-color: var(--toggle-switch-color);
+    border-radius: $switch-height;
+    transition: background-color 180ms ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: $knob-size;
+      height: $knob-size;
+      left: $knob-offset;
+      bottom: $knob-offset;
+      background-color: var(--toggle-knob-color);
+      border-radius: 50%;
+      transition:
+        transform 180ms ease,
+        background-color 180ms ease;
+    }
+  }
+
+  &--on .slider::before {
+    transform: translateX($knob-shift);
+  }
+
+  &--loading {
+    animation: toggle-opacity-shimmer 1.8s ease-in-out infinite;
+    will-change: opacity;
+
+    --toggle-status-color: var(--toggle-status-color-on);
+    --toggle-header-color: var(--toggle-header-color-on);
+    --toggle-background-color: var(--toggle-background-color-on);
+    --toggle-border-color: var(--toggle-border-color-on);
+    --toggle-switch-color: var(--toggle-switch-color-on);
+    --toggle-icon-color: var(--toggle-icon-color-on);
+  }
+}
