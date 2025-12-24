@@ -8,7 +8,7 @@ import {
   type ComponentType,
 } from 'react';
 
-import Button from './button';
+import ButtonComponent from './button';
 import Loader from './loader';
 
 import '../styles/components/data-loader.scss';
@@ -74,8 +74,9 @@ function withDataLoader<
       }
     }, []);
 
-    const observerCallbackRef =
-      useRef<(entry: IntersectionObserverEntry) => void>();
+    const observerCallbackRef = useRef<
+      ((entry: IntersectionObserverEntry) => void) | null
+    >(null);
 
     observerCallbackRef.current = ({ isIntersecting }) => {
       if (!isIntersecting || loading || !hasMoreData) {
@@ -119,13 +120,13 @@ function withDataLoader<
     let sentinelContent = loaderComponent;
     if ((!('IntersectionObserver' in window) || clickToLoad) && !loading) {
       sentinelContent = (
-        <Button
+        <ButtonComponent
           variant="secondary"
           onClick={handleAskForMoreData}
           data-testid="click-to-load-more"
         >
           {(typeof clickToLoad === 'string' && clickToLoad) || 'Load more data'}
-        </Button>
+        </ButtonComponent>
       );
     }
 

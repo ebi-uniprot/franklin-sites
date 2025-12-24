@@ -20,7 +20,7 @@ type Props = {
   /**
    * Target/link of the list item when clicking on it
    */
-  link?: ReactElement;
+  link?: ReactElement<{ [key: string]: unknown }>;
   /**
    * Compact style
    */

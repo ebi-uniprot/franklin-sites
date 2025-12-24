@@ -22,10 +22,7 @@ export type ButtonProps = {
   className?: string;
 } & HTMLAttributes<HTMLButtonElement>;
 
-export const Button = forwardRef<
-  HTMLButtonElement,
-  PropsWithChildren<ButtonProps>
->(
+const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (
     { className, variant = 'primary', type = 'button', children, ...props },
     ref

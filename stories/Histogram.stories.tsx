@@ -121,7 +121,7 @@ const ChangingGaussianRender: typeof meta.render = ({
   barGap,
   color,
 }) => {
-  const interval = useRef<number>();
+  const interval = useRef<number | undefined>(undefined);
 
   const [filteredSample, setFilteredSample] = useState(
     gaussianSample.filter(randomFilter)

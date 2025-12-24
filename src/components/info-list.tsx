@@ -9,7 +9,7 @@ export type InfoListItem = {
   title: ReactNode;
   content: ReactNode;
   key?: string;
-  link?: ReactElement;
+  link?: ReactElement<{ [key: string]: unknown }>;
 };
 
 type Props = {

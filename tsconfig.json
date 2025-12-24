@@ -22,6 +22,7 @@
     "skipLibCheck": true,
     // Generates a source map for .d.ts files which map back to the original .ts source file
     "declarationMap": true,
-    "declaration": true
+    "declaration": true,
+    "noEmit": true
   }
 }

@@ -76,7 +76,7 @@ const HistogramFilter = ({
 }: Props & Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>) => {
   const d3Container = useRef<SVGSVGElement>(null);
   const [size] = useSize(d3Container);
-  const brushRef = useRef<BrushBehavior<unknown>>();
+  const brushRef = useRef<BrushBehavior<unknown> | null>(null);
 
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;

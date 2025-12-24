@@ -76,7 +76,7 @@ export const UnmanagedTabsWithDifferentDefault = () => (
 
 const options = ['option a', 'option 2', 'option III'];
 const ManagedTabsComponent = () => {
-  const interval = useRef<number>();
+  const interval = useRef<number | undefined>(undefined);
 
   const [selected, setSelected] = useState(options[0]);
 
@@ -120,7 +120,7 @@ const ManagedTabsComponent = () => {
 };
 
 const ManagedTabsWithLinksComponent = () => {
-  const interval = useRef<number>();
+  const interval = useRef<number | undefined>(undefined);
 
   const [selected, setSelected] = useState(options[0]);
 

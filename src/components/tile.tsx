@@ -50,7 +50,7 @@ type Props = {
   /**
    * Target/link of the list item when clicking on it
    */
-  link?: ReactElement;
+  link?: ReactElement<{ [key: string]: unknown }>;
 };
 
 const nextHeading = (level: Exclude<HeadingLevels, 'h6'>): HeadingLevels =>

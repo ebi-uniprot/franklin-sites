@@ -1,4 +1,4 @@
-import { useState, type HTMLAttributes } from 'react';
+import { useState, type HTMLAttributes, type ReactNode } from 'react';
 
 import type { Except } from 'type-fest';
 import { getLipsumObjectArray } from '../mock-data/lipsum';
@@ -78,7 +78,7 @@ const generateData = (numberElements: number) =>
   });
 
 type Args<P> = {
-  children: (props: P) => JSX.Element;
+  children: (props: P) => ReactNode;
 } & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export const DataLoaderDecorator = ({

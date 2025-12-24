@@ -89,7 +89,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           style={width ? { width } : undefined}
           data-column-name={name}
         >
-          {typeof label === 'function' ? (label as () => JSX.Element)() : label}
+          {typeof label === 'function' ? (label as () => ReactNode)() : label}
         </th>
       ))}
     </tr>
@@ -215,7 +215,8 @@ type TableProps = {
 };
 
 export interface Props<Datum>
-  extends TableProps,
+  extends
+    TableProps,
     RowsProps<Datum>,
     // Omit because 'selectable' is not passed from the top, it is deduced later
     Omit<HeadProps<Datum>, 'selectable'>,
