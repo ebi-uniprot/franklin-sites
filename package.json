@@ -87,8 +87,7 @@
     "d3": "5.16.0",
     "foundation-sites": "6.8.1",
     "lodash-es": "4.17.22",
-    "timing-functions": "2.0.1",
-    "type-fest": "5.3.1"
+    "timing-functions": "2.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.28.5",
@@ -141,6 +140,7 @@
     "rollup-plugin-visualizer": "6.0.5",
     "sass": "1.70.0",
     "storybook": "10.1.10",
+    "type-fest": "5.3.1",
     "typescript": "5.9.3",
     "vite": "7.3.0",
     "vite-plugin-svgr": "4.5.0"
