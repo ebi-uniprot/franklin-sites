@@ -107,6 +107,6 @@ a {
   text-decoration: none;
   font-weight: $fs-font-weight-semi-bold;
   &:hover {
-    color: lighten($colour-link, 10);
+    color: color-mix(in srgb, $colour-link 90%, white);
   }
 }
