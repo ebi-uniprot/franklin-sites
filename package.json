@@ -1,7 +1,7 @@
 {
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
-  "version": "0.0.260",
+  "version": "0.0.264",
   "main": "dist/franklin-components.cjs.js",
   "exports": {
     ".": "./dist/franklin-components.es.js",
@@ -124,7 +124,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-storybook": "10.1.11",
-    "globals": "16.5.0",
+    "globals": "17.0.0",
     "husky": "9.1.7",
     "jest": "30.2.0",
     "jest-coverage-ratchet": "0.2.3",
