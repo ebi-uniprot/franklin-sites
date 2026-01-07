@@ -5,11 +5,11 @@ import svgrPlugin from 'vite-plugin-svgr';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
-  // This whole block can be removed once we move away from foundation-sites
+  // This whole block can be removed once we move away from Sass
   css: {
     preprocessorOptions: {
       scss: {
-        // Silence specific Dart Sass deprecations
+        // Silence specific Sass deprecations
         silenceDeprecations: ['import', 'global-builtin', 'if-function'],
       },
     },
