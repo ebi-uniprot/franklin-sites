@@ -2,8 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     // Don't emit; allow Babel to transform files.
-    "noEmit": true,
-    "moduleResolution": "bundler"
+    "noEmit": true
   },
   "include": ["src/**/*", "stories/**/*"]
 }
