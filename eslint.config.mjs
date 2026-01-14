@@ -45,7 +45,6 @@ export default defineConfig([
       globals: { ...globals.browser, ...globals.jest },
 
       parser: tsParser,
-      ecmaVersion: 2019,
       sourceType: 'module',
 
       parserOptions: { project: './tsconfig.json' },
