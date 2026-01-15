@@ -1,0 +1,35 @@
+import{r as c,j as a}from"./iframe-BhWvmy2K.js";import{a as C}from"./lipsum-Bi7KVxrj.js";import{c as k}from"./index-CdtTeUJf.js";import{B as L}from"./button-vl2fx2tT.js";import"./preload-helper-BDBacUwf.js";import"./index-BUaT88Mv.js";const b=({descriptionString:e="items",expanded:t,setExpanded:i,showHideWording:s,nHiddenItems:n})=>{let r=`${s?"Hide":"Fewer"} ${e}`;return t||(n===void 0?r=s?"Show":"More":r=s?`Show ${n}`:`${n} more`,r+=` ${e}`),a.jsx(L,{variant:"tertiary",className:"expandable-list__action",onClick:()=>i(!t),"data-testid":"expandable-message",children:r})},o=({children:e,numberCollapsedItems:t=5,descriptionString:i="items",showBullets:s,extraActions:n,displayNumberOfHiddenItems:r,className:q,...V})=>{const[f,S]=c.useState(!1),l=c.Children.toArray(e).filter(Boolean);if(!l.length)return null;const u=l.length>t+1,j=c.Children.map(l.slice(0,f||!u?l.length:t),(d,w)=>{let h=w;return typeof d=="object"&&"key"in d&&d.key&&(h=d.key),a.jsx("li",{children:d},h)});let y=null;return(u||n)&&(y=a.jsxs("li",{children:[u&&a.jsx(b,{expanded:f,setExpanded:S,descriptionString:i||"items",showHideWording:t===0,nHiddenItems:r?l.length-t:void 0}),n]})),a.jsxs("ul",{className:k(q,"expandable-list",{"no-bullet":!s}),...V,children:[j,y]})};try{b.displayName="ExpandableMessage",b.__docgenInfo={description:"",displayName:"ExpandableMessage",props:{expanded:{defaultValue:null,description:"",name:"expanded",required:!1,type:{name:"boolean"}},setExpanded:{defaultValue:null,description:"",name:"setExpanded",required:!0,type:{name:"(expanded: boolean) => unknown"}},descriptionString:{defaultValue:{value:"items"},description:"",name:"descriptionString",required:!1,type:{name:"string"}},showHideWording:{defaultValue:null,description:"",name:"showHideWording",required:!1,type:{name:"boolean"}},nHiddenItems:{defaultValue:null,description:"",name:"nHiddenItems",required:!1,type:{name:"number"}}}}}catch{}try{o.displayName="ExpandableList",o.__docgenInfo={description:"",displayName:"ExpandableList",props:{children:{defaultValue:null,description:"Children as an array of react elements, items of the list",name:"children",required:!1,type:{name:"ReactNode"}},numberCollapsedItems:{defaultValue:{value:"5"},description:"Threshold from which to start hiding items of the list",name:"numberCollapsedItems",required:!1,type:{name:"number"}},descriptionString:{defaultValue:{value:"items"},description:"Description of the items to put in text of the open/close button",name:"descriptionString",required:!1,type:{name:"string"}},showBullets:{defaultValue:null,description:"Wether to show or hide the visual bullet points",name:"showBullets",required:!1,type:{name:"boolean"}},extraActions:{defaultValue:null,description:"Extra element to place alongside the open/close button",name:"extraActions",required:!1,type:{name:"ReactNode"}},displayNumberOfHiddenItems:{defaultValue:null,description:"Wether to display or not the number of hidden elements",name:"displayNumberOfHiddenItems",required:!1,type:{name:"boolean"}},className:{defaultValue:null,description:"Classnames to be added to the list container",name:"className",required:!1,type:{name:"string"}}}}}catch{}try{expandablelist.displayName="expandablelist",expandablelist.__docgenInfo={description:"",displayName:"expandablelist",props:{children:{defaultValue:null,description:"Children as an array of react elements, items of the list",name:"children",required:!1,type:{name:"ReactNode"}},numberCollapsedItems:{defaultValue:{value:"5"},description:"Threshold from which to start hiding items of the list",name:"numberCollapsedItems",required:!1,type:{name:"number"}},descriptionString:{defaultValue:{value:"items"},description:"Description of the items to put in text of the open/close button",name:"descriptionString",required:!1,type:{name:"string"}},showBullets:{defaultValue:null,description:"Wether to show or hide the visual bullet points",name:"showBullets",required:!1,type:{name:"boolean"}},extraActions:{defaultValue:null,description:"Extra element to place alongside the open/close button",name:"extraActions",required:!1,type:{name:"ReactNode"}},displayNumberOfHiddenItems:{defaultValue:null,description:"Wether to display or not the number of hidden elements",name:"displayNumberOfHiddenItems",required:!1,type:{name:"boolean"}},className:{defaultValue:null,description:"Classnames to be added to the list container",name:"className",required:!1,type:{name:"string"}}}}}catch{}const $={component:o,title:"Data/Expandable List",argTypes:{numberCollapsedItems:{name:"Number of displayed items",control:{type:"number",min:0,step:1}}},args:{numberCollapsedItems:5,descriptionString:"lorem ipsum items",displayNumberOfHiddenItems:!1}},p={render:({numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:i})=>a.jsx(o,{numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:i,children:C({numberElements:10,keys:["content"],type:"words"}).map(({content:s},n)=>a.jsx("span",{children:s},n))})},m={render:({numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:i})=>a.jsx(o,{numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:i,extraActions:a.jsx("a",{className:"button tertiary expandable-list__action",children:"some link"}),children:C({numberElements:10,keys:["content"],type:"words"}).map(({content:s},n)=>a.jsx("span",{children:s},n))})};var x,g,_;p.parameters={...p.parameters,docs:{...(x=p.parameters)==null?void 0:x.docs,source:{originalSource:`{
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems
+  }) => <ExpandableListComponent numberCollapsedItems={numberCollapsedItems} descriptionString={descriptionString} displayNumberOfHiddenItems={displayNumberOfHiddenItems}>
+      {getLipsumObjectArray({
+      numberElements: 10,
+      keys: ['content'],
+      type: 'words'
+    }).map(({
+      content
+    }, index) =>
+    // eslint-disable-next-line react/no-array-index-key
+    <span key={index}>{content}</span>)}
+    </ExpandableListComponent>
+}`,...(_=(g=p.parameters)==null?void 0:g.docs)==null?void 0:_.source}}};var N,E,I;m.parameters={...m.parameters,docs:{...(N=m.parameters)==null?void 0:N.docs,source:{originalSource:`{
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems
+  }) => <ExpandableListComponent numberCollapsedItems={numberCollapsedItems} descriptionString={descriptionString} displayNumberOfHiddenItems={displayNumberOfHiddenItems} extraActions={
+  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+  <a className="button tertiary expandable-list__action">some link</a>}>
+      {getLipsumObjectArray({
+      numberElements: 10,
+      keys: ['content'],
+      type: 'words'
+    }).map(({
+      content
+    }, index) =>
+    // eslint-disable-next-line react/no-array-index-key
+    <span key={index}>{content}</span>)}
+    </ExpandableListComponent>
+}`,...(I=(E=m.parameters)==null?void 0:E.docs)==null?void 0:I.source}}};const R=["ExpandableList","ExpandableListWithExtraAction"];export{p as ExpandableList,m as ExpandableListWithExtraAction,R as __namedExportsOrder,$ as default};
