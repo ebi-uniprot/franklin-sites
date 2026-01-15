@@ -11,9 +11,6 @@
 
 /storybook-static
 
-# doc - keep in for now
-# /doc
-
 # misc
 .DS_Store
 .env.local
@@ -26,5 +23,3 @@ npm-debug.log*
 package-lock.json*
 yarn-debug.log*
 yarn-error.log*
-
-**/*.css

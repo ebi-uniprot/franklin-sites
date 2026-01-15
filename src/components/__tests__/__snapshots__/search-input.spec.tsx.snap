@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`SearchInput should render 1`] = `
 <DocumentFragment>
@@ -9,7 +9,6 @@ exports[`SearchInput should render 1`] = `
       data-testid="search-input"
       placeholder="This is the initial value"
       type="search"
-      value=""
     />
     <span
       class="search-input__suffix"

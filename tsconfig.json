@@ -3,7 +3,7 @@
     // Target latest version of ECMAScript.
     "target": "esnext",
     // Search under node_modules for non-relative imports.
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     // Process & infer types from .js files.
     "allowJs": true,
     // Enable strictest settings like strictNullChecks & noImplicitAny.
@@ -14,12 +14,15 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     // "esModuleInterop": true,
+    // Force use of "import type..." or "import { type..."
+    "verbatimModuleSyntax": true,
     "module": "esnext",
     "jsx": "react-jsx",
     "types": ["jest", "node", "@testing-library/jest-dom"],
     "skipLibCheck": true,
     // Generates a source map for .d.ts files which map back to the original .ts source file
     "declarationMap": true,
-    "declaration": true
+    "declaration": true,
+    "noEmit": true
   }
 }

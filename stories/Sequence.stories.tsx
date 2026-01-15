@@ -1,7 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 import { useState } from 'react';
-
-import { action } from '@storybook/addon-actions';
 import { sleep } from 'timing-functions';
 
 import {
@@ -12,15 +11,13 @@ import {
 
 import sequenceData from '../src/mock-data/sequence-data';
 
-const AddToBasketButton = () => (
-  <Button variant="tertiary" onClick={action('AddToBasketButton clicked')}>
-    Add To Basket
-  </Button>
-);
-
 const meta: Meta<typeof SequenceComponent> = {
   component: SequenceComponent,
   title: 'Biocomponents/Sequence',
+  args: {
+    onBlastClick: fn(),
+    onCopy: fn(),
+  },
 };
 
 export default meta;
@@ -28,14 +25,18 @@ export default meta;
 type Story = StoryObj<typeof SequenceComponent>;
 
 export const Sequence: Story = {
-  render: () => (
+  render: ({ onBlastClick, onCopy }) => (
     <SequenceComponent
       sequence={sequenceData}
       accession="P05067"
       downloadUrl="https://wwwdev.ebi.ac.uk/uniprot/api/uniprotkb/accession/P05067.fasta"
-      onBlastClick={action('onBlastClick')}
-      onCopy={action('onCopy')}
-      addToBasketButton={<AddToBasketButton />}
+      onBlastClick={onBlastClick}
+      onCopy={onCopy}
+      addToBasketButton={
+        <Button variant="tertiary" onClick={fn()}>
+          Add To Basket
+        </Button>
+      }
     />
   ),
 };
@@ -92,9 +93,8 @@ export const SequenceAsyncLoad = {
   render: SequenceAsyncLoadRender,
 };
 
-export const SequenceTools = () => (
-  <SequenceToolsComponent
-    accession="P05067"
-    onBlastClick={action('onBlastClick')}
-  />
-);
+export const SequenceTools: Story = {
+  render: ({ onBlastClick }) => (
+    <SequenceToolsComponent accession="P05067" onBlastClick={onBlastClick} />
+  ),
+};

@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import { TreeSelect as TS } from '../src/components';
 
@@ -17,6 +17,7 @@ const meta: Meta<typeof TS> = {
   args: {
     label: 'Select',
     variant: 'primary',
+    onSelect: fn(),
   },
 };
 
@@ -25,22 +26,17 @@ export default meta;
 type Story = StoryObj<typeof TS>;
 
 export const TreeSelect: Story = {
-  render: ({ label, variant }) => (
-    <TS
-      label={label}
-      data={treeData}
-      onSelect={action('onSelect')}
-      variant={variant}
-    />
+  render: ({ label, variant, onSelect }) => (
+    <TS label={label} data={treeData} onSelect={onSelect} variant={variant} />
   ),
 };
 
 export const TreeSelectWithAutocomplete: Story = {
-  render: ({ label, variant }) => (
+  render: ({ label, variant, onSelect }) => (
     <TS
       label={label}
       data={treeData}
-      onSelect={action('onSelect')}
+      onSelect={onSelect}
       autocomplete
       autocompletePlaceholder="Search for item"
       autocompleteFilter

@@ -122,6 +122,7 @@
   background: $colour-outer-space;
 }
 
+/* Below used for Franklin storybook site only */
 .box-colour {
   vertical-align: top;
   display: inline-block;
@@ -129,6 +130,7 @@
   height: 9em;
   margin-bottom: 4em;
   font-size: $small-font-size;
+
   &:before {
     content: attr(data-name);
     color: $colour-yankees-blue;

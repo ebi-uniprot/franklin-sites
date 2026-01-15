@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes, ReactElement } from 'react';
+import { type ReactNode, type HTMLAttributes, type ReactElement } from 'react';
 import cn from 'classnames';
 
 import DecoratedListItem from './decorated-list-item';
@@ -9,7 +9,7 @@ export type InfoListItem = {
   title: ReactNode;
   content: ReactNode;
   key?: string;
-  link?: ReactElement;
+  link?: ReactElement<{ [key: string]: unknown }>;
 };
 
 type Props = {

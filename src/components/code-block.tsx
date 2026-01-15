@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import '../styles/components/code-block.scss';

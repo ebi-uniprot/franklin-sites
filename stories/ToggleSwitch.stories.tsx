@@ -1,6 +1,6 @@
-import { CSSProperties, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { useState, type CSSProperties, type ReactNode } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import ToggleSwitch from '../src/components/toggle-switch';
 import {
@@ -17,9 +17,9 @@ const COLOR_OPTIONS = [
   'var(--fr--color-purple-mid)',
   'var(--fr--color-uniparc-dark)',
   'var(--fr--color-sapphire-blue)',
-];
+] as const;
 
-const ICON_OPTIONS = {
+const ICON_OPTIONS: Record<string, ReactNode> = {
   AiAnnotations: <AiAnnotationsIcon />,
   UniParc: <UniParcIcon />,
   EvidenceTag: <EvidenceTagIcon />,
@@ -27,12 +27,12 @@ const ICON_OPTIONS = {
   Information: <InformationIcon />,
 };
 
-type StoryProps = React.ComponentProps<typeof ToggleSwitch> & {
+type StoryArgs = React.ComponentProps<typeof ToggleSwitch> & {
   baseColor: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 };
 
-const meta: Meta<StoryProps> = {
+const meta: Meta<StoryArgs> = {
   title: 'Forms/ToggleSwitch',
   component: ToggleSwitch,
   argTypes: {
@@ -64,14 +64,15 @@ const meta: Meta<StoryProps> = {
     statusLoading: 'Loading AI predictions…',
     baseColor: 'var(--fr--color-purple-mid)',
     icon: <UniParcIcon />,
+    onChange: fn(), // SB10-style action spy
   },
 };
 
 export default meta;
 
-type Story = StoryObj<StoryProps>;
+type Story = StoryObj<StoryArgs>;
 
-const ToggleSwitchStoryWrapper = (props: StoryProps) => {
+const ToggleSwitchStoryWrapper = (props: StoryArgs) => {
   const {
     disabled,
     ariaLabel,
@@ -81,13 +82,14 @@ const ToggleSwitchStoryWrapper = (props: StoryProps) => {
     statusLoading,
     baseColor,
     icon,
+    onChange,
   } = props;
 
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (requestedState: boolean) => {
-    action('onChange')(requestedState);
+    onChange?.(requestedState);
 
     if (requestedState) {
       setLoading(true);

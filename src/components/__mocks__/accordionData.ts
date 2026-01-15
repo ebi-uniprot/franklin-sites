@@ -1,4 +1,4 @@
-import { AccordionItem } from '../accordion-search';
+import { type AccordionItem } from '../accordion-search';
 
 const accordionData: AccordionItem[] = [
   {

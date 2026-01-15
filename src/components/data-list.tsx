@@ -2,14 +2,14 @@
 // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#false-positives-sfc
 /* eslint-disable react/no-unused-prop-types */
 
-import { memo, ReactNode, HTMLAttributes } from 'react';
+import { memo, type ReactNode, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import Loader from './loader';
 
 import useDataCheckboxes from '../hooks/useDataCheckboxes';
 
-import withDataLoader, { WrapperProps } from './data-loader';
+import withDataLoader, { type WrapperProps } from './data-loader';
 
 export type Props<Datum> = {
   /**

@@ -4,10 +4,10 @@
 import {
   memo,
   useEffect,
-  ReactNode,
-  HTMLAttributes,
+  type ReactNode,
+  type HTMLAttributes,
   useMemo,
-  ReactElement,
+  type ReactElement,
   useId,
 } from 'react';
 import cn from 'classnames';
@@ -16,7 +16,7 @@ import Loader from './loader';
 
 import useDataCheckboxes from '../hooks/useDataCheckboxes';
 
-import withDataLoader, { WrapperProps } from './data-loader';
+import withDataLoader, { type WrapperProps } from './data-loader';
 
 import '../styles/components/data-table.scss';
 
@@ -51,7 +51,6 @@ type SharedProps<Datum> = {
    * Table fixed layout
    */
   // Note sure why it doesn't detect it as used...
-  // eslint-disable-next-line react/no-unused-prop-types
   fixedLayout?: boolean;
 };
 
@@ -90,7 +89,7 @@ const DataTableHead = <Datum extends BasicDatum>({
           style={width ? { width } : undefined}
           data-column-name={name}
         >
-          {typeof label === 'function' ? (label as () => JSX.Element)() : label}
+          {typeof label === 'function' ? (label as () => ReactNode)() : label}
         </th>
       ))}
     </tr>
@@ -216,7 +215,8 @@ type TableProps = {
 };
 
 export interface Props<Datum>
-  extends TableProps,
+  extends
+    TableProps,
     RowsProps<Datum>,
     // Omit because 'selectable' is not passed from the top, it is deduced later
     Omit<HeadProps<Datum>, 'selectable'>,

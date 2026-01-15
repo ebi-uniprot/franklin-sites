@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import React, { type ReactNode } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Card as CardComponent, SwissProtIcon } from '../src/components';
 

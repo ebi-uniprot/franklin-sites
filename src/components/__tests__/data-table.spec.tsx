@@ -3,14 +3,14 @@ import {
   fireEvent,
   screen,
   getAllByRole,
-  ByRoleOptions,
+  type ByRoleOptions,
   waitFor,
 } from '@testing-library/react';
 
 import {
   DataTableWithLoader as DataTable,
-  SortableColumn,
-  NonSortableColumn,
+  type SortableColumn,
+  type NonSortableColumn,
 } from '../data-table';
 
 describe('DataTable', () => {
@@ -34,11 +34,7 @@ describe('DataTable', () => {
         sortable: true,
         sorted: 'ascend',
       },
-      {
-        label: 'Column 2',
-        name: 'content2',
-        render: (row) => row.content2,
-      },
+      { label: 'Column 2', name: 'content2', render: (row) => row.content2 },
       {
         label: <h1>Column 3</h1>,
         name: 'content3',
@@ -65,7 +61,6 @@ describe('DataTable', () => {
 
   const getBodyCheckboxes = (options?: ByRoleOptions) => {
     const table = screen.getByRole('table');
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const body = table.querySelector('tbody')!;
     return getAllByRole(body, 'checkbox', options);
   };

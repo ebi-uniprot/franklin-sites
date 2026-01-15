@@ -1,16 +1,16 @@
 import {
   useState,
-  HTMLAttributes,
-  PropsWithChildren,
+  type HTMLAttributes,
+  type PropsWithChildren,
   createContext,
-  FC,
-  SetStateAction,
-  Dispatch,
+  type FC,
+  type SetStateAction,
+  type Dispatch,
   useContext,
 } from 'react';
 import cn from 'classnames';
 
-import { Button } from './button';
+import ButtonComponent from './button';
 
 import '../styles/components/ellipsis-reveal.scss';
 
@@ -42,7 +42,7 @@ const EllipsisReveal = ({
     return <>{children}</>;
   }
   return (
-    <Button
+    <ButtonComponent
       variant="tertiary"
       onClick={() => {
         setOpen(true);
@@ -58,7 +58,7 @@ const EllipsisReveal = ({
       {...props}
     >
       [...]
-    </Button>
+    </ButtonComponent>
   );
 };
 

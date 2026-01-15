@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`MainSearch component should render 1`] = `
 <DocumentFragment>
@@ -12,7 +12,6 @@ exports[`MainSearch component should render 1`] = `
       <input
         aria-label="Text query"
         type="search"
-        value=""
       />
     </div>
     <button
@@ -50,7 +49,6 @@ exports[`MainSearch component should render with namespaces selector 1`] = `
       <input
         aria-label="Text query in one"
         type="search"
-        value=""
       />
     </div>
     <button

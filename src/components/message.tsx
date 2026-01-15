@@ -1,13 +1,16 @@
-import { FC, ReactNode, HTMLAttributes, MouseEvent } from 'react';
+import {
+  type FC,
+  type ReactNode,
+  type HTMLAttributes,
+  type MouseEvent,
+} from 'react';
 import cn from 'classnames';
 
-import {
-  InformationIcon,
-  SuccessIcon,
-  WarningTriangleIcon,
-  ErrorIcon,
-  CloseIcon,
-} from '.';
+import InformationIcon from '../svg/information.svg';
+import WarningTriangleIcon from '../svg/warning-triangle.svg';
+import ErrorIcon from '../svg/error.svg';
+import SuccessIcon from '../svg/success.svg';
+import CloseIcon from '../svg/times.svg';
 
 import '../styles/components/message.scss';
 

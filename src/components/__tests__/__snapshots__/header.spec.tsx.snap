@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Header component should render 1`] = `
 <DocumentFragment>
@@ -65,7 +65,6 @@ exports[`Header component should render 1`] = `
           <input
             aria-label="Text query"
             type="search"
-            value=""
           />
         </div>
         <button

@@ -1,9 +1,9 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
 import { SequenceSubmission as SequenceSubmissionComponent } from '../src/components';
 
-import { SequenceObject } from '../src/sequence-utils/sequence-processor';
+import { type SequenceObject } from '../src/sequence-utils/sequence-processor';
 
 const meta: Meta<typeof SequenceSubmissionComponent> = {
   title: 'Forms/Sequence Submission',

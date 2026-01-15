@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+
 import { AccordionSearch as AccordionSearchComponent } from '../src/components';
 
 import accordionData from '../src/components/__mocks__/accordionData';

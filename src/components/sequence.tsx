@@ -1,29 +1,25 @@
 import {
   useState,
-  ReactNode,
+  type ReactNode,
   useMemo,
   useCallback,
   memo,
   useEffect,
   useRef,
-  CSSProperties,
+  type CSSProperties,
 } from 'react';
 import cn from 'classnames';
 
-import {
-  InfoList,
-  DownloadIcon,
-  SpinnerIcon,
-  Dropdown,
-  SequenceTools,
-  CopyToClipboard,
-  Button,
-} from '.';
+import Button from './button';
+import { Dropdown } from './dropdown-button';
+import CopyToClipboard from './copy-to-clipboard';
+import InfoList, { type InfoListItem } from './info-list';
+import SequenceTools, { type SequenceToolName } from './sequence-tools';
 
-import { InfoListItem } from './info-list';
-import { SequenceToolName } from './sequence-tools';
+import DownloadIcon from '../svg/download.svg';
+import SpinnerIcon from '../svg/spinner.svg';
 
-import aminoAcidsProps from './data/amino-acid-properties.json';
+import aminoAcidsProps from './data/amino-acid-properties.json' with { type: 'json' };
 
 import '../styles/components/sequence.scss';
 

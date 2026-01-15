@@ -1,4 +1,4 @@
-import { HTMLAttributes, useMemo } from 'react';
+import { type HTMLAttributes, useMemo } from 'react';
 import { scaleLinear } from 'd3';
 import cn from 'classnames';
 

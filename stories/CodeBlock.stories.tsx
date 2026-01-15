@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { LoremIpsum } from 'lorem-ipsum';
 
 import { CodeBlock as CodeBlockComponent } from '../src/components';

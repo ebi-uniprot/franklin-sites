@@ -1,7 +1,7 @@
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 import { loremIpsum } from 'lorem-ipsum';
 
-import { Meta, StoryObj } from '@storybook/react';
 import { SlidingPanel as SlidingPanelComponent } from '../src/components';
 
 const meta: Meta<typeof SlidingPanelComponent> = {
@@ -21,13 +21,14 @@ const meta: Meta<typeof SlidingPanelComponent> = {
     title: 'Title',
     size: 'medium',
     position: 'left',
+    onClose: fn(),
   },
-  render: ({ title, position, size }) => (
+  render: ({ title, position, size, onClose }) => (
     <SlidingPanelComponent
       title={title}
       position={position}
       size={size}
-      onClose={action('Closing')}
+      onClose={onClose}
       pathname="#"
     >
       {loremIpsum({ count: 25 })}

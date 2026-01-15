@@ -1,5 +1,5 @@
 // NOTE: same as in uniprot-website codebase
-import { MutableRefObject, useCallback, useEffect, useState } from 'react';
+import { type MutableRefObject, useCallback, useEffect, useState } from 'react';
 
 /**
  * given a reference to an actual HTML element, gives us access to its size
@@ -35,7 +35,6 @@ function useSize(
   useEffect(() => {
     onResize(); // first time
     window.addEventListener('resize', onResize);
-    // eslint-disable-next-line consistent-return
     return () => window.removeEventListener('resize', onResize);
   }, [ref, onResize]);
 

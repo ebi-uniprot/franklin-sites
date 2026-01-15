@@ -1,14 +1,14 @@
 import {
-  CSSProperties,
-  FC,
-  HTMLAttributes,
-  PropsWithChildren,
-  ReactElement,
-  ReactNode,
+  type CSSProperties,
+  type FC,
+  type HTMLAttributes,
+  type PropsWithChildren,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
 import cn from 'classnames';
 
-import { HeadingLevels } from '../types/common';
+import type { HeadingLevels } from '../types/common';
 
 import '../styles/components/tile.scss';
 
@@ -50,7 +50,7 @@ type Props = {
   /**
    * Target/link of the list item when clicking on it
    */
-  link?: ReactElement;
+  link?: ReactElement<{ [key: string]: unknown }>;
 };
 
 const nextHeading = (level: Exclude<HeadingLevels, 'h6'>): HeadingLevels =>

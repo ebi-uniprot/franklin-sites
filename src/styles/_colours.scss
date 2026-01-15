@@ -57,7 +57,7 @@ $colour-bronze: #a65708;
 // COLOUR VARIABLES
 $colour-link: $colour-sapphire-blue;
 $colour-selected: $colour-gainsborough;
-$colour-hover: lighten($colour-platinum, 5%);
+$colour-hover: color-mix(in srgb, $colour-platinum 90%, white);
 
 :root {
   // PRIMARY COLOURS

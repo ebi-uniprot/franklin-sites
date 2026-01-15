@@ -1,4 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { DoughnutChart as DoughnutChartComponent } from '../src/components';
 
 const meta: Meta<typeof DoughnutChartComponent> = {

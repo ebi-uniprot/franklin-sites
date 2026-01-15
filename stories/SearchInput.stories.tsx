@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { SearchInput as SI } from '../src/components';
 
 export default {

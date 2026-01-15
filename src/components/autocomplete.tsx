@@ -2,13 +2,15 @@ import {
   useCallback,
   useEffect,
   useState,
-  HTMLAttributes,
-  ReactNode,
+  type HTMLAttributes,
+  type ReactNode,
 } from 'react';
 import cn from 'classnames';
-import { Except } from 'type-fest';
+import type { Except } from 'type-fest';
 
-import AutocompleteItem, { AutocompleteItemType } from './autocomplete-item';
+import AutocompleteItem, {
+  type AutocompleteItemType,
+} from './autocomplete-item';
 import SearchInput from './search-input';
 
 import { getLastIndexOfSubstringIgnoreCase } from '../utils';

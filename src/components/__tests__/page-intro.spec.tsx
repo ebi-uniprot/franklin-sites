@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { HeadingLevels } from '../../types/common';
+import type { HeadingLevels } from '../../types/common';
 
 import PageIntro from '../page-intro';
 

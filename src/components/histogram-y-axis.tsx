@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { axisLeft, ScaleLinear, select } from 'd3';
+import { axisLeft, type ScaleLinear, select } from 'd3';
 
 type Props = {
   /**

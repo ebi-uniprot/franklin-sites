@@ -1,9 +1,9 @@
-import { CSSProperties, useState } from 'react';
-import { action } from '@storybook/addon-actions';
+import { type CSSProperties, useState } from 'react';
+import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { HistogramFilter as HistogramFilterComponent } from '../src/components';
-import { Range } from '../src/components/histogram';
+import { type Range } from '../src/components/histogram';
 
 import {
   getUniformSample,
@@ -33,13 +33,20 @@ type StoryProps = React.ComponentProps<typeof HistogramFilterComponent> & {
   color: string;
   outRangeColor: string;
   barGap: string;
+  onRangeSelected: (range: Range) => unknown;
 };
 
-const StoryRender = ({ values, barGap, color, outRangeColor }: StoryProps) => {
+const StoryRender = ({
+  values,
+  barGap,
+  color,
+  outRangeColor,
+  onRangeSelected,
+}: StoryProps) => {
   const [selectedRange, setSelectedRange] = useState<Range>([min, max]);
 
   const handleChange = (range: Range) => {
-    action('range selected')(range);
+    onRangeSelected(range);
     setSelectedRange(range);
   };
 
@@ -65,10 +72,6 @@ const meta: Meta<StoryProps> = {
   component: HistogramFilterComponent,
   title: 'Forms/Histogram Filter',
   argTypes: {
-    // selectedRange: {
-    //   control: { type: 'range', min, max, step: 1 },
-    //   name: 'min/max',
-    // },
     color: {
       control: 'select',
       name: '--main-histogram-color',
@@ -105,6 +108,7 @@ const meta: Meta<StoryProps> = {
     barGap: '-1px',
     color: 'var(--fr--color-weldon-blue)',
     outRangeColor: 'var(--fr--color-platinum)',
+    onRangeSelected: fn(),
   },
   render: StoryRender,
 };

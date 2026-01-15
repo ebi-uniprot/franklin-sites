@@ -1,13 +1,15 @@
 import {
   useRef,
-  FC,
-  KeyboardEvent,
-  ChangeEventHandler,
-  ChangeEvent,
-  InputHTMLAttributes,
+  type FC,
+  type KeyboardEvent,
+  type ChangeEventHandler,
+  type ChangeEvent,
+  type InputHTMLAttributes,
 } from 'react';
 
-import { SearchIcon, SpinnerIcon, CloseIcon } from '.';
+import SearchIcon from '../svg/search.svg';
+import SpinnerIcon from '../svg/spinner.svg';
+import CloseIcon from '../svg/times.svg';
 
 import '../styles/components/search-input.scss';
 

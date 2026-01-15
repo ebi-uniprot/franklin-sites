@@ -1,7 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-
-import { action } from '@storybook/addon-actions';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 import { loremIpsum } from 'lorem-ipsum';
 
 import { Button, Tile as TileComponent } from '../src/components';
@@ -43,6 +41,7 @@ const meta: Meta<StoryProps> = {
     backgroundColor: 'var(--fr--color-sea-blue)',
     containerSize: '40%',
     buttonInDescription: false,
+    onClick: fn(),
   },
   render: ({
     title,
@@ -54,6 +53,7 @@ const meta: Meta<StoryProps> = {
     descriptionSlideUp,
     buttonInDescription,
     backgroundColor,
+    onClick,
   }) => (
     <div style={{ width: containerSize }}>
       <TileComponent
@@ -70,7 +70,11 @@ const meta: Meta<StoryProps> = {
         {loremIpsum()}
         {buttonInDescription && (
           <div>
-            <Button onClick={action('description button clicked')}>
+            <Button
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-expect-error
+              onClick={onClick}
+            >
               Some button
             </Button>
           </div>

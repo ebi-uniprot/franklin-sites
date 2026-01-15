@@ -1,6 +1,10 @@
 import { useState, useMemo, useDeferredValue, useCallback } from 'react';
 
-import { Accordion, Loader, Message, SearchInput, SubstringHighlight } from '.';
+import SubstringHighlight from './substring-highlight';
+import Accordion from './accordion';
+import Loader from './loader';
+import Message from './message';
+import SearchInput from './search-input';
 
 import '../styles/components/accordion-search.scss';
 

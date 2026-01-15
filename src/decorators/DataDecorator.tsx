@@ -1,15 +1,15 @@
-import { useState, HTMLAttributes } from 'react';
+import { useState, type HTMLAttributes, type ReactNode } from 'react';
 
-import { Except } from 'type-fest';
+import type { Except } from 'type-fest';
 import { getLipsumObjectArray } from '../mock-data/lipsum';
 
-import { Props as DataListProps } from '../components/data-list';
-import {
+import { type Props as DataListProps } from '../components/data-list';
+import type {
   Props as DataTableProps,
   SortableColumn,
   NonSortableColumn,
 } from '../components/data-table';
-import { WrapperProps } from '../components/data-loader';
+import type { WrapperProps } from '../components/data-loader';
 import { ExternalLink } from '../components';
 
 export type DataType = Record<string, string>;
@@ -78,7 +78,7 @@ const generateData = (numberElements: number) =>
   });
 
 type Args<P> = {
-  children: (props: P) => JSX.Element;
+  children: (props: P) => ReactNode;
 } & Except<HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export const DataLoaderDecorator = ({

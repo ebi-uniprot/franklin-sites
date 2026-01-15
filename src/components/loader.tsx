@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from 'react';
+import { type FC, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import ProteinIcon from '../svg/protein.svg';

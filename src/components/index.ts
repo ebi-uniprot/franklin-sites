@@ -45,8 +45,6 @@ export { Tab, Tabs } from './tabs';
 export { default as Tile } from './tile';
 export { default as ToggleSwitch } from './toggle-switch';
 export { default as TreeSelect } from './tree-select';
-export { default as Window } from './window/window';
-export { WindowActionButton } from './window/window-buttons';
 
 // Icons
 export { default as AiAnnotationsIcon } from '../svg/ai-annotations.svg';
@@ -72,6 +70,7 @@ export { default as EnvelopeIcon } from '../svg/envelope.svg';
 export { default as ErrorIcon } from '../svg/error.svg';
 export { default as EvidenceTagIcon } from '../svg/evidence-tag.svg';
 export { default as ExternalLinkIcon } from '../svg/external-link.svg';
+// eslint-disable-next-line import/no-unresolved
 export { default as ExternalLinkIconRaw } from '../svg/external-link.svg?raw';
 export { default as FullViewIcon } from '../svg/full-view.svg';
 export { default as HelpIcon } from '../svg/help.svg';

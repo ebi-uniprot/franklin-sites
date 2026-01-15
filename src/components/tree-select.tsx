@@ -1,19 +1,25 @@
-import { ReactNode, useCallback, useState, useEffect, useMemo } from 'react';
+import {
+  type ReactNode,
+  useCallback,
+  useState,
+  useEffect,
+  useMemo,
+} from 'react';
 import cn from 'classnames';
-import { Except } from 'type-fest';
+import type { Except } from 'type-fest';
 
-import DropdownButton, { DropdownButtonProps } from './dropdown-button';
+import DropdownButton, { type DropdownButtonProps } from './dropdown-button';
 import Button from './button';
 import Autocomplete from './autocomplete';
 
 import {
-  BasicItem,
+  type BasicItem,
   getNodePaths,
   prepareTreeDataForAutocomplete,
   getSingleChildren,
 } from '../utils';
 
-import { AutocompleteItemType } from './autocomplete-item';
+import type { AutocompleteItemType } from './autocomplete-item';
 
 import '../styles/components/tree-select.scss';
 

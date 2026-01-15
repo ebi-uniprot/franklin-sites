@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren, HTMLAttributes } from 'react';
+import { forwardRef, type PropsWithChildren, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 
 import '../styles/common/_buttons.scss';
@@ -22,10 +22,7 @@ export type ButtonProps = {
   className?: string;
 } & HTMLAttributes<HTMLButtonElement>;
 
-export const Button = forwardRef<
-  HTMLButtonElement,
-  PropsWithChildren<ButtonProps>
->(
+const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (
     { className, variant = 'primary', type = 'button', children, ...props },
     ref

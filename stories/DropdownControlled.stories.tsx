@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Fragment } from 'react';
 
 import {
@@ -14,7 +14,7 @@ const meta: Meta<typeof ControlledDropdownComponent> = {
   args: { expanded: false },
   render: ({ expanded }) => (
     <div>
-      <p>Controlled dropdowns (trigger through storybook knobs)</p>
+      <p>Controlled dropdowns (trigger through storybook controls)</p>
       {variants.map((variant) => (
         <Fragment key={variant}>
           <ControlledDropdownComponent

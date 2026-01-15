@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect, memo } from 'react';
 import { sleep } from 'timing-functions';
 
-import { Button, ButtonProps } from './button';
+import ButtonComponent, { type ButtonProps } from './button';
 
 type Props = {
   /**
@@ -63,9 +63,9 @@ const CopyToClipboard = memo(
     }
 
     return (
-      <Button {...props} onClick={handleClick}>
+      <ButtonComponent {...props} onClick={handleClick}>
         {copied ? afterCopy : beforeCopy}
-      </Button>
+      </ButtonComponent>
     );
   }
 );

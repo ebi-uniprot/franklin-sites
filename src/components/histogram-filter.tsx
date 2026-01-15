@@ -1,8 +1,14 @@
-import { useState, useMemo, useRef, HTMLAttributes, useEffect } from 'react';
+import {
+  useState,
+  useMemo,
+  useRef,
+  type HTMLAttributes,
+  useEffect,
+} from 'react';
 import cn from 'classnames';
-import { brushX, select, event, scaleLinear, BrushBehavior } from 'd3';
+import { brushX, select, event, scaleLinear, type BrushBehavior } from 'd3';
 
-import Histogram, { Range } from './histogram';
+import Histogram, { type Range } from './histogram';
 
 import useSize from '../hooks/useSize';
 
@@ -70,7 +76,7 @@ const HistogramFilter = ({
 }: Props & Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>) => {
   const d3Container = useRef<SVGSVGElement>(null);
   const [size] = useSize(d3Container);
-  const brushRef = useRef<BrushBehavior<unknown>>();
+  const brushRef = useRef<BrushBehavior<unknown> | null>(null);
 
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
@@ -144,9 +150,7 @@ const HistogramFilter = ({
       brushRef.current?.move(select(d3Container.current).select('g'), null);
     } else {
       brushRef.current?.move(select(d3Container.current).select('g'), [
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         scale(selectedRange[0])!,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         scale(selectedRange[1])!,
       ]);
     }

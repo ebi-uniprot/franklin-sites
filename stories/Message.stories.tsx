@@ -1,6 +1,6 @@
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react';
 import { Message as MessageComponent } from '../src/components';
 
 import { getLipsumSentences } from '../src/mock-data/lipsum';
@@ -17,18 +17,18 @@ const meta: Meta<StoryProps> = {
       control: { type: 'select' },
     },
   },
-
   args: {
     subtitle: 'subtitle',
     level: 'info',
     dismissable: false,
+    onDismiss: fn(),
   },
-  render: ({ level, dismissable, subtitle }) => (
+  render: ({ level, dismissable, subtitle, onDismiss }) => (
     <MessageComponent
       level={level}
       heading={<h3>Lipsum generator</h3>}
       subtitle={subtitle}
-      onDismiss={dismissable ? action('Dismiss') : undefined}
+      onDismiss={dismissable ? onDismiss : undefined}
     >
       <small>{getLipsumSentences()}</small>
     </MessageComponent>

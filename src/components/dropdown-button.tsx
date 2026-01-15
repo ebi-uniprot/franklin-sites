@@ -3,17 +3,17 @@ import {
   useState,
   useEffect,
   useMemo,
-  ReactNode,
-  ReactElement,
-  Dispatch,
-  SetStateAction,
-  HTMLAttributes,
+  type ReactNode,
+  type ReactElement,
+  type Dispatch,
+  type SetStateAction,
+  type HTMLAttributes,
   useCallback,
   Fragment,
 } from 'react';
 import cn from 'classnames';
 
-import Button, { ButtonProps } from './button';
+import Button, { type ButtonProps } from './button';
 
 import '../styles/components/dropdown.scss';
 

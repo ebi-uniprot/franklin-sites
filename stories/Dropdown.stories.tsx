@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 import { Fragment } from 'react';
 
 import { Button, Dropdown as DropdownComponent } from '../src/components';
@@ -9,7 +9,10 @@ const variants = ['primary', 'secondary', 'tertiary'] as const;
 const meta: Meta<typeof DropdownComponent> = {
   component: DropdownComponent,
   title: 'Forms/Dropdown',
-  render: () => (
+  args: {
+    onClick: fn(),
+  },
+  render: ({ onClick }) => (
     <div>
       <p>Uncontrolled/automatic dropdowns</p>
       {variants.map((variant) => (
@@ -34,8 +37,10 @@ const meta: Meta<typeof DropdownComponent> = {
                   <li>
                     <Button
                       variant="tertiary"
-                      onClick={() => {
-                        action('button within clicked')();
+                      onClick={(e) => {
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-expect-error
+                        onClick?.(e);
                         closeDropdown();
                       }}
                     >
