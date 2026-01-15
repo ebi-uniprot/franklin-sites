@@ -1,0 +1,1 @@
+import{r as e}from"./iframe-PpvKiT-0.js";const a=t=>e.createElement("svg",{viewBox:"0 0 16 16",fill:"currentColor",xmlns:"http://www.w3.org/2000/svg",...t},e.createElement("path",{d:"M9 5a1 1 0 11-2 0 1 1 0 012 0zM9 7v5H7V7h2z"}),e.createElement("path",{fillRule:"evenodd",d:"M16 8A8 8 0 110 8a8 8 0 0116 0zm-2 0A6 6 0 112 8a6 6 0 0112 0z"}));export{a as S};
