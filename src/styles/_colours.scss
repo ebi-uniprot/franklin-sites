@@ -111,7 +111,8 @@ $colour-hover: color-mix(in srgb, $colour-platinum 90%, white);
   --fr--color-bronze: #a65708;
 
   // COLOUR VARIABLES
-  --fr--color-link: var(--fr--color-sapphire-blue);
+  // --fr--color-link: var(--fr--color-sapphire-blue);
+  --fr--color-link: #2d5f8a;
   --fr--color-selected: var(--fr--color-gainsborough);
   --fr--color-hover: oklch(from var(--fr--color-platinum) calc(l + 5%) c h);
 
