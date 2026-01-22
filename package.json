@@ -90,7 +90,7 @@
     "classnames": "2.5.1",
     "d3": "5.16.0",
     "foundation-sites": "6.9.0",
-    "lodash-es": "4.17.22",
+    "lodash-es": "4.17.23",
     "timing-functions": "2.0.1"
   },
   "devDependencies": {
