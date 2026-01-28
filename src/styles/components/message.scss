@@ -6,11 +6,12 @@
   }
 }
 
-@mixin getWarningCSS($level) {
+@mixin getWarningCSS($level, $background) {
   @include SVGDefinition(($level));
   .message__side-border {
     background-color: $level;
   }
+  background-color: $background;
 }
 
 .message {
@@ -102,18 +103,18 @@
   }
 
   &--warning {
-    @include getWarningCSS($colour-warning);
+    @include getWarningCSS($colour-warning, rgba(255, 193, 7, 0.08));
   }
 
   &--failure {
-    @include getWarningCSS($colour-failure);
+    @include getWarningCSS($colour-failure, rgba(220, 53, 69, 0.08));
   }
 
   &--success {
-    @include getWarningCSS($colour-success);
+    @include getWarningCSS($colour-success, rgba(40, 167, 69, 0.08));
   }
 
   &--info {
-    @include getWarningCSS($colour-info);
+    @include getWarningCSS($colour-info, rgba(23, 162, 184, 0.08));
   }
 }
