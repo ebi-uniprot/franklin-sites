@@ -6,17 +6,19 @@
   }
 }
 
-@mixin getWarningCSS($level, $background) {
+@mixin getWarningCSS($level) {
   @include SVGDefinition(($level));
   .message__side-border {
     background-color: $level;
   }
-  background-color: $background;
 }
 
 .message {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
   background-color: $colour-sky-white;
+
+  --message-base-color: #{$colour-info};
+  background-color: color-mix(in srgb, var(--message-base-color) 5%, white);
 
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   margin-bottom: $global-margin * 0.5;
@@ -103,18 +105,26 @@
   }
 
   &--warning {
-    @include getWarningCSS($colour-warning, #fffbf0);
+    --message-base-color: #{$colour-warning};
+    background-color: color-mix(in srgb, var(--message-base-color) 5%, white);
+    @include getWarningCSS($colour-warning);
   }
 
   &--failure {
-    @include getWarningCSS($colour-failure, #fef5f6);
+    --message-base-color: #{$colour-failure};
+    background-color: color-mix(in srgb, var(--message-base-color) 5%, white);
+    @include getWarningCSS($colour-failure);
   }
 
   &--success {
-    @include getWarningCSS($colour-success, #f0fdf4);
+    --message-base-color: #{$colour-success};
+    background-color: color-mix(in srgb, var(--message-base-color) 5%, white);
+    @include getWarningCSS($colour-success);
   }
 
   &--info {
-    @include getWarningCSS($colour-info, #f0fafc);
+    --message-base-color: #{$colour-info};
+    background-color: color-mix(in srgb, var(--message-base-color) 5%, white);
+    @include getWarningCSS($colour-info);
   }
 }
