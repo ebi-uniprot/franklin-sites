@@ -82,11 +82,12 @@ $knob-shift: 1rem;
   --toggle-switch-color: var(--toggle-switch-color-off);
   --toggle-icon-color: var(--toggle-icon-color-off);
 
-  padding: clamp(0.5rem, 2vw, 0.75rem);
+  // padding: clamp(0.5rem, 2vw, 0.75rem);
+  padding: 0.5rem;
   border: 2px solid var(--toggle-border-color);
   border-radius: 1rem;
   background-color: var(--toggle-background-color);
-  min-width: 17.5rem;
+  // min-width: 15rem;
   width: 100%;
   text-align: left;
 
@@ -128,7 +129,7 @@ $knob-shift: 1rem;
 
   &__text {
     flex: 1 1 auto;
-    min-width: 8rem;
+    // min-width: 8rem;
     display: flex;
     flex-direction: column;
   }
@@ -136,6 +137,7 @@ $knob-shift: 1rem;
   &__header {
     font-size: 1rem;
     font-weight: 600;
+    white-space: nowrap;
     color: var(--toggle-header-color);
 
     &__chip {
