@@ -118,7 +118,7 @@ const ToggleSwitchStoryWrapper = (props: StoryArgs) => {
       style={
         {
           '--toggle-on-base': baseColor,
-          maxWidth: 200,
+          maxWidth: 250,
         } as CSSProperties
       }
     />
