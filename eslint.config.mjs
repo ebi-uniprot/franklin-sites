@@ -25,18 +25,20 @@ export default defineConfig([
   {
     files: ['{src,stories}/**/*.{ts,tsx}'],
 
-    extends: compat.extends(
-      'airbnb-base',
-      'plugin:jsx-a11y/recommended',
-      'plugin:@typescript-eslint/recommended',
-      'prettier',
-      'plugin:storybook/recommended'
-    ),
+    extends: [
+      ...compat.extends(
+        'airbnb-base',
+        'plugin:jsx-a11y/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+        'plugin:storybook/recommended'
+      ),
+      reactPlugin.configs['recommended-typescript'],
+    ],
 
     plugins: {
       '@typescript-eslint': typescriptEslint,
       'react-hooks': reactHooks,
-      ...reactPlugin.configs['recommended-typescript'].plugins,
     },
 
     languageOptions: {
@@ -54,14 +56,9 @@ export default defineConfig([
       'import/resolver': {
         node: { extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'] },
       },
-
-      ...reactPlugin.configs['recommended-typescript'].settings,
     },
 
     rules: {
-      // @eslint-react recommended-typescript rules as the base
-      ...reactPlugin.configs['recommended-typescript'].rules,
-
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/consistent-type-imports': [
         'error',
