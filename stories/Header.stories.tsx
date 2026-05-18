@@ -68,7 +68,13 @@ const meta: Meta<typeof HeaderComponent> = {
           <UniProtLogo width={30} />
         </a>
       }
-      search={search && <Search onSubmit={onSubmit} />}
+      search={
+        search && (
+          <Search
+            onSubmit={onSubmit as ((e: SyntheticEvent) => void) | undefined}
+          />
+        )
+      }
       secondaryItems={secondaryItems && headerSecondaryItems}
       subtext={subtext && 'Release info | Statistics'}
       isNegative={isNegative}
