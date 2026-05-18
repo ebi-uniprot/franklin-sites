@@ -26,16 +26,16 @@ const AutocompleteItem = ({
   substringToHighlight,
   handleOnClick,
 }: AutocompleteItemProps) => {
-  const node = useRef<HTMLLIElement>(null);
+  const nodeRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
-    if (active && node.current) {
-      node.current.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    if (active && nodeRef.current) {
+      nodeRef.current.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
   });
 
   return (
-    <li ref={node} data-testid="autocomplete-item">
+    <li ref={nodeRef} data-testid="autocomplete-item">
       <button
         type="button"
         onClick={(e) => handleOnClick(item, e)}

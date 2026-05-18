@@ -136,6 +136,11 @@ export default defineConfig([
 
       // was off in eslint-config-airbnb; autoFocus is intentional in some components
       'jsx-a11y/no-autofocus': 'off',
+
+      // Children.toArray/map are still the right tool for opaque children props;
+      // replacing them requires an API change (children: ReactNode[]) — revisit later
+      '@eslint-react/no-children-to-array': 'off',
+      '@eslint-react/no-children-map': 'off',
     },
   },
 ]);

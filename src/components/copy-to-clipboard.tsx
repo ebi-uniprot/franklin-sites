@@ -28,13 +28,13 @@ const CopyToClipboard = memo(
     ...props
   }: Props & Omit<ButtonProps, 'onCopy'>) => {
     const [copied, setCopied] = useState(false);
-    const copyPromise = useRef<Promise<void> | null>(null);
+    const copyPromiseRef = useRef<Promise<void> | null>(null);
 
     useEffect(() => {
       setCopied(false);
       return () => {
         // Clear any potential ongoing promise on changing value or unmounting
-        copyPromise.current = null;
+        copyPromiseRef.current = null;
       };
     }, [textToCopy]);
 
@@ -42,7 +42,7 @@ const CopyToClipboard = memo(
       const p = navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
-          if (copyPromise.current === p) {
+          if (copyPromiseRef.current === p) {
             // Display copied for 10 seconds
             setCopied(true);
             onCopy?.(textToCopy);
@@ -51,11 +51,11 @@ const CopyToClipboard = memo(
           return null;
         })
         .then(() => {
-          if (copyPromise.current === p) {
+          if (copyPromiseRef.current === p) {
             setCopied(false);
           }
         });
-      copyPromise.current = p;
+      copyPromiseRef.current = p;
     }, [onCopy, textToCopy]);
 
     if (!('clipboard' in navigator) || !('writeText' in navigator.clipboard)) {
