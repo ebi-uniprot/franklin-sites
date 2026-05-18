@@ -73,6 +73,7 @@ export const Tile: FC<
   link,
 }) => {
   const TitleHeadingLevel = headingLevel;
+  // eslint-disable-next-line @eslint-react/static-components
   const SubtitleHeadingLevel = nextHeading(headingLevel);
 
   return (
@@ -98,6 +99,7 @@ export const Tile: FC<
           {title}
         </TitleHeadingLevel>
         {subtitle && (
+          // eslint-disable-next-line @eslint-react/static-components
           <SubtitleHeadingLevel className="tile__subtitle small">
             {subtitle}
           </SubtitleHeadingLevel>

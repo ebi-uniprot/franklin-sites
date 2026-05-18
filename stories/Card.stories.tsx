@@ -107,6 +107,7 @@ const meta: Meta<StoryProps> = {
         hasLinks
           ? links.map(({ name, color, link }) => (
               <ActionLink
+                key={link}
                 name={name}
                 color={color}
                 link={`${window.parent.location.href.split('#')[0]}${link}`}

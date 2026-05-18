@@ -42,7 +42,7 @@ describe('DecoratedListItem component', () => {
 
   it('should render link', () => {
     const { asFragment } = render(
-      // eslint-disable-next-line jsx-a11y/control-has-associated-label, jsx-a11y/anchor-has-content
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
       <DecoratedListItem link={<a href="/target" />}>Content</DecoratedListItem>
     );
     expect(asFragment()).toMatchSnapshot();

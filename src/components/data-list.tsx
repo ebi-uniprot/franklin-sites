@@ -1,7 +1,3 @@
-// Following exception used because of false positives on linting rule:
-// https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#false-positives-sfc
-/* eslint-disable react/no-unused-prop-types */
-
 import { memo, type ReactNode, type HTMLAttributes } from 'react';
 import cn from 'classnames';
 

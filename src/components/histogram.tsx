@@ -147,7 +147,7 @@ const Histogram = ({
             const withinRange = startIndex <= index && index <= endIndex;
             return (
               <div
-                key={index} // eslint-disable-line react/no-array-index-key
+                key={index}
                 data-testid="histogram-bar"
                 className={cn(
                   'histogram histogram__bar',
@@ -164,7 +164,7 @@ const Histogram = ({
           const withinRange = startIndex <= index && index <= endIndex;
           return (
             <div
-              key={index} // eslint-disable-line react/no-array-index-key
+              key={index}
               data-testid="histogram-bar"
               className={cn(
                 'histogram histogram__bar',

@@ -123,7 +123,6 @@ const MainSearch = ({
         {secondaryButtons && (
           <div className="main-search__secondary-container">
             {secondaryButtons.map(({ label, action }, index) => (
-              // eslint-disable-next-line react/no-array-index-key
               <Fragment key={index}>
                 {index > 0 && <small> | </small>}
                 <button

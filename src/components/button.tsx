@@ -29,7 +29,6 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   ) => (
     <button
       className={cn('button', variant, { disabled: props.disabled }, className)}
-      // eslint-disable-next-line react/button-has-type
       type={type}
       ref={ref}
       {...props}
