@@ -158,7 +158,6 @@ const DataTableRow = <Datum extends BasicDatum>({
       {selectable && (
         <td className="checkbox-cell">
           <input type="checkbox" data-id={id} id={labelId} />
-          {}
           <label
             htmlFor={labelId}
             aria-label={id}
@@ -247,7 +246,6 @@ export const DataTable = <Datum extends BasicDatum>({
       selectable && (
         <>
           <input type="checkbox" id={labelId} ref={selectAllRef} />
-          {}
           <label
             htmlFor={labelId}
             aria-label="Selection control for all visible items"
