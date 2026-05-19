@@ -2,6 +2,7 @@
   "name": "franklin-sites",
   "description": "React and Zurb Foundation based design system for life sciences web applications",
   "version": "0.0.262",
+  "type": "module",
   "engines": {
     "node": ">=24"
   },

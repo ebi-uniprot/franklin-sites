@@ -6,6 +6,7 @@
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "./dist/types/",
+    "rootDir": "./src",
     // those 2 need to be removed after complete transition
     "allowJs": false,
     "strict": false

@@ -13,6 +13,9 @@ export default defineConfig({
         silenceDeprecations: ['import', 'global-builtin', 'if-function'],
       },
     },
+    lightningcss: {
+      errorRecovery: true,
+    },
   },
 
   // Only build-specific options are needed since we use this for library build
