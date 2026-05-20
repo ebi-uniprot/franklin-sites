@@ -70,7 +70,7 @@ const SlidingPanel: FC<
   pathname,
   ...props
 }) => {
-  const node = useRef<HTMLDivElement>(null);
+  const nodeRef = useRef<HTMLDivElement>(null);
 
   const onCloseRef = useRef<SlidingPanelProps['onClose']>(onClose);
   onCloseRef.current = onClose;
@@ -83,23 +83,27 @@ const SlidingPanel: FC<
     // Mutation observer for when the content of the sliding panel changes
     // (because all the content might not be there immediatly)
     let mutationObs: MutationObserver | null = null;
-    const focusTarget = node.current?.querySelector<HTMLElement>(focusable);
+    const focusTarget = nodeRef.current?.querySelector<HTMLElement>(focusable);
     if (focusTarget) {
       focusTarget.focus();
     } else {
       // if there is no focusable element, wait for one to be rendered
       mutationObs = new MutationObserver(() => {
         // Get the first focusable element in the panel
-        const focusTarget = node.current?.querySelector<HTMLElement>(focusable);
+        const focusTarget =
+          nodeRef.current?.querySelector<HTMLElement>(focusable);
         if (focusTarget) {
           // If there is one, focus it and disconnect the observer
           focusTarget.focus();
           mutationObs?.disconnect();
         }
       });
-      if (node.current) {
+      if (nodeRef.current) {
         // Connect the observer to the panel
-        mutationObs?.observe(node.current, { childList: true, subtree: true });
+        mutationObs?.observe(nodeRef.current, {
+          childList: true,
+          subtree: true,
+        });
       }
     }
 
@@ -183,7 +187,7 @@ const SlidingPanel: FC<
         Number.isFinite(arrowX) && `sliding-panel--${position}--below-header`,
         className
       )}
-      ref={node}
+      ref={nodeRef}
       {...props}
     >
       {title && (

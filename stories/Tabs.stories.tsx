@@ -76,15 +76,15 @@ export const UnmanagedTabsWithDifferentDefault = () => (
 
 const options = ['option a', 'option 2', 'option III'];
 const ManagedTabsComponent = () => {
-  const interval = useRef<number | undefined>(undefined);
+  const intervalRef = useRef<number | undefined>(undefined);
 
   const [selected, setSelected] = useState(options[0]);
 
   useEffect(() => {
-    interval.current = window.setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       setSelected(options[Math.floor(Math.random() * options.length)]);
     }, 3000);
-    return () => clearInterval(interval.current);
+    return () => clearInterval(intervalRef.current);
   }, []);
 
   return (
@@ -120,16 +120,16 @@ const ManagedTabsComponent = () => {
 };
 
 const ManagedTabsWithLinksComponent = () => {
-  const interval = useRef<number | undefined>(undefined);
+  const intervalRef = useRef<number | undefined>(undefined);
 
   const [selected, setSelected] = useState(options[0]);
 
   useEffect(() => {
-    interval.current = window.setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       // - 1 to not include the last option which is disabled
       setSelected(options[Math.floor(Math.random() * (options.length - 1))]);
     }, 3000);
-    return () => clearInterval(interval.current);
+    return () => clearInterval(intervalRef.current);
   }, []);
 
   return (

@@ -74,8 +74,8 @@ const HistogramFilter = ({
   className,
   ...props
 }: Props & Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>) => {
-  const d3Container = useRef<SVGSVGElement>(null);
-  const [size] = useSize(d3Container);
+  const d3ContainerRef = useRef<SVGSVGElement>(null);
+  const [size] = useSize(d3ContainerRef);
   const brushRef = useRef<BrushBehavior<unknown> | null>(null);
 
   const onChangeRef = useRef(onChange);
@@ -127,7 +127,7 @@ const HistogramFilter = ({
       .on('end', getOnBrush('end'));
 
     // Tie the brush to the DOM
-    const selection = select(d3Container.current).append('g');
+    const selection = select(d3ContainerRef.current).append('g');
     brushRef.current(selection);
 
     // eslint-disable-next-line consistent-return
@@ -147,9 +147,9 @@ const HistogramFilter = ({
     const scale = scaleLinear().domain([min, max]).range([0, size.width]);
     // If the brush corresponds to the full range, remove it completely
     if (selectedRange[0] === min && selectedRange[1] === max) {
-      brushRef.current?.move(select(d3Container.current).select('g'), null);
+      brushRef.current?.move(select(d3ContainerRef.current).select('g'), null);
     } else {
-      brushRef.current?.move(select(d3Container.current).select('g'), [
+      brushRef.current?.move(select(d3ContainerRef.current).select('g'), [
         scale(selectedRange[0])!,
         scale(selectedRange[1])!,
       ]);
@@ -169,7 +169,7 @@ const HistogramFilter = ({
         height={height}
       >
         {/* Brush container */}
-        <svg ref={d3Container} width="100%" height="100%" />
+        <svg ref={d3ContainerRef} width="100%" height="100%" />
       </Histogram>
       <div className="histogram-filter__text-input-container">
         <input

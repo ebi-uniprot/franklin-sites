@@ -19,13 +19,13 @@ type Props = {
 const WIDTH = 80;
 
 const YAxis = ({ scale, height, label }: Props) => {
-  const d3Container = useRef<SVGSVGElement>(null);
+  const d3ContainerRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (d3Container.current) {
+    if (d3ContainerRef.current) {
       const axis = axisLeft(scale).tickPadding(6);
       axis.tickSize(0);
-      const svg = select(d3Container.current);
+      const svg = select(d3ContainerRef.current);
       svg.selectAll('*').remove();
       svg.append('g').attr('transform', 'translate(50, 0)').call(axis);
       svg
@@ -39,7 +39,12 @@ const YAxis = ({ scale, height, label }: Props) => {
   }, [height, label, scale]);
 
   return (
-    <svg width={WIDTH} height={height} ref={d3Container} className="y-axis" />
+    <svg
+      width={WIDTH}
+      height={height}
+      ref={d3ContainerRef}
+      className="y-axis"
+    />
   );
 };
 

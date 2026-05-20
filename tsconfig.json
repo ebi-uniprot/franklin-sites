@@ -24,5 +24,6 @@
     "declarationMap": true,
     "declaration": true,
     "noEmit": true
-  }
+  },
+  "exclude": ["node_modules", "dist", "storybook-static", "coverage"]
 }

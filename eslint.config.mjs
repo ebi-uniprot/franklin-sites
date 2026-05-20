@@ -1,16 +1,13 @@
 import { defineConfig } from 'eslint/config';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
-import { fixupPluginRules } from '@eslint/compat';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
-// Needed because of the plugins we use. If they support the "flat config"
-// format now then we should use it, but check one by one and while doing so
-// maybe re-evaluate if actually needed of if better plugins/presets exist
 import { FlatCompat } from '@eslint/eslintrc';
+import reactPlugin from '@eslint-react/eslint-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,18 +24,21 @@ export default defineConfig([
   },
   {
     files: ['{src,stories}/**/*.{ts,tsx}'],
-    ignores: ['storybook-static/**', 'dist/**'],
 
-    extends: compat.extends(
-      'airbnb',
-      'plugin:@typescript-eslint/recommended',
-      'prettier',
-      'plugin:storybook/recommended'
-    ),
+    extends: [
+      ...compat.extends(
+        'airbnb-base',
+        'plugin:jsx-a11y/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+        'plugin:storybook/recommended'
+      ),
+      reactPlugin.configs['recommended-typescript'],
+    ],
 
     plugins: {
       '@typescript-eslint': typescriptEslint,
-      'react-hooks': fixupPluginRules(reactHooks),
+      'react-hooks': reactHooks,
     },
 
     languageOptions: {
@@ -109,28 +109,35 @@ export default defineConfig([
       'no-shadow': 'off',
       'no-use-before-define': 'off',
 
-      'react/function-component-definition': [
-        'error',
-        {
-          namedComponents: 'arrow-function',
-          unnamedComponents: 'arrow-function',
-        },
-      ],
-
-      'react/jsx-filename-extension': 'off',
-      'react/jsx-one-expression-per-line': 'off',
-
-      'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
-
-      'react/jsx-props-no-spreading': 'off',
-      'react/jsx-uses-react': 'off',
-      'react/jsx-wrap-multilines': 'off',
-      'react/no-did-update-set-state': 'off',
-      'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/require-default-props': 'off',
+      // react-hooks plugin handles these; disable the @eslint-react duplicates
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      '@eslint-react/rules-of-hooks': 'off',
+      '@eslint-react/exhaustive-deps': 'off',
+
+      // useless-fragment replaces react/jsx-no-useless-fragment
+      '@eslint-react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+
+      // Rules that are too prescriptive or not applicable for this codebase
+      '@eslint-react/error-boundaries': 'off',
+      '@eslint-react/no-array-index-key': 'off',
+      '@eslint-react/no-context-provider': 'off',
+      '@eslint-react/no-forward-ref': 'off',
+      '@eslint-react/no-unnecessary-use-prefix': 'off',
+      '@eslint-react/no-use-context': 'off',
+      '@eslint-react/purity': 'off',
+      '@eslint-react/rsc-function-definition': 'off',
+      '@eslint-react/set-state-in-effect': 'off',
+      '@eslint-react/use-memo': 'off',
+      '@eslint-react/use-state': 'off',
+
+      // was off in eslint-config-airbnb; autoFocus is intentional in some components
+      'jsx-a11y/no-autofocus': 'off',
+
+      // Children.toArray/map are still the right tool for opaque children props;
+      // replacing them requires an API change (children: ReactNode[]) — revisit later
+      '@eslint-react/no-children-to-array': 'off',
+      '@eslint-react/no-children-map': 'off',
     },
   },
 ]);

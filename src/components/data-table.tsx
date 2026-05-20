@@ -1,6 +1,3 @@
-// Following exception used because of false positives on linting rule:
-// https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#false-positives-sfc
-/* eslint-disable react/no-unused-prop-types */
 import {
   memo,
   useEffect,
@@ -161,7 +158,6 @@ const DataTableRow = <Datum extends BasicDatum>({
       {selectable && (
         <td className="checkbox-cell">
           <input type="checkbox" data-id={id} id={labelId} />
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label
             htmlFor={labelId}
             aria-label={id}
@@ -250,7 +246,6 @@ export const DataTable = <Datum extends BasicDatum>({
       selectable && (
         <>
           <input type="checkbox" id={labelId} ref={selectAllRef} />
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label
             htmlFor={labelId}
             aria-label="Selection control for all visible items"

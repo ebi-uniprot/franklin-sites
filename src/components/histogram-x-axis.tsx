@@ -29,17 +29,17 @@ type Props = {
 const HEIGHT = 80;
 
 const XAxis = ({ min, max, interval, yPos, label }: Props) => {
-  const d3Container = useRef<SVGSVGElement>(null);
-  const [size] = useSize(d3Container);
+  const d3ContainerRef = useRef<SVGSVGElement>(null);
+  const [size] = useSize(d3ContainerRef);
 
   useEffect(() => {
-    if (size?.width && d3Container.current) {
+    if (size?.width && d3ContainerRef.current) {
       const scale = scaleLinear().domain([min, max]).range([0, size.width]);
       const axis = axisBottom(scale)
         .tickValues(range(min, max + interval, interval))
         .tickPadding(6);
       axis.tickSize(0);
-      const svg = select(d3Container.current);
+      const svg = select(d3ContainerRef.current);
       svg.selectAll('*').remove();
       svg.append('g').call(axis);
       svg
@@ -52,7 +52,9 @@ const XAxis = ({ min, max, interval, yPos, label }: Props) => {
 
   const style = useMemo(() => ({ top: yPos }), [yPos]);
 
-  return <svg style={style} width="100%" height={HEIGHT} ref={d3Container} />;
+  return (
+    <svg style={style} width="100%" height={HEIGHT} ref={d3ContainerRef} />
+  );
 };
 
 export default XAxis;

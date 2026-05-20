@@ -1,4 +1,4 @@
-import { type FormEventHandler, type SyntheticEvent, useState } from 'react';
+import { type SyntheticEvent, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
@@ -29,11 +29,7 @@ const headerSecondaryItems = (
   </>
 );
 
-const Search = ({
-  onSubmit,
-}: {
-  onSubmit?: FormEventHandler<HTMLInputElement>;
-}) => {
+const Search = ({ onSubmit }: { onSubmit?: (e: SyntheticEvent) => void }) => {
   const [value, setValue] = useState('');
   return (
     <MainSearch
@@ -41,8 +37,6 @@ const Search = ({
       searchTerm={value}
       onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         onSubmit?.(e);
       }}
     />
@@ -74,7 +68,13 @@ const meta: Meta<typeof HeaderComponent> = {
           <UniProtLogo width={30} />
         </a>
       }
-      search={search && <Search onSubmit={onSubmit} />}
+      search={
+        search && (
+          <Search
+            onSubmit={onSubmit as ((e: SyntheticEvent) => void) | undefined}
+          />
+        )
+      }
       secondaryItems={secondaryItems && headerSecondaryItems}
       subtext={subtext && 'Release info | Statistics'}
       isNegative={isNegative}

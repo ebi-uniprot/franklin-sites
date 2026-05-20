@@ -121,17 +121,17 @@ const ChangingGaussianRender: typeof meta.render = ({
   barGap,
   color,
 }) => {
-  const interval = useRef<number | undefined>(undefined);
+  const intervalRef = useRef<number | undefined>(undefined);
 
   const [filteredSample, setFilteredSample] = useState(
     gaussianSample.filter(randomFilter)
   );
 
   useEffect(() => {
-    interval.current = window.setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       setFilteredSample(gaussianSample.filter(randomFilter));
     }, 3000);
-    return () => window.clearInterval(interval.current);
+    return () => window.clearInterval(intervalRef.current);
   }, []);
   return (
     <HistogramComponent

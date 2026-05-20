@@ -7,17 +7,20 @@ const accordionContent = 'Foo bar baz qux quux quuz';
 const props = {
   accordionTitle: 'foo',
   count: 10,
-  children: <div>{accordionContent}</div>,
 };
+
+const accordionChildren = <div>{accordionContent}</div>;
 
 describe('Accordion', () => {
   it('should render', () => {
-    const { asFragment } = render(<Accordion {...props} />);
+    const { asFragment } = render(
+      <Accordion {...props}>{accordionChildren}</Accordion>
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should show content according to accordion state', () => {
-    render(<Accordion {...props} />);
+    render(<Accordion {...props}>{accordionChildren}</Accordion>);
     const title = screen.getByRole('button', { name: /foo/ });
     expect(screen.queryByText(accordionContent)).not.toBeInTheDocument();
     fireEvent.click(title);

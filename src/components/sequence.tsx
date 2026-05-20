@@ -85,7 +85,6 @@ const SequenceChunks = memo(
       <div className="sequence" ref={ref}>
         {chunks.map((chunk, index) => (
           <span
-            // eslint-disable-next-line react/no-array-index-key
             key={index}
             className={cn('sequence__chunk', {
               'sequence__chunk--display-last':

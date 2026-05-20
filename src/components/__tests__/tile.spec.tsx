@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/control-has-associated-label */
+
 import { render } from '@testing-library/react';
 
 import Tile from '../tile';
