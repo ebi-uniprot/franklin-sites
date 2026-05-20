@@ -1,0 +1,4 @@
+import{l as e,o as t}from"./preload-helper-BKhVKv2_.js";import{W as n,t as r}from"./iframe-DY8UokxF.js";import{Ot as i,t as a}from"./components-BwbmWcHP.js";var o,s,c,l,u,d,f;t((()=>{o=e(n(),1),a(),s=r(),u={title:`Forms/Search Input`},d=()=>{let[e,t]=(0,o.useState)(``);return(0,s.jsx)(i,{placeholder:`Search`,value:e,onChange:e=>t(e.target.value)})},d.parameters={...d.parameters,docs:{...(c=d.parameters)==null?void 0:c.docs,source:{originalSource:`() => {
+  const [value, setValue] = useState('');
+  return <SI placeholder="Search" value={value} onChange={e => setValue(e.target.value)} />;
+}`,...(l=d.parameters)==null||(l=l.docs)==null?void 0:l.source}}},f=[`SearchInput`]}))();export{d as SearchInput,f as __namedExportsOrder,u as default};
