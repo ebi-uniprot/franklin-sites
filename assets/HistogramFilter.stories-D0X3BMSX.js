@@ -1,0 +1,11 @@
+import{l as e,o as t}from"./preload-helper-BKhVKv2_.js";import{W as n,t as r}from"./iframe-BLNvzUQj.js";import{rt as i,t as a}from"./components-ALk3i8S3.js";import{n as o,r as s,t as c}from"./probability-distribution-sample-BVZl322s.js";var l,u,d,f,p,m,h,g,_,v,y,b,x,S,C,w,T;t((()=>{l=e(n(),1),a(),s(),u=r(),{fn:h}=__STORYBOOK_MODULE_TEST__,[g,_]=[0,1e3],v=1e3,y=c((_-g)/2,_/8,v,g,_),b=o(g,_,v),x=({values:e,barGap:t,color:n,outRangeColor:r,onRangeSelected:a})=>{let[o,s]=(0,l.useState)([g,_]);return(0,u.jsx)(i,{values:e,min:g,max:_,selectedRange:o,onChange:e=>{a(e),s(e)},style:{"--main-histogram-color":n,"--out-range-histogram-color":r,"--histogram-bar-gap":t}})},S={component:i,title:`Forms/Histogram Filter`,argTypes:{color:{control:`select`,name:`--main-histogram-color`,options:[`var(--fr--color-sapphire-blue)`,`var(--fr--color-sea-blue)`,`var(--fr--color-vivid-cerulean)`,`var(--fr--color-medium-turquoise)`,`var(--fr--color-gainsborough)`,`var(--fr--color-weldon-blue)`,`var(--fr--color-platinum)`,`white`,`blue`]},outRangeColor:{control:`select`,name:`--out-range-histogram-color`,options:[`var(--fr--color-sapphire-blue)`,`var(--fr--color-sea-blue)`,`var(--fr--color-vivid-cerulean)`,`var(--fr--color-medium-turquoise)`,`var(--fr--color-gainsborough)`,`var(--fr--color-weldon-blue)`,`var(--fr--color-platinum)`,`white`,`blue`]}},args:{barGap:`-1px`,color:`var(--fr--color-weldon-blue)`,outRangeColor:`var(--fr--color-platinum)`,onRangeSelected:h()},render:x},C={args:{...S.args,values:y}},w={args:{...S.args,values:b}},C.parameters={...C.parameters,docs:{...(d=C.parameters)==null?void 0:d.docs,source:{originalSource:`{
+  args: {
+    ...meta.args,
+    values: gaussianSample
+  }
+}`,...(f=C.parameters)==null||(f=f.docs)==null?void 0:f.source}}},w.parameters={...w.parameters,docs:{...(p=w.parameters)==null?void 0:p.docs,source:{originalSource:`{
+  args: {
+    ...meta.args,
+    values: uniformSample
+  }
+}`,...(m=w.parameters)==null||(m=m.docs)==null?void 0:m.source}}},T=[`Gaussian`,`Uniform`]}))();export{C as Gaussian,w as Uniform,T as __namedExportsOrder,S as default};
