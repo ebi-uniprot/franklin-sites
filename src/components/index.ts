@@ -83,6 +83,7 @@ export { default as ProtVistaIcon } from '../svg/protvista.svg';
 export { default as PublicationIcon } from '../svg/publication.svg';
 export { default as RedundantProteomeIcon } from '../svg/redundant-proteome.svg';
 export { default as ReferenceProteomeIcon } from '../svg/reference-proteome.svg';
+export { default as NonReferenceProteomeIcon } from '../svg/non-reference-proteome.svg';
 export { default as RefreshIcon } from '../svg/refresh.svg';
 export { default as ReSubmitIcon } from '../svg/re-submit.svg';
 export { default as SearchIcon } from '../svg/search.svg';
