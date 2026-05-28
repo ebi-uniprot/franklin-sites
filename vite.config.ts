@@ -31,7 +31,7 @@ export default defineConfig({
     target: 'es2019',
     minify: true,
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: [/^react($|\/)/, /^react-dom($|\/)/],
       plugins: [
         visualizer({
           filename: 'dist/stats.html',
