@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 32" fill="currentColor">
+  
+  <mask id="np-n-cutout">
+    <rect width="26" height="32" fill="white"></rect>
+    <g fill="black">
+      
+      <rect x="5" y="13.5" width="3" height="15.5"></rect>
+      
+      <rect x="18" y="13.5" width="3" height="15.5"></rect>
+      
+      <path d="M5 13.5 L8 13.5 L21 29 L18 29 Z"></path>
+      
+      <rect x="3.5" y="13" width="6" height="0.9"></rect>
+      <rect x="16.5" y="13" width="6" height="0.9"></rect>
+      
+      <rect x="3" y="29" width="7" height="1"></rect>
+      <rect x="16" y="29" width="7" height="1"></rect>
+    </g>
+  </mask>
+  <g mask="url(#np-n-cutout)">
+    <path d="M26 11v21H0V0h15v11h11z"></path>
+  </g>
+  <path d="M26 9h-9V0l9 9z"></path>
+</svg>

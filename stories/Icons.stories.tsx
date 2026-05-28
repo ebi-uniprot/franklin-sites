@@ -79,6 +79,11 @@ const iconDefinition = [
     icon: <ReferenceProteomeIcon width={size} height={size} />,
   },
   {
+    name: 'non-reference-proteome.svg',
+    description: 'Non reference proteome',
+    icon: <ReferenceProteomeIcon width={size} height={size} />,
+  },
+  {
     name: 'obsolete.svg',
     description: 'Obsolete entry',
     icon: <ObsoleteIcon width={size} height={size} />,
