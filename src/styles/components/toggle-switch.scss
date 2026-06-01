@@ -23,6 +23,14 @@
     var(--toggle-track-width) - var(--toggle-track-height)
   );
 
+  // Themable scale knobs. Base values reproduce the original hard-coded
+  // sizes; variants (eg. `--compact`) shrink the whole control by
+  // redefining these rather than re-stating each property.
+  --toggle-padding: clamp(0.25rem, 0.5vw, 1rem);
+  --toggle-header-font-size: 1rem;
+  --toggle-icon-size: 1rem;
+  --toggle-icon-padding: 0.25rem;
+
   font: inherit;
   cursor: pointer;
   user-select: none;
@@ -31,9 +39,6 @@
   --toggle-on-base: var(--fr--color-purple-mid);
   --toggle-knob-color: white;
 
-  --toggle-focus-color: color-mix(in srgb, var(--toggle-on-base) 70%, white);
-
-  --toggle-status-color-off: var(--toggle-off-base);
   --toggle-header-color-off: color-mix(
     in srgb,
     var(--toggle-off-base) 70%,
@@ -54,13 +59,7 @@
     var(--toggle-off-base) 80%,
     white
   );
-  --toggle-icon-color-off: var(--toggle-switch-color-off);
 
-  --toggle-status-color-on: color-mix(
-    in srgb,
-    var(--toggle-on-base) 80%,
-    black
-  );
   --toggle-header-color-on: color-mix(
     in srgb,
     var(--toggle-on-base) 80%,
@@ -77,20 +76,16 @@
     white
   );
   --toggle-switch-color-on: var(--toggle-on-base);
-  --toggle-icon-color-on: var(--toggle-on-base);
 
-  --toggle-status-color: var(--toggle-status-color-off);
   --toggle-header-color: var(--toggle-header-color-off);
   --toggle-background-color: var(--toggle-background-color-off);
   --toggle-border-color: var(--toggle-border-color-off);
   --toggle-switch-color: var(--toggle-switch-color-off);
-  --toggle-icon-color: var(--toggle-icon-color-off);
 
-  padding: clamp(0.25rem, 0.5vw, 1rem);
+  padding: var(--toggle-padding);
   border: 2px solid var(--toggle-border-color);
   border-radius: 1rem;
   background-color: var(--toggle-background-color);
-  width: 100%;
   text-align: left;
 
   transition:
@@ -113,7 +108,7 @@
   &__icon {
     flex-shrink: 0;
     background-color: var(--toggle-switch-color);
-    padding: 0.25rem;
+    padding: var(--toggle-icon-padding);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -121,62 +116,66 @@
     transition: background-color 180ms ease;
 
     svg {
-      width: 1rem;
-      height: 1rem;
+      width: var(--toggle-icon-size);
+      height: var(--toggle-icon-size);
       overflow: visible;
       fill: var(--toggle-switch-color);
       stroke: white;
     }
   }
 
-  &__text {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-
   &__header {
-    font-size: 1rem;
+    flex: 1 1 auto;
+    font-size: var(--toggle-header-font-size);
     font-weight: 600;
     white-space: nowrap;
     color: var(--toggle-header-color);
     min-width: 0;
 
-    &__chip {
-      position: absolute;
-      margin-left: 0.25rem;
-      border: 0;
-      pointer-events: none;
-      background: color-mix(in srgb, var(--toggle-on-base) 25%, white);
-      color: var(--toggle-header-color-on);
+    // Invisible decoy that pegs the header's (and therefore the toggle's)
+    // intrinsic width to a caller-supplied label, so reflow doesn't happen
+    // when `header` swaps between strings of different widths. Opt in via
+    // the `stableWidthLabel` prop.
+    //
+    // `visibility: hidden` is intentionally redundant alongside
+    // `height: 0; overflow: hidden;` — it's defense-in-depth that removes
+    // the decoy from the accessibility tree on user agents that mishandle
+    // aria-hidden. Don't strip it during a future cleanup.
+    &__stable {
+      display: block;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
     }
   }
 
-  &__status {
-    font-size: 0.875rem;
-    color: var(--toggle-status-color);
-    white-space: nowrap;
-    min-width: 0;
-  }
-
   &--on {
-    --toggle-status-color: var(--toggle-status-color-on);
     --toggle-header-color: var(--toggle-header-color-on);
     --toggle-background-color: var(--toggle-background-color-on);
     --toggle-border-color: var(--toggle-border-color-on);
     --toggle-switch-color: var(--toggle-switch-color-on);
-    --toggle-icon-color: var(--toggle-icon-color-on);
+  }
+
+  // Default behaviour is to hug content; opt into stretching with `fullWidth`.
+  &--full-width {
+    width: 100%;
+  }
+
+  // Compact variant: redefines the scale variables so every dimension
+  // (knob, track, label, padding) shrinks in lockstep. Padding is
+  // intentionally asymmetric (tighter vertical than horizontal) — that's
+  // the pill shape we want in dense toolbar contexts.
+  &--compact {
+    --toggle-knob-size: 0.7rem;
+    --toggle-padding: 0.25rem 0.6rem;
+    --toggle-header-font-size: 0.8rem;
+    --toggle-icon-size: 0.8rem;
+    --toggle-icon-padding: 0.2rem;
   }
 
   &--disabled {
     cursor: not-allowed;
 
-    --toggle-status-color: color-mix(
-      in srgb,
-      var(--toggle-off-base) 40%,
-      white
-    );
     --toggle-header-color: color-mix(
       in srgb,
       var(--toggle-off-base) 40%,
@@ -197,7 +196,6 @@
       var(--toggle-off-base) 20%,
       white
     );
-    --toggle-icon-color: color-mix(in srgb, var(--toggle-off-base) 20%, white);
   }
 
   &__switch {
@@ -238,11 +236,9 @@
     animation: toggle-opacity-shimmer 1.8s ease-in-out infinite;
     will-change: opacity;
 
-    --toggle-status-color: var(--toggle-status-color-on);
     --toggle-header-color: var(--toggle-header-color-on);
     --toggle-background-color: var(--toggle-background-color-on);
     --toggle-border-color: var(--toggle-border-color-on);
     --toggle-switch-color: var(--toggle-switch-color-on);
-    --toggle-icon-color: var(--toggle-icon-color-on);
   }
 }

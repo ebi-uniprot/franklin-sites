@@ -36,12 +36,12 @@ const meta: Meta<StoryArgs> = {
   title: 'Forms/ToggleSwitch',
   component: ToggleSwitch,
   argTypes: {
+    compact: { control: 'boolean' },
+    fullWidth: { control: 'boolean' },
+    stableWidthLabel: { control: 'text' },
     disabled: { control: 'boolean' },
     ariaLabel: { control: 'text' },
     header: { control: 'text' },
-    statusOn: { control: 'text' },
-    statusOff: { control: 'text' },
-    statusLoading: { control: 'text' },
 
     baseColor: {
       control: 'select',
@@ -56,12 +56,12 @@ const meta: Meta<StoryArgs> = {
     },
   },
   args: {
+    compact: false,
+    fullWidth: false,
+    stableWidthLabel: '',
     disabled: false,
     ariaLabel: 'ToggleSwitch',
     header: 'AI annotations',
-    statusOn: 'Showing AI predictions',
-    statusOff: 'Click to enable',
-    statusLoading: 'Loading AI predictions…',
     baseColor: 'var(--fr--color-purple-mid)',
     icon: <UniParcIcon />,
     onChange: fn(), // SB10-style action spy
@@ -77,12 +77,12 @@ const ToggleSwitchStoryWrapper = (props: StoryArgs) => {
     disabled,
     ariaLabel,
     header,
-    statusOn,
-    statusOff,
-    statusLoading,
     baseColor,
     icon,
     onChange,
+    compact,
+    fullWidth,
+    stableWidthLabel,
   } = props;
 
   const [checked, setChecked] = useState(false);
@@ -109,16 +109,19 @@ const ToggleSwitchStoryWrapper = (props: StoryArgs) => {
       disabled={disabled}
       ariaLabel={ariaLabel}
       header={header}
-      statusOn={statusOn}
-      statusOff={statusOff}
-      statusLoading={statusLoading}
-      onChange={handleChange}
       icon={icon}
+      onChange={handleChange}
       isLoading={loading}
+      compact={compact}
+      fullWidth={fullWidth}
+      stableWidthLabel={stableWidthLabel || undefined}
       style={
         {
           '--toggle-on-base': baseColor,
-          maxWidth: 250,
+          // Cap width only when fullWidth is on; with fullWidth off the
+          // toggle hugs its content naturally and an explicit maxWidth
+          // would create dead space inside the button.
+          ...(fullWidth ? { maxWidth: 250 } : {}),
         } as CSSProperties
       }
     />
