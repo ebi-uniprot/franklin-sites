@@ -53,6 +53,7 @@ import {
   FullViewIcon,
   ShareNodesIcon,
   RedundantProteomeIcon,
+  NonReferenceProteomeIcon,
 } from '../src/components';
 
 const size = 30;
@@ -81,7 +82,7 @@ const iconDefinition = [
   {
     name: 'non-reference-proteome.svg',
     description: 'Non reference proteome',
-    icon: <ReferenceProteomeIcon width={size} height={size} />,
+    icon: <NonReferenceProteomeIcon width={size} height={size} />,
   },
   {
     name: 'obsolete.svg',
