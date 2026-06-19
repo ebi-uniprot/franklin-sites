@@ -147,7 +147,7 @@
     "storybook": "10.4.0",
     "type-fest": "5.6.0",
     "typescript": "6.0.3",
-    "vite": "8.0.13",
+    "vite": "8.0.16",
     "vite-plugin-svgr": "5.2.0"
   }
 }
