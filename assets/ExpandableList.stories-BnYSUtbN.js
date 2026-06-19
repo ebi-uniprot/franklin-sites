@@ -1,0 +1,31 @@
+import{o as e}from"./preload-helper-IeJ1kGxu.js";import{t}from"./iframe-DlVM4iNb.js";import{hn as n,t as r}from"./components-DEFvvLNh.js";import{r as i,t as a}from"./lipsum-EcQqBuoq.js";var o,s,c,l,u,d,f,p,m;e((()=>{r(),i(),o=t(),d={component:n,title:`Data/Expandable List`,argTypes:{numberCollapsedItems:{name:`Number of displayed items`,control:{type:`number`,min:0,step:1}}},args:{numberCollapsedItems:5,descriptionString:`lorem ipsum items`,displayNumberOfHiddenItems:!1}},f={render:({numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:r})=>(0,o.jsx)(n,{numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:r,children:a({numberElements:10,keys:[`content`],type:`words`}).map(({content:e},t)=>(0,o.jsx)(`span`,{children:e},t))})},p={render:({numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:r})=>(0,o.jsx)(n,{numberCollapsedItems:e,descriptionString:t,displayNumberOfHiddenItems:r,extraActions:(0,o.jsx)(`a`,{className:`button tertiary expandable-list__action`,children:`some link`}),children:a({numberElements:10,keys:[`content`],type:`words`}).map(({content:e},t)=>(0,o.jsx)(`span`,{children:e},t))})},f.parameters={...f.parameters,docs:{...(s=f.parameters)==null?void 0:s.docs,source:{originalSource:`{
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems
+  }) => <ExpandableListComponent numberCollapsedItems={numberCollapsedItems} descriptionString={descriptionString} displayNumberOfHiddenItems={displayNumberOfHiddenItems}>
+      {getLipsumObjectArray({
+      numberElements: 10,
+      keys: ['content'],
+      type: 'words'
+    }).map(({
+      content
+    }, index) => <span key={index}>{content}</span>)}
+    </ExpandableListComponent>
+}`,...(c=f.parameters)==null||(c=c.docs)==null?void 0:c.source}}},p.parameters={...p.parameters,docs:{...(l=p.parameters)==null?void 0:l.docs,source:{originalSource:`{
+  render: ({
+    numberCollapsedItems,
+    descriptionString,
+    displayNumberOfHiddenItems
+  }) => <ExpandableListComponent numberCollapsedItems={numberCollapsedItems} descriptionString={descriptionString} displayNumberOfHiddenItems={displayNumberOfHiddenItems} extraActions={
+  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+  <a className="button tertiary expandable-list__action">some link</a>}>
+      {getLipsumObjectArray({
+      numberElements: 10,
+      keys: ['content'],
+      type: 'words'
+    }).map(({
+      content
+    }, index) => <span key={index}>{content}</span>)}
+    </ExpandableListComponent>
+}`,...(u=p.parameters)==null||(u=u.docs)==null?void 0:u.source}}},m=[`ExpandableList`,`ExpandableListWithExtraAction`]}))();export{f as ExpandableList,p as ExpandableListWithExtraAction,m as __namedExportsOrder,d as default};
