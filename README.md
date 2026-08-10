@@ -4,7 +4,18 @@ React and Zurb Foundation based design system for life sciences web applications
 
 The purpose of Franklin is to create a library a re-usable user interface components, with some components specific to displaying biological data.
 
-## yarn tasks
+## Development setup
+
+This repo uses [pnpm](https://pnpm.io), pinned via the `packageManager` field in `package.json`. The easiest way to get the right version is corepack, which ships with Node (≥ 24 required):
+
+```shell
+corepack enable   # one-time; may need sudo depending on your Node install
+pnpm install
+```
+
+Alternatively, [install pnpm yourself](https://pnpm.io/installation).
+
+## pnpm tasks
 
 Building the Franklin site
 
@@ -24,7 +35,7 @@ Building the Franklin site
 Get from npm:
 
 ```shell
-yarn install franklin-sites
+npm install franklin-sites
 ```
 
 Wrap your application in the `FranklinSite` tag:
@@ -42,5 +53,5 @@ import { FranklinSite } from "franklin-sites";
 
 ```
 npm login
-rm -rf node_modules; yarn; yarn release
+rm -rf node_modules; pnpm install; pnpm release
 ```
