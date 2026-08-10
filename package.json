@@ -35,8 +35,7 @@
     "test:unit": "jest --coverage",
     "test-watch": "jest --watch",
     "prettier": "prettier src --write",
-    "prerelease": "pnpm test && pnpm build",
-    "release": "npm version patch && pnpm publish && git push --follow-tags origin main",
+    "release": "pnpm test && pnpm build && npm version patch && pnpm publish && git push --follow-tags origin main",
     "start": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky"
