@@ -3,7 +3,7 @@
   "description": "React and Zurb Foundation based design system for life sciences web applications",
   "version": "0.0.265",
   "type": "module",
-  "packageManager": "pnpm@10.34.5",
+  "packageManager": "pnpm@11.20.0+sha512.9a6f330a95b66446ea088faf1521405a8a01f07fde7124cc9958dfed52d4bb436737e65b08f85f37b46fcba375092558ac51262b816844b22f63406ed166bfee",
   "engines": {
     "node": ">=24"
   },
@@ -151,15 +151,5 @@
     "typescript": "6.0.3",
     "vite": "8.1.5",
     "vite-plugin-svgr": "5.2.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "esbuild",
-      "unrs-resolver"
-    ],
-    "ignoredBuiltDependencies": [
-      "core-js"
-    ]
   }
 }
