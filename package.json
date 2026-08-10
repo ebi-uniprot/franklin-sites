@@ -3,6 +3,7 @@
   "description": "React and Zurb Foundation based design system for life sciences web applications",
   "version": "0.0.265",
   "type": "module",
+  "packageManager": "pnpm@10.34.5",
   "engines": {
     "node": ">=24"
   },
@@ -23,7 +24,7 @@
   "author": "Xavier Watkins <xwatkins@ebi.ac.uk>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -r dist; yarn build-library && yarn build-types && yarn build-storybook",
+    "build": "rm -r dist; pnpm build-library && pnpm build-types && pnpm build-storybook",
     "build-library": "vite build --config vite.config.ts",
     "build-types": "tsc --project tsconfig.declaration.json",
     "jest-coverage-ratchet": "jest-coverage-ratchet",
@@ -34,8 +35,8 @@
     "test:unit": "jest --coverage",
     "test-watch": "jest --watch",
     "prettier": "prettier src --write",
-    "prerelease": "yarn test && yarn build",
-    "release": "yarn publish && git push --follow-tags origin main",
+    "prerelease": "pnpm test && pnpm build",
+    "release": "npm version patch && pnpm publish && git push --follow-tags origin main",
     "start": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky"
@@ -59,7 +60,7 @@
       "<rootDir>/jest-setup.ts"
     ],
     "transform": {
-      "^.+\\.(tsx|ts)?$": "babel-jest",
+      "^.+\\.(tsx|ts)?$": "<rootDir>/node_modules/babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform"
     },
     "moduleFileExtensions": [
@@ -112,6 +113,7 @@
     "@types/d3": "5.16.3",
     "@types/jest": "30.0.0",
     "@types/lodash-es": "4.17.12",
+    "@types/node": "24.13.3",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.65.0",
@@ -150,5 +152,15 @@
     "typescript": "6.0.3",
     "vite": "8.1.5",
     "vite-plugin-svgr": "5.2.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "unrs-resolver"
+    ],
+    "ignoredBuiltDependencies": [
+      "core-js"
+    ]
   }
 }

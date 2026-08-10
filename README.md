@@ -4,7 +4,7 @@ React and Zurb Foundation based design system for life sciences web applications
 
 The purpose of Franklin is to create a library a re-usable user interface components, with some components specific to displaying biological data.
 
-## yarn tasks
+## pnpm tasks
 
 Building the Franklin site
 
@@ -24,7 +24,7 @@ Building the Franklin site
 Get from npm:
 
 ```shell
-yarn install franklin-sites
+npm install franklin-sites
 ```
 
 Wrap your application in the `FranklinSite` tag:
@@ -42,5 +42,5 @@ import { FranklinSite } from "franklin-sites";
 
 ```
 npm login
-rm -rf node_modules; yarn; yarn release
+rm -rf node_modules; pnpm install; pnpm release
 ```
