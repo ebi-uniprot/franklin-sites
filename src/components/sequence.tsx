@@ -82,7 +82,7 @@ const SequenceChunks = memo(
     }, [chunks, computeHighlights]);
 
     return (
-      <div className="sequence" ref={ref}>
+      <div className="sequence notranslate" ref={ref} translate="no">
         {chunks.map((chunk, index) => (
           <span
             key={index}
