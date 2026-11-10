@@ -1,0 +1,4 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{M as t,n}from"./iframe-Dc272sxP.js";import{n as r,t as i}from"./search-input-0FuUthAj.js";var a,o,s,c,l,u,d;function f(){return(f=e((()=>{a=t(),r(),o=n(),l={title:`Forms/Search Input`},u=()=>{let[e,t]=(0,a.useState)(``);return(0,o.jsx)(i,{placeholder:`Search`,value:e,onChange:e=>t(e.target.value)})},d=[`SearchInput`],u.parameters={...u.parameters,docs:{...(s=u.parameters)==null?void 0:s.docs,source:{originalSource:`() => {
+  const [value, setValue] = useState('');
+  return <SI placeholder="Search" value={value} onChange={e => setValue(e.target.value)} />;
+}`,...(c=u.parameters)==null||(c=c.docs)==null?void 0:c.source}}}})))()}f();export{u as SearchInput,d as __namedExportsOrder,l as default};

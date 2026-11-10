@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{M as t,n}from"./iframe-Dc272sxP.js";var r,i;function a(){return(a=e((()=>{t(),r=n(),i=e=>(0,r.jsx)(`svg`,{xmlns:`http://www.w3.org/2000/svg`,viewBox:`0 0 10 15`,fill:`currentColor`,...e,children:(0,r.jsx)(`path`,{d:`M10 0H0v15l5-5 5 5V0z`})})})))()}export{a as n,i as t};
