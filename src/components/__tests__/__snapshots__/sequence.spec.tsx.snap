@@ -43,7 +43,8 @@ exports[`Sequence component should render 1`] = `
         </div>
       </div>
       <div
-        class="sequence"
+        class="sequence notranslate"
+        translate="no"
       >
         <span
           class="sequence__chunk"
@@ -483,7 +484,8 @@ exports[`Sequence component should render without tools 1`] = `
       class="sequence-container"
     >
       <div
-        class="sequence"
+        class="sequence notranslate"
+        translate="no"
       >
         <span
           class="sequence__chunk"
