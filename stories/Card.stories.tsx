@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Card as CardComponent, SwissProtIcon } from '../src/components';
@@ -55,7 +55,7 @@ const links = [
   },
 ];
 
-type StoryProps = React.ComponentProps<typeof CardComponent> & {
+type StoryProps = ComponentProps<typeof CardComponent> & {
   hasHeader: boolean;
   hasCheckbox: boolean;
   hasHeaderSeparator: boolean;
